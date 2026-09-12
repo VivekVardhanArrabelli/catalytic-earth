@@ -683,14 +683,17 @@
     "claim_id": "CE-050",
     "claim_kind": "source_annotation",
     "status": "Supported",
-    "claim": "Two Lukoyanov2016 Figure8A WT nitrogenase EPR contrasts retain gas-versus-solvent isotope discrimination: H2O/N2+D2 is narrower than H2O/N2+H2; D2O/N2+H2 is broader than D2O/N2+D2.",
-    "current_wording": "Two qualitative paired assertions span four explicit conditions under 0.1 atm N2 plus 0.9 atm H2 or D2. Keep measured EPR breadth separate from the source-assigned E4 hydride state and mechanistic interpretation of gas-derived bridge-isotope retention during turnover. No numeric width, exchange rate, isotope fraction, exact Fe/S geometry, N2-free control, direct N2 release, M0212/1N2C correspondence, full mechanism, project experiment, independent review or design validation follows.",
-    "rationale": "A source-system assessment reuses the existing consumer to retain isotope pools, test/reference direction, spectroscopy and interpretation separately. Manual scientific source interpretation remains; this extends reusable curation without new case-specific code or measured curation savings.",
+    "claim": "Lukoyanov2016 WT nitrogenase records preserve gas-versus-solvent isotope discrimination and a separately conditioned, source-assessed cryoannealing coupling between nitrogenous and Janus states.",
+    "current_wording": "Two qualitative paired assertions span four explicit conditions under 0.1 atm N2 plus 0.9 atm H2 or D2. Keep measured EPR breadth separate from the source-assigned E4 hydride state and mechanistic interpretation of gas-derived bridge-isotope retention during turnover. No numeric width, exchange rate, isotope fraction, exact Fe/S geometry, N2-free control, direct N2 release, M0212/1N2C correspondence, full mechanism, project experiment, independent review or design validation follows. A separate P34-P35/Figure9-caption relation binds two source-reported WT E4 EPR time-course endpoints to the authors' interpretation of nitrogenous-state loss coupled with Janus formation during -50 C frozen-solid cryoannealing after low-N2/H2O turnover. Model-scaled E4 concentrations and distributed decay fitting remain context; no net Janus rise, raw series, closed two-state balance, per-arrow fit mapping, direct gas event or elementary rate is inferred, and both directional rates remain unassigned.",
+    "rationale": "Existing system and source-model consumers keep spectroscopic observations separate from source-assigned states and mechanistic interpretation. Exact assay bindings prevent phase transfer; case chemistry remains data. Manual source applicability and absent measured curation savings remain explicit.",
     "evidence": [
       "data/atlas/study_context/nitrogenase_2016/source_qualification.json",
       "data/atlas/study_context/nitrogenase_2016/system_assessment.json",
       "data/atlas/study_context/nitrogenase_2016/source_review.json",
-      "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md"
+      "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md",
+      "data/atlas/study_context/nitrogenase_2016/cryoannealing_evidence.json",
+      "data/atlas/study_context/nitrogenase_2016/model_context.json",
+      "data/atlas/study_context/nitrogenase_2016/cryoannealing_review.json"
     ]
   }
 ]

@@ -1,0 +1,216 @@
+{
+  "schema_version": "catalytic-earth.source-model-context.v1",
+  "context_id": "nitrogenase_2016:WT:cryoannealing_state_coupling",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1021/jacs.6b06362",
+    "reported_enzyme": "wild-type Azotobacter vinelandii MoFe protein",
+    "reported_variant": "WT MoFe protein"
+  },
+  "question": "How does the source connect its nitrogenous-state EPR progress curve with Janus-state formation during frozen-solid relaxation, without treating signal amplitude or distributed decay as an elementary rate?",
+  "source_bindings": {
+    "cryoannealing": {
+      "path": "data/atlas/study_context/nitrogenase_2016/cryoannealing_evidence.json",
+      "sha256": "794b3672e1cbc18a4e1bdf53e4c826bdb71d49ab7d671d4a1d080be9f3fad512"
+    },
+    "prior_state_qualification": {
+      "path": "data/atlas/study_context/nitrogenase_2016/source_qualification.json",
+      "sha256": "c3f7b7ef0ce2cf48a52a1a238455f48d7da7502a18cb15ed64fbde28cec2701b"
+    }
+  },
+  "identity_bindings": [
+    {
+      "provider": "cryoannealing",
+      "pointer": "/constructs/0/construct_id",
+      "identity_kind": "construct"
+    },
+    {
+      "provider": "cryoannealing",
+      "pointer": "/study/doi",
+      "identity_kind": "study"
+    },
+    {
+      "provider": "prior_state_qualification",
+      "pointer": "/systems/0/source_named_construct",
+      "identity_kind": "construct"
+    },
+    {
+      "provider": "prior_state_qualification",
+      "pointer": "/source/doi",
+      "identity_kind": "study"
+    }
+  ],
+  "identity_scope": "The same primary paper names WT A. vinelandii MoFe protein and assigns the E4(4H) state. The prior isotope study supplies state-assignment context only; it does not supply cryoannealing conditions, a shared physical specimen or exact assayed sequence.",
+  "source_model": {
+    "scope": "One source-assigned state coupling selected from P34-P35; neither the complete Figure9 sequential scheme nor its unseen graphical arrows are reconstructed.",
+    "states": [
+      {
+        "state_id": "E4_2N2H",
+        "source_name": "E4(2N2H)",
+        "kind": "source_assigned_spectroscopic_state",
+        "observation_bindings": [
+          {
+            "provider": "cryoannealing",
+            "pointer": "/observations/0/state_time_course"
+          }
+        ],
+        "assay_binding": {
+          "provider": "cryoannealing",
+          "pointer": "/assays/0"
+        },
+        "atomic_structure_established": false,
+        "scope": "Source diazene-reduction-level shorthand with unknown structure and coordination geometry."
+      },
+      {
+        "state_id": "E4_4H",
+        "source_name": "E4(4H) Janus",
+        "kind": "source_assigned_spectroscopic_state",
+        "observation_bindings": [
+          {
+            "provider": "cryoannealing",
+            "pointer": "/observations/1/state_time_course"
+          }
+        ],
+        "assay_binding": {
+          "provider": "cryoannealing",
+          "pointer": "/assays/0"
+        },
+        "atomic_structure_established": false,
+        "scope": "Source-assigned two bridging hydrides; exact metal pairs and protonated sulfur sites remain unspecified."
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "nitrogenous_to_Janus",
+        "from_state": "E4_2N2H",
+        "to_state": "E4_4H",
+        "source_name": "Source-interpreted oxidative-addition direction of the re/oa coupling",
+        "evidence_kind": "author_mechanistic_interpretation_of_EPR_time_courses",
+        "source_locators": [
+          "P34",
+          "P35"
+        ],
+        "reversible_in_source": true,
+        "reversibility_scope": "The paper interprets kinetic reversibility of the re/oa activation equilibrium; this selected cryoannealing record does not measure both directional rates or both directional fluxes.",
+        "assay_binding": {
+          "provider": "cryoannealing",
+          "pointer": "/assays/0"
+        },
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The selected relation binds qualitative EPR time-course evidence. The caption reports distributed decay fitting, not an elementary directional rate; no graphical tau-to-arrow mapping is projected."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The selected relation binds qualitative EPR time-course evidence. The caption reports distributed decay fitting, not an elementary directional rate; no graphical tau-to-arrow mapping is projected."
+          }
+        },
+        "bond_annotations": [],
+        "net_Janus_trace_increase_established": false,
+        "direct_gas_uptake_or_release_measured_by_this_relation": false
+      }
+    ],
+    "fit_models": [],
+    "elementary_step_sequence_established": false,
+    "complete_reacted_graph_established": false,
+    "equilibrium_constant_transfer_between_assays_established": false,
+    "graph_replay_verified": false,
+    "before_state_atom_map": null
+  },
+  "endpoint_relations": [
+    {
+      "relation_id": "WT:E4_2N2H:monitored_time_course",
+      "state_id": "E4_2N2H",
+      "kind": "state_observation",
+      "observation_id": "nitrogenase2016-cryoannealing:E4_2N2H:state_time_course",
+      "original_observation_id": "WT:E4_2N2H:cryoannealing-progress",
+      "provider": "cryoannealing",
+      "observation_pointer": "/observations/0",
+      "original_observation_binding": {
+        "provider": "cryoannealing",
+        "pointer": "/observations/0"
+      },
+      "projected_parameter": {
+        "provider": "cryoannealing",
+        "pointer": "/observations/0/state_time_course"
+      },
+      "assay_pointer": "/assays/0",
+      "evidence_kind": "source_reported_EPR_signal_time_course",
+      "source_model_phase_role": "depletion_coupled_to_Janus_formation",
+      "phase_role_is_author_interpretation": true,
+      "net_trace_increase_established": false
+    },
+    {
+      "relation_id": "WT:E4_4H:monitored_time_course",
+      "state_id": "E4_4H",
+      "kind": "state_observation",
+      "observation_id": "nitrogenase2016-cryoannealing:E4_4H:state_time_course",
+      "original_observation_id": "WT:E4_4H:cryoannealing-progress",
+      "provider": "cryoannealing",
+      "observation_pointer": "/observations/1",
+      "original_observation_binding": {
+        "provider": "cryoannealing",
+        "pointer": "/observations/1"
+      },
+      "projected_parameter": {
+        "provider": "cryoannealing",
+        "pointer": "/observations/1/state_time_course"
+      },
+      "assay_pointer": "/assays/0",
+      "evidence_kind": "source_reported_EPR_signal_time_course",
+      "source_model_phase_role": "formation_with_concurrent_onward_relaxation",
+      "phase_role_is_author_interpretation": true,
+      "net_trace_increase_established": false
+    }
+  ],
+  "context_evidence_bindings": [
+    {
+      "evidence_id": "primary_cryoannealing_coupling",
+      "transition_ids": [
+        "nitrogenous_to_Janus"
+      ],
+      "fit_ids": [],
+      "binding": {
+        "provider": "cryoannealing",
+        "pointer": "/source_assessment"
+      }
+    },
+    {
+      "evidence_id": "primary_WT_Janus_assignment",
+      "transition_ids": [
+        "nitrogenous_to_Janus"
+      ],
+      "fit_ids": [],
+      "binding": {
+        "provider": "prior_state_qualification",
+        "pointer": "/state_assignment"
+      }
+    },
+    {
+      "evidence_id": "source_and_graphical_inspection_boundary",
+      "transition_ids": [
+        "nitrogenous_to_Janus"
+      ],
+      "fit_ids": [],
+      "binding": {
+        "provider": "cryoannealing",
+        "pointer": "/source"
+      }
+    }
+  ],
+  "deposit_association": null,
+  "deposit_absence_reason": "No atom-resolved arrangement, PDB/sequence correspondence, exact Fe/S sites or M0212 scheme identity is established for these experimentally assigned states. E4(2N2H) structure and coordination remain unknown.",
+  "limitations": [
+    "Two qualitative, state-specific views of one source cryoannealing experiment; not two independent experiments, raw curves, direct elementary events or new laboratory observations by the project.",
+    "Observed EPR signal amplitudes remain distinct from source-assigned state identity and P35 interpretation of coupled loss/formation. Net rise of the Janus trace is unestablished.",
+    "The source scales E4 concentrations with the sequential model, so concentration trends and fitted populations are not independent validation of that model. Other EPR-detected and EPR-silent populations are not projected as a closed two-state system.",
+    "The selected edge has onward relaxation through E2 to E0 in the source description. No mass balance, direct H2 uptake/N2 release or complete pathway is inferred from the selected edge.",
+    "The retained Figure9 caption and text are inspected; Figure9 and Chart3 images, raw data, original fitting implementation and cited previous protocols remain uninspected. No fit parameters, per-arrow time constants or elementary rates are assigned.",
+    "Source review and applicability remain manual. Computational reviewers are correlated; this relation is not independent human review, a new evidence tier or design validation."
+  ]
+}

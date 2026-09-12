@@ -4,15 +4,15 @@
   "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
   "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "80a89e1ad2bf0a128ed4fe52e5e8313ff8ec534a987a16b7e4e303de03dfec64",
-    "src/catalytic_earth/atlas_perturbations.py": "f7842ef9dd016f483d51162752809380ede302de82c632e3b3e9688acb0ca8b8",
+    "data/atlas/perturbations/projection.json": "e5aa807c7bf5d29ca9a0313b58400a8f1dcd9ce56709c7fa3c3d334a017f505b",
+    "src/catalytic_earth/atlas_perturbations.py": "39450cf264e55009e4e4ed43f88d87f291f99a601647302a5fda5f8d9a005aea",
     "scripts/query_atlas_perturbations.py": "0cd9ef82f86e79b38578d68a6880902fd9106991476d19d93f12c93cae560f23",
     "docs/ATLAS_PERTURBATION_RELATION.md": "49c76f33b4d9781b19557770235df7e165f6655aa31000d253b7fe93aff3045b",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "c575d6b33d5f9b173b981a86ee620f2be8208fb355fefbbe911b70450d582780",
+    "tests/core/test_atlas_perturbations.py": "abd340dd59ddb629a1f53008330c56106de71edc6a3281e67562d9dc29503d01",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,8 +31,8 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "90d9c76913dc67714e04b34bd8a126f4d35e5e01ba3bd80929ba623ef974d93c",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "64192bc0aea597916cd80e6d5b216152115554774c83f3faeacc7c41064a7e0c",
-    "CLAIMS.md": "a4a5999e7a1b4f981dec04fcfb94731dfcf6cc71da93bfbe990df09070fa8ec9",
-    "data/governance/claim_ledger.json": "08277b4bfc7ac930934ba489cb26b1158971da09cff8f1b5e8c794c974de5356",
+    "CLAIMS.md": "fe02080ed4690b61b429d78a2cf85e2b8bd80383f5787d20ffc22bb0f9f6acba",
+    "data/governance/claim_ledger.json": "ebea073f5e1d87ef2e881e2f0dcadf94f96c5561205f04cbef83f3a63fb0a62b",
     "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
     "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
@@ -122,7 +122,11 @@
     "data/atlas/study_context/nitrogenase_2016/source_qualification.json": "c3f7b7ef0ce2cf48a52a1a238455f48d7da7502a18cb15ed64fbde28cec2701b",
     "data/atlas/study_context/nitrogenase_2016/source_review.json": "e9115e1a0b32ab10cf50facd8bbf7a6b68c0b79e8bbc79b69c8c3a44ff2c3fd3",
     "data/atlas/study_context/nitrogenase_2016/system_assessment.json": "80c69b4dcd2a2c0c4e64dedb7d061bac852931530399296f2bdcbeabfeebbfbf",
-    "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md": "677e94ee0588af330f368098889ce608802653bd091bb76ff8b4c79d92b438d3"
+    "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md": "c88b2a7f8652cbeece60292bf1c7ff46e188feecd48c60c5648c3f32464bec46",
+    "data/atlas/study_context/nitrogenase_2016/cryoannealing_evidence.json": "794b3672e1cbc18a4e1bdf53e4c826bdb71d49ab7d671d4a1d080be9f3fad512",
+    "data/atlas/study_context/nitrogenase_2016/model_context.json": "349a15522a022ec5a60166622d2205f7bf94a53054dd0905561bcf35eea61b7a",
+    "data/atlas/study_context/nitrogenase_2016/cryoannealing_review.json": "4f80632f517ad99efc0515b9d79a3e7507748d9e2c027782de62ecd6700feabe",
+    "data/atlas/reference_outcomes/review.json": "f32961462df8e1a8c7c4463e843d3d9d2d3411a1365d8883f75981c137883601"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -1748,5 +1752,60 @@
     "new_response_body_bytes": 136555,
     "acquisition_batch": "nitrogenase-e4-janus-lukoyanov2016",
     "prior_batch_budgets_unchanged": true
+  },
+  "nitrogenase_2016_cryoannealing_followup": {
+    "reviewed_at_utc": "2026-09-12T12:28:00.868637+00:00",
+    "base_commit": "77926721b5df4ee5e28b03b7333405ccf9c60afa",
+    "source_review": "data/atlas/study_context/nitrogenase_2016/cryoannealing_review.json",
+    "scope": "Two co-observed qualitative WT E4 EPR time-course endpoints and one source-assigned cryoannealing coupling, with distinct experimental phases and no fit/rate projection. CE-050 extension. Optional shared state/endpoint/incident-transition assay bindings prevent cross-assay repinning.",
+    "renewed_bindings": {
+      "data/atlas/perturbations/projection.json": {
+        "before": "80a89e1ad2bf0a128ed4fe52e5e8313ff8ec534a987a16b7e4e303de03dfec64",
+        "after": "e5aa807c7bf5d29ca9a0313b58400a8f1dcd9ce56709c7fa3c3d334a017f505b"
+      },
+      "src/catalytic_earth/atlas_perturbations.py": {
+        "before": "f7842ef9dd016f483d51162752809380ede302de82c632e3b3e9688acb0ca8b8",
+        "after": "39450cf264e55009e4e4ed43f88d87f291f99a601647302a5fda5f8d9a005aea"
+      },
+      "tests/core/test_atlas_perturbations.py": {
+        "before": "c575d6b33d5f9b173b981a86ee620f2be8208fb355fefbbe911b70450d582780",
+        "after": "abd340dd59ddb629a1f53008330c56106de71edc6a3281e67562d9dc29503d01"
+      },
+      "CLAIMS.md": {
+        "before": "a4a5999e7a1b4f981dec04fcfb94731dfcf6cc71da93bfbe990df09070fa8ec9",
+        "after": "fe02080ed4690b61b429d78a2cf85e2b8bd80383f5787d20ffc22bb0f9f6acba"
+      },
+      "data/governance/claim_ledger.json": {
+        "before": "08277b4bfc7ac930934ba489cb26b1158971da09cff8f1b5e8c794c974de5356",
+        "after": "ebea073f5e1d87ef2e881e2f0dcadf94f96c5561205f04cbef83f3a63fb0a62b"
+      },
+      "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md": {
+        "before": "677e94ee0588af330f368098889ce608802653bd091bb76ff8b4c79d92b438d3",
+        "after": "c88b2a7f8652cbeece60292bf1c7ff46e188feecd48c60c5648c3f32464bec46"
+      }
+    },
+    "verification": {
+      "scientific_invariance": ".git/catalytic-earth-runs/adc1e156-invariance.json",
+      "prior_observations_unchanged": 254,
+      "prior_comparisons_unchanged": 133,
+      "prior_state_links_unchanged": 2,
+      "prior_model_links_unchanged": 4,
+      "prior_control_relations_unchanged": 4,
+      "new_qualitative_state_time_courses": 2,
+      "new_source_model_links": 1
+    },
+    "coordination_record": ".git/catalytic-earth-runs/adc1e156.board.md",
+    "independent_human_validation": false,
+    "experimental_validation": false,
+    "acquisition": {
+      "batch_id": "nitrogenase-e4-janus-lukoyanov2016",
+      "new_requests": 0,
+      "new_response_body_bytes": 0,
+      "cumulative_requests": 3,
+      "cumulative_response_body_bytes": 136555,
+      "complete_cumulative_accounting": true,
+      "all_prior_batches_unchanged": true,
+      "source_bodies_redistributed": false
+    }
   }
 }

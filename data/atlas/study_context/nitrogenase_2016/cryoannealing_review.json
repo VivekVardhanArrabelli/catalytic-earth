@@ -1,0 +1,94 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-12T12:28:00.868637+00:00",
+  "base_commit": "77926721b5df4ee5e28b03b7333405ccf9c60afa",
+  "scope": "Two co-observed qualitative WT E4 EPR time-course endpoints and one source-assigned cryoannealing coupling, with distinct experimental phases and no fit/rate projection. CE-050 extension. Optional shared state/endpoint/incident-transition assay bindings prevent cross-assay repinning.",
+  "reviewed_bindings": {
+    "CLAIMS.md": "fe02080ed4690b61b429d78a2cf85e2b8bd80383f5787d20ffc22bb0f9f6acba",
+    "data/atlas/perturbations/projection.json": "e5aa807c7bf5d29ca9a0313b58400a8f1dcd9ce56709c7fa3c3d334a017f505b",
+    "data/governance/claim_ledger.json": "ebea073f5e1d87ef2e881e2f0dcadf94f96c5561205f04cbef83f3a63fb0a62b",
+    "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md": "c88b2a7f8652cbeece60292bf1c7ff46e188feecd48c60c5648c3f32464bec46",
+    "src/catalytic_earth/atlas_perturbations.py": "39450cf264e55009e4e4ed43f88d87f291f99a601647302a5fda5f8d9a005aea",
+    "tests/core/test_atlas_perturbations.py": "abd340dd59ddb629a1f53008330c56106de71edc6a3281e67562d9dc29503d01",
+    "data/atlas/study_context/nitrogenase_2016/cryoannealing_evidence.json": "794b3672e1cbc18a4e1bdf53e4c826bdb71d49ab7d671d4a1d080be9f3fad512",
+    "data/atlas/study_context/nitrogenase_2016/model_context.json": "349a15522a022ec5a60166622d2205f7bf94a53054dd0905561bcf35eea61b7a"
+  },
+  "review_process": [
+    {
+      "task": "/root/source",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "source_and_diff_review_accepted_at_recorded_bindings"
+    },
+    {
+      "task": "/root/representation",
+      "role": "chemical_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "source_and_diff_review_accepted_at_recorded_bindings"
+    },
+    {
+      "task": "/root/adversarial",
+      "role": "source_and_inference_challenge",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "source_and_diff_review_accepted_at_recorded_bindings"
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/adc1e156.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    {
+      "issue": "Source-interpreted formation could be promoted to a directly observed net Janus rise or an elementary transition.",
+      "resolution": "Two rows retain only source-reported EPR time-course monitoring. P35 coupling remains separately attributed interpretation; both directional rates are unassigned and every net-rise/direct-gas-event assertion is false."
+    },
+    {
+      "issue": "Distributed decay constants and model-scaled concentrations could be treated as independent elementary kinetics.",
+      "resolution": "No fit model or numeric kinetic/population parameters are projected. The caption, graphical-asset absence, concentration scaling and onward/EPR-silent populations remain source context; no closed two-state system is implied."
+    },
+    {
+      "issue": "The original state-observation path checked source parameters but not assay identity, allowing a state trace to be attached to another experimental phase.",
+      "resolution": "An optional generic contract requires consistent state, endpoint, incident-transition and projected-observation assay providers, a nonempty source assay identity and matching original-observation assay identity when present. Existing legacy unscoped state observations remain unchanged."
+    },
+    {
+      "issue": "Repeated annotations could add little beyond paper repackaging.",
+      "resolution": "Reuse the existing state/model consumer and previously reviewed WT state assignment to retrieve one conditioned relation. Do not add a stretched-fit kind, numeric table or source-specific runtime. Value remains modest and source applicability manual."
+    }
+  ],
+  "direct_endpoint_provenance_correction": "Both direct time-course rows cite P34;F9 only. P33 prior-experiment context and P35 interpretation remain in contextual source evidence.",
+  "remaining_limits": [
+    "The actual Figure9/Chart3 rasters, raw data and earlier fitting/readout procedures are uninspected; no curve-shape or per-arrow time-constant mapping is established.",
+    "E4 nitrogenous structure/coordination, exact Fe/S sites, assayed sequence/specimen, M0212/deposit correspondence and full mechanism remain unresolved.",
+    "Hash/reference integrity does not establish source chemical interpretation. Same-model reviews are correlated; no measured curation saving, independent review, project experiment or design validation."
+  ],
+  "acquisition": {
+    "batch_id": "nitrogenase-e4-janus-lukoyanov2016",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "cumulative_requests": 3,
+    "cumulative_response_body_bytes": 136555,
+    "complete_cumulative_accounting": true,
+    "all_prior_batches_unchanged": true,
+    "source_bodies_redistributed": false
+  },
+  "verification": {
+    "scientific_invariance": ".git/catalytic-earth-runs/adc1e156-invariance.json",
+    "prior_observations_unchanged": 254,
+    "prior_comparisons_unchanged": 133,
+    "prior_state_links_unchanged": 2,
+    "prior_model_links_unchanged": 4,
+    "prior_control_relations_unchanged": 4,
+    "new_qualitative_state_time_courses": 2,
+    "new_source_model_links": 1
+  },
+  "reuse": {
+    "new_source_specific_runtime": false,
+    "new_fit_kind": false,
+    "state_model_consumer_reused": true,
+    "curation_time_saving_measured": false,
+    "manual_source_applicability_required": true
+  }
+}
