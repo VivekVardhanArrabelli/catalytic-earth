@@ -1,0 +1,60 @@
+{
+  "batch_id": "nitrogenase-e4-janus-lukoyanov2016",
+  "batch_scope": "Named M0212-related primary experimental E4 hydride/N2-H2 coupling question, target Lukoyanov et al. 2016 Reductive Elimination of H2 Activates Nitrogenase to Reduce the N-N Triple Bond: Characterization of the E4(4H) Janus Intermediate in Wild-Type Enzyme. Exact identity to be verified before chemical interpretation. This is a distinct primary study and experimental-state question from the closed Spatzal2011 elemental-identity batch; no Spatzal acquisition or budget is resumed, renamed or reset.",
+  "authority": "data/governance/computational_review_policy.json public source checks for named draft objects; docs/HOURLY_RESEARCH.md cumulative100/30MiB authority",
+  "prior_acquisition_search": "Exact E4(4H), Janus, Lukoyanov and title-term search across data/atlas, docs and Git-local retained run source artifacts found only unrelated Spatzal bibliography/discovery references, no E4 primary record or prior E4-study batch. Parent and source lane audit current ledgers.",
+  "maximum_requests": 100,
+  "maximum_response_body_bytes": 31457280,
+  "cumulative_request_count": 3,
+  "cumulative_response_body_bytes": 136555,
+  "complete_cumulative_accounting": true,
+  "requests": [
+    {
+      "request_id": 1,
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=nitrogenase%20Janus%20Lukoyanov%202016&retmode=json&retmax=5",
+      "started_at_utc": "2026-09-12T11:12:01.723144+00:00",
+      "state": "captured",
+      "response_body_bytes": 662,
+      "status": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "400f68bbfeaa74a45cb884f14209bc70241c32bf613df290ed25e22792afc392",
+      "local_path": ".git/catalytic-earth-runs/5736ffc0-e4-sources/pubmed-search.json",
+      "finished_at_utc": "2026-09-12T11:12:07.016304+00:00"
+    },
+    {
+      "request_id": 2,
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=27529724,26788586&retmode=xml",
+      "started_at_utc": "2026-09-12T11:12:16.760282+00:00",
+      "state": "captured",
+      "response_body_bytes": 30556,
+      "status": 200,
+      "content_type": "text/xml; charset=UTF-8",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "135131e9bec93cf81647fb79a71152d24e43037f49e3ea7ee581d4456606e111",
+      "local_path": ".git/catalytic-earth-runs/5736ffc0-e4-sources/pubmed-records.xml",
+      "finished_at_utc": "2026-09-12T11:12:17.128257+00:00"
+    },
+    {
+      "request_id": 3,
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5024552",
+      "started_at_utc": "2026-09-12T11:12:30.318416+00:00",
+      "state": "captured",
+      "response_body_bytes": 105337,
+      "status": 200,
+      "content_type": "text/xml; charset=UTF-8",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "367a4c53f862bdd6a06e9290a1f8b9e3a17ef85a35e62363b4136a7f2e6964e4",
+      "local_path": ".git/catalytic-earth-runs/5736ffc0-e4-sources/lukoyanov2016-pmc.xml",
+      "finished_at_utc": "2026-09-12T11:12:30.779911+00:00"
+    }
+  ],
+  "accounting": "Parent-only direct public requests; explicit redirects, no automatic retry, Accept-Encoding identity. Every attempted request counted; received response body bytes retained and hashed including errors. HTTP headers/TLS excluded. No discovery tool upstream-byte ambiguity.",
+  "source_bodies_redistributed": false,
+  "acquisition_stopped": "Exact primary identity and full main manuscript retained. One bounded Figure8A relation needs no additional acquisition; related photolysis primary metadata is retained incidentally in the two-record PubMed response and not used as independent evidence.",
+  "cumulative_requests_remaining": 97,
+  "cumulative_response_body_bytes_remaining": 31320725
+}

@@ -1,94 +1,91 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — nitrogenase elemental identity, 2026-09-12
+## Current research baton — WT nitrogenase isotope crossover, 2026-09-12
 
-- **Identity/base:** start 2026-09-12T10:06:12Z; owner
-  `01a09514-bd89-7470-8515-d272f7b70ecd:8a57ab0d-5783-4d50-9882-19d51d8144ed`;
-  acquired normally at 10:06:34Z after prior abandoned-lock recovery. Clean
-  fetched/ff-only main base `e553bac85588b0247a5d44ead75f42e893ef0860` (PR115),
-  no open PR or pending recovery; inherited main CI34678720763 passed.
-  Branch `codex/nitrogenase-central-atom-20260912`. About 36 minutes at this
-  checkpoint; final elapsed/publication/release belong in the Git-local receipt.
-- **Direction reconciliation:** E317Q priorities completed in PR112/113;
-  adjacent RA95/KSI work completed in PR114/115. Resumed the preserved M0212
-  candidate decision from `498006ef.board.md`, rather than repeating its
-  selection audit. Expanded default output demonstrably exposed Step12's
-  central-N actor, making primary elemental qualification consequential.
-- **Question/result:** Spatzal2011 identifies an interstitial carbon species
-  in studied *A. vinelandii* FeMo cofactor. Main-text P1 crystallography supplies
-  the assignment; P2 isotope ESEEM corroborates with that structural context.
-  This contradicts M0212's central-N depiction. One exact source actor is
-  marked `current_constraint_usable: false`: proposal1, Step12, scheme
-  `ac12d5d97d03a6cb1b6de9d1389da9c94f764b38c47500dcaaaf3af04c9b737c`,
-  flow `o52`, `source_point`, atom `m1.a83`, source element N. CE-049/ER-014.
-- **Reusable outcome/limits:** a shared primary-evidence qualification appears
-  in ordinary compact and expanded `atlas-drafts --mcsa-id M0212` output;
-  expanded Step12 carries the same annotation. Raw source snapshots, compiled
-  steps/flows and substrate N `m1.a34`/`o51` remain unchanged. No global N
-  replacement, cross-panel or experimental atom map, corrected Fe-C edit,
-  carbide charge, redox/resting/E state, N2-binding mode or whole pathway.
-  The paper's 3U7Q evidence does not establish M0212's 1N2C nucleotide/assembly
-  state. Primary composition is not an observed Step12 intermediate. Candidate
-  catalogs contain no exact Step12 scheme target and remain unchanged; no
-  corrected trajectory or downstream chemical-catalog coverage is claimed.
-- **Evidence/acquisition:**
-  `data/atlas/source_qualifications/m0212/primary_projection.json`, acquisition
-  receipts and source review; default development-gate primary sidecar;
-  `docs/ATLAS_SOURCE_DRAFTS.md#nitrogenase-central-atom-identity`.
-  Spatzal2011 DOI10.1126/science.1214025, PMID22096190, PMC3268367. Retained
-  main-manuscript XML SHA256
-  `c4a0a0ff647d4aff12fd0f5c05ddf8b74245466e399ea942c70d6aec1fc0b78c`,
-  15,826 bytes; P1/P2 and Figure1 caption inspected. SI/coordinates unacquired;
-  unnecessary for this narrow reported identity. Non-open-access body stays
-  local. Named batch `nitrogenase-interstitial-carbon-spatzal2011`: seven calls,
-  28,644 direct-body bytes plus 25,216 serialized tool-visible bytes. Two tool
-  calls lack raw upstream-body accounting, so true raw total/headroom is unknown;
-  acquisition stopped, no renamed/reset allowance. All earlier KSI/RA95/TK/CODH
-  budgets and closed access stops remain unchanged.
-- **Reconsideration:** existing adduct/deposit types could not honestly encode
-  elemental counterevidence; one generic qualification type reuses the existing
-  primary sidecar, query and package path without enzyme-ID code. Exact source
-  selection, topology-based actor recognition and applicability remain manual;
-  no curation-time saving is measured. A standalone carbon fact would only
-  repackage the paper: default exact-flow unusability supplies the added value.
-  This is a corrected curated relation, not autonomous inference or design
-  validation. All computational reviewers are Sol/ultra with correlated errors,
-  not independent human review or experiments.
-- **Review/verification:** source and adversarial lanes accept the primary scope,
-  exact source actor and limitations. Representation review requires exact
-  record/proposal/step/scheme/flow/endpoint/atom/element binding and a checked
-  join to the primary projection; changing C to O with a recomputed annotation
-  pin fails against the unchanged projection. Coherent flow/atom remapping is
-  additionally checked against a separately pinned manual source-depiction target;
-  this is not experimental mapping or semantic validation of rewritten inputs.
-  All eleven prior source records/flows and all254 perturbation observations,
-  133 comparisons,2 state links,4 model links and3 controls are unchanged.
-  Three governance bindings renew only for append-only CE049 and count49.
-  All 684 core tests, repository contracts (49 claims/1000 exposure rows/golden
-  matched), and installed-wheel queries (network blocked, empty directory) pass.
-  All three source/representation/adversarial lanes accept without blocker; the
-  final adversarial mutation checks reject both substrate-N remapping variants.
-  Existing release verifier is unchanged; the added installed Step12 assertions
-  are retained in the Git-local run verifier. Original historical handoff tail
-  and all frozen/protected source bytes remain unchanged.
-- **Publication/recovery:** Git identifies this handoff's containing commit.
-  Resume this branch/PR first if publication remains unfinished; no unrelated
-  work. Receipt `.git/catalytic-earth-runs/20260912T100612Z-8a57ab0d-5783-4d50-9882-19d51d8144ed.json`;
-  board `.git/catalytic-earth-runs/8a57ab0d.board.md`; baseline/source/verification
-  files share that prefix. Final exact commit, push/merge/CI and guarded lock
-  release are in the receipt/task result. Do not release while an editing worker
-  or command remains active.
-- **One next action:** after integration, qualify the preserved E4-state
-  candidate at primary experimental scope: can one exact system/source connect
-  a trapped hydride state to N2/H2 reaction discrimination through an existing
-  consumer? Expected gain is state-to-reaction information beyond elemental
-  identity. First identify a named primary witness and its cumulative acquisition
-  authority; do not infer headroom for this incompletely metered batch or create
-  a renamed allowance. Stop at the first source/system/state ambiguity, missing
-  usable consumer relation, or unresolved acquisition accounting; select a
-  different evidence-supported question if this cannot proceed. Do not split
-  Spatzal2011 into more annotations or infer a corrected cluster pathway.
+- **Identity/base:** start 2026-09-12T11:07:14Z; owner
+  `01a0954c-971f-7bc3-af58-270e7b16efc9:5736ffc0-09e3-4eae-9624-a4accb7124bb`;
+  default Git-common lock acquired normally at11:07:43Z. Clean fetched/ff-only
+  main base `ea5ba16032c183add9f6642602ab2340ffce8ebb` (PR116), no pending
+  PR/recovery; inherited main CI34689595972 passed all four jobs. Branch
+  `codex/nitrogenase-isotope-crossover-20260912`. Checkpoint 2026-09-12T11:42:21Z,
+  35.1 minutes; final elapsed/publication/release belong in the local receipt.
+- **Direction/question:** E317Q priority/integration completed PR112/113;
+  adjacent RA95/KSI completed PR114/115; elemental-identity correction completed
+  PR116. The inherited E4 candidate was narrowed to a primary WT gas/solvent
+  isotope question: does the trapped state retain gas-derived bridge isotope
+  despite opposite solvent isotope? Expected gain is hydrogen-pool discrimination
+  beyond static cofactor composition. Stop at one supported relation, ambiguous
+  system/state, unusable consumer or acquisition-accounting gap.
+- **Grounded result:** Lukoyanov2016, DOI10.1021/jacs.6b06362 / PMID27529724 /
+  PMC5024552, P28/Figure8A reports two paired EPR-width observations. In H2O,
+  N2/D2 is narrower than N2/H2; in D2O, N2/H2 is broader than N2/D2.
+  Four distinct condition arms retain0.1atmN2 plus0.9atmH2 orD2 and stirring;
+  source X-band preparation uses50uM MoFe/75uM Fe,20–25s turnover then liquid-
+  nitrogen freezing.12K is the EPR readout, not turnover temperature. CE-050.
+- **Capability/limits:** existing `--control-relation
+  nitrogenase_2016:WT:gas-solvent-isotope-crossover` returns two qualitative
+  paired assertions, four nested condition arms, assay, primary state basis
+  and source assessment. P17–20/Figure5 support source-assigned WT E4(4H),
+  two bridging hydrides through WT H/D-sensitive EPR and deuterium ENDOR plus
+  prior variant correspondence. Observed widths remain distinct from gas-origin,
+  oxidative-addition and solvent-nonexchange interpretation. No absolute width,
+  isotope fraction, numerical exchange rate, direct bond event, N2-free control,
+  direct N2 release, exact Fe/S geometry or M0212/1N2C correspondence. Full
+  preparation/sequence/strain, isotope purity and biological statistics remain
+  unspecified. Figure8B photolysis and Figure9 cryoannealing are separate endpoints.
+- **Evidence/acquisition:** `data/atlas/study_context/nitrogenase_2016/`
+  source qualification, assessment, source review and acquisition receipts;
+  `docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md`. Raw main XML retained locally at
+  `.git/catalytic-earth-runs/5736ffc0-e4-sources/lukoyanov2016-pmc.xml`, SHA256
+  `367a4c53f862bdd6a06e9290a1f8b9e3a17ef85a35e62363b4136a7f2e6964e4`,105337B;
+  exact14 paragraph/caption locators/text hashes checked. No body redistribution.
+  Distinct primary-study batch `nitrogenase-e4-janus-lukoyanov2016` totals
+  **3 requests/136555 raw response-body bytes**, complete direct metering;
+  97/31320725 remain under100/31457280. Acquisition stopped after one main source.
+  This neither renames nor reopens the separate Spatzal2011 identity batch:
+  7calls,28644 direct bytes plus25216 visible-tool bytes, unknown raw total/headroom.
+  Earlier unchanged KSI26/5739717, RA9533/17556517, TK39/23268387, CODH4/30214;
+  M0187 legacy discovery accounting remains unknown. All closed access stays closed.
+- **Reuse/reconsideration:** no nitrogenase-specific dispatch or new arithmetic.
+  The existing metal-substitution assessment also serves isotope interventions.
+  Adversarial review exposed missing nested condition membership checks; one
+  shared optional paired-context rule now requires two distinct nonempty nested
+  IDs matching the row's test/reference IDs, rejecting swapped/fabricated/missing
+  or duplicate membership. Thus source/assay/pair direction becomes reusable
+  through one consumer. Chemical meaning and source applicability still require
+  manual review; matching IDs do not validate chemistry and no curation-time
+  saving was measured. Added value is modest, positive primary WT state/isotope
+  information with checked relational integrity, not autonomous inference or a
+  design-ready mechanism. No source objection remains; correlated Sol/ultra
+  source, representation and adversarial review is not independent human review.
+- **Verification:**687 core tests pass after one stale E317Q dependency pin
+  was caught and renewed: exact reference composition and all four E317Q outcomes
+  remain unchanged. Prior254 observations,133 comparisons,2state links,4model
+  links and3controls are identical; one new control relation. All40 witnesses /
+  51338160B verify. Repository contracts pass (50claims/1000exposure rows/golden
+  matched;97packets still unreviewed). Atlas3/10 installed-wheel queries pass
+  from empty directories with network blocked; separate installed paired-context
+  check accepts the exact relation and rejects six membership mutations. The new
+  study remains a repository query, not a new wheel query. Frozen/protected bytes
+  and49prior claims unchanged; architecture only updates path count17765→17770.
+  The staged handoff archive and final contracts are completed before publication.
+- **Publication/recovery:** this checkpoint is prepared on the named branch;
+  Git identifies the handoff's containing commit. Resume its PR first if still
+  unfinished. No unrelated dirty work or editing worker. Final commit, push,
+  exact-head PR/CI/merge, main sync and guarded owner-token release are recorded
+  in `.git/catalytic-earth-runs/20260912T110714Z-5736ffc0-09e3-4eae-9624-a4accb7124bb.json`
+  and the task result. Board `.git/catalytic-earth-runs/5736ffc0.board.md`;
+  baseline, invariance, query and check logs share the5736ffc0 prefix.
+- **One next action:** after integration, assess whether retained primary P34–35
+  and Figure9's WT cryoannealing time courses support a useful state-to-state
+  relation through the existing source-model consumer. Expected gain: connect
+  source-assigned nitrogenous-state depletion with Janus formation, beyond the
+  isotope contrast. Keep distributed/stretched decay parameters distinct from
+  elementary rates and the frozen solid distinct from turnover. Stop at missing
+  state identity, unsupported model mapping or mere numeric-table repackaging;
+  do not reconstruct raw curves, force a microscopic scheme, split Figure8 into
+  more observations or acquire additional sources just for a demonstration.
 
 <!-- current-research-handoff:end -->
 

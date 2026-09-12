@@ -824,3 +824,23 @@ Crystallography supplies the elemental assignment; isotope ESEEM corroborates
 it in the same study. No corrected bond edit, experimental atom map, charge,
 redox or catalytic state, 1N2C assembly transfer, full mechanism, independent
 project review, project experiment or design performance is established.
+
+## CE-050 — nitrogenase bridge isotope and solvent remain distinguishable
+
+**Status:** Supported
+
+The [Lukoyanov2016 WT relation](docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md)
+preserves two Figure8A EPR-width comparisons: in H2O, N2/D2 is narrower
+than N2/H2; in D2O, N2/H2 is broader than N2/D2. Four explicit gas/solvent
+conditions share the source's 0.1 atm N2 plus 0.9 atm H2 or D2 protocol.
+These are two qualitative paired assertions, not four absolute widths.
+
+WT H/D-sensitive EPR and deuterium ENDOR support the authors' E4(4H),
+two-bridging-hydride assignment through correspondence with prior variant
+characterization. The crossover supports source-interpreted gas-derived
+bridge-isotope retention despite opposite solvent isotope during turnover.
+The shared system-assessment query separates that interpretation from measured
+feature breadth. No numerical exchange rate, isotope fraction, exact Fe/S
+geometry, N2-free control, direct N2 release, M0212/1N2C step correspondence,
+full mechanism, project experiment, independent review or design validation
+is established.

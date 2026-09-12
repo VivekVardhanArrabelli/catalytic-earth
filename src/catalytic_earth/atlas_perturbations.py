@@ -297,6 +297,23 @@ def _system_arm(role, arm, resolve, reasons, bind_source_qualification=False):
             or row[identity_field] != system[identity_field]
             or row["assay_id"] != assay["assay_id"]):
         raise ValueError("system control row, system or assay identity differs")
+    paired_kind = "source_defined_paired_condition_context"
+    sides = ("test", "reference")
+    if (system.get("system_kind") == paired_kind
+            or any(f"{side}_condition" in system or f"{side}_condition_id" in row
+                   for side in sides)):
+        if system.get("system_kind") != paired_kind:
+            raise ValueError("paired system conditions require an explicit paired context")
+        condition_ids = []
+        for side in sides:
+            condition = system.get(f"{side}_condition")
+            condition_id = condition.get("condition_id") if isinstance(condition, dict) else None
+            if (not isinstance(condition_id, str) or not condition_id.strip()
+                    or row.get(f"{side}_condition_id") != condition_id):
+                raise ValueError("paired system row and nested condition identity differ")
+            condition_ids.append(condition_id)
+        if len(set(condition_ids)) != len(sides):
+            raise ValueError("paired system conditions must have distinct identities")
     parameter = pointer(row, arm["parameter_pointer"])
     if parameter["parameter"] != arm["parameter"]:
         raise ValueError("system control parameter identity differs")

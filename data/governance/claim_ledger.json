@@ -678,5 +678,19 @@
       "data/atlas/atlas50/development_gate/primary_evidence_annotations.json",
       "docs/ATLAS_SOURCE_DRAFTS.md"
     ]
+  },
+  {
+    "claim_id": "CE-050",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Two Lukoyanov2016 Figure8A WT nitrogenase EPR contrasts retain gas-versus-solvent isotope discrimination: H2O/N2+D2 is narrower than H2O/N2+H2; D2O/N2+H2 is broader than D2O/N2+D2.",
+    "current_wording": "Two qualitative paired assertions span four explicit conditions under 0.1 atm N2 plus 0.9 atm H2 or D2. Keep measured EPR breadth separate from the source-assigned E4 hydride state and mechanistic interpretation of gas-derived bridge-isotope retention during turnover. No numeric width, exchange rate, isotope fraction, exact Fe/S geometry, N2-free control, direct N2 release, M0212/1N2C correspondence, full mechanism, project experiment, independent review or design validation follows.",
+    "rationale": "A source-system assessment reuses the existing consumer to retain isotope pools, test/reference direction, spectroscopy and interpretation separately. Manual scientific source interpretation remains; this extends reusable curation without new case-specific code or measured curation savings.",
+    "evidence": [
+      "data/atlas/study_context/nitrogenase_2016/source_qualification.json",
+      "data/atlas/study_context/nitrogenase_2016/system_assessment.json",
+      "data/atlas/study_context/nitrogenase_2016/source_review.json",
+      "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md"
+    ]
   }
 ]
