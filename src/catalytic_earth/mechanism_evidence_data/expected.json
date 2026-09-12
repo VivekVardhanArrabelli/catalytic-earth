@@ -6,7 +6,7 @@
     "pmid_1909893_projection.json": "9b2b1def62dcc47e8700a3bc094ceed382f2a7b8f6ab8b1b08a31c76ee994113",
     "pmid_7893690_projection.json": "790a1a57680419f8aecc7e622640c6cb9fb666c774b460a4804ae40687a4a47c",
     "source_contexts.json": "52df5c92dcf125356cbb6a215db2b0747a14e09b407ee2aaf55c3a3cd982c391",
-    "source_fragments.json": "312fe8f9a10258696603f9e35b71bbf447b8c5fbcca7bc5e76042d77a15a8eed"
+    "source_fragments.json": "6faecaeeebdfc7d1716b1fa8c9e647f619047a5d9ca0437efd07be1448681ae9"
   },
   "schema_version": "catalytic-earth.mechanism-evidence-package.v1"
 }

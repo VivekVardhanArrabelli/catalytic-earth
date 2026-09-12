@@ -14,9 +14,19 @@ sys.path.insert(0, str(ROOT / "src"))
 from catalytic_earth.atlas_perturbations import project, verify_witnesses  # noqa: E402
 
 
+def _emit(result: dict, output: Path | None) -> None:
+    text = json.dumps(result, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
+    if output:
+        output.write_text(text, encoding="utf-8")
+    else:
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(text, end="")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--study", help="Source study ID; retains evidence and comparison exclusions")
+    parser.add_argument("--reference-site", help="Exact reference site ID; joins declared fragment/citation context to existing primary outcomes")
     parser.add_argument("--comparison", help="Exact comparison ID; retains all its control observations")
     parser.add_argument("--state-link", help="Exact construct-to-state link; retains its functional observations")
     parser.add_argument("--model-link", help="Exact source-model transition link; retains its existing endpoint observations")
@@ -30,10 +40,29 @@ def main() -> int:
         parser.error("--state-link, --model-link, --comparison and --control-relation select different relations")
     if args.with_comparisons and not args.state_link:
         parser.error("--with-comparisons requires --state-link")
-    result = project(ROOT)
+    if args.reference_site is not None:
+        if any((args.study, args.comparison, args.state_link, args.model_link,
+                args.control_relation, args.with_comparisons)):
+            parser.error("--reference-site is a separate integrated query; do not combine selection filters")
+        from catalytic_earth.atlas_reference_outcomes import query_reference_outcomes
+
+        result = query_reference_outcomes(ROOT, site_id=args.reference_site)
+    else:
+        result = project(ROOT)
     if args.verify_witnesses:
         common = subprocess.check_output(["git", "rev-parse", "--git-common-dir"], cwd=ROOT, text=True).strip()
         result["source_witness_cache_status"] = verify_witnesses(ROOT / common, result)
+    if args.reference_site is not None:
+        if args.check:
+            print(json.dumps({"status": "reference_outcome_join_verified",
+                              "relation_count": result["relation_count"],
+                              "projected_outcomes": sum(len(row["matched_observations"]) for row in result["matches"]),
+                              "new_observations": 0,
+                              "empty_match": result["empty_match"],
+                              "primary_witness_cache": result["source_witness_cache_status"]}))
+        else:
+            _emit(result, args.output)
+        return 0
     if args.study:
         studies = {row["study_id"] for row in result["observations"] + result["control_relations"]}
         if args.study not in studies:
@@ -100,13 +129,7 @@ def main() -> int:
                           "eligible_descriptive_comparisons": sum(item["eligible"] for item in result["comparisons"]),
                           "primary_witness_cache": result["source_witness_cache_status"]}))
         return 0
-    text = json.dumps(result, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
-    if args.output:
-        args.output.write_text(text, encoding="utf-8")
-    else:
-        # JSON transport must preserve source symbols across platform locales.
-        sys.stdout.reconfigure(encoding="utf-8")
-        print(text, end="")
+    _emit(result, args.output)
     return 0
 
 

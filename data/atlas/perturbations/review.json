@@ -6,7 +6,7 @@
   "reviewed_bindings": {
     "data/atlas/perturbations/projection.json": "1c58f84dc34d78926e01794dfd3e5a32e741f0a9a5ddda4b9e864442aa158a63",
     "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d",
-    "scripts/query_atlas_perturbations.py": "7eab6075c751ad2dbecf6757d1dc3fef5e452fbaff03d3d78f0c1b9fa3d8e412",
+    "scripts/query_atlas_perturbations.py": "0cd9ef82f86e79b38578d68a6880902fd9106991476d19d93f12c93cae560f23",
     "docs/ATLAS_PERTURBATION_RELATION.md": "ebcccaddccc7d4d6c4118a1d3a313ee38800e57da400984125e0c6ad25ea7879",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
@@ -33,8 +33,8 @@
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
     "CLAIMS.md": "eb0820e2ee842c845e7d2295e6dd8c7caf85aab14a2c811e22b091bc46c5b38c",
     "data/governance/claim_ledger.json": "97e3bed21ebfef4ba990f272f2e1312cb0728667685b715f1d04819dd39475f5",
-    "docs/CURRENT_DECISIONS.md": "2278588d48b8281ac332e13ac7fe4d68d84aa83652f344c1714277b32b909abd",
-    "docs/CURRENT_STATE.md": "38c877f2c9823b3dedd2d7406bd70aac406b208c0f89c9dc243bd6aed1d7e62c",
+    "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
+    "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -110,7 +110,7 @@
     "data/atlas/study_context/codh_2011/source_review.json": "5c4670969fc469d44ed155326b4d5c3b041c32cb58a86c94acfd810ca1ad5450",
     "data/atlas/study_context/tk_2024/background_evidence.json": "e0572ad1ad993eb62b91be4798fc0745dd0fad0031de4e1c80b62910c6613212",
     "data/atlas/study_context/tk_2024/background_review.json": "f31283fa9851af801fbc767018bbf02a475d3a5f8ef06a394c6f640760927281",
-    "docs/ATLAS_MECHANISM_EVIDENCE.md": "1ada6eb1f07176381ce82126cc96c10d81a1b966fb8fbdce53afa6fd3c9be740",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "a0c98d934c97300a245bc8841ce8e11505f82826a8cc7c0201aa1c3af5571304",
     "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json": "163bc099792d37d87602bcee414f4468f54431b07232db5ac07e1f5b95982274",
     "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json": "2aad35f280c37e0ed9b6636205eedaba761add1235b3ef6005a3cd1b5e0b4f1b",
     "data/atlas/study_context/mandelate_1995_e317q/source_review.json": "f225570d536d06c681d0617651c2ec7d10e46f9f8fee862a5591d669e705f0f6",
@@ -1471,5 +1471,20 @@
     "legacy_m0187_headroom_established": false,
     "independent_human_validation": false,
     "experimental_validation": false
+  },
+  "reference_outcome_integration_followup": {
+    "reviewed_at_utc": "2026-09-12T04:27:37.719613+00:00",
+    "base_commit": "bae49c34bd41dadd0c62bf13d59ad38c4e9d3df3",
+    "prior_review_sha256": "16ed1d53a73b40444a9e964d7bfc72a0818c7d2da4e0fd40defade2c743f7392",
+    "scope": "Documentation and optional repository query dispatcher change only. Existing primary projection, all observations/comparisons and fragment chemistry remain unchanged. The new reference join is separately gated by data/atlas/reference_outcomes/review.json.",
+    "changed_bound_paths": [
+      "scripts/query_atlas_perturbations.py",
+      "docs/CURRENT_DECISIONS.md",
+      "docs/CURRENT_STATE.md",
+      "docs/ATLAS_MECHANISM_EVIDENCE.md"
+    ],
+    "independent_human_validation": false,
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0
   }
 }

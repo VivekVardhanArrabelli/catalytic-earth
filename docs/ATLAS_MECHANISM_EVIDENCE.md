@@ -232,8 +232,42 @@ site, active-site access or a microscopic cause. The separate (S)-atrolactate
 structural context supplies no productive or matched assay state. The exact
 reference feature/citation remains context only. Source interpretation is
 manual; no curation-time saving, independent review, project experiment or
-design validation is claimed. The generic fragment-to-primary-outcome join
-remains the next integration question. No new source acquisition was made.
+design validation is claimed. No new source acquisition was made.
+
+### One reference-site query retrieves the primary outcomes
+
+```sh
+python scripts/query_atlas_perturbations.py --reference-site P11444:E317
+```
+
+This repository query now composes the reviewed source fragment, reference
+mutagenesis annotation, and the four existing CE-048 primary outcomes. Its
+[declaration](../data/atlas/reference_outcomes/spec.json) selects existing
+providers, comparison and observation IDs; it does not copy scientific rows
+into a new canonical dataset. The shared consumer reconstructs the fragment
+query and checks accession, WT residue/position, one alternative residue,
+feature, PMID/DOI, source study and reported construct perturbation. Secondary
+endpoint wrappers must bind the exact primary-source hash and construct pointer.
+Changed identity, comparison membership or an arithmetic context fails closed.
+
+The result retains the original fragment's empty focal-observation match and
+unresolved selected-step site beside the successful reference-record join.
+E317Q outcomes therefore become retrievable without inventing a selected-step
+catalyst, deposited atom or exact assayed sequence/preparation. The coarse
+database activity statement stays opaque; all four original outcome objects
+and the no-arithmetic context retain their source, assay and endpoint limits.
+An empty site filter means no declared reviewed join, not absent functional
+evidence. The wheel's original fragment and functional queries retain their
+existing scope; this composition uses repository source/review files.
+
+This closes the specific integration gap identified by the September 12
+direction review. It removes a manual query-result join for this relation,
+without a measured time saving or demonstrated generalization across enzymes.
+Source selection, identity declarations and chemical interpretation still
+require curation. An informed reader can recover these adjacent abstract
+sentences; the added capability is executable identity-checked composition
+with explicit refusal of unsupported step/atom transfer. No new observation,
+experiment, claim tier or design-performance evidence is added.
 
 ## Provenance and unresolved links
 

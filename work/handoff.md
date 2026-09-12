@@ -1,78 +1,81 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — E317Q chemical endpoints, 2026-09-12
+## Current research baton — reference-to-primary composition, 2026-09-12
 
-- **Identity/base:** start 2026-09-12T02:06:41Z; owner
-  `01a0935d-b741-7060-a625-9bcefdcaa5ee:ed627c6a-b567-4a79-ac50-5797a6932bd6`;
-  lock acquired normally at 02:06:58Z. Clean main base
-  `81b9516b60ea9a4eeb3e3ccdd86567ea6f2f185b` (PR111); fetched/ff-only, no open
-  PR or recovery, main CI34664389976 passed. Branch
-  `codex/mr-e317q-chemical-endpoints-20260912`; 14.3 minutes at baton checkpoint.
-  Final elapsed/publication/release are recorded in the Git-local receipt.
-- **Question/result:** the direction review's bounded E317Q chemical-endpoint
-  question reaches its supported stopping condition. The archived Mitra1995
-  abstract reports bromide-elimination nondetection for either enantiomer of
-  p-(bromomethyl)mandelate, explicitly contrasted with WT, alongside irreversible
-  inactivation by racemic alpha-phenylglycidate at a qualitatively WT-comparable
-  rate. One aggregate either-enantiomer assertion and one racemate-level
-  assertion join the two unchanged substrate-specific kcat factors in one
-  source-assessed context. This is a source annotation under CE-048.
-- **Scientific limits:** no manufactured R/S assay or WT observation rows.
-  Detection floor, numeric inactivation rate/parameter, irreversibility method,
-  assay conditions, uncertainty and exact preparation/sequence remain unknown.
-  Comparable is not equality; inactivation susceptibility does not establish
-  turnover, covalency, a modification site, active-site access or microscopic
-  cause. The separate (S)-atrolactate structural context is not a matched or
-  productive assay state. No common-assay or cross-endpoint arithmetic.
-- **Evidence:** new `data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json`
-  and its computational review; original factor qualification/recovery and
-  P11444 feature9/reference5 remain unchanged. Existing archived witness
-  SHA256 `dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc`
-  (4770 bytes), abstract SHA256
-  `b01c8aa8107f348773e43cbc141294fbab6391984ed29b72a5a0da03e25659a4`;
-  tool-extracted primary abstract, not raw HTTP/full methods. Query:
-  `python scripts/query_atlas_perturbations.py --comparison mandelate_1995_e317q:E317Q:chemical-endpoint-context`.
-- **Acquisition:** zero new scientific requests/response-body bytes or witnesses.
-  M0187 known subledger12/440960 still omits legacy discovery; no defensible
-  cumulative upper bound or remaining headroom. TK bibliography batch
-  `two-substrate-lineages-2024-51831` remains39/23268387, with61/8188893 left
-  under100/31457280 as controlled by the Ibdah appendix; CODH remains4/30214.
-  No renamed batch/renewed allowance. Settled access inquiries stay closed.
-- **Reuse/reconsideration:** ordinary shared nondetection/qualitative projection
-  and assessed no-arithmetic context suffice; two chemical-outcome parameter
-  declarations live in data. No enzyme-specific runtime. Existing factor/construct/
-  reference providers and local source witness are reused; source applicability
-  remains manual, with no measured curation saving. Co-retrieval preserves a
-  specific chemical-response distinction, but an incumbent reader can see these
-  adjacent abstract sentences readily. The consequential remaining value is
-  exact reference-site-to-primary-outcome composition; do not add more isolated
-  annotations from this abstract. No generic mechanism/design claim follows.
-- **Review/verification:** board `.git/catalytic-earth-runs/ed627c6a.board.md`;
-  Sol/ultra source, representation and adversarial checks are correlated
-  computational review. Source objections determine scope. All251 previous
-  observations/131 comparisons remain unchanged; current totals253/132 are
-  data-view counts, not experiments. One regression rejects an illegal
-  cross-endpoint ratio. Final source/diff reviews accepted; repository contracts,
-  661 core tests and fresh-directory Atlas3/Atlas10 wheel verification passed,
-  including network-blocked M0173/M0219 queries. All38 local witnesses verify.
-  Required exact-head PR CI still precedes merge. Frozen
-  kernels, protected registries and exposure history remain unchanged.
-- **Publication/recovery:** owned candidate on the branch above; no unrelated
-  changes. This baton is the pre-publication checkpoint; Git identifies its
-  containing commit. Resume this branch/PR first if publication is unfinished.
-  Exact push/CI/merge and lock release are in
-  `.git/catalytic-earth-runs/20260912T020641Z-ed627c6a-b567-4a79-ac50-5797a6932bd6.json`.
-- **One next action:** implement one data-declared reference-site/variant/citation
-  join from P11444:E317/feature9 to the already reviewed E317Q primary outcomes,
-  using a shared consumer with no M0187/E317Q branch. Expected gain: retrieve
-  fragment/reference annotation and primary factors/chemical endpoints together
-  without copying observations or source-by-source manual joins. Require exact
-  accession, residue/position, substitution, PMID/DOI, study and construct
-  perturbation agreement. Stop after one integrated answer or the first
-  identity mismatch; never infer a selected-step role, deposited atom or physical
-  assay construct. No new acquisition. The current direction question is complete;
-  this next action addresses its documented integration gap.
+- **Identity/base:** start 2026-09-12T04:06:13Z; owner
+  `01a093cb-2162-75e3-965d-a364f16eba0c:26407592-955b-420b-82a1-6dea6de5d26a`;
+  acquired normally at04:06:46Z. Clean main base
+  `bae49c34bd41dadd0c62bf13d59ad38c4e9d3df3` (PR112), fetched/ff-only, no open
+  PR/recovery; inherited main CI34668171847 passed. Branch
+  `codex/reference-primary-outcome-join-20260912`; about28 minutes at checkpoint.
+  Final elapsed, publication and release are in the Git-local receipt.
+- **Question/result:** the bounded E317Q chemical-endpoint inquiry was already
+  complete. This run closes the current direction review's distinct integration
+  gap: one exact data-declared P11444:E317 reference feature9 / E317Q / PMID7893689
+  and DOI10.1021/bi00009a006 join retrieves the fragment/reference annotation
+  beside four existing primary outcomes. No new observation or chemistry row.
+  Query: `python scripts/query_atlas_perturbations.py --reference-site P11444:E317`.
+- **Scientific limits:** both substrate-specific kcat factors (4500/29000) and
+  the aggregate either-enantiomer bromide nondetection / racemate-level
+  irreversible inactivation remain unchanged. The original fragment's selected-
+  step E317 mapping stays unresolved and its focal-observation list stays empty.
+  Successful reference-record correspondence does not assign a step role,
+  deposited atom, exact assayed sequence/preparation, matched assay, microscopic
+  cause or validated arrow. No new arithmetic; comparable is not equality.
+- **Evidence and representation:** `data/atlas/reference_outcomes/spec.json`
+  declares providers, identity and the exact four existing outcome IDs from one
+  reviewed chemical context. `src/catalytic_earth/atlas_reference_outcomes.py`
+  rebuilds the fragment query and obtains the existing reviewed perturbation
+  view, then checks reference identity, singleton substitution, exact PMID/DOI,
+  study, source-named construct, primary wrapper hash/pointer and outcome
+  membership. The separate review binds source/code; no enzyme-ID runtime branch.
+  The existing repository script gets one optional filter. Original wheel
+  query semantics and canonical observations/comparisons remain unchanged.
+- **Acquisition:** zero new scientific requests, response-body bytes or witnesses.
+  Original factor/source recovery and chemical-endpoint payloads unchanged.
+  Archived primary tool-text witness SHA256
+  `dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc`
+  verifies at4770 bytes; indexed abstract, not raw HTTP/full methods.
+  M0187 known subledger12/440960 omits legacy discovery: total/headroom unknown.
+  TK batch `two-substrate-lineages-2024-51831` remains39/23268387,
+ 61/8188893 remaining under100/31457280; CODH remains4/30214.
+  No renamed batch, renewed allowance or reopened access inquiry.
+- **Reuse/reconsideration:** one shared consumer composes previously separate
+  reference and primary evidence planes without retranscribing observations.
+  This eliminates a manual query-result join for this relation, but source
+  selection, applicability and declarations remain manual. No measured time
+  saving or cross-enzyme generalization. Adjacent abstract reading is easy for
+  an informed incumbent user; the added value is executable identity-checked
+  composition and explicit prevention of step/atom transfer. No new chemical
+  primitives or case-specific code were needed. Further E317Q annotation is
+  not the next scientific task.
+- **Review/verification:** source, representation and adversarial Sol/ultra
+  workers accepted the final candidate and stopped. Their correlated review is
+  not independent human or laboratory evidence. Review caught and repaired
+  grouped-substitution, disconnected citation-wrapper and hidden-arithmetic
+  acceptance.11 new/118 relevant tests and672 core tests passed; public query
+  gives1 relation/4 existing outcomes/0 new observations and verifies its one
+  witness. All253 prior observations/132 comparisons and the default projection
+  are invariant except review metadata. Fragment package differs only in review
+  metadata. Atlas3/Atlas10 fresh-directory wheel checks passed, including
+  network-blocked source drafts/M0173/M0219. Repository contracts and exact-head
+  PR CI must pass before merge; final results are recorded in the receipt.
+- **Publication/recovery:** coherent owned changes on the branch above; no
+  unrelated dirty work. This is the pre-publication checkpoint; Git identifies
+  its containing commit. Resume this branch/PR first if publication is unfinished.
+  Receipt `.git/catalytic-earth-runs/20260912T040613Z-26407592-955b-420b-82a1-6dea6de5d26a.json`;
+  board `.git/catalytic-earth-runs/26407592.board.md`.
+- **One next action:** assess whether the retained RA95.5-8F parent Tyr51-OH /
+  Tyr180-OH geometry across5AOU/5AN7 adds a local spatial constraint to the
+  existing four-cell tyrosine cleavage/thermal panel. First confirm this pair
+  is not already represented, then use the shared deposit context with all
+  Tyr51 alternatives, occupancy and ligand states intact. Expected gain: a
+  source-qualified parent-state context for the conditional functional response,
+  not another abstract annotation. Stop after one supported comparison or the
+  first identity/atom ambiguity; do not infer mutant geometry, conformer solution
+  populations, productive state, causal cooperation or a design rule. No new
+  acquisition. Reconsider if parent geometry adds no consequential constraint.
 
 <!-- current-research-handoff:end -->
 

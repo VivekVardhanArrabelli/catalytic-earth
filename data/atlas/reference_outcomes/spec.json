@@ -1,0 +1,74 @@
+{
+  "schema_version": "catalytic-earth.reference-outcome-links.v1",
+  "scope": "Source-reviewed reference-site and single-substitution citation joins; source-named constructs only, no physical assay or catalytic-atom assignment.",
+  "fragment_contexts": {
+    "atlas10-mandelate": {
+      "fragment_bundle": {
+        "path": "src/catalytic_earth/mechanism_evidence_data/source_fragments.json",
+        "sha256": "6faecaeeebdfc7d1716b1fa8c9e647f619047a5d9ca0437efd07be1448681ae9"
+      },
+      "atlas_bundle": {
+        "path": "src/catalytic_earth/atlas_data/atlas10_kernel.json",
+        "sha256": "2238a3a4570c1a6110c1fd6f7b1d96765eae1d41990b18751293e0301b4a85ef"
+      },
+      "evidence": {
+        "path": "src/catalytic_earth/mechanism_evidence_data/evidence.json",
+        "sha256": "5c2488eb848d3d27304dadd81aecf3efc838061e09e4cc77043a27b0f85895a2"
+      },
+      "transformations": {
+        "M0187": {
+          "path": "data/atlas/transformations/m0187/transformations.json",
+          "sha256": "02135996931cd366945fad1773b1ca067f13cb609a17a56862ebfc91f5d28fa3"
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "id": "P11444:E317Q:PMID7893689",
+      "fragment_context_id": "atlas10-mandelate",
+      "fragment_relation_id": "M0187:mechanism-1:step-1:a63:fragment-site",
+      "primary_source": "mr1995e317q",
+      "site_pointer": "/reference_site_context",
+      "study_pointer": "/study_id",
+      "citation_pointers": {
+        "PubMed": "/pmid",
+        "DOI": "/doi"
+      },
+      "construct_id": "mandelate_1995_e317q:E317Q",
+      "comparison_ids": [
+        "mandelate_1995_e317q:E317Q:chemical-endpoint-context"
+      ],
+      "outcome_sources": {
+        "mr1995e317q": {
+          "study_pointer": "/study_id"
+        },
+        "mr1995e317q_endpoints": {
+          "study_pointer": "/study_id",
+          "primary_binding_pointer": "/source_binding",
+          "primary_source_pointer": "/source_pointer",
+          "construct_context_pointer": "/construct_context"
+        }
+      },
+      "primary_source_pointer": "/source",
+      "expected_identity": {
+        "uniprot_id": "P11444",
+        "reference_site_id": "P11444:E317",
+        "reference_residue": "E",
+        "sequence_position": 317,
+        "alternative_residue": "Q",
+        "variant": "E317Q",
+        "PubMed": "7893689",
+        "DOI": "10.1021/bi00009a006",
+        "study_id": "mandelate_1995_e317q"
+      },
+      "observation_ids": [
+        "mr1995e317q-reported-effects:E317Q:R-mandelate:source_reported_activity_reduction_factor",
+        "mr1995e317q-reported-effects:E317Q:S-mandelate:source_reported_activity_reduction_factor",
+        "mr1995e317q-elimination:E317Q:either-enantiomer-bromide-elimination:reaction_detection",
+        "mr1995e317q-inactivation:E317Q:racemic-alpha-phenylglycidate-inactivation:enzyme_inactivation"
+      ],
+      "source_construct_id": "E317Q"
+    }
+  ]
+}
