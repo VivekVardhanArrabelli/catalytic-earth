@@ -268,6 +268,16 @@
           "lys83-nz-to-ligand-c13",
           "tyr51-oh-to-ligand-o1"
         ]
+      },
+      {
+        "assertion_id": "parent-tyrosine-pair",
+        "statement": "Parent Tyr51OH-to-Tyr180OH separation retains all deposited alternatives and individual atom occupancies. The coordinate audit can be co-retrieved with the existing source-qualified functional panel, without adding causal support to it. No hydrogen bond, invariant network edge, solution population or mutant geometry is assigned.",
+        "status": "computed_coordinate_description",
+        "supporting_selection_ids": [
+          "tyr51-oh-to-tyr180-oh",
+          "tyr51-atoms",
+          "tyr180-atoms"
+        ]
       }
     ],
     "not_established": [
@@ -331,6 +341,19 @@
         "atom_names": [
           "O1"
         ]
+      },
+      {
+        "selection_id": "tyr180-oh",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "A",
+        "auth_seq_id": "1180",
+        "label_comp_id": "TYR",
+        "atom_names": [
+          "OH"
+        ]
       }
     ],
     "distance_pairs": [
@@ -343,6 +366,11 @@
         "pair_id": "tyr51-oh-to-ligand-o1",
         "left_selection_id": "tyr51-oh",
         "right_selection_id": "ligand-o1"
+      },
+      {
+        "pair_id": "tyr51-oh-to-tyr180-oh",
+        "left_selection_id": "tyr51-oh",
+        "right_selection_id": "tyr180-oh"
       }
     ]
   }

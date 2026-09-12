@@ -1,81 +1,82 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — reference-to-primary composition, 2026-09-12
+## Current research baton — RA95 parent-coordinate audit, 2026-09-12
 
-- **Identity/base:** start 2026-09-12T04:06:13Z; owner
-  `01a093cb-2162-75e3-965d-a364f16eba0c:26407592-955b-420b-82a1-6dea6de5d26a`;
-  acquired normally at04:06:46Z. Clean main base
-  `bae49c34bd41dadd0c62bf13d59ad38c4e9d3df3` (PR112), fetched/ff-only, no open
-  PR/recovery; inherited main CI34668171847 passed. Branch
-  `codex/reference-primary-outcome-join-20260912`; about28 minutes at checkpoint.
-  Final elapsed, publication and release are in the Git-local receipt.
-- **Question/result:** the bounded E317Q chemical-endpoint inquiry was already
-  complete. This run closes the current direction review's distinct integration
-  gap: one exact data-declared P11444:E317 reference feature9 / E317Q / PMID7893689
-  and DOI10.1021/bi00009a006 join retrieves the fragment/reference annotation
-  beside four existing primary outcomes. No new observation or chemistry row.
-  Query: `python scripts/query_atlas_perturbations.py --reference-site P11444:E317`.
-- **Scientific limits:** both substrate-specific kcat factors (4500/29000) and
-  the aggregate either-enantiomer bromide nondetection / racemate-level
-  irreversible inactivation remain unchanged. The original fragment's selected-
-  step E317 mapping stays unresolved and its focal-observation list stays empty.
-  Successful reference-record correspondence does not assign a step role,
-  deposited atom, exact assayed sequence/preparation, matched assay, microscopic
-  cause or validated arrow. No new arithmetic; comparable is not equality.
-- **Evidence and representation:** `data/atlas/reference_outcomes/spec.json`
-  declares providers, identity and the exact four existing outcome IDs from one
-  reviewed chemical context. `src/catalytic_earth/atlas_reference_outcomes.py`
-  rebuilds the fragment query and obtains the existing reviewed perturbation
-  view, then checks reference identity, singleton substitution, exact PMID/DOI,
-  study, source-named construct, primary wrapper hash/pointer and outcome
-  membership. The separate review binds source/code; no enzyme-ID runtime branch.
-  The existing repository script gets one optional filter. Original wheel
-  query semantics and canonical observations/comparisons remain unchanged.
-- **Acquisition:** zero new scientific requests, response-body bytes or witnesses.
-  Original factor/source recovery and chemical-endpoint payloads unchanged.
-  Archived primary tool-text witness SHA256
-  `dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc`
-  verifies at4770 bytes; indexed abstract, not raw HTTP/full methods.
-  M0187 known subledger12/440960 omits legacy discovery: total/headroom unknown.
-  TK batch `two-substrate-lineages-2024-51831` remains39/23268387,
- 61/8188893 remaining under100/31457280; CODH remains4/30214.
-  No renamed batch, renewed allowance or reopened access inquiry.
-- **Reuse/reconsideration:** one shared consumer composes previously separate
-  reference and primary evidence planes without retranscribing observations.
-  This eliminates a manual query-result join for this relation, but source
-  selection, applicability and declarations remain manual. No measured time
-  saving or cross-enzyme generalization. Adjacent abstract reading is easy for
-  an informed incumbent user; the added value is executable identity-checked
-  composition and explicit prevention of step/atom transfer. No new chemical
-  primitives or case-specific code were needed. Further E317Q annotation is
-  not the next scientific task.
+- **Identity/base:** start 2026-09-12T05:06:13Z; owner
+  `01a09402-101c-7840-ac6f-d4e5ba691770:a0b08661-f52b-4614-ae84-643544fe8780`;
+  acquired normally at05:06:32Z. Clean main base
+  `3ae296d114b8c6e57d05cced38914c543e304889` (PR113), fetched/ff-only; no open
+  PR or recovery. Inherited main CI34673774341 passed. Branch
+  `codex/ra95-parent-tyrosine-context-20260912`; about19 minutes at checkpoint.
+  Final elapsed, publication and release are recorded in the Git-local receipt.
+- **Direction reconciliation:** the September12 review's E317Q endpoint priority
+  and separate reference-to-primary integration gap are complete in PR112/113.
+  The inherited Tyr-pair question was assessed for information gain, not treated
+  as a required distance-expansion queue. It is now closed.
+- **Question/result:** retained parent Tyr51OH–Tyr180OH geometry does **not** add
+  causal support to the existing four-cell cleavage/thermal interpretation.
+  The supported narrower result is a negative coordinate audit:5AOU has one
+ 3.827099angstrom pair;5AN7 Tyr51A/B give2.729859/4.372475angstrom. These retained
+  states/alternatives do not establish one invariant pair separation. This
+  neither refutes the source's broader network/preorganization interpretation
+  nor independently corroborates a mechanism. CE-034 is extended at this scope.
+- **Evidence/limits:** exact model1, assembly1/operator1 atom sites437/1507
+  (apo) and944/945/3296 (complex); Tyr180 author2180/1180 remains distinct.
+  Tyr51 occupancies1.00 (apo),0.75/0.25 (complex), and Tyr1801.00 are retained.
+  No averaging, inferred joint population, hydrogen bond, ligand-induced motion,
+  mutant geometry, coupling energy or design distance. MHO237,100K diffraction,
+  pH/media conflicts, incomplete LLK adduct graph and physical-preparation
+  uncertainty remain. Original raw atom rows and ligand pairs are unchanged.
+- **Reusable result:** both existing deposit specs declare the same new pair;
+  the existing `chemical_state.json` records the narrowed cross-state assessment.
+  Query `python scripts/query_atlas_perturbations.py --state-link ra95_2017:RA95.5-8F-states --with-comparisons`
+  co-retrieves both parent contexts,21 existing kinetic records/21 comparisons,
+  the unchanged tyrosine square, and thermal evidence76/71/74/67C. Only the
+  three parent observations are state-linked. No new runtime, schema or
+  functional observation; exact case facts stay in data.
+- **Reconsideration:** no bespoke chemistry code was needed. Source selection
+  and interpretation remain manual, with no measured curation-time saving or
+  generalization. The incumbent source already depicts the local network;
+  therefore adversarial review rejected the initial stronger geometry/function
+  framing. Retain only the negative audit and stop nearby-distance work.
+  Publication was narrowed to the RA95 source/claim/guide/handoff: redundant
+  current-document additions and their unrelated fragment-package hash cascade
+  were removed. Original fragment package/current direction documents remain
+  byte-identical; this does not resolve broader review-maintenance costs.
+- **Acquisition:** zero requests, response-body bytes or new witnesses. The
+  retained SI witness SHA256
+  `2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d`
+  verifies at10373958bytes;5AOU/5AN7 CIF bindings are unchanged. Named RA95 batch
+  `designed-retroaldolase-ra95-giger2013` remains33/17556517 under100/31457280
+  (latest `ra95_2013/dera_acquisition_appendix.json`),67/13900763 remaining;
+  the DERA access stop stays closed. TK remains39/23268387; CODH4/30214;
+  M0187 known subledger12/440960 still omits legacy discovery, so its total
+  and headroom are unknown. No renamed or reset batch.
 - **Review/verification:** source, representation and adversarial Sol/ultra
-  workers accepted the final candidate and stopped. Their correlated review is
-  not independent human or laboratory evidence. Review caught and repaired
-  grouped-substitution, disconnected citation-wrapper and hidden-arithmetic
-  acceptance.11 new/118 relevant tests and672 core tests passed; public query
-  gives1 relation/4 existing outcomes/0 new observations and verifies its one
-  witness. All253 prior observations/132 comparisons and the default projection
-  are invariant except review metadata. Fragment package differs only in review
-  metadata. Atlas3/Atlas10 fresh-directory wheel checks passed, including
-  network-blocked source drafts/M0173/M0219. Repository contracts and exact-head
-  PR CI must pass before merge; final results are recorded in the receipt.
-- **Publication/recovery:** coherent owned changes on the branch above; no
+  lanes reviewed the narrowed data and source scope. This is correlated
+  computational review, not independent human or laboratory evidence.146
+  relevant tests passed; all253 functional observations/132 comparisons and
+  other state/model/control relations are invariant.38 existing source witnesses
+  verified at51226967bytes. Deposit reconstruction and public state query pass.
+  Exact final diff, repository contracts and required PR checks must pass before
+  merge; final results and stopped-worker state are recorded in the receipt.
+- **Publication/recovery:** owned coherent changes on the branch above; no
   unrelated dirty work. This is the pre-publication checkpoint; Git identifies
   its containing commit. Resume this branch/PR first if publication is unfinished.
-  Receipt `.git/catalytic-earth-runs/20260912T040613Z-26407592-955b-420b-82a1-6dea6de5d26a.json`;
-  board `.git/catalytic-earth-runs/26407592.board.md`.
-- **One next action:** assess whether the retained RA95.5-8F parent Tyr51-OH /
-  Tyr180-OH geometry across5AOU/5AN7 adds a local spatial constraint to the
-  existing four-cell tyrosine cleavage/thermal panel. First confirm this pair
-  is not already represented, then use the shared deposit context with all
-  Tyr51 alternatives, occupancy and ligand states intact. Expected gain: a
-  source-qualified parent-state context for the conditional functional response,
-  not another abstract annotation. Stop after one supported comparison or the
-  first identity/atom ambiguity; do not infer mutant geometry, conformer solution
-  populations, productive state, causal cooperation or a design rule. No new
-  acquisition. Reconsider if parent geometry adds no consequential constraint.
+  Receipt `.git/catalytic-earth-runs/20260912T050613Z-a0b08661-f52b-4614-ae84-643544fe8780.json`;
+  board `.git/catalytic-earth-runs/a0b08661.board.md`; invariance/query records
+  share that prefix. No additional scientific inquiry was selected this run.
+- **One next action:** make one bounded priority-selection decision from the
+  post-PR110 evidence window and current direction, moving beyond adjacent RA95
+  geometry. Require a non-RA95 question whose retained evidence can change a
+  scientific interpretation or demonstrate a useful cross-case relation through
+  an existing consumer. Expected gain: avoid spending another run on same-study
+  annotations without added inference. Stop at one evidence-supported question
+  with named sources and its own stopping condition, or record that none clears
+  this bar; do not force a second example, repeat closed access routes or launch
+  acquisition merely to supply a demonstration. The standing two-no-progress
+  reconsideration/pause rule still applies.
 
 <!-- current-research-handoff:end -->
 

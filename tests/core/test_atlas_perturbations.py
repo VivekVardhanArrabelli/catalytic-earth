@@ -1057,6 +1057,48 @@ class PerturbationRelationTests(unittest.TestCase):
                                   if row["id"] == "ra95_2017:Y51F-Y180F:kcat")
                     self.assertEqual(paired["operation"], "multiplicative")
                     self.assertAlmostEqual(paired["value"], 0.021, places=3)
+                    expected_pairs = {
+                        "ra95-8f:5AOU:apo": ("2180", [
+                            ("437", "1507", None, 1.0, 3.827099),
+                        ]),
+                        "ra95-8f:5AN7:inhibitor-derived": ("1180", [
+                            ("944", "3296", "A", 0.75, 2.729859),
+                            ("945", "3296", "B", 0.25, 4.372475),
+                        ]),
+                    }
+                    for state in link["states"]:
+                        author_number, expected = expected_pairs[state["state_id"]]
+                        assembly = state["deposit_context"]["assembly_projection"]
+                        selections = {item["selection_id"]: item
+                                      for item in assembly["selections"]}
+                        right = selections["tyr180-oh"]
+                        self.assertEqual(right["residue_identity"]["label_seq_id"], "180")
+                        self.assertEqual(right["residue_identity"]["author_residue_number"],
+                                         author_number)
+                        self.assertEqual(right["operator_ids"], ["1"])
+                        pair = next(item for item in assembly["distance_pairs"]
+                                    if item["pair_id"] == "tyr51-oh-to-tyr180-oh")
+                        measurements = pair["measurements"]
+                        self.assertEqual([
+                            (row["left_atom_site_id"], row["right_atom_site_id"],
+                             row["left_label_alt_id"], row["left_occupancy"],
+                             row["distance_angstrom"]) for row in measurements
+                        ], expected)
+                        for row in measurements:
+                            self.assertEqual(row["model_id"], "1")
+                            self.assertEqual(row["right_occupancy"], 1.0)
+                            self.assertIsNone(row["right_label_alt_id"])
+                            if row["left_label_alt_id"] is not None:
+                                self.assertEqual(row["alternate_coexistence"],
+                                    "cross_residue_or_copy_alternate_coexistence_unresolved")
+                    thermal_index = next(i for i, ref in enumerate(
+                        self.spec["evidence_context"]["ra95t"])
+                        if ref["pointer"] == "/thermal_shift_observations")
+                    thermal = view["evidence_context"]["ra95t"][thermal_index]
+                    temperatures = {row["construct_id"]: row["value"] for row in thermal}
+                    self.assertEqual([temperatures["RA95.5-8F" + suffix]
+                                      for suffix in ("", ":Y51F", ":Y180F", ":Y51F/Y180F")],
+                                     [76, 71, 74, 67])
 
     def test_parent_state_link_retains_chemical_and_model_conflicts(self):
         link = self.view["state_links"][0]
