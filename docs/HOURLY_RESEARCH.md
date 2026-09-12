@@ -1,6 +1,7 @@
 # Hourly atlas research
 
-Effective 2026-09-09. This is the standing brief for the single
+Effective 2026-09-09; task-selection correction 2026-09-12. This is the standing
+brief for the single
 `catalytic-earth-work-loop` scheduled task. It supersedes the old Lever 3,
 predictor, minimum-duration and mandatory-artifact instructions for that task.
 Other historical schedules remain paused. The schedule starts a fresh task in
@@ -37,11 +38,31 @@ action with current evidence and the strongest alternative; do not restart
 settled investigations without new evidence or a concrete defect. Older handoffs,
 automation memories and predictor plans are history, not an active work queue.
 
-Choose the highest-impact bottleneck. State the scientific question, expected
-information gain and a stopping condition before substantive work. Continue
-through meaningful work rather than ending at a plan. If a result changes the
-bottleneck, adapt. A showcase, benchmark or laboratory experiment is warranted
-when it resolves a decision, not as a ritual before every useful addition.
+Before acquisition or implementation, compare the inherited action with the
+strongest feasible alternative under the same access, evidence and time
+constraints, including stopping. Name the consequential integrated answer,
+scientific decision, demonstrated cross-case capability or specific atlas
+dependency each would change. Explain why the selected action is worth doing
+first. An accessible source, another preserved nuance or a technically valid
+annotation does not establish priority. State the question, expected gain and
+stopping condition, then take the selected action; stopping or a no-change
+result is valid.
+
+Give the existing adversarial reviewer responsibility for challenging task
+selection before it becomes the implementation plan. Source and representation
+review assess scientific validity separately. A grounded consequential objection
+must be resolved with evidence; otherwise retarget or stop. Reviewer agreement
+cannot override an unresolved objection. When the proposed gain is modest or
+marginal, identify its important downstream use and justify it against the
+stronger alternative before proceeding.
+New runtime or schema must have a scientific need that wins the same comparison;
+first test whether existing consumers and retained evidence suffice.
+
+Record this comparison briefly in the existing board/handoff. Do not create a
+scorecard, schema, validator, additional review layer, compulsory benchmark or
+example quota to enforce it. A demonstration or experiment is warranted when
+it resolves a decision. If the needed answer already exists, report that and
+close the inquiry without manufacturing a new artifact.
 
 ## Three reasons to reconsider the approach
 
@@ -72,9 +93,18 @@ An exclusion adds scientific value when it changes a consequential inference;
 repeating a settled refusal or logging inaccessible text alone does not count
 as new evidence or usable scientific content. Keep access records compact and
 move to a different justified question after a bounded access stop.
-After two consecutive runs with no new evidence, usable content or necessary
-recovery, require a different evidence-supported action; if none exists, pause
-this schedule and report what would permit useful work to resume.
+A run is marginal when it does not materially change an integrated answer,
+correct or prevent a consequential inference, demonstrate reusable cross-case
+capability with a named consequential downstream use, or unblock a named atlas
+dependency. Changing topic, source, record or claim ID, or adding integrity
+machinery does not reset the pattern. Review
+the last two completed scientific runs through their handoffs/results; recovery
+and oversight are not scientific gains or a way to reset marginal work. After
+two consecutive marginal runs, take a materially different action before more
+acquisition or implementation. If no useful feasible alternative exists, pause
+this schedule and state what must change. A supported negative result counts
+when it closes a named decision or dependency. Keep the judgment in the existing
+handoff/result; no new tracking system is needed.
 
 Progressively connect chemical states and mechanisms to catalytic functional
 groups, substrate/intermediate or transition-state models, three-dimensional
@@ -184,7 +214,8 @@ Replace only the current handoff block with a compact scientific baton:
 - Question, grounded finding, new capability or `none`, and its limitations.
 - Exact evidence locations and any source budget already consumed.
 - Relevant checks and any unresolved source/review objections.
-- Observed reuse, the three reconsideration conditions and any changed approach.
+- Observed reuse, the strongest alternative, any marginal-work pattern and the
+  resulting selection or change of approach.
 - One next action, expected information gain, stopping condition and dependencies.
 - Publication/recovery state and any owned or unrelated unfinished changes.
 
