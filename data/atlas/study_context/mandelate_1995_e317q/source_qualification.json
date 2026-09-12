@@ -1,0 +1,188 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "mitra1995-e317q-substrate-specific-kcat-reductions",
+  "study_id": "mandelate_1995_e317q",
+  "operation": "source_annotation",
+  "question": "What endpoint and substrate identities lie behind the retained E317Q activity-reduction annotation?",
+  "source": {
+    "title": "Mechanism of the reaction catalyzed by mandelate racemase: importance of electrophilic catalysis by glutamic acid 317.",
+    "pmid": "7893689",
+    "doi": "10.1021/bi00009a006",
+    "journal": "Biochemistry",
+    "volume": "34",
+    "issue": "9",
+    "pages": "2777-87",
+    "publication_date": "1995-03-07",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/7893689/",
+    "source_id": "Mitra1995:PubMed-archived-abstract",
+    "inspection_depth": "complete_indexed_abstract_in_archived_web_tool_result",
+    "full_text_inspected": false,
+    "raw_http_body_retained": false,
+    "witness": {
+      "sha256": "dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc",
+      "bytes": 4770,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc.json",
+      "representation": "archived_web_tool_extracted_primary_abstract",
+      "abstract_utf8_sha256": "b01c8aa8107f348773e43cbc141294fbab6391984ed29b72a5a0da03e25659a4"
+    },
+    "source_event": {
+      "session_id": "01a07c8d-18ca-78a3-87a6-8431251f25a2",
+      "turn_id": "01a07ff8-ec6d-78c3-ad75-619ec9852c5b",
+      "tool_call_line": 295,
+      "tool_result_line": 298,
+      "tool_call_ordinal": 294,
+      "tool_result_ordinal": 297,
+      "tool_call_timestamp_utc": "2026-09-08T07:44:43.922Z",
+      "tool_result_timestamp_utc": "2026-09-08T07:44:45.006Z",
+      "tool_call_id": "call_LweYGks7RfhKFTDZlm4sIeZC",
+      "tool_call_line_sha256": "574486c87c5658f19bc6fa1d741f07b4652176d7b53250965e097dd1360bd90e",
+      "tool_result_line_sha256": "bcf2829fc7d50f7eb077b8352a8a98ed21c0d1f6d425303135729cf29b8bee4f",
+      "web_result_reference": "turn140search0"
+    },
+    "source_typography_note": "The archived abstract ends with E317O; this apparent source or index typo is preserved verbatim and is not silently corrected to E317Q."
+  },
+  "recovery_binding": {
+    "path": "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json",
+    "sha256": "2aad35f280c37e0ed9b6636205eedaba761add1235b3ef6005a3cd1b5e0b4f1b"
+  },
+  "constructs": [
+    {
+      "construct_id": "WT",
+      "comparison_background": "WT",
+      "perturbation": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "Source-named wild-type mandelate racemase; exact assayed sequence/preparation and organism not supplied by the inspected abstract."
+    },
+    {
+      "construct_id": "E317Q",
+      "comparison_background": "WT",
+      "perturbation": [
+        "E317Q"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "Source-named Glu317-to-Gln mandelate racemase; exact assayed sequence/preparation and organism not supplied by the inspected abstract."
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "abstract-substrate-specific-kcat",
+      "endpoint": "Author-reported E317Q kcat fold reductions for separately named R- and S-mandelate substrates",
+      "method": null,
+      "conditions": null,
+      "physical_preparation": null,
+      "qualified_for_new_arithmetic": false,
+      "qualification_scope": "Abstract-level reported factors only. Absolute WT/mutant kcat values, matched kinetic protocols, uncertainty and net reaction direction are unreported in the inspected abstract.",
+      "source_endpoint_assessed": true,
+      "source_assay_protocol_assessed": false
+    }
+  ],
+  "reference_site_context": {
+    "reference_site_id": "P11444:E317",
+    "uniprot_id": "P11444",
+    "sequence_position": 317,
+    "reference_residue": "E",
+    "alternative_residue": "Q",
+    "feature_index": 9,
+    "reference_index": 5,
+    "source_binding": {
+      "path": "data/atlas/atlas10/sources/uniprot/P11444.json",
+      "sha256": "cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef"
+    },
+    "feature_pointer": "/features/9",
+    "citation_pointer": "/references/5",
+    "citation_match": {
+      "PubMed": "7893689",
+      "DOI": "10.1021/bi00009a006"
+    },
+    "scope": "Exact point-mutagenesis feature and cited study associate this source-named variant with an existing reference site. They do not identify a physical assayed construct, organism from the abstract, deposited atom, mutant geometry or selected-step catalytic role."
+  },
+  "comparator_context": {
+    "source_named_reference": "WT",
+    "factor_orientation": "WT kcat / E317Q kcat at whole-abstract reference scope",
+    "provenance": "The factor sentence omits an explicit denominator. The whole abstract repeatedly compares wild-type MR and the source-named E317Q mutant, supporting WT only as the contextual author comparator. The final E317O token is preserved as an apparent source/index typo and is not used as an independent datum.",
+    "matched_absolute_values_available": false,
+    "matched_assay_established": false,
+    "computed_ratio": null,
+    "reference_status": "context_implied_from_whole_abstract_not_explicit_in_factor_sentence"
+  },
+  "reported_perturbation_effects": [
+    {
+      "row_id": "E317Q:R-mandelate",
+      "construct_id": "E317Q",
+      "assay_id": "abstract-substrate-specific-kcat",
+      "substrate_id": "mandelate_1995_e317q:R-mandelate",
+      "substrate_enantiomer": "R",
+      "source_locator": "PMID7893689 archived PubMed Abstract, kcat reduction sentence",
+      "qualified_parameter_comparison": false,
+      "activity_reduction_factor": {
+        "value_origin": "author_reported_activity_reduction_summary",
+        "result_kind": "numeric",
+        "value": 4500,
+        "unit": "fold_reduction",
+        "source_token": "4.5 x 10(3)-fold",
+        "source_parameter": "kcat",
+        "numerator_scope": "WT kcat, supported by whole-abstract context",
+        "denominator_scope": "E317Q kcat",
+        "comparator_context_pointer": "/comparator_context",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "computed_by_project": false,
+        "scope": "Author-reported reduction factor for the named substrate; no absolute rate, recomputed ratio, exact matched-assay claim or net-direction assignment.",
+        "reference_status": "context_implied_from_whole_abstract_not_explicit_in_factor_sentence"
+      }
+    },
+    {
+      "row_id": "E317Q:S-mandelate",
+      "construct_id": "E317Q",
+      "assay_id": "abstract-substrate-specific-kcat",
+      "substrate_id": "mandelate_1995_e317q:S-mandelate",
+      "substrate_enantiomer": "S",
+      "source_locator": "PMID7893689 archived PubMed Abstract, kcat reduction sentence",
+      "qualified_parameter_comparison": false,
+      "activity_reduction_factor": {
+        "value_origin": "author_reported_activity_reduction_summary",
+        "result_kind": "numeric",
+        "value": 29000,
+        "unit": "fold_reduction",
+        "source_token": "2.9 x 10(4)-fold",
+        "source_parameter": "kcat",
+        "numerator_scope": "WT kcat, supported by whole-abstract context",
+        "denominator_scope": "E317Q kcat",
+        "comparator_context_pointer": "/comparator_context",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "computed_by_project": false,
+        "scope": "Author-reported reduction factor for the named substrate; no absolute rate, recomputed ratio, exact matched-assay claim or net-direction assignment.",
+        "reference_status": "context_implied_from_whole_abstract_not_explicit_in_factor_sentence"
+      }
+    }
+  ],
+  "database_relation": {
+    "finding": "The cited primary abstract resolves the coarse activity annotation into kcat reduction factors with different substrate-enantiomer identities. A single 10000-fold annotation does not preserve the two reported factors.",
+    "database_annotation_kind": "database_summary_not_a_primary_parameter_row",
+    "database_factor_projected_as_observation": false,
+    "source_discriminant_assessed": true,
+    "arithmetic_requested": false
+  },
+  "excluded_context": {
+    "kcat_over_KM": "The plural 30000-fold reduction is not assigned to individual substrate-enantiomer rows in the abstract and is not projected.",
+    "other_endpoints": "Isotope effects, bromide-elimination nondetection, irreversible inactivation and inhibitor-bound structure are distinct source contexts, not additional kcat rows.",
+    "mechanistic_interpretation": "The authors assign general-acid importance. These factors alone do not establish a microscopic cause, an isolated interaction energy, physical proton transfer or a validated source arrow."
+  },
+  "limits": [
+    "Archived tool-extracted PubMed abstract only; no full methods, raw HTTP source body or refreshed source retrieval.",
+    "No absolute rates, uncertainty, assay conditions, exact assayed sequence/preparation or numeric matched-control ratio. WT is the whole-abstract source reference, not an explicitly named denominator in the factor sentence.",
+    "R/S identifies the named substrate enantiomer; net reaction direction, chemical state and product identity are not assigned.",
+    "The retained UniProt site/citation join is reference context only. E317 remains absent from the selected step catalyst declaration and original H297N functional adjudication.",
+    "No residue energy, generic inactivity, substrate-preference ratio, microscopic mechanism, independent human review, project experiment or design-performance claim."
+  ],
+  "counted_objects": {
+    "source_reported_factor_records": 2,
+    "source_named_constructs": 2,
+    "project_experiments": 0,
+    "protein_admissions": 0,
+    "new_net_reactions": 0
+  }
+}

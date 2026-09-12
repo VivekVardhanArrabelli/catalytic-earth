@@ -153,8 +153,8 @@ biologically unimportant or noncatalytic residue.
 
 The original feature, alternatives, evidence code, citation metadata and
 source version travel with the context. These are **two database annotations**,
-not additional experimental observations. The cited E317Q primary results
-were not inspected. Its statement supplies no identified endpoint, kinetic
+not additional experimental observations. This database-annotation view was built without primary E317Q results.
+The separate primary-factor query below does not add observations to this view. The UniProt feature text by itself supplies no identified endpoint, kinetic
 parameter, comparator/denominator, reaction direction, assay conditions,
 exact assayed construct or uncertainty. The consumer preserves the wording
 without extracting a numeric ratio, assuming a wild-type denominator,
@@ -170,6 +170,34 @@ broad coverage, measured effort savings and design performance are untested.
 Observation filters still affect only the existing observation plane; both annotation
 contexts remain visible with their own count and evidence basis. No new
 acquisition, frozen-record change, evidence-tier promotion or claim is added.
+
+### Primary E317Q factors retain the substrate enantiomer
+
+A separately reviewed [Mitra1995 primary abstract](https://pubmed.ncbi.nlm.nih.gov/7893689/)
+reports E317Q kcat reductions of 4,500-fold with R-mandelate and 29,000-fold
+with S-mandelate. WT is the whole-abstract contextual reference; the factor
+sentence does not explicitly name its denominator. The preserved final E317O
+token is an apparent source/index typo, not an additional datum. Full methods,
+absolute rates, uncertainty and exact matched preparation are unavailable.
+R/S identifies the substrate; net reaction direction remains unassigned.
+
+```sh
+python scripts/query_atlas_perturbations.py --comparison mandelate_1995_e317q:E317Q:substrate-specific-context
+```
+
+This existing consumer returns both author-reported factors beside the original
+UniProt feature 9 and its exact PMID/DOI citation. The database 10000-fold summary
+is not projected as a primary observation. P11444:E317 remains reference context;
+no selected-step role, assayed sequence, mutant geometry, residue energy or
+validated arrow follows. The plural kcat/KM reduction is not split by enantiomer.
+No new scalar comparison is computed, and the H297N evidence is unchanged.
+
+The [source packet](../data/atlas/study_context/mandelate_1995_e317q/source_qualification.json)
+binds a recovered, hash-verified archived PubMed tool excerpt. The full abstract
+stays Git-common-local. This is tool-extracted text, not raw HTTP or publisher
+full text. [Recovery provenance](../data/atlas/study_context/mandelate_1995_e317q/source_recovery.json)
+records zero new requests; the earlier unmetered discovery still prevents a
+claim of remaining source-budget headroom.
 
 ## Provenance and unresolved links
 

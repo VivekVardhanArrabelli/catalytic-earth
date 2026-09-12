@@ -1,5 +1,11 @@
 # Current State
 
+## 2026-09-12: primary E317Q factors retain the substrate enantiomer
+
+The [primary abstract relation](ATLAS_MECHANISM_EVIDENCE.md#primary-e317q-factors-retain-the-substrate-enantiomer) returns two author-reported E317Q kcat reductions: 4500-fold for R-mandelate and 29000-fold for S-mandelate. The shared consumer binds the exact P11444 feature 9/PMID/DOI context and preserves WT as a whole-abstract contextual reference, unspecified net direction, missing absolute values/assay details and null uncertainty. No project-derived scalar comparison is computed, and no source-step role is assigned.
+
+The complete indexed abstract was recovered from an existing archived tool result; no new request or raw HTTP body is claimed. Legacy M0187 discovery remains unmetered, so its 12/440,960 subledger supplies no remaining-budget claim. CE-048 is source annotation only. Original H297N evidence, frozen records, protected registries and prior query observations/comparisons are unchanged.
+
 ## 2026-09-11: TK R520Q has a background-dependent 3-HBA endpoint pattern
 
 The [retained four-cell screen](ATLAS_TK_ENDPOINT_CONTEXT.md#r520q-across-s385f-and-s385pcnf-backgrounds-with-3-hba)
@@ -114,6 +120,10 @@ at six requests / 2,374,099 bytes in the distinct Raj2012 batch. No new project
 experiment, protected registry admission or design-performance claim follows.
 
 ## 2026-09-11: a non-step-declared reference site retains mutation evidence
+
+> Historical UniProt-only assessment: the 2026-09-12 primary-factor relation
+> supersedes the primary-evidence status and blanket interpretation stop below.
+> The original reference-feature view retains its narrower database scope.
 
 The optional [fragment query](ATLAS_MECHANISM_EVIDENCE.md#entry-level-mutation-annotations-retain-their-narrower-evidence-basis) now links the Glu317A source fragment to entry-wide P11444:E317 and its UniProt E317Q activity-reduction annotation. E317 remains unresolved in the selected-step catalyst relation, with no measured observation attached. The same reference-feature rule returns H297N's coarse activity-loss annotation beside its existing endpoint-specific S-exchange evidence.
 

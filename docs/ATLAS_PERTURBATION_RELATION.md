@@ -633,3 +633,18 @@ finding comes from a same-source `assessment_provider` pointer with nonempty
 selectors and explicit source assay-qualification flag must stay consistent.
 These declarations are reviewed source annotations; parser acceptance does not
 establish scientific or independent validation.
+
+### An existing reference-site annotation gains substrate-specific primary factors
+
+```sh
+python scripts/query_atlas_perturbations.py --comparison mandelate_1995_e317q:E317Q:substrate-specific-context
+```
+
+The [E317Q relation](ATLAS_MECHANISM_EVIDENCE.md#primary-e317q-factors-retain-the-substrate-enantiomer)
+reuses the existing author-reported activity-reduction-factor parameter and
+no-arithmetic context. It returns two kcat factors, their substrate enantiomers,
+and the exact original UniProt feature/citation. Source endpoint assessment is
+explicit while the assay remains unqualified for new arithmetic. WT reference
+status is contextual; no absolute rate, net direction, matched preparation,
+selected-step role or database-summary value is promoted. Archived source text
+is locally hash-bound with zero new acquisition and unknown legacy headroom.
