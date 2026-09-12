@@ -761,3 +761,19 @@ Do not edit a status silently. Update the JSON ledger, this readable ledger,
 `ERRATA.md` when public wording changes, and the exposure ledger when an
 evaluation surface is viewed, scored, tuned against, or adjudicated. Negative
 and superseded results remain in history.
+
+## CE-048 — E317Q reduction factors retain substrate identity
+
+**Status:** Supported
+
+The [Mitra1995 primary abstract relation](docs/ATLAS_MECHANISM_EVIDENCE.md#primary-e317q-factors-retain-the-substrate-enantiomer)
+reports E317Q kcat reductions of 4,500-fold for R-mandelate and 29,000-fold
+for S-mandelate. WT is the whole-abstract contextual reference; the factor
+sentence omits its denominator. These are author-reported factors without
+new arithmetic, absolute rates, uncertainty or a matched-assay claim.
+The exact retained P11444 feature/citation provides reference-site context.
+Net direction, exact assayed sequence, microscopic cause and mutant geometry
+remain unassigned. The plural kcat/KM reduction is not split by enantiomer,
+and the coarse database 10000-fold summary is not a primary parameter row.
+No residue energy, selected-step role, independent validation, project
+experiment or design-performance claim follows.

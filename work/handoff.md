@@ -1,70 +1,88 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-12 TK integration and source recovery
+## Current research baton — 2026-09-12 E317Q substrate-specific factors
 
 - **Identity/publication:** start 2026-09-12T00:06:43Z; owner
-  `01a092ef-d86e-7421-824b-bfc309973150:75ca801b-fe6e-46a0-a0f7-4e3329ccc616`.
-  Acquired normally at00:07:02Z; clean inherited branch
-  `codex/tk-3hba-background-20260911`, head `e0f32c34684523ed1c9eeb54ef98cb8b42ae734a`,
-  PR109. Prior CODH recovery is complete at main
-  `1a5d4d1685d7f69b767fa0e5f0570acbcdf281a8`; no unrelated dirty work.
-  All four original PR109 jobs passed, but the renewed source/diff challenge
-  found a scope contradiction before merge. Checkpoint 2026-09-12T00:15:52.960841+00:00.
-- **Grounded result/correction:** retained Mukhopadhyay2024 Table2 supports
-  TK-3/TK-6 42/44% and TK-4C/TK5C 40/printed0% for the same24h3-HBA HPLC
-  screen. Named S385F and noncanonical S385pCNF backgrounds remain distinct.
-  The query's global selection and extension prose still excluded these new
-  rows. Corrected only three scope fields and renewed reviewed bindings after
-  adversarial acceptance. All249 observations,130 comparisons and every other
-  candidate query field remain unchanged. This closes a publication defect,
-  not another source-table expansion or a new scientific claim.
-- **Limits:** printed0 is not nondetection, exact zero or inactivity;44 versus42
-  is not demonstrated superiority. No3-HBA molecular product transfers from
-  the separate3-FBA LC-MS/NMR statement. Uncertainty, rounding/detection limits,
-  exact assay specimen and sequence remain unresolved. No generic epistasis,
-  energetic, isolatedR520Q-cause, selectivity or design claim. CODH, AHAS and
-  earlier TK inquiries stay closed at their documented limits.
-- **Evidence/review:** unchanged `tk_2024/background_evidence.json`, retained
-  article witness `0b0a4fdb19d1d271780fc5e2adaa3a44674c7e399abd4dc369b194add5750fc4`
-  and Table2 `d475805f70f5443ba24354e6e8840cbd837125b6376beac6adb82568dd9f1715`.
-  Renewed `background_review.json` and shared perturbation review preserve prior
-  review history. Roles source_e317, representation_e317 and adversarial_pr109
-  share `.git/catalytic-earth-runs/75ca801b.board.md`. These are correlated
-  computational checks, not independent human review or project experiments.
-- **Acquisition/reconciliation:** zero new requests/bytes. The TK bibliography
-  batch `two-substrate-lineages-2024-51831` remains39/23,268,387; remaining
-  61/8,188,893 under100/31,457,280. Its hashed
-  `ahas_2005/ibdah_acquisition_appendix.json` controls accounting. CODH remains
-  4/30,214. M0187's12/440,960 subledger excludes earlier web discovery and does
-  not establish headroom. The original task records show discovery of E317Q
-  PMID7893689 and an ACS access attempt; no fresh batch or allowance is assumed.
-  Source review is checking the already archived primary-text tool output for
-  possible zero-acquisition reuse. Raw HTTP byte totals remain unresolved.
-- **Reuse/reconsideration:** the same consumer preserves source rows and the
-  corrected scope; no bespoke chemistry code. Repeated global source summaries
-  caused a real metadata contradiction, corrected narrowly with a whole-query
-  invariance check. Manual source interpretation remains; no measured effort
-  saving or demonstrated design consumer. Do not generate speculative E317Q
-  records or repeat an access refusal if usable primary text cannot be recovered.
-- **Verification/publication checkpoint:** exact retained source and13 original
-  review-bound hashes checked; corrected projection hash
-  `3f879ff9a1274da1bf7a232839a5d41f0f5ce4f18e30e3a1a514a8d8be9e2498` accepted
-  by the adversary. Candidate query invariance passed. Run focused/repository
-  checks after final pins and staging; push this correction to PR109 and merge
-  only after all four CI jobs pass at the corrected reviewed head. No merge has
-  occurred at this checkpoint. The next run resumes PR109 if unfinished.
-  Exact final SHA/CI/merge/release belongs in the local receipt
+  `01a092ef-d86e-7421-824b-bfc309973150:75ca801b-fe6e-46a0-a0f7-4e3329ccc616`;
+  lock acquired normally at 00:07:02Z. Clean inherited PR109 head
+  `e0f32c34684523ed1c9eeb54ef98cb8b42ae734a` had all four CI jobs passed, but
+  this run found and corrected a global query-scope contradiction before merge.
+  Reviewed correction `0ee37c08af4e4bf1c8413aadde4532287ecbfee2` passed all four
+  new CI jobs. PR109 merged at 00:27:37Z as
+  `dfc5839a9a37edbbe66bd9bb185f5b41451e5193`; clean main/remote and exact reviewed
+  tree verified. New branch `codex/mr-e317q-source-factors-20260912` starts there.
+  Checkpoint 2026-09-12T00:32:16.041231+00:00 (25.55 minutes); resulting SHA/PR/CI and
+  release are recorded in the local receipt, not by a self-hash commit.
+- **Question/finding:** what endpoint and substrate identities underlie the
+  opaque E317Q activity annotation? The recovered Mitra1995 primary abstract
+  reports kcat reductions of 4500-fold for R-mandelate and 29000-fold for
+  S-mandelate. Two author-reported factors now share the existing perturbation
+  consumer with the exact original P11444 feature 9/PMID7893689/DOI citation.
+  This adds CE-048 and resolves information lost in the database 10000-fold
+  summary. The bounded factor inquiry is complete; no computed ratio is added.
+- **Limits:** WT is the whole-abstract contextual reference; the factor sentence
+  omits an explicit denominator. Machine-readable reference status preserves
+  that distinction. No absolute values, matched assay/preparation, uncertainty
+  or exact assayed sequence. R/S identifies substrate enantiomer, not assigned
+  net direction. The plural kcat/KM factor is not split by enantiomer. E317O
+  remains apparent source/index typography only. P11444 is reference-site
+  context, not an abstract-supplied accession/organism or selected-step role.
+  H297N evidence and fragment functional matching remain unchanged. No geometry,
+  residue energy, generic inactivity, microscopic mechanism or design validation.
+- **Evidence/recovery:** `data/atlas/study_context/mandelate_1995_e317q/`
+  contains `source_qualification.json`, `source_recovery.json` and source review.
+  The archived PubMed tool witness, hash
+  `dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc` (4770 bytes),
+  is Git-common-local; exact abstract hash `b01c8aa8107f348773e43cbc141294fbab6391984ed29b72a5a0da03e25659a4`.
+  Original source-agent session `01a07c8d-18ca-78a3-87a6-8431251f25a2`, line 298,
+  timestamp 2026-09-08T07:44:45.006Z and line hash are bound in the recovery record.
+  Parent and reviewers matched the original event and exact extracted text.
+  This is archived tool-extracted primary abstract, not raw HTTP or full paper.
+  The dated UniProt-only state/decision paragraphs are explicitly superseded
+  in primary-evidence scope, without rewriting their original annotation view.
+- **Acquisition:** zero new requests/response-body bytes; recovering 4770 local
+  witness bytes is not a download. M0187's 12/440,960 subledger omits root/source
+  web discovery that already included E317Q/ACS; total response bytes and
+  remaining headroom remain unknown. Preserve its original batch name; no new
+  allowance or request is authorized by this recovery. TK bibliography batch
+  `two-substrate-lineages-2024-51831` remains 39/23,268,387, with 61/8,188,893 left
+  under 100/31,457,280, controlled by the hashed Ibdah appendix. CODH remains
+  4/30,214. All settled TK/AHAS/CODH access inquiries stay closed.
+- **Reuse/reconsideration:** no runtime/CLI change. The existing factor primitive,
+  source pointers and no-arithmetic consumer preserve the two primary factors
+  beside an existing reference feature without manual consumer reinterpretation.
+  The PR109 scope contradiction shows the cost of duplicated global summaries;
+  its correction changed only three scope fields. The current increment reused
+  archived evidence instead of repeating access. Manual source interpretation
+  remains; no measured curation-time saving, broad coverage or demonstrated
+  design consumer. Protected/frozen objects and exposure history stay untouched.
+- **Review/verification checkpoint:** source_e317, representation_e317 and
+  adversarial_pr109 coordinate in `.git/catalytic-earth-runs/75ca801b.board.md`.
+  Source/representation accepted exact primary wrappers and shared projection;
+  final scientific/diff acceptance and repository/package checks follow final
+  documentation pins. Candidate output preserves all 249 prior observations,
+  130 comparisons and all earlier named objects/relations; new totals 251/131.
+  Existing guards refuse an invented S/R scalar. All 38 retained witnesses
+  hash-check locally. PR109 recovery passed 86 focused tests and contracts.
+  Current increment verification and final publication are in the receipt.
+  These are correlated computational checks, not independent human/lab evidence.
+- **Publication/recovery:** only owned files changed. Stage this handoff before
+  rebuilding the report archive. Publish the coherent new branch; merge only
+  after source/diff acceptance and all four required CI jobs pass at its exact
+  reviewed head. If unfinished, the next run resumes that branch/PR first.
+  Final SHA/push/merge/CI/release state:
   `.git/catalytic-earth-runs/20260912T000643Z-75ca801b-fe6e-46a0-a0f7-4e3329ccc616.json`.
-- **One next scientific action after integration:** examine the already archived
-  primary PubMed tool result for E317Q PMID7893689 / DOI10.1021/bi00009a006,
-  located by source_e317 in original task `01a07311-aac6-7010-9516-e0b53605d473`
-  and its source-audit worker. Expected gain: identify an endpoint, denominator
-  and source-named construct behind the opaque Glu317 annotation without a new
-  request. Stop at one supported relation or the first primary-text/identity/
-  assay ambiguity. Preserve tool-extracted-text provenance, missing raw HTTP
-  bytes, unknown source-budget headroom, and distinction from H297N PMID1909893.
-  No database10000-fold number becomes a kinetic value without source support.
+- **One next scientific action after integration:** use the same already-retained
+  primary abstract to assess E317Q bromide-elimination nondetection alongside
+  irreversible alpha-phenylglycidate inactivation. Expected gain: a chemically
+  qualified constraint on blanket loss-of-reactivity interpretation beyond
+  these kcat factors. Keep the two p-(bromomethyl)mandelate enantiomers distinct
+  from racemic alpha-phenylglycidate and inhibitor-bound structural evidence;
+  source WT contrast does not supply a numeric detection limit or inactivation
+  constant. Stop after one supported qualitative cross-endpoint relation or the
+  first identity/assay ambiguity. No new acquisition, zero-rate inference,
+  comparable-rate ratio, productive-state or microscopic-cause claim.
 
 <!-- current-research-handoff:end -->
 

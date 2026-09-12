@@ -1,0 +1,75 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-12T00:36:14.432552+00:00",
+  "base_commit": "dfc5839a9a37edbbe66bd9bb185f5b41451e5193",
+  "scope": "Two source-reported E317Q kcat reduction factors keyed by substrate enantiomer, with whole-abstract contextual WT reference and exact original UniProt feature/citation; no matched arithmetic, net direction, selected-step role, physical construct or design claim.",
+  "reviewed_bindings": {
+    "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json": "163bc099792d37d87602bcee414f4468f54431b07232db5ac07e1f5b95982274",
+    "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json": "2aad35f280c37e0ed9b6636205eedaba761add1235b3ef6005a3cd1b5e0b4f1b",
+    "data/atlas/perturbations/projection.json": "50c9b8be6fdf807244413a72dcc3d2bcd6fe371612686ee3d7276737b1eb74d9",
+    "data/atlas/atlas10/sources/uniprot/P11444.json": "cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef",
+    "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d",
+    "scripts/query_atlas_perturbations.py": "7eab6075c751ad2dbecf6757d1dc3fef5e452fbaff03d3d78f0c1b9fa3d8e412",
+    "CLAIMS.md": "6a2bcd9a56a788f00113373513f2efc0f0e911fc077a6c237ba65a71fa615fac",
+    "data/governance/claim_ledger.json": "cfb262452d1cb3aecaab69e48e51c7dc11b5bb185b6bb0a3fb691f3778fa6ba9",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "0d18f7e718023edca32f9735d9cbfa329ea63cf027f6aa88e0f7acf0f0481258",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "2b0f65afa915b9db71e65970359b8fc802276941acab865ff1f48e11947eb8ae",
+    "docs/CURRENT_STATE.md": "fd3b231c982aadf844e332821a63bac5183a149d24610d82b55cf26d6b8c74e8",
+    "docs/CURRENT_DECISIONS.md": "db03430bae5b3c81763db4ed55f02c7c9eb9ee8049093fe348d45992177b270e",
+    "tests/test_truth_guard.py": "7fa371b5ce3dc3f8e1c779c3033abcf899c8d1af22a9d61b4c478ff240480abb"
+  },
+  "review_process": [
+    {
+      "task": "source_e317",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted exact archived witness/event reconstruction, provider/recovery hashes, reference feature/citation and final CE-048/document wording."
+    },
+    {
+      "task": "representation_e317",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted exact provider/projection, preservation of all249 prior observations/130 comparisons,38 local witnesses and rejection of an invented S/R ratio."
+    },
+    {
+      "task": "adversarial_pr109",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted exact source/claim/diff after preserving contextual WT reference, unassigned net direction and correcting no-new-scalar prose to no project-derived scalar comparison. Final projection50c9b8be6fdf807244413a72dcc3d2bcd6fe371612686ee3d7276737b1eb74d9."
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/75ca801b.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    "The witness is retained archived tool-extracted primary abstract, not raw HTTP or fresh acquisition; exact original event and decoded abstract hashes verified.",
+    "WT is a contextual author reference, not an explicit factor-sentence denominator or matched absolute-control observation. A machine-readable status preserves that distinction.",
+    "Source endpoint is assessed while matched assay protocol/new arithmetic remain unqualified; R/S identifies substrate only.",
+    "Keep E317O as apparent typography, not an independent datum; do not assign plural kcat/KM by enantiomer.",
+    "The original UniProt-only status and interpretation stop remain labeled historical and are superseded only in primary-evidence scope.",
+    "Distinguish two newly represented source scalar factors from absence of a project-derived scalar comparison."
+  ],
+  "remaining_limits": [
+    "Archived tool-extracted PubMed abstract only; no full methods, raw HTTP source body or refreshed source retrieval.",
+    "No absolute rates, uncertainty, assay conditions, exact assayed sequence/preparation or numeric matched-control ratio. WT is the whole-abstract source reference, not an explicitly named denominator in the factor sentence.",
+    "R/S identifies the named substrate enantiomer; net reaction direction, chemical state and product identity are not assigned.",
+    "The retained UniProt site/citation join is reference context only. E317 remains absent from the selected step catalyst declaration and original H297N functional adjudication.",
+    "No residue energy, generic inactivity, substrate-preference ratio, microscopic mechanism, independent human review, project experiment or design-performance claim."
+  ],
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "recovered_local_witness_bytes": 4770,
+    "primary_bodies_redistributed": false,
+    "legacy_m0187_headroom_established": false
+  },
+  "reconsideration": {
+    "representation": "Existing shared factor contract and source-assessed no-arithmetic comparison; no runtime or CLI change.",
+    "effort": "Reuse exact archived primary text and the original reference feature/citation; no repeated network acquisition. Manual source interpretation remains; no measured time saving.",
+    "integrated_value": "One consumer distinguishes two substrate-specific source kcat reductions from a coarse database activity summary while keeping contextual reference and assay limits explicit. No design validation."
+  }
+}

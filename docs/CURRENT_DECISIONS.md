@@ -1,5 +1,11 @@
 # Current Decisions
 
+## 2026-09-12: preserve author-reported E317Q factors without a matched-assay claim
+
+Accept the [E317Q source relation](ATLAS_MECHANISM_EVIDENCE.md#primary-e317q-factors-retain-the-substrate-enantiomer) under CE-048. Reuse the shared factor and no-arithmetic context with an exact archived primary-text witness and original reference feature/citation. Keep substrate identity separate from net direction and contextual WT reference separate from an explicit factor-sentence denominator or measured control row.
+
+Do not split the plural kcat/KM factor, calculate selectivity or energy, assign E317 to the selected-step catalyst list, or rewrite H297N adjudication. Full methods, exact assay/sequence/preparation and uncertainty remain unassessed. Preserve the apparent E317O typo as source typography only. This bounded primary-factor inquiry is complete; no new acquisition or restored batch headroom. Follow the marked handoff for the next consequential relation.
+
 ## 2026-09-11: preserve the TK 3-HBA background pattern at endpoint scope
 
 Accept the [TK-3/TK-6 and TK-4C/TK5C relation](ATLAS_TK_ENDPOINT_CONTEXT.md#r520q-across-s385f-and-s385pcnf-backgrounds-with-3-hba)
@@ -116,6 +122,10 @@ exercise. Preserve prior sources, frozen kernels, protected registries and
 exposure history. The marked handoff names the next bounded action.
 
 ## 2026-09-11: keep entry-level mutation annotations separate from step evidence
+
+> Historical UniProt-only assessment: the 2026-09-12 primary-factor relation
+> supersedes the primary-evidence status and blanket interpretation stop below.
+> The original reference-feature view retains its narrower database scope.
 
 Accept the [E317Q/H297N reference-feature context](ATLAS_MECHANISM_EVIDENCE.md#entry-level-mutation-annotations-retain-their-narrower-evidence-basis) as database annotation, using explicit entry-wide site matching and the exact retained UniProt feature. Preserve the selected-step catalyst matcher and the existing observation plane. A source residue omitted from a step's catalyst declaration can still carry a variant-effect database annotation; generic activity-loss wording cannot replace endpoint-specific evidence.
 

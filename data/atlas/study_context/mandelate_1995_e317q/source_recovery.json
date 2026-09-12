@@ -1,0 +1,47 @@
+{
+  "schema_version": "catalytic-earth.archived-source-recovery.v1",
+  "recovered_at_utc": "2026-09-12T00:22:19.712949+00:00",
+  "study_id": "mandelate_1995_e317q",
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/7893689/",
+  "witness": {
+    "sha256": "dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc",
+    "bytes": 4770,
+    "git_common_dir_relative_path": "catalytic-earth-source-cache/dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc.json",
+    "representation": "archived_web_tool_extracted_primary_abstract",
+    "abstract_utf8_sha256": "b01c8aa8107f348773e43cbc141294fbab6391984ed29b72a5a0da03e25659a4"
+  },
+  "origin": {
+    "session_id": "01a07c8d-18ca-78a3-87a6-8431251f25a2",
+    "turn_id": "01a07ff8-ec6d-78c3-ad75-619ec9852c5b",
+    "tool_call_line": 295,
+    "tool_result_line": 298,
+    "tool_call_ordinal": 294,
+    "tool_result_ordinal": 297,
+    "tool_call_timestamp_utc": "2026-09-08T07:44:43.922Z",
+    "tool_result_timestamp_utc": "2026-09-08T07:44:45.006Z",
+    "tool_call_id": "call_LweYGks7RfhKFTDZlm4sIeZC",
+    "tool_call_line_sha256": "574486c87c5658f19bc6fa1d741f07b4652176d7b53250965e097dd1360bd90e",
+    "tool_result_line_sha256": "bcf2829fc7d50f7eb077b8352a8a98ed21c0d1f6d425303135729cf29b8bee4f",
+    "web_result_reference": "turn140search0"
+  },
+  "origin_session_filename": "rollout-2026-09-07T10-46-56-01a07c8d-18ca-78a3-87a6-8431251f25a2.jsonl",
+  "recovery_verification": "Parent and source-audit checks matched archived event hashes and the exact decoded abstract. The witness is a prior tool capture, not a fresh HTTP request; review is correlated computational work.",
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "retained_raw_http_body": false,
+    "historical_response_body_bytes": null,
+    "named_batch_scope": "M0187 H297N/K166R primary abstract capture; public discovery is separately documented",
+    "historical_discovery_incomplete_accounting": true,
+    "headroom_established": false,
+    "known_subledger": {
+      "path": "data/atlas/mechanism_evidence/m0187/structure_followup/acquisition_appendix.json",
+      "sha256": "eaefb2681e0a75a4d9f8ce9b55a18deac12513591e232c04bf37956bb6daebcf",
+      "requests": 12,
+      "response_body_bytes": 440960
+    },
+    "scope": "The known subledger excludes earlier root and source-agent web discovery. The current recovery adds no network usage and does not reset or establish the remaining 100-request/30-MiB allowance.",
+    "historical_discovery_scope": "The separately recorded root/source-agent discovery also accessed E317Q PMID7893689 and its ACS DOI. Its raw HTTP response bytes were not metered in the retained subledger."
+  },
+  "redistributed_primary_body": false
+}
