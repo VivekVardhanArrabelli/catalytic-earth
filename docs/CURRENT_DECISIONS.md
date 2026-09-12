@@ -1,5 +1,11 @@
 # Current Decisions
 
+## 2026-09-12: preserve E317Q chemical interventions without rate equivalence
+
+Accept the [chemical-endpoint relation](ATLAS_MECHANISM_EVIDENCE.md#e317q-has-distinct-chemical-responses-across-endpoints) as an extension of CE-048. Use one source-aggregate either-enantiomer nondetection assertion and one racemate-level irreversible-inactivation assertion, with explicit qualitative WT comparisons. Co-retrieve the two existing factors without changing them or joining their assays. Shared reaction-detection and enzyme-inactivation parameter declarations reuse existing result kinds and no-arithmetic context; case chemistry stays in data.
+
+Stop this bounded abstract inquiry at its supported cross-endpoint relation. No additional stereoisomer arm, control value, detection limit, inactivation parameter, equivalence, covalency, microscopic cause or structure-to-assay identity is licensed. Further repetition of the abstract adds little. Next assess an exact data-declared reference-site/variant/citation join to these already reviewed primary outcomes, preserving step-site and physical-construct boundaries. No source-budget reset, new acquisition or evidence-tier promotion.
+
 ## 2026-09-12: preserve author-reported E317Q factors without a matched-assay claim
 
 Accept the [E317Q source relation](ATLAS_MECHANISM_EVIDENCE.md#primary-e317q-factors-retain-the-substrate-enantiomer) under CE-048. Reuse the shared factor and no-arithmetic context with an exact archived primary-text witness and original reference feature/citation. Keep substrate identity separate from net direction and contextual WT reference separate from an explicit factor-sentence denominator or measured control row.

@@ -54,6 +54,30 @@
       "reviewed_at_utc": "2026-09-11T21:27:03.216865+00:00",
       "scope": "Current-document binding renewal only for separate CODH source annotation. No M0187 source, fragment, site, chemical or functional evidence changes."
     },
+    "e317q_chemical_endpoint_documentation_followup": {
+      "base_commit": "81b9516b60ea9a4eeb3e3ccdd86567ea6f2f185b",
+      "experimental_validation": false,
+      "independent_human_validation": false,
+      "prior_review_sha256": "51da98843346a3becf7d80c6dff942988f9a043d33d9ab6f0126da213d822850",
+      "renewed_bindings": {
+        "docs/ATLAS_MECHANISM_EVIDENCE.md": {
+          "after": "1ada6eb1f07176381ce82126cc96c10d81a1b966fb8fbdce53afa6fd3c9be740",
+          "before": "0d18f7e718023edca32f9735d9cbfa329ea63cf027f6aa88e0f7acf0f0481258"
+        },
+        "docs/CURRENT_DECISIONS.md": {
+          "after": "2278588d48b8281ac332e13ac7fe4d68d84aa83652f344c1714277b32b909abd",
+          "before": "db03430bae5b3c81763db4ed55f02c7c9eb9ee8049093fe348d45992177b270e"
+        },
+        "docs/CURRENT_STATE.md": {
+          "after": "38c877f2c9823b3dedd2d7406bd70aac406b208c0f89c9dc243bd6aed1d7e62c",
+          "before": "fd3b231c982aadf844e332821a63bac5183a149d24610d82b55cf26d6b8c74e8"
+        }
+      },
+      "review_record": "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints_review.json",
+      "review_record_sha256": "e9d73a78e13b97d226cab05719d653e8d16acc6cb3a4f73f1d35588849586180",
+      "reviewed_at_utc": "2026-09-12T02:23:50.874547+00:00",
+      "scope": "Renew only three document bindings for the separate repository perturbation endpoint context. Source fragment/site/reference annotation, original H297N observations and runtime remain unchanged. No new primary observation is attached to the fragment output."
+    },
     "e317q_primary_documentation_followup": {
       "base_commit": "dfc5839a9a37edbbe66bd9bb185f5b41451e5193",
       "experimental_validation": false,
@@ -80,10 +104,10 @@
     },
     "experimental_validation": false,
     "implementation_bindings": {
-      "docs/ATLAS_MECHANISM_EVIDENCE.md": "0d18f7e718023edca32f9735d9cbfa329ea63cf027f6aa88e0f7acf0f0481258",
+      "docs/ATLAS_MECHANISM_EVIDENCE.md": "1ada6eb1f07176381ce82126cc96c10d81a1b966fb8fbdce53afa6fd3c9be740",
       "docs/ATLAS_TRANSFORMATIONS.md": "d3e651f3c4d9cf9e5734319f003606ef740092ea6b8a4fac0915a9b1feb83e43",
-      "docs/CURRENT_DECISIONS.md": "db03430bae5b3c81763db4ed55f02c7c9eb9ee8049093fe348d45992177b270e",
-      "docs/CURRENT_STATE.md": "fd3b231c982aadf844e332821a63bac5183a149d24610d82b55cf26d6b8c74e8",
+      "docs/CURRENT_DECISIONS.md": "2278588d48b8281ac332e13ac7fe4d68d84aa83652f344c1714277b32b909abd",
+      "docs/CURRENT_STATE.md": "38c877f2c9823b3dedd2d7406bd70aac406b208c0f89c9dc243bd6aed1d7e62c",
       "scripts/build_atlas_mechanism_evidence.py": "32037e250d0301f47c40bf7ee0c31e388ff222c14a379cb351b57b1447ae392e",
       "scripts/verify_atlas10_release.py": "f882c8932b4bd0f3405e313a7b30a8f858148f728eb877e4773f2f1545aafc35",
       "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",

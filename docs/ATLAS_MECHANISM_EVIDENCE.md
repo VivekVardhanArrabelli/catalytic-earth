@@ -199,6 +199,42 @@ full text. [Recovery provenance](../data/atlas/study_context/mandelate_1995_e317
 records zero new requests; the earlier unmetered discovery still prevents a
 claim of remaining source-budget headroom.
 
+### E317Q has distinct chemical responses across endpoints
+
+The same [Mitra1995 abstract](https://pubmed.ncbi.nlm.nih.gov/7893689/)
+reports E317Q bromide-elimination nondetection for either enantiomer of
+p-(bromomethyl)mandelate, explicitly contrasted with WT. It separately reports
+irreversible inactivation by racemic alpha-phenylglycidate at a rate described
+as comparable to WT. The [chemical-endpoint packet](../data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json)
+retains these as two source assertions, with their different chemical inputs
+and endpoint scopes. The former is one assertion covering either enantiomer;
+the abstract does not enumerate R/S assay records. The latter stays at racemate
+scope and supplies no component-specific response.
+
+```sh
+python scripts/query_atlas_perturbations.py --comparison mandelate_1995_e317q:E317Q:chemical-endpoint-context
+```
+
+The query returns those two assertions alongside the two unchanged mandelate
+kcat reduction factors. Each retains its own substrate/reagent and assay
+wrapper. WT is an explicit qualitative comparison in the new endpoint
+sentences, while its role in the factor sentence remains contextual. No
+separate WT measurement, common assay or physical preparation is invented.
+Detection limit, absolute inactivation rate, rate definition, uncertainty,
+conditions and the method used to establish irreversibility are unreported
+in the inspected abstract. Comparable is an author assessment, with no numeric
+ratio or equivalence test. Nondetection is not zero rate.
+
+This makes a chemically specific response distinction available through the
+existing observation/context consumer. Inactivation susceptibility does not
+establish catalysis toward the inactivator, a covalent adduct, modification
+site, active-site access or a microscopic cause. The separate (S)-atrolactate
+structural context supplies no productive or matched assay state. The exact
+reference feature/citation remains context only. Source interpretation is
+manual; no curation-time saving, independent review, project experiment or
+design validation is claimed. The generic fragment-to-primary-outcome join
+remains the next integration question. No new source acquisition was made.
+
 ## Provenance and unresolved links
 
 ### New source followup: the K166R deposit

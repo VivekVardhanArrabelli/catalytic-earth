@@ -651,14 +651,16 @@
     "claim_id": "CE-048",
     "claim_kind": "source_annotation",
     "status": "Supported",
-    "claim": "Mitra1995 reports E317Q kcat reduction factors of 4500 for R-mandelate and 29000 for S-mandelate; substrate identity is lost in the coarse database activity summary.",
-    "current_wording": "These are author-reported factors, with WT only as the whole-abstract contextual reference. The factor sentence omits an explicit denominator. Exact matched assay, absolute values, uncertainty and net reaction direction are unassigned. The retained P11444 feature9/citation supplies reference-site context, not an assayed sequence, organism from the abstract, mutant geometry or selected-step role. The plural kcat/KM reduction remains unassigned by enantiomer; no new arithmetic, residue energy, mechanism validation or design-performance claim.",
-    "rationale": "The same source-bound perturbation consumer returns two substrate-specific factors beside the exact original reference feature and citation without promoting its coarse 10000-fold database wording into a primary parameter.",
+    "claim": "Mitra1995 reports E317Q kcat reduction factors of 4500 for R-mandelate and 29000 for S-mandelate; substrate identity is lost in the coarse database activity summary. The same abstract reports E317Q bromide-elimination nondetection for either p-(bromomethyl)mandelate enantiomer, explicitly in contrast with WT, and separately reports irreversible inactivation by racemic alpha-phenylglycidate at a rate described as comparable to WT.",
+    "current_wording": "These are author-reported factors, with WT only as the whole-abstract contextual reference. The factor sentence omits an explicit denominator. Exact matched assay, absolute values, uncertainty and net reaction direction are unassigned. The retained P11444 feature9/citation supplies reference-site context, not an assayed sequence, organism from the abstract, mutant geometry or selected-step role. The plural kcat/KM reduction remains unassigned by enantiomer; no new arithmetic, residue energy, mechanism validation or design-performance claim. The two chemical-endpoint assertions retain their distinct source scopes: one either-enantiomer assertion and one racemate-level assertion. WT comparisons are explicit but qualitative; no separate WT rows, detection limit, numeric inactivation parameter, ratio, equivalence, common assay/preparation, covalent adduct or microscopic cause is established.",
+    "rationale": "The same source-bound perturbation consumer returns two substrate-specific factors beside the exact original reference feature and citation without promoting its coarse 10000-fold database wording into a primary parameter. Shared nondetection/qualitative projection co-retrieves these distinct chemical responses with the original factors; it does not turn inactivation susceptibility into catalytic activity.",
     "evidence": [
       "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json",
       "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json",
       "data/atlas/study_context/mandelate_1995_e317q/source_review.json",
-      "docs/ATLAS_MECHANISM_EVIDENCE.md"
+      "docs/ATLAS_MECHANISM_EVIDENCE.md",
+      "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json",
+      "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints_review.json"
     ]
   }
 ]

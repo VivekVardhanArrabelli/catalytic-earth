@@ -33,10 +33,10 @@
     "scripts/build_atlas_mechanism_evidence.py": "32037e250d0301f47c40bf7ee0c31e388ff222c14a379cb351b57b1447ae392e",
     "scripts/verify_atlas10_release.py": "f882c8932b4bd0f3405e313a7b30a8f858148f728eb877e4773f2f1545aafc35",
     "tests/core/test_atlas_fragment_sites.py": "9f8bff210e254c0001d6b8661f6a4b6a4fbb1e4c56a85ff7ee1f84f6bcfe667f",
-    "docs/ATLAS_MECHANISM_EVIDENCE.md": "0d18f7e718023edca32f9735d9cbfa329ea63cf027f6aa88e0f7acf0f0481258",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "1ada6eb1f07176381ce82126cc96c10d81a1b966fb8fbdce53afa6fd3c9be740",
     "docs/ATLAS_TRANSFORMATIONS.md": "d3e651f3c4d9cf9e5734319f003606ef740092ea6b8a4fac0915a9b1feb83e43",
-    "docs/CURRENT_STATE.md": "fd3b231c982aadf844e332821a63bac5183a149d24610d82b55cf26d6b8c74e8",
-    "docs/CURRENT_DECISIONS.md": "db03430bae5b3c81763db4ed55f02c7c9eb9ee8049093fe348d45992177b270e",
+    "docs/CURRENT_STATE.md": "38c877f2c9823b3dedd2d7406bd70aac406b208c0f89c9dc243bd6aed1d7e62c",
+    "docs/CURRENT_DECISIONS.md": "2278588d48b8281ac332e13ac7fe4d68d84aa83652f344c1714277b32b909abd",
     "src/catalytic_earth/atlas_context_candidates.py": "1e29dade1364eac7eda39584dbe8a8172cb286deaaf00439607d8dd069110808",
     "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
     "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
@@ -248,6 +248,30 @@
     },
     "review_record": "data/atlas/study_context/mandelate_1995_e317q/source_review.json",
     "review_record_sha256": "f225570d536d06c681d0617651c2ec7d10e46f9f8fee862a5591d669e705f0f6",
+    "independent_human_validation": false,
+    "experimental_validation": false
+  },
+  "e317q_chemical_endpoint_documentation_followup": {
+    "reviewed_at_utc": "2026-09-12T02:23:50.874547+00:00",
+    "base_commit": "81b9516b60ea9a4eeb3e3ccdd86567ea6f2f185b",
+    "prior_review_sha256": "51da98843346a3becf7d80c6dff942988f9a043d33d9ab6f0126da213d822850",
+    "scope": "Renew only three document bindings for the separate repository perturbation endpoint context. Source fragment/site/reference annotation, original H297N observations and runtime remain unchanged. No new primary observation is attached to the fragment output.",
+    "renewed_bindings": {
+      "docs/ATLAS_MECHANISM_EVIDENCE.md": {
+        "before": "0d18f7e718023edca32f9735d9cbfa329ea63cf027f6aa88e0f7acf0f0481258",
+        "after": "1ada6eb1f07176381ce82126cc96c10d81a1b966fb8fbdce53afa6fd3c9be740"
+      },
+      "docs/CURRENT_STATE.md": {
+        "before": "fd3b231c982aadf844e332821a63bac5183a149d24610d82b55cf26d6b8c74e8",
+        "after": "38c877f2c9823b3dedd2d7406bd70aac406b208c0f89c9dc243bd6aed1d7e62c"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "db03430bae5b3c81763db4ed55f02c7c9eb9ee8049093fe348d45992177b270e",
+        "after": "2278588d48b8281ac332e13ac7fe4d68d84aa83652f344c1714277b32b909abd"
+      }
+    },
+    "review_record": "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints_review.json",
+    "review_record_sha256": "e9d73a78e13b97d226cab05719d653e8d16acc6cb3a4f73f1d35588849586180",
     "independent_human_validation": false,
     "experimental_validation": false
   }

@@ -1,5 +1,11 @@
 # Current State
 
+## 2026-09-12: E317Q chemical responses remain endpoint-specific
+
+The [same-source endpoint context](ATLAS_MECHANISM_EVIDENCE.md#e317q-has-distinct-chemical-responses-across-endpoints) now retrieves two unchanged mandelate kcat factors beside one either-enantiomer p-(bromomethyl)mandelate bromide-elimination nondetection assertion and one racemic alpha-phenylglycidate irreversible-inactivation assertion. The source explicitly contrasts elimination with WT and qualitatively describes the inactivation rate as comparable to WT. Separate reagent identities, stereochemical scopes and endpoint wrappers survive the shared query; no runtime change was needed.
+
+No separate R/S or WT measurements, rate ratio, detection floor, numeric inactivation constant, common assay/preparation or covalent mechanism is inferred. The archived abstract, original factor source, H297N evidence, frozen/protected records and exposure history are unchanged. Zero acquisition; legacy headroom remains unknown. Manual source interpretation remains, and the reference-site/fragment-to-primary-outcome join is still unassembled.
+
 ## 2026-09-12: primary E317Q factors retain the substrate enantiomer
 
 The [primary abstract relation](ATLAS_MECHANISM_EVIDENCE.md#primary-e317q-factors-retain-the-substrate-enantiomer) returns two author-reported E317Q kcat reductions: 4500-fold for R-mandelate and 29000-fold for S-mandelate. The shared consumer binds the exact P11444 feature 9/PMID/DOI context and preserves WT as a whole-abstract contextual reference, unspecified net direction, missing absolute values/assay details and null uncertainty. No project-derived scalar comparison is computed, and no source-step role is assigned.
