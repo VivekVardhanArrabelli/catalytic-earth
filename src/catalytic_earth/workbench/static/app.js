@@ -671,16 +671,32 @@ function renderPatternResult(res) {
     (m.bindings || []).forEach((b) => bindings.push({ row, b }));
   });
 
+  /** Describe a clause in the same words the builder uses. */
+  const clauseText = (c) => {
+    const pair = (i) => `${c.elements[i]}:${c.variables[i]}`;
+    return c.kind === "bond"
+      ? `bond ${pair(0)} \u2013 ${pair(1)}, order ${c.before} \u2192 ${c.after}`
+      : `charge on ${pair(0)}, ${c.before} \u2192 ${c.after}`;
+  };
+
   const cards = bindings.map(({ row, b }) => {
     const assignment = Object.entries(b.atom_bindings || {})
       .map(([k, v]) => `<code>${esc(k)} = ${esc(v)}</code>`).join(", ");
-    const witnesses = (b.clause_witnesses || []).map((w) => {
-      const events = (w.events || []).map((e) =>
-        `<li><code>${esc(e.edit_id)}</code> ${esc(JSON.stringify(e.signature))}
-           on ${esc(JSON.stringify((e.source_edit || {}).atom_ids))}</li>`).join("");
-      return `<div class="note"><strong>clause</strong>
-        ${esc(JSON.stringify(w.clause))}<ul>${events}</ul></div>`;
+
+    const rows = (b.clause_witnesses || []).map((w) => {
+      const events = (w.events || []).map((e) => {
+        const ids = ((e.source_edit || {}).atom_ids || []).join(" \u2013 ");
+        return `<code>${esc(e.edit_id)}</code> on ${esc(ids)}`;
+      }).join("<br>");
+      return `<tr><td>${esc(clauseText(w.clause))}</td><td>${events}</td></tr>`;
     }).join("");
+
+    const witnesses = rows
+      ? `<table class="mini">
+           <tr><th>clause</th><th>witness edit and source atoms</th></tr>${rows}
+         </table>`
+      : "";
+
     return `<div class="binding">
       <div><strong>${esc(row.candidate_id)}</strong></div>
       <div class="note">assignment: ${assignment}</div>

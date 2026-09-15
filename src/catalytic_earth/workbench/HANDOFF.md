@@ -43,10 +43,13 @@ Commands/tests actually run and outcomes:
   - python scripts/run_test_tier.py --check               -> tiers valid
   - python scripts/run_test_tier.py core/unit             -> see the commit
     message for the result recorded at commit time.
-  - Real browser run (Chromium via Playwright, headed engine, headless mode):
-    35 assertions covering load, stepping, selection, evidence filtering,
-    the second mechanism, both pattern outcomes, and reload. All passed with
-    no console errors. Screenshots were captured from the running application.
+  - python -m catalytic_earth.workbench.demo_check --port 8766 --shots ./shots
+    -> 33/33 checks passed, no console errors. This drives a real Chromium
+    browser against the running server and covers load, stepping, atom and
+    fragment selection, evidence filtering, the second mechanism, all three
+    pattern outcomes, and reload. Its screenshots are captures of the running
+    application. It needs playwright, which is not a project dependency, so it
+    is deliberately outside the test tiers.
   - Wheel build and clean-venv install: succeeded; the app served every route
     from the installed package with no index access.
 
@@ -78,9 +81,9 @@ Known scientific or UI limitations:
     shown is a reference structure with its own declared limitation.
   - The candidate catalog is unreviewed; the UI shows that status and states
     that a match does not promote any candidate's evidence status.
-  - The pattern result renders clause witnesses as raw JSON. Precise, but it
-    could be formatted more readably.
-  - No recording has been made yet; only still screenshots.
+  - No recording has been made yet; only still screenshots, and they are not
+    committed (the repository carries no image artifacts and declares its
+    binary types explicitly). Regenerate them with demo_check.
 
 Next single implementation task:
   OWNER ACTION (cannot be done from Claude Code): perform one real Rosalind
@@ -88,6 +91,6 @@ Next single implementation task:
   environment, retain its actual output, and attach it to the workflow with
   plugin attribution kept separate from local Python calculations.
 
-  Next local coding task: format the pattern-query clause witnesses as a
-  readable table instead of raw JSON, then record the end-to-end demonstration.
+  Next local coding task: record the end-to-end demonstration as a short
+  screen capture, using demo_check as the script for what to show.
 ```
