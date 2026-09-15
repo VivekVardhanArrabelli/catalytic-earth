@@ -57,3 +57,8 @@ catalytic_earth = [
   "release_data/*.json",
   "schemas/*.json",
 ]
+"catalytic_earth.workbench" = [
+  "static/*.css",
+  "static/*.html",
+  "static/*.js",
+]

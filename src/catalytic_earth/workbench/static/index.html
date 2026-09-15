@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalytic Earth Mechanism Workbench</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1>Mechanism Workbench</h1>
+    <p class="sub">Local interface over the packaged Catalytic Earth atlas queries. No new scientific claim is made here.</p>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" data-tab="replay" role="tab">Mechanism replay</button>
+    <button class="tab" data-tab="patterns" role="tab">Chemical pattern query</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ============================ REPLAY TAB ============================ -->
+  <section id="tab-replay" class="tabpanel is-active">
+    <div class="toolbar">
+      <label class="field">
+        <span>Mechanism</span>
+        <select id="mechanism-select"></select>
+      </label>
+      <div id="mechanism-meta" class="meta"></div>
+    </div>
+
+    <div class="grid">
+      <!-- graph + replay -->
+      <div class="card graph-card">
+        <div class="card-head">
+          <h2>Source-graph replay</h2>
+          <span class="chip chip-proposal" title="A published source depiction proposal, replayed symbolically.">source proposal</span>
+        </div>
+
+        <p class="note" id="replay-note"></p>
+
+        <div class="replay-controls">
+          <button id="btn-before" class="pill">Before panel</button>
+          <button id="btn-step-back" class="pill">&#8592; Step</button>
+          <span id="step-readout" class="readout"></span>
+          <button id="btn-step-fwd" class="pill">Step &#8594;</button>
+          <button id="btn-after" class="pill">After panel</button>
+        </div>
+
+        <div class="svg-wrap">
+          <svg id="graph" role="img" aria-label="Source depiction graph"></svg>
+        </div>
+        <p class="caveat" id="layout-caveat"></p>
+
+        <h3 class="minor">Graph edits</h3>
+        <ol id="edit-list" class="edits"></ol>
+
+        <details class="disclosure">
+          <summary>Replay verification, scope and abstentions</summary>
+          <div id="replay-detail"></div>
+        </details>
+      </div>
+
+      <!-- inspector -->
+      <div class="card inspect-card">
+        <div class="card-head">
+          <h2>Inspector</h2>
+        </div>
+        <p class="hint" id="inspect-hint">Select an atom in the graph, or a supported fragment below, to see its residue relationship and any endpoint-specific evidence.</p>
+
+        <h3 class="minor">Supported source fragments</h3>
+        <div id="fragment-list" class="fragments"></div>
+
+        <div id="inspector-body"></div>
+      </div>
+    </div>
+
+    <!-- evidence -->
+    <div class="card evidence-card">
+      <div class="card-head">
+        <h2>Experimental evidence</h2>
+        <div class="filters">
+          <label class="field">
+            <span>Variant</span>
+            <select id="variant-select"><option value="H297N">H297N</option></select>
+          </label>
+          <label class="field">
+            <span>Endpoint</span>
+            <select id="endpoint-select"><option value="">all endpoints</option></select>
+          </label>
+        </div>
+      </div>
+      <p class="note" id="evidence-note"></p>
+      <div id="evidence-list" class="observations"></div>
+      <details class="disclosure">
+        <summary>Case question, adjudication, applicability and abstentions</summary>
+        <div id="evidence-detail"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- =========================== PATTERNS TAB =========================== -->
+  <section id="tab-patterns" class="tabpanel">
+    <div class="card">
+      <div class="card-head">
+        <h2>Shared-atom chemical pattern query</h2>
+        <span class="chip chip-unreviewed">unreviewed candidates</span>
+      </div>
+      <p class="note" id="pattern-note">
+        Clauses are joined inside one candidate. Reusing a variable name requires the
+        <strong>same depicted source atom</strong> in every clause that names it; different
+        names must bind different atoms. A match does not promote any candidate's evidence status.
+      </p>
+
+      <div id="clause-rows"></div>
+      <div class="pattern-actions">
+        <button id="add-bond" class="pill">+ bond clause</button>
+        <button id="add-charge" class="pill">+ charge clause</button>
+        <label class="field">
+          <span>Support</span>
+          <select id="support-select">
+            <option value="after_graph_confirmed">after_graph_confirmed (default)</option>
+            <option value="source_arrow_only">source_arrow_only</option>
+            <option value="any">any</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>M-CSA filter</span>
+          <input id="pattern-mcsa" type="text" placeholder="optional, e.g. M0219">
+        </label>
+        <button id="run-pattern" class="pill pill-primary">Run query</button>
+      </div>
+
+      <div class="presets">
+        <span>Worked examples:</span>
+        <button class="linkish" data-preset="shared">shared-atom match</button>
+        <button class="linkish" data-preset="disjoint">disjoint-atom no-match</button>
+        <button class="linkish" data-preset="symmetric">symmetric assignments</button>
+      </div>
+
+      <div id="pattern-result"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <span class="chip chip-proposal">source proposal</span> a published depiction, replayed symbolically &middot;
+  <span class="chip chip-measured">published measurement</span> a reported experimental result &middot;
+  <span class="chip chip-structure">reference structure</span> a deposited structure used for site context &middot;
+  <span class="chip chip-unresolved">unresolved</span> no supported correspondence in the packaged data
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
