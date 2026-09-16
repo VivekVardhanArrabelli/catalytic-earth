@@ -25,3 +25,7 @@ dist/
 tests_full2.log
 artifacts/v3_offmcsa_recovery_current702_20260628_coordinates/
 artifacts/**/foldseek.log
+
+# Session outputs from the agent skill. Real runs, not repository state;
+# keeping them ignored also keeps them out of the repository path contracts.
+sessions/
