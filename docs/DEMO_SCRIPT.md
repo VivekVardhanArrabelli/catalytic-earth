@@ -52,14 +52,15 @@ Then one beat on the boundary — this is the differentiator, not a disclaimer:
 
 If there is no capture: skip to Act 4 and caption "Native inspection: pending."
 
-### Act 4 — it generalises (1:15–1:40)
+### Act 4 — a second worked case (1:15–1:40)
 
 | | |
 |---|---|
 | **Screen** | Terminal, second case. |
 | **Action** | `python scripts/query_atlas_perturbations.py --comparison tk_2020:H473N:DHB_accumulation` |
 | **Caption** | "Different enzyme, same path, no new code." |
-| **Caption** | "H473N stopped making the competing product — and made **less** target product. 5.5 vs 10.5 mM." |
+| **Caption** | "Erythrulose was **not detected** for H473N — detection limit not reported." |
+| **Caption** | "Target DHB accumulation was **lower**: 5.5 versus 10.5 mM at 24 hours." |
 | **Caption** | "The obvious inference was wrong. The record catches it." |
 
 ### Close (1:40–1:55)
