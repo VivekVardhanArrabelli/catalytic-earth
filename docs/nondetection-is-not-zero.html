@@ -1,0 +1,313 @@
+<title>Nondetection Is Not Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#EFF3F2; --panel:#F8FAFA; --ink:#0F1A1D; --body:#2C3A3D;
+    --muted:#5E6E71; --rule:#D2DCDA; --accent:#0B6E6B; --accent-soft:#DCEBEA;
+    --limit:#A8641F; --limit-soft:#F2E6D6; --strike:#96A3A5;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0B1215; --panel:#121C1F; --ink:#E6EEEC; --body:#C2D0CF;
+      --muted:#8CA0A2; --rule:#24343700; --rule:#243437; --accent:#3FB8B2;
+      --accent-soft:#12302F; --limit:#D9A15C; --limit-soft:#2C2418; --strike:#5E6E71;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0B1215; --panel:#121C1F; --ink:#E6EEEC; --body:#C2D0CF;
+    --muted:#8CA0A2; --rule:#243437; --accent:#3FB8B2;
+    --accent-soft:#12302F; --limit:#D9A15C; --limit-soft:#2C2418; --strike:#5E6E71;
+  }
+
+  body{background:var(--ground);color:var(--body);font-family:var(--sans);
+       font-size:15.5px;line-height:1.6;}
+  .wrap{max-width:820px;margin:0 auto;padding-inline:20px;padding-block:0 72px;}
+  h1,h2,h3{color:var(--ink);text-wrap:balance;}
+  a{color:var(--accent);}
+
+  /* ---- masthead ---- */
+  .top{padding-block:44px 30px;border-bottom:1px solid var(--rule);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+           text-transform:uppercase;color:var(--muted);margin:0 0 18px;}
+  h1{font-family:var(--serif);font-size:clamp(34px,7.4vw,56px);line-height:1.04;
+     font-weight:600;margin:0;letter-spacing:-.015em;}
+  h1 em{font-style:italic;color:var(--accent);}
+  .stand{font-family:var(--serif);font-size:clamp(17px,2.6vw,20px);line-height:1.5;
+         color:var(--body);margin:18px 0 0;max-width:60ch;}
+
+  /* ---- thesis ---- */
+  .thesis{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);
+          border:1px solid var(--rule);border-radius:3px;overflow:hidden;margin-block:36px;}
+  @media(max-width:560px){.thesis{grid-template-columns:1fr;}}
+  .tcell{background:var(--panel);padding:20px 20px 22px;}
+  .tcell .enz{font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;
+              text-transform:uppercase;color:var(--muted);margin:0 0 12px;}
+  .obvious{font-family:var(--serif);font-size:17.5px;line-height:1.4;color:var(--strike);
+           text-decoration:line-through;text-decoration-thickness:1px;margin:0 0 10px;}
+  .actual{font-size:15px;line-height:1.5;color:var(--ink);margin:0;}
+  .actual b{color:var(--accent);font-weight:600;}
+
+  /* ---- case sections ---- */
+  .case{margin-block:56px 0;padding-top:34px;border-top:1px solid var(--rule);}
+  .case h2{font-family:var(--serif);font-size:clamp(23px,4vw,30px);font-weight:600;
+           line-height:1.18;margin:0 0 6px;letter-spacing:-.01em;}
+  .org{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 24px;}
+  .lede{font-size:16px;margin:0 0 26px;max-width:62ch;}
+  .lede strong{color:var(--ink);font-weight:600;}
+
+  h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;
+     text-transform:uppercase;color:var(--muted);font-weight:500;margin:32px 0 14px;}
+
+  /* ---- data table ---- */
+  .tbl-wrap{overflow-x:auto;}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:460px;}
+  th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+     color:var(--muted);font-weight:500;text-align:left;padding:0 14px 9px 0;
+     border-bottom:1px solid var(--rule);}
+  td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);vertical-align:top;}
+  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap;}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+       text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap;}
+  .tag.meas{background:var(--accent-soft);color:var(--accent);}
+  .tag.nd{background:var(--limit-soft);color:var(--limit);}
+
+  /* ---- source witness ---- */
+  .witness{margin:22px 0 0;padding:0 0 0 16px;border-left:2px solid var(--accent);}
+  .witness p{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink);
+             margin:0 0 5px;}
+  .witness cite{font-family:var(--mono);font-style:normal;font-size:11.5px;color:var(--muted);}
+
+  /* ---- the boundary block: the point of the whole page ---- */
+  .bound{margin-top:30px;border:1px solid var(--limit);border-radius:3px;
+         background:var(--limit-soft);padding:18px 20px 20px;}
+  .bound h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;
+            text-transform:uppercase;color:var(--limit);margin:0 0 12px;font-weight:500;}
+  .bound ul{margin:0;padding-left:18px;}
+  .bound li{margin-bottom:7px;font-size:14.5px;color:var(--body);}
+  .bound li:last-child{margin-bottom:0;}
+  .bound li b{color:var(--ink);font-weight:600;}
+
+  figure{margin:24px 0 0;}
+  figcaption{font-size:13px;color:var(--muted);margin-top:10px;max-width:60ch;}
+  svg{display:block;width:100%;height:auto;max-width:100%;}
+
+  code{font-family:var(--mono);font-size:.92em;background:var(--panel);
+       border:1px solid var(--rule);border-radius:2px;padding:1px 5px;color:var(--ink);}
+  pre{font-family:var(--mono);font-size:13px;background:var(--panel);
+      border:1px solid var(--rule);border-radius:3px;padding:13px 15px;
+      overflow-x:auto;margin:14px 0 0;color:var(--ink);}
+  pre code{background:none;border:0;padding:0;}
+
+  .close{margin-top:60px;padding-top:34px;border-top:2px solid var(--ink);}
+  .close h2{font-family:var(--serif);font-size:clamp(22px,3.6vw,28px);margin:0 0 16px;}
+  .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);
+        font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.8;}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Catalytic Earth · reviewed mechanism records</p>
+    <h1>Nondetection <em>is not</em> zero.</h1>
+    <p class="stand">Two enzyme variants. Two conclusions almost anyone would draw from
+      the headline result. The reviewed record contradicts both — and says exactly how
+      far it can be trusted.</p>
+  </header>
+
+  <section class="thesis">
+    <div class="tcell">
+      <p class="enz">Mandelate racemase · H297N</p>
+      <p class="obvious">No detectable racemase activity, so catalysis is gone.</p>
+      <p class="actual">It still catalyses <b>(S)-mandelate α-proton exchange</b>,
+        3.3-fold below wild type. The impairment is selective, not total.</p>
+    </div>
+    <div class="tcell">
+      <p class="enz">Transketolase · H473N</p>
+      <p class="obvious">The competing byproduct is gone, so more target product.</p>
+      <p class="actual">Target product went <b>down</b> — 5.5 mM against 10.5 mM
+        for wild type in the same mixture.</p>
+    </div>
+  </section>
+
+  <section class="case">
+    <h2>Does “no racemase activity” mean catalysis is lost?</h2>
+    <p class="org">Mandelate racemase · <i>Pseudomonas putida</i> · M-CSA M0187 · variant H297N</p>
+    <p class="lede">Filtering the case to isotope-exchange endpoints returns two
+      observations from the same paper. They point in opposite directions, and that
+      is the finding: <strong>the variant is impaired on one endpoint while retaining
+      another.</strong></p>
+
+    <h3>Observations returned</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Substrate</th><th>Result</th><th>Value</th><th>Conditions</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>(S)-mandelate</td>
+          <td><span class="tag meas">measured</span></td>
+          <td class="num">3.3× below WT</td>
+          <td class="num">pD 7.5, D₂O</td>
+        </tr>
+        <tr>
+          <td>(R)-mandelate</td>
+          <td><span class="tag nd">not detected</span></td>
+          <td class="num">—</td>
+          <td class="num">pD 7.5, D₂O</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="witness">
+      <p>“H297N catalyzes the stereospecific exchange … (S)- but not (R)-mandelate”</p>
+      <cite>PMID 1909893 · PubMed Abstract/AbstractText</cite>
+    </div>
+
+    <div class="bound">
+      <h4>What this does not establish</h4>
+      <ul>
+        <li>Exchange is <b>not net racemization</b>. Retained exchange counters total
+          abolition of catalysis; it does not restore the racemase reaction.</li>
+        <li>The (R)-mandelate nondetection carries <b>no numeric detection limit</b>
+          in the source. It is not a rate of zero.</li>
+        <li>No net racemization direction and no elementary proton-transfer timing follow.</li>
+        <li>Structure <b>1MNS</b> is reference geometry — inhibitor-bound, chemically
+          modified. Its primary citation, PMID 8292591, is a <b>different source role</b>
+          from the functional paper above. <b>There is no H297N mutant structure here.</b></li>
+      </ul>
+    </div>
+
+    <pre><code>catalytic-earth atlas-mechanism-evidence \
+  --variant H297N --endpoint isotope_exchange</code></pre>
+  </section>
+
+  <section class="case">
+    <h2>Did losing the competing product improve the target?</h2>
+    <p class="org">Transketolase · <i>E. coli</i> · comparison tk_2020:H473N:DHB_accumulation</p>
+    <p class="lede">H473N accumulates no detectable erythrulose, the competing
+      donor-route product. The intuitive read is improved selectivity toward the target.
+      <strong>The same experiment shows target accumulation falling by roughly half.</strong></p>
+
+    <figure>
+      <svg viewBox="0 0 660 302" role="img"
+           aria-label="Product accumulated after 24 hours. DHB: wild type 10.5 millimolar, H473N 5.5 millimolar. Erythrulose: wild type 10.5 millimolar, H473N not detected with an unknown detection limit.">
+        <defs>
+          <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="7" stroke="var(--limit)" stroke-width="1.6"/>
+          </pattern>
+          <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="55%" stop-color="#fff" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
+          </linearGradient>
+          <mask id="fademask">
+            <rect x="0" y="0" width="660" height="302" fill="url(#fade)"/>
+          </mask>
+        </defs>
+
+        <!-- y axis ticks: 0,4,8,12 mM  -> y = 232 - (v/12)*180 -->
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--muted)">
+          <text x="4" y="236">0</text>
+          <text x="4" y="176">4</text>
+          <text x="4" y="116">8</text>
+          <text x="4" y="56">12</text>
+          <text x="4" y="22" fill="var(--muted)">mM</text>
+        </g>
+        <g stroke="var(--rule)" stroke-width="1">
+          <line x1="34" y1="232" x2="640" y2="232"/>
+          <line x1="34" y1="172" x2="640" y2="172" stroke-dasharray="2 4"/>
+          <line x1="34" y1="112" x2="640" y2="112" stroke-dasharray="2 4"/>
+          <line x1="34" y1="52"  x2="640" y2="52"  stroke-dasharray="2 4"/>
+        </g>
+
+        <!-- DHB group -->
+        <rect x="78"  y="74.5" width="74" height="157.5" fill="var(--accent)"/>
+        <rect x="172" y="149.5" width="74" height="82.5"  fill="var(--accent)" opacity="0.55"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink)"
+           font-weight="500" text-anchor="middle">
+          <text x="115" y="66">10.5</text>
+          <text x="209" y="141">5.5</text>
+        </g>
+
+        <!-- Erythrulose group -->
+        <rect x="392" y="74.5" width="74" height="157.5" fill="var(--accent)"/>
+        <g mask="url(#fademask)">
+          <rect x="486" y="92" width="74" height="140" fill="url(#hatch)" opacity="0.85"/>
+        </g>
+        <line x1="486" y1="232" x2="560" y2="232" stroke="var(--limit)" stroke-width="2.5"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink)"
+           font-weight="500" text-anchor="middle">
+          <text x="429" y="66">10.5</text>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--limit)"
+           text-anchor="middle">
+          <text x="523" y="268">not detected · limit unknown</text>
+        </g>
+
+        <!-- group + series labels -->
+        <g font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="var(--muted)"
+           text-anchor="middle">
+          <text x="115" y="250">wild type</text>
+          <text x="209" y="250">H473N</text>
+          <text x="429" y="250">wild type</text>
+          <text x="523" y="250">H473N</text>
+        </g>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="13.5" fill="var(--ink)"
+           font-weight="600" text-anchor="middle">
+          <text x="162" y="292">DHB — target product</text>
+          <text x="476" y="292">Erythrulose — competing</text>
+        </g>
+      </svg>
+      <figcaption>Product accumulated after 24 h, purified enzyme, 50 mM glycolaldehyde
+        and 50 mM sodium pyruvate, HPLC. The hatched column fades upward because the
+        source reports no detection threshold: the true erythrulose value lies somewhere
+        below a ceiling nobody recorded. Drawing it as a bar of any height would be an
+        invention.</figcaption>
+    </figure>
+
+    <div class="bound">
+      <h4>What this does not establish</h4>
+      <ul>
+        <li>These are <b>accumulated concentrations at one time point</b> — not rates,
+          not microscopic selectivity.</li>
+        <li>The erythrulose nondetection is flagged <code>is_zero_rate: false</code>
+          with no numeric limit. <b>Nondetection does not establish absent flux</b>,
+          and the route is measured in a mixture that still contains pyruvate.</li>
+        <li>The comparison's own scope excludes any erythrulose ratio, any
+          DHB/erythrulose selectivity ratio, propagated uncertainty and significance.</li>
+        <li>No donor-half rate, no pyruvate affinity, no isolated H473N mechanism,
+          and <b>no transfer to another construct or study</b>.</li>
+      </ul>
+    </div>
+
+    <pre><code>python scripts/query_atlas_perturbations.py \
+  --comparison tk_2020:H473N:DHB_accumulation</code></pre>
+  </section>
+
+  <section class="close">
+    <h2>The boxes above are the product.</h2>
+    <p>Most tools give you the answer. The reason a working scientist can use this one
+      is that every result arrives carrying its own limits — which endpoint was measured,
+      which paper supports it, which structure is only reference geometry, and where a
+      nondetection has no threshold behind it. Those limits are in the records
+      themselves, not appended afterwards by a reader.</p>
+    <p>Both cases here are <strong>curated demonstrations</strong> — not held-out
+      validation, not a benchmark, and not new biological findings. Saying so is the
+      same discipline as the boxes above.</p>
+    <p>Everything on this page came out of two offline, deterministic commands on a
+      single commit. Nothing was inferred by a model in the making of it.</p>
+  </section>
+
+  <p class="foot">
+    Source commit 57d688af · evidence set atlas10-m0187-functional-evidence-v1<br>
+    Functional observations PMID 1909893 · structure 1MNS, primary citation PMID 8292591<br>
+    Transketolase study tk2020 · sibling studies tk2024 and tktf are excluded by exact source identity<br>
+    Query output sha256 4f65dea0…24ba2210 and 620755f5…9234c75d8
+  </p>
+
+</div>

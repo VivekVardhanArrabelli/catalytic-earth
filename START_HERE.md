@@ -84,6 +84,14 @@ Needed only for a native source or structure operation. If no authorized
 component is available, tiers 1 and 2 still give a complete, honest answer with
 native inspection marked pending. Nothing here fabricates a suite result.
 
+## The ninety-second version
+
+[**Nondetection Is Not Zero**](https://claude.ai/artifact/R1aTNPKxp5fdJoBF1dr5Wy) —
+a single page covering both cases above and, more to the point, what each one
+refuses to claim. Source: [`docs/nondetection-is-not-zero.html`](docs/nondetection-is-not-zero.html),
+openable directly in a browser. Every number on it came from the two commands
+above on commit `57d688af`; nothing on it was inferred by a model.
+
 ## Using the agent skill
 
 [`.agents/skills/catalytic-earth/SKILL.md`](.agents/skills/catalytic-earth/SKILL.md)
