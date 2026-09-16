@@ -88,7 +88,12 @@ def _edit_label(edit: dict[str, Any]) -> str:
     if operation == "set_formal_charge":
         return f"atom {atoms}: formal charge {before} to {after}"
     if operation == "set_stereochemistry":
-        return f"atom {atoms}: stereochemistry {before!r} to {after!r}"
+        # A null stereochemistry is the absence of an assignment, not a claim
+        # about geometry, and never a bare Python None in the interface.
+        def _stereo(value: Any) -> str:
+            return "unassigned" if value is None else str(value)
+
+        return f"atom {atoms}: stereochemistry {_stereo(before)} to {_stereo(after)}"
     return f"{operation} {atoms}"
 
 

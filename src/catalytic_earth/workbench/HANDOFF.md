@@ -27,6 +27,8 @@ Working features verified:
   - Shared-atom chemical pattern query with a structured clause builder, backed
     by the existing matcher. Worked examples for the shared-atom match, the
     disjoint-atom no-match, and the symmetric-assignment case.
+  - The whole packaged evidence set is reachable: both variants, every
+    endpoint, and each observation labelled with its own variant.
   - External tool contribution panel, driven by the provider-neutral ledger.
     Verified in both states: empty (the real ledger) and populated (a
     throwaway ledger via the path override, never written to the repository).
@@ -46,6 +48,12 @@ Commands/tests actually run and outcomes:
   - python -m unittest tests.core.test_workbench_external_sources
                                                           -> 13 tests, OK
   - python -m unittest tests.core.test_workbench_labels    -> 12 tests, OK
+  - python -m catalytic_earth.workbench.demo_check --sweep -> 0 defects.
+    Exhaustive presentation sweep across three viewport widths, both
+    mechanisms, every selectable atom and fragment, all twelve variant and
+    endpoint combinations, and all three pattern presets. It found one real
+    defect on its first run, a Python None leaking into an edit label, which
+    is fixed and pinned by a test.
   - Claim-label and numbering audit (September 16 plan item): see below.
   - Clean-venv wheel install re-verified after the audit: every route served
     and the full browser demonstration passed against it with no index access.
@@ -169,8 +177,16 @@ Rosalind session checklist (OWNER ACTION, cannot be done from Claude Code):
   this step is for. This step adds attribution, not evidence.
 
 Next single implementation task:
-  Nothing is blocked locally. After the Rosalind contribution is recorded,
-  re-run demo_check with --video for the submission recording.
+  Nothing further is possible here without the external suite. Every plan item
+  that does not depend on it is complete: both mechanisms through one renderer,
+  the structured pattern builder, the full demonstration including the
+  shared-atom match and the disjoint-atom no-match, the numbering and claim
+  label audit, relaunch from the documented environment, the recording and
+  screenshots, and the submission notes in docs/WORKBENCH_SUBMISSION.md.
+
+  Remaining, both owner actions: record one Rosalind contribution per the
+  checklist above, then confirm the organizer's deadline and approve posting.
+  Nothing has been posted, published or shared.
 
   Next local coding task: record the end-to-end demonstration as a short
   screen capture, using demo_check as the script for what to show.

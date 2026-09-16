@@ -172,9 +172,23 @@ python -m catalytic_earth.workbench --port 8766 &
 python -m catalytic_earth.workbench.demo_check --port 8766   --shots ./workbench-shots --video ./workbench-video
 ```
 
-It needs a browser and playwright, which is not a project dependency, so it
-sits outside the test tiers. Its screenshots and recording are captures of the
+An exhaustive presentation defect sweep over every interface state:
+
+```sh
+python -m catalytic_earth.workbench.demo_check --port 8766 --sweep
+```
+
+It walks both mechanisms, every selectable atom and fragment, every variant and
+endpoint combination and every pattern preset, at three viewport widths, and
+reports leaked placeholder values and horizontal overflow. It exits non-zero if
+it finds any.
+
+Both need a browser and playwright, which is not a project dependency, so they
+sit outside the test tiers. Its screenshots and recording are captures of the
 running application; no other image or video may be presented as one.
+
+Attribution, and what already existed versus what this sprint added, are in
+[submission notes](WORKBENCH_SUBMISSION.md).
 
 The feature-local handoff is at
 [`src/catalytic_earth/workbench/HANDOFF.md`](../src/catalytic_earth/workbench/HANDOFF.md).

@@ -92,6 +92,23 @@ class TransformationViewTest(unittest.TestCase):
                 for key, value in packaged_edit.items():
                     self.assertEqual(served_edit[key], value)
 
+    def test_edit_labels_never_leak_python_values(self) -> None:
+        # A null in the packaged data must read as an absent assignment, not as
+        # a bare Python None, which looks like a defect and invites misreading.
+        for mcsa_id in ("M0187", "M0173"):
+            for edit in transformation_view(mcsa_id)["edits"]:
+                for token in ("None", "null", "NaN", "[object"):
+                    self.assertNotIn(token, edit["label"], edit)
+
+    def test_absent_stereochemistry_reads_as_unassigned(self) -> None:
+        labels = [
+            edit["label"]
+            for edit in transformation_view("M0187")["edits"]
+            if edit["operation"] == "set_stereochemistry"
+        ]
+        self.assertTrue(labels)
+        self.assertIn("unassigned", labels[0])
+
     def test_replay_is_labelled_symbolic_not_a_trajectory(self) -> None:
         semantics = transformation_view("M0187")["replay_semantics"]
         self.assertIn("molecular_dynamics_trajectory", semantics["not"])

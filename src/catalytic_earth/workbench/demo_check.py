@@ -22,6 +22,10 @@ from pathlib import Path
 
 CHECKS: list[tuple[str, bool]] = []
 
+#: Tokens that should never reach the page. Each means a value leaked from the
+#: code rather than being rendered as what the packaged data actually says.
+LEAKED_TOKENS = ("undefined", "[object Object]", "NaN", "None", "{{", "}}")
+
 
 def check(name: str, condition: bool, detail: str = "") -> None:
     CHECKS.append((name, bool(condition)))
@@ -200,6 +204,92 @@ def run(
     return 1 if failed else 0
 
 
+def sweep(base: str, executable: str | None) -> int:
+    """Exhaustively visit every interface state and look for defects.
+
+    This is a presentation defect sweep, not a demonstration: it walks every
+    mechanism, every selectable atom and fragment, every variant and endpoint
+    combination and every pattern preset, at several viewport widths, and
+    reports leaked placeholder values and horizontal overflow.
+    """
+    from playwright.sync_api import sync_playwright
+
+    problems: list[str] = []
+
+    def scan(page, where: str) -> None:
+        for line in page.locator("body").inner_text().splitlines():
+            for token in LEAKED_TOKENS:
+                if token in line:
+                    problems.append(f"{where}: {token!r} in {line.strip()[:110]}")
+
+    def overflow(page, where: str) -> None:
+        wide, view = page.evaluate(
+            "() => [document.documentElement.scrollWidth, window.innerWidth]"
+        )
+        if wide > view + 2:
+            problems.append(f"{where}: horizontal overflow {wide} > {view}")
+
+    with sync_playwright() as driver:
+        launch: dict[str, object] = {}
+        if executable:
+            launch["executable_path"] = executable
+        browser = driver.chromium.launch(**launch)
+        for width, height in ((1600, 1100), (1280, 900), (1024, 768)):
+            page = browser.new_page(viewport={"width": width, "height": height})
+            tag = f"{width}x{height}"
+            page.goto(base, wait_until="networkidle")
+            page.wait_for_selector("#evidence-list .obs")
+            page.wait_for_timeout(400)
+            scan(page, f"{tag} load")
+            overflow(page, f"{tag} load")
+
+            for mechanism in ("M0187", "M0173"):
+                page.select_option("#mechanism-select", mechanism)
+                page.wait_for_timeout(600)
+                for index in range(page.locator(".frag").count()):
+                    page.locator(".frag").nth(index).click()
+                    page.wait_for_timeout(160)
+                    scan(page, f"{tag} {mechanism} selection {index}")
+                overflow(page, f"{tag} {mechanism}")
+
+            page.select_option("#mechanism-select", "M0187")
+            page.wait_for_timeout(500)
+            variants = [""] + [
+                option
+                for option in page.locator("#variant-select option").all_inner_texts()
+                if option and not option.startswith("all")
+            ]
+            endpoints = [""] + [
+                option
+                for option in page.locator("#endpoint-select option").all_inner_texts()
+                if option and not option.startswith("all")
+            ]
+            for variant in variants:
+                for endpoint in endpoints:
+                    page.select_option("#variant-select", variant)
+                    page.wait_for_timeout(120)
+                    page.select_option("#endpoint-select", endpoint)
+                    page.wait_for_timeout(330)
+                    scan(page, f"{tag} variant={variant or 'all'} endpoint={endpoint or 'all'}")
+
+            page.click("[data-tab='patterns']")
+            for preset in ("shared", "disjoint", "symmetric"):
+                page.click(f"[data-preset='{preset}']")
+                page.wait_for_timeout(600)
+                scan(page, f"{tag} pattern {preset}")
+                overflow(page, f"{tag} pattern {preset}")
+            page.close()
+        browser.close()
+
+    distinct: dict[str, str] = {}
+    for problem in problems:
+        distinct.setdefault(problem.split(": ", 1)[1][:70], problem)
+    print(f"{len(problems)} hits, {len(distinct)} distinct", flush=True)
+    for problem in distinct.values():
+        print("  " + problem, flush=True)
+    return 1 if distinct else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8765)
@@ -216,7 +306,14 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="path to a Chromium build, when Playwright's own download is absent",
     )
+    parser.add_argument(
+        "--sweep",
+        action="store_true",
+        help="exhaustively scan every state for presentation defects instead",
+    )
     args = parser.parse_args(argv)
+    if args.sweep:
+        return sweep(f"http://{args.host}:{args.port}/", args.browser_executable)
     return run(
         f"http://{args.host}:{args.port}/",
         args.shots,
