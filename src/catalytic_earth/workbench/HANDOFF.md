@@ -47,7 +47,9 @@ Commands/tests actually run and outcomes:
   - python -m unittest tests.core.test_workbench_server   -> 13 tests, OK
   - python -m unittest tests.core.test_workbench_external_sources
                                                           -> 13 tests, OK
-  - python -m unittest tests.core.test_workbench_labels    -> 12 tests, OK
+  - python -m unittest tests.core.test_workbench_labels    -> 15 tests, OK
+  - python -m unittest tests.core.test_workbench_frontend_state
+                                                          -> 10 tests, OK
   - python -m catalytic_earth.workbench.demo_check --sweep -> 0 defects.
     Exhaustive presentation sweep across three viewport widths, both
     mechanisms, every selectable atom and fragment, all twelve variant and
@@ -61,7 +63,7 @@ Commands/tests actually run and outcomes:
   - python scripts/run_test_tier.py core/unit             -> see the commit
     message for the result recorded at commit time.
   - python -m catalytic_earth.workbench.demo_check --port 8766 --shots ./shots
-    -> 33/33 checks passed, no console errors. With --video, 34/34 including
+    -> 44/44 checks passed, no console errors. With --video, 45/45 including
     the recording check. This drives a real Chromium
     browser against the running server and covers load, stepping, atom and
     fragment selection, evidence filtering, the second mechanism, all three
@@ -175,6 +177,34 @@ Rosalind session checklist (OWNER ACTION, cannot be done from Claude Code):
   Do not retrieve full text or acquire new sources as part of this; that is a
   new source acquisition needing its own permission review, and it is not what
   this step is for. This step adds attribution, not evidence.
+
+External review repairs (R1-R4), all reproduced first and then fixed:
+  - R1 stale selected fragment. The selection held a relation object from an
+    earlier evidence response, so after changing a filter the inspector kept
+    showing that response's observations. Reproduced live: main panel 2,
+    inspector 4. The selection is now a stable relation id, re-resolved against
+    the current result and dropped when the result no longer supports it.
+  - R2 out-of-order responses. loadMechanism set the selected id before
+    awaiting and installed whatever returned. Reproduced live by delaying one
+    mechanism's responses: the selector read M0173 while the graph showed
+    M0187. All three async loaders now carry a request generation guard,
+    selection and results commit together, and an obsolete error cannot
+    replace current state.
+  - R3 subject-only badge. Any contribution with a PDB subject rendered as a
+    structure view, including a database lookup that returned nothing. The
+    ledger index now carries each record's action, provider, tool and result
+    count, the interface badges by recorded action, and an empty result is
+    disclosed as returning nothing.
+  - R4 silent numeric coercion. A fractional clause value was truncated and
+    the query ran anyway: 0.9 became 0 and returned two candidates. Values are
+    now parsed exactly or refused at both boundaries. Canonical integer
+    strings are accepted and give identical results to the same integers;
+    blank, fractional, boolean, non-finite and malformed values fail visibly.
+
+  The browser harness previously checked only the main observation count, so
+  it could not see R1. It now compares the inspector against the main panel,
+  drives out-of-order responses, and exercises the refused clause values. All
+  four regressions were confirmed to fail against the reintroduced defects.
 
 Next single implementation task:
   Nothing further is possible here without the external suite. Every plan item

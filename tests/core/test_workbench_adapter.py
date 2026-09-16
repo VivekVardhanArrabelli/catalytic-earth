@@ -332,6 +332,38 @@ class PatternQueryTest(unittest.TestCase):
         self.assertEqual(result["candidate_count"], 2)
         self.assertEqual(result["binding_count"], 4)
 
+    def test_clause_values_are_never_coerced(self) -> None:
+        # Rounding or truncating a bond order or formal charge would quietly
+        # search for a different chemical constraint than the one requested.
+        for value in (0.9, -1.8, 1.0, float("nan"), float("inf")):
+            with self.assertRaises(AdapterError, msg=repr(value)):
+                pattern_query([dict(CC_ADD, before=value)])
+
+    def test_booleans_are_not_integers(self) -> None:
+        for value in (True, False):
+            with self.assertRaises(AdapterError, msg=repr(value)):
+                pattern_query([dict(CC_ADD, before=value)])
+
+    def test_blank_and_malformed_values_are_refused(self) -> None:
+        for value in ("", "  ", " 1", "+1", "1.0", "one", None, [1], {}):
+            with self.assertRaises(AdapterError, msg=repr(value)):
+                pattern_query([dict(CC_ADD, before=value)])
+
+    def test_missing_clause_bounds_are_refused(self) -> None:
+        clause = dict(CC_ADD)
+        clause.pop("before")
+        with self.assertRaises(AdapterError):
+            pattern_query([clause])
+
+    def test_canonical_integer_strings_are_accepted(self) -> None:
+        # The browser sends text, so canonical integer spellings are supported
+        # and must give exactly the result the same integers give.
+        typed = pattern_query([dict(CC_ADD, before="0", after="1")])
+        native = pattern_query([dict(CC_ADD, before=0, after=1)])
+        self.assertEqual(typed["candidate_count"], native["candidate_count"])
+        self.assertEqual(typed["binding_count"], native["binding_count"])
+        self.assertEqual(typed["filters"]["clauses"], native["filters"]["clauses"])
+
     def test_invalid_queries_are_refused(self) -> None:
         with self.assertRaises(AdapterError):
             pattern_query([])

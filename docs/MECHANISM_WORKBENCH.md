@@ -100,6 +100,12 @@ Boundaries the interface is built to preserve:
   says no comparator was stated rather than implying one.
 - A rejected filter is reported as bad input with the query's own message, not
   as a server fault with a raw exception.
+- Clause values are read exactly as written or refused. A bond order or formal
+  charge is never rounded, truncated or coerced, because that would quietly
+  search for a different chemical constraint than the one requested.
+- A selection follows the active filters. The inspector re-resolves it against
+  the current result rather than holding an earlier response's object, and a
+  selection the current result cannot support is dropped.
 - Source-atom locators, UniProt positions, PDB author numbering and mmCIF label
   numbering are displayed as distinct systems that travel together.
 - No deposited H297N mutant-context structure exists in the packaged data; the
@@ -148,6 +154,11 @@ but each past contribution keeps the suite that actually performed it. Record a
 contribution only from a call you actually made and whose output you hold.
 Writing up a call that did not happen would be a fabricated receipt.
 
+The subject index carries each record's action, provider, tool and result
+count. The interface badges by the recorded action, never by the subject, so a
+database lookup against a structure accession is reported as a database lookup
+and never as a structure view, and a call that returned nothing says so.
+
 Two subject strings are wired into the interface: a `PDB:<id>` subject badges
 that reference structure, and a `paper:<id>` subject badges that evidence id on
 its observation. Any other subject records normally and simply does not badge.
@@ -162,6 +173,7 @@ python -m unittest tests.core.test_workbench_adapter
 python -m unittest tests.core.test_workbench_server
 python -m unittest tests.core.test_workbench_external_sources
 python -m unittest tests.core.test_workbench_labels
+python -m unittest tests.core.test_workbench_frontend_state
 python scripts/run_test_tier.py core/unit
 ```
 

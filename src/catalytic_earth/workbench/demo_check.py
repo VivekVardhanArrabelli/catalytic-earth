@@ -17,6 +17,7 @@ Do not present any other image or video as an application capture.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -132,13 +133,35 @@ def run(
         )
         page.screenshot(path=str(shots / "03-m0187-fragment-evidence.png"))
 
-        # 5. Endpoint filtering.
+        # 5. Endpoint filtering, and the selected fragment must follow it.
         page.select_option("#endpoint-select", "isotope_exchange")
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(600)
         check("endpoint filter narrows to two rows", page.locator("#evidence-list .obs").count() == 2)
+
+        # The inspector holds a selection made before this filter. It must show
+        # the filtered evidence, not the evidence of the previous response.
+        main_rows = page.locator("#evidence-list .obs").count()
+        inspector_rows = len(
+            re.findall(r"observation H297N-", page.locator("#inspector-body").inner_text())
+        )
+        check(
+            "selected fragment reflects the active filter",
+            inspector_rows == main_rows,
+            f"main {main_rows}, inspector {inspector_rows}",
+        )
         page.screenshot(path=str(shots / "04-endpoint-filter.png"))
         page.select_option("#endpoint-select", "")
         page.wait_for_timeout(400)
+
+        # A selection the new result cannot support is dropped, not carried.
+        page.select_option("#mechanism-select", "M0173")
+        page.wait_for_timeout(700)
+        check(
+            "selection is dropped when its relation is gone",
+            "H297N" not in page.locator("#inspector-body").inner_text(),
+        )
+        page.select_option("#mechanism-select", "M0187")
+        page.wait_for_timeout(700)
 
         # 6. The second mechanism uses the same renderer.
         page.select_option("#mechanism-select", "M0173")
@@ -182,7 +205,52 @@ def run(
         page.wait_for_timeout(700)
         page.screenshot(path=str(shots / "09-pattern-symmetric.png"))
 
-        # 10. The page survives a reload.
+        # 10. A slow earlier request must not overwrite a later selection.
+        def delay_m0187(route):
+            if "M0187" in route.request.url:
+                page.wait_for_timeout(1500)
+            route.continue_()
+
+        page.click("[data-tab='replay']")
+        page.route("**/api/mechanism/**", delay_m0187)
+        page.route("**/api/sites/**", delay_m0187)
+        page.select_option("#mechanism-select", "M0187")
+        page.wait_for_timeout(120)
+        page.select_option("#mechanism-select", "M0173")
+        page.wait_for_timeout(4000)
+        selected = page.eval_on_selector("#mechanism-select", "e => e.value")
+        meta = page.locator("#mechanism-meta").inner_text()
+        check(
+            "the latest mechanism selection wins",
+            selected in meta,
+            f"selector {selected}, loaded {meta[:60]}",
+        )
+        page.unroute("**/api/mechanism/**")
+        page.unroute("**/api/sites/**")
+
+        # 11. A value that is not an integer is refused, never rounded.
+        page.click("[data-tab='patterns']")
+        page.click("[data-preset='shared']")
+        page.wait_for_timeout(600)
+        field = page.locator(".clause-row").first.locator("input[data-f='before']")
+        field.fill("0.9")
+        field.dispatch_event("change")
+        page.click("#run-pattern")
+        page.wait_for_timeout(700)
+        refused = page.locator("#pattern-result").inner_text()
+        check("a fractional clause value is refused", "not an integer" in refused)
+        check("a refused query returns no result", "candidates matched" not in refused)
+        field.fill("")
+        field.dispatch_event("change")
+        page.click("#run-pattern")
+        page.wait_for_timeout(600)
+        check(
+            "a blank clause value is refused",
+            "not an integer" in page.locator("#pattern-result").inner_text(),
+        )
+        page.click("[data-tab='replay']")
+
+        # 12. The page survives a reload.
         page.reload(wait_until="networkidle")
         page.wait_for_selector("#edit-list li")
         check("reload restores the first mechanism", page.locator("#edit-list li").count() == 9)

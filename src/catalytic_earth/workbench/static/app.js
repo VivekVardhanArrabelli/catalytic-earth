@@ -16,9 +16,24 @@ const state = {
   external: null,    // external_sources_view
   step: 0,           // 0 = before panel; N = all edits applied
   selectedAtom: null,
-  selectedFragment: null,
+  // A stable relation id, never a relation object: the objects are replaced on
+  // every evidence fetch, so holding one would pin stale observations.
+  selectedFragmentId: null,
   clauses: [],
+  // Monotonic request generations. A response is installed only if it belongs
+  // to the newest request, so a slow earlier reply cannot overwrite a later
+  // selection.
+  mechanismRequest: 0,
+  evidenceRequest: 0,
+  patternRequest: 0,
 };
+
+/** The selected relation, re-resolved against the current evidence result. */
+function selectedFragment() {
+  if (!state.selectedFragmentId || !state.evidence) return null;
+  return (state.evidence.relations || []).find(
+    (r) => r.relation_id === state.selectedFragmentId) || null;
+}
 
 /* ----------------------------------------------------------------- utils */
 const el = (id) => document.getElementById(id);
@@ -123,8 +138,8 @@ function drawGraph() {
     "viewBox",
     `${box.min_x - pad} ${box.min_y - pad} ${box.width + pad * 2} ${box.height + pad * 2}`);
 
-  const fragmentAtoms = new Set(
-    state.selectedFragment ? state.selectedFragment.atoms.map((a) => a.atom_id) : []);
+  const chosen = selectedFragment();
+  const fragmentAtoms = new Set(chosen ? chosen.atoms.map((a) => a.atom_id) : []);
 
   // The edit applied most recently, for emphasis.
   const currentEdit = n > 0 ? view.edits[n - 1] : null;
@@ -198,7 +213,7 @@ function drawGraph() {
 
     node.addEventListener("click", () => {
       state.selectedAtom = state.selectedAtom === atom.atom_id ? null : atom.atom_id;
-      state.selectedFragment = null;
+      state.selectedFragmentId = null;
       drawGraph();
       renderInspector();
       renderFragments();
@@ -256,7 +271,7 @@ function renderFragments() {
       const chip = resolved
         ? `<span class="chip chip-site">${esc(r.site_id)}</span>`
         : `<span class="chip chip-unresolved">unresolved</span>`;
-      const sel = state.selectedFragment === r ? " is-selected" : "";
+      const sel = state.selectedFragmentId === r.relation_id ? " is-selected" : "";
       return `<button class="frag${sel}" data-frag="${i}">
           <span class="frag-top"><strong>${esc(label || "source fragment")}</strong>${chip}</span>
           <span class="frag-sub">source atom ${esc(r.source_atom_id)} &middot; step ${esc(r.source_step_id)}
@@ -291,17 +306,34 @@ function renderFragments() {
   host.querySelectorAll("[data-frag]").forEach((btn) =>
     btn.addEventListener("click", () => {
       const r = relations[Number(btn.dataset.frag)];
-      state.selectedFragment = state.selectedFragment === r ? null : r;
-      state.selectedAtom = state.selectedFragment ? r.source_atom_id : null;
+      const wasSelected = state.selectedFragmentId === r.relation_id;
+      state.selectedFragmentId = wasSelected ? null : r.relation_id;
+      state.selectedAtom = wasSelected ? null : r.source_atom_id;
       drawGraph(); renderFragments(); renderInspector();
     }));
   host.querySelectorAll("[data-site-atom]").forEach((btn) =>
     btn.addEventListener("click", () => {
       const id = btn.dataset.siteAtom;
       state.selectedAtom = state.selectedAtom === id ? null : id;
-      state.selectedFragment = null;
+      state.selectedFragmentId = null;
       drawGraph(); renderFragments(); renderInspector();
     }));
+}
+
+/**
+ * Describe the external contributions recorded for one subject, restricted to
+ * a given action. The action is read from the record, never inferred from the
+ * subject, and a call that returned nothing is described as returning nothing.
+ */
+function contributionBadge(subject, action, label) {
+  const entries = (((state.external || {}).contributions_by_subject) || {})[subject] || [];
+  const matching = entries.filter((e) => e.action === action);
+  if (!matching.length) return "";
+  return matching.map((e) => {
+    const empty = e.result_count === 0 ? ", returned nothing" : "";
+    return ` <span class="chip chip-external">${esc(label)}: ${esc(e.provider_suite)}
+      <code>${esc(e.provider_tool)}</code>${esc(empty)}</span>`;
+  }).join("");
 }
 
 function structureBlock(ctx) {
@@ -315,12 +347,13 @@ function structureBlock(ctx) {
         <td>${esc(m.pdb_id)} chain ${esc(m.chain_id)} author ${esc(m.author_position)}</td>
         <td>mmCIF label ${esc(m.label_position)}</td></tr>`).join("");
   // Mark a structure only where an external structure view was actually
-  // recorded against its accession.
-  const bySubject = (state.external && state.external.contributions_by_subject) || {};
+  // recorded against its accession. Any other action on the same accession is
+  // reported as that action, never as a structure view.
   const structures = (ctx.structures || []).map((s) => {
-    const viewed = (bySubject[`PDB:${s.pdb_id}`] || []).length
-      ? ` <span class="chip chip-external">external structure view recorded</span>`
-      : "";
+    const subject = `PDB:${s.pdb_id}`;
+    const viewed = contributionBadge(subject, "structure_view", "structure view")
+      + contributionBadge(subject, "database_lookup", "database lookup")
+      + contributionBadge(subject, "literature_lookup", "literature lookup");
     return `<p class="note"><span class="chip chip-structure">reference structure</span>
       <strong>${esc(s.pdb_id)}</strong> ${esc(s.experimental_method)},
       ${val(s.resolution_angstrom)} &#8491;.${viewed}
@@ -366,16 +399,17 @@ function observationCard(o) {
         `${esc(c.name)} ${esc(c.value)}${c.unit ? " " + esc(c.unit) : ""}`).join(", ")
     : '<span class="chip chip-unresolved">conditions not stated</span>';
 
-  const bySubject = (state.external && state.external.contributions_by_subject) || {};
   const badged = new Set();
   const witnesses = (o.source_witnesses || []).map((w) => {
-    // Mark an external lookup only where one was actually recorded for this
-    // evidence id, and only once per observation rather than per quotation.
-    const looked = (bySubject[w.evidence_id] || []).length;
+    // Mark an external contribution only where one was actually recorded for
+    // this evidence id, naming the action it was, and once per observation
+    // rather than once per quotation.
     let badge = "";
-    if (looked && !badged.has(w.evidence_id)) {
-      badged.add(w.evidence_id);
-      badge = ` <span class="chip chip-external">external lookup recorded</span>`;
+    if (!badged.has(w.evidence_id)) {
+      badge = contributionBadge(w.evidence_id, "literature_lookup", "literature lookup")
+        + contributionBadge(w.evidence_id, "database_lookup", "database lookup")
+        + contributionBadge(w.evidence_id, "structure_view", "structure view");
+      if (badge) badged.add(w.evidence_id);
     }
     return `<div class="witness"><q>${esc(w.exact_text)}</q> &mdash; ${esc(w.evidence_id)}, ${esc(w.locator)}${badge}</div>`;
   }).join("");
@@ -423,7 +457,9 @@ function observationCard(o) {
 
 function renderInspector() {
   const host = el("inspector-body");
-  const frag = state.selectedFragment;
+  // Re-resolved every render: a relation object from an earlier response would
+  // keep showing that response's observations after the filters changed.
+  const frag = selectedFragment();
   const atomId = state.selectedAtom;
 
   if (!frag && !atomId) { host.innerHTML = ""; el("inspect-hint").style.display = ""; return; }
@@ -639,14 +675,22 @@ function renderMechanismMeta() {
 }
 
 async function loadMechanism(mcsaId) {
-  state.mcsaId = mcsaId;
-  state.selectedAtom = null;
-  state.selectedFragment = null;
+  // A slow earlier request must never install its mechanism over a later
+  // selection, which would show one mechanism's graph under another's name.
+  const seq = ++state.mechanismRequest;
+  const stale = () => seq !== state.mechanismRequest;
+
+  el("mechanism-meta").innerHTML = `<span class="note">loading ${esc(mcsaId)}…</span>`;
   try {
     const [view, sites] = await Promise.all([
       getJSON(`/api/mechanism/${encodeURIComponent(mcsaId)}`),
       getJSON(`/api/sites/${encodeURIComponent(mcsaId)}`),
     ]);
+    if (stale()) return;
+    // Selection and results commit together, for this request only.
+    state.mcsaId = mcsaId;
+    state.selectedAtom = null;
+    state.selectedFragmentId = null;
     state.view = view;
     state.sites = sites;
     state.step = 0;
@@ -656,6 +700,7 @@ async function loadMechanism(mcsaId) {
     renderFragments();
     renderInspector();
   } catch (err) {
+    if (stale()) return;
     el("mechanism-meta").innerHTML = `<span class="err">${esc(err.message)}</span>`;
   }
 }
@@ -663,14 +708,25 @@ async function loadMechanism(mcsaId) {
 async function loadEvidence() {
   const variant = el("variant-select").value;
   const endpoint = el("endpoint-select").value;
+  const seq = ++state.evidenceRequest;
+  const stale = () => seq !== state.evidenceRequest;
   try {
     const ev = await getJSON(
       `/api/evidence?variant=${encodeURIComponent(variant)}&endpoint=${encodeURIComponent(endpoint)}`);
+    if (stale()) return;
     state.evidence = ev;
+    // Drop a selection the new result no longer supports, rather than leaving
+    // the inspector showing a relation that is not in this result.
+    if (state.selectedFragmentId &&
+        !(ev.relations || []).some((r) => r.relation_id === state.selectedFragmentId)) {
+      state.selectedFragmentId = null;
+    }
     renderEvidence();
     renderFragments();
     renderInspector();
+    drawGraph();
   } catch (err) {
+    if (stale()) return;
     el("evidence-list").innerHTML = `<span class="err">${esc(err.message)}</span>`;
   }
 }
@@ -734,24 +790,55 @@ const PRESETS = {
   ],
 };
 
+/**
+ * Read a bond order or formal charge exactly as typed.
+ * A blank, fractional or malformed entry is refused, never coerced: rounding
+ * it would quietly search for a different chemical constraint.
+ */
+function clauseInteger(raw) {
+  const text = String(raw === null || raw === undefined ? "" : raw).trim();
+  if (!/^-?(0|[1-9][0-9]*)$/.test(text)) return null;
+  return Number(text);
+}
+
 async function runPattern() {
   const host = el("pattern-result");
+
+  const clauses = [];
+  const invalid = [];
+  state.clauses.forEach((c, i) => {
+    const width = c.kind === "bond" ? 2 : 1;
+    const before = clauseInteger(c.before);
+    const after = clauseInteger(c.after);
+    if (before === null) invalid.push(`clause ${i + 1}: "${c.before}" is not an integer`);
+    if (after === null) invalid.push(`clause ${i + 1}: "${c.after}" is not an integer`);
+    clauses.push({
+      kind: c.kind,
+      elements: c.elements.slice(0, width),
+      variables: c.variables.slice(0, width),
+      before,
+      after,
+    });
+  });
+  if (invalid.length) {
+    host.innerHTML = `<p class="err">Query not run. Values are used exactly as
+      written and are never rounded.<br>${invalid.map(esc).join("<br>")}</p>`;
+    return;
+  }
+
   host.innerHTML = `<p class="note">running…</p>`;
-  const clauses = state.clauses.map((c) => ({
-    kind: c.kind,
-    elements: c.elements.slice(0, c.kind === "bond" ? 2 : 1),
-    variables: c.variables.slice(0, c.kind === "bond" ? 2 : 1),
-    before: Number(c.before),
-    after: Number(c.after),
-  }));
+  const seq = ++state.patternRequest;
+  const stale = () => seq !== state.patternRequest;
   try {
     const res = await postJSON("/api/patterns", {
       clauses,
       mcsa_id: el("pattern-mcsa").value.trim() || null,
       support: el("support-select").value,
     });
+    if (stale()) return;
     renderPatternResult(res);
   } catch (err) {
+    if (stale()) return;
     host.innerHTML = `<p class="err">${esc(err.message)}</p>`;
   }
 }

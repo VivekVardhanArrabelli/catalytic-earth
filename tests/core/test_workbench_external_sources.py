@@ -74,9 +74,18 @@ class RecordingTest(unittest.TestCase):
         view = ledger_view(self.path)
         self.assertEqual(view["contribution_count"], 1)
         self.assertEqual(view["active_provider"], "Example Suite")
+        indexed = view["contributions_by_subject"]["paper:PMID:1909893"]
         self.assertEqual(
-            view["contributions_by_subject"]["paper:PMID:1909893"],
-            [record["contribution_id"]],
+            indexed,
+            [
+                {
+                    "action": "literature_lookup",
+                    "contribution_id": record["contribution_id"],
+                    "provider_suite": "Example Suite",
+                    "provider_tool": "example.search",
+                    "result_count": 1,
+                }
+            ],
         )
 
     def test_a_call_that_returned_nothing_is_recorded_as_nothing(self) -> None:
@@ -125,6 +134,42 @@ class RecordingTest(unittest.TestCase):
         view = ledger_view(self.path)
         self.assertEqual(view["active_provider"], "Rosalind")
         self.assertEqual(view["contributions"][0]["provider_suite"], "Example Suite")
+
+    def test_the_index_carries_the_action_not_just_the_subject(self) -> None:
+        # A consumer must never infer the kind of work from the subject alone:
+        # a database lookup against a structure accession is not a structure
+        # view, and an empty lookup is not a retrieval.
+        record_contribution(
+            provider_suite="Example Suite",
+            provider_tool="some.db.lookup",
+            action="database_lookup",
+            query="1MNS",
+            subject="PDB:1MNS",
+            retrieved=[],
+            path=self.path,
+        )
+        entry = ledger_view(self.path)["contributions_by_subject"]["PDB:1MNS"][0]
+        self.assertEqual(entry["action"], "database_lookup")
+        self.assertNotEqual(entry["action"], "structure_view")
+        self.assertEqual(entry["result_count"], 0)
+        self.assertTrue(entry["provider_suite"])
+        self.assertTrue(entry["provider_tool"])
+
+    def test_actions_on_one_subject_stay_separable(self) -> None:
+        for action in ("database_lookup", "structure_view"):
+            record_contribution(
+                provider_suite="Example Suite",
+                provider_tool=f"tool.{action}",
+                action=action,
+                query="1MNS",
+                subject="PDB:1MNS",
+                path=self.path,
+            )
+        entries = ledger_view(self.path)["contributions_by_subject"]["PDB:1MNS"]
+        self.assertEqual(
+            [entry["action"] for entry in entries],
+            ["database_lookup", "structure_view"],
+        )
 
     def test_a_corrupt_ledger_is_reported_not_silently_reset(self) -> None:
         self.path.write_text("{not json", encoding="utf-8")

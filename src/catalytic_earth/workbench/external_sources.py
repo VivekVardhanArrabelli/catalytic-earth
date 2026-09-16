@@ -192,11 +192,22 @@ def ledger_view(path: Path | str | None = None) -> dict[str, Any]:
     """Shape the ledger for the interface, keeping its emptiness explicit."""
     ledger = load_ledger(path)
     contributions = ledger.get("contributions", [])
-    by_subject: dict[str, list[str]] = {}
+    # The index carries each record's action, provider and tool, so a consumer
+    # can never infer the kind of work from the subject alone. A database
+    # lookup against a structure accession is not a structure view.
+    by_subject: dict[str, list[dict[str, Any]]] = {}
     for record in contributions:
         subject = record.get("subject")
         if subject:
-            by_subject.setdefault(subject, []).append(record["contribution_id"])
+            by_subject.setdefault(subject, []).append(
+                {
+                    "action": record["action"],
+                    "contribution_id": record["contribution_id"],
+                    "provider_suite": record["provider_suite"],
+                    "provider_tool": record["provider_tool"],
+                    "result_count": record["result_count"],
+                }
+            )
     return {
         "active_provider": ledger.get("active_provider"),
         "contribution_count": len(contributions),

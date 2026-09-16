@@ -14,6 +14,7 @@ packaged data, review hashes or expected-value files.
 from __future__ import annotations
 
 import json
+import re
 from typing import Any
 
 from ..core_cli import (
@@ -428,6 +429,26 @@ def evidence_view(
 
 _MAX_CLAUSES = 8
 
+#: Accepted integer spellings. A value is taken as written or refused; it is
+#: never rounded, truncated or coerced, because that would silently search for
+#: a different chemical constraint than the one asked for.
+_INTEGER_TEXT = re.compile(r"^-?(0|[1-9][0-9]*)$")
+
+
+def _clause_integer(field: str, value: Any) -> int:
+    """Read a bond order or formal charge exactly, or refuse it."""
+    if isinstance(value, bool):
+        raise AdapterError(f"clause {field} must be an integer, not a boolean")
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float):
+        raise AdapterError(
+            f"clause {field} must be an integer; {value!r} would change the query"
+        )
+    if isinstance(value, str) and _INTEGER_TEXT.match(value):
+        return int(value)
+    raise AdapterError(f"clause {field} must be an integer, got {value!r}")
+
 
 def pattern_query(
     clauses: list[dict[str, Any]],
@@ -460,11 +481,10 @@ def pattern_query(
             raise AdapterError(f"{kind} clause needs {width} element(s)")
         if not isinstance(variables, list) or len(variables) != width:
             raise AdapterError(f"{kind} clause needs {width} variable(s)")
-        try:
-            before = int(clause["before"])
-            after = int(clause["after"])
-        except (KeyError, TypeError, ValueError) as exc:
-            raise AdapterError("clause before/after must be integers") from exc
+        if "before" not in clause or "after" not in clause:
+            raise AdapterError("each clause needs a before and an after value")
+        before = _clause_integer("before", clause["before"])
+        after = _clause_integer("after", clause["after"])
         normalised.append(
             {
                 "after": after,

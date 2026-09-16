@@ -66,6 +66,28 @@ class ChipLegendTest(unittest.TestCase):
         self.assertNotIn('chip chip-structure">no detectable difference', self.js)
 
 
+class ExternalBadgeTest(unittest.TestCase):
+    """An external contribution is labelled by what it was, not by its subject."""
+
+    def test_badges_are_selected_by_recorded_action(self) -> None:
+        js = _read("app.js")
+        # The badge helper filters on the record's own action field.
+        self.assertIn('e.action === action', js)
+        # Nothing may badge from the subject index alone.
+        self.assertNotIn(
+            'bySubject[`PDB:${s.pdb_id}`] || []).length', js
+        )
+
+    def test_a_structure_view_badge_names_that_action(self) -> None:
+        js = _read("app.js")
+        self.assertIn('"structure_view", "structure view"', js)
+        self.assertIn('"database_lookup", "database lookup"', js)
+        self.assertIn('"literature_lookup", "literature lookup"', js)
+
+    def test_an_empty_external_result_is_disclosed(self) -> None:
+        self.assertIn("returned nothing", _read("app.js"))
+
+
 class ConflationGuardTest(unittest.TestCase):
     """The interface shows more than one resolution. Keep them apart."""
 
