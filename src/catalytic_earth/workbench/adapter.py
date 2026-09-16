@@ -35,6 +35,7 @@ __all__ = [
     "evidence_view",
     "mechanism_list",
     "external_sources_view",
+    "result_artifact_view",
     "match_chemistry_view",
     "pattern_query",
     "sites_view",
@@ -332,6 +333,20 @@ def external_sources_view() -> dict[str, Any]:
     """
     try:
         return ledger_view()
+    except ExternalSourceError as exc:
+        raise AdapterError(str(exc)) from exc
+
+
+def result_artifact_view(sha256: str) -> dict[str, Any]:
+    """Return one saved external output the ledger registered, by its digest.
+
+    The ledger is the allowlist. A digest it does not carry is a bad request,
+    not a file read, so this never serves a path a caller chose.
+    """
+    from .external_results import registered_artifact
+
+    try:
+        return registered_artifact(sha256)
     except ExternalSourceError as exc:
         raise AdapterError(str(exc)) from exc
 

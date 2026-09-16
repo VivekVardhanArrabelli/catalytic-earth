@@ -302,13 +302,30 @@ External result-return path (this block):
     branch. The mandelate case resolves through the mechanism-evidence query
     and the transketolase comparison tk_2020:H473N:DHB_accumulation through the
     perturbation projection; only the identifier differs. Verified for both.
+  - A comparison selects only its own study's sources. Source identity is read
+    from the observations' providers and the comparison's evidence pointers, not
+    derived from a text prefix of the study id: tk2020, tk2024 and tktf all
+    start "tk", and only tk2020 belongs to a tk_2020 comparison.
   - Conflicts and unresolved matches are preserved, never accepted. A declared
-    publication or site the record does not carry is recorded as a conflict
-    naming what it does carry; an unresolved case is recorded as unresolved and
-    the result is still kept, without the association it lacks.
+    publication, site or structure the record does not carry is recorded as a
+    conflict naming what it does carry; an unresolved case is recorded as
+    unresolved and the result is still kept, without the association it lacks.
+  - A confirmation is membership plus one relation. Identifiers the case carries
+    are checked again against its individual relations, so a publication from
+    one evidence relation and a site from another read as the conflict they are
+    rather than as a confirmed pair.
+  - Source roles stay apart. A case's publications are its functional-observation
+    sources; the primary citation of a deposited structure is a role these
+    records do not enumerate, so under a structure the case carries it is kept
+    as separately sourced external context, never called a contradiction and
+    never swapped for a functional source that would match.
+  - Context values are recorded, not checked, and the result says so.
   - The interface shows the returned scientific context, the saved artifacts
     with type, size and hash, and the per-field association table with reasons,
-    not only a badge.
+    not only a badge. Each artifact opens from its row, read back by its
+    recorded digest and shown as text; a moved or edited file says so rather
+    than standing in for the result. Association chips have their own styling
+    and never borrow the measurement or nondetection chips.
   - Nothing is merged into the packaged records. A test asserts the packaged
     query output is byte-identical before and after an import.
 

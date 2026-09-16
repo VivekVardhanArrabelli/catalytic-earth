@@ -679,18 +679,85 @@ function renderExternal() {
       ${c.result ? renderResult(c.result) : `<p class="note">
         No output has been returned for this request yet.</p>`}
     </div>`).join("");
+
+  host.querySelectorAll("[data-artifact]").forEach((btn) =>
+    btn.addEventListener("click", () => previewArtifact(
+      btn.dataset.artifact,
+      btn.closest(".binding").querySelector("[data-preview-host]"))));
 }
 
-/** How a declared association compares with the packaged record. */
+/**
+ * How a declared association compares with the packaged record.
+ *
+ * Association styling is deliberately its own. An identifier found in a case is
+ * not a published measurement, and an identifier the case does not carry is not
+ * an experimental nondetection, so these never borrow the measurement chips.
+ */
 function matchChip(status) {
   const label = {
     confirmed: "association confirmed",
     conflict: "association conflict",
+    external_context: "separately sourced context",
     unresolved: "association unresolved",
   }[status] || status;
-  const style = status === "confirmed" ? "chip chip-measured"
-    : status === "conflict" ? "chip chip-nondetect" : "chip chip-unresolved";
-  return `<span class="${style}">${esc(label)}</span>`;
+  const style = {
+    confirmed: "chip-assoc-confirmed",
+    conflict: "chip-assoc-conflict",
+    external_context: "chip-assoc-external",
+    unresolved: "chip-assoc-unresolved",
+  }[status] || "chip-assoc-unresolved";
+  return `<span class="chip ${style}">${esc(label)}</span>`;
+}
+
+/**
+ * Show one saved output as text, read back from the ledger by its own digest.
+ *
+ * The bytes arrive as JSON and are written with textContent, so an imported
+ * document is displayed as the text it is and is never parsed as markup. A file
+ * that has moved or changed since it was imported says so rather than being
+ * shown as the result it no longer matches.
+ */
+async function previewArtifact(sha256, host) {
+  host.hidden = false;
+  host.textContent = "Reading the saved file\u2026";
+  let file;
+  try {
+    file = await getJSON(`/api/result-artifact/${encodeURIComponent(sha256)}`);
+  } catch (err) {
+    host.textContent = `Could not read the saved file: ${err.message}`;
+    return;
+  }
+
+  host.innerHTML = `<h3 class="minor">${esc(file.name)}</h3>`;
+  const line = document.createElement("p");
+  line.className = "note";
+  host.appendChild(line);
+  if (!file.available || !file.is_text) {
+    line.textContent = file.reason;
+    return;
+  }
+  line.textContent = `${file.bytes} bytes, sha256 ${file.sha256}.` +
+    (file.truncated ? " Showing the start of the file only." : "");
+
+  const pre = document.createElement("pre");
+  pre.className = "artifact-text";
+  pre.textContent = file.text;
+  host.appendChild(pre);
+
+  if (file.truncated) return;
+  const save = document.createElement("button");
+  save.type = "button";
+  save.className = "linkish";
+  save.textContent = "save a copy";
+  save.addEventListener("click", () => {
+    const url = URL.createObjectURL(new Blob([file.text], { type: "text/plain" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = file.name;
+    link.click();
+    URL.revokeObjectURL(url);
+  });
+  host.appendChild(save);
 }
 
 /**
@@ -714,20 +781,25 @@ function renderResult(result) {
     <tr><td>${esc(f.name)}</td>
         <td>${esc(f.media_type)}</td>
         <td>${esc(f.bytes)} bytes</td>
-        <td><code>${esc(String(f.sha256).slice(0, 16))}…</code></td></tr>`).join("");
+        <td><code>${esc(String(f.sha256).slice(0, 16))}…</code></td>
+        <td><button type="button" class="linkish"
+              data-artifact="${esc(f.sha256)}">open</button></td></tr>`).join("");
 
   return `
     <h3 class="minor">Returned scientific context</h3>
     ${context.length
       ? `<table class="mini"><tr><th>field</th><th>as the tool reported it</th></tr>
          ${context.map(([k, v]) =>
-           `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("")}</table>`
+           `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("")}</table>
+         <p class="note">${esc((result.semantics || {}).context || "")}</p>`
       : `<p class="note">The output reported no structured field.</p>`}
 
     <h3 class="minor">Saved artifacts</h3>
     <table class="mini">
-      <tr><th>file</th><th>type</th><th>size</th><th>sha256</th></tr>${artifacts}
+      <tr><th>file</th><th>type</th><th>size</th><th>sha256</th><th></th></tr>
+      ${artifacts}
     </table>
+    <div class="artifact-preview" data-preview-host hidden></div>
 
     <h3 class="minor">Association with the packaged record</h3>
     <p class="note">Case <code>${esc(a.case_ref)}</code>
@@ -738,6 +810,7 @@ function renderResult(result) {
     <table class="mini">
       <tr><th>field</th><th>declared</th><th>status</th><th>reason</th></tr>${checks}
     </table>
+    <p class="note">${esc((result.semantics || {}).checked || "")}</p>
     <p class="caveat">${esc((result.semantics || {}).separation || "")}
       ${esc((result.semantics || {}).conflicts || "")}</p>`;
 }

@@ -6,7 +6,10 @@ files from inside this package, and exposes read-only JSON endpoints backed by
 :mod:`catalytic_earth.workbench.adapter`.
 
 It reads no arbitrary filesystem paths, exposes no private source cache, runs
-no external command and opens no network connection.
+no external command and opens no network connection. Saved external results are
+read back by the digest the ledger recorded, never by a path a caller supplies,
+and they are returned inside JSON for the page to escape rather than served as
+documents a browser would execute.
 """
 
 from __future__ import annotations
@@ -27,6 +30,7 @@ from .adapter import (
     match_chemistry_view,
     mechanism_list,
     pattern_query,
+    result_artifact_view,
     sites_view,
     transformation_view,
 )
@@ -101,6 +105,15 @@ class _Handler(BaseHTTPRequestHandler):
                 return
             if route.startswith("/api/sites/"):
                 self._send_json(sites_view(route[len("/api/sites/") :]))
+                return
+            if route.startswith("/api/result-artifact/"):
+                # Keyed by digest against the ledger, never by a supplied path.
+                # The body is JSON, so an imported document is returned as text
+                # for the page to escape and is never served as its own
+                # document for a browser to execute.
+                self._send_json(
+                    result_artifact_view(route[len("/api/result-artifact/") :])
+                )
                 return
             if route == "/api/evidence":
                 query = parse_qs(parsed.query)

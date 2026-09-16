@@ -41,10 +41,21 @@ __all__ = [
     "ACTIONS",
     "DEFAULT_LEDGER_PATH",
     "LEDGER_PATH_ENV",
+    "MATCH_STATUSES",
     "ExternalSourceError",
     "load_ledger",
     "record_contribution",
 ]
+
+#: How a declared association compares with the packaged record. Defined here,
+#: beside the ledger that has to accept it, so the writer and the reader of a
+#: record cannot drift apart on what a status may say.
+#:
+#: ``external_context`` is neither a match nor a contradiction: the identifier
+#: is in a role the packaged record does not enumerate, so the record has
+#: nothing to agree or disagree with, and the declared value stays as the caller
+#: gave it.
+MATCH_STATUSES = ("confirmed", "conflict", "external_context", "unresolved")
 
 SCHEMA_VERSION = "catalytic-earth.workbench-external-sources.v1"
 
@@ -183,8 +194,10 @@ def record_contribution(
             raise ExternalSourceError("result must be an object")
         if not result.get("artifacts"):
             raise ExternalSourceError("a result must reference at least one saved artifact")
-        if result.get("match_status") not in {"confirmed", "conflict", "unresolved"}:
-            raise ExternalSourceError("result match_status must be confirmed, conflict or unresolved")
+        if result.get("match_status") not in MATCH_STATUSES:
+            raise ExternalSourceError(
+                "result match_status must be one of " + ", ".join(MATCH_STATUSES)
+            )
         record["result"] = result
     record["contribution_id"] = f"{suite}:{tool}:{_canonical_sha(record)[:16]}"
 

@@ -7,6 +7,7 @@ import threading
 import unittest
 import urllib.error
 import urllib.request
+from pathlib import Path
 
 from catalytic_earth.workbench.server import build_server
 
@@ -135,6 +136,60 @@ class ApiRouteTest(ServerTestCase):
         status, body, _ = self.get("/api/mechanism/M9999")
         self.assertEqual(status, 400)
         self.assertIn("no packaged transformation set", json.loads(body)["error"])
+
+
+class ResultArtifactRouteTest(ServerTestCase):
+    """A saved output is readable again, and only through its own digest."""
+
+    def setUp(self) -> None:
+        import os
+        import tempfile
+
+        from catalytic_earth.workbench.external_results import import_result
+        from catalytic_earth.workbench.external_sources import LEDGER_PATH_ENV
+
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        directory = Path(self._tmp.name)
+        artifact = directory / "saved-output.json"
+        artifact.write_text('{"fixture": true}\n', encoding="utf-8")
+        ledger = directory / "ledger.json"
+
+        previous = os.environ.get(LEDGER_PATH_ENV)
+        os.environ[LEDGER_PATH_ENV] = str(ledger)
+        self.addCleanup(
+            lambda: os.environ.__setitem__(LEDGER_PATH_ENV, previous)
+            if previous is not None
+            else os.environ.pop(LEDGER_PATH_ENV, None)
+        )
+        record = import_result(
+            provider_suite="Fixture Suite",
+            provider_tool="fixture.tool",
+            action="structure_view",
+            query="fixture query",
+            case_ref="atlas10.mandelate-racemase-pputida.enolate",
+            artifacts=[artifact],
+            path=ledger,
+        )
+        self.digest = record["result"]["artifacts"][0]["sha256"]
+
+    def test_a_registered_result_is_served_as_json_text(self) -> None:
+        status, body, content_type = self.get(f"/api/result-artifact/{self.digest}")
+        self.assertEqual(status, 200, body[:200])
+        # JSON, never the imported file served as its own document.
+        self.assertIn("application/json", content_type)
+        payload = json.loads(body)
+        self.assertTrue(payload["available"])
+        self.assertEqual(payload["text"], '{"fixture": true}\n')
+
+    def test_an_unregistered_digest_is_refused(self) -> None:
+        status, _, _ = self.get("/api/result-artifact/" + "a" * 64)
+        self.assertEqual(status, 400)
+
+    def test_the_route_does_not_take_a_path(self) -> None:
+        for attempt in ("../../etc/passwd", "work/handoff.md", "saved-output.json"):
+            status, _, _ = self.get("/api/result-artifact/" + attempt)
+            self.assertIn(status, (400, 404))
 
 
 class PatternRouteTest(ServerTestCase):
