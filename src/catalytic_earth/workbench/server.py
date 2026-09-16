@@ -24,6 +24,7 @@ from .adapter import (
     AdapterError,
     evidence_view,
     external_sources_view,
+    match_chemistry_view,
     mechanism_list,
     pattern_query,
     sites_view,
@@ -123,7 +124,7 @@ class _Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802
         parsed = urlparse(self.path)
-        if parsed.path != "/api/patterns":
+        if parsed.path not in {"/api/patterns", "/api/match-chemistry"}:
             self._send_error_json(HTTPStatus.NOT_FOUND, f"no route {parsed.path}")
             return
         try:
@@ -143,6 +144,23 @@ class _Handler(BaseHTTPRequestHandler):
             self._send_error_json(HTTPStatus.BAD_REQUEST, "body must be a JSON object")
             return
         try:
+            if parsed.path == "/api/match-chemistry":
+                candidate_id = payload.get("candidate_id")
+                if not isinstance(candidate_id, str) or not candidate_id.strip():
+                    raise AdapterError("candidate_id is required")
+                index = payload.get("binding_index", 0)
+                if isinstance(index, bool) or not isinstance(index, int):
+                    raise AdapterError("binding_index must be an integer")
+                self._send_json(
+                    match_chemistry_view(
+                        payload.get("clauses") or [],
+                        candidate_id=candidate_id.strip(),
+                        binding_index=index,
+                        mcsa_id=payload.get("mcsa_id"),
+                        support=payload.get("support") or "after_graph_confirmed",
+                    )
+                )
+                return
             self._send_json(
                 pattern_query(
                     payload.get("clauses") or [],

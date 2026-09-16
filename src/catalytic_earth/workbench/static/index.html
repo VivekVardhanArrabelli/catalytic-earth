@@ -15,12 +15,28 @@
   <nav class="tabs" role="tablist">
     <button class="tab is-active" data-tab="replay" role="tab">Mechanism replay</button>
     <button class="tab" data-tab="patterns" role="tab">Chemical pattern query</button>
+    <button id="guided-toggle" class="tab tab-guided">Guided walkthrough</button>
   </nav>
 </header>
 
 <main>
   <!-- ============================ REPLAY TAB ============================ -->
   <section id="tab-replay" class="tabpanel is-active">
+
+    <!-- Optional guided path. Every step drives the ordinary controls and
+         queries below; nothing here is precomputed. -->
+    <div id="guided" class="card guided" hidden>
+      <div class="card-head">
+        <h2>Guided walkthrough <span class="chip chip-unresolved">optional</span></h2>
+        <button id="guided-exit" class="pill">Leave guided mode</button>
+      </div>
+      <p class="note">Each step changes the real controls below and runs the same
+        queries. Leave at any time and keep working; filters and selections stay
+        where the walkthrough left them.</p>
+      <ol id="guided-steps" class="guided-steps"></ol>
+      <div id="guided-detail" class="guided-detail"></div>
+    </div>
+
     <div class="toolbar">
       <label class="field">
         <span>Mechanism</span>

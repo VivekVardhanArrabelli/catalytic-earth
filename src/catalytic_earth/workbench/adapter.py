@@ -35,6 +35,7 @@ __all__ = [
     "evidence_view",
     "mechanism_list",
     "external_sources_view",
+    "match_chemistry_view",
     "pattern_query",
     "sites_view",
     "transformation_view",
@@ -166,6 +167,159 @@ def transformation_view(mcsa_id: str) -> dict[str, Any]:
         "status": panel.get("status"),
         "transformation_id": transformation.get("transformation_id"),
         "transformation_set_id": result.get("transformation_set_id"),
+    }
+
+
+def _panel_projection(
+    graph: dict[str, Any], nodes: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """Project one retained source panel for drawing.
+
+    Coordinates come from the retained source nodes (``x2``/``y2``) where the
+    record carries them. Those are the original depiction coordinates, not
+    measured geometry. Atoms without retained coordinates are reported as
+    unplaced rather than given invented positions.
+    """
+    positions: dict[str, list[float]] = {}
+    unplaced: list[str] = []
+    for node in nodes:
+        atom_id = str(node.get("atom_id"))
+        x2, y2 = node.get("x2"), node.get("y2")
+        if x2 is None or y2 is None:
+            unplaced.append(atom_id)
+            continue
+        # Source depiction y grows upward; the view flips it when drawing.
+        positions[atom_id] = [float(x2), float(y2)]
+    return {
+        "atoms": graph.get("atoms", []),
+        "bonds": graph.get("bonds", []),
+        "coordinates": positions,
+        "coordinate_semantics": {
+            "kind": "retained_source_panel_depiction_coordinates",
+            "note": (
+                "Positions are the retained source drawing coordinates for this "
+                "panel. They are depiction coordinates, not measured molecular "
+                "geometry and not a conformation."
+            ),
+        },
+        "graph_id": graph.get("graph_id"),
+        "unplaced_atom_ids": sorted(unplaced),
+    }
+
+
+def match_chemistry_view(
+    clauses: list[dict[str, Any]],
+    candidate_id: str,
+    binding_index: int = 0,
+    mcsa_id: str | None = None,
+    support: str = "after_graph_confirmed",
+) -> dict[str, Any]:
+    """Project one matched candidate and one variable assignment for viewing.
+
+    The query is re-run and the named candidate selected from its result, so
+    what is drawn is always the matcher's own output. Nothing is cached across
+    requests and no graph is synthesised: if the record does not retain a
+    panel, this reports that rather than inventing one.
+    """
+    result = pattern_query(clauses, mcsa_id=mcsa_id, support=support)
+    match = next(
+        (
+            entry
+            for entry in result.get("matches", [])
+            if entry["candidate_row"]["candidate_id"] == candidate_id
+        ),
+        None,
+    )
+    if match is None:
+        raise AdapterError(f"no matched candidate {candidate_id!r} for this query")
+
+    bindings = match.get("bindings", [])
+    if not bindings:
+        raise AdapterError(f"candidate {candidate_id!r} returned no assignment")
+    if not 0 <= binding_index < len(bindings):
+        raise AdapterError(
+            f"assignment {binding_index} is outside the {len(bindings)} returned"
+        )
+
+    row = match["candidate_row"]
+    candidate = row["candidate"]
+    panels = candidate.get("source_panels", {})
+    binding = bindings[binding_index]
+
+    # Edits that witness this assignment's clauses, kept per clause so the
+    # interface can show which edit supports which constraint.
+    clause_witnesses = []
+    witness_edit_ids: set[str] = set()
+    for witness in binding.get("clause_witnesses", []):
+        edits = []
+        for event in witness.get("events", []):
+            edit = event.get("source_edit", {})
+            witness_edit_ids.add(str(edit.get("edit_id")))
+            edits.append(
+                {
+                    "atom_ids": edit.get("atom_ids", []),
+                    "edit_id": edit.get("edit_id"),
+                    "operation": edit.get("operation"),
+                    "signature": event.get("signature", {}),
+                    "support": event.get("support"),
+                    "after": edit.get("after"),
+                    "before": edit.get("before"),
+                }
+            )
+        clause_witnesses.append({"clause": witness.get("clause", {}), "edits": edits})
+
+    coverage = candidate.get("coverage", {}) or {}
+    unverified = set(coverage.get("after_graph_unverified_edit_ids", []) or [])
+
+    return {
+        "assignment": {
+            "atom_bindings": binding.get("atom_bindings", {}),
+            "index": binding_index,
+            "of": len(bindings),
+        },
+        "assignment_semantics": {
+            "note": (
+                "Alternative assignments are different ways the same query can "
+                "bind to one candidate, often through symmetry. More "
+                "assignments are not more evidence and not more reactions."
+            ),
+        },
+        "binding_count": result.get("binding_count"),
+        "candidate_count": result.get("candidate_count"),
+        "candidate_id": row.get("candidate_id"),
+        "candidate_sha256": row.get("candidate_sha256"),
+        "correspondence": candidate.get("correspondence", {}),
+        "coverage": coverage,
+        "edits": [
+            dict(
+                edit,
+                label=_edit_label(edit),
+                is_witness=str(edit.get("edit_id")) in witness_edit_ids,
+                after_graph_verified=str(edit.get("edit_id")) not in unverified,
+            )
+            for edit in candidate.get("proposed_graph_edits", [])
+        ],
+        "clause_witnesses": clause_witnesses,
+        "opaque_source_context": candidate.get("opaque_source_context", {}),
+        "panels": {
+            "after": _panel_projection(
+                panels.get("after_graph", {}), panels.get("after_nodes", [])
+            ),
+            "before": _panel_projection(
+                panels.get("before_graph", {}), panels.get("before_nodes", [])
+            ),
+        },
+        "provenance": {
+            "review_status": candidate.get("status"),
+            "source_binding": candidate.get("source_binding", {}),
+            "not_a_reviewed_transformation": (
+                "This is an unreviewed candidate from the panel-context catalog. "
+                "It is not one of the reviewed source-depiction transformations, "
+                "and a pattern match does not change its evidence status."
+            ),
+        },
+        "scope_effect": candidate.get("scope_effect", {}),
+        "support_counts": row.get("support_counts", {}),
     }
 
 

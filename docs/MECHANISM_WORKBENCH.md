@@ -25,6 +25,44 @@ the shared-atom chemical-pattern query through a structured clause builder.
 Both M0187 (mandelate racemase) and M0173 (trypsin) load through the same
 renderer and the same adapter. Neither is a hard-coded scientific page.
 
+## Guided walkthrough
+
+An optional ordered path over the same controls and queries, reached from the
+`Guided walkthrough` button. Each step changes real state: it loads the
+mechanism, moves the replay, selects the supported fragment by its own relation
+id, re-runs the evidence query and assembles the inspection request. Nothing in
+it is precomputed, and every value shown is read from a live result.
+
+It can be left at any time; filters and selections stay where it left them and
+the ordinary controls keep working. The expert view is always available, and
+locators, hashes and full source detail remain in the inspector and the
+provenance disclosures.
+
+The endpoint comparison clears the variant filter before running, so the
+contextual observations are genuinely in the result rather than described from
+rows that are not loaded. Focal and contextual variants are tabulated
+separately, with the contextual table labelled as not matched controls.
+
+## Matched chemistry
+
+A returned candidate and variable assignment can be opened with `View matched
+chemistry`. The query is re-run and the named candidate selected from its
+result, so what is drawn is always the matcher's own output.
+
+The before and after panels are drawn from the **retained source depiction
+coordinates** the record carries, not from a computed layout. An atom the
+record does not place is reported as unplaced rather than drawn at a guessed
+position. Atoms bound to the query variables are marked with their variable
+name, the edits witnessing each clause are listed with their support state, and
+the remaining proposed edits are listed separately.
+
+Alternative assignments are selectable and labelled: they are different ways one
+query binds to one candidate, often through symmetry, and more assignments are
+not more evidence. The candidate is marked unreviewed throughout and explicitly
+distinguished from the reviewed source-depiction transformations. Correspondence
+carries its own meaning, `project_unreviewed_panel_alignment_not_physical_atom_map`,
+and coverage, opaque context and scope remain available.
+
 ## How it is wired
 
 `catalytic_earth.workbench.adapter` imports the same verified loaders and query
@@ -35,6 +73,7 @@ functions the `catalytic-earth` subcommands use, in process:
 | `/api/mechanism/<id>` | `query_transformations` | `atlas-transformations --mcsa-id <id>` |
 | `/api/sites/<id>` | `query_transformation_sites` | `atlas-transformation-sites --mcsa-id <id>` |
 | `/api/evidence` | `query_mechanism_evidence` + `query_fragment_sites` | `atlas-mechanism-evidence --variant H297N --include-source-fragments` |
+| `/api/match-chemistry` | `query_candidate_patterns`, projected | (no direct equivalent) |
 | `/api/patterns` | `query_candidate_patterns` | `atlas-candidate-patterns --bond ... --charge ...` |
 
 The Atlas-10 kernel hash check the CLI performs is applied here too. The
@@ -179,6 +218,7 @@ python -m unittest tests.core.test_workbench_server
 python -m unittest tests.core.test_workbench_external_sources
 python -m unittest tests.core.test_workbench_labels
 python -m unittest tests.core.test_workbench_frontend_state
+python -m unittest tests.core.test_workbench_match_chemistry
 python scripts/run_test_tier.py core/unit
 ```
 

@@ -29,6 +29,15 @@ Working features verified:
     disjoint-atom no-match, and the symmetric-assignment case.
   - The whole packaged evidence set is reachable: both variants, every
     endpoint, and each observation labelled with its own variant.
+  - Guided walkthrough: five steps that drive the real controls and queries,
+    covering the recorded question and adjudication, the before and after
+    panels, the supported residue link selected by its own relation id, the
+    endpoint comparison with focal and contextual variants separated, and the
+    inspection request. Leaving it keeps the interface working normally.
+  - Matched chemistry viewer: a returned candidate and assignment drawn from
+    the retained source depiction coordinates, with bound atoms marked by
+    variable name, per-clause witness edits and their support state, selectable
+    alternative assignments, and the candidate marked unreviewed throughout.
   - External tool contribution panel, driven by the provider-neutral ledger.
     Verified in both states: empty (the real ledger) and populated (a
     throwaway ledger via the path override, never written to the repository).
@@ -50,6 +59,8 @@ Commands/tests actually run and outcomes:
   - python -m unittest tests.core.test_workbench_labels    -> 15 tests, OK
   - python -m unittest tests.core.test_workbench_frontend_state
                                                           -> 12 tests, OK
+  - python -m unittest tests.core.test_workbench_match_chemistry
+                                                          -> 15 tests, OK
   - python -m catalytic_earth.workbench.demo_check --sweep -> 0 defects.
     Exhaustive presentation sweep across three viewport widths, both
     mechanisms, every selectable atom and fragment, all twelve variant and
@@ -73,8 +84,8 @@ Commands/tests actually run and outcomes:
   - python scripts/run_test_tier.py core/unit             -> see the commit
     message for the result recorded at commit time.
   - python -m catalytic_earth.workbench.demo_check --port 8766 --shots ./shots
-    -> 51/51 checks passed, no console errors. With --video, 52/52 including
-    the recording check. This drives a real Chromium
+    -> 71/71 checks passed, no console errors. With --video, 72/72 including
+    the recording check. Also passes against a clean-directory wheel install. This drives a real Chromium
     browser against the running server and covers load, stepping, atom and
     fragment selection, evidence filtering, the second mechanism, all three
     pattern outcomes, and reload. Its screenshots are captures of the running

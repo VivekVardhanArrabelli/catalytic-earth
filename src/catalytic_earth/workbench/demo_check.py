@@ -357,7 +357,96 @@ def run(
         page.unroute("**/api/evidence**")
         injecting[0] = False
 
-        # 13. The page survives a reload.
+        # 13. The guided path drives the real controls and queries.
+        page.click("#guided-toggle")
+        page.wait_for_timeout(400)
+        check("guided path offers its steps", page.locator("#guided-steps li").count() == 5)
+
+        page.click("#guided-steps button:has-text('Show the question')")
+        page.wait_for_timeout(700)
+        question = page.locator("#guided-detail").inner_text()
+        check("guided shows the recorded question and adjudication",
+              "adjudication" in question.lower()
+              and "alternatives considered" in question.lower())
+
+        page.click("#guided-steps button:has-text('Show the before panel')")
+        page.wait_for_timeout(800)
+        check("guided drives the real replay control",
+              "0 of" in page.locator("#step-readout").inner_text())
+        page.click("#guided-steps button:has-text('Show the after panel')")
+        page.wait_for_timeout(700)
+        readout = page.locator("#step-readout").inner_text()
+        check("guided reaches the after panel", "9 of 9" in readout, readout)
+
+        page.click("#guided-steps button:has-text('Select the supported fragment')")
+        page.wait_for_timeout(700)
+        check(
+            "guided selection matches the inspector",
+            "P11444:H297" in page.locator("#inspector-body").inner_text(),
+        )
+
+        page.click("#guided-steps button:has-text('Compare the endpoints')")
+        page.wait_for_timeout(700)
+        endpoints = page.locator("#guided-detail").inner_text()
+        check("guided separates contextual observations",
+              "not matched controls" in endpoints.lower())
+        check("guided keeps unknown detection limits unknown", "unknown" in endpoints)
+
+        page.click("#guided-steps button:has-text('Prepare the request')")
+        page.wait_for_timeout(800)
+        request = page.locator("#guided-detail").inner_text()
+        check("inspection request says it has not been executed",
+              "NOT YET EXECUTED" in request)
+        check("inspection request carries the numbering systems",
+              "mmCIF label" in request and "PDB author" in request)
+        check("inspection request does not claim a mutant structure",
+              "not" in request and "mutant structure" in request)
+        page.screenshot(path=str(shots / "10-guided.png"))
+
+        page.click("#guided-exit")
+        page.wait_for_timeout(300)
+        check("guided mode can be left", page.locator("#guided").is_hidden())
+        page.select_option("#endpoint-select", "structure")
+        page.wait_for_timeout(700)
+        check("controls still work after leaving guided mode",
+              page.locator("#evidence-list .obs").count() == 1)
+        page.select_option("#endpoint-select", "")
+        page.wait_for_timeout(500)
+
+        # 14. A matched candidate can be inspected as chemistry.
+        page.click("[data-tab='patterns']")
+        page.click("[data-preset='symmetric']")
+        page.wait_for_timeout(900)
+        broad = page.locator("[data-chem]").count()
+        page.click("[data-preset='shared']")
+        page.wait_for_timeout(900)
+        narrow = page.locator("[data-chem]").count()
+        check(
+            "adding a same-atom constraint changes the backend result",
+            narrow < broad and narrow > 0,
+            f"broad {broad}, narrow {narrow}",
+        )
+
+        page.click("[data-chem]")
+        page.wait_for_timeout(1500)
+        chem = page.locator("#chem-view").inner_text()
+        check("both retained panels are drawn", page.locator(".panel-svg").count() == 2)
+        check("the bound atoms are marked", page.locator(".patom.is-bound").count() >= 2)
+        check("coordinates are labelled as retained depiction",
+              "retained source drawing coordinates" in chem)
+        check("the candidate is marked unreviewed", "unreviewed" in chem)
+        check("it is distinguished from a reviewed transformation",
+              "not one of the reviewed" in chem)
+        check("each clause names its witness edit", "after_graph_confirmed" in chem)
+        page.screenshot(path=str(shots / "11-matched-chemistry.png"))
+
+        page.click("[data-preset='disjoint']")
+        page.wait_for_timeout(800)
+        check("a no-match query offers nothing to view",
+              page.locator("[data-chem]").count() == 0)
+        page.click("[data-tab='replay']")
+
+        # 15. The page survives a reload.
         page.reload(wait_until="networkidle")
         page.wait_for_selector("#edit-list li")
         check("reload restores the first mechanism", page.locator("#edit-list li").count() == 9)
