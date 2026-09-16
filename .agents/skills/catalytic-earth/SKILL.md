@@ -43,9 +43,27 @@ python scripts/query_atlas_perturbations.py \
 ```
 
 Write into a new `sessions/<UTC-timestamp>/` directory (git-ignored) and save a
-`provenance.json` beside the output recording the exact command, the source
-commit (`git rev-parse HEAD`), and the output's sha256. `--output` never
-overwrites an existing file.
+`provenance.json` beside the output recording the exact command, the output's
+sha256, and where the code came from:
+
+- from a source checkout, `git -C <repo-root> rev-parse HEAD` — anchored to the
+  checkout, never a bare `git rev-parse HEAD`, which reports whatever repository
+  the working directory happens to sit in;
+- from an installed wheel, the distribution name, version and wheel sha256.
+  Do not invent a source commit for a directory that has nothing to do with it.
+
+The two routes do **not** behave the same way here, so name a fresh path every
+time and do not rely on being protected:
+
+| | `catalytic-earth atlas-mechanism-evidence` | `scripts/query_atlas_perturbations.py` |
+|---|---|---|
+| existing file | refuses it, nothing is written | **replaces it, without warning** |
+| missing directory | fails | fails |
+
+Create the session directory before writing, and never point the perturbation
+route at a path that already holds a saved result. That script is bound by
+sha256 in `data/atlas/perturbations/review.json`, so its behaviour is described
+here rather than changed.
 
 ## 3. Native structure or source inspection, only if the host really exposes it
 

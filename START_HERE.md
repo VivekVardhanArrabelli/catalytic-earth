@@ -18,6 +18,7 @@ Three tiers, kept apart on purpose:
 ```sh
 git clone https://github.com/VivekVardhanArrabelli/catalytic-earth
 cd catalytic-earth
+python -m venv .venv && . .venv/bin/activate      # Windows: .venv\Scripts\activate
 python -m pip install -r requirements/build.lock   # locked build tools
 python -m build --wheel --no-isolation --outdir dist
 python -m pip install dist/catalytic_earth-0.1.0-py3-none-any.whl
@@ -54,9 +55,20 @@ python scripts/query_atlas_perturbations.py --comparison tk_2020:H473N:DHB_accum
 Answer and full provenance: [`docs/briefs/H473N-target-vs-competing-product.md`](docs/briefs/H473N-target-vs-competing-product.md)
 
 **Route A runs from the installed wheel anywhere. Route B does not** — it
-derives its root from its own file location and shells out to `git`, so it needs
-the source checkout. Pass `--output <new file>` to either to save JSON;
-neither overwrites an existing file.
+derives its root from its own file location and shells out to `git`, so run it
+from the checkout you cloned above (`cd` back to it if you moved away).
+
+Pass `--output <new file>` to either to save JSON. They differ in what happens
+next, so create the directory first and name a fresh file every time:
+
+- **Route A refuses an existing path** and writes nothing — the guarantee in its
+  `--help` is real.
+- **Route B replaces an existing file without warning.** Its script is bound by
+  sha256 in `data/atlas/perturbations/review.json`, so correcting that would
+  need a renewed source review rather than a quiet edit. `tests/core/
+  test_perturbation_query_output.py` pins the behaviour described here.
+
+Neither route creates a missing directory.
 
 ## Tier 2 — the interface, and replaying a saved result
 
@@ -89,8 +101,12 @@ native inspection marked pending. Nothing here fabricates a suite result.
 [**Nondetection Is Not Zero**](https://claude.ai/artifact/R1aTNPKxp5fdJoBF1dr5Wy) —
 a single page covering both cases above and, more to the point, what each one
 refuses to claim. Source: [`docs/nondetection-is-not-zero.html`](docs/nondetection-is-not-zero.html),
-openable directly in a browser. Every number on it came from the two commands
-above on commit `57d688af`; nothing on it was inferred by a model.
+openable directly in a browser.
+
+It is a **static explanatory companion, not the Mechanism Workbench** and not a
+substitute for demonstrating the interactive tool. Every figure on it came from
+the two commands above; it summarises existing curated observations returned by
+those recorded queries and reports no new biological experiment.
 
 ## Using the agent skill
 

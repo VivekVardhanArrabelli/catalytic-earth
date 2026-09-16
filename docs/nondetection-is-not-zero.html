@@ -190,26 +190,14 @@
     <h2>Did losing the competing product improve the target?</h2>
     <p class="org">Transketolase · <i>E. coli</i> · comparison tk_2020:H473N:DHB_accumulation</p>
     <p class="lede">H473N accumulates no detectable erythrulose, the competing
-      donor-route product. The intuitive read is improved selectivity toward the target.
-      <strong>The same experiment shows target accumulation falling by roughly half.</strong></p>
+      donor-route product. The intuitive read is more of the target product.
+      <strong>The same experiment shows target accumulation falling by roughly half.</strong>
+      Whether selectivity improved is a ratio this comparison does not establish
+      either way.</p>
 
     <figure>
-      <svg viewBox="0 0 660 302" role="img"
-           aria-label="Product accumulated after 24 hours. DHB: wild type 10.5 millimolar, H473N 5.5 millimolar. Erythrulose: wild type 10.5 millimolar, H473N not detected with an unknown detection limit.">
-        <defs>
-          <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <line x1="0" y1="0" x2="0" y2="7" stroke="var(--limit)" stroke-width="1.6"/>
-          </pattern>
-          <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
-            <stop offset="55%" stop-color="#fff" stop-opacity="0.55"/>
-            <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
-          </linearGradient>
-          <mask id="fademask">
-            <rect x="0" y="0" width="660" height="302" fill="url(#fade)"/>
-          </mask>
-        </defs>
-
+      <svg viewBox="0 0 660 330" role="img"
+           aria-label="Product accumulated after 24 hours. DHB: wild type 10.5 millimolar, H473N 5.5 millimolar. Erythrulose: wild type 10.5 millimolar; for H473N erythrulose was not detected and the source does not report a detection limit, so no quantity is plotted.">
         <!-- y axis ticks: 0,4,8,12 mM  -> y = 232 - (v/12)*180 -->
         <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--muted)">
           <text x="4" y="236">0</text>
@@ -236,17 +224,21 @@
 
         <!-- Erythrulose group -->
         <rect x="392" y="74.5" width="74" height="157.5" fill="var(--accent)"/>
-        <g mask="url(#fademask)">
-          <rect x="486" y="92" width="74" height="140" fill="url(#hatch)" opacity="0.85"/>
-        </g>
-        <line x1="486" y1="232" x2="560" y2="232" stroke="var(--limit)" stroke-width="2.5"/>
         <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink)"
            font-weight="500" text-anchor="middle">
           <text x="429" y="66">10.5</text>
         </g>
-        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--limit)"
+        <!-- Nothing is drawn on the scale for the H473N erythrulose slot. The
+             quantity has no known extent, so any plotted shape would assert one.
+             The marker below sits outside the axis entirely. -->
+        <rect x="489" y="261" width="68" height="23" rx="3" fill="none"
+              stroke="var(--limit)" stroke-width="1.4"/>
+        <text x="523" y="277" font-family="IBM Plex Mono, monospace" font-size="12.5"
+              font-weight="500" fill="var(--limit)" text-anchor="middle">ND</text>
+        <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--limit)"
            text-anchor="middle">
-          <text x="523" y="268">not detected · limit unknown</text>
+          <text x="523" y="300">not detected</text>
+          <text x="523" y="313">limit not reported</text>
         </g>
 
         <!-- group + series labels -->
@@ -259,15 +251,16 @@
         </g>
         <g font-family="IBM Plex Sans, sans-serif" font-size="13.5" fill="var(--ink)"
            font-weight="600" text-anchor="middle">
-          <text x="162" y="292">DHB — target product</text>
-          <text x="476" y="292">Erythrulose — competing</text>
+          <text x="162" y="326">DHB — target product</text>
+          <text x="476" y="326">Erythrulose — competing</text>
         </g>
       </svg>
       <figcaption>Product accumulated after 24 h, purified enzyme, 50 mM glycolaldehyde
-        and 50 mM sodium pyruvate, HPLC. The hatched column fades upward because the
-        source reports no detection threshold: the true erythrulose value lies somewhere
-        below a ceiling nobody recorded. Drawing it as a bar of any height would be an
-        invention.</figcaption>
+        and 50 mM sodium pyruvate, HPLC. Three values are plotted; the fourth is not.
+        The inspected source does not report the detection limit, so the erythrulose
+        amount for H473N has no known extent and is marked <b>ND</b> off the scale.
+        Drawing it at any height — zero included — would assert a quantity the source
+        never gives.</figcaption>
     </figure>
 
     <div class="bound">
@@ -300,7 +293,10 @@
       validation, not a benchmark, and not new biological findings. Saying so is the
       same discipline as the boxes above.</p>
     <p>Everything on this page came out of two offline, deterministic commands on a
-      single commit. Nothing was inferred by a model in the making of it.</p>
+      single commit. It summarises existing curated observations returned by those
+      recorded queries and reports no new biological experiment.</p>
+    <p>This page is a static explanatory companion. The interactive Mechanism
+      Workbench is the tool itself, and this does not stand in for showing it.</p>
   </section>
 
   <p class="foot">
