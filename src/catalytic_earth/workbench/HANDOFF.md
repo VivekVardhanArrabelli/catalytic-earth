@@ -49,7 +49,7 @@ Commands/tests actually run and outcomes:
                                                           -> 13 tests, OK
   - python -m unittest tests.core.test_workbench_labels    -> 15 tests, OK
   - python -m unittest tests.core.test_workbench_frontend_state
-                                                          -> 10 tests, OK
+                                                          -> 12 tests, OK
   - python -m catalytic_earth.workbench.demo_check --sweep -> 0 defects.
     Exhaustive presentation sweep across three viewport widths, both
     mechanisms, every selectable atom and fragment, all twelve variant and
@@ -73,7 +73,7 @@ Commands/tests actually run and outcomes:
   - python scripts/run_test_tier.py core/unit             -> see the commit
     message for the result recorded at commit time.
   - python -m catalytic_earth.workbench.demo_check --port 8766 --shots ./shots
-    -> 44/44 checks passed, no console errors. With --video, 45/45 including
+    -> 51/51 checks passed, no console errors. With --video, 52/52 including
     the recording check. This drives a real Chromium
     browser against the running server and covers load, stepping, atom and
     fragment selection, evidence filtering, the second mechanism, all three
@@ -215,6 +215,27 @@ External review repairs (R1-R4), all reproduced first and then fixed:
   it could not see R1. It now compares the inspector against the main panel,
   drives out-of-order responses, and exercises the refused clause values. All
   four regressions were confirmed to fail against the reintroduced defects.
+
+Follow-up review repairs (S1-S2), both reproduced first and then fixed:
+  - S1 a refusal could be overwritten by an older search. runPattern advanced
+    its request generation only after validation, so a refused attempt
+    returned without retiring the request already in flight, and that older
+    response replaced the "Query not run" message with results. The generation
+    now advances at the top of every attempt, including one that never reaches
+    the network, and there is exactly one increment.
+  - S2 a failed current request left the controls describing something else.
+    Failures replaced only an error area, so after a failed mechanism load the
+    selector read M0173 while the 9-edit M0187 graph remained, and after a
+    failed evidence load the filter read isotope_exchange while the inspector
+    still held four observations. A failed request now restores the controls to
+    the state that is actually displayed and says so in a notice, or clears the
+    dependent views when nothing was ever loaded.
+
+  Both were verified in a browser. The harness gained regressions for the
+  refusal surviving a stale response, and for control agreement after a failed
+  mechanism load and a failed evidence load. Console capture is suspended only
+  for the deliberately injected failures and resumes afterwards, so the
+  injected 500s are not mistaken for application errors.
 
 Next single implementation task:
   Nothing further is possible here without the external suite. Every plan item

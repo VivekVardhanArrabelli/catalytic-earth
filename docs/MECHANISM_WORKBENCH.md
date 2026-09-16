@@ -103,6 +103,11 @@ Boundaries the interface is built to preserve:
 - Clause values are read exactly as written or refused. A bond order or formal
   charge is never rounded, truncated or coerced, because that would quietly
   search for a different chemical constraint than the one requested.
+- A failed request never leaves the controls describing something else. It
+  restores them to the state actually displayed and says so, or clears the
+  dependent views when nothing was ever loaded.
+- A refused query retires any request still in flight, so an older response
+  cannot replace the refusal with results.
 - A selection follows the active filters. The inspector re-resolves it against
   the current result rather than holding an earlier response's object, and a
   selection the current result cannot support is dropped.

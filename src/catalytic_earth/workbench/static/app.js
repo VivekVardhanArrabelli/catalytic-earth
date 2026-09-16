@@ -23,6 +23,9 @@ const state = {
   // Monotonic request generations. A response is installed only if it belongs
   // to the newest request, so a slow earlier reply cannot overwrite a later
   // selection.
+  // The filters of the last evidence result actually on screen, so a failed
+  // load can put the controls back in agreement with what is displayed.
+  loadedFilters: { variant: "", endpoint: "" },
   mechanismRequest: 0,
   evidenceRequest: 0,
   patternRequest: 0,
@@ -53,6 +56,13 @@ function kv(pairs) {
     .map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`)
     .join("");
   return `<dl class="kv">${rows}</dl>`;
+}
+
+/** Show or clear a failure notice without destroying the content below it. */
+function notice(id, message) {
+  const node = el(id);
+  node.textContent = message || "";
+  node.hidden = !message;
 }
 
 async function getJSON(url) {
@@ -687,6 +697,7 @@ async function loadMechanism(mcsaId) {
       getJSON(`/api/sites/${encodeURIComponent(mcsaId)}`),
     ]);
     if (stale()) return;
+    notice("mechanism-notice", "");
     // Selection and results commit together, for this request only.
     state.mcsaId = mcsaId;
     state.selectedAtom = null;
@@ -701,7 +712,27 @@ async function loadMechanism(mcsaId) {
     renderInspector();
   } catch (err) {
     if (stale()) return;
-    el("mechanism-meta").innerHTML = `<span class="err">${esc(err.message)}</span>`;
+    // The request failed, so nothing new is on screen. Put the control back in
+    // agreement with the mechanism that is actually displayed, and say so.
+    if (state.view && state.mcsaId) {
+      el("mechanism-select").value = state.mcsaId;
+      renderMechanismMeta();
+      notice(
+        "mechanism-notice",
+        `Could not load ${mcsaId}: ${err.message}. Selection restored to ` +
+        `${state.mcsaId}, which is what is shown below.`);
+    } else {
+      state.view = null;
+      state.sites = null;
+      el("graph").innerHTML = "";
+      el("edit-list").innerHTML = "";
+      el("mechanism-meta").innerHTML = "";
+      el("replay-detail").innerHTML = "";
+      el("fragment-list").innerHTML = "";
+      el("inspector-body").innerHTML = "";
+      notice("mechanism-notice",
+        `Could not load ${mcsaId}: ${err.message}. No mechanism is loaded.`);
+    }
   }
 }
 
@@ -714,7 +745,9 @@ async function loadEvidence() {
     const ev = await getJSON(
       `/api/evidence?variant=${encodeURIComponent(variant)}&endpoint=${encodeURIComponent(endpoint)}`);
     if (stale()) return;
+    notice("evidence-notice", "");
     state.evidence = ev;
+    state.loadedFilters = { variant, endpoint };
     // Drop a selection the new result no longer supports, rather than leaving
     // the inspector showing a relation that is not in this result.
     if (state.selectedFragmentId &&
@@ -727,7 +760,29 @@ async function loadEvidence() {
     drawGraph();
   } catch (err) {
     if (stale()) return;
-    el("evidence-list").innerHTML = `<span class="err">${esc(err.message)}</span>`;
+    // Put the filters back to the result that is actually on screen, so the
+    // controls, the observation list and the inspector describe one state.
+    if (state.evidence) {
+      el("variant-select").value = state.loadedFilters.variant;
+      el("endpoint-select").value = state.loadedFilters.endpoint;
+      renderEvidence();
+      renderFragments();
+      renderInspector();
+      drawGraph();
+      const describe = (f) =>
+        [f.variant ? `variant ${f.variant}` : "", f.endpoint ? `endpoint ${f.endpoint}` : ""]
+          .filter(Boolean).join(" and ") || "no filter";
+      notice(
+        "evidence-notice",
+        `Could not load that evidence filter: ${err.message}. Filters restored ` +
+        `to ${describe(state.loadedFilters)}, which is what is shown below.`);
+    } else {
+      el("evidence-list").innerHTML = "";
+      el("abstention-strip").innerHTML = "";
+      el("evidence-note").innerHTML = "";
+      notice("evidence-notice",
+        `Could not load evidence: ${err.message}. No evidence is loaded.`);
+    }
   }
 }
 
@@ -803,6 +858,11 @@ function clauseInteger(raw) {
 
 async function runPattern() {
   const host = el("pattern-result");
+  // Advance the generation for every attempt, including one that never
+  // reaches the network. A refusal must retire any request still in flight,
+  // otherwise that older response lands on top of the refusal message.
+  const seq = ++state.patternRequest;
+  const stale = () => seq !== state.patternRequest;
 
   const clauses = [];
   const invalid = [];
@@ -827,8 +887,6 @@ async function runPattern() {
   }
 
   host.innerHTML = `<p class="note">running…</p>`;
-  const seq = ++state.patternRequest;
-  const stale = () => seq !== state.patternRequest;
   try {
     const res = await postJSON("/api/patterns", {
       clauses,

@@ -48,6 +48,17 @@ class RequestOrderingTest(unittest.TestCase):
             self.assertIn("++state.", body, loader)
             self.assertIn("stale()", body, loader)
 
+    def test_the_pattern_generation_advances_before_validation(self) -> None:
+        # A refused attempt must still retire any request in flight. If the
+        # counter advanced only after validation, the refusal would return
+        # early and an older response would land on top of its message.
+        body = self.js[self.js.index("function runPattern") :][:3000]
+        self.assertLess(
+            body.index("++state.patternRequest"),
+            body.index("invalid.length"),
+        )
+        self.assertEqual(body.count("++state.patternRequest"), 1)
+
     def test_obsolete_errors_cannot_replace_current_state(self) -> None:
         for loader in ("loadMechanism", "loadEvidence", "runPattern"):
             body = self.js[self.js.index(f"function {loader}") :][:2600]
@@ -58,6 +69,37 @@ class RequestOrderingTest(unittest.TestCase):
         body = self.js[self.js.index("function loadMechanism") :][:2600]
         guard = body.index("if (stale()) return;")
         self.assertLess(guard, body.index("state.mcsaId = mcsaId;"))
+
+
+class FailureRecoveryTest(unittest.TestCase):
+    """A failed request must not leave controls describing something else."""
+
+    def setUp(self) -> None:
+        self.js = APP.read_text(encoding="utf-8")
+        self.html = Path(
+            "src/catalytic_earth/workbench/static/index.html"
+        ).read_text(encoding="utf-8")
+
+    def test_failure_notices_have_somewhere_to_go(self) -> None:
+        for node in ("mechanism-notice", "evidence-notice"):
+            self.assertIn(f'id="{node}"', self.html)
+            self.assertIn(node, self.js)
+
+    def test_a_failed_mechanism_load_restores_its_control(self) -> None:
+        body = self.js[self.js.index("function loadMechanism") :][:3200]
+        catch = body[body.index("} catch") :]
+        self.assertIn('el("mechanism-select").value = state.mcsaId', catch)
+
+    def test_a_failed_evidence_load_restores_its_controls(self) -> None:
+        body = self.js[self.js.index("function loadEvidence") :][:3600]
+        catch = body[body.index("} catch") :]
+        self.assertIn("state.loadedFilters.variant", catch)
+        self.assertIn("state.loadedFilters.endpoint", catch)
+
+    def test_the_last_loaded_filters_are_tracked(self) -> None:
+        self.assertIn("loadedFilters", self.js)
+        body = self.js[self.js.index("function loadEvidence") :][:3600]
+        self.assertIn("state.loadedFilters = { variant, endpoint };", body)
 
 
 class ClauseValueTest(unittest.TestCase):

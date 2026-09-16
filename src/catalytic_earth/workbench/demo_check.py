@@ -55,8 +55,20 @@ def run(
             context_options["record_video_size"] = {"width": 1600, "height": 1150}
         context = browser.new_context(**context_options)
         page = context.new_page()
-        page.on("console", lambda m: console_errors.append(m.text) if m.type == "error" else None)
-        page.on("pageerror", lambda e: console_errors.append(str(e)))
+        # Deliberate fault injection below makes the browser log the failed
+        # responses. Those are the test's own doing, so console capture is
+        # suspended for exactly those steps and resumes afterwards.
+        injecting = [False]
+        page.on(
+            "console",
+            lambda m: console_errors.append(m.text)
+            if m.type == "error" and not injecting[0]
+            else None,
+        )
+        page.on(
+            "pageerror",
+            lambda e: console_errors.append(str(e)) if not injecting[0] else None,
+        )
         page.goto(base, wait_until="networkidle")
         page.wait_for_selector("#edit-list li")
 
@@ -248,9 +260,104 @@ def run(
             "a blank clause value is refused",
             "not an integer" in page.locator("#pattern-result").inner_text(),
         )
+
+        # A refusal must retire any request still in flight, or that older
+        # response lands on top of the refusal message.
+        page.click("[data-preset='shared']")
+        page.wait_for_timeout(600)
+        page.evaluate(
+            """() => {
+              const orig = window.fetch;
+              window.__delayedOnce = false;
+              window.fetch = (...a) => {
+                if (String(a[0]).includes('/api/patterns') && !window.__delayedOnce) {
+                  window.__delayedOnce = true;
+                  return new Promise(r => setTimeout(() => r(orig(...a)), 2500));
+                }
+                return orig(...a);
+              };
+            }"""
+        )
+        page.click("#run-pattern")
+        page.wait_for_timeout(250)
+        field = page.locator(".clause-row").first.locator("input[data-f='before']")
+        field.fill("0.9")
+        field.dispatch_event("change")
+        page.click("#run-pattern")
+        page.wait_for_timeout(300)
+        check(
+            "a refusal appears immediately",
+            "not an integer" in page.locator("#pattern-result").inner_text(),
+        )
+        page.wait_for_timeout(4000)
+        settled = page.locator("#pattern-result").inner_text()
+        check("a refusal survives an older response", "not an integer" in settled)
+        check("an older response does not resurface results",
+              "candidates matched" not in settled)
+        page.reload(wait_until="networkidle")
+        page.wait_for_selector("#edit-list li")
         page.click("[data-tab='replay']")
 
-        # 12. The page survives a reload.
+        # 12. A failed request must leave the controls describing what is shown.
+        injecting[0] = True
+        page.route(
+            "**/api/mechanism/M0173",
+            lambda route: route.fulfill(
+                status=500,
+                body='{"error":"induced failure"}',
+                headers={"content-type": "application/json"},
+            ),
+        )
+        page.select_option("#mechanism-select", "M0173")
+        page.wait_for_timeout(1500)
+        selector = page.eval_on_selector("#mechanism-select", "e => e.value")
+        meta = page.locator("#mechanism-meta").inner_text()
+        check(
+            "a failed mechanism load restores the selector",
+            selector in meta,
+            f"selector {selector}, shown {meta[:60]}",
+        )
+        check(
+            "a failed mechanism load says what happened",
+            "Could not load" in page.locator("#mechanism-notice").inner_text(),
+        )
+        page.unroute("**/api/mechanism/M0173")
+
+        page.select_option("#variant-select", "H297N")
+        page.wait_for_timeout(700)
+        page.locator(".frag").first.click()
+        page.wait_for_timeout(400)
+        page.route(
+            "**/api/evidence**",
+            lambda route: route.fulfill(
+                status=500,
+                body='{"error":"induced failure"}',
+                headers={"content-type": "application/json"},
+            ),
+        )
+        page.select_option("#endpoint-select", "isotope_exchange")
+        page.wait_for_timeout(1500)
+        main_rows = page.locator("#evidence-list .obs").count()
+        inspector_rows = len(
+            re.findall(r"observation H297N-", page.locator("#inspector-body").inner_text())
+        )
+        check(
+            "a failed evidence load keeps the panels in agreement",
+            main_rows == inspector_rows and main_rows > 0,
+            f"main {main_rows}, inspector {inspector_rows}",
+        )
+        check(
+            "a failed evidence load restores the filters",
+            page.eval_on_selector("#endpoint-select", "e => e.value") == "",
+        )
+        check(
+            "a failed evidence load says what happened",
+            "Filters restored" in page.locator("#evidence-notice").inner_text(),
+        )
+        page.unroute("**/api/evidence**")
+        injecting[0] = False
+
+        # 13. The page survives a reload.
         page.reload(wait_until="networkidle")
         page.wait_for_selector("#edit-list li")
         check("reload restores the first mechanism", page.locator("#edit-list li").count() == 9)
