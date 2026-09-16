@@ -31,7 +31,10 @@ const state = {
   patternRequest: 0,
   chem: null,
   chemRequest: 0,
-  lastClauses: [],
+  // The complete query a displayed result came from: its clauses, its filters
+  // and the generation that produced it. Chemistry is opened from this, never
+  // from control values that may have been edited without re-running.
+  acceptedQuery: null,
   guided: false,
   guidedDone: {},
 };
@@ -48,6 +51,29 @@ const el = (id) => document.getElementById(id);
 const esc = (v) =>
   String(v === null || v === undefined ? "" : v).replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/**
+ * Display wording for a packaged enumeration value.
+ *
+ * Presentation only: the underlying value is never rewritten, every raw field
+ * stays visible in the expert disclosures, and an unrecognised value is shown
+ * exactly as it arrived rather than guessed at.
+ */
+const PHRASE = {
+  not_detected: "Not detected",
+  no_detectable_difference: "No detectable difference",
+  measured: "Measured",
+  isotope_exchange: "Proton exchange with solvent",
+  turnover: "Turnover",
+  structure: "Reported structure comparison",
+  after_graph_confirmed: "Confirmed by the source after-graph",
+  source_arrow_only: "Source arrow only, not after-graph confirmed",
+  literature_lookup: "Literature lookup",
+  database_lookup: "Database lookup",
+  structure_view: "Structure view",
+};
+const phrase = (value) =>
+  Object.prototype.hasOwnProperty.call(PHRASE, value) ? PHRASE[value] : value;
 
 /** Render a value honestly: null/undefined becomes an explicit "unknown". */
 const val = (v) =>
@@ -393,8 +419,13 @@ function observationCard(o) {
   let chip, resultText;
   if (r.result_class === "measured") {
     chip = '<span class="chip chip-measured">published measurement</span>';
-    resultText = `<strong>${esc(r.value)} ${esc(r.unit)}</strong>, reported as
-      <em>${esc(r.reported_relation)}</em> versus
+    // Phrased for reading; the raw relation stays beside it.
+    const relation = String(r.reported_relation || "");
+    const phrased = relation === "fold_lower_than_wild_type"
+      ? `Reported ${esc(r.value)}-fold lower than WT`
+      : `${esc(r.value)} ${esc(r.unit)}, reported as ${esc(relation)}`;
+    resultText = `<strong>${phrased}</strong>
+      <code>${esc(relation)}</code> versus
       ${o.comparator_variant_id
         ? `comparator <strong>${esc(o.comparator_variant_id)}</strong>`
         : '<span class="chip chip-unresolved">no stated comparator</span>'}`;
@@ -459,7 +490,8 @@ function observationCard(o) {
       ${chip}
     </div>
     <div class="obs-result">${resultText}</div>
-    <p class="note">Endpoint kind <code>${esc(ep.kind)}</code> &middot; conditions: ${conditions}
+    <p class="note">${esc(phrase(ep.kind))} <code>${esc(ep.kind)}</code>
+      &middot; conditions: ${conditions}
       &middot; observation <code>${esc(o.observation_id)}</code></p>
     ${namesNoDeposit}
     ${floor}
@@ -660,7 +692,9 @@ function renderMechanismMeta() {
     ${esc(v.edits.length)} reviewed edits &middot;
     replay status <code>${esc(v.status)}</code>`;
 
-  el("replay-note").textContent = v.replay_semantics.note;
+  // Shortened on screen; the full statement remains in the replay disclosure.
+  el("replay-note").textContent =
+    "Symbolic replay of a published source proposal. Not a molecular trajectory.";
   el("layout-caveat").textContent =
     v.layout.semantics.note + " " + v.layout.semantics.union_bond_basis;
 
@@ -868,6 +902,13 @@ async function runPattern() {
   // otherwise that older response lands on top of the refusal message.
   const seq = ++state.patternRequest;
   const stale = () => seq !== state.patternRequest;
+  // Every attempt, valid or not, retires the displayed result and any
+  // chemistry opened from it, so a stale panel cannot sit under a new result.
+  state.acceptedQuery = null;
+  state.chem = null;
+  state.chemRequest += 1;
+  const openChem = el("chem-view");
+  if (openChem) openChem.innerHTML = "";
 
   const clauses = [];
   const invalid = [];
@@ -892,16 +933,22 @@ async function runPattern() {
   }
 
   host.innerHTML = `<p class="note">running…</p>`;
+  const mcsaId = el("pattern-mcsa").value.trim() || null;
+  const support = el("support-select").value;
   try {
     const res = await postJSON("/api/patterns", {
       clauses,
-      mcsa_id: el("pattern-mcsa").value.trim() || null,
-      support: el("support-select").value,
+      mcsa_id: mcsaId,
+      support,
     });
     if (stale()) return;
-    // Held so "View matched chemistry" re-runs the same query the results came
-    // from, rather than whatever is in the boxes at click time.
-    state.lastClauses = clauses;
+    // The exact accepted query, captured with the result it produced.
+    state.acceptedQuery = {
+      clauses,
+      mcsa_id: mcsaId,
+      support,
+      generation: seq,
+    };
     renderPatternResult(res);
   } catch (err) {
     if (stale()) return;
@@ -960,7 +1007,6 @@ function renderPatternResult(res) {
         named atoms. It does not mean the chemistry is absent in nature.</p>`
     : "";
 
-  state.chem = null;
   el("pattern-result").innerHTML = `
     <div class="result-head">
       <div><div class="count">${esc(res.candidate_count)}</div>
@@ -1000,7 +1046,7 @@ function renderPatternResult(res) {
  * listed as unplaced rather than drawn at a guessed position.
  */
 function drawPanel(panel, opts) {
-  const { bound, witnessAtoms, editAtoms, title } = opts;
+  const { bound, witnessAtoms, editAtoms, witnessBonds, title } = opts;
   const ids = Object.keys(panel.coordinates);
   if (!ids.length) {
     return `<div class="panel"><h4>${esc(title)}</h4>
@@ -1023,7 +1069,10 @@ function drawPanel(panel, opts) {
     const len = Math.hypot(dx, dy) || 1;
     const ox = (-dy / len) * 0.09, oy = (dx / len) * 0.09;
     const offsets = b.order >= 3 ? [-1, 0, 1] : b.order === 2 ? [-0.6, 0.6] : [0];
-    const witness = witnessAtoms.has(a1) && witnessAtoms.has(a2);
+    // A bond is a witness only when a bond edit names this exact pair. Two
+    // charge edits on connected atoms do not make the bond between them a
+    // witness, and inferring one would show an edge that never changed.
+    const witness = witnessBonds.has(bondKey([a1, a2]));
     return offsets.map((m) => `<line class="bond${witness ? " is-order" : ""}"
       x1="${p1[0] + ox * m}" y1="${fy(p1[1]) + oy * m}"
       x2="${p2[0] + ox * m}" y2="${fy(p2[1]) + oy * m}"
@@ -1061,22 +1110,34 @@ function drawPanel(panel, opts) {
 
 async function viewMatchedChemistry(candidateId, bindingIndex) {
   const host = el("chem-view");
+  const query = state.acceptedQuery;
+  if (!query) {
+    host.innerHTML = `<p class="err">These results are no longer current.
+      Run the query again before inspecting a match.</p>`;
+    return;
+  }
   host.innerHTML = `<p class="note">loading the retained panels…</p>`;
   host.scrollIntoView({ behavior: "smooth", block: "nearest" });
   const seq = ++state.chemRequest;
+  // Valid only while both this request and the result it belongs to are
+  // current: a newer search must be able to retire an in-flight inspection.
+  const stale = () =>
+    seq !== state.chemRequest ||
+    state.acceptedQuery !== query ||
+    query.generation !== state.patternRequest;
   try {
     const view = await postJSON("/api/match-chemistry", {
-      clauses: state.lastClauses,
+      clauses: query.clauses,
       candidate_id: candidateId,
       binding_index: bindingIndex,
-      mcsa_id: el("pattern-mcsa").value.trim() || null,
-      support: el("support-select").value,
+      mcsa_id: query.mcsa_id,
+      support: query.support,
     });
-    if (seq !== state.chemRequest) return;
+    if (stale()) return;
     state.chem = view;
     renderMatchedChemistry();
   } catch (err) {
-    if (seq !== state.chemRequest) return;
+    if (stale()) return;
     host.innerHTML = `<p class="err">${esc(err.message)}</p>`;
   }
 }
@@ -1088,10 +1149,43 @@ function renderMatchedChemistry() {
   Object.entries(v.assignment.atom_bindings).forEach(([k, id]) => { bound[id] = k; });
 
   const witnessAtoms = new Set();
+  const witnessBonds = new Set();
   v.clause_witnesses.forEach((w) =>
-    w.edits.forEach((e) => (e.atom_ids || []).forEach((id) => witnessAtoms.add(id))));
+    w.edits.forEach((e) => {
+      const ids = e.atom_ids || [];
+      ids.forEach((id) => witnessAtoms.add(id));
+      // Only an edit that acts on a bond contributes a witness bond.
+      if (ids.length === 2 && String(e.operation || "").includes("bond")) {
+        witnessBonds.add(bondKey(ids));
+      }
+    }));
   const editAtoms = new Set();
   v.edits.forEach((e) => (e.atom_ids || []).forEach((id) => editAtoms.add(id)));
+
+  // Edit ids are before-panel locators. The after panel is annotated through
+  // the retained correspondence, never by assuming the ids match. An atom the
+  // correspondence does not map is left unannotated rather than guessed.
+  const toAfter = new Map(
+    ((v.correspondence || {}).atom_map || [])
+      .filter((m) => m.before_atom_id && m.after_atom_id)
+      .map((m) => [m.before_atom_id, m.after_atom_id]));
+  const project = (ids) => {
+    const out = new Set();
+    ids.forEach((id) => { if (toAfter.has(id)) out.add(toAfter.get(id)); });
+    return out;
+  };
+  const afterBound = {};
+  Object.entries(bound).forEach(([id, name]) => {
+    if (toAfter.has(id)) afterBound[toAfter.get(id)] = name;
+  });
+  const afterWitnessBonds = new Set();
+  witnessBonds.forEach((key) => {
+    const [a, b] = key.split("~");
+    if (toAfter.has(a) && toAfter.has(b)) {
+      afterWitnessBonds.add(bondKey([toAfter.get(a), toAfter.get(b)]));
+    }
+  });
+  const unmappedBound = Object.keys(bound).filter((id) => !toAfter.has(id));
 
   const clauseRows = v.clause_witnesses.map((w) => {
     const c = w.clause;
@@ -1100,8 +1194,9 @@ function renderMatchedChemistry() {
       : `charge on ${c.elements[0]}:${c.variables[0]}, ${c.before} → ${c.after}`;
     const edits = w.edits.map((e) => `<code>${esc(e.edit_id)}</code> on
       ${esc((e.atom_ids || []).join(" – "))}
-      <span class="chip ${e.support === "after_graph_confirmed" ? "chip-measured" : "chip-unreviewed"}"
-        >${esc(e.support)}</span>`).join("<br>");
+      <span class="${e.support === "after_graph_confirmed"
+        ? "chip chip-confirmed" : "chip chip-unreviewed"}"
+        >${esc(phrase(e.support))}</span> <code>${esc(e.support)}</code>`).join("<br>");
     return `<tr><td>${esc(text)}</td><td>${edits}</td></tr>`;
   }).join("");
 
@@ -1124,21 +1219,33 @@ function renderMatchedChemistry() {
     <p class="caveat">${esc(v.provenance.not_a_reviewed_transformation)}</p>
     ${assignments}
     <div class="panels">
-      ${drawPanel(v.panels.before, { bound, witnessAtoms, editAtoms, title: "Before panel" })}
-      ${drawPanel(v.panels.after, { bound, witnessAtoms, editAtoms, title: "After panel" })}
+      ${drawPanel(v.panels.before, {
+        bound, witnessAtoms, editAtoms, witnessBonds, title: "Before panel" })}
+      ${drawPanel(v.panels.after, {
+        bound: afterBound,
+        witnessAtoms: project(witnessAtoms),
+        editAtoms: project(editAtoms),
+        witnessBonds: afterWitnessBonds,
+        title: "After panel" })}
     </div>
     <p class="note"><span class="swatch sw-bound"></span> atom bound to a query
       variable &middot; <span class="swatch sw-witness"></span> atom or bond in an
       edit that satisfies a clause &middot; <span class="swatch sw-edit"></span>
       atom in another proposed edit</p>
+    ${unmappedBound.length
+      ? `<p class="caveat">${esc(unmappedBound.join(", "))} has no retained
+         correspondence to the after panel and is left unmarked there.</p>` : ""}
+    <p class="note">After-panel marks are placed through the retained
+      correspondence (<code>${esc((v.correspondence || {}).method)}</code>),
+      not by matching identifier strings across panels.</p>
     <p class="caveat">${esc(v.panels.before.coordinate_semantics.note)}</p>
     <h3 class="minor">Which edits satisfy each clause</h3>
     <table class="mini"><tr><th>clause</th><th>witness edit and support</th></tr>
       ${clauseRows}</table>
     <h3 class="minor">Other proposed edits in this candidate (${esc(others.length)})</h3>
     <ul class="note">${others.map((e) =>
-      `<li>${esc(e.label)} <span class="chip ${e.after_graph_verified
-        ? "chip-measured" : "chip-unreviewed"}">${esc(e.support)}</span></li>`).join("")}</ul>
+      `<li>${esc(e.label)} <span class="${e.after_graph_verified
+        ? "chip chip-confirmed" : "chip chip-unreviewed"}">${esc(e.support)}</span></li>`).join("")}</ul>
     <details class="disclosure">
       <summary>Correspondence, coverage, opaque context and scope</summary>
       ${kv([
@@ -1187,6 +1294,31 @@ function focalVariant() {
   const bound = relation ? relation.functional_evidence.matched_observations : [];
   const ids = [...new Set(bound.map((o) => (o.variant || {}).variant_id).filter(Boolean))];
   return ids.length === 1 ? ids[0] : null;
+}
+
+/** The mechanism this case is bound to, taken from the record, never assumed. */
+function guidedMechanismId() {
+  const kase = ((state.evidence || {}).cases || [])[0] || {};
+  const fromCase = (kase.transformation_binding || {}).mcsa_id;
+  if (fromCase) return fromCase;
+  const relation = focalRelation();
+  return (((relation || {}).transformation_context || {}).binding || {}).mcsa_id || null;
+}
+
+/**
+ * Load the case's own mechanism before a step that depends on it.
+ * Returns false when it cannot be loaded, so the caller stops rather than
+ * showing one case's residue against another case's graph.
+ */
+async function guidedEnsureMechanism() {
+  const wanted = guidedMechanismId();
+  if (!wanted) return false;
+  if (state.mcsaId === wanted && state.view) return true;
+  const option = el("mechanism-select").querySelector(`[value="${wanted}"]`);
+  if (!option) return false;
+  el("mechanism-select").value = wanted;
+  await loadMechanism(wanted);
+  return state.mcsaId === wanted && Boolean(state.view);
 }
 
 const GUIDED_STEPS = [
@@ -1241,8 +1373,15 @@ function renderGuided() {
   el("guided-steps").querySelectorAll("[data-gs]").forEach((btn) =>
     btn.addEventListener("click", async () => {
       const step = GUIDED_STEPS[Number(btn.dataset.gs)];
-      await step.actions[Number(btn.dataset.ga)].run();
-      state.guidedDone[step.id] = true;
+      // Marked done only when the action reports success. An unsupported
+      // relation or a failed prerequisite load must not read as completed.
+      let ok = false;
+      try {
+        ok = (await step.actions[Number(btn.dataset.ga)].run()) === true;
+      } catch (err) {
+        guidedDetail(`<p class="err">${esc(err.message)}</p>`);
+      }
+      state.guidedDone[step.id] = ok;
       renderGuided();
     }));
 }
@@ -1256,7 +1395,7 @@ function guidedQuestion() {
   const kase = ((state.evidence || {}).cases || [])[0];
   if (!kase) {
     guidedDetail(`<p class="note">No case is loaded for the current filters.</p>`);
-    return;
+    return false;
   }
   const adj = kase.adjudication || {};
   const alternatives = (kase.alternatives || []).map((a) => `
@@ -1283,14 +1422,16 @@ function guidedQuestion() {
       ${esc(adj.statement)}</div>
     ${basis}
     <p class="note">${esc((kase.applicability || {}).scope || "")}</p>`);
+  return true;
 }
 
 async function guidedReplay(step) {
-  if (state.mcsaId !== "M0187" && el("mechanism-select").querySelector('[value="M0187"]')) {
-    el("mechanism-select").value = "M0187";
-    await loadMechanism("M0187");
+  if (!(await guidedEnsureMechanism())) {
+    guidedDetail(`<p class="err">Could not load this case's mechanism
+      (${esc(guidedMechanismId() || "unresolved")}), so the proposed step is not
+      shown. Nothing else was changed.</p>`);
+    return false;
   }
-  if (!state.view) return;
   setStep(step < 0 ? state.view.edits.length : step);
   const panel = step < 0 ? state.view.state_pair.after : state.view.state_pair.before;
   guidedDetail(`
@@ -1301,14 +1442,22 @@ async function guidedReplay(step) {
       ${esc(state.view.edits.length)} reviewed edits in this transition.</p>
     <p class="caveat">${esc(state.view.layout.semantics.note)}</p>`);
   el("graph").scrollIntoView({ behavior: "smooth", block: "center" });
+  return true;
 }
 
-function guidedResidue() {
+async function guidedResidue() {
+  // The residue belongs to this case's mechanism. Load it first, so the graph
+  // on screen and the selected relation cannot belong to different cases.
+  if (!(await guidedEnsureMechanism())) {
+    guidedDetail(`<p class="err">Could not load this case's mechanism
+      (${esc(guidedMechanismId() || "unresolved")}), so no residue was selected.</p>`);
+    return false;
+  }
   const relation = focalRelation();
   if (!relation) {
     guidedDetail(`<p class="note">The current filters return no supported
-      site relation with bound observations.</p>`);
-    return;
+      site relation with bound observations, so there is nothing to select.</p>`);
+    return false;
   }
   // Selected by its own relation id, never by position or by a written-in atom.
   state.selectedFragmentId = relation.relation_id;
@@ -1331,16 +1480,28 @@ function guidedResidue() {
     <p class="note">Deposited atom identity:
       <code>${esc((relation.deposited_atom_identity || {}).status)}</code>. The full
       relation, its witnesses and its limits are in the inspector on the right.</p>`);
+  return true;
 }
 
 async function guidedEndpoints() {
-  // The comparison is only honest if the contextual observations are actually
-  // in the result, so this clears the variant filter and re-runs the real
-  // query rather than describing rows that are not loaded.
-  const variant = focalVariant();
-  if (el("variant-select").value !== "") {
+  if (!(await guidedEnsureMechanism())) {
+    guidedDetail(`<p class="err">Could not load this case's mechanism
+      (${esc(guidedMechanismId() || "unresolved")}), so no comparison was run.</p>`);
+    return false;
+  }
+  // A complete comparison needs every observation in the result, so both
+  // filters are cleared and the real query re-run BEFORE the focal variant is
+  // derived. Deriving it first would read a variant out of a filtered result.
+  if (el("variant-select").value !== "" || el("endpoint-select").value !== "") {
     el("variant-select").value = "";
+    el("endpoint-select").value = "";
     await loadEvidence();
+  }
+  const variant = focalVariant();
+  if (!variant) {
+    guidedDetail(`<p class="note">No focal variant is bound to a supported site
+      relation in this result, so no comparison is shown. Nothing is guessed.</p>`);
+    return false;
   }
   const all = ((state.evidence || {}).observations) || [];
   const focal = all.filter((o) => (o.variant || {}).variant_id === variant);
@@ -1348,9 +1509,12 @@ async function guidedEndpoints() {
 
   const reported = (o) => {
     const r = o.result || {};
-    return r.result_class === "measured"
-      ? `${esc(r.value)} ${esc(r.unit)} (${esc(r.reported_relation)})`
-      : esc(r.result_class);
+    if (r.result_class !== "measured") {
+      return `${esc(phrase(r.result_class))} <code>${esc(r.result_class)}</code>`;
+    }
+    return String(r.reported_relation) === "fold_lower_than_wild_type"
+      ? `Reported ${esc(r.value)}-fold lower than WT <code>${esc(r.reported_relation)}</code>`
+      : `${esc(r.value)} ${esc(r.unit)} <code>${esc(r.reported_relation)}</code>`;
   };
   const row = (o) => {
     const r = o.result || {};
@@ -1360,7 +1524,7 @@ async function guidedEndpoints() {
           `${esc(c.name)} ${esc(c.value)}${c.unit ? " " + esc(c.unit) : ""}`).join(", ")
       : "not stated";
     return `<tr>
-      <td>${esc((o.endpoint || {}).kind)}</td>
+      <td>${esc(phrase((o.endpoint || {}).kind))}</td>
       <td>${esc((o.substrate || {}).enantiomer || "")} ${esc((o.substrate || {}).name || "")}</td>
       <td>${value}</td>
       <td>${o.comparator_variant_id ? esc(o.comparator_variant_id) : "none stated"}</td>
@@ -1371,7 +1535,7 @@ async function guidedEndpoints() {
   };
 
   guidedDetail(`
-    <h3>Reported endpoints for ${esc(variant || "the focal variant")}</h3>
+    <h3>Reported endpoints for ${esc(variant)}</h3>
     <table class="mini">
       <tr><th>endpoint</th><th>substrate</th><th>reported result</th>
           <th>comparator</th><th>conditions</th><th>detection limit</th></tr>
@@ -1386,7 +1550,7 @@ async function guidedEndpoints() {
         <tr><th>variant</th><th>endpoint</th><th>substrate</th><th>reported result</th><th>comparator</th></tr>
         ${contextual.map((o) => `<tr>
           <td>${esc((o.variant || {}).variant_id)}</td>
-          <td>${esc((o.endpoint || {}).kind)}</td>
+          <td>${esc(phrase((o.endpoint || {}).kind))}</td>
           <td>${esc((o.substrate || {}).enantiomer || "")} ${esc((o.substrate || {}).name || "")}</td>
           <td>${reported(o)}</td>
           <td>${o.comparator_variant_id ? esc(o.comparator_variant_id) : "none stated"}</td>
@@ -1394,6 +1558,7 @@ async function guidedEndpoints() {
       </table>
       <p class="caveat">These come from a different variant and are not matched
         controls for the focal variant.</p>` : ""}`);
+  return true;
 }
 
 
@@ -1456,14 +1621,14 @@ function inspectionRequestText() {
   return lines.join("\n");
 }
 
-function guidedStructure() {
+async function guidedStructure() {
+  if (!(await guidedResidue())) return false;
   const relation = focalRelation();
   if (!relation) {
     guidedDetail(`<p class="note">The current filters return no supported site
       relation, so there is nothing to prepare.</p>`);
-    return;
+    return false;
   }
-  guidedResidue();
   const text = inspectionRequestText();
   const ledger = state.external || {};
   guidedDetail(`
@@ -1497,6 +1662,7 @@ function guidedStructure() {
       el("copy-state").textContent = "Clipboard unavailable; the text is selected above.";
     }
   });
+  return true;
 }
 
 /* ------------------------------------------------------ init and tab wiring */

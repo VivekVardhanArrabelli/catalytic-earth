@@ -102,6 +102,103 @@ class FailureRecoveryTest(unittest.TestCase):
         self.assertIn("state.loadedFilters = { variant, endpoint };", body)
 
 
+class GuidedBindingTest(unittest.TestCase):
+    """The guide must stay on one case, and only claim steps that worked."""
+
+    def setUp(self) -> None:
+        self.js = APP.read_text(encoding="utf-8")
+
+    def test_the_guided_mechanism_comes_from_the_record(self) -> None:
+        # A written-in mechanism id would silently diverge from the case.
+        self.assertIn("function guidedMechanismId", self.js)
+        self.assertIn("transformation_binding", self.js)
+        body = self.js[self.js.index("function guidedMechanismId") :][:600]
+        self.assertNotIn('"M0187"', body)
+
+    def test_case_dependent_steps_load_the_case_first(self) -> None:
+        for step in ("guidedReplay", "guidedResidue", "guidedEndpoints"):
+            body = self.js[self.js.index(f"function {step}") :][:900]
+            self.assertIn("guidedEnsureMechanism", body, step)
+            self.assertIn("return false", body, step)
+
+    def test_the_focal_variant_is_derived_after_the_filters_settle(self) -> None:
+        body = self.js[self.js.index("function guidedEndpoints") :][:1600]
+        self.assertLess(body.index("await loadEvidence()"), body.index("focalVariant()"))
+
+    def test_the_endpoint_comparison_clears_both_filters(self) -> None:
+        body = self.js[self.js.index("function guidedEndpoints") :][:1600]
+        self.assertIn('el("variant-select").value = ""', body)
+        self.assertIn('el("endpoint-select").value = ""', body)
+
+    def test_a_step_is_marked_done_only_on_success(self) -> None:
+        body = self.js[self.js.index("GUIDED_STEPS[Number(btn.dataset.gs)]") :][:600]
+        self.assertIn("=== true", body)
+        self.assertNotIn("state.guidedDone[step.id] = true;", body)
+
+
+class AcceptedQueryTest(unittest.TestCase):
+    """Chemistry is inspected through the query its result came from."""
+
+    def setUp(self) -> None:
+        self.js = APP.read_text(encoding="utf-8")
+
+    def test_the_accepted_query_is_captured_whole(self) -> None:
+        self.assertIn("acceptedQuery", self.js)
+        self.assertNotIn("lastClauses", self.js)
+        body = self.js[self.js.index("state.acceptedQuery = {") :][:260]
+        for field in ("clauses", "mcsa_id", "support", "generation"):
+            self.assertIn(field, body)
+
+    def test_chemistry_never_reads_live_controls(self) -> None:
+        body = self.js[self.js.index("function viewMatchedChemistry") :][:1700]
+        self.assertNotIn('el("pattern-mcsa")', body)
+        self.assertNotIn('el("support-select")', body)
+        self.assertIn("query.clauses", body)
+        self.assertIn("query.mcsa_id", body)
+        self.assertIn("query.support", body)
+
+    def test_every_search_attempt_retires_open_chemistry(self) -> None:
+        body = self.js[self.js.index("function runPattern") :][:2200]
+        self.assertIn("state.acceptedQuery = null", body)
+        self.assertIn("state.chemRequest += 1", body)
+        # Before validation, so a refused attempt also retires it.
+        self.assertLess(body.index("state.acceptedQuery = null"), body.index("invalid.length"))
+
+    def test_chemistry_checks_its_parent_result_too(self) -> None:
+        body = self.js[self.js.index("function viewMatchedChemistry") :][:1700]
+        self.assertIn("state.acceptedQuery !== query", body)
+        self.assertIn("query.generation !== state.patternRequest", body)
+
+
+class PanelAnnotationTest(unittest.TestCase):
+    """Highlights must follow the record, not inferred edges or matching ids."""
+
+    def setUp(self) -> None:
+        self.js = APP.read_text(encoding="utf-8")
+
+    def test_witness_bonds_come_only_from_bond_edits(self) -> None:
+        self.assertIn("witnessBonds", self.js)
+        self.assertIn('String(e.operation || "").includes("bond")', self.js)
+        # The old test inferred an edge from two witness endpoints.
+        self.assertNotIn("witnessAtoms.has(a1) && witnessAtoms.has(a2)", self.js)
+
+    def test_the_after_panel_is_annotated_through_the_correspondence(self) -> None:
+        body = self.js[self.js.index("function renderMatchedChemistry") :][:3000]
+        self.assertIn("atom_map", body)
+        self.assertIn("afterBound", body)
+        self.assertIn("afterWitnessBonds", body)
+        self.assertIn("unmappedBound", body)
+
+    def test_an_unmapped_bound_atom_is_disclosed(self) -> None:
+        self.assertIn("no retained\n         correspondence to the after panel", self.js)
+
+    def test_source_confirmation_is_not_styled_as_a_measurement(self) -> None:
+        # chip-measured is reserved for a reported experimental value.
+        self.assertIn("chip chip-confirmed", self.js)
+        body = self.js[self.js.index("function renderMatchedChemistry") :]
+        self.assertNotIn("chip-measured", body)
+
+
 class ClauseValueTest(unittest.TestCase):
     def test_clause_values_are_parsed_exactly_not_coerced(self) -> None:
         js = APP.read_text(encoding="utf-8")

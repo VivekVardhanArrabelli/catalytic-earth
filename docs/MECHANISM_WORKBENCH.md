@@ -56,6 +56,13 @@ position. Atoms bound to the query variables are marked with their variable
 name, the edits witnessing each clause are listed with their support state, and
 the remaining proposed edits are listed separately.
 
+After-panel marks are placed through the retained correspondence, never by
+matching identifier strings across panels; a bound atom the correspondence does
+not map is left unmarked and disclosed. A bond is highlighted as a witness only
+where a bond edit names that exact pair, so two charge edits on connected atoms
+do not imply an edge that never changed. Source-graph confirmation carries its
+own label, distinct from the one reserved for a published measurement.
+
 Alternative assignments are selectable and labelled: they are different ways one
 query binds to one candidate, often through symmetry, and more assignments are
 not more evidence. The candidate is marked unreviewed throughout and explicitly
@@ -100,6 +107,10 @@ are never mixed into the computed positions.
 Stepping the edits replays a published source-depiction proposal as a symbolic
 graph edit sequence. It is not a molecular trajectory, shows no physical
 motion, and asserts no physical atom identity.
+
+Packaged enumeration values are phrased for reading at render time only. The
+underlying value is never rewritten, the raw token stays beside its reading, and
+an unrecognised value is shown exactly as it arrived.
 
 ## Claim labels
 

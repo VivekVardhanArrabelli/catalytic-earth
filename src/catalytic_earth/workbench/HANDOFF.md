@@ -248,6 +248,49 @@ Follow-up review repairs (S1-S2), both reproduced first and then fixed:
   for the deliberately injected failures and resumes afterwards, so the
   injected 500s are not mistaken for application errors.
 
+Second external review repairs (A, B, C), all reproduced first:
+  - A1 the focal variant was read before the filters were cleared, so starting
+    from K166R produced an empty focal table with H297N listed as contextual.
+    Reproduced live. Both filters are now cleared and the query awaited before
+    the focal variant is derived, and an unresolved focal variant shows nothing
+    rather than guessing.
+  - A2 the guided residue step selected the M0187 fragment while M0173 was the
+    loaded mechanism, so the graph and the selected relation belonged to
+    different cases. Reproduced live. The guide now resolves its mechanism from
+    the case's own transformation binding and loads it first; a failed load
+    stops the step.
+  - A3 a step was marked done after any fulfilled return, including early
+    returns. Steps now report success and are marked only on success.
+  - B1 chemistry inspection read the support and M-CSA controls at click time,
+    so editing them without re-running mixed old clauses with new filters.
+    Reproduced by capturing the posted request. The complete accepted query is
+    now captured with its result and used for inspection.
+  - B2 a delayed chemistry response could populate the panel under a newer
+    no-match result. Reproduced live. Every search attempt, valid or refused,
+    retires the accepted query and any open chemistry, and a response is
+    installed only while both its own request and its parent result are current.
+  - C1 a bond between two witness atoms was highlighted even when no bond edit
+    touched it. Witness bonds are now exact pairs taken from bond operations
+    only. No packaged candidate currently exhibits the spurious case, checked
+    across the catalog, so this was a latent logic defect.
+  - C2 the after panel was annotated with before-panel identifiers. Two of the
+    twelve packaged candidates have non-identity atom maps, so this was live,
+    not latent. After-panel marks now go through the retained correspondence,
+    and a bound atom with no mapping is left unmarked and disclosed. Verified
+    on M0212 steps 15-16, where bound atom a81 has no mapping: the before panel
+    marks two atoms and the after panel one.
+  - C3 source-graph confirmation reused the style reserved for a published
+    measurement. It has its own label and legend entry now.
+
+Presentation pass (single bounded pass, no redesign):
+  - The walkthrough is a compact horizontal stepper rather than a full-height
+    list, so the question, diagram and outcome stay in frame.
+  - Packaged enumeration values are phrased for reading at render time only,
+    with the raw token kept beside them in a subordinate style. No data is
+    rewritten and every raw field remains in the expert disclosures.
+  - The header states what the product does, with a visible scope note in place
+    of the implementation disclaimer.
+
 Next single implementation task:
   Nothing further is possible here without the external suite. Every plan item
   that does not depend on it is complete: both mechanisms through one renderer,

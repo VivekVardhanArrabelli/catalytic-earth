@@ -79,9 +79,12 @@ def run(
             "layout is labelled computed, not measured",
             "not experimentally measured geometry" in page.locator("#layout-caveat").inner_text(),
         )
+        replay_note = page.locator("#replay-note").inner_text().lower()
         check(
             "replay is labelled symbolic, not a trajectory",
-            "not a molecular trajectory" in page.locator("#replay-note").inner_text(),
+            "symbolic replay" in replay_note
+            and "not a molecular trajectory" in replay_note,
+            replay_note[:80],
         )
         page.screenshot(path=str(shots / "01-m0187-before.png"))
 
@@ -114,7 +117,9 @@ def run(
         check("four H297N observations", page.locator("#evidence-list .obs").count() == 4,
               str(page.locator("#evidence-list .obs").count()))
         check("racemization nondetection shown", "not detected" in evidence)
-        check("fold value shown with its unit", "3.3 fold" in evidence)
+        check("fold value is phrased for reading", "3.3-fold lower than WT" in evidence)
+        check("the raw relation stays beside it",
+              "fold_lower_than_wild_type" in evidence)
         check("fold value shown against its comparator", "WT" in evidence)
         check("reported conditions shown", "pD 7.5" in evidence)
         check("detection floor stays unknown", "unknown" in evidence)

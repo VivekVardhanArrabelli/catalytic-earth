@@ -9,8 +9,9 @@
 <body>
 <header class="topbar">
   <div class="brand">
-    <h1>Mechanism Workbench</h1>
-    <p class="sub">Local interface over the packaged Catalytic Earth atlas queries. No new scientific claim is made here.</p>
+    <h1>Catalytic Earth &mdash; Mechanism Workbench</h1>
+    <p class="sub">Search chemical changes and inspect the evidence behind enzyme mechanisms.</p>
+    <p class="scope">Published evidence; source-proposal replay; not experimental validation.</p>
   </div>
   <nav class="tabs" role="tablist">
     <button class="tab is-active" data-tab="replay" role="tab">Mechanism replay</button>
@@ -31,8 +32,7 @@
         <button id="guided-exit" class="pill">Leave guided mode</button>
       </div>
       <p class="note">Each step changes the real controls below and runs the same
-        queries. Leave at any time and keep working; filters and selections stay
-        where the walkthrough left them.</p>
+        queries. Leave at any time and keep working.</p>
       <ol id="guided-steps" class="guided-steps"></ol>
       <div id="guided-detail" class="guided-detail"></div>
     </div>
@@ -178,6 +178,7 @@
   <div class="legend">
     <strong>Reported outcome</strong>
     <span class="chip chip-measured">published measurement</span> a reported value, with its comparator and conditions &middot;
+    <span class="chip chip-confirmed">source-graph confirmed</span> an edit the source after-graph verifies, which is not an experimental result &middot;
     <span class="chip chip-nondetect">nondetection</span> the named endpoint was not detected, which is not a zero &middot;
     <span class="chip chip-nodiff">no detectable difference</span> no difference resolved at the reported limit &middot;
     <span class="chip chip-unreviewed">unreviewed</span> a catalog carrying no review status
