@@ -402,9 +402,10 @@ function observationCard(o) {
            limit, which does not establish that no difference exists.</p>`;
   }
 
+  const variantId = (o.variant || {}).variant_id;
   return `<div class="obs ${cls}">
     <div class="obs-head">
-      <span class="obs-title">${esc(ep.name || ep.kind)}${
+      <span class="obs-title">${variantId ? `<code>${esc(variantId)}</code> ` : ""}${esc(ep.name || ep.kind)}${
         sub.name ? ` &middot; ${esc(sub.enantiomer ? sub.enantiomer + "-" : "")}${esc(sub.name)}` : ""}</span>
       ${chip}
     </div>
@@ -506,11 +507,18 @@ function renderEvidence() {
 
   host.innerHTML = ev.observations.map(observationCard).join("");
 
-  const sel = el("endpoint-select");
-  const current = sel.value;
-  sel.innerHTML = `<option value="">all endpoints</option>` +
-    (state.endpointKinds || []).map((k) =>
-      `<option value="${esc(k)}"${k === current ? " selected" : ""}>${esc(k)}</option>`).join("");
+  // Selectors list exactly what the packaged evidence contains, so no part of
+  // the evidence set can be hidden by a stale hand-written list.
+  const available = ev.available || {};
+  const fill = (id, values, allLabel) => {
+    const select = el(id);
+    const current = select.value;
+    select.innerHTML = `<option value="">${allLabel}</option>` +
+      (values || []).map((v) =>
+        `<option value="${esc(v)}"${v === current ? " selected" : ""}>${esc(v)}</option>`).join("");
+  };
+  fill("endpoint-select", available.endpoint_kinds, "all endpoints");
+  fill("variant-select", available.variants, "all variants");
 
   el("abstention-strip").innerHTML = (ev.abstentions || []).length
     ? `<p class="note"><strong>${esc(ev.abstentions.length)} mandatory abstentions</strong>
@@ -522,8 +530,12 @@ function renderEvidence() {
         </details>`).join("")
     : "";
 
+  const filters = [];
+  if ((ev.filters || {}).variant) filters.push(`variant ${esc(ev.filters.variant)}`);
+  if ((ev.filters || {}).endpoint) filters.push(`endpoint ${esc(ev.filters.endpoint)}`);
   el("evidence-note").innerHTML = `
     Evidence set <code>${esc(ev.evidence_set_id)}</code> &middot;
+    ${filters.length ? `filtered by ${filters.join(" and ")}` : "no filter"} &middot;
     ${esc(ev.matched_observation_count)} matched observation(s) &middot;
     ${esc(ev.relation_counts.resolved)} of ${esc(ev.relation_counts.total)} source-fragment
     relations resolved to a site.
@@ -655,8 +667,6 @@ async function loadEvidence() {
     const ev = await getJSON(
       `/api/evidence?variant=${encodeURIComponent(variant)}&endpoint=${encodeURIComponent(endpoint)}`);
     state.evidence = ev;
-    // Keep the full endpoint list from the unfiltered query.
-    if (!endpoint) state.endpointKinds = ev.endpoint_kinds;
     renderEvidence();
     renderFragments();
     renderInspector();

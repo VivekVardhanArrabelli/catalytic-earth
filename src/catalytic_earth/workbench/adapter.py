@@ -232,6 +232,50 @@ def sites_view(mcsa_id: str) -> dict[str, Any]:
     }
 
 
+_VOCABULARY_CACHE: dict[str, list[str]] | None = None
+
+
+def _evidence_vocabulary() -> dict[str, list[str]]:
+    """List the variants and endpoint kinds present in the packaged evidence.
+
+    The selectors are built from this rather than from a hand-written list, so
+    the interface cannot silently hide part of the evidence set. The unfiltered
+    query is read directly here, so this never recurses through
+    :func:`evidence_view`.
+    """
+    global _VOCABULARY_CACHE
+    if _VOCABULARY_CACHE is None:
+        from ..atlas_mechanism_evidence import query_mechanism_evidence
+
+        unfiltered = query_mechanism_evidence(
+            verified_mechanism_evidence(),
+            atlas10_bundle=_atlas10_bundle(),
+            transformation_values={"M0187": verified_transformations("M0187")},
+        )
+        observations = [
+            observation
+            for match in unfiltered.get("matches", [])
+            for observation in match.get("matched_observations", [])
+        ]
+        _VOCABULARY_CACHE = {
+            "endpoint_kinds": sorted(
+                {
+                    str((entry.get("endpoint") or {}).get("kind"))
+                    for entry in observations
+                    if (entry.get("endpoint") or {}).get("kind")
+                }
+            ),
+            "variants": sorted(
+                {
+                    str((entry.get("variant") or {}).get("variant_id"))
+                    for entry in observations
+                    if (entry.get("variant") or {}).get("variant_id")
+                }
+            ),
+        }
+    return _VOCABULARY_CACHE
+
+
 def _fragment_relation_view(relation: dict[str, Any]) -> dict[str, Any]:
     """Reshape one source-fragment relation, keeping its resolution status."""
     fragment = relation.get("fragment", {})
@@ -299,13 +343,17 @@ def evidence_view(
 
     bundle = _atlas10_bundle()
     transformation_values = {"M0187": verified_transformations("M0187")}
-    result = query_mechanism_evidence(
-        verified_mechanism_evidence(),
-        atlas10_bundle=bundle,
-        transformation_values=transformation_values,
-        variant=variant or None,
-        endpoint=endpoint or None,
-    )
+    try:
+        result = query_mechanism_evidence(
+            verified_mechanism_evidence(),
+            atlas10_bundle=bundle,
+            transformation_values=transformation_values,
+            variant=variant or None,
+            endpoint=endpoint or None,
+        )
+    except ValueError as exc:
+        # A rejected filter is bad input, not a server fault.
+        raise AdapterError(str(exc)) from exc
     fragments = query_fragment_sites(
         json.loads(_resource_bytes("mechanism_evidence_data/source_fragments.json")),
         atlas10_bundle=bundle,
@@ -342,6 +390,7 @@ def evidence_view(
 
     return {
         "abstentions": abstentions,
+        "available": _evidence_vocabulary(),
         "cases": cases,
         "endpoint_kinds": sorted(
             {

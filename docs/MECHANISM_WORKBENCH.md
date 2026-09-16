@@ -91,8 +91,15 @@ Boundaries the interface is built to preserve:
   comparator and its conditions. It is not an absolute rate or an activity
   score.
 - Unknown assay details and detection floors render as unknown, never as zero.
+- The whole packaged evidence set is reachable. Both variants are offered and
+  every observation names its own variant, so a mixed list cannot be read as
+  one variant's results. The contextual variant's observations are not bound to
+  the focal site fragment, filtered or unfiltered.
 - Contextual K166 observations are shown as reference-site context, not as
-  matched H297N controls.
+  matched H297N controls. Where a source states no comparator, the interface
+  says no comparator was stated rather than implying one.
+- A rejected filter is reported as bad input with the query's own message, not
+  as a server fault with a raw exception.
 - Source-atom locators, UniProt positions, PDB author numbering and mmCIF label
   numbering are displayed as distinct systems that travel together.
 - No deposited H297N mutant-context structure exists in the packaged data; the

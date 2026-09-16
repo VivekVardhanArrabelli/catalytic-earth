@@ -195,6 +195,53 @@ class EvidenceViewTest(unittest.TestCase):
             {"isotope_exchange"},
         )
 
+    def test_whole_evidence_set_is_reachable(self) -> None:
+        # Six observations across two variants are packaged. The interface must
+        # be able to reach all of them, not just the focal variant.
+        unfiltered = evidence_view()
+        self.assertEqual(unfiltered["matched_observation_count"], 6)
+        self.assertEqual(
+            set(unfiltered["available"]["variants"]), {"H297N", "K166R"}
+        )
+        self.assertEqual(
+            set(unfiltered["available"]["endpoint_kinds"]),
+            {"turnover", "isotope_exchange", "structure"},
+        )
+
+    def test_every_observation_names_its_variant(self) -> None:
+        for observation in evidence_view()["observations"]:
+            self.assertTrue((observation.get("variant") or {}).get("variant_id"))
+
+    def test_contextual_variant_is_not_bound_to_the_focal_site(self) -> None:
+        # K166R is contextual evidence from another publication, not a matched
+        # H297N control. It must not attach to the His297 fragment, filtered or
+        # unfiltered.
+        for variant in (None, "H297N", "K166R"):
+            relations = {
+                entry["source_atom_id"]: entry
+                for entry in evidence_view(variant)["relations"]
+            }
+            bound = relations["a58"]["functional_evidence"]["matched_observations"]
+            self.assertTrue(
+                all(o["variant"]["variant_id"] == "H297N" for o in bound),
+                f"non-H297N observation bound to the His297 fragment for {variant}",
+            )
+            self.assertEqual(
+                relations["a19"]["functional_evidence"]["matched_observations"], []
+            )
+
+    def test_rejected_filters_are_client_errors(self) -> None:
+        # A malformed filter is bad input, not a server fault.
+        with self.assertRaises(AdapterError):
+            evidence_view("NOSUCHVARIANT")
+        with self.assertRaises(AdapterError):
+            evidence_view("H297N", "nosuchendpoint")
+
+    def test_a_valid_but_absent_variant_returns_an_empty_result(self) -> None:
+        empty = evidence_view("A1B")
+        self.assertEqual(empty["matched_observation_count"], 0)
+        self.assertEqual(empty["observations"], [])
+
     def test_fragment_relations_report_their_own_resolution(self) -> None:
         view = evidence_view("H297N")
         relations = {entry["source_atom_id"]: entry for entry in view["relations"]}

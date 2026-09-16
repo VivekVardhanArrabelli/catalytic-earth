@@ -107,6 +107,19 @@ class ApiRouteTest(ServerTestCase):
         filtered = self.get_json("/api/evidence?variant=H297N&endpoint=isotope_exchange")
         self.assertEqual(filtered["matched_observation_count"], 2)
 
+    def test_rejected_filters_return_a_client_error(self) -> None:
+        for query in ("variant=NOSUCHVARIANT", "variant=H297N&endpoint=nope"):
+            status, body, _ = self.get(f"/api/evidence?{query}")
+            self.assertEqual(status, 400, query)
+            message = json.loads(body)["error"]
+            self.assertNotIn("ValueError", message)
+            self.assertNotIn("Traceback", message)
+
+    def test_evidence_route_lists_the_available_filters(self) -> None:
+        payload = self.get_json("/api/evidence")
+        self.assertEqual(payload["matched_observation_count"], 6)
+        self.assertEqual(set(payload["available"]["variants"]), {"H297N", "K166R"})
+
     def test_external_sources_route_reports_the_ledger_as_it_stands(self) -> None:
         payload = self.get_json("/api/external-sources")
         self.assertIn("contribution_count", payload)

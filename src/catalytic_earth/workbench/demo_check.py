@@ -76,14 +76,43 @@ def run(
         check("stepping stops at the after panel", page.locator("#btn-step-fwd").is_disabled())
         page.screenshot(path=str(shots / "02-m0187-replayed.png"))
 
-        # 3. Endpoint-specific evidence.
+        # 3. The whole packaged evidence set is reachable, not just one variant.
+        check(
+            "every packaged observation is listed by default",
+            page.locator("#evidence-list .obs").count() == 6,
+            str(page.locator("#evidence-list .obs").count()),
+        )
+        check(
+            "both variants are offered",
+            page.locator("#variant-select option").count() == 3,
+            str(page.locator("#variant-select option").count()),
+        )
+        listed = page.locator("#evidence-list").inner_text()
+        check("each observation names its variant", "H297N" in listed and "K166R" in listed)
+
+        # 4. Endpoint-specific evidence for the focal variant.
+        page.select_option("#variant-select", "H297N")
+        page.wait_for_timeout(500)
         evidence = page.locator("#evidence-list").inner_text()
-        check("four H297N observations", page.locator("#evidence-list .obs").count() == 4)
+        check("four H297N observations", page.locator("#evidence-list .obs").count() == 4,
+              str(page.locator("#evidence-list .obs").count()))
         check("racemization nondetection shown", "not detected" in evidence)
         check("fold value shown with its unit", "3.3 fold" in evidence)
         check("fold value shown against its comparator", "WT" in evidence)
         check("reported conditions shown", "pD 7.5" in evidence)
         check("detection floor stays unknown", "unknown" in evidence)
+
+        # The contextual variant is reachable and is not an H297N control.
+        page.select_option("#variant-select", "K166R")
+        page.wait_for_timeout(500)
+        check("contextual variant reachable", page.locator("#evidence-list .obs").count() == 2,
+              str(page.locator("#evidence-list .obs").count()))
+        check(
+            "contextual variant is not bound to the focal site fragment",
+            "0 matched observation(s)" in page.locator("#fragment-list").inner_text(),
+        )
+        page.select_option("#variant-select", "H297N")
+        page.wait_for_timeout(500)
 
         # 4. Fragment selection exposes residue context and bound evidence.
         page.locator(".frag").first.click()
