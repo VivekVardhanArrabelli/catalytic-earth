@@ -327,7 +327,10 @@ class SavedOutputReadBackTest(unittest.TestCase):
         self.dir = Path(self._tmp.name)
         self.ledger = self.dir / "ledger.json"
         self.artifact = self.dir / "saved-output.json"
-        self.artifact.write_text('{"fixture": true}\n', encoding="utf-8")
+        # write_bytes, not write_text: these checks are about the exact bytes
+        # that were imported, and write_text would let the platform's newline
+        # translation decide them.
+        self.artifact.write_bytes(b'{"fixture": true}\n')
         self.addCleanup(self._tmp.cleanup)
         self.record = import_result(
             provider_suite="Fixture Suite",
@@ -348,6 +351,26 @@ class SavedOutputReadBackTest(unittest.TestCase):
         self.assertFalse(found["truncated"])
         self.assertIn(self.record["contribution_id"], found["recorded_in"])
 
+    def test_line_endings_are_returned_as_imported(self) -> None:
+        # A saved output is returned as the bytes that were hashed, so CRLF
+        # content stays CRLF. Normalising it here would change the file the
+        # digest identifies and would be an edit to an imported result.
+        crlf = self.dir / "saved-crlf.txt"
+        crlf.write_bytes(b"first\r\nsecond\r\n")
+        record = import_result(
+            provider_suite="Fixture Suite",
+            provider_tool="fixture.tool",
+            action="structure_view",
+            query="fixture query",
+            case_ref=MANDELATE,
+            artifacts=[crlf],
+            path=self.ledger,
+        )
+        found = registered_artifact(
+            record["result"]["artifacts"][0]["sha256"], self.ledger
+        )
+        self.assertEqual(found["text"], "first\r\nsecond\r\n")
+
     def test_only_a_registered_digest_can_be_read(self) -> None:
         with self.assertRaises(ExternalSourceError):
             registered_artifact("a" * 64, self.ledger)
@@ -359,7 +382,7 @@ class SavedOutputReadBackTest(unittest.TestCase):
                 registered_artifact(value, self.ledger)
 
     def test_a_file_that_changed_is_not_served_as_that_result(self) -> None:
-        self.artifact.write_text('{"fixture": "edited"}\n', encoding="utf-8")
+        self.artifact.write_bytes(b'{"fixture": "edited"}\n')
         found = registered_artifact(self.digest, self.ledger)
         self.assertFalse(found["available"])
         self.assertIn("no longer matches the digest", found["reason"])

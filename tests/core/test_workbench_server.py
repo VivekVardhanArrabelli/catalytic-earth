@@ -152,7 +152,9 @@ class ResultArtifactRouteTest(ServerTestCase):
         self.addCleanup(self._tmp.cleanup)
         directory = Path(self._tmp.name)
         artifact = directory / "saved-output.json"
-        artifact.write_text('{"fixture": true}\n', encoding="utf-8")
+        # Exact bytes: the route returns what was imported, and write_text
+        # would let the platform's newline translation pick them.
+        artifact.write_bytes(b'{"fixture": true}\n')
         ledger = directory / "ledger.json"
 
         previous = os.environ.get(LEDGER_PATH_ENV)
