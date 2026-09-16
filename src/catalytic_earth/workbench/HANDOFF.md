@@ -57,6 +57,16 @@ Commands/tests actually run and outcomes:
     defect on its first run, a Python None leaking into an edit label, which
     is fixed and pinned by a test.
   - Claim-label and numbering audit (September 16 plan item): see below.
+  - Base/head comparison for the three Atlas-50 errors, run in this same
+    environment as the review asked. A detached worktree at the base commit
+    312adf5b was created and the two modules were run there and at head. The
+    error sets are byte-identical: the same three test ids fail at both, all
+    raising CalledProcessError from `git ls-tree` against commit
+    375548419e7435efa2bffc89be5e32aa70864875, which is absent because this
+    checkout is shallow (65 commits, .git/shallow present). The repository's
+    own contract validator fails the same way and says so itself, asking for a
+    full-history clone. The errors are therefore attributable to the checkout,
+    not to this branch. The worktree was removed after the comparison.
   - Clean-venv wheel install re-verified after the audit: every route served
     and the full browser demonstration passed against it with no index access.
   - python scripts/run_test_tier.py --check               -> tiers valid
