@@ -451,7 +451,22 @@ def run(
               page.locator("[data-chem]").count() == 0)
         page.click("[data-tab='replay']")
 
-        # 15. The page survives a reload.
+        # 15. External results, whichever state the ledger is actually in.
+        external = page.locator("#external-list").inner_text()
+        ledger_note = page.locator("#external-note").inner_text()
+        if page.locator("#external-list .binding").count():
+            check("a returned result shows its saved artifacts",
+                  "sha256" in external.lower() and "bytes" in external.lower())
+            check("a returned result shows its association",
+                  "association with the packaged record" in external.lower())
+            check("a returned result states the separation from packaged data",
+                  "does not change, override or extend" in external.lower())
+        else:
+            check("an empty ledger says so rather than implying a call",
+                  "none recorded" in ledger_note.lower()
+                  and "not a receipt" in ledger_note.lower())
+
+        # 16. The page survives a reload.
         page.reload(wait_until="networkidle")
         page.wait_for_selector("#edit-list li")
         check("reload restores the first mechanism", page.locator("#edit-list li").count() == 9)

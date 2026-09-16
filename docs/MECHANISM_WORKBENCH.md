@@ -214,6 +214,46 @@ count. The interface badges by the recorded action, never by the subject, so a
 database lookup against a structure accession is reported as a database lookup
 and never as a structure view, and a call that returned nothing says so.
 
+## Returning a result
+
+Recording a contribution says a tool was asked to do something. Returning a
+result says what it produced. `external_results` takes the file a tool actually
+saved, ties it to the case it answers, and records it beside the packaged
+evidence.
+
+```sh
+# What a case reference resolves to. Writes nothing.
+python -m catalytic_earth.workbench.external_results --resolve-only   --case atlas10.mandelate-racemase-pputida.enolate   --provider-suite x --provider-tool x --action structure_view --query x --artifact x
+
+# Record a saved output against the case it answers.
+python -m catalytic_earth.workbench.external_results   --provider-suite "Rosalind" --provider-tool "<exact tool name>"   --action structure_view --query "<exact query sent>"   --case atlas10.mandelate-racemase-pputida.enolate   --publication paper:PMID:1909893 --site P11444:H297   --artifact ./saved/1mns-view.png   --context "pdb_id=1MNS" --context "residue=His297 (PDB author numbering)"
+```
+
+Rules the module enforces:
+
+- **An artifact must exist.** Every file is hashed and measured from disk. A
+  missing or empty file refuses the import, and a result with no saved output
+  is a request, not a result.
+- **The association is checked, not asserted.** The declared publication and
+  site are compared with what the packaged record actually carries.
+- **A mismatch is preserved.** A declared identifier the record does not carry
+  is recorded as a conflict, naming what the record does carry. It is never
+  dropped and never counted as a match.
+- **An unresolved case stays unresolved.** The result is still recorded,
+  without the association it lacks.
+- **Nothing is merged into the packaged record.** Results live in the ledger
+  and are read back from there; a test asserts the packaged query output is
+  byte-identical before and after an import.
+
+One resolver serves both packaged record families with no enzyme-specific
+branch. `atlas10.mandelate-racemase-pputida.enolate` resolves through the
+mechanism-evidence query; `tk_2020:H473N:DHB_accumulation` resolves through the
+perturbation projection. Only the identifier differs.
+
+The interface shows each returned result in full: the scientific context the
+tool reported, the saved artifacts with their type, size and hash, and the
+association table with per-field status and reasons.
+
 Two subject strings are wired into the interface: a `PDB:<id>` subject badges
 that reference structure, and a `paper:<id>` subject badges that evidence id on
 its observation. Any other subject records normally and simply does not badge.

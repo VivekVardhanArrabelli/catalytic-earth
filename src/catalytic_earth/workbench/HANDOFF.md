@@ -61,6 +61,9 @@ Commands/tests actually run and outcomes:
                                                           -> 12 tests, OK
   - python -m unittest tests.core.test_workbench_match_chemistry
                                                           -> 15 tests, OK
+  - python -m unittest tests.core.test_workbench_external_results
+                                                          -> 20 tests, OK
+  - All seven workbench modules together              -> 138 tests, OK
   - python -m catalytic_earth.workbench.demo_check --sweep -> 0 defects.
     Exhaustive presentation sweep across three viewport widths, both
     mechanisms, every selectable atom and fragment, all twelve variant and
@@ -290,6 +293,47 @@ Presentation pass (single bounded pass, no redesign):
     rewritten and every raw field remains in the expert disclosures.
   - The header states what the product does, with a visible scope note in place
     of the implementation disclaimer.
+
+External result-return path (this block):
+  - external_results.py completes the other half of the ledger. It consumes a
+    file a tool actually saved, hashes and measures it from disk, ties it to
+    the case it answers, and records it beside the packaged evidence.
+  - One resolver serves both packaged record families with no enzyme-specific
+    branch. The mandelate case resolves through the mechanism-evidence query
+    and the transketolase comparison tk_2020:H473N:DHB_accumulation through the
+    perturbation projection; only the identifier differs. Verified for both.
+  - Conflicts and unresolved matches are preserved, never accepted. A declared
+    publication or site the record does not carry is recorded as a conflict
+    naming what it does carry; an unresolved case is recorded as unresolved and
+    the result is still kept, without the association it lacks.
+  - The interface shows the returned scientific context, the saved artifacts
+    with type, size and hash, and the per-field association table with reasons,
+    not only a badge.
+  - Nothing is merged into the packaged records. A test asserts the packaged
+    query output is byte-identical before and after an import.
+
+  REPO LEDGER IS STILL EMPTY. No external suite has run, so no real output
+  exists to consume. The path was exercised with local fixtures in a temporary
+  ledger and in tests; none of it was written to work/workbench_external_sources.json.
+  The recording's external segment uses fixtures whose provider suite is named
+  "LOCAL FIXTURE (not a tool call)" so it cannot read as a Rosalind result.
+
+Reproduction, exactly as run here:
+  pip install -e .
+  python -m unittest tests.core.test_workbench_adapter \
+    tests.core.test_workbench_server tests.core.test_workbench_external_sources \
+    tests.core.test_workbench_external_results tests.core.test_workbench_labels \
+    tests.core.test_workbench_frontend_state tests.core.test_workbench_match_chemistry
+  python scripts/run_test_tier.py core/unit
+  python -m catalytic_earth.workbench --port 8766          # real, empty ledger
+  python -m catalytic_earth.workbench.demo_check --port 8766 --shots ./shots --video ./video
+  python -m catalytic_earth.workbench.demo_check --port 8766 --sweep
+  # To exercise the return path without touching the repository ledger:
+  export CATALYTIC_EARTH_WORKBENCH_LEDGER=/tmp/demo-ledger.json
+  python -m catalytic_earth.workbench.external_results \
+    --provider-suite "<suite>" --provider-tool "<tool>" --action structure_view \
+    --query "<query>" --case atlas10.mandelate-racemase-pputida.enolate \
+    --publication paper:PMID:1909893 --site P11444:H297 --artifact <saved file>
 
 Next single implementation task:
   Nothing further is possible here without the external suite. Every plan item

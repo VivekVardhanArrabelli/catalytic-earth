@@ -138,6 +138,7 @@ def record_contribution(
     note: str | None = None,
     path: Path | str | None = None,
     recorded_at: str | None = None,
+    result: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Append one external tool contribution to the ledger.
 
@@ -175,6 +176,16 @@ def record_contribution(
     }
     if note:
         record["note"] = _require_text("note", note)
+    if result is not None:
+        # The returned output and its association, recorded beside the packaged
+        # evidence. It never rewrites a packaged record.
+        if not isinstance(result, dict):
+            raise ExternalSourceError("result must be an object")
+        if not result.get("artifacts"):
+            raise ExternalSourceError("a result must reference at least one saved artifact")
+        if result.get("match_status") not in {"confirmed", "conflict", "unresolved"}:
+            raise ExternalSourceError("result match_status must be confirmed, conflict or unresolved")
+        record["result"] = result
     record["contribution_id"] = f"{suite}:{tool}:{_canonical_sha(record)[:16]}"
 
     ledger["contributions"].append(record)

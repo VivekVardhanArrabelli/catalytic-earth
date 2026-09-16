@@ -668,17 +668,78 @@ function renderExternal() {
     <div class="binding">
       <div><strong>${esc(c.provider_suite)}</strong>
         <code>${esc(c.provider_tool)}</code>
-        <span class="chip chip-external">${esc(c.action)}</span></div>
+        <span class="chip chip-external">${esc(phrase(c.action))}</span>
+        ${c.result ? matchChip(c.result.match_status) : ""}</div>
       ${kv([
         ["query", esc(c.query)],
-        ["returned", c.result_count
-          ? esc(c.retrieved.join(", "))
-          : '<span class="chip chip-unresolved">nothing returned</span>'],
         ["subject", val(c.subject)],
         ["recorded", esc(c.recorded_at)],
         ["changes a packaged claim", String(c.changes_packaged_claim)],
       ])}
+      ${c.result ? renderResult(c.result) : `<p class="note">
+        No output has been returned for this request yet.</p>`}
     </div>`).join("");
+}
+
+/** How a declared association compares with the packaged record. */
+function matchChip(status) {
+  const label = {
+    confirmed: "association confirmed",
+    conflict: "association conflict",
+    unresolved: "association unresolved",
+  }[status] || status;
+  const style = status === "confirmed" ? "chip chip-measured"
+    : status === "conflict" ? "chip chip-nondetect" : "chip chip-unresolved";
+  return `<span class="${style}">${esc(label)}</span>`;
+}
+
+/**
+ * Render one returned external result.
+ *
+ * Shows the scientific context the tool reported and the files it saved, not
+ * just that something happened. A conflict or an unresolved association is
+ * shown as such; neither is presented as a match, and none of this is merged
+ * into the packaged record beside it.
+ */
+function renderResult(result) {
+  const a = result.association || {};
+  const checks = (a.checks || []).map((c) => `
+    <tr><td>${esc(c.label)}</td>
+        <td>${esc(c.declared || "not declared")}</td>
+        <td>${matchChip(c.status)}</td>
+        <td>${esc(c.reason || "")}</td></tr>`).join("");
+
+  const context = Object.entries(result.context || {});
+  const artifacts = (result.artifacts || []).map((f) => `
+    <tr><td>${esc(f.name)}</td>
+        <td>${esc(f.media_type)}</td>
+        <td>${esc(f.bytes)} bytes</td>
+        <td><code>${esc(String(f.sha256).slice(0, 16))}…</code></td></tr>`).join("");
+
+  return `
+    <h3 class="minor">Returned scientific context</h3>
+    ${context.length
+      ? `<table class="mini"><tr><th>field</th><th>as the tool reported it</th></tr>
+         ${context.map(([k, v]) =>
+           `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("")}</table>`
+      : `<p class="note">The output reported no structured field.</p>`}
+
+    <h3 class="minor">Saved artifacts</h3>
+    <table class="mini">
+      <tr><th>file</th><th>type</th><th>size</th><th>sha256</th></tr>${artifacts}
+    </table>
+
+    <h3 class="minor">Association with the packaged record</h3>
+    <p class="note">Case <code>${esc(a.case_ref)}</code>
+      ${a.case_resolved
+        ? `resolved as <code>${esc(a.case_kind)}</code>`
+        : '<span class="chip chip-unresolved">not resolved</span>'}.
+      ${a.packaged_question ? esc(String(a.packaged_question).slice(0, 220)) : ""}</p>
+    <table class="mini">
+      <tr><th>field</th><th>declared</th><th>status</th><th>reason</th></tr>${checks}
+    </table>
+    <p class="caveat">${esc((result.semantics || {}).separation || "")}
+      ${esc((result.semantics || {}).conflicts || "")}</p>`;
 }
 
 /* ------------------------------------------------------------ mechanism UI */
