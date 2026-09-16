@@ -45,11 +45,16 @@ Commands/tests actually run and outcomes:
   - python -m unittest tests.core.test_workbench_server   -> 13 tests, OK
   - python -m unittest tests.core.test_workbench_external_sources
                                                           -> 13 tests, OK
+  - python -m unittest tests.core.test_workbench_labels    -> 12 tests, OK
+  - Claim-label and numbering audit (September 16 plan item): see below.
+  - Clean-venv wheel install re-verified after the audit: every route served
+    and the full browser demonstration passed against it with no index access.
   - python scripts/run_test_tier.py --check               -> tiers valid
   - python scripts/run_test_tier.py core/unit             -> see the commit
     message for the result recorded at commit time.
   - python -m catalytic_earth.workbench.demo_check --port 8766 --shots ./shots
-    -> 33/33 checks passed, no console errors. This drives a real Chromium
+    -> 33/33 checks passed, no console errors. With --video, 34/34 including
+    the recording check. This drives a real Chromium
     browser against the running server and covers load, stepping, atom and
     fragment selection, evidence filtering, the second mechanism, all three
     pattern outcomes, and reload. Its screenshots are captures of the running
@@ -100,9 +105,30 @@ Known scientific or UI limitations:
     shown is a reference structure with its own declared limitation.
   - The candidate catalog is unreviewed; the UI shows that status and states
     that a match does not promote any candidate's evidence status.
-  - No recording has been made yet; only still screenshots, and they are not
-    committed (the repository carries no image artifacts and declares its
-    binary types explicitly). Regenerate them with demo_check.
+  - Screenshots and the recording are not committed: the repository carries no
+    image or video artifacts and declares its binary types explicitly.
+    Regenerate both with demo_check, using --video for the recording.
+
+September 16 audit findings, all fixed in this branch:
+  - Four claim labels were misapplied. A resolved atlas site id, an external
+    tool contribution and a reported "no detectable difference" outcome all
+    reused styles whose legend entries meant something else, and two styles
+    used in the interface had no legend entry at all. The label vocabulary is
+    now closed, split into provenance and reported outcome, and checked by a
+    test so the defect cannot recur.
+  - Two different resolutions are visible in one interface: the reference
+    structure's, and the one reported for the structural comparison. They are
+    different records and different structures. The packaged data already says
+    so in its structure-applicability abstention, but that text sat behind a
+    closed disclosure. The abstentions are now visible on the evidence panel,
+    and a structure-kind observation states that it names no deposited
+    structure.
+  - A no-difference result reused nondetection wording. The two are now worded
+    separately.
+  - Numbering was checked against the packaged queries and the documents and
+    matched exactly: M0187 a58 gives UniProt His297, 1MNS author 297, mmCIF
+    295; a19 gives Lys166, author 166, mmCIF 164; M0173 a44 gives Ser204,
+    1PQ5 author 195, mmCIF 180; a21 gives His65, author 56, mmCIF 41.
 
 Next single implementation task:
   OWNER ACTION (cannot be done from Claude Code): perform one real Rosalind

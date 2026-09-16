@@ -91,6 +91,7 @@
         </div>
       </div>
       <p class="note" id="evidence-note"></p>
+      <div id="abstention-strip" class="abstentions"></div>
       <div id="evidence-list" class="observations"></div>
       <details class="disclosure">
         <summary>Case question, adjudication, applicability and abstentions</summary>
@@ -148,10 +149,21 @@
 </main>
 
 <footer class="footer">
-  <span class="chip chip-proposal">source proposal</span> a published depiction, replayed symbolically &middot;
-  <span class="chip chip-measured">published measurement</span> a reported experimental result &middot;
-  <span class="chip chip-structure">reference structure</span> a deposited structure used for site context &middot;
-  <span class="chip chip-unresolved">unresolved</span> no supported correspondence in the packaged data
+  <div class="legend">
+    <strong>Provenance</strong>
+    <span class="chip chip-proposal">source proposal</span> a published depiction, replayed symbolically &middot;
+    <span class="chip chip-site">site mapping</span> a source and coordinate verified residue link &middot;
+    <span class="chip chip-structure">reference structure</span> a deposited structure used for site context &middot;
+    <span class="chip chip-external">external tool</span> a recorded contribution from a research suite &middot;
+    <span class="chip chip-unresolved">unresolved</span> no supported correspondence in the packaged data
+  </div>
+  <div class="legend">
+    <strong>Reported outcome</strong>
+    <span class="chip chip-measured">published measurement</span> a reported value, with its comparator and conditions &middot;
+    <span class="chip chip-nondetect">nondetection</span> the named endpoint was not detected, which is not a zero &middot;
+    <span class="chip chip-nodiff">no detectable difference</span> no difference resolved at the reported limit &middot;
+    <span class="chip chip-unreviewed">unreviewed</span> a catalog carrying no review status
+  </div>
 </footer>
 
 <script src="/app.js"></script>

@@ -64,10 +64,24 @@ motion, and asserts no physical atom identity.
 
 ## Claim labels
 
-The interface uses four short local labels, defined in its own footer:
-**source proposal**, **published measurement**, **reference structure** and
-**unresolved**. Supporting detail sits behind disclosures so the caveats stay
-available without obscuring the main interaction.
+The footer defines every label the interface uses, in two groups, because a
+statement about provenance and a statement about a reported outcome are
+different kinds of claim and must not share a style.
+
+**Provenance**: source proposal, site mapping, reference structure, external
+tool, unresolved. **Reported outcome**: published measurement, nondetection,
+no detectable difference, unreviewed.
+
+A label used with no legend entry, or one style reused for a different kind of
+claim, misreports the packaged data as surely as a wrong number would, so the
+vocabulary is closed and checked in `tests/core/test_workbench_labels.py`.
+"Source proposal" in particular labels only the replay; a site mapping, an
+external lookup and a reported outcome each carry their own label.
+
+The nine mandatory abstentions on the H297N case are shown on the evidence
+panel itself rather than behind a closed disclosure, as collapsed one-line
+entries. Deeper supporting detail stays behind disclosures so the caveats
+remain available without obscuring the main interaction.
 
 Boundaries the interface is built to preserve:
 
@@ -83,6 +97,13 @@ Boundaries the interface is built to preserve:
   numbering are displayed as distinct systems that travel together.
 - No deposited H297N mutant-context structure exists in the packaged data; the
   available reference structure is labeled as such with its own limitation.
+- Two different resolutions are visible: the reference structure's, and the
+  one reported for the structural comparison. They come from different records
+  and are not the same structure. A structure-kind observation therefore states
+  that it names no deposited structure, so its resolution is not read as
+  belonging to a reference structure shown elsewhere.
+- A nondetection and an unresolved difference are worded separately. Neither is
+  a numeric zero.
 - The candidate catalog is unreviewed. A pattern match does not promote any
   candidate's evidence status, and binding counts are variable assignments,
   not mechanism counts.
@@ -129,8 +150,20 @@ can exercise a populated ledger without writing into the real record.
 python -m unittest tests.core.test_workbench_adapter
 python -m unittest tests.core.test_workbench_server
 python -m unittest tests.core.test_workbench_external_sources
+python -m unittest tests.core.test_workbench_labels
 python scripts/run_test_tier.py core/unit
 ```
+
+An end-to-end run against a live server, including a screen recording:
+
+```sh
+python -m catalytic_earth.workbench --port 8766 &
+python -m catalytic_earth.workbench.demo_check --port 8766   --shots ./workbench-shots --video ./workbench-video
+```
+
+It needs a browser and playwright, which is not a project dependency, so it
+sits outside the test tiers. Its screenshots and recording are captures of the
+running application; no other image or video may be presented as one.
 
 The feature-local handoff is at
 [`src/catalytic_earth/workbench/HANDOFF.md`](../src/catalytic_earth/workbench/HANDOFF.md).

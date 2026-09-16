@@ -8,9 +8,10 @@ scientific boundaries survive the interface.
     python -m catalytic_earth.workbench --port 8766 &
     pip install playwright            # not a project dependency
     python -m catalytic_earth.workbench.demo_check --port 8766 --shots ./shots
+    python -m catalytic_earth.workbench.demo_check --port 8766 --video ./video
 
-Screenshots it writes are captures of the running application. Do not present
-any other image as an application screenshot.
+Screenshots and recordings it writes are captures of the running application.
+Do not present any other image or video as an application capture.
 """
 
 from __future__ import annotations
@@ -29,7 +30,9 @@ def check(name: str, condition: bool, detail: str = "") -> None:
     print(f"{status} {name}{suffix}", flush=True)
 
 
-def run(base: str, shots: Path, executable: str | None) -> int:
+def run(
+    base: str, shots: Path, executable: str | None, video: Path | None = None
+) -> int:
     from playwright.sync_api import sync_playwright
 
     shots.mkdir(parents=True, exist_ok=True)
@@ -40,7 +43,13 @@ def run(base: str, shots: Path, executable: str | None) -> int:
         if executable:
             launch["executable_path"] = executable
         browser = driver.chromium.launch(**launch)
-        page = browser.new_page(viewport={"width": 1600, "height": 1150})
+        context_options: dict[str, object] = {"viewport": {"width": 1600, "height": 1150}}
+        if video is not None:
+            video.mkdir(parents=True, exist_ok=True)
+            context_options["record_video_dir"] = str(video)
+            context_options["record_video_size"] = {"width": 1600, "height": 1150}
+        context = browser.new_context(**context_options)
+        page = context.new_page()
         page.on("console", lambda m: console_errors.append(m.text) if m.type == "error" else None)
         page.on("pageerror", lambda e: console_errors.append(str(e)))
         page.goto(base, wait_until="networkidle")
@@ -62,6 +71,7 @@ def run(base: str, shots: Path, executable: str | None) -> int:
         # 2. Stepping the replay.
         for _ in range(9):
             page.click("#btn-step-fwd")
+            page.wait_for_timeout(450 if video is not None else 0)
         check("replay steps to the final edit", "9 of 9" in page.locator("#step-readout").inner_text())
         check("stepping stops at the after panel", page.locator("#btn-step-fwd").is_disabled())
         page.screenshot(path=str(shots / "02-m0187-replayed.png"))
@@ -144,7 +154,14 @@ def run(base: str, shots: Path, executable: str | None) -> int:
         page.wait_for_selector("#edit-list li")
         check("reload restores the first mechanism", page.locator("#edit-list li").count() == 9)
 
+        context.close()
         browser.close()
+        if video is not None:
+            written = sorted(video.glob("*.webm"))
+            check("recording written", bool(written),
+                  "no video file produced")
+            for path in written:
+                print(f"recording: {path}", flush=True)
 
     check("no console errors", not console_errors, "; ".join(console_errors[:3]))
     failed = [name for name, ok in CHECKS if not ok]
@@ -160,12 +177,23 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--shots", type=Path, default=Path("workbench-shots"))
     parser.add_argument(
+        "--video",
+        type=Path,
+        default=None,
+        help="record the whole run to this directory as a .webm capture",
+    )
+    parser.add_argument(
         "--browser-executable",
         default=None,
         help="path to a Chromium build, when Playwright's own download is absent",
     )
     args = parser.parse_args(argv)
-    return run(f"http://{args.host}:{args.port}/", args.shots, args.browser_executable)
+    return run(
+        f"http://{args.host}:{args.port}/",
+        args.shots,
+        args.browser_executable,
+        args.video,
+    )
 
 
 if __name__ == "__main__":  # pragma: no cover

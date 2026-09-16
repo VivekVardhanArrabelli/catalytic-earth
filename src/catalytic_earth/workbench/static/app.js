@@ -254,7 +254,7 @@ function renderFragments() {
         ? r.residue_label.residue_label.raw_label : null;
       const obsCount = r.functional_evidence.matched_observations.length;
       const chip = resolved
-        ? `<span class="chip chip-proposal">${esc(r.site_id)}</span>`
+        ? `<span class="chip chip-site">${esc(r.site_id)}</span>`
         : `<span class="chip chip-unresolved">unresolved</span>`;
       const sel = state.selectedFragment === r ? " is-selected" : "";
       return `<button class="frag${sel}" data-frag="${i}">
@@ -273,7 +273,7 @@ function renderFragments() {
     parts.push(s.atoms.map((a) => {
       const resolved = Boolean(a.site_id);
       const chip = resolved
-        ? `<span class="chip chip-proposal">${esc(a.site_id)}</span>`
+        ? `<span class="chip chip-site">${esc(a.site_id)}</span>`
         : `<span class="chip chip-unresolved">unresolved</span>`;
       const sel = state.selectedAtom === a.source_atom_id ? " is-selected" : "";
       return `<button class="frag${sel}" data-site-atom="${esc(a.source_atom_id)}">
@@ -347,7 +347,7 @@ function observationCard(o) {
     chip = '<span class="chip chip-nondetect">nondetection</span>';
     resultText = `<strong>not detected</strong> under the reported conditions`;
   } else if (r.result_class === "no_detectable_difference") {
-    chip = '<span class="chip chip-structure">no detectable difference</span>';
+    chip = '<span class="chip chip-nodiff">no detectable difference</span>';
     resultText = `<strong>no detectable difference</strong> reported`;
   } else {
     chip = '<span class="chip chip-unresolved">unresolved</span>';
@@ -368,17 +368,32 @@ function observationCard(o) {
     let badge = "";
     if (looked && !badged.has(w.evidence_id)) {
       badged.add(w.evidence_id);
-      badge = ` <span class="chip chip-proposal">external lookup recorded</span>`;
+      badge = ` <span class="chip chip-external">external lookup recorded</span>`;
     }
     return `<div class="witness"><q>${esc(w.exact_text)}</q> &mdash; ${esc(w.evidence_id)}, ${esc(w.locator)}${badge}</div>`;
   }).join("");
 
-  // Detection floors stay unknown when the source does not state them.
-  const floor = r.result_class === "not_detected" || r.result_class === "no_detectable_difference"
-    ? `<p class="note">Detection limit: ${val(r.detection_limit)}
-         ${r.detection_limit_unit ? esc(r.detection_limit_unit) : ""}.
-         Nondetection is not a numeric zero and does not establish loss of every capability.</p>`
+  // A reported structural comparison is not a deposited structure. Say so
+  // where the packaged record names none, so a resolution reported here is not
+  // read as belonging to a reference structure shown elsewhere.
+  const namesNoDeposit = ep.kind === "structure"
+    ? `<p class="caveat">This packaged observation names no deposited structure.
+         The resolution above belongs to the reported comparison, not to any
+         reference structure shown elsewhere in this interface.</p>`
     : "";
+
+  // Detection floors stay unknown when the source does not state them, and a
+  // nondetection and an unresolved difference are not the same statement.
+  let floor = "";
+  if (r.result_class === "not_detected" || r.result_class === "no_detectable_difference") {
+    const limit = `Detection limit: ${val(r.detection_limit)}
+      ${r.detection_limit_unit ? esc(r.detection_limit_unit) : ""}.`;
+    floor = r.result_class === "not_detected"
+      ? `<p class="note">${limit} Nondetection is not a numeric zero and does not
+           establish loss of every capability.</p>`
+      : `<p class="note">${limit} No difference was resolved at the reported
+           limit, which does not establish that no difference exists.</p>`;
+  }
 
   return `<div class="obs ${cls}">
     <div class="obs-head">
@@ -389,6 +404,7 @@ function observationCard(o) {
     <div class="obs-result">${resultText}</div>
     <p class="note">Endpoint kind <code>${esc(ep.kind)}</code> &middot; conditions: ${conditions}
       &middot; observation <code>${esc(o.observation_id)}</code></p>
+    ${namesNoDeposit}
     ${floor}
     ${o.project_interpretation
       ? `<p class="obs-interp"><strong>Project reading (${esc(o.project_interpretation.status)}):</strong>
@@ -489,6 +505,16 @@ function renderEvidence() {
     (state.endpointKinds || []).map((k) =>
       `<option value="${esc(k)}"${k === current ? " selected" : ""}>${esc(k)}</option>`).join("");
 
+  el("abstention-strip").innerHTML = (ev.abstentions || []).length
+    ? `<p class="note"><strong>${esc(ev.abstentions.length)} mandatory abstentions</strong>
+         apply to these observations. They are part of the packaged record.</p>` +
+      (ev.abstentions || []).map((a) => `
+        <details class="abstention">
+          <summary>${esc(a.abstention_id || "abstention")}</summary>
+          <p class="note">${esc(a.reason || JSON.stringify(a))}</p>
+        </details>`).join("")
+    : "";
+
   el("evidence-note").innerHTML = `
     Evidence set <code>${esc(ev.evidence_set_id)}</code> &middot;
     ${esc(ev.matched_observation_count)} matched observation(s) &middot;
@@ -540,7 +566,7 @@ function renderExternal() {
     <div class="binding">
       <div><strong>${esc(c.provider_suite)}</strong>
         <code>${esc(c.provider_tool)}</code>
-        <span class="chip chip-proposal">${esc(c.action)}</span></div>
+        <span class="chip chip-external">${esc(c.action)}</span></div>
       ${kv([
         ["query", esc(c.query)],
         ["returned", c.result_count

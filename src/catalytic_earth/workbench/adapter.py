@@ -334,7 +334,14 @@ def evidence_view(
         for observation in match.get("matched_observations", []):
             observations.append(dict(observation, case_id=case.get("case_id")))
 
+    abstentions: list[dict[str, Any]] = []
+    for case in cases:
+        for entry in case.get("mandatory_abstentions", []):
+            if entry not in abstentions:
+                abstentions.append(entry)
+
     return {
+        "abstentions": abstentions,
         "cases": cases,
         "endpoint_kinds": sorted(
             {
