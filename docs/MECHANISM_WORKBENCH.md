@@ -89,11 +89,46 @@ Boundaries the interface is built to preserve:
 - An empty result means no match in the declared searched collection, not
   absence of the chemistry in nature.
 
+## External tool contributions
+
+Some workflow steps come from an external research suite rather than from the
+packaged queries: a literature lookup, a database lookup, or a structure view.
+Those are recorded in a provider-neutral ledger at
+`work/workbench_external_sources.json`, so the suite behind them can be
+swapped without touching the interface.
+
+```sh
+python -m catalytic_earth.workbench.external_sources --show
+python -m catalytic_earth.workbench.external_sources   --provider-suite "Rosalind" --provider-tool "<exact tool>"   --action literature_lookup --query "<exact query sent>"   --subject paper:PMID:1909893 --retrieved "<identifier returned>"
+```
+
+Rules the module enforces rather than leaving to convention:
+
+- The ledger starts empty and stays empty until a real call is recorded. There
+  is no seeding, example row or placeholder contribution, and the interface
+  shows an empty ledger as empty.
+- Every record names the suite and the exact tool that produced it. An
+  unattributed contribution is refused.
+- Records are marked as external tool calls. Local Python calculations are not
+  recorded here and are never presented as external tool output.
+- A contribution is context recorded alongside the packaged evidence. It never
+  changes, overrides or extends a packaged claim or review status.
+- A call that returned nothing is recorded as having returned nothing.
+
+Swapping providers keeps earlier credit intact: the active provider changes,
+but each past contribution keeps the suite that actually performed it. Record a
+contribution only from a call you actually made and whose output you hold.
+Writing up a call that did not happen would be a fabricated receipt.
+
+`CATALYTIC_EARTH_WORKBENCH_LEDGER` overrides the ledger path, so a demo or test
+can exercise a populated ledger without writing into the real record.
+
 ## Tests
 
 ```sh
 python -m unittest tests.core.test_workbench_adapter
 python -m unittest tests.core.test_workbench_server
+python -m unittest tests.core.test_workbench_external_sources
 python scripts/run_test_tier.py core/unit
 ```
 

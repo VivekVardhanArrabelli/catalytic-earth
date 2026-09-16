@@ -27,6 +27,9 @@ Working features verified:
   - Shared-atom chemical pattern query with a structured clause builder, backed
     by the existing matcher. Worked examples for the shared-atom match, the
     disjoint-atom no-match, and the symmetric-assignment case.
+  - External tool contribution panel, driven by the provider-neutral ledger.
+    Verified in both states: empty (the real ledger) and populated (a
+    throwaway ledger via the path override, never written to the repository).
 
 Exact launch command and environment:
   pip install -e .            # or install the built wheel
@@ -39,7 +42,9 @@ Commands/tests actually run and outcomes:
   - All seven documented CLI commands in docs/: ran, exit 0, outputs retained
     in the session scratchpad. Their schemas were read, not guessed.
   - python -m unittest tests.core.test_workbench_adapter  -> 21 tests, OK
-  - python -m unittest tests.core.test_workbench_server   -> 12 tests, OK
+  - python -m unittest tests.core.test_workbench_server   -> 13 tests, OK
+  - python -m unittest tests.core.test_workbench_external_sources
+                                                          -> 13 tests, OK
   - python scripts/run_test_tier.py --check               -> tiers valid
   - python scripts/run_test_tier.py core/unit             -> see the commit
     message for the result recorded at commit time.
@@ -54,10 +59,24 @@ Commands/tests actually run and outcomes:
     from the installed package with no index access.
 
 Actual Rosalind tools used and saved outputs:
-  NONE. This session ran in Claude Code, where no Rosalind suite plugins are
-  installed (the session plugin list is empty). No plugin call was made, and
-  none is simulated or described as if it had succeeded. This remains the
-  single outstanding owner action; see "Next single implementation task".
+  NONE. This session ran in Claude Code, where the session plugin list is
+  empty. A keyword search of the account plugin catalog for rosalind, protein
+  structure viewer, literature search, molecular biology and PDB structure
+  returned no entry named Rosalind at all; the connected connectors are Gmail
+  and Google Drive only. No plugin call was made, and none is simulated or
+  described as if it had succeeded.
+
+  The contribution ledger at work/workbench_external_sources.json is the seam
+  for this. It is provider-neutral and currently EMPTY, which the interface
+  states plainly. Rosalind remains mandatory for submission: a contribution
+  recorded through any other suite must be credited to that suite by name and
+  cannot be presented as Rosalind output.
+
+  An install card for the Bio Research plugin was rendered for the owner as a
+  possible interim literature/database provider. It bundles remote PubMed,
+  bioRxiv, ChEMBL and Open Targets servers. Whether its tool surface resembles
+  Rosalind is UNVERIFIED; no structure-viewing server was visible in its
+  component list, so the structure-view action may stay uncovered by it.
 
 Known scientific or UI limitations:
   - Atom positions are a COMPUTED 2D layout from graph topology. The packaged

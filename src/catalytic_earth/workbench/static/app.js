@@ -13,6 +13,7 @@ const state = {
   view: null,        // transformation_view
   sites: null,       // sites_view
   evidence: null,    // evidence_view
+  external: null,    // external_sources_view
   step: 0,           // 0 = before panel; N = all edits applied
   selectedAtom: null,
   selectedFragment: null,
@@ -358,8 +359,19 @@ function observationCard(o) {
         `${esc(c.name)} ${esc(c.value)}${c.unit ? " " + esc(c.unit) : ""}`).join(", ")
     : '<span class="chip chip-unresolved">conditions not stated</span>';
 
-  const witnesses = (o.source_witnesses || []).map((w) =>
-    `<div class="witness"><q>${esc(w.exact_text)}</q> &mdash; ${esc(w.evidence_id)}, ${esc(w.locator)}</div>`).join("");
+  const bySubject = (state.external && state.external.contributions_by_subject) || {};
+  const badged = new Set();
+  const witnesses = (o.source_witnesses || []).map((w) => {
+    // Mark an external lookup only where one was actually recorded for this
+    // evidence id, and only once per observation rather than per quotation.
+    const looked = (bySubject[w.evidence_id] || []).length;
+    let badge = "";
+    if (looked && !badged.has(w.evidence_id)) {
+      badged.add(w.evidence_id);
+      badge = ` <span class="chip chip-proposal">external lookup recorded</span>`;
+    }
+    return `<div class="witness"><q>${esc(w.exact_text)}</q> &mdash; ${esc(w.evidence_id)}, ${esc(w.locator)}${badge}</div>`;
+  }).join("");
 
   // Detection floors stay unknown when the source does not state them.
   const floor = r.result_class === "not_detected" || r.result_class === "no_detectable_difference"
@@ -502,6 +514,43 @@ function renderEvidence() {
   el("evidence-detail").innerHTML = cases + `
     <h3 class="minor">Review status of this evidence set</h3>
     ${kv(Object.entries(ev.review || {}).map(([k, v]) => [k, esc(JSON.stringify(v))]))}`;
+}
+
+/**
+ * Render the external tool contribution ledger exactly as it stands.
+ * An empty ledger is shown as empty. Nothing is invented to fill it.
+ */
+function renderExternal() {
+  const ex = state.external;
+  if (!ex) return;
+  const note = el("external-note");
+  const host = el("external-list");
+
+  if (!ex.contribution_count) {
+    note.innerHTML = `<span class="chip chip-unresolved">none recorded</span>
+      ${esc(ex.semantics.empty_means || "")}
+      Local Python calculations are not external tool output and are not listed here.`;
+    host.innerHTML = "";
+    return;
+  }
+
+  note.innerHTML = `Credited to ${esc(ex.providers_used.join(", "))}.
+    ${esc(ex.semantics.scope || "")}`;
+  host.innerHTML = ex.contributions.map((c) => `
+    <div class="binding">
+      <div><strong>${esc(c.provider_suite)}</strong>
+        <code>${esc(c.provider_tool)}</code>
+        <span class="chip chip-proposal">${esc(c.action)}</span></div>
+      ${kv([
+        ["query", esc(c.query)],
+        ["returned", c.result_count
+          ? esc(c.retrieved.join(", "))
+          : '<span class="chip chip-unresolved">nothing returned</span>'],
+        ["subject", val(c.subject)],
+        ["recorded", esc(c.recorded_at)],
+        ["changes a packaged claim", String(c.changes_packaged_claim)],
+      ])}
+    </div>`).join("");
 }
 
 /* ------------------------------------------------------------ mechanism UI */
@@ -774,6 +823,13 @@ async function init() {
 
   state.clauses = JSON.parse(JSON.stringify(PRESETS.shared));
   renderClauses();
+
+  try {
+    state.external = await getJSON("/api/external-sources");
+    renderExternal();
+  } catch (err) {
+    el("external-note").innerHTML = `<span class="err">${esc(err.message)}</span>`;
+  }
 
   const { mechanisms } = await getJSON("/api/mechanisms");
   el("mechanism-select").innerHTML = mechanisms.map((m) =>

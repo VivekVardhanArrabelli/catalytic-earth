@@ -107,6 +107,15 @@ class ApiRouteTest(ServerTestCase):
         filtered = self.get_json("/api/evidence?variant=H297N&endpoint=isotope_exchange")
         self.assertEqual(filtered["matched_observation_count"], 2)
 
+    def test_external_sources_route_reports_the_ledger_as_it_stands(self) -> None:
+        payload = self.get_json("/api/external-sources")
+        self.assertIn("contribution_count", payload)
+        self.assertEqual(len(payload["contributions"]), payload["contribution_count"])
+        self.assertIn("not a receipt", payload["semantics"]["empty_means"])
+        for record in payload["contributions"]:
+            self.assertTrue(record["provider_suite"].strip())
+            self.assertFalse(record["changes_packaged_claim"])
+
     def test_unknown_routes_and_mechanisms(self) -> None:
         status, _, _ = self.get("/api/nope")
         self.assertEqual(status, 404)

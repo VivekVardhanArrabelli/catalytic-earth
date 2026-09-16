@@ -23,6 +23,7 @@ from urllib.parse import parse_qs, urlparse
 from .adapter import (
     AdapterError,
     evidence_view,
+    external_sources_view,
     mechanism_list,
     pattern_query,
     sites_view,
@@ -87,6 +88,9 @@ class _Handler(BaseHTTPRequestHandler):
             self._serve_static(_STATIC_FILES[route])
             return
         try:
+            if route == "/api/external-sources":
+                self._send_json(external_sources_view())
+                return
             if route == "/api/mechanisms":
                 self._send_json(mechanism_list())
                 return

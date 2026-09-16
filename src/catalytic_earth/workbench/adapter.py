@@ -25,6 +25,7 @@ from ..core_cli import (
     verified_mechanism_evidence,
     verified_transformations,
 )
+from .external_sources import ExternalSourceError, ledger_view
 from .layout import compute_layout
 
 __all__ = [
@@ -32,6 +33,7 @@ __all__ = [
     "MECHANISMS",
     "evidence_view",
     "mechanism_list",
+    "external_sources_view",
     "pattern_query",
     "sites_view",
     "transformation_view",
@@ -159,6 +161,19 @@ def transformation_view(mcsa_id: str) -> dict[str, Any]:
         "transformation_id": transformation.get("transformation_id"),
         "transformation_set_id": result.get("transformation_set_id"),
     }
+
+
+def external_sources_view() -> dict[str, Any]:
+    """Return the external tool contribution ledger.
+
+    The Workbench reports this ledger exactly as it stands. An empty ledger is
+    shown as empty; it is never filled in with an example, a placeholder or an
+    assumed call.
+    """
+    try:
+        return ledger_view()
+    except ExternalSourceError as exc:
+        raise AdapterError(str(exc)) from exc
 
 
 def sites_view(mcsa_id: str) -> dict[str, Any]:
