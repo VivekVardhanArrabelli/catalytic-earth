@@ -226,7 +226,7 @@ evidence.
 python -m catalytic_earth.workbench.external_results --resolve-only   --case atlas10.mandelate-racemase-pputida.enolate   --provider-suite x --provider-tool x --action structure_view --query x --artifact x
 
 # Record a saved output against the case it answers.
-python -m catalytic_earth.workbench.external_results   --provider-suite "Rosalind" --provider-tool "<exact tool name>"   --action structure_view --query "<exact query sent>"   --case atlas10.mandelate-racemase-pputida.enolate   --publication paper:PMID:1909893 --site P11444:H297   --artifact ./saved/1mns-view.png   --context "pdb_id=1MNS" --context "residue=His297 (PDB author numbering)"
+python -m catalytic_earth.workbench.external_results   --provider-suite "Rosalind" --provider-tool "<exact tool name>"   --action structure_view --query "<exact query sent>"   --case atlas10.mandelate-racemase-pputida.enolate   --publication paper:PMID:1909893 --site P11444:H297 --structure 1MNS   --artifact ./saved/1mns-view.png   --context "residue=His297 (PDB author numbering)"
 ```
 
 Rules the module enforces:
@@ -234,11 +234,28 @@ Rules the module enforces:
 - **An artifact must exist.** Every file is hashed and measured from disk. A
   missing or empty file refuses the import, and a result with no saved output
   is a request, not a result.
-- **The association is checked, not asserted.** The declared publication and
-  site are compared with what the packaged record actually carries.
+- **The association is checked, not asserted.** The declared publication, site
+  and structure are compared with what the packaged record actually carries.
+- **A confirmation means exactly one thing.** The declared identifiers were
+  found in the case, and the ones it carries were then found together on one of
+  its relations. It is not a reading of the output's science and it does not
+  authenticate the tool that produced it.
+- **Membership is not support.** A publication drawn from one evidence relation
+  and a site drawn from another are both in the case and still do not support
+  each other; that pair is a conflict, not a match.
 - **A mismatch is preserved.** A declared identifier the record does not carry
   is recorded as a conflict, naming what the record does carry. It is never
   dropped and never counted as a match.
+- **Source roles are kept apart.** A case's publications are the sources of its
+  functional observations. The primary citation of a deposited structure is a
+  different role that these records do not enumerate, so a result scoped to a
+  structure the case carries records such a citation as separately sourced
+  external context: not confirmed, not contradicted, and never silently
+  swapped for a functional source that would match.
+- **Context is recorded, not checked.** `--context` values are kept as the tool
+  stated them and take no part in any comparison; hashing a file does not
+  establish that a string was read out of it. Declare `--publication`, `--site`
+  or `--structure` to have an identifier compared.
 - **An unresolved case stays unresolved.** The result is still recorded,
   without the association it lacks.
 - **Nothing is merged into the packaged record.** Results live in the ledger
@@ -252,7 +269,14 @@ perturbation projection. Only the identifier differs.
 
 The interface shows each returned result in full: the scientific context the
 tool reported, the saved artifacts with their type, size and hash, and the
-association table with per-field status and reasons.
+association table with per-field status and reasons. Each saved artifact opens
+from its own row. The file is read back by the digest the ledger recorded, never
+by a path the page supplies, and is shown as text rather than served as a
+document a browser would execute; one that has moved or changed since it was
+imported says so instead of being displayed as the result it no longer matches.
+Association statuses carry their own styling, because an identifier found in a
+case is not a published measurement and one the case lacks is not an
+experimental nondetection.
 
 Two subject strings are wired into the interface: a `PDB:<id>` subject badges
 that reference structure, and a `paper:<id>` subject badges that evidence id on

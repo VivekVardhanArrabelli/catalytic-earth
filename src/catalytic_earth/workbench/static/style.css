@@ -133,6 +133,14 @@ main { padding: 12px 20px 40px; max-width: 1500px; margin: 0 auto; }
 /* Source-graph confirmation is a property of the depiction, not a measurement. */
 .chip-confirmed  { color: #9fd8c8; border-color: #2f5a52; background: #142522; }
 
+/* Association status. Kept visually distinct from the measurement chips above:
+   an identifier found in a case is not a published measurement, and one the
+   case does not carry is not an experimental nondetection. */
+.chip-assoc-confirmed  { color: #a9c6ff; border-color: #35508a; background: #151d2e; }
+.chip-assoc-conflict   { color: #ffc98f; border-color: #7a5624; background: #2b2013; }
+.chip-assoc-external   { color: #c9b8e8; border-color: #4a3f6b; background: #1d1a2a; }
+.chip-assoc-unresolved { color: #a9b6c4; border-color: #3b4654; background: #1b222b; }
+
 /* Catalog review status. */
 .chip-unreviewed { color: var(--warn); border-color: #5c4a1c; background: #2a2314; }
 
@@ -254,6 +262,9 @@ main { padding: 12px 20px 40px; max-width: 1500px; margin: 0 auto; }
 .sw-edit { border-color: #6b7c90; background: #1d2732; }
 
 .err { color: var(--break); font-size: 13px; }
+.artifact-preview { border: 1px solid var(--line); border-radius: 4px; margin: 8px 0 0; padding: 8px 10px; }
+.artifact-text { background: #0f141b; border: 1px solid var(--line); border-radius: 4px; font-size: 12px; max-height: 320px; overflow: auto; padding: 8px; white-space: pre-wrap; word-break: break-word; }
+
 table.mini { border-collapse: collapse; font-size: 12.5px; margin: 6px 0; width: 100%; }
 table.mini th, table.mini td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
 table.mini th { color: var(--muted); font-weight: 500; }

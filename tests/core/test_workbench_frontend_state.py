@@ -199,6 +199,54 @@ class PanelAnnotationTest(unittest.TestCase):
         self.assertNotIn("chip-measured", body)
 
 
+class AssociationDisplayTest(unittest.TestCase):
+    """An association status is metadata, and must not be dressed as a result."""
+
+    def setUp(self) -> None:
+        self.js = APP.read_text(encoding="utf-8")
+        start = self.js.index("function matchChip")
+        self.chip = self.js[start : self.js.index("\n}", start)]
+
+    def test_association_chips_do_not_borrow_the_measurement_styles(self) -> None:
+        # An identifier match is not a published measurement and an identifier
+        # conflict is not an experimental nondetection.
+        self.assertNotIn("chip-measured", self.chip)
+        self.assertNotIn("chip-nondetect", self.chip)
+        for status in ("confirmed", "conflict", "external", "unresolved"):
+            self.assertIn(f"chip-assoc-{status}", self.chip)
+
+    def test_separately_sourced_context_has_its_own_label(self) -> None:
+        self.assertIn("external_context", self.chip)
+        self.assertIn("separately sourced context", self.chip)
+
+
+class SavedResultDisplayTest(unittest.TestCase):
+    """The saved output is openable, and is shown as text rather than run."""
+
+    def setUp(self) -> None:
+        self.js = APP.read_text(encoding="utf-8")
+
+    def test_a_saved_artifact_has_an_open_control(self) -> None:
+        self.assertIn("data-artifact=", self.js)
+        self.assertIn("data-preview-host", self.js)
+        self.assertIn("previewArtifact", self.js)
+
+    def test_the_control_is_keyed_by_digest_not_by_path(self) -> None:
+        self.assertIn("/api/result-artifact/${encodeURIComponent(sha256)}", self.js)
+        self.assertNotRegex(self.js, r"result-artifact/\$\{[^}]*\.path")
+
+    def test_imported_content_is_written_as_text_never_as_markup(self) -> None:
+        body = self.js[self.js.index("async function previewArtifact") :]
+        body = body[: body.index("\n}\n")]
+        self.assertIn("pre.textContent = file.text", body)
+        self.assertNotIn("innerHTML = file.text", body)
+        self.assertNotIn("insertAdjacentHTML", body)
+
+    def test_context_fields_are_shown_as_unverified(self) -> None:
+        self.assertIn("(result.semantics || {}).context", self.js)
+        self.assertIn("(result.semantics || {}).checked", self.js)
+
+
 class ClauseValueTest(unittest.TestCase):
     def test_clause_values_are_parsed_exactly_not_coerced(self) -> None:
         js = APP.read_text(encoding="utf-8")
