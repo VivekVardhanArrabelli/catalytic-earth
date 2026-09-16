@@ -130,11 +130,47 @@ September 16 audit findings, all fixed in this branch:
     295; a19 gives Lys166, author 166, mmCIF 164; M0173 a44 gives Ser204,
     1PQ5 author 195, mmCIF 180; a21 gives His65, author 56, mmCIF 41.
 
+Rosalind session checklist (OWNER ACTION, cannot be done from Claude Code):
+  Rosalind is an OpenAI product. The Life Sciences Research plugin runs in
+  Codex and ChatGPT; the restricted GPT-Rosalind model is a separate thing and
+  the plugins do not require it. Rosalind Workbench is reachable at
+  chatgpt.com/rosalind-workbench/ with the models already on the account.
+  Claude Code cannot reach or operate it, so the call is made there and only
+  its result is recorded here.
+
+  Do at least one of these two, whichever the plugin surface supports:
+
+  1. Structure view. Open PDB 1MNS, the reference structure for the M0187
+     His297 site context. It is inhibitor-bound and chemically modified, and
+     it is NOT an H297N mutant structure; do not let the session imply it is.
+  2. Literature lookup. Retrieve the bibliographic record for PMID 1909893,
+     the single paper behind all four H297N observations.
+
+  Capture, from the real call: the exact plugin/tool name, the exact query
+  sent, and the identifiers or values returned. Then record it here:
+
+    python -m catalytic_earth.workbench.external_sources \
+      --provider-suite "Rosalind" --provider-tool "<exact tool name>" \
+      --action structure_view --query "<exact query sent>" \
+      --subject "PDB:1MNS" --retrieved "<what came back>"
+
+    python -m catalytic_earth.workbench.external_sources \
+      --provider-suite "Rosalind" --provider-tool "<exact tool name>" \
+      --action literature_lookup --query "<exact query sent>" \
+      --subject "paper:PMID:1909893" --retrieved "<what came back>"
+
+  The subject strings above are what the interface keys on: a PDB subject
+  badges the reference structure block, a paper subject badges that evidence
+  id. Any other subject still records fine, it just will not badge.
+
+  Record only a call that actually happened and whose output is in hand.
+  Do not retrieve full text or acquire new sources as part of this; that is a
+  new source acquisition needing its own permission review, and it is not what
+  this step is for. This step adds attribution, not evidence.
+
 Next single implementation task:
-  OWNER ACTION (cannot be done from Claude Code): perform one real Rosalind
-  literature/database or structure-viewing action in the authorized desktop
-  environment, retain its actual output, and attach it to the workflow with
-  plugin attribution kept separate from local Python calculations.
+  Nothing is blocked locally. After the Rosalind contribution is recorded,
+  re-run demo_check with --video for the submission recording.
 
   Next local coding task: record the end-to-end demonstration as a short
   screen capture, using demo_check as the script for what to show.

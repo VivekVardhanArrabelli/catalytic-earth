@@ -314,11 +314,18 @@ function structureBlock(ctx) {
     <tr><td>${esc(ctx.uniprot_id)} ${esc(ctx.residue_name)}${esc(ctx.sequence_position)}</td>
         <td>${esc(m.pdb_id)} chain ${esc(m.chain_id)} author ${esc(m.author_position)}</td>
         <td>mmCIF label ${esc(m.label_position)}</td></tr>`).join("");
-  const structures = (ctx.structures || []).map((s) => `
-    <p class="note"><span class="chip chip-structure">reference structure</span>
+  // Mark a structure only where an external structure view was actually
+  // recorded against its accession.
+  const bySubject = (state.external && state.external.contributions_by_subject) || {};
+  const structures = (ctx.structures || []).map((s) => {
+    const viewed = (bySubject[`PDB:${s.pdb_id}`] || []).length
+      ? ` <span class="chip chip-external">external structure view recorded</span>`
+      : "";
+    return `<p class="note"><span class="chip chip-structure">reference structure</span>
       <strong>${esc(s.pdb_id)}</strong> ${esc(s.experimental_method)},
-      ${val(s.resolution_angstrom)} &#8491;.
-      ${esc((s.context_flags || []).join(", "))}.<br>${esc(s.limitation)}</p>`).join("");
+      ${val(s.resolution_angstrom)} &#8491;.${viewed}
+      ${esc((s.context_flags || []).join(", "))}.<br>${esc(s.limitation)}</p>`;
+  }).join("");
   return `
     <p class="note">Numbering systems are distinct and travel together:</p>
     <table class="mini">

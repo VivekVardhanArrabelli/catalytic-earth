@@ -141,6 +141,10 @@ but each past contribution keeps the suite that actually performed it. Record a
 contribution only from a call you actually made and whose output you hold.
 Writing up a call that did not happen would be a fabricated receipt.
 
+Two subject strings are wired into the interface: a `PDB:<id>` subject badges
+that reference structure, and a `paper:<id>` subject badges that evidence id on
+its observation. Any other subject records normally and simply does not badge.
+
 `CATALYTIC_EARTH_WORKBENCH_LEDGER` overrides the ledger path, so a demo or test
 can exercise a populated ledger without writing into the real record.
 
