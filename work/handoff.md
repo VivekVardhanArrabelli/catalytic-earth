@@ -1,72 +1,71 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — raw source-stereo witnesses, 2026-09-22
+## Current research handoff — internal reuse pilot, 2026-09-22
 
-- **Run and ownership:** user-authorized one-day sprint started
-  `2026-09-22T13:47:56Z`, ending `2026-09-23T13:47:56Z`. Base
-  `d972524644d1fce22f2d84abd5437116273828ed`; branch
-  `codex/raw-stereo-source-witnesses-20260922`. Four Sol/ultra threads checked
-  selection, capability, primary sources and adversarial validity. Parent owns
-  Git and the common lock. Exact timings, worker IDs, file ownership and recovery
-  state are in `.git/catalytic-earth-runs/20260922T134756Z-reuse-sprint.md`.
-- **Question and priority:** can the existing pattern matcher retrieve literal
-  covalent/charge changes when a raw stereo mark changes, without falsely
-  declaring that context preserved? This specific missing capability won over
-  a textbook strategy catalogue, already-answered case recaps, M0015/M0016
-  acquisition and stopping. The metal-proposal alternative retains occupancy,
-  protein and subclass-source conflicts; another packaged ID lookup did not win.
-- **Source result:** an explicit opt-in admits M0213 mechanism 1 Step 3→4
-  (raw W disappears from an unchanged a17–a20 single bond) and M0066 mechanism 1
-  Step 3→4 (raw H disappears from a18–a19 as its bond becomes double). Their
-  exact three- and four-clause queries each change from zero default matches to
-  one source candidate. Commands and source limits are in
-  [the pattern guide](../docs/ATLAS_CANDIDATE_PATTERNS.md).
-- **Support and scope:** M0213 retains six after-graph-confirmed edits and two
-  arrow-only a68 operations; a71 is outside the mapped transition. M0066 retains
-  eight confirmed edits and two arrow-only a58 operations. Preserve M0213's
-  uncertain lysine proton donor and M0066's D-/L-glutamate source conflict.
-  W/H differences are drawing metadata; drawing normalization can explain their
-  removal. No physical atom/proton identity, R/S, achirality, concertedness,
-  experimentally observed intermediate or complete trajectory is established.
-- **Reuse boundary:** one generic adapter and the existing matcher handle both
-  contexts. Both were exposed during development; no held-out transfer, measured
-  researcher savings or enzyme-design success is claimed. Source and adversarial
-  agent checks are internal computational review, not independent human review.
-  The added candidates remain unreviewed and have their own package identity.
-- **Preservation:** the default v1 catalog stays at 12 candidates/86 events and
-  SHA `682e6f1a6d30f5328c2efcd3c8f85d661ffb068ef5ed3e31b2aac3f7bd3726e0`.
-  The existing extractor and builder are unchanged. New wheel resources contain
-  compiled projections and attribution; repository reconstruction checks the
-  original bytes, while installed queries verify package/provenance bindings.
-- **Finite maintenance:** the new flag and release checks required renewal of
-  two shared-file bindings in the older source-fragment review and the dependent
-  reference-outcome and perturbation review pins. Complete fragment and
-  perturbation results are identical except review metadata; the accepted
-  reference scientific digest and its four outcomes are unchanged.
-  This is integration maintenance, not another scientific result or a reset of
-  the inherited marginal-work pattern.
-- **Comparison with source reading:** the two patterns now return the same
-  literal edits and support limits established by inspecting the retained source
-  panels. The atlas supplies repeatable retrieval and explicit provenance;
-  source reading still supplies the interpretation and unresolved caveats.
-  No controlled timing or researcher evaluation was performed, so these checks
-  do not establish a decision advantage over competent source use.
-- **Validation/publication:** source and adversarial review, all 872 core tests,
-  repository contracts in the clean integration worktree, and fresh-directory
-  Atlas-3/Atlas-10 wheel checks passed. The installed queries ran with network
-  connections blocked. Consult the containing PR and run receipt for required CI
-  and publication state; this handoff alone does not imply a merge.
-- **Decision/next action:** finish this PR through required CI and diff review,
-  then close the sprint with the bounded retrieval gap resolved. Revise the
-  larger plan around a concrete researcher decision and comparison with source
-  use. Further case accumulation cannot establish that benefit. No held-out
-  transfer, researcher evaluation or prospective experiment was completed in
-  this sprint. Do not bulk-admit more pairs or restart the paused hourly loop.
-- **Budgets/recovery:** zero new biological requests, response bodies or sources;
-  all cumulative allowances, protected registries, kernels and exposure history
-  remain unchanged. Preserve unrelated local files. The user-authorized sprint
-  is bounded by its deadline; historical handoffs below are not a work queue.
+- **Outcome:** revise before expansion. Two internal comparisons reached the
+  same broad decisions through Atlas and competent source-only reading.
+  Atlas preserved one material ThDP activation qualification, but used more
+  observed time in both tasks. The proposed four-week programme is not complete;
+  practical utility of the new adapter and broader scientific utility remain
+  unmeasured. Full evidence and limitations are in the
+  [evaluation brief](../docs/briefs/internal-reuse-evaluation-20260922.md).
+- **Run and ownership:** user-authorized one-day sprint began
+  `2026-09-22T13:47:56Z`, with deadline `2026-09-23T13:47:56Z`.
+  Four existing Sol/ultra threads plus the coordinator handled selection,
+  source/Atlas answers and challenges. The comparison revision is
+  `8988939104dba5015270958935f53ec5b5bf859e`; publication branch
+  `codex/internal-reuse-evaluation-20260922`. Coordinator alone owns Git.
+  Exact timing, ownership, workers and recovery are retained in
+  `.git/catalytic-earth-runs/20260922T134756Z-reuse-sprint.md`.
+- **ThDP finding:** both routes support localized activation/reset reuse between
+  M0106 mechanism 1 and M0219 mechanism 1, keeping parent mechanisms separate.
+  Atlas explicitly retains M0106's unmatched non-flow H a65 bonded to mapped
+  N a64, so activation is partial/qualified. Source-only omits that material
+  qualification but does not explicitly claim full actor-state isomorphism.
+  Reset is exact only for selected covalent actors/arrows. Row 30 remains
+  unreviewed; no whole-cycle, physical-state, geometry or homologous-role
+  transfer follows. Source-only took 540.336 s/four shell blocks; Atlas
+  771.418 s/34. Prior exposure and work patterns differ.
+- **E317Q finding:** both routes revise the synthetic uniform-inactivity label,
+  preserving substrate-specific turnover reductions, bromide-elimination
+  nondetection and distinct inhibitor-induced inactivation. Both limit the
+  structure to inhibitor-bound context. Source-only took 138.579 s/three shell
+  blocks; Atlas 192.580 s/four. No material quality or decision advantage is
+  demonstrated. Both remembered the broad answer before inspection.
+- **Comparison scope:** same questions and common retained primary packets,
+  locked answers and source references established before final-answer review.
+  These are exposed, related-model internal checks with descriptive app turn
+  timing, not causal efficiency estimates, researcher savings, held-out
+  generalization or project experiments. Preparation hours remain unknown.
+  No full-paper methods were acquired. E317Q used an existing archived abstract;
+  all witness hashes and full outputs remain in the Git-common run directory.
+- **Implementation already integrated:** [PR #124](https://github.com/VivekVardhanArrabelli/catalytic-earth/pull/124)
+  merged as `89889391` after all four required CI jobs passed. Its opt-in raw
+  stereo adapter retrieves M0213 and M0066 witnesses through one matcher, with
+  the original 12-candidate/86-event catalog unchanged. Both are development
+  contexts. All 872 core tests, contracts and offline wheel checks passed for
+  that implementation; they do not establish scientific utility.
+- **Priority correction:** neither usefulness comparison required PR #124.
+  They evaluate older capabilities and cannot validate the new adapter's
+  usefulness. We could have evaluated before implementing. This evidence does
+  not reset the marginal-work pattern or justify more case accumulation.
+- **Decision/next action:** finish review and publication of this evaluation,
+  then close this bounded sprint with a revise/stop-expansion decision and
+  remove its heartbeat. Keep the former hourly writer paused. The next
+  research action needs a consequential question where cross-context evidence
+  could alter the answer or remove substantial source-assembly work, a feasible
+  source comparison and a stopping condition. Test that proposition before code
+  or acquisition. No new human-review prerequisite is imposed on permitted
+  internal comparisons; actual human or experimental impact needs its own
+  evidence. Do not reopen the completed biology inquiries or launch more
+  convenient examples to seek a positive evaluation result.
+- **Preservation/recovery:** no new biological requests, response bodies or
+  sources; cumulative allowances, protected registries, kernels and review
+  states remain unchanged. Preserve unrelated viewer/demo files. This change
+  adds only the evaluation brief, current handoff and required generated metadata;
+  no runtime changes or new tests. Consult the containing PR and local receipt
+  for its exact review/CI/merge/lock state. Historical handoffs are not a queue.
 
 <!-- current-research-handoff:end -->
 
