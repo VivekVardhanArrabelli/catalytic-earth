@@ -126,7 +126,7 @@
     "data/atlas/study_context/nitrogenase_2016/cryoannealing_evidence.json": "794b3672e1cbc18a4e1bdf53e4c826bdb71d49ab7d671d4a1d080be9f3fad512",
     "data/atlas/study_context/nitrogenase_2016/model_context.json": "349a15522a022ec5a60166622d2205f7bf94a53054dd0905561bcf35eea61b7a",
     "data/atlas/study_context/nitrogenase_2016/cryoannealing_review.json": "4f80632f517ad99efc0515b9d79a3e7507748d9e2c027782de62ecd6700feabe",
-    "data/atlas/reference_outcomes/review.json": "c7af6a7d7b5e0c9f8a00d3cfbdfc01ee186054847b2d07e4b078d45e8909ce9d"
+    "data/atlas/reference_outcomes/review.json": "2a827586a3e7d1425f7a05f6c5be69a6523675fb914f74fa6043f5619d9e5481"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -1807,5 +1807,28 @@
       "all_prior_batches_unchanged": true,
       "source_bodies_redistributed": false
     }
+  },
+  "raw_stereo_candidate_cli_followup": {
+    "reviewed_at_utc": "2026-09-22T15:50:25Z",
+    "base_commit": "d972524644d1fce22f2d84abd5437116273828ed",
+    "prior_review_sha256": "67247ea15869da413dbdd235737d592bbe231bb980fb0f1070935eb5602af996",
+    "scope": "Renew only the reference-outcome review binding after its fragment-review metadata renewal. The complete source-resolved perturbation view and existing accepted reference scientific payload are unchanged; no perturbation evidence, interpretation or public consumer code changes.",
+    "renewed_bindings": {
+      "data/atlas/reference_outcomes/review.json": {
+        "before": "c7af6a7d7b5e0c9f8a00d3cfbdfc01ee186054847b2d07e4b078d45e8909ce9d",
+        "after": "2a827586a3e7d1425f7a05f6c5be69a6523675fb914f74fa6043f5619d9e5481"
+      }
+    },
+    "verification": {
+      "whole_projection_equal_excluding_only_review": true,
+      "scientific_projection_sha256": "701510ef5ecf51ee2b53944c692e0155534b7c990e92ee8ba1d86c35527abf8f",
+      "observations": 256,
+      "comparisons": 133,
+      "baseline_commit": "d972524644d1fce22f2d84abd5437116273828ed"
+    },
+    "independent_human_validation": false,
+    "experimental_validation": false,
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0
   }
 }

@@ -496,6 +496,10 @@ def build_parser() -> argparse.ArgumentParser:
     patterns.add_argument("--support", choices=("after_graph_confirmed", "source_arrow_only", "any"),
                           default="after_graph_confirmed", help="support required of each matching edit (default: after_graph_confirmed)")
     patterns.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0219")
+    patterns.add_argument(
+        "--include-raw-stereo-transition-candidates", action="store_true",
+        help="also query the separately checked source depictions with changed raw stereo marks; results remain unreviewed",
+    )
     patterns.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
@@ -765,6 +769,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         from .atlas_candidate_patterns import query_candidate_patterns
 
         try:
+            pattern_query = query_candidate_patterns
+            if args.include_raw_stereo_transition_candidates:
+                from .atlas_stereo_transition_candidates import _query_with_packaged_stereo_transitions
+
+                pattern_query = _query_with_packaged_stereo_transitions
             clauses = []
             for atom1, atom2, before, after in (args.bond or []):
                 e1, v1 = _pattern_atom_argument(atom1)
@@ -775,7 +784,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 element, variable = _pattern_atom_argument(atom)
                 clauses.append({"kind": "charge", "elements": [element], "variables": [variable],
                                 "before": int(before), "after": int(after)})
-            result = query_candidate_patterns(
+            result = pattern_query(
                 verified_candidate_events(), clauses=clauses, mcsa_id=args.mcsa_id, support=args.support,
             )
         except (ValueError, argparse.ArgumentTypeError) as exc:

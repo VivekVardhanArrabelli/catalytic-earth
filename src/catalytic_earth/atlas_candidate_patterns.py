@@ -258,6 +258,58 @@ def _candidate_bindings(
     return result
 
 
+def _validate_query_inputs(
+    value: dict[str, Any],
+    *,
+    clauses: list[dict[str, Any]],
+    mcsa_id: str | None = None,
+    support: str = "after_graph_confirmed",
+) -> tuple[dict[str, Any], list[dict[str, Any]], str | None]:
+    summary = validate_candidate_event_catalog(value)
+    normalized = _normalize_clauses(clauses)
+    _require(isinstance(support, str) and support in _SUPPORTS, "support filter is unsupported")
+    if mcsa_id is not None:
+        _require(isinstance(mcsa_id, str), "mcsa_id must be a string or null")
+        mcsa_id = mcsa_id.strip().upper()
+        _require(re.fullmatch(r"M[0-9]{4}", mcsa_id) is not None, "mcsa_id must be an exact M-CSA identifier")
+    return summary, normalized, mcsa_id
+
+
+def _matches_for_rows(
+    rows: list[dict[str, Any]],
+    clauses: list[dict[str, Any]],
+    support: str,
+    mcsa_id: str | None,
+    budget: _WorkBudget,
+) -> list[dict[str, Any]]:
+    matches = []
+    for row in rows:
+        if mcsa_id is not None and row["candidate"]["source_binding"]["record_id"] != mcsa_id:
+            continue
+        bindings = _candidate_bindings(row, clauses, support, budget)
+        if bindings:
+            matches.append({
+                "candidate_row": copy.deepcopy(row),
+                "bindings": bindings,
+            })
+    return matches
+
+
+def _query_semantics() -> dict[str, Any]:
+    return {
+        "clause_combination": "all_clauses_within_one_candidate",
+        "support_filter_application": "before_variable_join",
+        "variable_scope": "before_graph_source_node_identifiers",
+        "different_variables_are_injective": True,
+        "bond_endpoint_orientation": "all_element_compatible_orientations",
+        "clauses_require_one_shared_event": False,
+        "bindings_imply_physical_atom_identity": False,
+        "bindings_imply_canonical_participant_correspondence": False,
+        "shared_pattern_implies_mechanism_equivalence": False,
+        "empty_result": "no_matching_candidate_pattern_not_absence_of_chemistry",
+    }
+
+
 def query_candidate_patterns(
     value: dict[str, Any],
     *,
@@ -267,25 +319,12 @@ def query_candidate_patterns(
 ) -> dict[str, Any]:
     """Join literal event clauses through injective before-panel variables."""
 
-    summary = validate_candidate_event_catalog(value)
-    normalized = _normalize_clauses(clauses)
-    _require(isinstance(support, str) and support in _SUPPORTS, "support filter is unsupported")
-    if mcsa_id is not None:
-        _require(isinstance(mcsa_id, str), "mcsa_id must be a string or null")
-        mcsa_id = mcsa_id.strip().upper()
-        _require(re.fullmatch(r"M[0-9]{4}", mcsa_id) is not None, "mcsa_id must be an exact M-CSA identifier")
-
-    budget = _WorkBudget()
-    matches = []
-    for row in value["candidates"]:
-        if mcsa_id is not None and row["candidate"]["source_binding"]["record_id"] != mcsa_id:
-            continue
-        bindings = _candidate_bindings(row, normalized, support, budget)
-        if bindings:
-            matches.append({
-                "candidate_row": copy.deepcopy(row),
-                "bindings": bindings,
-            })
+    summary, normalized, mcsa_id = _validate_query_inputs(
+        value, clauses=clauses, mcsa_id=mcsa_id, support=support
+    )
+    matches = _matches_for_rows(
+        value["candidates"], normalized, support, mcsa_id, _WorkBudget()
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -298,18 +337,7 @@ def query_candidate_patterns(
             "mcsa_id": mcsa_id,
             "support": support,
         },
-        "query_semantics": {
-            "clause_combination": "all_clauses_within_one_candidate",
-            "support_filter_application": "before_variable_join",
-            "variable_scope": "before_graph_source_node_identifiers",
-            "different_variables_are_injective": True,
-            "bond_endpoint_orientation": "all_element_compatible_orientations",
-            "clauses_require_one_shared_event": False,
-            "bindings_imply_physical_atom_identity": False,
-            "bindings_imply_canonical_participant_correspondence": False,
-            "shared_pattern_implies_mechanism_equivalence": False,
-            "empty_result": "no_matching_candidate_pattern_not_absence_of_chemistry",
-        },
+        "query_semantics": _query_semantics(),
         "candidate_count": len(matches),
         "binding_count": sum(len(match["bindings"]) for match in matches),
         "matches": matches,

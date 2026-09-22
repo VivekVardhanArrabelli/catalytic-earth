@@ -1,55 +1,72 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — reference-review dependency closed, 2026-09-12
+## Current research handoff — raw source-stereo witnesses, 2026-09-22
 
-- **Run and ownership:** started `2026-09-12T13:06:59Z` from clean/synced main
-  `c260dec8fea131c4379deee8cc20874eabae123a`; branch
-  `codex/reference-review-reuse-20260912`. Parent owns Git and the common lock;
-  three Sol/ultra lanes reviewed selection, selected source scope and dependency.
-  Actual finish time, elapsed minutes, exact reviewed/published SHAs, CI and guarded
-  release are in `.git/catalytic-earth-runs/20260912T130659Z-50081b66-b9b9-4044-8059-c81627f752f8.json`.
-- **Scientific closure:** existing H297N/E317Q queries already supply the answer
-  and unmatched-assay limits in [the evidence guide](../docs/ATLAS_MECHANISM_EVIDENCE.md).
-  No recap was added and no severity ranking or microscopic cause is supported.
-  PR #118 / `a431bcfb` cryoannealing evidence remains source-qualified; acceptance
-  of its source boundaries does not endorse adjacent-annotation priority.
-- **Dependency result:** the E317Q consumer retains real global `project()`
-  validation, own code/spec/fragment and selected raw evidence/review pins. It
-  binds the complete unfiltered selected scientific payload before filtering.
-  The identical local review can therefore survive unrelated globally reviewed
-  growth; selected identity, outcome, assay, interpretation, context or witness
-  changes fail. No automatic acceptance renewal or exported query schema change.
-  This repairs two broad local dependency pins, not all possible maintenance.
-- **Evidence and verification:** the retained pre-cryoannealing projection
-  (prior receipt digest checked) and current global view give the same complete
-  payload `ac8d2d64ab5011d847afb3626a1d76762ef68fb0a0054b5d9c4ed272f0fb0c7b`:
-  one relation/four outcomes, two constructs, three assays, four substrates,
-  two contexts, four raw sources and one witness. Global observations254-to256
-  and models4-to5 changed. Tests use real global validation for the reviewed
-  cryoannealing replay and selected assay counterexample; additional mutations
-  cover empty-filter, evidence, review-record and output failures. Current logs
-  and exact check outcomes belong to the same Git-local receipt/board; no runtime
-  acceptance claim should be inferred from merely creating this handoff.
-- **Priority and stop:** the demonstrated repeated E317Q review churn justified
-  this finite dependency repair over the already-answered mandelate recap,
-  another nitrogenase annotation, or repeat M0064/M0970 gate checks. No stronger
-  feasible scientific decision was established. Maintenance is not science or
-  measured savings and does not reset the two marginal scientific runs. Pause
-  the hourly writer after safe publication and retire its temporary prefix.
-- **One next action:** name a consequential chemical decision/cross-case inference,
-  the missing discriminating evidence and permitted accessible source, and the
-  existing consumer it would change; compare against stopping before restarting.
-  Expected gain is a changed scientific decision or demonstrated reuse. Stop if
-  already answered, nondiscriminating or inaccessible under existing permissions.
-- **Scope/budgets:** zero new scientific requests, response bytes or witnesses;
-  every prior cumulative batch allowance and access stop carries unchanged.
-  Claims, protected registries, kernels and exposure history are untouched.
-  Related-model review is computational, not independent human or physical evidence.
-- **Publication/recovery:** the containing commit/PR and exact run receipt are
-  authoritative. Resume this branch/PR first if validation or publication is
-  unfinished; do not start another scientific task while recovery is pending.
-  Historical handoffs below remain untouched and are not an execution queue.
+- **Run and ownership:** user-authorized one-day sprint started
+  `2026-09-22T13:47:56Z`, ending `2026-09-23T13:47:56Z`. Base
+  `d972524644d1fce22f2d84abd5437116273828ed`; branch
+  `codex/raw-stereo-source-witnesses-20260922`. Four Sol/ultra threads checked
+  selection, capability, primary sources and adversarial validity. Parent owns
+  Git and the common lock. Exact timings, worker IDs, file ownership and recovery
+  state are in `.git/catalytic-earth-runs/20260922T134756Z-reuse-sprint.md`.
+- **Question and priority:** can the existing pattern matcher retrieve literal
+  covalent/charge changes when a raw stereo mark changes, without falsely
+  declaring that context preserved? This specific missing capability won over
+  a textbook strategy catalogue, already-answered case recaps, M0015/M0016
+  acquisition and stopping. The metal-proposal alternative retains occupancy,
+  protein and subclass-source conflicts; another packaged ID lookup did not win.
+- **Source result:** an explicit opt-in admits M0213 mechanism 1 Step 3→4
+  (raw W disappears from an unchanged a17–a20 single bond) and M0066 mechanism 1
+  Step 3→4 (raw H disappears from a18–a19 as its bond becomes double). Their
+  exact three- and four-clause queries each change from zero default matches to
+  one source candidate. Commands and source limits are in
+  [the pattern guide](../docs/ATLAS_CANDIDATE_PATTERNS.md).
+- **Support and scope:** M0213 retains six after-graph-confirmed edits and two
+  arrow-only a68 operations; a71 is outside the mapped transition. M0066 retains
+  eight confirmed edits and two arrow-only a58 operations. Preserve M0213's
+  uncertain lysine proton donor and M0066's D-/L-glutamate source conflict.
+  W/H differences are drawing metadata; drawing normalization can explain their
+  removal. No physical atom/proton identity, R/S, achirality, concertedness,
+  experimentally observed intermediate or complete trajectory is established.
+- **Reuse boundary:** one generic adapter and the existing matcher handle both
+  contexts. Both were exposed during development; no held-out transfer, measured
+  researcher savings or enzyme-design success is claimed. Source and adversarial
+  agent checks are internal computational review, not independent human review.
+  The added candidates remain unreviewed and have their own package identity.
+- **Preservation:** the default v1 catalog stays at 12 candidates/86 events and
+  SHA `682e6f1a6d30f5328c2efcd3c8f85d661ffb068ef5ed3e31b2aac3f7bd3726e0`.
+  The existing extractor and builder are unchanged. New wheel resources contain
+  compiled projections and attribution; repository reconstruction checks the
+  original bytes, while installed queries verify package/provenance bindings.
+- **Finite maintenance:** the new flag and release checks required renewal of
+  two shared-file bindings in the older source-fragment review and the dependent
+  reference-outcome and perturbation review pins. Complete fragment and
+  perturbation results are identical except review metadata; the accepted
+  reference scientific digest and its four outcomes are unchanged.
+  This is integration maintenance, not another scientific result or a reset of
+  the inherited marginal-work pattern.
+- **Comparison with source reading:** the two patterns now return the same
+  literal edits and support limits established by inspecting the retained source
+  panels. The atlas supplies repeatable retrieval and explicit provenance;
+  source reading still supplies the interpretation and unresolved caveats.
+  No controlled timing or researcher evaluation was performed, so these checks
+  do not establish a decision advantage over competent source use.
+- **Validation/publication:** source and adversarial review, all 872 core tests,
+  repository contracts in the clean integration worktree, and fresh-directory
+  Atlas-3/Atlas-10 wheel checks passed. The installed queries ran with network
+  connections blocked. Consult the containing PR and run receipt for required CI
+  and publication state; this handoff alone does not imply a merge.
+- **Decision/next action:** finish this PR through required CI and diff review,
+  then close the sprint with the bounded retrieval gap resolved. Revise the
+  larger plan around a concrete researcher decision and comparison with source
+  use. Further case accumulation cannot establish that benefit. No held-out
+  transfer, researcher evaluation or prospective experiment was completed in
+  this sprint. Do not bulk-admit more pairs or restart the paused hourly loop.
+- **Budgets/recovery:** zero new biological requests, response bodies or sources;
+  all cumulative allowances, protected registries, kernels and exposure history
+  remain unchanged. Preserve unrelated local files. The user-authorized sprint
+  is bounded by its deadline; historical handoffs below are not a work queue.
 
 <!-- current-research-handoff:end -->
 
