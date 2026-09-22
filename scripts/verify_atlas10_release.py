@@ -95,6 +95,8 @@ def verify_wheel(
                 "    'pattern_disjoint': command('atlas-candidate-patterns', '--bond', 'C:x', 'O:y', '2', '1', '--charge', 'C:x', '-1', '0'),\n"
                 "    'pattern_symmetric': command('atlas-candidate-patterns', '--bond', 'C:x', 'C:y', '0', '1'),\n"
                 "    'pattern_arrows': command('atlas-candidate-patterns', '--bond', 'O:x', 'H:y', '0', '1', '--support', 'source_arrow_only', '--mcsa-id', 'M0212'),\n"
+                "    'pattern_stereo_m0213': command('atlas-candidate-patterns', '--include-raw-stereo-transition-candidates', '--charge', 'C:alpha', '0', '-1', '--bond', 'N:base', 'H:h', '0', '1', '--charge', 'N:base', '0', '1'),\n"
+                "    'pattern_stereo_m0066': command('atlas-candidate-patterns', '--include-raw-stereo-transition-candidates', '--bond', 'C:alpha', 'N:imine', '1', '2', '--bond', 'N:imine', 'C:plp', '2', '1', '--bond', 'N:ring', 'C:ring_c', '2', '1', '--charge', 'N:ring', '1', '0'),\n"
                 "    'transformations': transitions,\n"
                 "    'trypsin': trypsin,\n"
                 "    'partial_panels': partial,\n"
@@ -225,6 +227,45 @@ def verify_wheel(
                            for row in pattern_arrows["matches"] for binding in row["bindings"]
                            for witness in binding["clause_witnesses"] for event in witness["events"])):
                 raise ValueError("installed pattern query lost arrow-only assignments")
+            for name, mcsa_id, expected_bindings, source_sha, support_counts in (
+                ("pattern_stereo_m0213", "M0213", {"alpha": "a17", "base": "a22", "h": "a70"},
+                 "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d",
+                 {"after_graph_confirmed": 6, "source_arrow_only": 2}),
+                ("pattern_stereo_m0066", "M0066", {"alpha": "a18", "imine": "a19", "plp": "a57", "ring": "a4", "ring_c": "a5"},
+                 "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770",
+                 {"after_graph_confirmed": 8, "source_arrow_only": 2}),
+            ):
+                result = queries[name]
+                if (result["schema_version"] != "catalytic-earth.candidate-pattern-query.opt-in-source-candidates.v1"
+                        or result["status"] != "unreviewed"
+                        or (result["matched_candidate_count"], result["binding_count"]) != (1, 1)
+                        or {"catalog_id", "catalog_sha256", "candidate_count"} & result.keys()):
+                    raise ValueError("installed opt-in query misstates its source union")
+                frozen = result["sources"]["frozen_v1_catalog"]
+                additional = result["sources"]["raw_stereo_transition_candidates"]
+                if (frozen["catalog_sha256"] != pattern["catalog_sha256"]
+                        or frozen["catalog_candidate_count"] != 12
+                        or additional["source_candidate_count"] != 2
+                        or additional["audit_independence"] != "same_model_only"
+                        or additional["independent_scientific_review"] is not False):
+                    raise ValueError("installed source witness lost frozen catalog or audit boundaries")
+                match = result["matches"][0]
+                row = match["candidate_row"]
+                candidate = row["candidate"]
+                if (match["bindings"][0]["atom_bindings"] != expected_bindings
+                        or candidate["schema_version"] != "catalytic-earth.panel-candidate.v1"
+                        or "context_preservation" in candidate
+                        or row["raw_source_binding"]["record_id"] != mcsa_id
+                        or row["raw_source_binding"]["snapshot_sha256"] != source_sha
+                        or candidate["source_binding"]["snapshot_sha256"] == source_sha
+                        or row["support_counts"] != support_counts
+                        or not row["source_context"]["mandatory_abstentions"]
+                        or candidate["scope_effect"]["physical_atom_map"] is not False
+                        or candidate["scope_effect"]["experimentally_validated"] is not False
+                        or any(event["support"] != "after_graph_confirmed"
+                               for witness in match["bindings"][0]["clause_witnesses"]
+                               for event in witness["events"])):
+                    raise ValueError("installed source witness lost source/projection identity or support")
             events = queries["candidate_events"]
             if (events["schema_version"] != "catalytic-earth.candidate-event-query.v1"
                     or events["candidate_count"] != 12

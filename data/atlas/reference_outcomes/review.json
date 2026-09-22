@@ -6,7 +6,7 @@
   "independent_human_validation": false,
   "experimental_validation": false,
   "reviewed_bindings": {
-    "data/atlas/reference_outcomes/spec.json": "eff87dafe146318f3ec20b0bb7fcc8f23021ce5538aac1be4ed24c6f1695f23b",
+    "data/atlas/reference_outcomes/spec.json": "46cda1a2fbb93814ef7b205a5624841f47197d75b23227f52bbf9ac39f23992f",
     "src/catalytic_earth/atlas_reference_outcomes.py": "3474c764787fae988d3d8334089ef4950cf1584cc40fc87965f62e9e2d0176f9",
     "scripts/query_atlas_perturbations.py": "0cd9ef82f86e79b38578d68a6880902fd9106991476d19d93f12c93cae560f23",
     "tests/core/test_atlas_reference_outcomes.py": "5853cc806c5d883fe0f32371ff7b1be6aff6a44f9071eae38b6ef5861383dd8f",
@@ -156,5 +156,32 @@
     "acceptance": "Manually accepted after exact equality of the current and retained pre-cryoannealing scientific payloads. No builder or query writes this digest. Selected changes require a new explicit local review.",
     "counterexample": "The retained pre-cryoannealing projection (digest verified against its prior receipt) and current globally validated projection yield an identical complete selected payload: observations254-to256 and models4-to5. Regression tests replay removal/reinstatement of the already-reviewed cryoannealing addition through real project() with controlled global review metadata; selected assay-context changes pass that global validation but fail local acceptance.",
     "limits": "This repairs only the two broad local projection/runtime dependencies. Existing code/spec/fragment/document pins remain; no general automatic re-review, new chemistry, scientific gain, measured time saving or independent review."
+  },
+  "raw_stereo_candidate_cli_followup": {
+    "reviewed_at_utc": "2026-09-22T15:45:24Z",
+    "base_commit": "d972524644d1fce22f2d84abd5437116273828ed",
+    "prior_review_sha256": "c7af6a7d7b5e0c9f8a00d3cfbdfc01ee186054847b2d07e4b078d45e8909ce9d",
+    "scope": "Renew the fragment-bundle byte pin and its containing spec binding after a metadata-only fragment review renewal for the opt-in raw-stereo candidate CLI. The complete selected scientific payload, reference join and four outcomes are unchanged.",
+    "renewed_bindings": {
+      "src/catalytic_earth/mechanism_evidence_data/source_fragments.json": {
+        "before": "6faecaeeebdfc7d1716b1fa8c9e647f619047a5d9ca0437efd07be1448681ae9",
+        "after": "21e535ecf9b6865820958fef4ca767b907012ddd30a28106aa6b695f0b776837"
+      },
+      "data/atlas/reference_outcomes/spec.json": {
+        "before": "eff87dafe146318f3ec20b0bb7fcc8f23021ce5538aac1be4ed24c6f1695f23b",
+        "after": "46cda1a2fbb93814ef7b205a5624841f47197d75b23227f52bbf9ac39f23992f"
+      }
+    },
+    "verification": {
+      "accepted_scientific_payload_sha256": "ac8d2d64ab5011d847afb3626a1d76762ef68fb0a0054b5d9c4ed272f0fb0c7b",
+      "existing_accepted_digest_unchanged": true,
+      "relation_count": 1,
+      "outcome_count": 4,
+      "method": "Run the unchanged _compose and _acceptance_payload against the current globally validated project() view and compare the complete digest with the existing accepted digest before renewal."
+    },
+    "independent_human_validation": false,
+    "experimental_validation": false,
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0
   }
 }

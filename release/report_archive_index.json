@@ -7,8 +7,8 @@
     "undated": 80
   },
   "current_storage_state": "Indexed and bundle-buildable. External upload remains blocked until a release destination is approved and rights checks pass.",
-  "git_index_sha256": "5a292528519c9a492f76b95f388db011748e616979ac35aa1dc8266ae1f43e72",
-  "logical_bytes": 10730128,
+  "git_index_sha256": "c6ba4c5502322336ff6382a5e2af46ea87297f73ddd1ff594624551f6aa64d42",
+  "logical_bytes": 10731244,
   "member_count": 1353,
   "members": [
     {
@@ -4045,8 +4045,8 @@
     },
     {
       "bundle_group": "undated",
-      "bytes": 2066094,
-      "git_object_id": "a700b110ae1e6ed633139d546d0c7d9b437a167a",
+      "bytes": 2067210,
+      "git_object_id": "db1020c25a8912f4ec3130188689071656654798",
       "path": "work/handoff.md"
     },
     {
@@ -8130,7 +8130,7 @@
       "path": "work/zinc_lyase_hydratase_under_cap_sourcing_current702_20260613.md"
     }
   ],
-  "membership_sha256": "289ab4dd910d627cb2e3251ff4a114639e4bff9b41e27f5a163bab0e87884be2",
+  "membership_sha256": "852340fbd1301dacf3352ea10982fa9a4aeb0a497328da8f30a5614bcfec54a5",
   "provenance": "Members are the exact Git-index blobs under work/. The deterministic ZIP is a release asset; Git history remains authoritative and is not rewritten.",
   "schema_version": "catalytic-earth.report-archive-index.v1"
 }

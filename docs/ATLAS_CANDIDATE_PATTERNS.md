@@ -1,8 +1,9 @@
 # Match changes on the same depicted atom
 
-`atlas-candidate-patterns` searches the existing twelve unreviewed candidates
-using named before-panel source atoms. Reusing a variable requires edits to
-involve the same depicted atom. It adds no source candidates or evidence tiers.
+By default, `atlas-candidate-patterns` searches the existing twelve unreviewed
+candidates using named before-panel source atoms. Reusing a variable requires
+edits to involve the same depicted atom. The default catalog and evidence tiers
+are unchanged.
 
 ```bash
 # C-C addition and a charge change on that same carbon:
@@ -25,6 +26,62 @@ and carbon charge −1→0 occur together in M0219 Step 2→3. The bond uses sou
 nodes a28–a29, while the charge changes at a10. The second pattern above rejects
 that combination because `x` must identify the same carbon in both clauses.
 The first pattern matches bond a10–a28 and the charge change at a10.
+
+## Source depictions with changed raw stereo marks
+
+An explicit opt-in also queries separately checked source depictions that the
+default context extractor excludes. For M0213 mechanism 1 Step 3→4, the raw `W`
+mark disappears from the ordered a17–a20 single bond while the source depicts
+alpha-carbon deprotonation and lysine protonation. The following pattern is
+empty by default and selects that exact source pair with the flag:
+
+```bash
+catalytic-earth atlas-candidate-patterns \
+  --include-raw-stereo-transition-candidates \
+  --charge C:alpha 0 -1 --bond N:base H:h 0 1 --charge N:base 0 1
+```
+
+Its variables bind alpha=a17, base=a22 and h=a70. These three clauses use
+after-graph-confirmed edits. The complete candidate retains six confirmed edits
+and two source-arrow-only edits: the a68 hydrogen operations cannot be promoted
+by reusing its raw source identifier. The new after-panel oxygen a71 remains
+outside the mapped transition. The source explicitly leaves the actual lysine
+proton donor uncertain and uses water for its model depiction.
+
+The same adapter also covers M0066 mechanism 1 Step 3→4. Its raw `H` mark
+disappears from a18–a19 as that bond changes from single to double during the
+depicted PLP bond-order relay. This four-clause pattern binds alpha=a18,
+imine=a19, plp=a57, ring=a4 and ring_c=a5; its shorter two-bond pattern already
+has a default match at M0066 Step 10→11.
+
+```bash
+catalytic-earth atlas-candidate-patterns \
+  --include-raw-stereo-transition-candidates \
+  --bond C:alpha N:imine 1 2 --bond N:imine C:plp 2 1 \
+  --bond N:ring C:ring_c 2 1 --charge N:ring 1 0
+```
+
+M0066 retains eight confirmed edits and two arrow-only operations involving
+unmapped H a58. Drawing normalization can explain the raw marker disappearing
+as its bond becomes double. The entry/MRV D-glutamate versus Step 1 L-glutamate
+prose conflict remains unresolved. These two cases were used during development;
+they are not a held-out test of transfer to unfamiliar mechanisms.
+
+The opt-in result identifies the frozen catalog and the additional source
+package separately. It retains the original source hashes and raw marker
+difference alongside an ordinary covalent-projection candidate with its own
+hashes. No unchanged-context status is invented. Both sources remain unreviewed;
+the separate agent checks are internal computational audits, not independent
+scientific review or experimental validation. A disappearing `W` or `H` mark
+does not establish R/S, inversion, physical achirality, proton continuity,
+concertedness or a complete mechanism trajectory.
+
+For this opt-in package, only compiled projections and attribution enter the
+wheel. Repository tests
+reconstruct them from the retained exact source snapshots; the installed query
+verifies package integrity and source-hash bindings. It does not claim to
+recompute original source bytes that are absent from the wheel. Other excluded
+source pairs remain excluded unless separately declared and checked.
 
 ## Query semantics
 

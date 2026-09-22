@@ -109,7 +109,7 @@
       "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
       "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
       "scripts/build_atlas_mechanism_evidence.py": "32037e250d0301f47c40bf7ee0c31e388ff222c14a379cb351b57b1447ae392e",
-      "scripts/verify_atlas10_release.py": "f882c8932b4bd0f3405e313a7b30a8f858148f728eb877e4773f2f1545aafc35",
+      "scripts/verify_atlas10_release.py": "f3dde802dcf37f62aebb90d076e9c27dd43a4b637e0193f6730f1752a62b392b",
       "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
       "src/catalytic_earth/atlas_context_candidates.py": "1e29dade1364eac7eda39584dbe8a8172cb286deaaf00439607d8dd069110808",
       "src/catalytic_earth/atlas_fragment_sites.py": "36eb5314c2f7346ea76883d02542779dbb6a0656048d69acf1db55c2f1e4052c",
@@ -117,7 +117,7 @@
       "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
       "src/catalytic_earth/atlas_reference_annotations.py": "0c6131ffbab788364f81c8612eed0796d3b8cd82da796ce58db753c77c5b70e2",
       "src/catalytic_earth/atlas_transformation_sites.py": "a24def0994cda248f266d5cd6f91d9d2eda930d2f136e44eebd0f16421da3fe1",
-      "src/catalytic_earth/core_cli.py": "ccfac9a99e9808d55d15cc79f346ac763e42887ff98fb70a36e3282574a37f2f",
+      "src/catalytic_earth/core_cli.py": "9216fba9d0e83e2ed44ec9db8e7275426739cf09cfe15bc2b2156971ac8cb367",
       "tests/core/test_atlas_fragment_sites.py": "9f8bff210e254c0001d6b8661f6a4b6a4fbb1e4c56a85ff7ee1f84f6bcfe667f",
       "tests/core/test_atlas_reference_annotations.py": "2db3f2389b15ca2e2cc296200affa9347459f243664a3fbb5a79cdb8f460d9af"
     },
@@ -189,6 +189,31 @@
         "status": "source_reviewed_computational"
       },
       "review_sha256": "19ffec64a79829821edc40a69f28b39215ce5ae77e74cf60517bc46fdb42e7ff"
+    },
+    "raw_stereo_candidate_cli_followup": {
+      "base_commit": "d972524644d1fce22f2d84abd5437116273828ed",
+      "computational_equivalence": {
+        "excluded_field": "top-level review metadata only",
+        "fragment_bundle_without_review_sha256": "be8d277e1b0413cc96c87ea37838aacbbbae0aec825658355dc063677d9dc121",
+        "fragment_query_without_review_sha256": "faf03ade302616b329c90bb133c6d433b4d7dafcc41048b29a50fce84aa71d4d",
+        "relation_count": 3
+      },
+      "experimental_validation": false,
+      "independent_human_validation": false,
+      "prior_review_sha256": "378380c43cfa678ae9d6aa06650ca95f56e7135f0936df6f14737c238d94064b",
+      "renewed_bindings": {
+        "scripts/verify_atlas10_release.py": {
+          "after": "f3dde802dcf37f62aebb90d076e9c27dd43a4b637e0193f6730f1752a62b392b",
+          "before": "f882c8932b4bd0f3405e313a7b30a8f858148f728eb877e4773f2f1545aafc35"
+        },
+        "src/catalytic_earth/core_cli.py": {
+          "after": "9216fba9d0e83e2ed44ec9db8e7275426739cf09cfe15bc2b2156971ac8cb367",
+          "before": "ccfac9a99e9808d55d15cc79f346ac763e42887ff98fb70a36e3282574a37f2f"
+        }
+      },
+      "review_process": "Coordinator inspected the two diffs and compared complete old and rebuilt source-fragment inputs and query outputs under the existing validators.",
+      "reviewed_at_utc": "2026-09-22T15:31:35Z",
+      "scope": "Renew only the shared CLI and installed-wheel verifier bindings for the separate opt-in raw-stereo source-candidate query. The complete existing fragment bundle and query, excluding only their top-level review metadata, are unchanged. No source, specification, transformation, fragment/site relation, reference annotation, observation or evidence tier changes. Preserve all earlier review metadata as historical."
     },
     "reference_outcome_integration_followup": {
       "base_commit": "bae49c34bd41dadd0c62bf13d59ad38c4e9d3df3",

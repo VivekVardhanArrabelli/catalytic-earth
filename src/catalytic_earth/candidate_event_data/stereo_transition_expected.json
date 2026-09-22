@@ -1,0 +1,11 @@
+{
+  "attribution_sha256": "2b7f40e08a591cb56fedfaa6d7c45f93a76fe0701450db3799946206953faeaf",
+  "candidate_count": 2,
+  "candidate_ids": [
+    "panel-candidate:M0066:mechanism-1:steps-3-4",
+    "panel-candidate:M0213:mechanism-1:steps-3-4"
+  ],
+  "package_id": "atlas-raw-stereo-transition-source-candidates-v1",
+  "payload_sha256": "c1c4c8200df5bc73eba4e1cde0466082cd60f60e5f6524d0777edab28bb0dd14",
+  "schema_version": "catalytic-earth.stereo-transition-source-candidate-package.v1"
+}

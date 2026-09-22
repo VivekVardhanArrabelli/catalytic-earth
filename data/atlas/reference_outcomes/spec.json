@@ -5,7 +5,7 @@
     "atlas10-mandelate": {
       "fragment_bundle": {
         "path": "src/catalytic_earth/mechanism_evidence_data/source_fragments.json",
-        "sha256": "6faecaeeebdfc7d1716b1fa8c9e647f619047a5d9ca0437efd07be1448681ae9"
+        "sha256": "21e535ecf9b6865820958fef4ca767b907012ddd30a28106aa6b695f0b776837"
       },
       "atlas_bundle": {
         "path": "src/catalytic_earth/atlas_data/atlas10_kernel.json",
