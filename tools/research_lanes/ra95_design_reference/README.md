@@ -56,6 +56,16 @@ or productive catalytic complex. See the existing
 [chemical-state evidence](../../../docs/ATLAS_RA95_CHEMICAL_STATE.md) and
 [perturbation controls](../../../docs/ATLAS_RA95_TETRAD_CONTROLS.md).
 
+The pinned consumer reads this `CONECT`: it becomes a symmetric single-bond
+feature between Lys NZ and LLK C13 during atomization. The preserved run's
+`indep_true.bond_feats[164,187]` and reverse entry are both 1; its deatomized
+representation uses the corresponding residue-level edge. Thus an explicit
+attachment would duplicate information already present in this control.
+The single-bond feature is an implementation choice, not evidence resolving
+the adduct bond order. No additional catalytic-protonation input was found.
+See the pinned [consumer](https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/aa_model.py)
+and the original TRB in the unchanged run bundle.
+
 ## Observed reference run — 2026-09-23
 
 The unchanged launcher passed `--check` and `--execute` on one NVIDIA A10
@@ -120,6 +130,12 @@ and downstream filters fixed. Copying the same nine atoms into a new file, or
 measuring their conditioned RMSD, cannot demonstrate added Atlas value.
 
 No current RA95 field supports that extra constraint. Stop this proposed
-efficacy comparison at the input audit; retain the native control for runtime
-compatibility. Advancing the design mission next needs an evidence-supported
-change to a design input, with a consequential test of that change.
+efficacy comparison at the input audit. Atom-set ablations would test generator
+sensitivity, and an invented ligand graph would introduce unsupported chemistry.
+
+This does not block a separate consumer-compatibility milestone. The
+[prepared continuation](CONTINUATION.md) uses the existing backbone for one
+ligand-aware sequence design and one protein-only Chai invocation, retaining
+all five predictions. It checks sequence handoff, fold and internal motif
+geometry. Execution is pending; compiler fidelity and Atlas efficacy remain
+separate tests. No new backbone sampling or generic adapter is needed.

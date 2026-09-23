@@ -37,9 +37,9 @@ provenance-grounded dataset that enables other researchers or models to design
 functioning catalysts is a legitimate outcome of the atlas mission.
 
 The [RA95 design reference](tools/research_lanes/ra95_design_reference/README.md)
-prepares one native RFdiffusion2 run and maps its exact input to Atlas evidence.
-Generation is pending a GPU environment; the existing nine-atom motif alone
-does not establish an additional Atlas design contribution.
+generated one 150-residue backbone with native RFdiffusion2 and maps its exact
+input to Atlas evidence. This checks runtime and input/output compatibility;
+sequence design, activity and an additional Atlas contribution remain untested.
 
 The atlas is tiered so breadth can grow quickly without implying equal truth:
 
