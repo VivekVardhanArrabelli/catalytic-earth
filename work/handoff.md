@@ -1,71 +1,55 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — internal reuse pilot, 2026-09-22
+## Current research handoff — RA95 design reference, 2026-09-23
 
-- **Outcome:** revise before expansion. Two internal comparisons reached the
-  same broad decisions through Atlas and competent source-only reading.
-  Atlas preserved one material ThDP activation qualification, but used more
-  observed time in both tasks. The proposed four-week programme is not complete;
-  practical utility of the new adapter and broader scientific utility remain
-  unmeasured. Full evidence and limitations are in the
-  [evaluation brief](../docs/briefs/internal-reuse-evaluation-20260922.md).
-- **Run and ownership:** user-authorized one-day sprint began
-  `2026-09-22T13:47:56Z`, with deadline `2026-09-23T13:47:56Z`.
-  Four existing Sol/ultra threads plus the coordinator handled selection,
-  source/Atlas answers and challenges. The comparison revision is
-  `8988939104dba5015270958935f53ec5b5bf859e`; publication branch
-  `codex/internal-reuse-evaluation-20260922`. Coordinator alone owns Git.
-  Exact timing, ownership, workers and recovery are retained in
-  `.git/catalytic-earth-runs/20260922T134756Z-reuse-sprint.md`.
-- **ThDP finding:** both routes support localized activation/reset reuse between
-  M0106 mechanism 1 and M0219 mechanism 1, keeping parent mechanisms separate.
-  Atlas explicitly retains M0106's unmatched non-flow H a65 bonded to mapped
-  N a64, so activation is partial/qualified. Source-only omits that material
-  qualification but does not explicitly claim full actor-state isomorphism.
-  Reset is exact only for selected covalent actors/arrows. Row 30 remains
-  unreviewed; no whole-cycle, physical-state, geometry or homologous-role
-  transfer follows. Source-only took 540.336 s/four shell blocks; Atlas
-  771.418 s/34. Prior exposure and work patterns differ.
-- **E317Q finding:** both routes revise the synthetic uniform-inactivity label,
-  preserving substrate-specific turnover reductions, bromide-elimination
-  nondetection and distinct inhibitor-induced inactivation. Both limit the
-  structure to inhibitor-bound context. Source-only took 138.579 s/three shell
-  blocks; Atlas 192.580 s/four. No material quality or decision advantage is
-  demonstrated. Both remembered the broad answer before inspection.
-- **Comparison scope:** same questions and common retained primary packets,
-  locked answers and source references established before final-answer review.
-  These are exposed, related-model internal checks with descriptive app turn
-  timing, not causal efficiency estimates, researcher savings, held-out
-  generalization or project experiments. Preparation hours remain unknown.
-  No full-paper methods were acquired. E317Q used an existing archived abstract;
-  all witness hashes and full outputs remain in the Git-common run directory.
-- **Implementation already integrated:** [PR #124](https://github.com/VivekVardhanArrabelli/catalytic-earth/pull/124)
-  merged as `89889391` after all four required CI jobs passed. Its opt-in raw
-  stereo adapter retrieves M0213 and M0066 witnesses through one matcher, with
-  the original 12-candidate/86-event catalog unchanged. Both are development
-  contexts. All 872 core tests, contracts and offline wheel checks passed for
-  that implementation; they do not establish scientific utility.
-- **Priority correction:** neither usefulness comparison required PR #124.
-  They evaluate older capabilities and cannot validate the new adapter's
-  usefulness. We could have evaluated before implementing. This evidence does
-  not reset the marginal-work pattern or justify more case accumulation.
-- **Decision/next action:** finish review and publication of this evaluation,
-  then close this bounded sprint with a revise/stop-expansion decision and
-  remove its heartbeat. Keep the former hourly writer paused. The next
-  research action needs a consequential question where cross-context evidence
-  could alter the answer or remove substantial source-assembly work, a feasible
-  source comparison and a stopping condition. Test that proposition before code
-  or acquisition. No new human-review prerequisite is imposed on permitted
-  internal comparisons; actual human or experimental impact needs its own
-  evidence. Do not reopen the completed biology inquiries or launch more
-  convenient examples to seek a positive evaluation result.
-- **Preservation/recovery:** no new biological requests, response bodies or
-  sources; cumulative allowances, protected registries, kernels and review
-  states remain unchanged. Preserve unrelated viewer/demo files. This change
-  adds only the evaluation brief, current handoff and required generated metadata;
-  no runtime changes or new tests. Consult the containing PR and local receipt
-  for its exact review/CI/merge/lock state. Historical handoffs are not a queue.
+- **Outcome and mission:** connected a native RFdiffusion2 RA95 input to the
+  retained Atlas evidence and prepared a one-design reference launch. The full
+  computable catalytic-mechanism Atlas and downstream de novo design remain
+  the mission. No protein generation, activity measurement or Atlas efficacy
+  result is claimed. The [reference recipe](../tools/research_lanes/ra95_design_reference/README.md)
+  and its input-state sidecar are the durable continuation.
+- **Run:** user authorized execution after the direction discussion. Root and
+  three Sol/ultra workers handled native pipeline, chemical mapping and review.
+  Started `2026-09-23T00:42:23Z`; inherited `main` at `af84ba1e5a856519ba4e8a6e6ff753df4357a9c3`.
+  Branch `codex/ra95-design-reference-20260923`; exact captures, worker reviews,
+  ownership and results are in
+  `.git/catalytic-earth-runs/20260923T004123Z-ra95-design/`.
+- **Finding:** author commit `d365cbf4db3958814a9f8e4f6f94fa309dfebc2b`
+  supplies the full Tyr51/Lys83/Asn110/Tyr180 nine-atom motif, LLK and length
+  150. All selected coordinates match retained 5AN7. Despite its `no_cov`
+  filename, the fixture connects Lys83 NZ to LLK C13. The chosen alternate
+  conformers have unknown joint physical state; inhibitor-derived geometry
+  does not establish an adduct's bond orders/protonation or a transition state.
+- **Decision and strongest alternative:** use the native control to establish
+  runtime compatibility, then require a source-supported difference in an
+  input actually consumed by the generator before an Atlas comparison. Current
+  RA95 evidence supplies no such extra field. Copying the same motif would be
+  a pass-through control, so that efficacy comparison stops here. This does
+  not reset the earlier marginal-work pattern or justify more wrappers or
+  convenient case accumulation. The prior failed generic M0029 reconstruction
+  remains stopped; its preserved result is in
+  `.git/catalytic-earth-runs/20260922T221646Z-reconstruction/RESULT.md`.
+- **Execution boundary and next action:** on the existing GPU environment
+  requested from the user, resolve the pinned native pipeline and attempt one
+  reference backbone. Check motif/ligand mapping and keep PDB/TRB/config/logs
+  with runtime asset identities. Stop at a concrete compatibility failure or
+  successful control; do not increase sample count without a discriminating
+  scientific comparison. GPU host details are still missing. This local M2
+  has no CUDA/Apptainer/model runtime and about 9.4 GiB free, below the 10 GiB
+  reserve; no model assets were downloaded and no remote resources provisioned.
+- **Source budget:** batch `ra95-rfdiffusion2-design-input` has 33 file requests
+  and 1,861,453 response bytes read, including unsuccessful/truncated captures;
+  three such attempts did not become usable source artifacts. The local
+  capture ceiling was 2 MiB within the standing 100-request/30-MiB batch limit.
+  Earlier web discovery is outside this file ledger. Preserve cumulative
+  accounting and the upstream input hash; no exposure is reset.
+- **Verification and recovery:** input identities and nine-atom correspondence
+  were checked against captured files. Target Hydra/model execution remains
+  unverified. The final local receipt and containing PR record launcher/repo
+  checks and exact publication state. Preserve the seven unrelated viewer/demo
+  paths recorded in the receipt. The prior writer stays paused; no new
+  automation, protected-registry edit or evidence-tier promotion was made.
 
 <!-- current-research-handoff:end -->
 

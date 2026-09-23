@@ -34,7 +34,7 @@ jobs:
           git sparse-checkout init --cone
           git sparse-checkout set \
             .github config data/atlas data/diagnostics data/governance docs environments release \
-            requirements scripts src tests
+            requirements scripts src tests tools/research_lanes/ra95_design_reference
           git fetch --no-tags --filter=blob:none origin "${GITHUB_REF}"
           git checkout --detach FETCH_HEAD
 

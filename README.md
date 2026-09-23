@@ -36,6 +36,11 @@ catalytic requirements, protein implementations and measured function. A
 provenance-grounded dataset that enables other researchers or models to design
 functioning catalysts is a legitimate outcome of the atlas mission.
 
+The [RA95 design reference](tools/research_lanes/ra95_design_reference/README.md)
+prepares one native RFdiffusion2 run and maps its exact input to Atlas evidence.
+Generation is pending a GPU environment; the existing nine-atom motif alone
+does not establish an additional Atlas design contribution.
+
 The atlas is tiered so breadth can grow quickly without implying equal truth:
 
 1. canonical reaction record;
