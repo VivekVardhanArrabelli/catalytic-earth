@@ -1,46 +1,48 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — RA95 reference executed, 2026-09-23
+## Current research handoff — RA95 consumer audit and prepared continuation, 2026-09-23
 
-- **Outcome and mission:** the native RFdiffusion2 control generated one
-  150-residue backbone on an NVIDIA A10. The full computable catalytic-mechanism
-  Atlas and downstream de novo design remain the mission. This is runtime and
-  input/output consistency evidence, not a finished enzyme, activity result or
-  demonstrated Atlas contribution. The [reference recipe and result](../tools/research_lanes/ra95_design_reference/README.md)
-  carry the exact continuation and preserved outputs.
-- **Execution:** unchanged upstream revision
-  `d365cbf4db3958814a9f8e4f6f94fa309dfebc2b`, public `RFD_173.pt`, seed 43,
-  one design, 100 steps, stop at sweep. Native configuration resolution and
-  execution passed. Generation took 3.45 minutes; execution with output writing
-  ran 04:19:55–04:24:13 UTC. No MPNN, folding or laboratory evaluation ran.
-- **Checked output:** 150 residues (146 alanine placeholders plus Tyr/Lys/Asn/Tyr),
-  nine requested motif atoms and 17 LLK heavy atoms. Source Tyr51/Lys83/Asn110/
-  Tyr180 map to generated A112/A78/A24/A118. Ligand-aligned motif RMSD is
-  0.256 Å, maximum displacement 0.738 Å; these measure conditioned geometry
-  and native postprocessing. They cannot demonstrate Atlas efficacy.
-- **Preservation and cleanup:** the dated result directory contains a PDB,
-  checks and a 5.2 MB bundle with original PDB/TRB, trajectories, input, resolved
-  configuration, logs, asset identities and the output inspection. All 32
-  manifest members were verified after transfer. The temporary Prime Intellect
-  VM was terminated and the dashboard showed no running instances. Billing and
-  local ownership receipts remain in
-  `.git/catalytic-earth-runs/20260923T040300Z-ra95-prime/`.
-- **Decision and next action:** the compatibility control is complete. Before
-  more sampling, identify an independently supported Atlas constraint that
-  changes a generator-consumed input and could change a consequential output
-  decision. Current RA95 evidence supplies no such extra field: its native
-  nine-atom motif already contains the supported Atlas map. Do not duplicate
-  that input as an efficacy arm or reopen generic M0029 reconstruction.
-  This result does not justify more wrappers or convenient case accumulation.
-- **Preserved boundaries:** the author input is unchanged; alternate conformer
-  joint occupancy, adduct bond orders/protonation and productive geometry remain
-  unresolved. Source preparation and reviews remain in
-  `.git/catalytic-earth-runs/20260923T004123Z-ra95-design/` (33 file requests,
-  1,861,453 response bytes). The runtime assets were downloaded only on the VM,
-  separately from that literature/input capture. Preserve the seven unrelated
-  viewer/demo paths in the local receipts. The prior writer stays paused;
-  no protected registry, evidence tier or exposure status changed.
+- **Outcome:** the native RFdiffusion2 control already consumes the supported
+  nine motif atoms and the Lys83 NZ–LLK C13 connection. The pinned parser
+  turns the connection into a single-bond model feature; the preserved TRB
+  contains its symmetric `indep_true.bond_feats[164,187] = 1` entries. The
+  feature does not establish chemical bond order or a complete adduct graph.
+  No supported extra RA95 input was found. Do not create a duplicate efficacy
+  arm, invent productive geometry or reopen generic M0029 reconstruction.
+- **Task-selection correction:** an Atlas-exclusive fact is necessary for the
+  proposed added-information comparison, not for every downstream milestone.
+  Completing one existing scaffold through sequence fitting and a separate
+  folding predictor tests an actual unqualified interface. It beats more
+  backbone sampling, an arbitrary ablation or a new generic compiler here.
+  The full computable mechanism Atlas and de novo design remain the mission.
+- **Concrete next run:** the [prepared native commands](../tools/research_lanes/ra95_design_reference/CONTINUATION.md)
+  specify one LigandMPNN sequence/packing, fixed final A24N/A78K/A112Y/A118Y,
+  then one protein-only Chai invocation retaining all five samples. The native
+  Chai conversion would represent LLK separately without the covalent link;
+  it cannot validate the adduct. Report fold and internal motif measurements
+  for every sample, with no activity, efficacy or compiler-fidelity claim.
+  Commands pass shell/parser and fixed-residue checks; they have not run.
+- **Compute boundary:** no new VM or model run was started. A fresh rental is
+  proposed at a $5 total cap, at most 90 minutes and at most $2/hour, pending
+  authorization. The previous one-reference rental ended. Required model
+  assets belong on remote storage: local free space is below the 10 GiB reserve.
+  Read-only headers confirmed the two containers/two MPNN weights are accessible;
+  Chai assets and GPU compatibility still require runtime checks. Stop after
+  this one continuation or the first runtime/time/cost limit, preserving outputs.
+- **Preserved result:** PR #127 / `53ae5070` contains the successful seed-43
+  backbone run: 150 residues, 146 alanine placeholders plus the four supplied
+  identities, nine motif atoms and 17 LLK heavy atoms. Ligand-aligned motif
+  RMSD 0.256 Å measures conditioned geometry. The exact PDB/TRB, trajectories,
+  logs, input and identities remain in the unchanged 5.2 MB run bundle.
+  No sequence fitting, folding or laboratory evaluation has occurred.
+- **Local evidence and boundaries:** current ownership, source audit, command
+  checks and receipts are under
+  `.git/catalytic-earth-runs/20260923T100254Z-ra95-constraint/`; the earlier
+  execution receipt is under `20260923T040300Z-ra95-prime/`. Source findings
+  were computationally challenged, not independently reviewed by a scientist.
+  Preserve the seven unrelated viewer/demo paths. The hourly writer remains
+  paused; no protected registry, evidence tier, exposure or frozen result changed.
 
 <!-- current-research-handoff:end -->
 
