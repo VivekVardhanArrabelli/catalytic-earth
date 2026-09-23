@@ -1,0 +1,127 @@
+{
+  "status": "native_reference_backbone_generated_and_mapping_checked",
+  "scope": "Runtime and input-output consistency control; not catalytic activity or Atlas efficacy",
+  "model_design_count": 1,
+  "seed": 43,
+  "flow_matching_steps": 100,
+  "device": "NVIDIA A10",
+  "protein_residue_count": 150,
+  "protein_residue_counts": {
+    "ALA": 146,
+    "ASN": 1,
+    "LYS": 1,
+    "TYR": 2
+  },
+  "all_backbone_atoms_present": true,
+  "all_coordinates_finite": true,
+  "motif_mapping": [
+    {
+      "source_author_id": [
+        "A",
+        1051
+      ],
+      "generated_id": [
+        "A",
+        112
+      ],
+      "residue": "TYR",
+      "atoms": [
+        "OH",
+        "CZ"
+      ]
+    },
+    {
+      "source_author_id": [
+        "A",
+        1083
+      ],
+      "generated_id": [
+        "A",
+        78
+      ],
+      "residue": "LYS",
+      "atoms": [
+        "NZ",
+        "CE"
+      ]
+    },
+    {
+      "source_author_id": [
+        "A",
+        1110
+      ],
+      "generated_id": [
+        "A",
+        24
+      ],
+      "residue": "ASN",
+      "atoms": [
+        "OD1",
+        "CG",
+        "ND2"
+      ]
+    },
+    {
+      "source_author_id": [
+        "A",
+        1180
+      ],
+      "generated_id": [
+        "A",
+        118
+      ],
+      "residue": "TYR",
+      "atoms": [
+        "OH",
+        "CZ"
+      ]
+    }
+  ],
+  "requested_motif_atom_count": 9,
+  "source_comparison_selection": "Heavy atoms, alternate blank or A; source file unchanged",
+  "ligand_atom_count": 17,
+  "ligand_atom_names": [
+    "C1",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C2",
+    "C3",
+    "C31",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "O1",
+    "O3"
+  ],
+  "ligand_aligned_rmsd_angstrom": 7.769881661951966e-15,
+  "motif_rmsd_after_ligand_alignment_angstrom": 0.2561757209417002,
+  "motif_max_displacement_after_ligand_alignment_angstrom": 0.7379410545565259,
+  "metric_interpretation": "Conditioned geometry plus native postprocessing; not independent predictive or catalytic evidence",
+  "consecutive_peptide_C_N_angstrom": {
+    "count": 149,
+    "minimum": 1.2606783888050117,
+    "median": 1.3380680102296743,
+    "maximum": 1.4018077614280793
+  },
+  "native_idealization_rmsd": [
+    0.16741278767585754
+  ],
+  "runtime": {
+    "python": "3.11.0 | packaged by conda-forge | (main, Jan 14 2023, 12:27:40) [GCC 11.3.0]",
+    "torch": "2.4.0",
+    "cuda": "12.4"
+  },
+  "input_sha256": "6dc747dbb1840892ed1f2f05e44d544a888db09336f4bb9df8b7732ace663682",
+  "output_pdb_sha256": "a08e12068a43923f0abd18de8f91c8a68f5b165cf63a36074675f6b597b0e84c",
+  "output_trb_sha256": "79a2d87a9f01b52b2e6f630f6252567153338f0ec7f9c881562878b2bb3dfad5",
+  "output_pdb": "run_retroaldolase_cond0_0-atomized-bb-False.pdb",
+  "output_trb": "run_retroaldolase_cond0_0-atomized-bb-False.trb",
+  "run_started_utc": "2026-09-23T04:19:55Z",
+  "run_finished_utc": "2026-09-23T04:24:13Z"
+}
