@@ -6,6 +6,7 @@
 *.npz binary
 *.npy binary
 *.gz binary
+*.tgz binary
 *.zip binary
 *.bin binary
 *.pkl binary

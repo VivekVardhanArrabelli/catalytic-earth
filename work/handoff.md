@@ -1,55 +1,46 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — RA95 design reference, 2026-09-23
+## Current research handoff — RA95 reference executed, 2026-09-23
 
-- **Outcome and mission:** connected a native RFdiffusion2 RA95 input to the
-  retained Atlas evidence and prepared a one-design reference launch. The full
-  computable catalytic-mechanism Atlas and downstream de novo design remain
-  the mission. No protein generation, activity measurement or Atlas efficacy
-  result is claimed. The [reference recipe](../tools/research_lanes/ra95_design_reference/README.md)
-  and its input-state sidecar are the durable continuation.
-- **Run:** user authorized execution after the direction discussion. Root and
-  three Sol/ultra workers handled native pipeline, chemical mapping and review.
-  Started `2026-09-23T00:42:23Z`; inherited `main` at `af84ba1e5a856519ba4e8a6e6ff753df4357a9c3`.
-  Branch `codex/ra95-design-reference-20260923`; exact captures, worker reviews,
-  ownership and results are in
-  `.git/catalytic-earth-runs/20260923T004123Z-ra95-design/`.
-- **Finding:** author commit `d365cbf4db3958814a9f8e4f6f94fa309dfebc2b`
-  supplies the full Tyr51/Lys83/Asn110/Tyr180 nine-atom motif, LLK and length
-  150. All selected coordinates match retained 5AN7. Despite its `no_cov`
-  filename, the fixture connects Lys83 NZ to LLK C13. The chosen alternate
-  conformers have unknown joint physical state; inhibitor-derived geometry
-  does not establish an adduct's bond orders/protonation or a transition state.
-- **Decision and strongest alternative:** use the native control to establish
-  runtime compatibility, then require a source-supported difference in an
-  input actually consumed by the generator before an Atlas comparison. Current
-  RA95 evidence supplies no such extra field. Copying the same motif would be
-  a pass-through control, so that efficacy comparison stops here. This does
-  not reset the earlier marginal-work pattern or justify more wrappers or
-  convenient case accumulation. The prior failed generic M0029 reconstruction
-  remains stopped; its preserved result is in
-  `.git/catalytic-earth-runs/20260922T221646Z-reconstruction/RESULT.md`.
-- **Execution boundary and next action:** on the existing GPU environment
-  requested from the user, resolve the pinned native pipeline and attempt one
-  reference backbone. Check motif/ligand mapping and keep PDB/TRB/config/logs
-  with runtime asset identities. Stop at a concrete compatibility failure or
-  successful control; do not increase sample count without a discriminating
-  scientific comparison. GPU host details are still missing. This local M2
-  has no CUDA/Apptainer/model runtime and about 9.4 GiB free, below the 10 GiB
-  reserve; no model assets were downloaded and no remote resources provisioned.
-- **Source budget:** batch `ra95-rfdiffusion2-design-input` has 33 file requests
-  and 1,861,453 response bytes read, including unsuccessful/truncated captures;
-  three such attempts did not become usable source artifacts. The local
-  capture ceiling was 2 MiB within the standing 100-request/30-MiB batch limit.
-  Earlier web discovery is outside this file ledger. Preserve cumulative
-  accounting and the upstream input hash; no exposure is reset.
-- **Verification and recovery:** input identities and nine-atom correspondence
-  were checked against captured files. Target Hydra/model execution remains
-  unverified. The final local receipt and containing PR record launcher/repo
-  checks and exact publication state. Preserve the seven unrelated viewer/demo
-  paths recorded in the receipt. The prior writer stays paused; no new
-  automation, protected-registry edit or evidence-tier promotion was made.
+- **Outcome and mission:** the native RFdiffusion2 control generated one
+  150-residue backbone on an NVIDIA A10. The full computable catalytic-mechanism
+  Atlas and downstream de novo design remain the mission. This is runtime and
+  input/output consistency evidence, not a finished enzyme, activity result or
+  demonstrated Atlas contribution. The [reference recipe and result](../tools/research_lanes/ra95_design_reference/README.md)
+  carry the exact continuation and preserved outputs.
+- **Execution:** unchanged upstream revision
+  `d365cbf4db3958814a9f8e4f6f94fa309dfebc2b`, public `RFD_173.pt`, seed 43,
+  one design, 100 steps, stop at sweep. Native configuration resolution and
+  execution passed. Generation took 3.45 minutes; execution with output writing
+  ran 04:19:55–04:24:13 UTC. No MPNN, folding or laboratory evaluation ran.
+- **Checked output:** 150 residues (146 alanine placeholders plus Tyr/Lys/Asn/Tyr),
+  nine requested motif atoms and 17 LLK heavy atoms. Source Tyr51/Lys83/Asn110/
+  Tyr180 map to generated A112/A78/A24/A118. Ligand-aligned motif RMSD is
+  0.256 Å, maximum displacement 0.738 Å; these measure conditioned geometry
+  and native postprocessing. They cannot demonstrate Atlas efficacy.
+- **Preservation and cleanup:** the dated result directory contains a PDB,
+  checks and a 5.2 MB bundle with original PDB/TRB, trajectories, input, resolved
+  configuration, logs, asset identities and the output inspection. All 32
+  manifest members were verified after transfer. The temporary Prime Intellect
+  VM was terminated and the dashboard showed no running instances. Billing and
+  local ownership receipts remain in
+  `.git/catalytic-earth-runs/20260923T040300Z-ra95-prime/`.
+- **Decision and next action:** the compatibility control is complete. Before
+  more sampling, identify an independently supported Atlas constraint that
+  changes a generator-consumed input and could change a consequential output
+  decision. Current RA95 evidence supplies no such extra field: its native
+  nine-atom motif already contains the supported Atlas map. Do not duplicate
+  that input as an efficacy arm or reopen generic M0029 reconstruction.
+  This result does not justify more wrappers or convenient case accumulation.
+- **Preserved boundaries:** the author input is unchanged; alternate conformer
+  joint occupancy, adduct bond orders/protonation and productive geometry remain
+  unresolved. Source preparation and reviews remain in
+  `.git/catalytic-earth-runs/20260923T004123Z-ra95-design/` (33 file requests,
+  1,861,453 response bytes). The runtime assets were downloaded only on the VM,
+  separately from that literature/input capture. Preserve the seven unrelated
+  viewer/demo paths in the local receipts. The prior writer stays paused;
+  no protected registry, evidence tier or exposure status changed.
 
 <!-- current-research-handoff:end -->
 

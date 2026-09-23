@@ -2,8 +2,9 @@
 
 One bounded connection from Atlas evidence to an existing enzyme-design
 consumer: run RFdiffusion2's author-provided RA95.5-8F / 5AN7 input with its
-current public model configuration. This prepares an infrastructure control.
-No protein has been generated or experimentally tested in this task.
+current public model configuration. One reference backbone was generated on
+2026-09-23 and checked for input/output consistency. No experimental activity,
+finished enzyme sequence or Atlas efficacy result is claimed.
 
 The full computable Atlas and its de novo design purpose remain the mission.
 This case checks a real consumer before building another adapter or expanding
@@ -55,6 +56,33 @@ or productive catalytic complex. See the existing
 [chemical-state evidence](../../../docs/ATLAS_RA95_CHEMICAL_STATE.md) and
 [perturbation controls](../../../docs/ATLAS_RA95_TETRAD_CONTROLS.md).
 
+## Observed reference run — 2026-09-23
+
+The unchanged launcher passed `--check` and `--execute` on one NVIDIA A10
+with Apptainer 1.5.4 and the official container (Python 3.11, PyTorch 2.4.0,
+CUDA 12.4). One seed-43 design completed 100 flow-matching steps in 3.45
+minutes; the complete execution, including output writing, ran from
+04:19:55 to 04:24:13 UTC and exited zero. No downstream sequence fitting,
+folding or activity evaluation ran. The temporary VM was terminated after
+the complete output bundle was copied and verified.
+
+- [Generated backbone](results/20260923/reference.pdb): 150 residues,
+  comprising 146 alanine placeholders and the four supplied motif identities.
+  Tyr51/Lys83/Asn110/Tyr180 map to generated A112/A78/A24/A118, respectively.
+- [Output checks](results/20260923/checks.json): all nine requested motif
+  atoms, 17 LLK heavy atoms, complete N/CA/C/O coverage and finite coordinates.
+  After aligning the ligand, the nine motif atoms have 0.256 Å RMSD and
+  0.738 Å maximum displacement from the input. These are conditioned-geometry
+  and postprocessing measurements, not independent predictive evidence.
+- [Complete run bundle](results/20260923/run-bundle.tgz): original PDB/TRB,
+  trajectories, exact input, resolved inference configuration, execution logs,
+  source/container/checkpoint identities and the one-off output inspection.
+  All 32 manifest members were verified after transfer. Bundle SHA-256:
+  `1bab79f7a2122ae6a1d44b164b60f65b5833920951b80006a2a3aaf0d68cfaf8`.
+
+The native reference is executable. This completes the compatibility control;
+the Atlas comparison below remains unsupported by a distinct input constraint.
+
 ## Run on an existing GPU environment
 
 Follow the pinned upstream [setup documentation](https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/README.md)
@@ -78,8 +106,8 @@ repeats those checks and launches one design. Keep the output PDB, TRB,
 configuration, logs and runtime asset identities together; model and container
 file presence alone does not establish their integrity.
 
-The initial result is whether this exact input can generate a 150-residue
-backbone while retaining the requested motif and ligand mapping. It is not
+This exact input generated a 150-residue backbone with the requested motif
+and ligand mapping, at the scope reported above. It does not establish
 catalytic activity or an unseen-mechanism prediction. Do not increase sample
 count merely because the control runs.
 
