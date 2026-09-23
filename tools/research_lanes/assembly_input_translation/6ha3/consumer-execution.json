@@ -1,0 +1,219 @@
+{
+  "created_utc": "2026-09-23T20:27:53.718382+00:00",
+  "scope": "Source-state translation and isolated pinned-function/delegated-consumer checks; no full native pipeline or model execution",
+  "pinned_rf_diffusion2_commit": "d365cbf4db3958814a9f8e4f6f94fa309dfebc2b",
+  "source_files": [
+    {
+      "repository_path": "rf_diffusion/aa_model.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/aa_model.py",
+      "bytes": 131075,
+      "sha256": "23416e60978dea90c5573a9718083d568184a326cd78aba1ae24f2bedab618b8",
+      "provenance": "reused prior retained capture",
+      "save_as": "aa_model.py"
+    },
+    {
+      "repository_path": "rf_diffusion/inference/data_loader.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/inference/data_loader.py",
+      "bytes": 11692,
+      "sha256": "4cd16e76f8c88aeeb116e2d70ecea1031c537eac9c6763a869c47549b59c5dc6",
+      "provenance": "reused prior retained capture",
+      "save_as": "data_loader.py"
+    },
+    {
+      "repository_path": "rf_diffusion/inference/utils.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/inference/utils.py",
+      "bytes": 34049,
+      "sha256": "e645e0b05dae6a2a2416013c1d857566a7ea3835cb3d40c1a3f2ea3ee9cab239",
+      "provenance": "reused prior retained capture",
+      "save_as": "utils.py"
+    },
+    {
+      "repository_path": "rf_diffusion/parsers.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/parsers.py",
+      "bytes": 8339,
+      "sha256": "8602cba9671b2c7a8abf0f5064ab56a037d1fcb19f14eb35cc602d393d253b34",
+      "provenance": "reused prior retained capture",
+      "save_as": "parsers.py"
+    },
+    {
+      "repository_path": "rf_diffusion/contigs.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/contigs.py",
+      "bytes": 22050,
+      "sha256": "68989d8b0fd5c67ab6dde91179080767ac42d451eb2e787f54fdab913902a36f",
+      "provenance": "captured this task",
+      "save_as": "contigs.py"
+    },
+    {
+      "repository_path": "rf_diffusion/nucleic_compatibility_utils.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/nucleic_compatibility_utils.py",
+      "bytes": 85823,
+      "sha256": "5cbac42bd5312a16a11740411f5660496979ccd38c1da8c44fd899501598569d",
+      "provenance": "captured this task",
+      "save_as": "nucleic_compatibility_utils.py"
+    },
+    {
+      "repository_path": "rf_diffusion/chemical.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/chemical.py",
+      "bytes": 3350,
+      "sha256": "5b179f3f327a3cdd6612fb77353d4086991efdf63eae216f35fa9b7be761c0c3",
+      "provenance": "captured this task",
+      "save_as": "chemical.py"
+    },
+    {
+      "repository_path": "rf2aa/data/parsers.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf2aa/data/parsers.py",
+      "bytes": 25329,
+      "sha256": "573ff48c5f2f6a4ae3d52acd9b732f9ec84feb7f0c3fa6b6976ef5ae54afd01f",
+      "provenance": "captured this task",
+      "save_as": "rf2aa-data-parsers.py"
+    },
+    {
+      "repository_path": "rf2aa/util.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf2aa/util.py",
+      "bytes": 58006,
+      "sha256": "239849a2ce15b7943712acc3a1cda48e49d69069f36fb76d34818b3795967a79",
+      "provenance": "captured this task",
+      "save_as": "rf2aa-util.py"
+    },
+    {
+      "repository_path": "rf2aa/chemical.py",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf2aa/chemical.py",
+      "bytes": 253545,
+      "sha256": "8eee997451e5a50a35841c02f49777f5d2fd0f024943c084b368e5d53364d2f8",
+      "provenance": "captured this task",
+      "save_as": "rf2aa-chemical.py"
+    },
+    {
+      "repository_path": "rf_diffusion/exec/rf_diffusion_aa.spec",
+      "url": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion2/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/exec/rf_diffusion_aa.spec",
+      "bytes": 3356,
+      "sha256": "88f6171e3f81a0f14ebec4935ffa57240622bf2b929ed412d1839f200cec70fe",
+      "provenance": "captured this task",
+      "save_as": "rf_diffusion_aa.spec"
+    }
+  ],
+  "source_acquisition": {
+    "this_task_exact_requests": 7,
+    "this_task_exact_body_bytes": 451459,
+    "cumulative_conservative_request_upper_bound": 56,
+    "cumulative_conservative_body_bytes_upper_bound": 2869438,
+    "accounting_limit": "Counts bound recorded file captures, conservatively counting duplicate prior receipts twice. Earlier web discovery was not fully metered; this is not a complete bound on all prior discovery traffic. Package acquisition is recorded separately.",
+    "capture_receipts": [
+      ".git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/consumer-source/capture.json",
+      ".git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/consumer-source/capture-additional.json"
+    ]
+  },
+  "fixture": {
+    "path": "6ha3/assembly.pdb",
+    "bytes": 6643,
+    "sha256": "33c67cea6e6c024179bc837ab02bd60f39c3c6f051c281dc0cb02c1156daa42b"
+  },
+  "dependencies": {
+    "polymer_probe_python": {
+      "executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 17.0.0 (clang-1700.6.4.2)]",
+      "platform": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "numpy_version": "2.4.6",
+      "numpy_path": "/opt/homebrew/lib/python3.14/site-packages/numpy/__init__.py"
+    },
+    "openbabel_probe_python": {
+      "executable": ".git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/parser-check/venv/bin/python",
+      "python_version": "3.14.5",
+      "platform": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "distribution": "openbabel-wheel",
+      "distribution_version": "3.1.1.23",
+      "core_reported_version": "3.1.0",
+      "wheel_path": ".git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/parser-check/wheels/openbabel_wheel-3.1.1.23-cp314-cp314-macosx_14_0_arm64.whl",
+      "wheel_bytes": 11607818,
+      "wheel_sha256": "305fb0b7fe2bf44da8133cf6d58cd1cdf19d123469cde8ca16a83f8d4c4900ee",
+      "install_scope": "isolated venv under this run; installed from the retained wheel with --no-index --no-deps",
+      "version_limit": "The official pinned recipe specifies conda openbabel==3.1.1. This wheel is an unofficial macOS arm64 build and the core reports 3.1.0; no official SIF was executed.",
+      "failed_preflight": "Requested wheel distribution 3.1.1.22 was unavailable; no package installed in that attempt. First combined-script launch then stopped before parsing because the isolated venv lacked NumPy; stderr is retained."
+    }
+  },
+  "executed_checks": {
+    "polymer_and_contig": {
+      "result_path": "6ha3/polymer-consumer-checks.json",
+      "bytes": 1346,
+      "sha256": "062eca1b5d41de53e9c4c6a1de83ddf7f8253a949ca052522be9f6f142823bf6",
+      "exit_code": 0,
+      "exact_pinned_bodies": [
+        "rf_diffusion.parsers.parse_pdb_lines_target",
+        "rf_diffusion.contigs.ContigMap.__init__",
+        "ContigMap.get_sampled_mask",
+        "ContigMap.expand_sampled_mask",
+        "ContigMap.get_idx0",
+        "ContigMap.get_contig_mol_classes"
+      ],
+      "supplied_dependencies": [
+        "successful-row rf_diffusion.error.context as null context",
+        "NumPy 2.4.6",
+        "NHEAVY=23 supplied from inspected pinned source; num2aa and default aa2long literal-extracted from rf2aa/chemical.py",
+        "GLN/GLU token class mapping to protein",
+        "interface contig_atoms parsed with ast.literal_eval; ipd.dev.safe_eval was not executed"
+      ],
+      "not_executed": [
+        "native module import",
+        "torch tensor stages",
+        "ipd.dev.safe_eval",
+        "model construction",
+        "checkpoint loading"
+      ],
+      "reproduction": "check_polymer.py additionally verifies the selected atom masks and XYZ after parsing; all pass"
+    },
+    "openbabel_ligand": {
+      "result_path": "6ha3/ligand-consumer-observation.json",
+      "bytes": 13693,
+      "sha256": "ba4818fec13684d09b8d6205ab199f44cd2539a9c3b9a06885391fd795ecb9a6",
+      "calls": "OBConversion.SetInFormat(pdb), ReadString, DeleteHydrogens, OBMol atom/bond iteration; get_bond_feats normalization evaluated from pinned source rule aromatic->4 else GetBondOrder",
+      "not_executed": [
+        "official RFdiffusion2 SIF",
+        "full rf2aa.parse_mol import",
+        "model construction",
+        "checkpoint loading"
+      ],
+      "reproduction": "check_ligand.py exactly reproduced the original observation, including the five aromatic mismatches; no input or chemical repair"
+    }
+  },
+  "failed_preflight": {
+    "stderr_path": ".git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/parser-check/result.stderr",
+    "exit_path": ".git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/parser-check/result.exit",
+    "model_or_ligand_parse_started": false
+  },
+  "decision": {
+    "source_to_pdb_translation": "pass",
+    "isolated_protein_copy_and_atom_selection": "pass",
+    "ligand_names_elements_coordinates_and_integer_bonds": "pass",
+    "ligand_aromatic_feature_fidelity": "fail",
+    "combined_consumer_acceptance": false,
+    "consequence": "Close this 6HA3 attempt; no chemical repair or model run",
+    "scope_limit": "Failure is specific to the tested macOS wheel and delegated calls; not a full native RFdiffusion2 or official SIF result",
+    "expected_aromatic_edges": 11,
+    "observed_aromatic_edges": 6,
+    "differing_edges": [
+      [
+        "C2",
+        "N3"
+      ],
+      [
+        "C2",
+        "S1"
+      ],
+      [
+        "C4",
+        "C5"
+      ],
+      [
+        "C4",
+        "N3"
+      ],
+      [
+        "C5",
+        "S1"
+      ]
+    ],
+    "causal_explanation_established": false,
+    "productive_motif_established": false,
+    "atlas_design_benefit_measured": false
+  }
+}

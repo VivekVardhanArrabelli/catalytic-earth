@@ -11,3 +11,6 @@
 *.bin binary
 *.pkl binary
 *.parquet binary
+
+# This fixed-column PDB retains blank charge columns 79-80.
+tools/research_lanes/assembly_input_translation/6ha3/assembly.pdb whitespace=-blank-at-eol

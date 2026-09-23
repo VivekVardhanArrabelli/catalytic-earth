@@ -1,0 +1,894 @@
+{
+  "openbabel_release": "3.1.0",
+  "pdb_sha256": "33c67cea6e6c024179bc837ab02bd60f39c3c6f051c281dc0cb02c1156daa42b",
+  "read_ok": true,
+  "atoms": 42,
+  "bonds": 43,
+  "orders": {
+    "1": 35,
+    "2": 8
+  },
+  "aromatic_edges": 6,
+  "differences": [
+    {
+      "edge": [
+        "C2",
+        "N3"
+      ],
+      "expected": [
+        2,
+        true
+      ],
+      "actual": [
+        2,
+        false
+      ]
+    },
+    {
+      "edge": [
+        "C2",
+        "S1"
+      ],
+      "expected": [
+        1,
+        true
+      ],
+      "actual": [
+        1,
+        false
+      ]
+    },
+    {
+      "edge": [
+        "C4",
+        "C5"
+      ],
+      "expected": [
+        2,
+        true
+      ],
+      "actual": [
+        2,
+        false
+      ]
+    },
+    {
+      "edge": [
+        "C4",
+        "N3"
+      ],
+      "expected": [
+        1,
+        true
+      ],
+      "actual": [
+        1,
+        false
+      ]
+    },
+    {
+      "edge": [
+        "C5",
+        "S1"
+      ],
+      "expected": [
+        1,
+        true
+      ],
+      "actual": [
+        1,
+        false
+      ]
+    }
+  ],
+  "atom_correspondence": [
+    {
+      "source_atom": "O2A",
+      "ob_name": "O2A",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -6.263,
+        1.577,
+        13.313
+      ]
+    },
+    {
+      "source_atom": "PA",
+      "ob_name": "PA",
+      "element_number": 15,
+      "formal_charge": 0,
+      "xyz": [
+        -7.441,
+        1.315,
+        14.172
+      ]
+    },
+    {
+      "source_atom": "O1A",
+      "ob_name": "O1A",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -8.156,
+        0.029,
+        13.978
+      ]
+    },
+    {
+      "source_atom": "O3A",
+      "ob_name": "O3A",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -6.978,
+        1.47,
+        15.676
+      ]
+    },
+    {
+      "source_atom": "PB",
+      "ob_name": "PB",
+      "element_number": 15,
+      "formal_charge": 0,
+      "xyz": [
+        -7.629,
+        1.026,
+        17.108
+      ]
+    },
+    {
+      "source_atom": "O3B",
+      "ob_name": "O3B",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -6.517,
+        0.295,
+        17.796
+      ]
+    },
+    {
+      "source_atom": "O2B",
+      "ob_name": "O2B",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -8.061,
+        2.297,
+        17.763
+      ]
+    },
+    {
+      "source_atom": "O1B",
+      "ob_name": "O1B",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -8.786,
+        0.097,
+        16.822
+      ]
+    },
+    {
+      "source_atom": "O7",
+      "ob_name": "O7",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -8.583,
+        2.424,
+        13.999
+      ]
+    },
+    {
+      "source_atom": "C7",
+      "ob_name": "C7",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -8.138,
+        3.819,
+        13.978
+      ]
+    },
+    {
+      "source_atom": "C6",
+      "ob_name": "C6",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -9.402,
+        4.643,
+        13.759
+      ]
+    },
+    {
+      "source_atom": "C5",
+      "ob_name": "C5",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -9.06,
+        6.09,
+        13.755
+      ]
+    },
+    {
+      "source_atom": "S1",
+      "ob_name": "S1",
+      "element_number": 16,
+      "formal_charge": 0,
+      "xyz": [
+        -8.228,
+        6.845,
+        15.091
+      ]
+    },
+    {
+      "source_atom": "C2",
+      "ob_name": "C2",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -8.371,
+        8.445,
+        14.352
+      ]
+    },
+    {
+      "source_atom": "CF2",
+      "ob_name": "CF2",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -8.336,
+        9.754,
+        15.171
+      ]
+    },
+    {
+      "source_atom": "OF2",
+      "ob_name": "OF2",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -8.135,
+        10.887,
+        14.465
+      ]
+    },
+    {
+      "source_atom": "CF1",
+      "ob_name": "CF1",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -7.423,
+        9.59,
+        16.376
+      ]
+    },
+    {
+      "source_atom": "OF1",
+      "ob_name": "OF1",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -6.005,
+        9.706,
+        15.86
+      ]
+    },
+    {
+      "source_atom": "CF3",
+      "ob_name": "CF3",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -9.852,
+        9.899,
+        15.677
+      ]
+    },
+    {
+      "source_atom": "OF3",
+      "ob_name": "OF3",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -10.222,
+        8.991,
+        16.684
+      ]
+    },
+    {
+      "source_atom": "CF4",
+      "ob_name": "CF4",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -10.233,
+        11.246,
+        16.365
+      ]
+    },
+    {
+      "source_atom": "OF4",
+      "ob_name": "OF4",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -9.576,
+        11.446,
+        17.64
+      ]
+    },
+    {
+      "source_atom": "CF5",
+      "ob_name": "CF5",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -11.756,
+        11.423,
+        16.614
+      ]
+    },
+    {
+      "source_atom": "OF5",
+      "ob_name": "OF5",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -12.441,
+        11.168,
+        15.363
+      ]
+    },
+    {
+      "source_atom": "CF6",
+      "ob_name": "CF6",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -12.123,
+        12.807,
+        17.039
+      ]
+    },
+    {
+      "source_atom": "OF6",
+      "ob_name": "OF6",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -13.546,
+        12.749,
+        17.372
+      ]
+    },
+    {
+      "source_atom": "PF",
+      "ob_name": "PF",
+      "element_number": 15,
+      "formal_charge": 0,
+      "xyz": [
+        -14.4,
+        14.042,
+        17.634
+      ]
+    },
+    {
+      "source_atom": "OF8",
+      "ob_name": "OF8",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -15.597,
+        13.797,
+        16.768
+      ]
+    },
+    {
+      "source_atom": "OF7",
+      "ob_name": "OF7",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -14.786,
+        14.057,
+        19.086
+      ]
+    },
+    {
+      "source_atom": "OF9",
+      "ob_name": "OF9",
+      "element_number": 8,
+      "formal_charge": 0,
+      "xyz": [
+        -13.617,
+        15.261,
+        17.234
+      ]
+    },
+    {
+      "source_atom": "N3",
+      "ob_name": "N3",
+      "element_number": 7,
+      "formal_charge": 0,
+      "xyz": [
+        -8.886,
+        8.298,
+        13.051
+      ]
+    },
+    {
+      "source_atom": "C4",
+      "ob_name": "C4",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -9.323,
+        6.977,
+        12.765
+      ]
+    },
+    {
+      "source_atom": "CM4",
+      "ob_name": "CM4",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -10.083,
+        6.715,
+        11.534
+      ]
+    },
+    {
+      "source_atom": "C7,",
+      "ob_name": "C7,",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -8.942,
+        9.339,
+        12.011
+      ]
+    },
+    {
+      "source_atom": "C5,",
+      "ob_name": "C5,",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -7.755,
+        9.255,
+        11.025
+      ]
+    },
+    {
+      "source_atom": "C4,",
+      "ob_name": "C4,",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -6.39,
+        9.396,
+        11.448
+      ]
+    },
+    {
+      "source_atom": "N4,",
+      "ob_name": "N4,",
+      "element_number": 7,
+      "formal_charge": 0,
+      "xyz": [
+        -6.033,
+        9.643,
+        12.733
+      ]
+    },
+    {
+      "source_atom": "N3,",
+      "ob_name": "N3,",
+      "element_number": 7,
+      "formal_charge": 0,
+      "xyz": [
+        -5.384,
+        9.408,
+        10.53
+      ]
+    },
+    {
+      "source_atom": "C2,",
+      "ob_name": "C2,",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -5.651,
+        9.349,
+        9.267
+      ]
+    },
+    {
+      "source_atom": "CM2",
+      "ob_name": "CM2",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -4.598,
+        9.495,
+        8.227
+      ]
+    },
+    {
+      "source_atom": "N1,",
+      "ob_name": "N1,",
+      "element_number": 7,
+      "formal_charge": 0,
+      "xyz": [
+        -6.935,
+        9.222,
+        8.798
+      ]
+    },
+    {
+      "source_atom": "C6,",
+      "ob_name": "C6,",
+      "element_number": 6,
+      "formal_charge": 0,
+      "xyz": [
+        -8.003,
+        9.155,
+        9.699
+      ]
+    }
+  ],
+  "bonds_actual": [
+    {
+      "names": [
+        "O2A",
+        "PA"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "O1A",
+        "PA"
+      ],
+      "order": 2,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "O3A",
+        "PA"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "O7",
+        "PA"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "O3A",
+        "PB"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "O3B",
+        "PB"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "O2B",
+        "PB"
+      ],
+      "order": 2,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "O1B",
+        "PB"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C7",
+        "O7"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C6",
+        "C7"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C5",
+        "C6"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C5",
+        "S1"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C4",
+        "C5"
+      ],
+      "order": 2,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C2",
+        "S1"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C2",
+        "CF2"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C2",
+        "N3"
+      ],
+      "order": 2,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF2",
+        "OF2"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF1",
+        "CF2"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF2",
+        "CF3"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF1",
+        "OF1"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF3",
+        "OF3"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF3",
+        "CF4"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF4",
+        "OF4"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF4",
+        "CF5"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF5",
+        "OF5"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF5",
+        "CF6"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "CF6",
+        "OF6"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "OF6",
+        "PF"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "OF8",
+        "PF"
+      ],
+      "order": 2,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "OF7",
+        "PF"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "OF9",
+        "PF"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C4",
+        "N3"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C7,",
+        "N3"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C4",
+        "CM4"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C5,",
+        "C7,"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C4,",
+        "C5,"
+      ],
+      "order": 2,
+      "aromatic": true
+    },
+    {
+      "names": [
+        "C5,",
+        "C6,"
+      ],
+      "order": 1,
+      "aromatic": true
+    },
+    {
+      "names": [
+        "C4,",
+        "N4,"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C4,",
+        "N3,"
+      ],
+      "order": 1,
+      "aromatic": true
+    },
+    {
+      "names": [
+        "C2,",
+        "N3,"
+      ],
+      "order": 2,
+      "aromatic": true
+    },
+    {
+      "names": [
+        "C2,",
+        "CM2"
+      ],
+      "order": 1,
+      "aromatic": false
+    },
+    {
+      "names": [
+        "C2,",
+        "N1,"
+      ],
+      "order": 1,
+      "aromatic": true
+    },
+    {
+      "names": [
+        "C6,",
+        "N1,"
+      ],
+      "order": 2,
+      "aromatic": true
+    }
+  ]
+}

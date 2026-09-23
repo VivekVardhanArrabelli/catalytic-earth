@@ -1,0 +1,78 @@
+{
+  "assertions": {
+    "atomized_indices_are_distinct": true,
+    "contig_atoms_exact": true,
+    "hetero_count": true,
+    "hetero_parser_drops_chain_identity": true,
+    "identity_control_A366_not_selected": true,
+    "identity_control_A366_parsed": true,
+    "pdb_idx_preserves_operator_chains": true,
+    "protein_mol_classes": true,
+    "selected_atom_masks_and_coordinates_match": true,
+    "selected_ref_indices_are_0_2": true,
+    "selected_ref_is_A160_B366": true,
+    "two_output_chains": true
+  },
+  "atomize_indices2atomname": {
+    "0": [
+      "NE2"
+    ],
+    "1": [
+      "OE1",
+      "OE2"
+    ]
+  },
+  "atomize_resnum2atomnames": {
+    "A160": [
+      "NE2"
+    ],
+    "B366": [
+      "OE1",
+      "OE2"
+    ]
+  },
+  "hal": [
+    [
+      "A",
+      1
+    ],
+    [
+      "B",
+      34
+    ]
+  ],
+  "passed": true,
+  "pdb_idx": [
+    [
+      "A",
+      160
+    ],
+    [
+      "A",
+      366
+    ],
+    [
+      "B",
+      366
+    ]
+  ],
+  "ref": [
+    [
+      "A",
+      160
+    ],
+    [
+      "B",
+      366
+    ]
+  ],
+  "ref_idx0": [
+    0,
+    2
+  ],
+  "scope": "exact pinned function/class bodies with supplied successful-row context, literal chemical tables, NumPy, and explicit protein token class map; not native module imports",
+  "test_contigs": [
+    "A160-160_B366-366"
+  ],
+  "test_contigs_are_design_recipe": false
+}
