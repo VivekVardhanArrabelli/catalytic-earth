@@ -1,54 +1,51 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — RA95 sequence/fold result, 2026-09-23
+## Current research handoff — RA95 translation and diagnosis, 2026-09-23
 
-- **Observed result:** one LigandMPNN sequence and packing followed by one
-  protein-only Chai invocation completed at seed 43. All five native samples
-  retain the 150-residue sequence, fixed A24N/A78K/A112Y/A118Y identities,
-  complete backbones and all nine motif atoms. C-alpha RMSD is 1.32–2.32 Å;
-  motif RMSD after the same alignment is 4.47–5.61 Å. Tyr112/Tyr118 OH
-  separation changes from 2.375 Å to 14.314–17.236 Å in every sample.
-  [All results and exact artifacts](../tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/README.md)
-  are retained, with no selected winner or post hoc pass threshold.
-- **Scientific meaning:** the sequence/folding handoff works. Approximate
-  backbone recovery does not preserve the intended internal catalytic
-  arrangement here. Packing already changes motif atoms (2.425 Å RMSD,
-  4.097 Å maximum pair change) despite unchanged C-alpha coordinates and fixed
-  residue identities; do not claim it preserves the original atom geometry.
-  Chai received only FASTA, so packed coordinates were not transferred. It
-  received no ligand, template or restraints; this does not prove ligand-bound
-  failure or activity.
-  No novelty, compiler-fidelity or incremental Atlas-efficacy claim is made.
-- **Stop/reconsider:** this completes the authorized one-continuation attempt.
-  Do not resample for a hit, invent an adduct graph or build a generic compiler
-  from this case. The unresolved question is whether the local arrangement can
-  be supported in a chemically faithful ligand-bound context; current evidence
-  lacks a complete reacted graph and protonation assignment. The full
-  computable mechanism Atlas and de novo design remain the mission.
-- **Earlier input audit still holds:** the native consumer already takes the
-  supported nine atoms and Lys83 NZ–LLK C13 connection. Its single-bond feature
-  does not establish chemical bond order. No distinct supported RA95 input
-  justifies an added-information comparison; do not relabel this as an Atlas arm.
-- **Operational failure:** the rental exceeded the approved $5/90-minute cap.
-  The model finished at 11:13:30 UTC; the VM remained running until 14:00 UTC
-  and billed **$6.17**. After an 11:12 UTC observation, the next observed clock
-  was 13:57:57 UTC; the cause of the gap is not established. The process timeout
-  did not terminate the paid instance. Outputs were copied and all hashes
-  verified, then termination/no running instances and the final bill verified.
-  Require provider-side termination independent of this session before another
-  paid rental. No further rental or model invocation is authorized by this run.
-- **Reproducibility:** unchanged upstream `d365cbf4`, A100-SXM4 40 GB and official
-  containers; full original backbone/TRB bundle, new outputs, scripts, raw
-  confidence arrays, logs and asset hashes are in the 6.2 MB continuation bundle.
-  SHA-256 `3ccf8b5f7ea3673fffc8058bf49f119c0f059588682fe5e49499e4138482f097`.
-  Forty payload files plus the manifest were verified. Model assets stayed remote.
-- **Local coordination:** receipts are under
-  `.git/catalytic-earth-runs/20260923T104603Z-ra95-fold/`; preceding input audit
-  under `20260923T100254Z-ra95-constraint/`, backbone execution under
-  `20260923T040300Z-ra95-prime/`. Preserve seven unrelated viewer/demo paths.
-  The hourly writer remains paused. No protected registry, evidence tier,
-  exposure ledger or frozen result changed; no laboratory evaluation occurred.
+- **Atlas-to-input translation executed locally:** nine guidepost and seventeen
+  LLK heavy-atom coordinates/occupancies are rebuilt from the verified Atlas
+  5AN7 packet into the preserved author PDB template. The output is byte-equal
+  to the executed native input. Destructive fixture checks confirm that Atlas
+  supplies the replaced fields. [Builder, provenance and checks](../tools/research_lanes/ra95_design_reference/atlas_input/README.md).
+  Atom selection, alternate selection, all connectivity and remaining PDB
+  content still come from the author. This is partial translation on an exposed
+  case, not independent motif generation or an Atlas-efficacy comparison.
+- **Packing diagnosis:** fixed sequence/chi torsions do not imply fixed Cartesian
+  atoms in the pinned LigandMPNN path. It reconstructs every residue using
+  idealized geometry. The original reference-to-packed nine-atom RMSD remains
+  2.425 Å, despite almost unchanged fixed-residue torsions and identical C-alpha
+  coordinates. Chai used FASTA alone, so this does not explain its later motif
+  rearrangement. Original output bytes remain unchanged; no corrected model
+  run has occurred. [Source trace and coordinate audit](../tools/research_lanes/ra95_design_reference/results/20260923-diagnostics/README.md).
+- **Known-active parent control prepared, not predicted:** the exact source
+  258-residue RA95.5-8F sequence and source-bound 5AOU comparison are prepared
+  in [parent_control](../tools/research_lanes/ra95_design_reference/parent_control/README.md).
+  Preserve initiator Met, tags, MHO237/coordinate-coverage caveats and per-residue
+  author numbering. One protein-only Chai invocation with the previous settings
+  is the next discriminating computation; retain all five samples. This is a
+  sanity control on the interpretation, not activity validation or a calibrated
+  classifier. Do not sample another designed sequence first.
+- **Research decision:** do not repeat RFdiffusion2 on a byte-identical input.
+  Translation of existing knowledge is a legitimate Atlas objective; it does
+  not require a novel constraint. Broader translation needs a second supported
+  case with a real new requirement. The full computable mechanism Atlas and
+  de novo design remain the mission. Missing adduct graph/protonation and joint
+  alternate-state evidence still prevent a chemically complete ligand-bound
+  efficacy comparison on this case.
+- **Execution boundary:** this turn used retained outputs and small pinned
+  source files; no new model, paid instance or laboratory run. Both prior VMs
+  are terminated. The earlier rental overrun is retained in the
+  [execution record](../tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/execution.json).
+  Require verified provider-side termination independent of this interactive
+  session before another rental. The prior per-run approval has ended; do not
+  treat the old launch scripts or addresses as an active compute environment.
+- **Coordination:** this turn's receipts are under
+  `.git/catalytic-earth-runs/20260923T155000Z-ra95-atlas-input/`.
+  Preserve the seven unrelated viewer/demo paths. The hourly writer remains
+  paused; no protected registry, evidence tier, exposure ledger or frozen
+  result changed. The original five Chai predictions and all raw outputs remain
+  in the [sequence/fold result](../tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/README.md).
 
 <!-- current-research-handoff:end -->
 

@@ -1,0 +1,74 @@
+{
+  "scope": "Post hoc coordinates from preserved outputs; no new or corrected model run",
+  "bundle_sha256": "3ccf8b5f7ea3673fffc8058bf49f119c0f059588682fe5e49499e4138482f097",
+  "members": {
+    "reference": {
+      "path": "output/reference.pdb",
+      "sha256": "a08e12068a43923f0abd18de8f91c8a68f5b165cf63a36074675f6b597b0e84c"
+    },
+    "packed": {
+      "path": "output/ligmpnn/packed/reference_packed_1_1.pdb",
+      "sha256": "004e69498b2e51ab2dc1add839cabb243b0701ed30d2a6650c66fb60c7836754"
+    }
+  },
+  "ca_count": 150,
+  "ca_coordinates_exactly_unchanged": true,
+  "ligand_heavy_atom_count": 17,
+  "ligand_coordinates_exactly_unchanged": true,
+  "motif_rms_displacement_angstrom": 2.425323689737104,
+  "motif_atom_displacement_angstrom": {
+    "A24:OD1": 0.82196350283939,
+    "A24:CG": 0.5056213998635738,
+    "A24:ND2": 0.43221638099452003,
+    "A78:NZ": 0.34632643560663984,
+    "A78:CE": 0.26523574419749746,
+    "A112:OH": 5.023697741703814,
+    "A112:CZ": 3.868104186807796,
+    "A118:OH": 2.672820794591362,
+    "A118:CZ": 2.070660522635229
+  },
+  "chi_packed_minus_reference_degrees": {
+    "A24:chi1": 0.001312536832273281,
+    "A24:chi2": 0.0430943382277178,
+    "A78:chi1": -0.009249911668888444,
+    "A78:chi2": -0.03167484706261803,
+    "A78:chi3": -0.009946470156677378,
+    "A78:chi4": -0.0162945431179935,
+    "A112:chi1": 0.0005732718698254757,
+    "A112:chi2": -0.05344864278316663,
+    "A118:chi1": -0.019015803513440233,
+    "A118:chi2": 0.0077982579248327966
+  },
+  "tyrosine_angles_degrees": {
+    "A112:N-CA-CB": {
+      "reference": 123.40338727275515,
+      "packed": 110.56022449513091
+    },
+    "A112:CA-CB-CG": {
+      "reference": 88.30615711189942,
+      "packed": 113.7349445143857
+    },
+    "A118:N-CA-CB": {
+      "reference": 119.63011475206775,
+      "packed": 110.57203892301594
+    },
+    "A118:CA-CB-CG": {
+      "reference": 127.17130948055119,
+      "packed": 113.68151222082946
+    }
+  },
+  "lys78_NZ_to_LLK_C13_angstrom": {
+    "reference": 1.2669731646724012,
+    "packed": 1.5090583156392596
+  },
+  "conect": {
+    "reference": {
+      "records": 36,
+      "protein_ligand_directed_pairs": 0
+    },
+    "packed": {
+      "records": 0,
+      "protein_ligand_directed_pairs": 0
+    }
+  }
+}

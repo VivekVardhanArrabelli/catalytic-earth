@@ -7,9 +7,16 @@ current public model configuration. One reference backbone was generated on
 finished enzyme sequence or Atlas efficacy result is claimed.
 
 The full computable Atlas and its de novo design purpose remain the mission.
-This case checks a real consumer before building another adapter or expanding
-sampling. It does not yet test an Atlas contribution: the native input already
-contains all four residues and nine atoms supported by the current Atlas map.
+This case checks a real consumer before expanding sampling. The initial run
+used the author input, which already contains all four residues and nine atoms
+supported by the current Atlas map; it did not derive that input from Atlas.
+
+The subsequent [coordinate translation](atlas_input/README.md) now rebuilds
+the nine guidepost and seventeen LLK heavy-atom coordinates/occupancies from
+the verified Atlas deposit record into the author PDB template. It produces
+exactly the same input bytes. Atom selection, connectivity and the remaining
+PDB content still come from the author; this is a partial translation check,
+not an independently generated chemical specification or an efficacy result.
 
 ## Pinned native input
 
@@ -123,11 +130,25 @@ count merely because the control runs.
 
 ## What would justify an Atlas comparison
 
-Before another arm, identify one independently supported Atlas constraint that
-changes a field or atom set actually consumed by the generator, and state what
-output decision it could change. Hold runtime, seeds, length, sample count
+To test whether extra Atlas information improves designs, identify one
+independently supported constraint that changes a field or atom set actually
+consumed by the generator, and state what output decision it could change.
+Hold runtime, seeds, length, sample count
 and downstream filters fixed. Copying the same nine atoms into a new file, or
-measuring their conditioned RMSD, cannot demonstrate added Atlas value.
+measuring their conditioned RMSD, cannot demonstrate improved design performance.
+
+Translation of established chemistry is a separate, legitimate Atlas purpose;
+it does not require inventing a constraint absent from an author's input. The
+case-specific rebuild above tests that narrower translation boundary. It does
+not yet establish useful translation across cases or independent motif choice.
+
+The [packing diagnosis](results/20260923-diagnostics/README.md) explains the
+fixed-atom displacement: fixed torsions are reconstructed into idealized
+Cartesian geometry. The [known-active parent control](parent_control/README.md)
+is prepared for the next protein-only prediction. Its existing apo and
+inhibitor-associated crystal models differ by 0.693 Å motif RMSD after a shared
+241-atom C-alpha alignment; this observed-state comparison is not predictor
+calibration or a design pass threshold.
 
 No current RA95 field supports that extra constraint. Stop this proposed
 efficacy comparison at the input audit. Atom-set ablations would test generator
