@@ -1,6 +1,10 @@
 # One sequence and a protein-only folding check
 
-Prepared 2026-09-23; **not executed**. Continue the preserved reference once
+Prepared and executed 2026-09-23. [Observed results and full outputs](results/20260923-sequence-fold/README.md)
+record one sequence/packing and all five predictions. The rental exceeded its
+approved limits; its termination and $6.17 bill are recorded there.
+
+The original bounded plan follows. Continue the preserved reference once
 through sequence design and a separate structure predictor. The question is
 whether a designed sequence is predicted to recover this backbone and its
 internal motif arrangement. This is a consumer-compatibility check, not a
@@ -85,8 +89,9 @@ apptainer exec --nv --bind "$RFD2_ROOT:$RFD2_ROOT" --bind "$RA95_CONT:$RA95_CONT
   --structure_output pdb cif --export_arrays --export_seed
 ```
 
-These arguments were checked against the pinned source, not executed in a
-GPU runtime. The direct MPNN invocation exposes a fixed seed and bypasses
+Before execution, these arguments were checked against the pinned source.
+They subsequently executed unchanged on the GPU host reported in the results.
+The direct MPNN invocation exposes a fixed seed and bypasses
 the pipeline's default eight-sequence expansion. The separate FASTA path
 avoids the native PDB-to-CCD conversion. Preserve resolved arguments, stdout,
 stderr and exit status; stop on an unexpected sequence/sample count or
@@ -111,17 +116,20 @@ their own evidence.
 
 ## Compute boundary
 
-Proposed fresh rental cap: **$5 total**, including setup and failures; at most
-90 minutes on one suitable GPU offered at no more than $2/hour, with no paid
+Approved rental cap for this attempt: **$5 total**, including setup and
+failures; at most 90 minutes on one suitable GPU offered at no more than $2/hour, with no paid
 fallback or automatic extension. Verify the live price and GPU compatibility
 before provisioning. Preserve outputs and terminate the instance at completion
 or the time/cost limit. The previous one-reference rental ended and its
-authorization does not start this one.
+authorization did not start this one; the user separately approved this attempt.
+The cap was not enforced: see the execution record above. This plan is not
+authorization for another rental.
 
 Read-only HEAD checks on 2026-09-23 returned HTTP 200 for both containers and
 both LigandMPNN weights: 14,716,790,810 bytes in total, before Chai's additional
 model/embedding/cache downloads. No assets were downloaded in this preparation.
 Use remote storage with at least 100 GiB free; the local checkout is below its
-10 GiB reserve and must not hold these assets. The exact asset manifests and
-GPU compatibility remain runtime checks; the $5 cap is a limit, not a promise
-that setup or prediction will finish.
+10 GiB reserve and must not hold these assets. The execution bundle now
+records exact asset manifests and GPU checks.
+The $5 cap was a limit, not a promise that setup or prediction would finish;
+the recorded operational failure does not change that limit.

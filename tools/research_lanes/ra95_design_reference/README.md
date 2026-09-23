@@ -72,8 +72,8 @@ The unchanged launcher passed `--check` and `--execute` on one NVIDIA A10
 with Apptainer 1.5.4 and the official container (Python 3.11, PyTorch 2.4.0,
 CUDA 12.4). One seed-43 design completed 100 flow-matching steps in 3.45
 minutes; the complete execution, including output writing, ran from
-04:19:55 to 04:24:13 UTC and exited zero. No downstream sequence fitting,
-folding or activity evaluation ran. The temporary VM was terminated after
+04:19:55 to 04:24:13 UTC and exited zero. During this backbone stage, no
+downstream sequence fitting, folding or activity evaluation ran. The temporary VM was terminated after
 the complete output bundle was copied and verified.
 
 - [Generated backbone](results/20260923/reference.pdb): 150 residues,
@@ -133,9 +133,14 @@ No current RA95 field supports that extra constraint. Stop this proposed
 efficacy comparison at the input audit. Atom-set ablations would test generator
 sensitivity, and an invented ligand graph would introduce unsupported chemistry.
 
-This does not block a separate consumer-compatibility milestone. The
-[prepared continuation](CONTINUATION.md) uses the existing backbone for one
-ligand-aware sequence design and one protein-only Chai invocation, retaining
-all five predictions. It checks sequence handoff, fold and internal motif
-geometry. Execution is pending; compiler fidelity and Atlas efficacy remain
-separate tests. No new backbone sampling or generic adapter is needed.
+The [bounded continuation](CONTINUATION.md) has now executed: one ligand-aware
+sequence/packing and one protein-only Chai invocation. [All five outputs](results/20260923-sequence-fold/README.md)
+have complete 150-residue backbones, C-alpha RMSD 1.32–2.32 Å and motif RMSD
+4.47–5.61 Å to the preserved reference. The Tyr112/Tyr118 OH distance changes
+from 2.375 Å to 14.314–17.236 Å. The handoff works, but the intended internal
+motif is not retained in these protein-only predictions. The packed MPNN output
+also moves motif atoms (2.425 Å RMSD) despite unchanged C-alpha coordinates
+and fixed residue identities. This does not establish ligand-bound failure,
+activity or Atlas efficacy. Stop this attempt without
+resampling. The VM is terminated; its $6.17 charge exceeded the $5/90-minute
+limits because the process timeout did not terminate the paid instance.

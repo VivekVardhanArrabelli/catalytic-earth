@@ -1,0 +1,21 @@
+{
+  "scope": "One ligand-aware sequence/packing and one protein-only Chai invocation with five correlated native samples. No resampling or source changes.",
+  "source_revision": "d365cbf4db3958814a9f8e4f6f94fa309dfebc2b",
+  "seed": 43,
+  "ligandmpnn_start_utc": "2026-09-23T11:05:25Z",
+  "ligandmpnn_finish_utc": "2026-09-23T11:05:42Z",
+  "chai_start_utc": "2026-09-23T11:05:42Z",
+  "chai_finish_utc": "2026-09-23T11:13:30Z",
+  "model_launcher_exit_code": 0,
+  "actual_billed_usd": 6.17,
+  "authorized_cap_usd": 5,
+  "over_cap_usd": 1.17,
+  "authorized_max_minutes": 90,
+  "provider_created_utc_minute": "2026-09-23T10:47:00Z",
+  "provider_terminated_utc_minute": "2026-09-23T14:00:00Z",
+  "rental_cap_enforced": false,
+  "termination_verified": true,
+  "remaining_running_instances": 0,
+  "operational_failure": "The remote model timeout bounded the process, not the paid instance lifetime. Inference finished at 11:13:30 UTC. Between the last 11:12 UTC observation and the next 13:57:57 UTC observation, the VM remained running. The cause of the observation gap is not established. Outputs were copied and verified, then termination and the $6.17 bill were verified in the provider UI.",
+  "future_rental_requirement": "Verify a provider-side termination deadline independent of the interactive session before another paid rental. Do not treat a process timeout or host shutdown as proven billing termination."
+}
