@@ -1,48 +1,54 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — RA95 consumer audit and prepared continuation, 2026-09-23
+## Current research handoff — RA95 sequence/fold result, 2026-09-23
 
-- **Outcome:** the native RFdiffusion2 control already consumes the supported
-  nine motif atoms and the Lys83 NZ–LLK C13 connection. The pinned parser
-  turns the connection into a single-bond model feature; the preserved TRB
-  contains its symmetric `indep_true.bond_feats[164,187] = 1` entries. The
-  feature does not establish chemical bond order or a complete adduct graph.
-  No supported extra RA95 input was found. Do not create a duplicate efficacy
-  arm, invent productive geometry or reopen generic M0029 reconstruction.
-- **Task-selection correction:** an Atlas-exclusive fact is necessary for the
-  proposed added-information comparison, not for every downstream milestone.
-  Completing one existing scaffold through sequence fitting and a separate
-  folding predictor tests an actual unqualified interface. It beats more
-  backbone sampling, an arbitrary ablation or a new generic compiler here.
-  The full computable mechanism Atlas and de novo design remain the mission.
-- **Concrete next run:** the [prepared native commands](../tools/research_lanes/ra95_design_reference/CONTINUATION.md)
-  specify one LigandMPNN sequence/packing, fixed final A24N/A78K/A112Y/A118Y,
-  then one protein-only Chai invocation retaining all five samples. The native
-  Chai conversion would represent LLK separately without the covalent link;
-  it cannot validate the adduct. Report fold and internal motif measurements
-  for every sample, with no activity, efficacy or compiler-fidelity claim.
-  Commands pass shell/parser and fixed-residue checks; they have not run.
-- **Compute boundary:** no new VM or model run was started. A fresh rental is
-  proposed at a $5 total cap, at most 90 minutes and at most $2/hour, pending
-  authorization. The previous one-reference rental ended. Required model
-  assets belong on remote storage: local free space is below the 10 GiB reserve.
-  Read-only headers confirmed the two containers/two MPNN weights are accessible;
-  Chai assets and GPU compatibility still require runtime checks. Stop after
-  this one continuation or the first runtime/time/cost limit, preserving outputs.
-- **Preserved result:** PR #127 / `53ae5070` contains the successful seed-43
-  backbone run: 150 residues, 146 alanine placeholders plus the four supplied
-  identities, nine motif atoms and 17 LLK heavy atoms. Ligand-aligned motif
-  RMSD 0.256 Å measures conditioned geometry. The exact PDB/TRB, trajectories,
-  logs, input and identities remain in the unchanged 5.2 MB run bundle.
-  No sequence fitting, folding or laboratory evaluation has occurred.
-- **Local evidence and boundaries:** current ownership, source audit, command
-  checks and receipts are under
-  `.git/catalytic-earth-runs/20260923T100254Z-ra95-constraint/`; the earlier
-  execution receipt is under `20260923T040300Z-ra95-prime/`. Source findings
-  were computationally challenged, not independently reviewed by a scientist.
-  Preserve the seven unrelated viewer/demo paths. The hourly writer remains
-  paused; no protected registry, evidence tier, exposure or frozen result changed.
+- **Observed result:** one LigandMPNN sequence and packing followed by one
+  protein-only Chai invocation completed at seed 43. All five native samples
+  retain the 150-residue sequence, fixed A24N/A78K/A112Y/A118Y identities,
+  complete backbones and all nine motif atoms. C-alpha RMSD is 1.32–2.32 Å;
+  motif RMSD after the same alignment is 4.47–5.61 Å. Tyr112/Tyr118 OH
+  separation changes from 2.375 Å to 14.314–17.236 Å in every sample.
+  [All results and exact artifacts](../tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/README.md)
+  are retained, with no selected winner or post hoc pass threshold.
+- **Scientific meaning:** the sequence/folding handoff works. Approximate
+  backbone recovery does not preserve the intended internal catalytic
+  arrangement here. Packing already changes motif atoms (2.425 Å RMSD,
+  4.097 Å maximum pair change) despite unchanged C-alpha coordinates and fixed
+  residue identities; do not claim it preserves the original atom geometry.
+  Chai received only FASTA, so packed coordinates were not transferred. It
+  received no ligand, template or restraints; this does not prove ligand-bound
+  failure or activity.
+  No novelty, compiler-fidelity or incremental Atlas-efficacy claim is made.
+- **Stop/reconsider:** this completes the authorized one-continuation attempt.
+  Do not resample for a hit, invent an adduct graph or build a generic compiler
+  from this case. The unresolved question is whether the local arrangement can
+  be supported in a chemically faithful ligand-bound context; current evidence
+  lacks a complete reacted graph and protonation assignment. The full
+  computable mechanism Atlas and de novo design remain the mission.
+- **Earlier input audit still holds:** the native consumer already takes the
+  supported nine atoms and Lys83 NZ–LLK C13 connection. Its single-bond feature
+  does not establish chemical bond order. No distinct supported RA95 input
+  justifies an added-information comparison; do not relabel this as an Atlas arm.
+- **Operational failure:** the rental exceeded the approved $5/90-minute cap.
+  The model finished at 11:13:30 UTC; the VM remained running until 14:00 UTC
+  and billed **$6.17**. After an 11:12 UTC observation, the next observed clock
+  was 13:57:57 UTC; the cause of the gap is not established. The process timeout
+  did not terminate the paid instance. Outputs were copied and all hashes
+  verified, then termination/no running instances and the final bill verified.
+  Require provider-side termination independent of this session before another
+  paid rental. No further rental or model invocation is authorized by this run.
+- **Reproducibility:** unchanged upstream `d365cbf4`, A100-SXM4 40 GB and official
+  containers; full original backbone/TRB bundle, new outputs, scripts, raw
+  confidence arrays, logs and asset hashes are in the 6.2 MB continuation bundle.
+  SHA-256 `3ccf8b5f7ea3673fffc8058bf49f119c0f059588682fe5e49499e4138482f097`.
+  Forty payload files plus the manifest were verified. Model assets stayed remote.
+- **Local coordination:** receipts are under
+  `.git/catalytic-earth-runs/20260923T104603Z-ra95-fold/`; preceding input audit
+  under `20260923T100254Z-ra95-constraint/`, backbone execution under
+  `20260923T040300Z-ra95-prime/`. Preserve seven unrelated viewer/demo paths.
+  The hourly writer remains paused. No protected registry, evidence tier,
+  exposure ledger or frozen result changed; no laboratory evaluation occurred.
 
 <!-- current-research-handoff:end -->
 

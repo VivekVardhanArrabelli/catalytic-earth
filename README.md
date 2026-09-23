@@ -37,9 +37,10 @@ provenance-grounded dataset that enables other researchers or models to design
 functioning catalysts is a legitimate outcome of the atlas mission.
 
 The [RA95 design reference](tools/research_lanes/ra95_design_reference/README.md)
-generated one 150-residue backbone with native RFdiffusion2 and maps its exact
-input to Atlas evidence. This checks runtime and input/output compatibility;
-sequence design, activity and an additional Atlas contribution remain untested.
+generated one 150-residue backbone and completed one sequence/fold continuation.
+All five protein-only predictions approximately recover the backbone but
+substantially rearrange the catalytic atoms; [all outputs are retained](tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/README.md).
+Activity and an additional Atlas contribution remain untested.
 
 The atlas is tiered so breadth can grow quickly without implying equal truth:
 
