@@ -1,0 +1,3717 @@
+{
+  "schema_version": "catalytic-earth.ra95-parent-chai-inspection.v1",
+  "scope": "Descriptive known-parent protein-only Chai sanity control; no calibrated cutoff, activity claim, fresh-generalization claim or Atlas-benefit claim.",
+  "pins": {
+    "manifest": {
+      "path": "tools/research_lanes/ra95_design_reference/parent_control/manifest.json",
+      "sha256": "462e4a1888c23d729034c11031c74aabc819f1145ef76ab967a092028c062fba"
+    },
+    "materializer": {
+      "path": "tools/research_lanes/ra95_design_reference/parent_control/materialize_parent.py",
+      "sha256": "b7aa4ae18dc7e2cf421c465610c050ae755aa7bb8e4fad5042b309551b3d7cd1"
+    },
+    "parent_fasta": {
+      "path": "tools/research_lanes/ra95_design_reference/parent_control/ra95_5_8f_parent.fasta",
+      "sha256": "cbba0f396a63b32b7d12189a203f2ec39be62ea99c83afad7ec4a6133c0fe1d5",
+      "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b"
+    },
+    "reference_5AOU": {
+      "path": "data/atlas/deposit_context/ra95_5aou/5AOU.cif",
+      "sha256": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e"
+    }
+  },
+  "prediction_directory": "bundle/output/chai",
+  "output_inventory": [
+    {
+      "path": "msa_depth.pdf",
+      "sha256": "c2cf6b3c2b8b79dd1ced9c44ab9c9f7a22c0ae876540d43efb10b8c4717e662a",
+      "bytes": 12452
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_0.cif",
+      "sha256": "1c4dfcef91dd933efe47827a6a77e6adab8494e716e518033dd96dfeffee0029",
+      "bytes": 179520
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_0.pdb",
+      "sha256": "170fca60da203ab9e7e28a5efdb375a9599e2226ae4ae6315c473b45f24bc321",
+      "bytes": 170270
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_1.cif",
+      "sha256": "3c90181ab831a48dfa275baea301f563b6b50088db3d0b4d2484efc475f2313c",
+      "bytes": 179370
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_1.pdb",
+      "sha256": "20f19430e59e47e730671774d2cfd33754156b81b5c5c0e74ca561a33e51eb97",
+      "bytes": 170270
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_2.cif",
+      "sha256": "21d63b76d219e12344d7adae578bc06461b03b54f77a834766be7925731b8578",
+      "bytes": 179328
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_2.pdb",
+      "sha256": "27dbe54558f7b1871df55cd0a00a44cafe7b72ae36994a336c9b8a1ae32da4c0",
+      "bytes": 170270
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_3.cif",
+      "sha256": "d8c9b2e47f56e4dc9b6f71165c994473f47516a72168150426fbd84ef104854b",
+      "bytes": 179528
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_3.pdb",
+      "sha256": "c21b680739f720471bf170795e69fc67d05695c98871bb09066b7ee3bb1aaaf3",
+      "bytes": 170270
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_4.cif",
+      "sha256": "9651558564fd97a004f9a8303f25cf233ce8851c65f603f2db61520ca2356ced",
+      "bytes": 179395
+    },
+    {
+      "path": "pred.ra95_5_8f_parent_model_idx_4.pdb",
+      "sha256": "91976332d011da78719f324659cdcec1896a2676b44086cf924ad5ef397df63f",
+      "bytes": 170270
+    },
+    {
+      "path": "scores.ra95_5_8f_parent_model_idx_0.json",
+      "sha256": "f98b09d84ee56eafcea1009d92182f517500e74a088351ef8576fac69b6deb48",
+      "bytes": 1304007
+    },
+    {
+      "path": "scores.ra95_5_8f_parent_model_idx_1.json",
+      "sha256": "edbe7509a4a71c279a108e3002eed0cb6bf539ef72f3eb2f1fa311921d1bb7af",
+      "bytes": 1304049
+    },
+    {
+      "path": "scores.ra95_5_8f_parent_model_idx_2.json",
+      "sha256": "f121c14e5e050623489b82d9b0c6156dd99e78147d993c4caaafa4ea653bf273",
+      "bytes": 1303717
+    },
+    {
+      "path": "scores.ra95_5_8f_parent_model_idx_3.json",
+      "sha256": "239a657b0f2b316bdcbb907f364fbedc60a11205ededbd96ed5385941b48a834",
+      "bytes": 1303928
+    },
+    {
+      "path": "scores.ra95_5_8f_parent_model_idx_4.json",
+      "sha256": "4b258f48167eea9dc6f4bb9b2b67cf0bc5aa77ae69eb3e7e06e20aecca59ac61",
+      "bytes": 1304031
+    }
+  ],
+  "expected_model_indices": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "models": [
+    {
+      "model_index": 0,
+      "pdb_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_0.pdb"
+      ],
+      "cif_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_0.cif"
+      ],
+      "score_candidates": [
+        "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_0.json"
+      ],
+      "cif": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_0.cif",
+        "sha256": "1c4dfcef91dd933efe47827a6a77e6adab8494e716e518033dd96dfeffee0029",
+        "bytes": 179520
+      },
+      "score_as_supplied": {
+        "path": "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_0.json",
+        "sha256": "f98b09d84ee56eafcea1009d92182f517500e74a088351ef8576fac69b6deb48",
+        "bytes": 1304007,
+        "native_confidence": {
+          "aggregate_score": [
+            0.18425019085407257
+          ],
+          "ptm": [
+            0.9212509393692017
+          ],
+          "iptm": [
+            0.0
+          ],
+          "per_chain_ptm": [
+            [
+              0.9212509393692017
+            ]
+          ],
+          "per_chain_pair_iptm": [
+            [
+              [
+                0.9212509393692017
+              ]
+            ]
+          ],
+          "has_inter_chain_clashes": [
+            false
+          ],
+          "chain_intra_clashes": [
+            [
+              0
+            ]
+          ],
+          "chain_chain_inter_clashes": [
+            [
+              [
+                0
+              ]
+            ]
+          ],
+          "pae": [
+            [
+              [
+                3.934325933456421
+              ]
+            ]
+          ],
+          "per_chain_plddt": [
+            [
+              0.8846706748008728
+            ]
+          ],
+          "complex_plddt": [
+            0.8846706748008728
+          ],
+          "seed": 43
+        },
+        "large_arrays": {
+          "pae_array": {
+            "shape": [
+              258,
+              258
+            ],
+            "retained_in_raw_score_file": true
+          },
+          "plddt_array": {
+            "shape": [
+              258
+            ],
+            "retained_in_raw_score_file": true
+          }
+        },
+        "other_native_fields": [],
+        "parse_error": null
+      },
+      "structure": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_0.pdb",
+        "sha256": "170fca60da203ab9e7e28a5efdb375a9599e2226ae4ae6315c473b45f24bc321",
+        "bytes": 170270,
+        "residue_count": 258,
+        "position_ranges": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258
+        ],
+        "chains": [
+          "A"
+        ],
+        "insertion_codes": [],
+        "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+        "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+        "missing_backbone_atoms": [],
+        "nonfinite_atoms": [],
+        "duplicate_atoms": [],
+        "parse_errors": [],
+        "ignored_non_A_alternate_atom_rows": 0,
+        "exact_parent_sequence": true,
+        "position_mapping_valid": true,
+        "mapping_errors": []
+      },
+      "geometry": {
+        "global_ca_rmsd_angstrom": 1.1698903631582154,
+        "global_ca_atom_count": 241,
+        "secondary_core_ca_rmsd_angstrom": 1.1605923112987067,
+        "secondary_core_ca_atom_count": 238,
+        "motif_rmsd_after_global_alignment_angstrom": 2.413203386042092,
+        "missing_motif_atoms": [],
+        "motif_pair_distance_differences": [
+          {
+            "atoms": [
+              "A51:OH",
+              "A51:CZ"
+            ],
+            "reference_angstrom": 1.3810152062884782,
+            "model_angstrom": 1.359161506223598,
+            "model_minus_reference_angstrom": -0.021853700064880188
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 3.5789977647380535,
+            "model_angstrom": 4.077158446761666,
+            "model_minus_reference_angstrom": 0.4981606820236122
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:CE"
+            ],
+            "reference_angstrom": 4.344841884349761,
+            "model_angstrom": 4.322556997889096,
+            "model_minus_reference_angstrom": -0.022284886460664843
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 4.599043813663878,
+            "model_angstrom": 3.8598799204120327,
+            "model_minus_reference_angstrom": -0.739163893251845
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.626438911301003,
+            "model_angstrom": 3.7580047897787456,
+            "model_minus_reference_angstrom": -0.8684341215222573
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.205831903440745,
+            "model_angstrom": 3.1275412067629094,
+            "model_minus_reference_angstrom": -1.0782906966778358
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.827098901256669,
+            "model_angstrom": 5.740459998989628,
+            "model_minus_reference_angstrom": 1.9133610977329591
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.682042609801837,
+            "model_angstrom": 5.994523667481847,
+            "model_minus_reference_angstrom": 1.31248105768001
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 4.755165401960273,
+            "model_angstrom": 5.228284709156531,
+            "model_minus_reference_angstrom": 0.4731193071962583
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 5.344977081335336,
+            "model_angstrom": 5.315108559568656,
+            "model_minus_reference_angstrom": -0.02986852176668009
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 5.087776233286995,
+            "model_angstrom": 4.5532477419969135,
+            "model_minus_reference_angstrom": -0.5345284912900814
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.765881870126454,
+            "model_angstrom": 4.07699889624709,
+            "model_minus_reference_angstrom": -0.6888829738793634
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.072764294677511,
+            "model_angstrom": 3.1741887152467787,
+            "model_minus_reference_angstrom": -0.8985755794307324
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.9250927377579257,
+            "model_angstrom": 6.078699614226714,
+            "model_minus_reference_angstrom": 2.1536068764687886
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.87992663879284,
+            "model_angstrom": 6.393567235902037,
+            "model_minus_reference_angstrom": 1.5136405971091964
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 1.4867635992315678,
+            "model_angstrom": 1.4846460857726331,
+            "model_minus_reference_angstrom": -0.002117513458934628
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.07435668067321,
+            "model_angstrom": 2.7733715942873576,
+            "model_minus_reference_angstrom": -0.30098508638585253
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.023660273929698,
+            "model_angstrom": 3.7861908298446867,
+            "model_minus_reference_angstrom": -0.23746944408501136
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.581356458517498,
+            "model_angstrom": 4.51606344065271,
+            "model_minus_reference_angstrom": -0.06529301786478836
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 5.06768398777982,
+            "model_angstrom": 8.486731644160786,
+            "model_minus_reference_angstrom": 3.4190476563809655
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.8630502300423775,
+            "model_angstrom": 8.590195981466316,
+            "model_minus_reference_angstrom": 2.7271457514239383
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.1670735703485007,
+            "model_angstrom": 3.65099027662359,
+            "model_minus_reference_angstrom": 0.4839167062750893
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.052679360620577,
+            "model_angstrom": 4.38087422782257,
+            "model_minus_reference_angstrom": 0.32819486720199276
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.9088256233033984,
+            "model_angstrom": 5.103595301353743,
+            "model_minus_reference_angstrom": 0.19476967805034473
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:OH"
+            ],
+            "reference_angstrom": 6.189206815093515,
+            "model_angstrom": 8.880952989403784,
+            "model_minus_reference_angstrom": 2.6917461743102695
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 7.140071148104898,
+            "model_angstrom": 9.197856761224324,
+            "model_minus_reference_angstrom": 2.0577856131194263
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:CG"
+            ],
+            "reference_angstrom": 1.2477824329585658,
+            "model_angstrom": 1.240545444552516,
+            "model_minus_reference_angstrom": -0.007236988406049916
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 2.30329633351855,
+            "model_angstrom": 2.2558907331694944,
+            "model_minus_reference_angstrom": -0.04740560034905572
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.446907464744461,
+            "model_angstrom": 9.020169732327659,
+            "model_minus_reference_angstrom": 4.573262267583198
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.608943126828796,
+            "model_angstrom": 8.899870392314712,
+            "model_minus_reference_angstrom": 3.290927265485916
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 1.3420093144237113,
+            "model_angstrom": 1.329388581265839,
+            "model_minus_reference_angstrom": -0.012620733157872266
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.31966514905959,
+            "model_angstrom": 9.168916020991796,
+            "model_minus_reference_angstrom": 4.849250871932206
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.6202749043085065,
+            "model_angstrom": 9.079859800679744,
+            "model_minus_reference_angstrom": 3.4595848963712372
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.3642392899435696,
+            "model_angstrom": 8.33271942405359,
+            "model_minus_reference_angstrom": 4.96848013411002
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.723947184294083,
+            "model_angstrom": 8.219573346591659,
+            "model_minus_reference_angstrom": 3.495626162297576
+          },
+          {
+            "atoms": [
+              "A180:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 1.390246381041861,
+            "model_angstrom": 1.3654614604594302,
+            "model_minus_reference_angstrom": -0.02478492058243087
+          }
+        ],
+        "motif_pair_absolute_delta_mean_angstrom": 1.388441773094093,
+        "motif_pair_absolute_delta_max_angstrom": 4.96848013411002,
+        "tyr51_oh_to_tyr180_oh": {
+          "atoms": [
+            "A51:OH",
+            "A180:OH"
+          ],
+          "reference_angstrom": 3.827098901256669,
+          "model_angstrom": 5.740459998989628,
+          "model_minus_reference_angstrom": 1.9133610977329591
+        }
+      },
+      "errors": []
+    },
+    {
+      "model_index": 1,
+      "pdb_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_1.pdb"
+      ],
+      "cif_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_1.cif"
+      ],
+      "score_candidates": [
+        "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_1.json"
+      ],
+      "cif": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_1.cif",
+        "sha256": "3c90181ab831a48dfa275baea301f563b6b50088db3d0b4d2484efc475f2313c",
+        "bytes": 179370
+      },
+      "score_as_supplied": {
+        "path": "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_1.json",
+        "sha256": "edbe7509a4a71c279a108e3002eed0cb6bf539ef72f3eb2f1fa311921d1bb7af",
+        "bytes": 1304049,
+        "native_confidence": {
+          "aggregate_score": [
+            0.18469250202178955
+          ],
+          "ptm": [
+            0.9234625101089478
+          ],
+          "iptm": [
+            0.0
+          ],
+          "per_chain_ptm": [
+            [
+              0.9234625101089478
+            ]
+          ],
+          "per_chain_pair_iptm": [
+            [
+              [
+                0.9234625101089478
+              ]
+            ]
+          ],
+          "has_inter_chain_clashes": [
+            false
+          ],
+          "chain_intra_clashes": [
+            [
+              0
+            ]
+          ],
+          "chain_chain_inter_clashes": [
+            [
+              [
+                0
+              ]
+            ]
+          ],
+          "pae": [
+            [
+              [
+                3.8927862644195557
+              ]
+            ]
+          ],
+          "per_chain_plddt": [
+            [
+              0.8866415023803711
+            ]
+          ],
+          "complex_plddt": [
+            0.8866415023803711
+          ],
+          "seed": 43
+        },
+        "large_arrays": {
+          "pae_array": {
+            "shape": [
+              258,
+              258
+            ],
+            "retained_in_raw_score_file": true
+          },
+          "plddt_array": {
+            "shape": [
+              258
+            ],
+            "retained_in_raw_score_file": true
+          }
+        },
+        "other_native_fields": [],
+        "parse_error": null
+      },
+      "structure": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_1.pdb",
+        "sha256": "20f19430e59e47e730671774d2cfd33754156b81b5c5c0e74ca561a33e51eb97",
+        "bytes": 170270,
+        "residue_count": 258,
+        "position_ranges": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258
+        ],
+        "chains": [
+          "A"
+        ],
+        "insertion_codes": [],
+        "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+        "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+        "missing_backbone_atoms": [],
+        "nonfinite_atoms": [],
+        "duplicate_atoms": [],
+        "parse_errors": [],
+        "ignored_non_A_alternate_atom_rows": 0,
+        "exact_parent_sequence": true,
+        "position_mapping_valid": true,
+        "mapping_errors": []
+      },
+      "geometry": {
+        "global_ca_rmsd_angstrom": 0.8359562674623399,
+        "global_ca_atom_count": 241,
+        "secondary_core_ca_rmsd_angstrom": 0.8273012663515066,
+        "secondary_core_ca_atom_count": 238,
+        "motif_rmsd_after_global_alignment_angstrom": 2.8767256186223045,
+        "missing_motif_atoms": [],
+        "motif_pair_distance_differences": [
+          {
+            "atoms": [
+              "A51:OH",
+              "A51:CZ"
+            ],
+            "reference_angstrom": 1.3810152062884782,
+            "model_angstrom": 1.3668079601758254,
+            "model_minus_reference_angstrom": -0.014207246112652783
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 3.5789977647380535,
+            "model_angstrom": 3.375307097139459,
+            "model_minus_reference_angstrom": -0.20369066759859455
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:CE"
+            ],
+            "reference_angstrom": 4.344841884349761,
+            "model_angstrom": 3.6228034724505824,
+            "model_minus_reference_angstrom": -0.7220384118991787
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 4.599043813663878,
+            "model_angstrom": 3.8048989474097734,
+            "model_minus_reference_angstrom": -0.7941448662541042
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.626438911301003,
+            "model_angstrom": 3.665828828518866,
+            "model_minus_reference_angstrom": -0.9606100827821371
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.205831903440745,
+            "model_angstrom": 3.3063410289926236,
+            "model_minus_reference_angstrom": -0.8994908744481216
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.827098901256669,
+            "model_angstrom": 7.325381491772289,
+            "model_minus_reference_angstrom": 3.4982825905156196
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.682042609801837,
+            "model_angstrom": 7.391483545270192,
+            "model_minus_reference_angstrom": 2.709440935468355
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 4.755165401960273,
+            "model_angstrom": 4.6591589369756425,
+            "model_minus_reference_angstrom": -0.09600646498463039
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 5.344977081335336,
+            "model_angstrom": 4.805391243176771,
+            "model_minus_reference_angstrom": -0.5395858381585645
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 5.087776233286995,
+            "model_angstrom": 4.516286527668501,
+            "model_minus_reference_angstrom": -0.571489705618494
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.765881870126454,
+            "model_angstrom": 4.00756696762512,
+            "model_minus_reference_angstrom": -0.7583149025013336
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.072764294677511,
+            "model_angstrom": 3.3038043222927116,
+            "model_minus_reference_angstrom": -0.7689599723847995
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.9250927377579257,
+            "model_angstrom": 7.496802385017229,
+            "model_minus_reference_angstrom": 3.5717096472593037
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.87992663879284,
+            "model_angstrom": 7.6064357619058365,
+            "model_minus_reference_angstrom": 2.7265091231129963
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 1.4867635992315678,
+            "model_angstrom": 1.4920056970400617,
+            "model_minus_reference_angstrom": 0.00524209780849394
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.07435668067321,
+            "model_angstrom": 2.8737748694008722,
+            "model_minus_reference_angstrom": -0.20058181127233787
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.023660273929698,
+            "model_angstrom": 3.7485798644286614,
+            "model_minus_reference_angstrom": -0.2750804095010366
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.581356458517498,
+            "model_angstrom": 4.427989272796402,
+            "model_minus_reference_angstrom": -0.15336718572109653
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 5.06768398777982,
+            "model_angstrom": 9.055307725306744,
+            "model_minus_reference_angstrom": 3.9876237375269232
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.8630502300423775,
+            "model_angstrom": 8.937603425974997,
+            "model_minus_reference_angstrom": 3.0745531959326193
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.1670735703485007,
+            "model_angstrom": 3.8049074890199366,
+            "model_minus_reference_angstrom": 0.6378339186714359
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.052679360620577,
+            "model_angstrom": 4.419784383881186,
+            "model_minus_reference_angstrom": 0.367105023260609
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.9088256233033984,
+            "model_angstrom": 5.141233898588937,
+            "model_minus_reference_angstrom": 0.23240827528553876
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:OH"
+            ],
+            "reference_angstrom": 6.189206815093515,
+            "model_angstrom": 9.660093219011916,
+            "model_minus_reference_angstrom": 3.470886403918401
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 7.140071148104898,
+            "model_angstrom": 9.736010373864646,
+            "model_minus_reference_angstrom": 2.5959392257597482
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:CG"
+            ],
+            "reference_angstrom": 1.2477824329585658,
+            "model_angstrom": 1.2344136259779377,
+            "model_minus_reference_angstrom": -0.013368806980628145
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 2.30329633351855,
+            "model_angstrom": 2.2657614614076214,
+            "model_minus_reference_angstrom": -0.03753487211092876
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.446907464744461,
+            "model_angstrom": 10.047563386214591,
+            "model_minus_reference_angstrom": 5.60065592147013
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.608943126828796,
+            "model_angstrom": 9.678574740115407,
+            "model_minus_reference_angstrom": 4.06963161328661
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 1.3420093144237113,
+            "model_angstrom": 1.3255617677045457,
+            "model_minus_reference_angstrom": -0.016447546719165596
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.31966514905959,
+            "model_angstrom": 10.213628395433231,
+            "model_minus_reference_angstrom": 5.893963246373641
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.6202749043085065,
+            "model_angstrom": 9.884156615513536,
+            "model_minus_reference_angstrom": 4.26388171120503
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.3642392899435696,
+            "model_angstrom": 9.444131140554964,
+            "model_minus_reference_angstrom": 6.079891850611395
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.723947184294083,
+            "model_angstrom": 9.09672303634666,
+            "model_minus_reference_angstrom": 4.372775852052577
+          },
+          {
+            "atoms": [
+              "A180:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 1.390246381041861,
+            "model_angstrom": 1.3788491578124127,
+            "model_minus_reference_angstrom": -0.011397223229448361
+          }
+        ],
+        "motif_pair_absolute_delta_mean_angstrom": 1.7831847571610189,
+        "motif_pair_absolute_delta_max_angstrom": 6.079891850611395,
+        "tyr51_oh_to_tyr180_oh": {
+          "atoms": [
+            "A51:OH",
+            "A180:OH"
+          ],
+          "reference_angstrom": 3.827098901256669,
+          "model_angstrom": 7.325381491772289,
+          "model_minus_reference_angstrom": 3.4982825905156196
+        }
+      },
+      "errors": []
+    },
+    {
+      "model_index": 2,
+      "pdb_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_2.pdb"
+      ],
+      "cif_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_2.cif"
+      ],
+      "score_candidates": [
+        "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_2.json"
+      ],
+      "cif": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_2.cif",
+        "sha256": "21d63b76d219e12344d7adae578bc06461b03b54f77a834766be7925731b8578",
+        "bytes": 179328
+      },
+      "score_as_supplied": {
+        "path": "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_2.json",
+        "sha256": "f121c14e5e050623489b82d9b0c6156dd99e78147d993c4caaafa4ea653bf273",
+        "bytes": 1303717,
+        "native_confidence": {
+          "aggregate_score": [
+            0.18443840742111206
+          ],
+          "ptm": [
+            0.9221920371055603
+          ],
+          "iptm": [
+            0.0
+          ],
+          "per_chain_ptm": [
+            [
+              0.9221920371055603
+            ]
+          ],
+          "per_chain_pair_iptm": [
+            [
+              [
+                0.9221920371055603
+              ]
+            ]
+          ],
+          "has_inter_chain_clashes": [
+            false
+          ],
+          "chain_intra_clashes": [
+            [
+              0
+            ]
+          ],
+          "chain_chain_inter_clashes": [
+            [
+              [
+                0
+              ]
+            ]
+          ],
+          "pae": [
+            [
+              [
+                3.890800952911377
+              ]
+            ]
+          ],
+          "per_chain_plddt": [
+            [
+              0.8856761455535889
+            ]
+          ],
+          "complex_plddt": [
+            0.8856761455535889
+          ],
+          "seed": 43
+        },
+        "large_arrays": {
+          "pae_array": {
+            "shape": [
+              258,
+              258
+            ],
+            "retained_in_raw_score_file": true
+          },
+          "plddt_array": {
+            "shape": [
+              258
+            ],
+            "retained_in_raw_score_file": true
+          }
+        },
+        "other_native_fields": [],
+        "parse_error": null
+      },
+      "structure": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_2.pdb",
+        "sha256": "27dbe54558f7b1871df55cd0a00a44cafe7b72ae36994a336c9b8a1ae32da4c0",
+        "bytes": 170270,
+        "residue_count": 258,
+        "position_ranges": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258
+        ],
+        "chains": [
+          "A"
+        ],
+        "insertion_codes": [],
+        "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+        "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+        "missing_backbone_atoms": [],
+        "nonfinite_atoms": [],
+        "duplicate_atoms": [],
+        "parse_errors": [],
+        "ignored_non_A_alternate_atom_rows": 0,
+        "exact_parent_sequence": true,
+        "position_mapping_valid": true,
+        "mapping_errors": []
+      },
+      "geometry": {
+        "global_ca_rmsd_angstrom": 0.9001602345641796,
+        "global_ca_atom_count": 241,
+        "secondary_core_ca_rmsd_angstrom": 0.8953189036475324,
+        "secondary_core_ca_atom_count": 238,
+        "motif_rmsd_after_global_alignment_angstrom": 2.5004140952437854,
+        "missing_motif_atoms": [],
+        "motif_pair_distance_differences": [
+          {
+            "atoms": [
+              "A51:OH",
+              "A51:CZ"
+            ],
+            "reference_angstrom": 1.3810152062884782,
+            "model_angstrom": 1.3605770834465793,
+            "model_minus_reference_angstrom": -0.02043812284189883
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 3.5789977647380535,
+            "model_angstrom": 3.423838489181404,
+            "model_minus_reference_angstrom": -0.15515927555664932
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:CE"
+            ],
+            "reference_angstrom": 4.344841884349761,
+            "model_angstrom": 3.7933344171058794,
+            "model_minus_reference_angstrom": -0.5515074672438818
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 4.599043813663878,
+            "model_angstrom": 3.5400086158087243,
+            "model_minus_reference_angstrom": -1.0590351978551533
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.626438911301003,
+            "model_angstrom": 3.5120183655556243,
+            "model_minus_reference_angstrom": -1.1144205457453786
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.205831903440745,
+            "model_angstrom": 3.278117295033843,
+            "model_minus_reference_angstrom": -0.9277146084069021
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.827098901256669,
+            "model_angstrom": 6.339250507749319,
+            "model_minus_reference_angstrom": 2.5121516064926497
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.682042609801837,
+            "model_angstrom": 6.621205781426825,
+            "model_minus_reference_angstrom": 1.9391631716249886
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 4.755165401960273,
+            "model_angstrom": 4.706696293580031,
+            "model_minus_reference_angstrom": -0.04846910838024154
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 5.344977081335336,
+            "model_angstrom": 4.916300031527776,
+            "model_minus_reference_angstrom": -0.4286770498075603
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 5.087776233286995,
+            "model_angstrom": 4.306208192830439,
+            "model_minus_reference_angstrom": -0.7815680404565555
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.765881870126454,
+            "model_angstrom": 3.887459453164753,
+            "model_minus_reference_angstrom": -0.8784224169617008
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.072764294677511,
+            "model_angstrom": 3.3233433466917015,
+            "model_minus_reference_angstrom": -0.7494209479858096
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.9250927377579257,
+            "model_angstrom": 6.624824450504329,
+            "model_minus_reference_angstrom": 2.6997317127464036
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.87992663879284,
+            "model_angstrom": 6.949305432919178,
+            "model_minus_reference_angstrom": 2.0693787941263375
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 1.4867635992315678,
+            "model_angstrom": 1.4839528294389952,
+            "model_minus_reference_angstrom": -0.002810769792572554
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.07435668067321,
+            "model_angstrom": 2.932177518500543,
+            "model_minus_reference_angstrom": -0.1421791621726669
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.023660273929698,
+            "model_angstrom": 3.8871155115329414,
+            "model_minus_reference_angstrom": -0.1365447623967566
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.581356458517498,
+            "model_angstrom": 4.651590803155411,
+            "model_minus_reference_angstrom": 0.070234344637913
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 5.06768398777982,
+            "model_angstrom": 8.027496060416349,
+            "model_minus_reference_angstrom": 2.9598120726365282
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.8630502300423775,
+            "model_angstrom": 8.171717444943873,
+            "model_minus_reference_angstrom": 2.3086672149014955
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.1670735703485007,
+            "model_angstrom": 3.7942046597409584,
+            "model_minus_reference_angstrom": 0.6271310893924578
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.052679360620577,
+            "model_angstrom": 4.499113134830019,
+            "model_minus_reference_angstrom": 0.4464337742094413
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.9088256233033984,
+            "model_angstrom": 5.34716046140379,
+            "model_minus_reference_angstrom": 0.438334838100392
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:OH"
+            ],
+            "reference_angstrom": 6.189206815093515,
+            "model_angstrom": 8.728834572839606,
+            "model_minus_reference_angstrom": 2.539627757746091
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 7.140071148104898,
+            "model_angstrom": 9.068811939829827,
+            "model_minus_reference_angstrom": 1.9287407917249286
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:CG"
+            ],
+            "reference_angstrom": 1.2477824329585658,
+            "model_angstrom": 1.2311888563498286,
+            "model_minus_reference_angstrom": -0.01659357660873728
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 2.30329633351855,
+            "model_angstrom": 2.2400745523307917,
+            "model_minus_reference_angstrom": -0.06322178118775845
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.446907464744461,
+            "model_angstrom": 8.942747340722535,
+            "model_minus_reference_angstrom": 4.495839875978074
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.608943126828796,
+            "model_angstrom": 8.803517194848887,
+            "model_minus_reference_angstrom": 3.1945740680200903
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 1.3420093144237113,
+            "model_angstrom": 1.3260671174567296,
+            "model_minus_reference_angstrom": -0.015942196966981736
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.31966514905959,
+            "model_angstrom": 9.227443307872447,
+            "model_minus_reference_angstrom": 4.907778158812857
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.6202749043085065,
+            "model_angstrom": 9.114413036504327,
+            "model_minus_reference_angstrom": 3.494138132195821
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.3642392899435696,
+            "model_angstrom": 8.589120793189487,
+            "model_minus_reference_angstrom": 5.224881503245918
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.723947184294083,
+            "model_angstrom": 8.422037817535612,
+            "model_minus_reference_angstrom": 3.698090633241529
+          },
+          {
+            "atoms": [
+              "A180:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 1.390246381041861,
+            "model_angstrom": 1.3615935516886084,
+            "model_minus_reference_angstrom": -0.02865282935325264
+          }
+        ],
+        "motif_pair_absolute_delta_mean_angstrom": 1.463207983320955,
+        "motif_pair_absolute_delta_max_angstrom": 5.224881503245918,
+        "tyr51_oh_to_tyr180_oh": {
+          "atoms": [
+            "A51:OH",
+            "A180:OH"
+          ],
+          "reference_angstrom": 3.827098901256669,
+          "model_angstrom": 6.339250507749319,
+          "model_minus_reference_angstrom": 2.5121516064926497
+        }
+      },
+      "errors": []
+    },
+    {
+      "model_index": 3,
+      "pdb_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_3.pdb"
+      ],
+      "cif_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_3.cif"
+      ],
+      "score_candidates": [
+        "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_3.json"
+      ],
+      "cif": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_3.cif",
+        "sha256": "d8c9b2e47f56e4dc9b6f71165c994473f47516a72168150426fbd84ef104854b",
+        "bytes": 179528
+      },
+      "score_as_supplied": {
+        "path": "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_3.json",
+        "sha256": "239a657b0f2b316bdcbb907f364fbedc60a11205ededbd96ed5385941b48a834",
+        "bytes": 1303928,
+        "native_confidence": {
+          "aggregate_score": [
+            0.18462546169757843
+          ],
+          "ptm": [
+            0.923127293586731
+          ],
+          "iptm": [
+            0.0
+          ],
+          "per_chain_ptm": [
+            [
+              0.923127293586731
+            ]
+          ],
+          "per_chain_pair_iptm": [
+            [
+              [
+                0.923127293586731
+              ]
+            ]
+          ],
+          "has_inter_chain_clashes": [
+            false
+          ],
+          "chain_intra_clashes": [
+            [
+              0
+            ]
+          ],
+          "chain_chain_inter_clashes": [
+            [
+              [
+                0
+              ]
+            ]
+          ],
+          "pae": [
+            [
+              [
+                3.8966898918151855
+              ]
+            ]
+          ],
+          "per_chain_plddt": [
+            [
+              0.8855046629905701
+            ]
+          ],
+          "complex_plddt": [
+            0.8855046629905701
+          ],
+          "seed": 43
+        },
+        "large_arrays": {
+          "pae_array": {
+            "shape": [
+              258,
+              258
+            ],
+            "retained_in_raw_score_file": true
+          },
+          "plddt_array": {
+            "shape": [
+              258
+            ],
+            "retained_in_raw_score_file": true
+          }
+        },
+        "other_native_fields": [],
+        "parse_error": null
+      },
+      "structure": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_3.pdb",
+        "sha256": "c21b680739f720471bf170795e69fc67d05695c98871bb09066b7ee3bb1aaaf3",
+        "bytes": 170270,
+        "residue_count": 258,
+        "position_ranges": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258
+        ],
+        "chains": [
+          "A"
+        ],
+        "insertion_codes": [],
+        "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+        "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+        "missing_backbone_atoms": [],
+        "nonfinite_atoms": [],
+        "duplicate_atoms": [],
+        "parse_errors": [],
+        "ignored_non_A_alternate_atom_rows": 0,
+        "exact_parent_sequence": true,
+        "position_mapping_valid": true,
+        "mapping_errors": []
+      },
+      "geometry": {
+        "global_ca_rmsd_angstrom": 0.9723095427107393,
+        "global_ca_atom_count": 241,
+        "secondary_core_ca_rmsd_angstrom": 0.9655679911682258,
+        "secondary_core_ca_atom_count": 238,
+        "motif_rmsd_after_global_alignment_angstrom": 2.746494267954512,
+        "missing_motif_atoms": [],
+        "motif_pair_distance_differences": [
+          {
+            "atoms": [
+              "A51:OH",
+              "A51:CZ"
+            ],
+            "reference_angstrom": 1.3810152062884782,
+            "model_angstrom": 1.3737197676382182,
+            "model_minus_reference_angstrom": -0.007295438650259944
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 3.5789977647380535,
+            "model_angstrom": 3.266105479007069,
+            "model_minus_reference_angstrom": -0.3128922857309844
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:CE"
+            ],
+            "reference_angstrom": 4.344841884349761,
+            "model_angstrom": 2.893959398471236,
+            "model_minus_reference_angstrom": -1.450882485878525
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 4.599043813663878,
+            "model_angstrom": 3.5687709368912994,
+            "model_minus_reference_angstrom": -1.0302728767725782
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.626438911301003,
+            "model_angstrom": 3.534142894677577,
+            "model_minus_reference_angstrom": -1.092296016623426
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.205831903440745,
+            "model_angstrom": 3.2930285452756105,
+            "model_minus_reference_angstrom": -0.9128033581651347
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.827098901256669,
+            "model_angstrom": 7.0327571406952485,
+            "model_minus_reference_angstrom": 3.2056582394385793
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.682042609801837,
+            "model_angstrom": 7.205305059468335,
+            "model_minus_reference_angstrom": 2.5232624496664986
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 4.755165401960273,
+            "model_angstrom": 4.519932853483556,
+            "model_minus_reference_angstrom": -0.23523254847671726
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 5.344977081335336,
+            "model_angstrom": 3.948818177632391,
+            "model_minus_reference_angstrom": -1.3961589037029447
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 5.087776233286995,
+            "model_angstrom": 4.267455682253772,
+            "model_minus_reference_angstrom": -0.8203205510332232
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.765881870126454,
+            "model_angstrom": 3.829341196602883,
+            "model_minus_reference_angstrom": -0.9365406735235706
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.072764294677511,
+            "model_angstrom": 3.2298831248204634,
+            "model_minus_reference_angstrom": -0.8428811698570478
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.9250927377579257,
+            "model_angstrom": 7.225769232407024,
+            "model_minus_reference_angstrom": 3.3006764946490983
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.87992663879284,
+            "model_angstrom": 7.432702402222223,
+            "model_minus_reference_angstrom": 2.5527757634293824
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 1.4867635992315678,
+            "model_angstrom": 1.4979839785525075,
+            "model_minus_reference_angstrom": 0.011220379320939777
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.07435668067321,
+            "model_angstrom": 2.889138452895603,
+            "model_minus_reference_angstrom": -0.18521822777760732
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.023660273929698,
+            "model_angstrom": 3.7613448392828857,
+            "model_minus_reference_angstrom": -0.2623154346468124
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.581356458517498,
+            "model_angstrom": 4.542314388062543,
+            "model_minus_reference_angstrom": -0.039042070454955
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 5.06768398777982,
+            "model_angstrom": 8.958414033745036,
+            "model_minus_reference_angstrom": 3.890730045965216
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.8630502300423775,
+            "model_angstrom": 9.015331496955618,
+            "model_minus_reference_angstrom": 3.1522812669132403
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.1670735703485007,
+            "model_angstrom": 3.539059903420681,
+            "model_minus_reference_angstrom": 0.3719863330721802
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.052679360620577,
+            "model_angstrom": 4.000722309783572,
+            "model_minus_reference_angstrom": -0.051957050837005525
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.9088256233033984,
+            "model_angstrom": 4.6825898816787275,
+            "model_minus_reference_angstrom": -0.22623574162467097
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:OH"
+            ],
+            "reference_angstrom": 6.189206815093515,
+            "model_angstrom": 9.125520368724185,
+            "model_minus_reference_angstrom": 2.9363135536306704
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 7.140071148104898,
+            "model_angstrom": 9.367583573152682,
+            "model_minus_reference_angstrom": 2.2275124250477845
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:CG"
+            ],
+            "reference_angstrom": 1.2477824329585658,
+            "model_angstrom": 1.2314503644077583,
+            "model_minus_reference_angstrom": -0.016332068550807488
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 2.30329633351855,
+            "model_angstrom": 2.2524619863607023,
+            "model_minus_reference_angstrom": -0.05083434715784785
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.446907464744461,
+            "model_angstrom": 9.6286947713592,
+            "model_minus_reference_angstrom": 5.181787306614739
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.608943126828796,
+            "model_angstrom": 9.387769223835873,
+            "model_minus_reference_angstrom": 3.7788260970070766
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 1.3420093144237113,
+            "model_angstrom": 1.324608243972534,
+            "model_minus_reference_angstrom": -0.017401070451177336
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.31966514905959,
+            "model_angstrom": 9.847374726291266,
+            "model_minus_reference_angstrom": 5.5277095772316756
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.6202749043085065,
+            "model_angstrom": 9.633749685350974,
+            "model_minus_reference_angstrom": 4.013474781042468
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.3642392899435696,
+            "model_angstrom": 9.127861195263653,
+            "model_minus_reference_angstrom": 5.763621905320084
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.723947184294083,
+            "model_angstrom": 8.87722287655323,
+            "model_minus_reference_angstrom": 4.153275692259147
+          },
+          {
+            "atoms": [
+              "A180:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 1.390246381041861,
+            "model_angstrom": 1.364980585942526,
+            "model_minus_reference_angstrom": -0.02526579509933513
+          }
+        ],
+        "motif_pair_absolute_delta_mean_angstrom": 1.7362025118228726,
+        "motif_pair_absolute_delta_max_angstrom": 5.763621905320084,
+        "tyr51_oh_to_tyr180_oh": {
+          "atoms": [
+            "A51:OH",
+            "A180:OH"
+          ],
+          "reference_angstrom": 3.827098901256669,
+          "model_angstrom": 7.0327571406952485,
+          "model_minus_reference_angstrom": 3.2056582394385793
+        }
+      },
+      "errors": []
+    },
+    {
+      "model_index": 4,
+      "pdb_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_4.pdb"
+      ],
+      "cif_candidates": [
+        "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_4.cif"
+      ],
+      "score_candidates": [
+        "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_4.json"
+      ],
+      "cif": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_4.cif",
+        "sha256": "9651558564fd97a004f9a8303f25cf233ce8851c65f603f2db61520ca2356ced",
+        "bytes": 179395
+      },
+      "score_as_supplied": {
+        "path": "bundle/output/chai/scores.ra95_5_8f_parent_model_idx_4.json",
+        "sha256": "4b258f48167eea9dc6f4bb9b2b67cf0bc5aa77ae69eb3e7e06e20aecca59ac61",
+        "bytes": 1304031,
+        "native_confidence": {
+          "aggregate_score": [
+            0.18460263311862946
+          ],
+          "ptm": [
+            0.9230131506919861
+          ],
+          "iptm": [
+            0.0
+          ],
+          "per_chain_ptm": [
+            [
+              0.9230131506919861
+            ]
+          ],
+          "per_chain_pair_iptm": [
+            [
+              [
+                0.9230131506919861
+              ]
+            ]
+          ],
+          "has_inter_chain_clashes": [
+            false
+          ],
+          "chain_intra_clashes": [
+            [
+              0
+            ]
+          ],
+          "chain_chain_inter_clashes": [
+            [
+              [
+                0
+              ]
+            ]
+          ],
+          "pae": [
+            [
+              [
+                3.8985440731048584
+              ]
+            ]
+          ],
+          "per_chain_plddt": [
+            [
+              0.886781632900238
+            ]
+          ],
+          "complex_plddt": [
+            0.886781632900238
+          ],
+          "seed": 43
+        },
+        "large_arrays": {
+          "pae_array": {
+            "shape": [
+              258,
+              258
+            ],
+            "retained_in_raw_score_file": true
+          },
+          "plddt_array": {
+            "shape": [
+              258
+            ],
+            "retained_in_raw_score_file": true
+          }
+        },
+        "other_native_fields": [],
+        "parse_error": null
+      },
+      "structure": {
+        "path": "bundle/output/chai/pred.ra95_5_8f_parent_model_idx_4.pdb",
+        "sha256": "91976332d011da78719f324659cdcec1896a2676b44086cf924ad5ef397df63f",
+        "bytes": 170270,
+        "residue_count": 258,
+        "position_ranges": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258
+        ],
+        "chains": [
+          "A"
+        ],
+        "insertion_codes": [],
+        "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+        "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+        "missing_backbone_atoms": [],
+        "nonfinite_atoms": [],
+        "duplicate_atoms": [],
+        "parse_errors": [],
+        "ignored_non_A_alternate_atom_rows": 0,
+        "exact_parent_sequence": true,
+        "position_mapping_valid": true,
+        "mapping_errors": []
+      },
+      "geometry": {
+        "global_ca_rmsd_angstrom": 0.8267592008283619,
+        "global_ca_atom_count": 241,
+        "secondary_core_ca_rmsd_angstrom": 0.8187393250950588,
+        "secondary_core_ca_atom_count": 238,
+        "motif_rmsd_after_global_alignment_angstrom": 2.753527166069108,
+        "missing_motif_atoms": [],
+        "motif_pair_distance_differences": [
+          {
+            "atoms": [
+              "A51:OH",
+              "A51:CZ"
+            ],
+            "reference_angstrom": 1.3810152062884782,
+            "model_angstrom": 1.3800967357399265,
+            "model_minus_reference_angstrom": -0.0009184705485516531
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 3.5789977647380535,
+            "model_angstrom": 3.4466148609904184,
+            "model_minus_reference_angstrom": -0.13238290374763517
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A83:CE"
+            ],
+            "reference_angstrom": 4.344841884349761,
+            "model_angstrom": 3.996533748137253,
+            "model_minus_reference_angstrom": -0.3483081362125082
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 4.599043813663878,
+            "model_angstrom": 3.579346448724962,
+            "model_minus_reference_angstrom": -1.0196973649389154
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.626438911301003,
+            "model_angstrom": 3.367250955898595,
+            "model_minus_reference_angstrom": -1.2591879554024081
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.205831903440745,
+            "model_angstrom": 2.7389853960910417,
+            "model_minus_reference_angstrom": -1.4668465073497035
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.827098901256669,
+            "model_angstrom": 6.898678569117421,
+            "model_minus_reference_angstrom": 3.071579667860752
+          },
+          {
+            "atoms": [
+              "A51:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.682042609801837,
+            "model_angstrom": 6.992623684998356,
+            "model_minus_reference_angstrom": 2.3105810751965192
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:NZ"
+            ],
+            "reference_angstrom": 4.755165401960273,
+            "model_angstrom": 4.739541433514428,
+            "model_minus_reference_angstrom": -0.015623968445845016
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 5.344977081335336,
+            "model_angstrom": 5.088164796859473,
+            "model_minus_reference_angstrom": -0.25681228447586246
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 5.087776233286995,
+            "model_angstrom": 4.402430010800853,
+            "model_minus_reference_angstrom": -0.6853462224861415
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.765881870126454,
+            "model_angstrom": 3.805432958284773,
+            "model_minus_reference_angstrom": -0.9604489118416808
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.072764294677511,
+            "model_angstrom": 2.869051062633776,
+            "model_minus_reference_angstrom": -1.203713232043735
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.9250927377579257,
+            "model_angstrom": 7.110925467194829,
+            "model_minus_reference_angstrom": 3.1858327294369038
+          },
+          {
+            "atoms": [
+              "A51:CZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.87992663879284,
+            "model_angstrom": 7.2736929410032145,
+            "model_minus_reference_angstrom": 2.3937663022103743
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A83:CE"
+            ],
+            "reference_angstrom": 1.4867635992315678,
+            "model_angstrom": 1.4897711233609003,
+            "model_minus_reference_angstrom": 0.003007524129332584
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.07435668067321,
+            "model_angstrom": 3.0160389586343213,
+            "model_minus_reference_angstrom": -0.05831772203888885
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.023660273929698,
+            "model_angstrom": 3.861310269843645,
+            "model_minus_reference_angstrom": -0.16235000408605327
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.581356458517498,
+            "model_angstrom": 4.400039204370798,
+            "model_minus_reference_angstrom": -0.18131725414670008
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:OH"
+            ],
+            "reference_angstrom": 5.06768398777982,
+            "model_angstrom": 8.652268719821409,
+            "model_minus_reference_angstrom": 3.5845847320415887
+          },
+          {
+            "atoms": [
+              "A83:NZ",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.8630502300423775,
+            "model_angstrom": 8.667521214280354,
+            "model_minus_reference_angstrom": 2.8044709842379767
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:OD1"
+            ],
+            "reference_angstrom": 3.1670735703485007,
+            "model_angstrom": 3.769100821150849,
+            "model_minus_reference_angstrom": 0.6020272508023483
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:CG"
+            ],
+            "reference_angstrom": 4.052679360620577,
+            "model_angstrom": 4.374170664251682,
+            "model_minus_reference_angstrom": 0.3214913036311051
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 4.9088256233033984,
+            "model_angstrom": 5.022933107259144,
+            "model_minus_reference_angstrom": 0.11410748395574544
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:OH"
+            ],
+            "reference_angstrom": 6.189206815093515,
+            "model_angstrom": 9.470168636302102,
+            "model_minus_reference_angstrom": 3.280961821208587
+          },
+          {
+            "atoms": [
+              "A83:CE",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 7.140071148104898,
+            "model_angstrom": 9.661340383197354,
+            "model_minus_reference_angstrom": 2.521269235092456
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:CG"
+            ],
+            "reference_angstrom": 1.2477824329585658,
+            "model_angstrom": 1.2586079612015808,
+            "model_minus_reference_angstrom": 0.01082552824301497
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 2.30329633351855,
+            "model_angstrom": 2.2649057375528896,
+            "model_minus_reference_angstrom": -0.03839059596566052
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.446907464744461,
+            "model_angstrom": 9.783132473804082,
+            "model_minus_reference_angstrom": 5.336225009059621
+          },
+          {
+            "atoms": [
+              "A110:OD1",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.608943126828796,
+            "model_angstrom": 9.535713659711053,
+            "model_minus_reference_angstrom": 3.926770532882257
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A110:ND2"
+            ],
+            "reference_angstrom": 1.3420093144237113,
+            "model_angstrom": 1.3316433456447714,
+            "model_minus_reference_angstrom": -0.010365968778939916
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:OH"
+            ],
+            "reference_angstrom": 4.31966514905959,
+            "model_angstrom": 9.901694046980044,
+            "model_minus_reference_angstrom": 5.582028897920454
+          },
+          {
+            "atoms": [
+              "A110:CG",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 5.6202749043085065,
+            "model_angstrom": 9.70248674309839,
+            "model_minus_reference_angstrom": 4.082211838789884
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:OH"
+            ],
+            "reference_angstrom": 3.3642392899435696,
+            "model_angstrom": 9.022686684131285,
+            "model_minus_reference_angstrom": 5.658447394187716
+          },
+          {
+            "atoms": [
+              "A110:ND2",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 4.723947184294083,
+            "model_angstrom": 8.813830098203617,
+            "model_minus_reference_angstrom": 4.089882913909534
+          },
+          {
+            "atoms": [
+              "A180:OH",
+              "A180:CZ"
+            ],
+            "reference_angstrom": 1.390246381041861,
+            "model_angstrom": 1.3717251911370585,
+            "model_minus_reference_angstrom": -0.01852118990480256
+          }
+        ],
+        "motif_pair_absolute_delta_mean_angstrom": 1.686072803255839,
+        "motif_pair_absolute_delta_max_angstrom": 5.658447394187716,
+        "tyr51_oh_to_tyr180_oh": {
+          "atoms": [
+            "A51:OH",
+            "A180:OH"
+          ],
+          "reference_angstrom": 3.827098901256669,
+          "model_angstrom": 6.898678569117421,
+          "model_minus_reference_angstrom": 3.071579667860752
+        }
+      },
+      "errors": []
+    }
+  ],
+  "all_five_models_present_and_valid": true,
+  "errors": [],
+  "interpretation_boundary": {
+    "parent_recovery": "Pipeline sanity only; may reflect predictor familiarity with the known fold and does not validate activity.",
+    "parent_nonrecovery": "Weakens use of the protein-only Chai local geometry as a catalytic discriminator for the designed sequence.",
+    "selection": "Retain and report all five correlated native outputs; no winner or post-hoc threshold."
+  }
+}

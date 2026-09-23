@@ -1,51 +1,62 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — RA95 translation and diagnosis, 2026-09-23
+## Current research handoff — RA95 parent outcome, 2026-09-23
 
-- **Atlas-to-input translation executed locally:** nine guidepost and seventeen
-  LLK heavy-atom coordinates/occupancies are rebuilt from the verified Atlas
-  5AN7 packet into the preserved author PDB template. The output is byte-equal
-  to the executed native input. Destructive fixture checks confirm that Atlas
-  supplies the replaced fields. [Builder, provenance and checks](../tools/research_lanes/ra95_design_reference/atlas_input/README.md).
-  Atom selection, alternate selection, all connectivity and remaining PDB
-  content still come from the author. This is partial translation on an exposed
-  case, not independent motif generation or an Atlas-efficacy comparison.
-- **Packing diagnosis:** fixed sequence/chi torsions do not imply fixed Cartesian
-  atoms in the pinned LigandMPNN path. It reconstructs every residue using
-  idealized geometry. The original reference-to-packed nine-atom RMSD remains
-  2.425 Å, despite almost unchanged fixed-residue torsions and identical C-alpha
-  coordinates. Chai used FASTA alone, so this does not explain its later motif
-  rearrangement. Original output bytes remain unchanged; no corrected model
-  run has occurred. [Source trace and coordinate audit](../tools/research_lanes/ra95_design_reference/results/20260923-diagnostics/README.md).
-- **Known-active parent control prepared, not predicted:** the exact source
-  258-residue RA95.5-8F sequence and source-bound 5AOU comparison are prepared
-  in [parent_control](../tools/research_lanes/ra95_design_reference/parent_control/README.md).
-  Preserve initiator Met, tags, MHO237/coordinate-coverage caveats and per-residue
-  author numbering. One protein-only Chai invocation with the previous settings
-  is the next discriminating computation; retain all five samples. This is a
-  sanity control on the interpretation, not activity validation or a calibrated
-  classifier. Do not sample another designed sequence first.
-- **Research decision:** do not repeat RFdiffusion2 on a byte-identical input.
-  Translation of existing knowledge is a legitimate Atlas objective; it does
-  not require a novel constraint. Broader translation needs a second supported
-  case with a real new requirement. The full computable mechanism Atlas and
-  de novo design remain the mission. Missing adduct graph/protonation and joint
-  alternate-state evidence still prevent a chemically complete ligand-bound
-  efficacy comparison on this case.
-- **Execution boundary:** this turn used retained outputs and small pinned
-  source files; no new model, paid instance or laboratory run. Both prior VMs
-  are terminated. The earlier rental overrun is retained in the
-  [execution record](../tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/execution.json).
-  Require verified provider-side termination independent of this interactive
-  session before another rental. The prior per-run approval has ended; do not
-  treat the old launch scripts or addresses as an active compute environment.
-- **Coordination:** this turn's receipts are under
-  `.git/catalytic-earth-runs/20260923T155000Z-ra95-atlas-input/`.
-  Preserve the seven unrelated viewer/demo paths. The hourly writer remains
-  paused; no protected registry, evidence tier, exposure ledger or frozen
-  result changed. The original five Chai predictions and all raw outputs remain
-  in the [sequence/fold result](../tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/README.md).
+- **Question resolved:** one exact 258-residue RA95.5-8F parent control recovers
+  the apo fold reasonably closely (241-CA RMSD 0.827–1.170 Å), but all five
+  predictions appreciably move its nine catalytic atoms (2.413–2.877 Å motif
+  RMSD). Tyr51 OH–Tyr180 OH is 5.740–7.325 Å versus 3.827 Å in apo 5AOU.
+  [Result, all samples and reproduction](../tools/research_lanes/ra95_design_reference/results/20260923-parent-control/README.md).
+  This is new information about this readout, not measured activity or a
+  calibrated threshold. The known-active parent also shows local deviations;
+  the design's larger 4.466–5.611 Å motif RMSD remains a structural warning
+  and cannot establish catalytic inactivity. Length, export size, reference
+  state and unknown training exposure limit the comparison.
+- **Execution:** one protein-only Chai invocation, seed 43, three recycles,
+  200 diffusion steps; 18:00:14–18:02:35 UTC, exit zero. All five outputs and
+  raw arrays retained. Full 258-residue input, 384 exports; previous design
+  used 256. Shared container/embedding/conformer hashes match; new export
+  identities were frozen before inference. An initial preflight hash-literal
+  typo was corrected before any model ran; its original script and logs remain
+  in the bundle. All 39 payload files were hash-verified after retrieval.
+- **Close the RA95 sampling attempt:** do not add seeds, trim the parent or
+  rescue the ligand/template input. The control beats another designed
+  sequence because it changes the interpretation of the existing output.
+  No activity, ligand-bound validation or Atlas-efficacy claim follows.
+  The [partial Atlas translation and packing diagnosis](../tools/research_lanes/ra95_design_reference/atlas_input/README.md)
+  remain unchanged. A byte-identical Atlas input does not justify another
+  RFdiffusion2 run. The full mechanism Atlas and de novo design remain the goal.
+- **One next action:** test source-state translation on retained 6HA3 human
+  transketolase E160Q/F6P–ThDP. The existing assembly projection already has
+  operator-qualified atoms; the missing operation is mapping operator-1/2
+  copies to distinct consumer chain/residue selectors, with a reversible
+  source-atom map, then supplying those selections to RFdiffusion2's existing
+  PDB/`contig_atoms`/ligand interface. Preserve partner Glu366 beside Gln160
+  and the T6F component. This tests a new assembly requirement beyond RA95's
+  author-template patch; plain coordinate re-export or another refusal recap
+  would be marginal. Stop if the consumer cannot preserve copy identity or
+  completing the interface requires unsupported atom, bond or motif choices.
+  No model run is queued. Translate only the observed trapped state; the
+  [assembly packet](../data/atlas/assembly_context/6ha3/spec.json) is explicitly
+  not a sufficient productive design template. New chemistry is not required
+  for legitimate source-grounded translation, and source-state translation
+  is not proof of a functioning catalyst.
+- **Compute closed:** the GPU was terminated at 18:04:54 UTC after verified
+  retrieval; the independent cloud watchdog observed its removal and exited
+  zero, then was deleted at 18:06 UTC. Provider history displayed $0.75 GPU
+  plus approximately $0.03 watchdog cost. No active GPU instance remained.
+  No old host/address/script is an active environment; any later rental needs
+  its own justified scope and independently verified termination boundary.
+- **Coordination and publication:** root owned runtime, cleanup and integration;
+  complementary agents checked runtime, geometry and task selection. These
+  are computational reviews, not independent experimental review. Base
+  `5c6c6f77`; branch `codex/ra95-parent-control-20260923`. Local receipts:
+  `.git/catalytic-earth-runs/20260923T172559Z-ra95-parent/`. Preserve the seven
+  unrelated viewer/demo paths. The hourly writer remains paused. No protected
+  registry, exposure ledger, evidence tier or earlier frozen result changed.
+  Publish after the existing repository checks and result/diff review pass;
+  exact commit, CI, merge and lock-release receipts belong in the task output.
 
 <!-- current-research-handoff:end -->
 

@@ -1,6 +1,8 @@
 # Known-active RA95 parent control
 
-**Prepared; Chai has not run on this control.** The [FASTA](ra95_5_8f_parent.fasta)
+**Frozen preparation; the control has now executed.** The
+[result and all five outputs](../results/20260923-parent-control/README.md)
+record the observed local-geometry deviations. The [FASTA](ra95_5_8f_parent.fasta)
 contains the exact 258-residue RA95.5-8F sequence printed in Obexer 2017 SI
 Figure S6a, including initial Met and terminal `LEHHHHHH`. Its sequence SHA-256
 is `b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b`.
@@ -17,8 +19,10 @@ The full 258-residue parent requires a larger compiled model: the pinned
 [size selector](https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/lib/chai/chai_lab/chai1.py#L413)
 selects the smallest supported size covering the tokens, expected to be 384
 for this parent versus 256 in the design run. The manifest pins the prior
-container and asset inventories; the 384 exports are **not downloaded or
-hash-verified yet**. Record all five new export identities before prediction
+container and asset inventories; the 384 exports had not been downloaded or
+hash-verified when this preparation was frozen. Their subsequent identities
+and preprediction verification are retained in the linked execution result.
+For any reuse, record all five export identities before prediction
 and report the size difference. Do not shorten the parent or claim identical
 asset bytes across these lengths.
 
