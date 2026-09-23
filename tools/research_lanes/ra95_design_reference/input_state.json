@@ -1,0 +1,455 @@
+{
+  "format": "catalytic-earth.ra95-native-input.v1",
+  "scope": "Exposed development input audit. The author input is unchanged; this sidecar is not a generated theozyme or an additional model-conditioning arm.",
+  "construct": {
+    "id": "RA95.5-8F",
+    "canonical_length": 258,
+    "pdb_id": "5AN7",
+    "sequence_relation": "Full deposited canonical sequence equals the source-printed parent sequence; physical assay/crystal preparation identity is not established.",
+    "numbering": {
+      "chain": "A",
+      "label_to_author": {
+        "TYR_51": "1051",
+        "LYS_83": "1083",
+        "ASN_110": "1110",
+        "TYR_180": "1180"
+      },
+      "limit": "The mapping is residue-specific. No global author-number offset is inferred."
+    }
+  },
+  "native_control": {
+    "repository": "https://github.com/RosettaCommons/RFdiffusion2",
+    "commit": "d365cbf4db3958814a9f8e4f6f94fa309dfebc2b",
+    "benchmark_id": "retroaldolase",
+    "benchmark_declaration": {
+      "repository_path": "rf_diffusion/benchmark/demo_enzymes.json",
+      "url": "https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/benchmark/demo_enzymes.json",
+      "sha256": "6f62cc1d4faf790c8ed4582b3e28fea2fa9daa4677fa5af90bd68f145821c409"
+    },
+    "input_pdb": {
+      "repository_path": "rf_diffusion/benchmark/input/ra_5an7_no_cov_ORI_cm1.pdb",
+      "url": "https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/benchmark/input/ra_5an7_no_cov_ORI_cm1.pdb",
+      "sha256": "6dc747dbb1840892ed1f2f05e44d544a888db09336f4bb9df8b7732ace663682"
+    },
+    "interface": {
+      "contigs": [
+        "10-100",
+        "A1051-1051",
+        "10-100",
+        "A1083-1083",
+        "10-100",
+        "A1110-1110",
+        "10-100",
+        "A1180-1180",
+        "10-100"
+      ],
+      "contig_atoms": {
+        "A1051": [
+          "OH",
+          "CZ"
+        ],
+        "A1083": [
+          "NZ",
+          "CE"
+        ],
+        "A1110": [
+          "OD1",
+          "CG",
+          "ND2"
+        ],
+        "A1180": [
+          "OH",
+          "CZ"
+        ]
+      },
+      "contig_as_guidepost": true,
+      "length": "150-150",
+      "ligand": "LLK"
+    }
+  },
+  "reference_runtime": {
+    "public_config": {
+      "repository_path": "rf_diffusion/benchmark/configs/open_source_demo.yaml",
+      "url": "https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/rf_diffusion/benchmark/configs/open_source_demo.yaml",
+      "sha256": "7385bbb347ff364ad4b2da4abe5957e1a96aefc3f1c0f1a111212f8737880f40"
+    },
+    "inference_config": "aa",
+    "checkpoint": "rf_diffusion/model_weights/RFD_173.pt",
+    "checkpoint_path_materialization": "Replace REPO_ROOT with the absolute selected checkout path in sweep.command_args.",
+    "deterministic": true,
+    "seed_offset": 43,
+    "num_per_condition": 1,
+    "stop_step": "sweep",
+    "status": "prepared; target Hydra resolution and model inference not run",
+    "runtime_asset_integrity_verified": false,
+    "reproduction_scope": "New development combination of the public runtime and author RA95 input. No exact published-run reproduction claim."
+  },
+  "native_atom_map": [
+    {
+      "native_selector": "A1051:OH",
+      "residue": "TYR",
+      "canonical_label_seq_id": 51,
+      "native_pdb": {
+        "serial": 933,
+        "altloc": "A",
+        "occupancy": 0.75,
+        "xyz_angstrom": [
+          -19.224,
+          22.424,
+          -11.858
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 944,
+        "altloc": "A",
+        "occupancy": 0.75,
+        "xyz_angstrom": [
+          -19.224,
+          22.424,
+          -11.858
+        ]
+      },
+      "unselected_cif_alternative": {
+        "atom_site_id": 945,
+        "altloc": "B",
+        "occupancy": 0.25,
+        "xyz_angstrom": [
+          -20.794,
+          22.499,
+          -11.371
+        ]
+      }
+    },
+    {
+      "native_selector": "A1051:CZ",
+      "residue": "TYR",
+      "canonical_label_seq_id": 51,
+      "native_pdb": {
+        "serial": 932,
+        "altloc": "A",
+        "occupancy": 0.75,
+        "xyz_angstrom": [
+          -19.384,
+          23.79,
+          -11.825
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 942,
+        "altloc": "A",
+        "occupancy": 0.75,
+        "xyz_angstrom": [
+          -19.384,
+          23.79,
+          -11.825
+        ]
+      },
+      "unselected_cif_alternative": {
+        "atom_site_id": 943,
+        "altloc": "B",
+        "occupancy": 0.25,
+        "xyz_angstrom": [
+          -20.497,
+          23.837,
+          -11.511
+        ]
+      }
+    },
+    {
+      "native_selector": "A1083:NZ",
+      "residue": "LYS",
+      "canonical_label_seq_id": 83,
+      "native_pdb": {
+        "serial": 1462,
+        "altloc": "A",
+        "occupancy": 0.57,
+        "xyz_angstrom": [
+          -20.282,
+          19.855,
+          -13.494
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 1491,
+        "altloc": "A",
+        "occupancy": 0.57,
+        "xyz_angstrom": [
+          -20.282,
+          19.855,
+          -13.494
+        ]
+      },
+      "unselected_cif_alternative": {
+        "atom_site_id": 1492,
+        "altloc": "B",
+        "occupancy": 0.43,
+        "xyz_angstrom": [
+          -20.652,
+          19.014,
+          -13.344
+        ]
+      }
+    },
+    {
+      "native_selector": "A1083:CE",
+      "residue": "LYS",
+      "canonical_label_seq_id": 83,
+      "native_pdb": {
+        "serial": 1461,
+        "altloc": "A",
+        "occupancy": 0.57,
+        "xyz_angstrom": [
+          -21.561,
+          20.611,
+          -13.4
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 1489,
+        "altloc": "A",
+        "occupancy": 0.57,
+        "xyz_angstrom": [
+          -21.561,
+          20.611,
+          -13.4
+        ]
+      },
+      "unselected_cif_alternative": {
+        "atom_site_id": 1490,
+        "altloc": "B",
+        "occupancy": 0.43,
+        "xyz_angstrom": [
+          -21.991,
+          18.966,
+          -14.022
+        ]
+      }
+    },
+    {
+      "native_selector": "A1110:OD1",
+      "residue": "ASN",
+      "canonical_label_seq_id": 110,
+      "native_pdb": {
+        "serial": 1999,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -19.16,
+          20.791,
+          -15.81
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 2038,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -19.16,
+          20.791,
+          -15.81
+        ]
+      },
+      "unselected_cif_alternative": null
+    },
+    {
+      "native_selector": "A1110:CG",
+      "residue": "ASN",
+      "canonical_label_seq_id": 110,
+      "native_pdb": {
+        "serial": 1997,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -19.033,
+          21.983,
+          -16.08
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 2037,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -19.033,
+          21.983,
+          -16.08
+        ]
+      },
+      "unselected_cif_alternative": null
+    },
+    {
+      "native_selector": "A1110:ND2",
+      "residue": "ASN",
+      "canonical_label_seq_id": 110,
+      "native_pdb": {
+        "serial": 1998,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -18.244,
+          22.793,
+          -15.392
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 2039,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -18.244,
+          22.793,
+          -15.392
+        ]
+      },
+      "unselected_cif_alternative": null
+    },
+    {
+      "native_selector": "A1180:OH",
+      "residue": "TYR",
+      "canonical_label_seq_id": 180,
+      "native_pdb": {
+        "serial": 3256,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -16.64,
+          22.096,
+          -12.675
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 3296,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -16.64,
+          22.096,
+          -12.675
+        ]
+      },
+      "unselected_cif_alternative": null
+    },
+    {
+      "native_selector": "A1180:CZ",
+      "residue": "TYR",
+      "canonical_label_seq_id": 180,
+      "native_pdb": {
+        "serial": 3255,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -15.711,
+          21.644,
+          -11.773
+        ]
+      },
+      "retained_cif": {
+        "atom_site_id": 3295,
+        "altloc": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -15.711,
+          21.644,
+          -11.773
+        ]
+      },
+      "unselected_cif_alternative": null
+    }
+  ],
+  "ligand_and_state_context": {
+    "native_ligand": {
+      "component_id": "LLK",
+      "author_residue": "A5001",
+      "pdb_serial_range": [
+        4434,
+        4464
+      ],
+      "coordinate_rows": 31,
+      "heavy_atoms": 17,
+      "occupancy": 0.75,
+      "altloc": null,
+      "interface_scope": "The native command names the whole LLK component; it does not declare a partially fixed ligand atom subset."
+    },
+    "source_relation": "SI Table S2 links 5AN7 to the RA95.5-8F/inhibitor3 complex. The source describes inhibitor3 as a 1,3-diketone and a Schiff-base complex; deposited LLK is an enone component. The mapping from inhibitor3/source-described adduct to deposited protein-plus-LLK graph is incomplete.",
+    "native_connectivity": {
+      "record": "CONECT 1462 4448",
+      "atoms": [
+        "A1083:NZ",
+        "A5001:C13"
+      ],
+      "interpretation": "Observed in the exact upstream PDB even though the filename contains no_cov. It is an author-native input representation without bond order. The retained 5AN7 CIF struct_conn inventory has no LLK/Lys83 row, so Atlas cannot promote this to a verified complete adduct graph. The filename is not chemical evidence."
+    },
+    "joint_altloc_state": null,
+    "complete_protein_adduct_graph": null,
+    "bond_order": null,
+    "protonation": null,
+    "productive_solution_geometry": null,
+    "transition_state_geometry": null,
+    "crystal_pH": {
+      "supplement": 7.5,
+      "deposit": 4.5,
+      "resolved": null
+    },
+    "temperature_scope": {
+      "diffraction_K": 100,
+      "activity_assay_C": 29,
+      "transfer_allowed": false
+    },
+    "upstream_only_marker": {
+      "pdb_record": "HETATM 4465 ORI  ORI z   1",
+      "occupancy": 0.0,
+      "xyz_angstrom": [
+        -16.407,
+        25.586,
+        -18.0
+      ],
+      "cif_counterpart": null,
+      "status": "Not named by inference.ligand=LLK and not source chemical evidence; its exact preprocessing semantics are outside the retained Atlas packet."
+    }
+  },
+  "atlas_source_bindings": [
+    {
+      "path": "data/atlas/deposit_context/ra95_5an7/5AN7.cif",
+      "sha256": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f"
+    },
+    {
+      "path": "data/atlas/deposit_context/ra95_5an7/projection.json",
+      "sha256": "2c0646339f76c458c0afb38ad4d9b3a7b35d075c37257ade9cb49f5b42afb10c"
+    },
+    {
+      "path": "data/atlas/deposit_context/ra95_5an7/review.json",
+      "sha256": "784c4cc6c2e5929fa083cc2decf5369b8a4a5465c694c00a09d7cea55320b4c0"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2017/chemical_state.json",
+      "sha256": "90d9c76913dc67714e04b34bd8a126f4d35e5e01ba3bd80929ba623ef974d93c"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2017/chemical_state_review.json",
+      "sha256": "d51704e3c5c837cdfceb2233d1905e4d50b99bbfd3edaec94a0ca8a31aca747e"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2017/source_review.json",
+      "sha256": "75713129143ab0de723c529713acd96657b5ce9174561d217b2e454510ec1093"
+    },
+    {
+      "path": "docs/ATLAS_RA95_CHEMICAL_STATE.md",
+      "sha256": "64192bc0aea597916cd80e6d5b216152115554774c83f3faeacc7c41064a7e0c"
+    },
+    {
+      "path": "docs/ATLAS_RA95_TETRAD_CONTROLS.md",
+      "sha256": "d1dc9320ad595d4b115719f1443fa959706b39adac09d77b1724968d5c0ad8ed"
+    }
+  ],
+  "assessment": {
+    "selected_atom_comparison": "9/9 exact retained CIF identity, coordinate and occupancy matches; alternate selection remains an author input choice.",
+    "role_limit": "Residue perturbations are composite functional endpoints. They do not independently establish atom-specific roles, frame atoms as catalytic atoms, or transferable geometry.",
+    "additional_atlas_conditioning_constraint": null,
+    "decision": "Reference input audit and compatibility control only. Stop the Atlas efficacy comparison until independently supported evidence changes a generator-consumed input.",
+    "review_status": "Related-model computational review; no new human or experimental review."
+  }
+}
