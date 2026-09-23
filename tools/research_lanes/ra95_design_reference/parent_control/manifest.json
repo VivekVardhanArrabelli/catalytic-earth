@@ -1,0 +1,356 @@
+{
+  "schema_version": "catalytic-earth.ra95-parent-chai-control.v1",
+  "repository_base_commit": "99142e880a10d87cee9dab5f5609eb6eae931f5c",
+  "scope": {
+    "purpose": "Known-active RA95.5-8F protein-only Chai sanity control.",
+    "execution_status": "materialized_only; no model invocation",
+    "claim_boundary": "Not an independent assay, activity prediction, Atlas-benefit test, fresh-generalization test or calibrated precision estimate. Predictor training-set independence for this known parent is not established."
+  },
+  "construct": {
+    "id": "RA95.5-8F",
+    "source_packet": {
+      "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d",
+      "json_pointer": "/constructs/0"
+    },
+    "sequence_source": "Obexer2017:SI:FigureS6a:p23",
+    "sequence_status": "directly_printed_258_residue_string",
+    "sequence_length": 258,
+    "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+    "fasta": {
+      "path": "ra95_5_8f_parent.fasta",
+      "sha256": "cbba0f396a63b32b7d12189a203f2ec39be62ea99c83afad7ec4a6133c0fe1d5",
+      "header": "protein|ra95_5_8f_parent"
+    },
+    "sequence_handling": {
+      "trimmed": false,
+      "starting_methionine_retained": true,
+      "terminal_suffix": "LEHHHHHH",
+      "terminal_suffix_positions": [
+        251,
+        258
+      ],
+      "mature_n_terminus_limit": "The printed and deposited canonical strings include Met1, unmodeled in both crystals. SI TableS4 calculates intact mass without initialMet. No exact mature N-terminus or specimen sequence is inferred."
+    },
+    "source_reported_activity": {
+      "row_id": "S1:RA95.5-8F",
+      "construct_id": "RA95.5-8F",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:RA95.5-8F",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "10.8 \u00b1 0.6",
+        "value": 10.8,
+        "sd": 0.6,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 320,
+        "sd": 36,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 33800,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    },
+    "physical_specimen_identity": "not established by source naming or canonical sequence equality"
+  },
+  "reference_5AOU": {
+    "state_id": "ra95-8f:5AOU:apo",
+    "source_assignment": "SI TableS2 maps apoRA95.5-8F to5AOU; primary citation and deposit title agree.",
+    "cif": {
+      "path": "data/atlas/deposit_context/ra95_5aou/5AOU.cif",
+      "sha256": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e"
+    },
+    "projection_sha256": "fd36245323fb858c8702fd3cd1a30dd6232e23f9a6c5e77f1d01c159eaba8545",
+    "numbering": {
+      "source_category": "_pdbx_poly_seq_scheme",
+      "segments": [
+        {
+          "label_start": 1,
+          "label_end": 63,
+          "author_offset": 1000
+        },
+        {
+          "label_start": 64,
+          "label_end": 258,
+          "author_offset": 2000
+        }
+      ],
+      "selected": {
+        "Tyr51": {
+          "label_seq_id": 51,
+          "author_seq_id": "1051"
+        },
+        "Ser81": {
+          "label_seq_id": 81,
+          "author_seq_id": "2081"
+        },
+        "Lys83": {
+          "label_seq_id": 83,
+          "author_seq_id": "2083"
+        },
+        "Asn110": {
+          "label_seq_id": 110,
+          "author_seq_id": "2110"
+        },
+        "Tyr180": {
+          "label_seq_id": 180,
+          "author_seq_id": "2180"
+        },
+        "MHO237": {
+          "label_seq_id": 237,
+          "author_seq_id": "2237"
+        }
+      },
+      "global_offset_valid": false
+    },
+    "coordinate_scope": {
+      "fully_unmodeled_label_positions": [
+        1,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258
+      ],
+      "partially_modeled_without_CA": {
+        "label_seq_id": 249,
+        "component": "GLY",
+        "present_atoms": [
+          "N"
+        ],
+        "atom_site_id": "2079"
+      },
+      "selected_CA_position_ranges": [
+        "2-57",
+        "64-248"
+      ],
+      "selected_CA_count": 241,
+      "expression_tag_positions": [
+        246,
+        258
+      ],
+      "MHO237": {
+        "canonical_parent": "MET",
+        "deposited": "MHO",
+        "OD1_occupancy": 0.71,
+        "use": "CA backbone comparison only; no side-chain identity score or functional inference"
+      },
+      "alternate_policy": "Blank alt, otherwise alt A when present, otherwise highest occupancy/lexical id; bookkeeping only, not a joint conformer assertion."
+    },
+    "motif_rows": [
+      {
+        "label_seq_id": 51,
+        "label_comp_id": "TYR",
+        "author_seq_id": "1051",
+        "atom_name": "OH",
+        "atom_site_id": "437",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -20.288,
+          22.467,
+          -11.573
+        ]
+      },
+      {
+        "label_seq_id": 51,
+        "label_comp_id": "TYR",
+        "author_seq_id": "1051",
+        "atom_name": "CZ",
+        "atom_site_id": "436",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -20.063,
+          23.824,
+          -11.696
+        ]
+      },
+      {
+        "label_seq_id": 83,
+        "label_comp_id": "LYS",
+        "author_seq_id": "2083",
+        "atom_name": "NZ",
+        "atom_site_id": "654",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -20.833,
+          19.477,
+          -13.463
+        ]
+      },
+      {
+        "label_seq_id": 83,
+        "label_comp_id": "LYS",
+        "author_seq_id": "2083",
+        "atom_name": "CE",
+        "atom_site_id": "653",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -21.989,
+          19.626,
+          -14.386
+        ]
+      },
+      {
+        "label_seq_id": 110,
+        "label_comp_id": "ASN",
+        "author_seq_id": "2110",
+        "atom_name": "OD1",
+        "atom_site_id": "904",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -19.472,
+          20.905,
+          -15.821
+        ]
+      },
+      {
+        "label_seq_id": 110,
+        "label_comp_id": "ASN",
+        "author_seq_id": "2110",
+        "atom_name": "CG",
+        "atom_site_id": "903",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -19.266,
+          22.11,
+          -16.071
+        ]
+      },
+      {
+        "label_seq_id": 110,
+        "label_comp_id": "ASN",
+        "author_seq_id": "2110",
+        "atom_name": "ND2",
+        "atom_site_id": "905",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -18.494,
+          22.936,
+          -15.348
+        ]
+      },
+      {
+        "label_seq_id": 180,
+        "label_comp_id": "TYR",
+        "author_seq_id": "2180",
+        "atom_name": "OH",
+        "atom_site_id": "1507",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -16.627,
+          22.185,
+          -12.652
+        ]
+      },
+      {
+        "label_seq_id": 180,
+        "label_comp_id": "TYR",
+        "author_seq_id": "2180",
+        "atom_name": "CZ",
+        "atom_site_id": "1506",
+        "alt_id": null,
+        "occupancy": 1.0,
+        "xyz_angstrom": [
+          -15.675,
+          21.69,
+          -11.768
+        ]
+      }
+    ],
+    "role": "Apo coordinate context, not productive or transition-state geometry."
+  },
+  "future_chai_run": {
+    "input": {
+      "fasta": "ra95_5_8f_parent.fasta",
+      "entity_type": "protein",
+      "ligand": null,
+      "template": null,
+      "motif_restraints": null
+    },
+    "matched_settings": {
+      "seed": 43,
+      "num_trunk_recycles": 3,
+      "num_diffn_timesteps": 200,
+      "structure_output": [
+        "pdb",
+        "cif"
+      ],
+      "export_arrays": true,
+      "export_seed": true,
+      "expected_native_model_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "samples_are_correlated": true
+    },
+    "evaluation": {
+      "mapping": "Prediction residue i maps to 5AOU label_seq_id i; never use one global author offset.",
+      "integrity": [
+        "exact 258-residue sequence",
+        "chain inventory",
+        "complete prediction backbone",
+        "finite/duplicate atom checks",
+        "all nine motif atoms"
+      ],
+      "primary_alignment": "Kabsch alignment on all 241 5AOU positions with a selected CA (ranges 2-57,64-248); motif RMSD uses this same transform.",
+      "secondary_core_alignment": "Separately report CA RMSD for 238 shared positions <=245, excluding the deposited expression-tag scope.",
+      "matched_design_metrics": [
+        "global_ca_rmsd_angstrom",
+        "motif_rmsd_after_global_alignment_angstrom",
+        "36 motif_pair_distance_differences",
+        "motif_pair_absolute_delta_mean_angstrom",
+        "motif_pair_absolute_delta_max_angstrom",
+        "ptm",
+        "complex_plddt",
+        "aggregate_score",
+        "has_inter_chain_clashes"
+      ],
+      "threshold": null
+    },
+    "design_comparator": {
+      "path": "tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/checks.json",
+      "sha256": "75ff8a12ebfd8b54d7c4e8a950893e119c3fe7f2ad97ac47b83aaca37a624393",
+      "state_rule": "Compare deviations within each arm's own reference: parent to apo 5AOU, design to its generated 5AN7-derived reference. Do not equate absolute apo/inhibitor geometry.",
+      "length_limit": "258-versus-150 length and context differ; report descriptive metrics without an uncalibrated threshold."
+    }
+  },
+  "interpretation": {
+    "parent_recovers_design_does_not": "The same protein-only setup recovers this known parent's apo fold/local geometry better than the design recovers its own conditioned reference. This does not prove inactivity or Atlas causation and may reflect predictor familiarity with the known fold.",
+    "parent_does_not_recover": "Design local-geometry loss is not separable from failure of this protein-only setup on the parent control; do not use it as a catalytic discriminator.",
+    "both_recover": "Sequence-to-structure compatibility only; no biochemical validation."
+  }
+}

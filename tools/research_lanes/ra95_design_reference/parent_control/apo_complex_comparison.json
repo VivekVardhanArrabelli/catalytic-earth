@@ -1,0 +1,1485 @@
+{
+  "schema_version": "catalytic-earth.ra95-observed-state-comparison.v1",
+  "scope": "Observed apo-versus-inhibitor structural spread; not Chai calibration, activity evidence, productive geometry or a pass threshold.",
+  "sources": {
+    "5AOU": {
+      "path": "data/atlas/deposit_context/ra95_5aou/5AOU.cif",
+      "sha256": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e",
+      "state_id": "ra95-8f:5AOU:apo",
+      "numbering_segments": [
+        {
+          "label_start": 1,
+          "label_end": 63,
+          "author_offset": 1000
+        },
+        {
+          "label_start": 64,
+          "label_end": 258,
+          "author_offset": 2000
+        }
+      ]
+    },
+    "5AN7": {
+      "path": "data/atlas/deposit_context/ra95_5an7/5AN7.cif",
+      "sha256": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f",
+      "state_id": "ra95-8f:5AN7:inhibitor-derived",
+      "numbering_segments": [
+        {
+          "label_start": 1,
+          "label_end": 258,
+          "author_offset": 1000
+        }
+      ]
+    }
+  },
+  "row_selection": {
+    "shared_CA_label_position_ranges": [
+      "2-57",
+      "64-248"
+    ],
+    "shared_CA_count": 241,
+    "core_CA_label_position_ranges": [
+      "2-57",
+      "64-245"
+    ],
+    "core_CA_count": 238,
+    "residue_249": {
+      "component": "GLY",
+      "status": "N-only in both deposits; excluded from CA alignment",
+      "5AOU_atom_site_id": "2079",
+      "5AN7_atom_site_id": "4474"
+    },
+    "CA_policy": "Blank alt, otherwise alt A when present; if A is absent, highest occupancy then lexical id. No joint-state inference.",
+    "5AOU_CA_alternates": [
+      {
+        "label_seq_id": 3,
+        "selected": {
+          "atom_site_id": "10",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "10",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "11",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 12,
+        "selected": {
+          "atom_site_id": "104",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "104",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "105",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 92,
+        "selected": {
+          "atom_site_id": "726",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "726",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "727",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 96,
+        "selected": {
+          "atom_site_id": "767",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "767",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "768",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 97,
+        "selected": {
+          "atom_site_id": "783",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "783",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "784",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 98,
+        "selected": {
+          "atom_site_id": "805",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "805",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "806",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 144,
+        "selected": {
+          "atom_site_id": "1172",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1172",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1173",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 147,
+        "selected": {
+          "atom_site_id": "1200",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1200",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1201",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 158,
+        "selected": {
+          "atom_site_id": "1298",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1298",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1299",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 163,
+        "selected": {
+          "atom_site_id": "1346",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1346",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1347",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 168,
+        "selected": {
+          "atom_site_id": "1396",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1396",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1397",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 199,
+        "selected": {
+          "atom_site_id": "1655",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1655",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1656",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 215,
+        "selected": {
+          "atom_site_id": "1787",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1787",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1788",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      }
+    ],
+    "5AN7_CA_alternates": [
+      {
+        "label_seq_id": 5,
+        "selected": {
+          "atom_site_id": "62",
+          "alt_id": "A",
+          "occupancy": 0.57
+        },
+        "available": [
+          {
+            "atom_site_id": "62",
+            "alt_id": "A",
+            "occupancy": 0.57
+          },
+          {
+            "atom_site_id": "63",
+            "alt_id": "B",
+            "occupancy": 0.43
+          }
+        ]
+      },
+      {
+        "label_seq_id": 12,
+        "selected": {
+          "atom_site_id": "199",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "199",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "200",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 21,
+        "selected": {
+          "atom_site_id": "375",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "375",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "376",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 22,
+        "selected": {
+          "atom_site_id": "397",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "397",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "398",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 30,
+        "selected": {
+          "atom_site_id": "546",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "546",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "547",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 51,
+        "selected": {
+          "atom_site_id": "924",
+          "alt_id": "A",
+          "occupancy": 0.75
+        },
+        "available": [
+          {
+            "atom_site_id": "924",
+            "alt_id": "A",
+            "occupancy": 0.75
+          },
+          {
+            "atom_site_id": "925",
+            "alt_id": "B",
+            "occupancy": 0.25
+          }
+        ]
+      },
+      {
+        "label_seq_id": 53,
+        "selected": {
+          "atom_site_id": "987",
+          "alt_id": "A",
+          "occupancy": 0.7
+        },
+        "available": [
+          {
+            "atom_site_id": "987",
+            "alt_id": "A",
+            "occupancy": 0.7
+          },
+          {
+            "atom_site_id": "988",
+            "alt_id": "B",
+            "occupancy": 0.3
+          }
+        ]
+      },
+      {
+        "label_seq_id": 67,
+        "selected": {
+          "atom_site_id": "1179",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1179",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1180",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 71,
+        "selected": {
+          "atom_site_id": "1263",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1263",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1264",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 83,
+        "selected": {
+          "atom_site_id": "1477",
+          "alt_id": "A",
+          "occupancy": 0.57
+        },
+        "available": [
+          {
+            "atom_site_id": "1477",
+            "alt_id": "A",
+            "occupancy": 0.57
+          },
+          {
+            "atom_site_id": "1478",
+            "alt_id": "B",
+            "occupancy": 0.43
+          }
+        ]
+      },
+      {
+        "label_seq_id": 92,
+        "selected": {
+          "atom_site_id": "1642",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1642",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1643",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 95,
+        "selected": {
+          "atom_site_id": "1700",
+          "alt_id": "A",
+          "occupancy": 0.8
+        },
+        "available": [
+          {
+            "atom_site_id": "1700",
+            "alt_id": "A",
+            "occupancy": 0.8
+          },
+          {
+            "atom_site_id": "1701",
+            "alt_id": "B",
+            "occupancy": 0.2
+          }
+        ]
+      },
+      {
+        "label_seq_id": 98,
+        "selected": {
+          "atom_site_id": "1778",
+          "alt_id": "C",
+          "occupancy": 0.62
+        },
+        "available": [
+          {
+            "atom_site_id": "1778",
+            "alt_id": "C",
+            "occupancy": 0.62
+          },
+          {
+            "atom_site_id": "1777",
+            "alt_id": "B",
+            "occupancy": 0.38
+          }
+        ]
+      },
+      {
+        "label_seq_id": 102,
+        "selected": {
+          "atom_site_id": "1861",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1861",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1862",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 107,
+        "selected": {
+          "atom_site_id": "1943",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "1943",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "1944",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 109,
+        "selected": {
+          "atom_site_id": "2000",
+          "alt_id": "A",
+          "occupancy": 0.7
+        },
+        "available": [
+          {
+            "atom_site_id": "2000",
+            "alt_id": "A",
+            "occupancy": 0.7
+          },
+          {
+            "atom_site_id": "2001",
+            "alt_id": "B",
+            "occupancy": 0.3
+          }
+        ]
+      },
+      {
+        "label_seq_id": 117,
+        "selected": {
+          "atom_site_id": "2152",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "2152",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "2153",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 144,
+        "selected": {
+          "atom_site_id": "2585",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "2585",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "2586",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 146,
+        "selected": {
+          "atom_site_id": "2626",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "2626",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "2627",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 147,
+        "selected": {
+          "atom_site_id": "2664",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "2664",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "2665",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 150,
+        "selected": {
+          "atom_site_id": "2725",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "2725",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "2726",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 154,
+        "selected": {
+          "atom_site_id": "2808",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "2808",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "2809",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 158,
+        "selected": {
+          "atom_site_id": "2890",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "2890",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "2891",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 168,
+        "selected": {
+          "atom_site_id": "3064",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "3064",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "3065",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 181,
+        "selected": {
+          "atom_site_id": "3308",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "3308",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "3309",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 188,
+        "selected": {
+          "atom_site_id": "3412",
+          "alt_id": "A",
+          "occupancy": 0.53
+        },
+        "available": [
+          {
+            "atom_site_id": "3412",
+            "alt_id": "A",
+            "occupancy": 0.53
+          },
+          {
+            "atom_site_id": "3413",
+            "alt_id": "B",
+            "occupancy": 0.47
+          }
+        ]
+      },
+      {
+        "label_seq_id": 199,
+        "selected": {
+          "atom_site_id": "3627",
+          "alt_id": "A",
+          "occupancy": 0.5
+        },
+        "available": [
+          {
+            "atom_site_id": "3627",
+            "alt_id": "A",
+            "occupancy": 0.5
+          },
+          {
+            "atom_site_id": "3628",
+            "alt_id": "B",
+            "occupancy": 0.5
+          }
+        ]
+      },
+      {
+        "label_seq_id": 208,
+        "selected": {
+          "atom_site_id": "3778",
+          "alt_id": "A",
+          "occupancy": 0.89
+        },
+        "available": [
+          {
+            "atom_site_id": "3778",
+            "alt_id": "A",
+            "occupancy": 0.89
+          },
+          {
+            "atom_site_id": "3779",
+            "alt_id": "B",
+            "occupancy": 0.11
+          }
+        ]
+      }
+    ],
+    "MHO237": "Included by CA only in both structures; canonical source residue is MET.",
+    "motif_policy": "Blank row when unique; otherwise author-control alt A. All selected rows and occupancies are retained below.",
+    "motif_rows": {
+      "5AOU": [
+        {
+          "label_seq_id": 51,
+          "label_comp_id": "TYR",
+          "author_seq_id": "1051",
+          "atom_name": "OH",
+          "atom_site_id": "437",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -20.288,
+            22.467,
+            -11.573
+          ]
+        },
+        {
+          "label_seq_id": 51,
+          "label_comp_id": "TYR",
+          "author_seq_id": "1051",
+          "atom_name": "CZ",
+          "atom_site_id": "436",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -20.063,
+            23.824,
+            -11.696
+          ]
+        },
+        {
+          "label_seq_id": 83,
+          "label_comp_id": "LYS",
+          "author_seq_id": "2083",
+          "atom_name": "NZ",
+          "atom_site_id": "654",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -20.833,
+            19.477,
+            -13.463
+          ]
+        },
+        {
+          "label_seq_id": 83,
+          "label_comp_id": "LYS",
+          "author_seq_id": "2083",
+          "atom_name": "CE",
+          "atom_site_id": "653",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -21.989,
+            19.626,
+            -14.386
+          ]
+        },
+        {
+          "label_seq_id": 110,
+          "label_comp_id": "ASN",
+          "author_seq_id": "2110",
+          "atom_name": "OD1",
+          "atom_site_id": "904",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -19.472,
+            20.905,
+            -15.821
+          ]
+        },
+        {
+          "label_seq_id": 110,
+          "label_comp_id": "ASN",
+          "author_seq_id": "2110",
+          "atom_name": "CG",
+          "atom_site_id": "903",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -19.266,
+            22.11,
+            -16.071
+          ]
+        },
+        {
+          "label_seq_id": 110,
+          "label_comp_id": "ASN",
+          "author_seq_id": "2110",
+          "atom_name": "ND2",
+          "atom_site_id": "905",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -18.494,
+            22.936,
+            -15.348
+          ]
+        },
+        {
+          "label_seq_id": 180,
+          "label_comp_id": "TYR",
+          "author_seq_id": "2180",
+          "atom_name": "OH",
+          "atom_site_id": "1507",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -16.627,
+            22.185,
+            -12.652
+          ]
+        },
+        {
+          "label_seq_id": 180,
+          "label_comp_id": "TYR",
+          "author_seq_id": "2180",
+          "atom_name": "CZ",
+          "atom_site_id": "1506",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -15.675,
+            21.69,
+            -11.768
+          ]
+        }
+      ],
+      "5AN7": [
+        {
+          "label_seq_id": 51,
+          "label_comp_id": "TYR",
+          "author_seq_id": "1051",
+          "atom_name": "OH",
+          "atom_site_id": "944",
+          "alt_id": "A",
+          "occupancy": 0.75,
+          "xyz_angstrom": [
+            -19.224,
+            22.424,
+            -11.858
+          ]
+        },
+        {
+          "label_seq_id": 51,
+          "label_comp_id": "TYR",
+          "author_seq_id": "1051",
+          "atom_name": "CZ",
+          "atom_site_id": "942",
+          "alt_id": "A",
+          "occupancy": 0.75,
+          "xyz_angstrom": [
+            -19.384,
+            23.79,
+            -11.825
+          ]
+        },
+        {
+          "label_seq_id": 83,
+          "label_comp_id": "LYS",
+          "author_seq_id": "1083",
+          "atom_name": "NZ",
+          "atom_site_id": "1491",
+          "alt_id": "A",
+          "occupancy": 0.57,
+          "xyz_angstrom": [
+            -20.282,
+            19.855,
+            -13.494
+          ]
+        },
+        {
+          "label_seq_id": 83,
+          "label_comp_id": "LYS",
+          "author_seq_id": "1083",
+          "atom_name": "CE",
+          "atom_site_id": "1489",
+          "alt_id": "A",
+          "occupancy": 0.57,
+          "xyz_angstrom": [
+            -21.561,
+            20.611,
+            -13.4
+          ]
+        },
+        {
+          "label_seq_id": 110,
+          "label_comp_id": "ASN",
+          "author_seq_id": "1110",
+          "atom_name": "OD1",
+          "atom_site_id": "2038",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -19.16,
+            20.791,
+            -15.81
+          ]
+        },
+        {
+          "label_seq_id": 110,
+          "label_comp_id": "ASN",
+          "author_seq_id": "1110",
+          "atom_name": "CG",
+          "atom_site_id": "2037",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -19.033,
+            21.983,
+            -16.08
+          ]
+        },
+        {
+          "label_seq_id": 110,
+          "label_comp_id": "ASN",
+          "author_seq_id": "1110",
+          "atom_name": "ND2",
+          "atom_site_id": "2039",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -18.244,
+            22.793,
+            -15.392
+          ]
+        },
+        {
+          "label_seq_id": 180,
+          "label_comp_id": "TYR",
+          "author_seq_id": "1180",
+          "atom_name": "OH",
+          "atom_site_id": "3296",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -16.64,
+            22.096,
+            -12.675
+          ]
+        },
+        {
+          "label_seq_id": 180,
+          "label_comp_id": "TYR",
+          "author_seq_id": "1180",
+          "atom_name": "CZ",
+          "atom_site_id": "3295",
+          "alt_id": null,
+          "occupancy": 1.0,
+          "xyz_angstrom": [
+            -15.711,
+            21.644,
+            -11.773
+          ]
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "global_CA_RMSD_angstrom": 0.3379295724724742,
+    "global_CA_atom_count": 241,
+    "secondary_core_CA_RMSD_angstrom": 0.33594075346375535,
+    "secondary_core_CA_atom_count": 238,
+    "motif_RMSD_after_same_global_CA_alignment_angstrom": 0.6933414947286366,
+    "motif_atom_count": 9,
+    "motif_pair_count": 36,
+    "motif_pair_absolute_delta_mean_angstrom": 0.4074089027636015,
+    "motif_pair_absolute_delta_max_angstrom": 1.1825264810278693,
+    "Tyr51OH_Tyr180OH": {
+      "atoms": [
+        "TYR51:OH",
+        "TYR180:OH"
+      ],
+      "apo_5AOU_angstrom": 3.827098901256669,
+      "complex_5AN7_angstrom": 2.7298587875566014,
+      "complex_minus_apo_angstrom": -1.0972401137000678
+    },
+    "motif_pair_distance_differences": [
+      {
+        "atoms": [
+          "TYR51:OH",
+          "TYR51:CZ"
+        ],
+        "apo_5AOU_angstrom": 1.3810152062884782,
+        "complex_5AN7_angstrom": 1.375734349356735,
+        "complex_minus_apo_angstrom": -0.005280856931743072
+      },
+      {
+        "atoms": [
+          "TYR51:OH",
+          "LYS83:NZ"
+        ],
+        "apo_5AOU_angstrom": 3.5789977647380535,
+        "complex_5AN7_angstrom": 3.224224092708196,
+        "complex_minus_apo_angstrom": -0.3547736720298573
+      },
+      {
+        "atoms": [
+          "TYR51:OH",
+          "LYS83:CE"
+        ],
+        "apo_5AOU_angstrom": 4.344841884349761,
+        "complex_5AN7_angstrom": 3.3356111883731283,
+        "complex_minus_apo_angstrom": -1.0092306959766328
+      },
+      {
+        "atoms": [
+          "TYR51:OH",
+          "ASN110:OD1"
+        ],
+        "apo_5AOU_angstrom": 4.599043813663878,
+        "complex_5AN7_angstrom": 4.276574446914259,
+        "complex_minus_apo_angstrom": -0.322469366749619
+      },
+      {
+        "atoms": [
+          "TYR51:OH",
+          "ASN110:CG"
+        ],
+        "apo_5AOU_angstrom": 4.626438911301003,
+        "complex_5AN7_angstrom": 4.249264171594887,
+        "complex_minus_apo_angstrom": -0.37717473970611604
+      },
+      {
+        "atoms": [
+          "TYR51:OH",
+          "ASN110:ND2"
+        ],
+        "apo_5AOU_angstrom": 4.205831903440745,
+        "complex_5AN7_angstrom": 3.6858807631283996,
+        "complex_minus_apo_angstrom": -0.5199511403123456
+      },
+      {
+        "atoms": [
+          "TYR51:OH",
+          "TYR180:OH"
+        ],
+        "apo_5AOU_angstrom": 3.827098901256669,
+        "complex_5AN7_angstrom": 2.7298587875566014,
+        "complex_minus_apo_angstrom": -1.0972401137000678
+      },
+      {
+        "atoms": [
+          "TYR51:OH",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 4.682042609801837,
+        "complex_5AN7_angstrom": 3.599554694680996,
+        "complex_minus_apo_angstrom": -1.0824879151208404
+      },
+      {
+        "atoms": [
+          "TYR51:CZ",
+          "LYS83:NZ"
+        ],
+        "apo_5AOU_angstrom": 4.755165401960273,
+        "complex_5AN7_angstrom": 4.367629792003895,
+        "complex_minus_apo_angstrom": -0.3875356099563776
+      },
+      {
+        "atoms": [
+          "TYR51:CZ",
+          "LYS83:CE"
+        ],
+        "apo_5AOU_angstrom": 5.344977081335336,
+        "complex_5AN7_angstrom": 4.162450600307467,
+        "complex_minus_apo_angstrom": -1.1825264810278693
+      },
+      {
+        "atoms": [
+          "TYR51:CZ",
+          "ASN110:OD1"
+        ],
+        "apo_5AOU_angstrom": 5.087776233286995,
+        "complex_5AN7_angstrom": 4.992434476285092,
+        "complex_minus_apo_angstrom": -0.09534175700190328
+      },
+      {
+        "atoms": [
+          "TYR51:CZ",
+          "ASN110:CG"
+        ],
+        "apo_5AOU_angstrom": 4.765881870126454,
+        "complex_5AN7_angstrom": 4.63610558551032,
+        "complex_minus_apo_angstrom": -0.12977628461613389
+      },
+      {
+        "atoms": [
+          "TYR51:CZ",
+          "ASN110:ND2"
+        ],
+        "apo_5AOU_angstrom": 4.072764294677511,
+        "complex_5AN7_angstrom": 3.8751900598551297,
+        "complex_minus_apo_angstrom": -0.19757423482238146
+      },
+      {
+        "atoms": [
+          "TYR51:CZ",
+          "TYR180:OH"
+        ],
+        "apo_5AOU_angstrom": 3.9250927377579257,
+        "complex_5AN7_angstrom": 3.334917090423688,
+        "complex_minus_apo_angstrom": -0.5901756473342377
+      },
+      {
+        "atoms": [
+          "TYR51:CZ",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 4.87992663879284,
+        "complex_5AN7_angstrom": 4.254285956538419,
+        "complex_minus_apo_angstrom": -0.6256406822544216
+      },
+      {
+        "atoms": [
+          "LYS83:NZ",
+          "LYS83:CE"
+        ],
+        "apo_5AOU_angstrom": 1.4867635992315678,
+        "complex_5AN7_angstrom": 1.4886950661569347,
+        "complex_minus_apo_angstrom": 0.0019314669253669425
+      },
+      {
+        "atoms": [
+          "LYS83:NZ",
+          "ASN110:OD1"
+        ],
+        "apo_5AOU_angstrom": 3.07435668067321,
+        "complex_5AN7_angstrom": 2.738400262927245,
+        "complex_minus_apo_angstrom": -0.3359564177459653
+      },
+      {
+        "atoms": [
+          "LYS83:NZ",
+          "ASN110:CG"
+        ],
+        "apo_5AOU_angstrom": 4.023660273929698,
+        "complex_5AN7_angstrom": 3.574322453276983,
+        "complex_minus_apo_angstrom": -0.449337820652715
+      },
+      {
+        "atoms": [
+          "LYS83:NZ",
+          "ASN110:ND2"
+        ],
+        "apo_5AOU_angstrom": 4.581356458517498,
+        "complex_5AN7_angstrom": 4.048171439057392,
+        "complex_minus_apo_angstrom": -0.533185019460106
+      },
+      {
+        "atoms": [
+          "LYS83:NZ",
+          "TYR180:OH"
+        ],
+        "apo_5AOU_angstrom": 5.06768398777982,
+        "complex_5AN7_angstrom": 4.35396440040568,
+        "complex_minus_apo_angstrom": -0.7137195873741407
+      },
+      {
+        "atoms": [
+          "LYS83:NZ",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 5.8630502300423775,
+        "complex_5AN7_angstrom": 5.201576972419036,
+        "complex_minus_apo_angstrom": -0.6614732576233413
+      },
+      {
+        "atoms": [
+          "LYS83:CE",
+          "ASN110:OD1"
+        ],
+        "apo_5AOU_angstrom": 3.1670735703485007,
+        "complex_5AN7_angstrom": 3.406655397893952,
+        "complex_minus_apo_angstrom": 0.23958182754545154
+      },
+      {
+        "atoms": [
+          "LYS83:CE",
+          "ASN110:CG"
+        ],
+        "apo_5AOU_angstrom": 4.052679360620577,
+        "complex_5AN7_angstrom": 3.931357017621267,
+        "complex_minus_apo_angstrom": -0.12132234299931044
+      },
+      {
+        "atoms": [
+          "LYS83:CE",
+          "ASN110:ND2"
+        ],
+        "apo_5AOU_angstrom": 4.9088256233033984,
+        "complex_5AN7_angstrom": 4.442035231737811,
+        "complex_minus_apo_angstrom": -0.46679039156558755
+      },
+      {
+        "atoms": [
+          "LYS83:CE",
+          "TYR180:OH"
+        ],
+        "apo_5AOU_angstrom": 6.189206815093515,
+        "complex_5AN7_angstrom": 5.1910587552059155,
+        "complex_minus_apo_angstrom": -0.9981480598875994
+      },
+      {
+        "atoms": [
+          "LYS83:CE",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 7.140071148104898,
+        "complex_5AN7_angstrom": 6.159279016248573,
+        "complex_minus_apo_angstrom": -0.9807921318563251
+      },
+      {
+        "atoms": [
+          "ASN110:OD1",
+          "ASN110:CG"
+        ],
+        "apo_5AOU_angstrom": 1.2477824329585658,
+        "complex_5AN7_angstrom": 1.2287770342905986,
+        "complex_minus_apo_angstrom": -0.019005398667967244
+      },
+      {
+        "atoms": [
+          "ASN110:OD1",
+          "ASN110:ND2"
+        ],
+        "apo_5AOU_angstrom": 2.30329633351855,
+        "complex_5AN7_angstrom": 2.24093373396002,
+        "complex_minus_apo_angstrom": -0.062362599558530185
+      },
+      {
+        "atoms": [
+          "ASN110:OD1",
+          "TYR180:OH"
+        ],
+        "apo_5AOU_angstrom": 4.446907464744461,
+        "complex_5AN7_angstrom": 4.228670003677279,
+        "complex_minus_apo_angstrom": -0.218237461067182
+      },
+      {
+        "atoms": [
+          "ASN110:OD1",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 5.608943126828796,
+        "complex_5AN7_angstrom": 5.377785696734298,
+        "complex_minus_apo_angstrom": -0.2311574300944983
+      },
+      {
+        "atoms": [
+          "ASN110:CG",
+          "ASN110:ND2"
+        ],
+        "apo_5AOU_angstrom": 1.3420093144237113,
+        "complex_5AN7_angstrom": 1.3236181473521729,
+        "complex_minus_apo_angstrom": -0.018391167071538428
+      },
+      {
+        "atoms": [
+          "ASN110:CG",
+          "TYR180:OH"
+        ],
+        "apo_5AOU_angstrom": 4.31966514905959,
+        "complex_5AN7_angstrom": 4.163321150235709,
+        "complex_minus_apo_angstrom": -0.15634399882388106
+      },
+      {
+        "atoms": [
+          "ASN110:CG",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 5.6202749043085065,
+        "complex_5AN7_angstrom": 5.449848988733541,
+        "complex_minus_apo_angstrom": -0.1704259155749659
+      },
+      {
+        "atoms": [
+          "ASN110:ND2",
+          "TYR180:OH"
+        ],
+        "apo_5AOU_angstrom": 3.3642392899435696,
+        "complex_5AN7_angstrom": 3.2312093711178775,
+        "complex_minus_apo_angstrom": -0.13302991882569204
+      },
+      {
+        "atoms": [
+          "ASN110:ND2",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 4.723947184294083,
+        "complex_5AN7_angstrom": 4.564367535595704,
+        "complex_minus_apo_angstrom": -0.15957964869837937
+      },
+      {
+        "atoms": [
+          "TYR180:OH",
+          "TYR180:CZ"
+        ],
+        "apo_5AOU_angstrom": 1.390246381041861,
+        "complex_5AN7_angstrom": 1.3714769411112984,
+        "complex_minus_apo_angstrom": -0.01876943993056268
+      }
+    ]
+  },
+  "state_limit": "5AOU is source-named apo at pH4.6; 5AN7 is inhibitor-derived with unresolved deposited/source pH and alternate occupancies. The spread is observed crystal-state context, not conformational dynamics or productive-state evidence."
+}

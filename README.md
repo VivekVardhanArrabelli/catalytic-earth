@@ -40,7 +40,11 @@ The [RA95 design reference](tools/research_lanes/ra95_design_reference/README.md
 generated one 150-residue backbone and completed one sequence/fold continuation.
 All five protein-only predictions approximately recover the backbone but
 substantially rearrange the catalytic atoms; [all outputs are retained](tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/README.md).
-Activity and an additional Atlas contribution remain untested.
+Activity and improved design performance from Atlas remain untested.
+The [case-specific input translation](tools/research_lanes/ra95_design_reference/atlas_input/README.md)
+now regenerates 26 atoms' coordinates and occupancies from Atlas records into
+the author template, producing identical input bytes. Motif selection and
+connectivity still depend on that template.
 
 The atlas is tiered so breadth can grow quickly without implying equal truth:
 
