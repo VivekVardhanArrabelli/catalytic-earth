@@ -1,5 +1,9 @@
 # Hourly atlas research
 
+Read [the repository agent instructions](../AGENTS.md) before selecting work.
+They carry the shared ambition, scientific independence and obligation to
+reconsider the approach into every research session, including scheduled runs.
+
 Effective 2026-09-09; task-selection correction 2026-09-12. This is the standing
 brief for the single
 `catalytic-earth-work-loop` scheduled task. It supersedes the old Lever 3,

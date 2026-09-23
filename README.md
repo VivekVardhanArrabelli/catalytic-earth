@@ -6,6 +6,9 @@ reaction through elementary steps, catalytic residues and geometry, protein
 evidence, uncertainty, and experimental outcomes — not only by EC number,
 name, keyword, or sequence similarity.
 
+Agents working on this project must read [AGENTS.md](AGENTS.md) for the shared
+research purpose, standards of evidence and obligation to reconsider the approach.
+
 ## North Star
 
 Build the world's computable catalytic-mechanism atlas: a continuously
