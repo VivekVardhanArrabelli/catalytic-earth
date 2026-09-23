@@ -1,0 +1,45 @@
+{
+  "atom_inverse_map_count": 69,
+  "guideposts": {
+    "A160": [
+      "NE2"
+    ],
+    "B366": [
+      "OE1",
+      "OE2"
+    ]
+  },
+  "ligand_heavy_atoms": 42,
+  "ligand_heavy_bonds": 43,
+  "source_to_pdb_verified": true,
+  "native_parser_executed_by_this_check": false,
+  "negative_controls": [
+    {
+      "case": "collapsed operator-qualified consumer chain",
+      "rejected": true,
+      "reason": "consumer identity collision"
+    },
+    {
+      "case": "partner copy omitted",
+      "rejected": true,
+      "reason": "emitted atom count differs"
+    },
+    {
+      "case": "guidepost redirected to unexpanded copy",
+      "rejected": true,
+      "reason": "guidepost/source selection differs"
+    },
+    {
+      "case": "ligand atom comma removed",
+      "rejected": true,
+      "reason": "source atom absent from consumer namespace"
+    },
+    {
+      "case": "ligand bonds omitted",
+      "rejected": true,
+      "reason": "dictionary connectivity serialization differs"
+    }
+  ],
+  "partner_to_q160_angstrom": 2.8040886219946755,
+  "control_to_q160_angstrom": 15.061637659962477
+}

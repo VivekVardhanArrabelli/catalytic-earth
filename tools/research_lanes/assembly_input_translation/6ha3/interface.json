@@ -1,0 +1,9 @@
+{
+  "scope": "Partial consumer interface; no design contigs, gaps, length or model run specified",
+  "inference": {
+    "ligand": "T6F"
+  },
+  "contigmap": {
+    "contig_atoms": "{'A160': 'NE2', 'B366': 'OE1,OE2'}"
+  }
+}

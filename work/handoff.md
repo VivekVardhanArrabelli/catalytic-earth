@@ -1,62 +1,59 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — RA95 parent outcome, 2026-09-23
+## Current research handoff — 6HA3 translation and chemical stop, 2026-09-23
 
-- **Question resolved:** one exact 258-residue RA95.5-8F parent control recovers
-  the apo fold reasonably closely (241-CA RMSD 0.827–1.170 Å), but all five
-  predictions appreciably move its nine catalytic atoms (2.413–2.877 Å motif
-  RMSD). Tyr51 OH–Tyr180 OH is 5.740–7.325 Å versus 3.827 Å in apo 5AOU.
-  [Result, all samples and reproduction](../tools/research_lanes/ra95_design_reference/results/20260923-parent-control/README.md).
-  This is new information about this readout, not measured activity or a
-  calibrated threshold. The known-active parent also shows local deviations;
-  the design's larger 4.466–5.611 Å motif RMSD remains a structural warning
-  and cannot establish catalytic inactivity. Length, export size, reference
-  state and unknown training exposure limit the comparison.
-- **Execution:** one protein-only Chai invocation, seed 43, three recycles,
-  200 diffusion steps; 18:00:14–18:02:35 UTC, exit zero. All five outputs and
-  raw arrays retained. Full 258-residue input, 384 exports; previous design
-  used 256. Shared container/embedding/conformer hashes match; new export
-  identities were frozen before inference. An initial preflight hash-literal
-  typo was corrected before any model ran; its original script and logs remain
-  in the bundle. All 39 payload files were hash-verified after retrieval.
-- **Close the RA95 sampling attempt:** do not add seeds, trim the parent or
-  rescue the ligand/template input. The control beats another designed
-  sequence because it changes the interpretation of the existing output.
-  No activity, ligand-bound validation or Atlas-efficacy claim follows.
-  The [partial Atlas translation and packing diagnosis](../tools/research_lanes/ra95_design_reference/atlas_input/README.md)
-  remain unchanged. A byte-identical Atlas input does not justify another
-  RFdiffusion2 run. The full mechanism Atlas and de novo design remain the goal.
-- **One next action:** test source-state translation on retained 6HA3 human
-  transketolase E160Q/F6P–ThDP. The existing assembly projection already has
-  operator-qualified atoms; the missing operation is mapping operator-1/2
-  copies to distinct consumer chain/residue selectors, with a reversible
-  source-atom map, then supplying those selections to RFdiffusion2's existing
-  PDB/`contig_atoms`/ligand interface. Preserve partner Glu366 beside Gln160
-  and the T6F component. This tests a new assembly requirement beyond RA95's
-  author-template patch; plain coordinate re-export or another refusal recap
-  would be marginal. Stop if the consumer cannot preserve copy identity or
-  completing the interface requires unsupported atom, bond or motif choices.
-  No model run is queued. Translate only the observed trapped state; the
-  [assembly packet](../data/atlas/assembly_context/6ha3/spec.json) is explicitly
-  not a sufficient productive design template. New chemistry is not required
-  for legitimate source-grounded translation, and source-state translation
-  is not proof of a functioning catalyst.
-- **Compute closed:** the GPU was terminated at 18:04:54 UTC after verified
-  retrieval; the independent cloud watchdog observed its removal and exited
-  zero, then was deleted at 18:06 UTC. Provider history displayed $0.75 GPU
-  plus approximately $0.03 watchdog cost. No active GPU instance remained.
-  No old host/address/script is an active environment; any later rental needs
-  its own justified scope and independently verified termination boundary.
-- **Coordination and publication:** root owned runtime, cleanup and integration;
-  complementary agents checked runtime, geometry and task selection. These
-  are computational reviews, not independent experimental review. Base
-  `5c6c6f77`; branch `codex/ra95-parent-control-20260923`. Local receipts:
-  `.git/catalytic-earth-runs/20260923T172559Z-ra95-parent/`. Preserve the seven
-  unrelated viewer/demo paths. The hourly writer remains paused. No protected
-  registry, exposure ledger, evidence tier or earlier frozen result changed.
-  Publish after the existing repository checks and result/diff review pass;
-  exact commit, CI, merge and lock-release receipts belong in the task output.
+- **Question resolved:** the reviewed operator-qualified 6HA3 selections can
+  become reversible consumer identities. Operator-1 Gln160 maps to A160 and
+  operator-2 Glu366 to B366; operator-1 A366 is parsed as a control but excluded
+  from guideposts. All three guidepost coordinates survive isolated execution
+  of the pinned protein-parser/ContigMap bodies. The adapter also preserves all
+  42 T6F heavy atoms, their names/coordinates and 43 integer-order bonds.
+  [Result, inverse mapping and reproduction](../tools/research_lanes/assembly_input_translation/README.md).
+- **Consequential incompatibility:** the tested OpenBabel wheel recognizes six
+  aromatic edges versus eleven in the retained component dictionary. Five
+  thiazolium edges lose aromatic flags: C2–N3, C2–S1, C4–C5, C4–N3, C5–S1.
+  The pinned RFdiffusion2 bond-feature rule would encode these as 1/2 rather
+  than 4. Equal atom/bond counts would miss this change. Source translation
+  passes; combined chemical acceptance is rejected. No chemical repair or
+  model run occurred. Do not launch from this partial interface.
+- **Evidence boundary:** exact source-extracted parser/class bodies plus real
+  delegated OpenBabel calls, not full native imports or official SIF execution.
+  The isolated macOS ARM64 wheel is `openbabel-wheel==3.1.1.23`; its core reports
+  `3.1.0`, while the official recipe specifies conda OpenBabel 3.1.1. The observed
+  mismatch is specific to the tested build; no version-independent upstream
+  defect or chemical cause is established. Unknown deposited charges remain
+  unknown even though the consumer perceives zero. No productive motif,
+  protonation state, design advantage or catalytic function is established.
+- **Task selection and closure:** this beats manually expanded coordinates plus
+  disconnected selectors by demonstrating the missing reversible namespace
+  bridge and detecting a consequential model-input change. It does not prove
+  Atlas outperforms a competent manual workflow. Close the 6HA3 attempt now;
+  do not add metals, repair protonation, grow parser infrastructure, rerun RA95
+  or add design samples to rescue a positive result. A new translation example
+  alone is not the next priority. The next scientific decision is selection of
+  a prospective Atlas-versus-author constraint comparison with a source-justified
+  chemical state and a concrete difference in the proposed constraints. Reassess
+  that against the strongest simpler alternative before acquisition or compute;
+  no new model run is queued. The full mechanism Atlas/de novo objective remains.
+- **Verification and sources:** source review checks every emitted atom and
+  bond against the retained CIF; five local identity/connectivity controls pass.
+  The published ligand reproducer exactly reproduces the negative observation.
+  Protein masks/XYZ, distinct copy keys and control exclusion pass. Source,
+  representation and task-selection agents reviewed complementary questions;
+  this is computational review, not independent scientific validation. Seven
+  additional pinned source captures total 451,459 bytes. Conservatively counted
+  recorded captures are 56 requests/2,869,438 bytes; older web discovery was not
+  fully metered. Dependency wheel: 11,607,818 bytes in an isolated local venv.
+  [Versions, hashes, preflight failure and scope](../tools/research_lanes/assembly_input_translation/6ha3/consumer-execution.json).
+- **Ownership/publication:** run started 19:59:09 UTC; base `abb6bcfc`; branch
+  `codex/6ha3-consumer-identity-translation`. Local receipts are in
+  `.git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/`. Preserve the seven
+  unrelated viewer/demo paths. No cloud compute was provisioned and no frozen
+  source packet, exposure ledger or scientific evidence tier changed. The
+  hourly writer remains paused. Publish after required repository checks and
+  final diff review; exact commit/CI/merge/lock-release receipts belong in the
+  task output.
 
 <!-- current-research-handoff:end -->
 
