@@ -1,6 +1,10 @@
 {
   "schema_version": "catalytic-earth.ra95-parent-chai-control.v1",
   "repository_base_commit": "99142e880a10d87cee9dab5f5609eb6eae931f5c",
+  "chemical_state_context": {
+    "path": "data/atlas/study_context/ra95_2017/chemical_state.json",
+    "sha256": "90d9c76913dc67714e04b34bd8a126f4d35e5e01ba3bd80929ba623ef974d93c"
+  },
   "scope": {
     "purpose": "Known-active RA95.5-8F protein-only Chai sanity control.",
     "execution_status": "materialized_only; no model invocation",
@@ -291,6 +295,45 @@
     "role": "Apo coordinate context, not productive or transition-state geometry."
   },
   "future_chai_run": {
+    "runtime_reference": {
+      "upstream_commit": "d365cbf4db3958814a9f8e4f6f94fa309dfebc2b",
+      "prior_bundle": {
+        "path": "tools/research_lanes/ra95_design_reference/results/20260923-sequence-fold/continuation-bundle.tgz",
+        "sha256": "3ccf8b5f7ea3673fffc8058bf49f119c0f059588682fe5e49499e4138482f097"
+      },
+      "chai_container": {
+        "url": "https://files.ipd.uw.edu/pub/rfdiffusion2/sifs/chai.sif",
+        "path": "rf_diffusion/exec/chai.sif",
+        "bytes": 8396939264,
+        "sha256": "329c40f63572e99db23c550efe500a32ce861b59c755343b667929c5d4cec3f0"
+      },
+      "asset_inventories": {
+        "logs/runtime-assets.json": {
+          "bundle_member": "logs/runtime-assets.json",
+          "sha256": "232fc22ca91dc18860966d9d071c7b6d7137baa1bb58db4d3f3f2a866d29a359"
+        },
+        "logs/chai-assets.json": {
+          "bundle_member": "logs/chai-assets.json",
+          "sha256": "9441f5886bd400ad75646371fc30ca2c35357c3b5774c56ef5463181b5602188"
+        }
+      },
+      "shared_assets": "Match Chai container, conformer data and ESM snapshot/content against the retained inventories; lock/cache sentinel files are not model assets.",
+      "model_export_size": {
+        "prior_design": 256,
+        "expected_parent": 384,
+        "reason": "The untrimmed 258-residue canonical parent exceeds 256 tokens. Pinned Chai chooses the smallest supported export size covering the token count; confirm actual token count and selection on the host.",
+        "size_source": {
+          "url": "https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/lib/chai/chai_lab/data/collate/utils.py#L8",
+          "sha256": "24333cc3f0a1b7180bc1ddd936eea0f4bed6371bdb2d9389c19b45c7478ebd85"
+        },
+        "loader_source": {
+          "url": "https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/lib/chai/chai_lab/chai1.py#L413",
+          "sha256": "098974201ff654d9d0769821def1471f3e936e064d30e77acbc537c9e779d8e3"
+        },
+        "parent_export_hashes": null,
+        "status": "384 exports not downloaded or hash-verified. Capture all five component identities before prediction; do not claim byte-identical runtime assets or trim the sequence to use 256."
+      }
+    },
     "input": {
       "fasta": "ra95_5_8f_parent.fasta",
       "entity_type": "protein",

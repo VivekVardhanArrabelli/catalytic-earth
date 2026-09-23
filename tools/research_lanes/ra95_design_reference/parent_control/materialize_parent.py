@@ -8,6 +8,7 @@ import hashlib
 import itertools
 import json
 import sys
+import tarfile
 from pathlib import Path
 
 import numpy as np
@@ -21,6 +22,8 @@ CIF_SHA = {
     "5AN7": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f",
 }
 DESIGN_CHECKS_SHA = "75ff8a12ebfd8b54d7c4e8a950893e119c3fe7f2ad97ac47b83aaca37a624393"
+UPSTREAM_COMMIT = "d365cbf4db3958814a9f8e4f6f94fa309dfebc2b"
+RUNTIME_BUNDLE_SHA = "3ccf8b5f7ea3673fffc8058bf49f119c0f059588682fe5e49499e4138482f097"
 MOTIF = [
     (51, "TYR", "OH"), (51, "TYR", "CZ"),
     (83, "LYS", "NZ"), (83, "LYS", "CE"),
@@ -224,9 +227,42 @@ def main() -> None:
                               ("Asn110", 110), ("Tyr180", 180), ("MHO237", 237))
         }
 
+    state_binding = {"path": str(state_path.relative_to(repo)), "sha256": STATE_SHA}
+    runtime_bundle = design_checks.parent / "continuation-bundle.tgz"
+    if sha(runtime_bundle) != RUNTIME_BUNDLE_SHA:
+        raise ValueError("prior runtime bundle hash differs")
+    with tarfile.open(runtime_bundle) as archive:
+        runtime_rows = archive.extractfile("logs/runtime-assets.json").read()
+        chai_rows = archive.extractfile("logs/chai-assets.json").read()
+    chai_container = next(row for row in json.loads(runtime_rows)
+                          if row["path"] == "rf_diffusion/exec/chai.sif")
+    runtime_reference = {
+        "upstream_commit": UPSTREAM_COMMIT,
+        "prior_bundle": {"path": str(runtime_bundle.relative_to(repo)), "sha256": RUNTIME_BUNDLE_SHA},
+        "chai_container": chai_container,
+        "asset_inventories": {
+            name: {"bundle_member": name, "sha256": hashlib.sha256(raw).hexdigest()}
+            for name, raw in (("logs/runtime-assets.json", runtime_rows),
+                              ("logs/chai-assets.json", chai_rows))
+        },
+        "shared_assets": "Match Chai container, conformer data and ESM snapshot/content against the retained inventories; lock/cache sentinel files are not model assets.",
+        "model_export_size": {
+            "prior_design": 256,
+            "expected_parent": 384,
+            "reason": "The untrimmed 258-residue canonical parent exceeds 256 tokens. Pinned Chai chooses the smallest supported export size covering the token count; confirm actual token count and selection on the host.",
+            "size_source": {"url": f"https://github.com/RosettaCommons/RFdiffusion2/blob/{UPSTREAM_COMMIT}/lib/chai/chai_lab/data/collate/utils.py#L8",
+                            "sha256": "24333cc3f0a1b7180bc1ddd936eea0f4bed6371bdb2d9389c19b45c7478ebd85"},
+            "loader_source": {"url": f"https://github.com/RosettaCommons/RFdiffusion2/blob/{UPSTREAM_COMMIT}/lib/chai/chai_lab/chai1.py#L413",
+                              "sha256": "098974201ff654d9d0769821def1471f3e936e064d30e77acbc537c9e779d8e3"},
+            "parent_export_hashes": None,
+            "status": "384 exports not downloaded or hash-verified. Capture all five component identities before prediction; do not claim byte-identical runtime assets or trim the sequence to use 256.",
+        },
+    }
+
     manifest = {
         "schema_version": "catalytic-earth.ra95-parent-chai-control.v1",
         "repository_base_commit": "99142e880a10d87cee9dab5f5609eb6eae931f5c",
+        "chemical_state_context": state_binding,
         "scope": {
             "purpose": "Known-active RA95.5-8F protein-only Chai sanity control.",
             "execution_status": "materialized_only; no model invocation",
@@ -276,6 +312,7 @@ def main() -> None:
             "role": "Apo coordinate context, not productive or transition-state geometry.",
         },
         "future_chai_run": {
+            "runtime_reference": runtime_reference,
             "input": {"fasta": fasta_path.name, "entity_type": "protein", "ligand": None,
                       "template": None, "motif_restraints": None},
             "matched_settings": {"seed": 43, "num_trunk_recycles": 3,
@@ -309,6 +346,7 @@ def main() -> None:
 
     comparison = {
         "schema_version": "catalytic-earth.ra95-observed-state-comparison.v1",
+        "chemical_state_context": state_binding,
         "scope": "Observed apo-versus-inhibitor structural spread; not Chai calibration, activity evidence, productive geometry or a pass threshold.",
         "sources": {pdb: {"path": str(cif_paths[pdb].relative_to(repo)), "sha256": CIF_SHA[pdb],
                            "state_id": states[pdb]["state_id"],

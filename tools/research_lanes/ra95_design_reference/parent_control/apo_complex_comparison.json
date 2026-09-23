@@ -1,5 +1,9 @@
 {
   "schema_version": "catalytic-earth.ra95-observed-state-comparison.v1",
+  "chemical_state_context": {
+    "path": "data/atlas/study_context/ra95_2017/chemical_state.json",
+    "sha256": "90d9c76913dc67714e04b34bd8a126f4d35e5e01ba3bd80929ba623ef974d93c"
+  },
   "scope": "Observed apo-versus-inhibitor structural spread; not Chai calibration, activity evidence, productive geometry or a pass threshold.",
   "sources": {
     "5AOU": {

@@ -9,9 +9,18 @@ not prove identity of the assayed and crystallized physical preparations.
 
 The control asks whether the same protein-only predictor can recover the known
 parent's apo fold and internal motif geometry. Run one Chai invocation using the
-same upstream revision, container/model assets, seed 43, three trunk recycles
-and 200 diffusion steps as the [design continuation](../CONTINUATION.md).
+same upstream revision, container, shared embedding assets, seed 43, three trunk
+recycles and 200 diffusion steps as the [design continuation](../CONTINUATION.md).
 Retain all five native outputs. Supply only the parent sequence.
+
+The full 258-residue parent requires a larger compiled model: the pinned
+[size selector](https://github.com/RosettaCommons/RFdiffusion2/blob/d365cbf4db3958814a9f8e4f6f94fa309dfebc2b/lib/chai/chai_lab/chai1.py#L413)
+selects the smallest supported size covering the tokens, expected to be 384
+for this parent versus 256 in the design run. The manifest pins the prior
+container and asset inventories; the 384 exports are **not downloaded or
+hash-verified yet**. Record all five new export identities before prediction
+and report the size difference. Do not shorten the parent or claim identical
+asset bytes across these lengths.
 
 On an already prepared GPU host, place only this FASTA in a fresh
 `$RA95_PARENT/protein_only/` directory. The following is a prepared command,
