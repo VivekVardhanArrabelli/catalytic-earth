@@ -39,6 +39,10 @@ the hard objective while remaining willing to change the methods.
   tests or documentation do not by themselves establish scientific progress.
   Tie necessary engineering to the next scientific decision or demonstrated
   reuse; avoid building infrastructure to postpone the difficult question.
+  Delegate bounded, complementary scientific questions and change assignments
+  as the investigation develops. Compare Atlas with a direct approach at
+  consequential milestones; do not duplicate every research step in permanent
+  competing lanes.
 - **Keep evidence levels explicit.** Distinguish source curation, translation
   fidelity, computational predictions, comparative design benefit and measured
   biological function. Preserve provenance, uncertainty, controls and failures.
@@ -48,6 +52,12 @@ the hard objective while remaining willing to change the methods.
   audits or repeatedly documenting the same limitation. Report what changed
   scientifically and what remains unresolved. Keep coordination and validation
   proportionate; this charter requires no new scorecard or review machinery.
+- **Move the research forward each turn.** Produce usable source-backed
+  knowledge, resolve an uncertainty, demonstrate a useful capability, or remove
+  a named dependency. A supported negative or stopping decision counts;
+  another plan, report or passing check alone does not. Report unsuccessful
+  attempts honestly and reconsider the next action instead of manufacturing
+  progress.
 
 ## Continuity and execution
 

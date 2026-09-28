@@ -5,7 +5,18 @@ enabling de novo enzyme design directly or through a useful dataset. Claims,
 errata and the truth policy control evidence scope. Oversight changes task
 selection when the expected scientific return no longer justifies continuation.
 
-## Current decision — 2026-09-12 owner-authorized reprioritization
+## Current direction — 2026-09-28
+
+The owner selected [Problem 8, programmable proteases](https://millenniumproblems.bio/),
+as a consequential question through which to build the full computable Atlas.
+Use complementary, bounded investigations that contribute to one scientific
+answer. Atlas-versus-direct comparisons belong at decision milestones, not at
+every step. Each research turn must pursue a concrete advance while preserving
+honest negative outcomes. The marked [handoff](../work/handoff.md) carries the
+current question, evidence and next action; the reviews below are historical.
+This direction change does not itself resume any paused automation.
+
+## Historical decision — 2026-09-12 owner-authorized reprioritization
 
 The owner requested a concrete correction after reviewing September 10–12.
 The [previous direction review](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/77926721b5df4ee5e28b03b7333405ccf9c60afa/docs/SCIENTIFIC_DIRECTION.md)

@@ -4,9 +4,9 @@ Read [the repository agent instructions](../AGENTS.md) before selecting work.
 They carry the shared ambition, scientific independence and obligation to
 reconsider the approach into every research session, including scheduled runs.
 
-Effective 2026-09-09; task-selection correction 2026-09-12. This is the standing
-brief for the single
-`catalytic-earth-work-loop` scheduled task. It supersedes the old Lever 3,
+Effective 2026-09-09; task-selection corrections 2026-09-12 and 2026-09-28.
+This is the standing brief for the single `catalytic-earth-work-loop`
+scheduled task. It supersedes the old Lever 3,
 predictor, minimum-duration and mandatory-artifact instructions for that task.
 Other historical schedules remain paused. The schedule starts a fresh task in
 the saved local project each hour; Git and `work/handoff.md` carry continuity.
@@ -52,13 +52,15 @@ annotation does not establish priority. State the question, expected gain and
 stopping condition, then take the selected action; stopping or a no-change
 result is valid.
 
-Give the existing adversarial reviewer responsibility for challenging task
-selection before it becomes the implementation plan. Source and representation
-review assess scientific validity separately. A grounded consequential objection
-must be resolved with evidence; otherwise retarget or stop. Reviewer agreement
-cannot override an unresolved objection. When the proposed gain is modest or
-marginal, identify its important downstream use and justify it against the
-stronger alternative before proceeding.
+The lead owns task selection and substantive scientific synthesis. Delegate
+bounded, complementary investigations whose findings combine into the selected
+answer; roles need not persist into the next question. Request focused source,
+representation or adversarial checks where a consequential interpretation or
+investment needs them. A grounded consequential objection must be resolved with
+evidence; otherwise retarget or stop. Reviewer agreement cannot override an
+unresolved objection. When the proposed gain is modest or marginal, identify
+its important downstream use and justify it against the stronger alternative
+before proceeding.
 New runtime or schema must have a scientific need that wins the same comparison;
 first test whether existing consumers and retained evidence suffice.
 
@@ -122,8 +124,8 @@ model without a demonstrated need.
 
 All automated writers, including interactive tasks using this workflow, acquire
 the same cooperative lock before changing repository files or Git refs. It is
-stored in the Git common directory, shared by linked worktrees. One hourly
-writer is enabled. Subagents work under the parent's ownership; they do not
+stored in the Git common directory, shared by linked worktrees. Only one lead
+may hold research ownership. Subagents work under that ownership; they do not
 independently acquire, release, commit, merge or push.
 
 Generate a unique owner token including the task ID when available and a UUID.
@@ -168,6 +170,13 @@ questions. Keep one compact coordination record in the current handoff or its
 linked board. Source objections override agent consensus. Computer interaction,
 structural visualization and the existing Rosalind workbench are useful when
 they answer the selected question, not as demonstrations of tool usage.
+
+Each research turn should leave a concrete advance described in AGENTS.md.
+Do not keep a permanent Atlas-versus-direct team duplicating every step.
+Conduct a fair comparison at a milestone where sufficient Atlas foundation
+exists and the result could change the method or investment. Parallelize
+independent work; resolve dependent questions in order. Do not invent work to
+keep every agent occupied or claim that a failed attempt advanced the science.
 
 Work productively for approximately 45–50 minutes, reserving enough time for
 the checks the change needs. Begin final wrap-up by minute 50 and aim to finish

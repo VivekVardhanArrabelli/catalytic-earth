@@ -1,0 +1,273 @@
+{
+  "study_id": "chen-metalloproteases-2026-v3",
+  "status": "source_scoped_research_annotation_not_canonical_atlas_admission",
+  "question": "Does cleavage of a fixed target establish replacement of the original substrate preference and fidelity to the intended bond?",
+  "source": {
+    "title": "Computational design of metalloproteases",
+    "doi": "10.1101/2025.11.20.689622",
+    "version": "v3",
+    "posted_date": "2026-09-21",
+    "publication_type": "preprint",
+    "retrieved_date": "2026-09-28",
+    "main_text": {
+      "url": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3.full",
+      "bytes": 419008,
+      "sha256": "59330da48264344ab2030982f57ea67dbc6e7a937dbb26b5009256a0ffe5c805"
+    },
+    "supplement": {
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/21/2025.11.20.689622/DC1/embed/media-1.docx?download=true",
+      "bytes": 17453588,
+      "sha256": "1132228c4e00b9e63e6ab9c93c299625ba2c1bf5d3af51c57fefdc0fc045cb07"
+    },
+    "scope": "Selected main-text results, supplementary methods, Table S2 and relevant figure captions. Facts below are not imported from PMC v1.",
+    "exposure": "Read during development; unsuitable as an untouched prospective evaluation."
+  },
+  "target": {
+    "name": "TDP-43-derived peptide",
+    "sequence": "ALQSSWGMMGML",
+    "commitment": "sequence_fixed_before_each_target_specific_campaign_but_not_blinded_or_preregistered",
+    "source_locator": "Supplementary methods: TDP-43 design and screening; Table S2",
+    "numbering": "Cut positions below count residues in this 12-residue peptide from 1; no full-protein numbering is inferred."
+  },
+  "campaigns": [
+    {
+      "id": "initial_codesign",
+      "substrate_commitment": "enzyme_and_substrate_codesigned",
+      "tested_design_count": 135,
+      "unit": "enzyme-substrate pair",
+      "source_locator": "Main text: initial design and screening",
+      "fixed_target_inference": "Does not estimate performance on independently specified targets."
+    },
+    {
+      "id": "tdp_redesign",
+      "construct": "TDPr3",
+      "approach": "Partial diffusion and sequence redesign of a ZnO36 scaffold",
+      "screen": {
+        "tested_design_count": 48,
+        "unit": "enzyme-substrate fusion construct",
+        "format": "cis cleavage screen; selected candidates subsequently assessed in trans",
+        "hit_count": null,
+        "hit_threshold": null,
+        "missingness": "No cohort-wide hit count or threshold specified in inspected v3 methods; selected figure panels are not a hit tally."
+      },
+      "intended_cut": "ALQSS/WGMMGML",
+      "intended_cut_after_residue": 5,
+      "source_locator": "Supplementary methods: reprogramming ZnO36; Fig. S21-S22; Table S2"
+    },
+    {
+      "id": "tdp_de_novo",
+      "construct": "TDPn3",
+      "approach": "Direct de novo design with RFdiffusion3",
+      "screen": {
+        "tested_design_count": 113,
+        "unit": "designed enzyme",
+        "format": "trans FRET screen on a fixed peptide between fluorescent protein reporters; unnormalized small-scale preparations",
+        "hit_count": null,
+        "hit_threshold": null,
+        "missingness": "The selected lead is not a cohort success count; candidate-level outcomes were not extracted."
+      },
+      "intended_cut": "ALQSSWG/MMGML",
+      "intended_cut_after_residue": 7,
+      "source_locator": "Supplementary methods: direct de novo TDP-43 design and screening; Fig. S23; Table S2"
+    }
+  ],
+  "assay_contexts": [
+    {
+      "id": "redesign_reporter",
+      "construct": "TDPr3",
+      "substrate": "TDP-derived peptide in the selected TDPr3 reporter construct",
+      "source_locator": "Supplementary Table S2, TDPr3 synthetic-substrate row; supplementary methods: intact protein mass spectrometry",
+      "stage": "Selected-construct cleavage-product assignment, not a cohort-wide screen summary",
+      "candidate_selection": "Selected construct; neither 48 nor 113 is a denominator for these mass-spectrometry assignments",
+      "construct_state": "Designed protease as characterized, not catalytic-base knockout",
+      "format_scope": "Table S2 has a cis-screen title. The redesign campaign used cis screening followed by selected trans characterization; this MS row is not established as a trans measurement."
+    },
+    {
+      "id": "de_novo_reporter",
+      "construct": "TDPn3",
+      "substrate": "TDP-derived peptide between fluorescent protein reporter tags",
+      "source_locator": "Supplementary Table S2, TDPn3 synthetic-substrate row; supplementary methods: intact protein mass spectrometry",
+      "stage": "Selected-construct cleavage-product assignment, not a cohort-wide screen summary",
+      "candidate_selection": "Selected construct; neither 48 nor 113 is a denominator for these mass-spectrometry assignments",
+      "construct_state": "Designed protease as characterized, not catalytic-base knockout",
+      "format_scope": "TDPn3 was screened only in trans using the fluorescent reporter; Table S2 retains an overbroad generic cis-screen title for its appended rows."
+    },
+    {
+      "id": "full_length_monomer",
+      "construct": "TDPn3",
+      "substrate": "purified tagged full-length TDP-43, initially monomeric preparation",
+      "candidate_selection": "one selected lead; the 113-design screen is not a denominator for full-length performance",
+      "source_locator": "Fig. 5d; Extended Data Fig. 8; Table S2",
+      "construct_state": "Designed TDPn3 unless the observation explicitly identifies a control"
+    },
+    {
+      "id": "full_length_oligomer",
+      "construct": "TDPn3",
+      "substrate": "purified tagged full-length TDP-43, oligomeric preparation",
+      "candidate_selection": "same selected lead; not an independent target",
+      "source_locator": "Fig. 5d; Extended Data Fig. 8; Table S2",
+      "construct_state": "Designed TDPn3 unless the observation explicitly identifies a control"
+    },
+    {
+      "id": "original_substrate_panel",
+      "constructs": [
+        "TDPr3",
+        "TDPn3"
+      ],
+      "substrate": "TDP-derived reporter peptide and other study reporter substrates",
+      "scope": "Restricted peptide panel, not proteome-wide specificity; Fig. 5b plotted identity is disputed below.",
+      "source_locator": "Main text: TDP-43 results; Fig. 5b; Extended Data Fig. 8c; supplementary methods",
+      "tested_substrate_count": 7,
+      "count_scope": "Seven named sfGFP-substrate-mScarlet constructs in supplementary methods section 4.11, including the TDP target; not a proteome-wide denominator or a resolution of the Fig. 5b identity conflict"
+    }
+  ],
+  "observations": [
+    {
+      "id": "tdpr3_reporter_cuts",
+      "assay_context_id": "redesign_reporter",
+      "kind": "reported_mass_spectrometry_cut_assignment",
+      "source_annotations": [
+        "ALQSS/WGMMGML",
+        "ALQ/SSWGMMGML"
+      ],
+      "cut_positions_after_residue": [
+        5,
+        3
+      ],
+      "source_locator": "Supplementary Table S2, TDPr3 row",
+      "scope": "Assignments reported for this substrate context; no rate or fractional abundance for each cut is inferred."
+    },
+    {
+      "id": "tdpn3_reporter_cuts",
+      "assay_context_id": "de_novo_reporter",
+      "kind": "reported_mass_spectrometry_cut_assignment",
+      "source_annotations": [
+        "ALQ/SSWG/MMGML"
+      ],
+      "cut_positions_after_residue": [
+        3,
+        7
+      ],
+      "source_locator": "Supplementary Table S2, TDPn3 synthetic-substrate row",
+      "scope": "Source reports both positions; no relative abundance or order of cleavage is inferred."
+    },
+    {
+      "id": "tdpn3_monomer_cut",
+      "assay_context_id": "full_length_monomer",
+      "kind": "reported_mass_spectrometry_cut_assignment",
+      "source_annotations": [
+        "ALQSSWG/MMGML"
+      ],
+      "cut_positions_after_residue": [
+        7
+      ],
+      "source_locator": "Supplementary Table S2, TDPn3 monomeric full-length row",
+      "scope": "Only this position is assigned in this row; no detection limit or exclusion of every other cleavage is established."
+    },
+    {
+      "id": "tdpn3_oligomer_cut",
+      "assay_context_id": "full_length_oligomer",
+      "kind": "reported_mass_spectrometry_cut_assignment",
+      "source_annotations": [
+        "ALQSSWG/MMGML"
+      ],
+      "cut_positions_after_residue": [
+        7
+      ],
+      "source_locator": "Supplementary Table S2, TDPn3 oligomeric full-length row",
+      "scope": "Only this position is assigned in this row; no detection limit or exclusion of every other cleavage is established."
+    },
+    {
+      "id": "tdpr3_original_preference",
+      "assay_context_id": "original_substrate_panel",
+      "construct": "TDPr3",
+      "kind": "qualitative",
+      "result": "The redesigned enzyme cleaved the TDP peptide but retained strong preference for its original cognate substrate.",
+      "numeric_selectivity_ratio": null,
+      "source_locator": "Main text: TDP-43 redesign paragraph; Extended Data Fig. 8c"
+    },
+    {
+      "id": "tdpn3_target_preference",
+      "assay_context_id": "original_substrate_panel",
+      "construct": "TDPn3",
+      "kind": "source_report_with_identity_conflict",
+      "result": "The results text attributes greater activity toward the TDP peptide than other tested substrates to TDPn3.",
+      "numeric_selectivity_ratio": null,
+      "source_locator": "Main text: direct de novo TDP-43 paragraph; Fig. 5b",
+      "conflict_id": "fig5b_construct_identity"
+    },
+    {
+      "id": "tdpn3_full_length_control",
+      "assay_context_ids": [
+        "full_length_monomer",
+        "full_length_oligomer"
+      ],
+      "construct": "TDPn3 catalytic-base knockout",
+      "kind": "gel_product_nondetection",
+      "value": null,
+      "detection_limit": null,
+      "result": "The source reports no cleavage products detected for the knockout; loss of full-length band intensity can also reflect precipitation.",
+      "source_locator": "Main text: full-length TDP-43 paragraph; Extended Data Fig. 8f caption and monomer/oligomer lanes; Fig. S24",
+      "scope": "Do not equate substrate-band depletion with proteolysis or infer a zero catalytic rate.",
+      "construct_state": "catalytic-base knockout"
+    },
+    {
+      "id": "full_length_buffer_control",
+      "assay_context_ids": [
+        "full_length_monomer",
+        "full_length_oligomer"
+      ],
+      "construct": null,
+      "construct_state": "no protease; substrate in buffer only",
+      "kind": "gel_product_nondetection",
+      "value": null,
+      "detection_limit": null,
+      "result": "No cleavage was detected in buffer-only controls for the purified monomeric and oligomeric TDP-43 preparations.",
+      "source_locator": "Main text: full-length TDP-43 paragraph; Extended Data Fig. 8f substrate-only lanes; Fig. S24; supplementary full-length methods",
+      "scope": "Assay-specific product nondetection; no zero degradation rate or proteome-wide absence claim."
+    }
+  ],
+  "source_conflicts": [
+    {
+      "id": "fig5b_construct_identity",
+      "results_text": "TDPn3",
+      "figure_caption": "TDPr3",
+      "supplement": "Both constructs were tested; stale figure references do not resolve the identity of the current plotted panel.",
+      "resolution": "unresolved; retain textual attribution and do not derive a quantitative panel comparison"
+    }
+  ],
+  "relation": {
+    "evidence": [
+      "tdpr3_reporter_cuts",
+      "tdpn3_reporter_cuts",
+      "tdpn3_monomer_cut",
+      "tdpn3_oligomer_cut",
+      "tdpr3_original_preference",
+      "tdpn3_target_preference",
+      "tdpn3_full_length_control",
+      "full_length_buffer_control"
+    ],
+    "arithmetic_requested": false,
+    "replacement_of_original_preference_established_for_redesign": false,
+    "same_peptide_but_different_intended_bonds": true,
+    "cleavage_assignment_depends_on_assayed_substrate_context": true,
+    "causal_superiority_of_de_novo_over_redesign_established": false,
+    "reason": "The selected constructs differ in pipeline and intended bond; specificity-panel identity is also conflicted. Reporter and full-length cleavage assignments must remain separate.",
+    "problem8_completion_established": false,
+    "unestablished_problem8_conditions": [
+      "blinded and preregistered sites",
+      "success across 20 distinct sites",
+      "designs produced within 24 hours of target disclosure",
+      "cleavage of endogenous targets in living cells",
+      "proteome-wide off-target performance against an established protease comparator"
+    ],
+    "scope": "Published experimental evidence from selected constructs. No project-run experiment, causal ablation, prospective success-rate estimate or Atlas benefit is demonstrated.",
+    "new_target_cleavage_reported_for_redesign": true
+  },
+  "construction_decision": {
+    "decision": "Represent substrate identity, intended bond, observed cleavage positions and assay context separately before extracting transferable recognition constraints.",
+    "consequence": "Do not treat the two TDP campaigns as a matched fixed-site comparison, count a selected lead as a cohort hit rate, or call target-activity gain a specificity switch.",
+    "scientific_question_open": "Which recognition constraints can change target preference while retaining productive geometry at the same pre-specified bond?"
+  },
+  "structure_scope": "No TDP-construct coordinates or productive-geometry evidence are represented in this record. Diffusion methods identify design provenance; they do not establish an experimentally observed catalytic state."
+}

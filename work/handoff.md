@@ -1,59 +1,68 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — 6HA3 translation and chemical stop, 2026-09-23
+## Current research handoff — Problem 8 fixed-target evidence, 2026-09-28
 
-- **Question resolved:** the reviewed operator-qualified 6HA3 selections can
-  become reversible consumer identities. Operator-1 Gln160 maps to A160 and
-  operator-2 Glu366 to B366; operator-1 A366 is parsed as a control but excluded
-  from guideposts. All three guidepost coordinates survive isolated execution
-  of the pinned protein-parser/ContigMap bodies. The adapter also preserves all
-  42 T6F heavy atoms, their names/coordinates and 43 integer-order bonds.
-  [Result, inverse mapping and reproduction](../tools/research_lanes/assembly_input_translation/README.md).
-- **Consequential incompatibility:** the tested OpenBabel wheel recognizes six
-  aromatic edges versus eleven in the retained component dictionary. Five
-  thiazolium edges lose aromatic flags: C2–N3, C2–S1, C4–C5, C4–N3, C5–S1.
-  The pinned RFdiffusion2 bond-feature rule would encode these as 1/2 rather
-  than 4. Equal atom/bond counts would miss this change. Source translation
-  passes; combined chemical acceptance is rejected. No chemical repair or
-  model run occurred. Do not launch from this partial interface.
-- **Evidence boundary:** exact source-extracted parser/class bodies plus real
-  delegated OpenBabel calls, not full native imports or official SIF execution.
-  The isolated macOS ARM64 wheel is `openbabel-wheel==3.1.1.23`; its core reports
-  `3.1.0`, while the official recipe specifies conda OpenBabel 3.1.1. The observed
-  mismatch is specific to the tested build; no version-independent upstream
-  defect or chemical cause is established. Unknown deposited charges remain
-  unknown even though the consumer perceives zero. No productive motif,
-  protonation state, design advantage or catalytic function is established.
-- **Task selection and closure:** this beats manually expanded coordinates plus
-  disconnected selectors by demonstrating the missing reversible namespace
-  bridge and detecting a consequential model-input change. It does not prove
-  Atlas outperforms a competent manual workflow. Close the 6HA3 attempt now;
-  do not add metals, repair protonation, grow parser infrastructure, rerun RA95
-  or add design samples to rescue a positive result. A new translation example
-  alone is not the next priority. The next scientific decision is selection of
-  a prospective Atlas-versus-author constraint comparison with a source-justified
-  chemical state and a concrete difference in the proposed constraints. Reassess
-  that against the strongest simpler alternative before acquisition or compute;
-  no new model run is queued. The full mechanism Atlas/de novo objective remains.
-- **Verification and sources:** source review checks every emitted atom and
-  bond against the retained CIF; five local identity/connectivity controls pass.
-  The published ligand reproducer exactly reproduces the negative observation.
-  Protein masks/XYZ, distinct copy keys and control exclusion pass. Source,
-  representation and task-selection agents reviewed complementary questions;
-  this is computational review, not independent scientific validation. Seven
-  additional pinned source captures total 451,459 bytes. Conservatively counted
-  recorded captures are 56 requests/2,869,438 bytes; older web discovery was not
-  fully metered. Dependency wheel: 11,607,818 bytes in an isolated local venv.
-  [Versions, hashes, preflight failure and scope](../tools/research_lanes/assembly_input_translation/6ha3/consumer-execution.json).
-- **Ownership/publication:** run started 19:59:09 UTC; base `abb6bcfc`; branch
-  `codex/6ha3-consumer-identity-translation`. Local receipts are in
-  `.git/catalytic-earth-runs/20260923T195909Z-6ha3-translation/`. Preserve the seven
-  unrelated viewer/demo paths. No cloud compute was provisioned and no frozen
-  source packet, exposure ledger or scientific evidence tier changed. The
-  hourly writer remains paused. Publish after required repository checks and
-  final diff review; exact commit/CI/merge/lock-release receipts belong in the
-  task output.
+- **Direction:** build the full computable catalytic-mechanism Atlas through
+  consequential scientific questions, starting with
+  [Problem 8](https://millenniumproblems.bio/). Each research turn must add usable
+  knowledge, resolve uncertainty, demonstrate capability or remove a named
+  dependency; report unsuccessful attempts honestly. Delegate complementary,
+  bounded questions. Atlas-versus-direct comparisons belong at decision
+  milestones, not in permanent teams duplicating every step.
+- **Scientific advance:** the current Chen metalloprotease preprint is v3,
+  posted 2026-09-21; PMC is v1. The [new source-bound relation](../tools/research_lanes/protease_retargeting/README.md)
+  distinguishes fixed target sequence from fixed cleavage bond and preserves
+  assay context. TDPr3 and TDPn3 use the same peptide but target cuts after
+  positions 5 and 7, respectively, with different pipelines. Both synthetic
+  reporter substrates have additional reported cleavage at position 3;
+  full-length TDPn3 rows assign only position 7, without an exhaustive exclusion
+  or detection-limit claim. This prevents treating these as a matched fixed-site
+  experiment or transferring reporter cleavage distributions to full-length
+  protein. Published assays are not project-run experiments.
+- **Specificity and missingness:** TDPr3 retains original-substrate preference.
+  The v3 text attributes improved target preference to TDPn3, but Fig. 5b's
+  caption names TDPr3; this conflict remains unresolved. Screen sizes of 48
+  redesigns and 113 de novo designs are not numbers of independent targets and
+  do not supply cohort hit rates. The selected full-length lead cannot be
+  counted as a 1/113 success rate. No intracellular/endogenous cleavage,
+  proteome-wide specificity, blinded 20-site success or Atlas advantage is
+  established. The disordered target region is not itself disqualified by the
+  challenge, which asks for an accessible site in an endogenous folded protein.
+- **Decision and next action:** compile the source-supported catalytic and
+  recognition constraints for TDPn3 at its exact intended bond, linking each
+  constraint to a computational state or experimental observation. Keep TDPr3
+  at its different intended bond as a separate problem. First determine whether
+  the existing author model/structure material supplies the required mapping;
+  do not substitute a catalytic-knockout or metal-free bound pose as productive
+  geometry. Expected gain is a usable chemical-to-protein constraint relation
+  for a fixed bond, with cognate and competing-substrate outcomes. Stop that
+  mapping if source identity/state cannot be established; retain missingness
+  rather than inventing atoms or launching a design. A prospective comparison
+  follows only when enough foundation and a consequential constraint difference
+  exist; no model run is queued.
+- **Task selection and coordination:** the lead selected fixed-target evidence
+  over another translation fixture or a premature Atlas-versus-direct trial.
+  Source worker checked the current manuscript/supplement; representation worker
+  found no existing fixed-target answer and recommended the existing research
+  namespace rather than renewing the global projection's 123 file pins;
+  selection review required a changed decision, not a repeated co-design warning.
+  Root checked Table S2 directly and retained the panel-identity conflict.
+  Review is computational, not independent expert validation. The JSON and an
+  ordinary query suffice; no new runtime, schema registry or scorecard is added.
+- **Execution and continuation:** base `bc9580ec`; branch
+  `codex/problem8-scientific-steps`; start 2026-09-28 23:24:24 UTC. Local receipt:
+  `.git/catalytic-earth-runs/20260928T232424Z-problem8-foundation/`.
+  Six source/discovery calls in this turn include four metered captures totaling
+  18,060,257 bytes and two web reads/searches with unmetered response bytes.
+  The 17,453,588-byte supplement exceeded the worker's assigned 10 MiB sub-budget;
+  acquisition stopped and the captured total remains below the repository's
+  30 MiB named-batch limit. Preserve this accounting across continuations.
+  Protected records, exposure ledgers and seven unrelated viewer/demo paths
+  remain unchanged. Hourly automation remains paused; no model/effort/schedule
+  setting changed. The earlier RA95 and 6HA3 translation attempts remain closed.
+  Required checks and exact publication/lock-release receipts belong in the
+  task output; do not start a competing writer while this owner holds the lock.
 
 <!-- current-research-handoff:end -->
 
