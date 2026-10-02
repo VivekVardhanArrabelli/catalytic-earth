@@ -1,0 +1,622 @@
+{
+  "question": "Does revealing fixed enzyme and substrate sidechains during sequence design improve joint reference-geometry recovery on one retained scaffold?",
+  "status": "completed_all_assignments",
+  "decision": "no_consistent_joint_reference_recovery_advantage",
+  "assigned_candidates": 8,
+  "new_scaffolds": 0,
+  "designed_sequences": 8,
+  "distinct_sequences": 8,
+  "assigned_RF3_outputs": 80,
+  "observed_RF3_outputs": 80,
+  "measured_ES_outputs": 40,
+  "measured_monomer_outputs": 40,
+  "paired_seed_results": [
+    {
+      "pair_seed": 200,
+      "complete": true,
+      "revealed_minus_hidden_median_worst_group_A": -4.65480458435043,
+      "revealed_minus_hidden_group_median_A": {
+        "zinc": -1.8190087994737505,
+        "water": -3.308005472178426,
+        "histidine_36": -0.8627765406084706,
+        "histidine_40": -1.5607236860273717,
+        "metal_glutamate_152": -4.527147966296095,
+        "general_base_37": 0.22692352348166756,
+        "tyrosine_115": -6.528360561818941,
+        "reactive_backbone": 0.23594403911846928
+      }
+    },
+    {
+      "pair_seed": 201,
+      "complete": true,
+      "revealed_minus_hidden_median_worst_group_A": 8.309029364192494,
+      "revealed_minus_hidden_group_median_A": {
+        "zinc": 2.062695209758799,
+        "water": 2.496840014194637,
+        "histidine_36": 0.543485448446789,
+        "histidine_40": 2.1469613374372516,
+        "metal_glutamate_152": 19.687081839368485,
+        "general_base_37": 2.1394775504759753,
+        "tyrosine_115": -7.384766166822229,
+        "reactive_backbone": 5.790847764591081
+      }
+    },
+    {
+      "pair_seed": 202,
+      "complete": true,
+      "revealed_minus_hidden_median_worst_group_A": 9.483512081221004,
+      "revealed_minus_hidden_group_median_A": {
+        "zinc": 3.5845812329104145,
+        "water": 4.37161938366824,
+        "histidine_36": 2.5490630460759425,
+        "histidine_40": 2.819927000163699,
+        "metal_glutamate_152": 12.264158466388853,
+        "general_base_37": 3.448234130128407,
+        "tyrosine_115": 4.911186673927979,
+        "reactive_backbone": 6.854620241871811
+      }
+    },
+    {
+      "pair_seed": 203,
+      "complete": true,
+      "revealed_minus_hidden_median_worst_group_A": 14.936565365888317,
+      "revealed_minus_hidden_group_median_A": {
+        "zinc": 2.929395362749322,
+        "water": 4.638279106103654,
+        "histidine_36": 2.1533756884343833,
+        "histidine_40": 2.5362324824666764,
+        "metal_glutamate_152": 19.07119553895057,
+        "general_base_37": 1.7702653985994017,
+        "tyrosine_115": -0.6380918880748183,
+        "reactive_backbone": 1.981959785595976
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "id": "context_hidden_seed200",
+      "arm": "context_hidden",
+      "pair_seed": 200,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 18.351129708667038,
+      "group_median_rmsd_A": {
+        "zinc": 4.576712047250169,
+        "water": 6.741741277187492,
+        "histidine_36": 4.012170689893829,
+        "histidine_40": 4.3610714605910115,
+        "metal_glutamate_152": 18.223473090612703,
+        "general_base_37": 2.947838332293852,
+        "tyrosine_115": 12.411282580546752,
+        "reactive_backbone": 4.324882884795077
+      },
+      "enzyme_sequence": "AERALAELKKVADEVLELTKDDSLELQKRKAAVAVHEFAHLIMLRAALGEETREEDRRTIVTQVVALDLSQPNSFVNTTFTLSEADGRWTLDDITISVEPLDKSKTDVKALIERYEKTDLTSAAEALAAGAAALARALATGETTPEIVRGVEAATQALLRYFAENVAPDIIDTSRWLGGDGSVTRTP",
+      "enzyme_sha256": "a6ea9d52bb5fbcf4a2d0dbc4e3025b302c154936b9dfab6cef90fe2df537cf45",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 1.6108551630953294,
+        "ES": 14.5542746310109
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 1.9293064526791905,
+        "Zn_H40_NE2_A": 2.496762695385077,
+        "Zn_E152_min_A": 21.133152734052675,
+        "E37_water_min_A": 5.861358366026175,
+        "Zn_water_A": 2.0543859491174863,
+        "Zn_G7_O_A": 4.44112341161131,
+        "water_G7_C_A": 3.9321226224534542,
+        "water_G7_C_G7_O_degrees": 74.15853218061149,
+        "Y115_OH_G7_O_A": 15.625039008788404,
+        "Y115_CZ_OH_G7_O_degrees": 64.0351874695113,
+        "G7_C_M8_N_A": 1.3042819535698829
+      }
+    },
+    {
+      "id": "context_revealed_seed200",
+      "arm": "context_revealed",
+      "pair_seed": 200,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 13.696325124316608,
+      "group_median_rmsd_A": {
+        "zinc": 2.7577032477764183,
+        "water": 3.4337358050090656,
+        "histidine_36": 3.1493941492853588,
+        "histidine_40": 2.80034777456364,
+        "metal_glutamate_152": 13.696325124316608,
+        "general_base_37": 3.1747618557755195,
+        "tyrosine_115": 5.882922018727811,
+        "reactive_backbone": 4.560826923913546
+      },
+      "enzyme_sequence": "AERALAELKKVADEVLELTKDDSLELQKRKAAVAVHEFAHLIMLRAALGEETREEDRRTVVTQVVALDLSQPMSFVNKTDVFSERDGRLTLDDITISVEPLDKSKTDLKRLIELYEKTDLTSAAEALAAGAAGYARAFATGVTTPEIVRAAESAAQALLRYFAENVAPDIIDTSRWLGGDGSVVRVP",
+      "enzyme_sha256": "5a4c248b6230595fab7a88e34bf4fae19a09376f0b4d632abead987fd0af5560",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 5.491130540159541,
+        "ES": 9.367581049072006
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 1.971572879969337,
+        "Zn_H40_NE2_A": 2.6888859272256433,
+        "Zn_E152_min_A": 16.96554632723633,
+        "E37_water_min_A": 5.667595281403436,
+        "Zn_water_A": 1.8967513971449645,
+        "Zn_G7_O_A": 4.9029427328921775,
+        "water_G7_C_A": 4.297787286608383,
+        "water_G7_C_G7_O_degrees": 55.15090566987072,
+        "Y115_OH_G7_O_A": 10.225961815629242,
+        "Y115_CZ_OH_G7_O_degrees": 124.0211255160392,
+        "G7_C_M8_N_A": 1.302262512138547
+      }
+    },
+    {
+      "id": "context_hidden_seed201",
+      "arm": "context_hidden",
+      "pair_seed": 201,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 12.733955407194756,
+      "group_median_rmsd_A": {
+        "zinc": 1.2250576021824702,
+        "water": 2.4742123195889176,
+        "histidine_36": 1.8350074015153615,
+        "histidine_40": 1.0559154360017569,
+        "metal_glutamate_152": 1.3559029320187652,
+        "general_base_37": 1.3947247880754958,
+        "tyrosine_115": 12.733955407194756,
+        "reactive_backbone": 1.676452707362437
+      },
+      "enzyme_sequence": "AEAALAALKKAVDRTLELTKDDSLELQKRKCAVVAHELFHLAQLRAALGQELREEDIETVVSQVTALDLSQPNSFVYTTFTLSERDGEWTLEAIEIRVEPLDESKTDVEELLERYEKTDLKSAAEALAAGSAALAEALATGVTTPEIVRGVESATHAMLKYFAENVAPDKIDISRWTGGGGSVTRTP",
+      "enzyme_sha256": "9f42bbbc4d86cacc529b8db02e48b73fdd2f095ca946cb73c706a6780f3b1f74",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 3.144808783779242,
+        "ES": 2.886275374397378
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.0957127208063246,
+        "Zn_H40_NE2_A": 2.0388037461919746,
+        "Zn_E152_min_A": 2.3698452464360003,
+        "E37_water_min_A": 4.936531094008695,
+        "Zn_water_A": 1.8431884146866755,
+        "Zn_G7_O_A": 2.9196066873774833,
+        "water_G7_C_A": 2.8690738263609674,
+        "water_G7_C_G7_O_degrees": 48.793030109431214,
+        "Y115_OH_G7_O_A": 15.57010095386386,
+        "Y115_CZ_OH_G7_O_degrees": 91.536155862793,
+        "G7_C_M8_N_A": 1.318354366038383
+      }
+    },
+    {
+      "id": "context_revealed_seed201",
+      "arm": "context_revealed",
+      "pair_seed": 201,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 21.04298477138725,
+      "group_median_rmsd_A": {
+        "zinc": 3.287752811941269,
+        "water": 4.971052333783555,
+        "histidine_36": 2.3784928499621505,
+        "histidine_40": 3.2028767734390087,
+        "metal_glutamate_152": 21.04298477138725,
+        "general_base_37": 3.534202338551471,
+        "tyrosine_115": 5.349189240372527,
+        "reactive_backbone": 7.467300471953519
+      },
+      "enzyme_sequence": "AEKALAALKKAVDRTLELTKDDSLELQKRKCAVVAHELAHVAFARAALGQELREEDIETVVSQVTALDLSQPMSFVRKRLTWSERDGEWTLEAIEIRVEPLDLSKTDLDKLIEMYEKTDLKSAEEALAAGSAALAEAFATGVTTDEIRRGAESAAQALVRYFAENVAPDKIDISRWLGGDGEVRRVP",
+      "enzyme_sha256": "713f44142a28b32f675f77950c3d4aa1c42afa92eb9f7a2dfc5264a34adb5dd8",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 13.349534934093079,
+        "ES": 14.448306469223228
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.155148973563413,
+        "Zn_H40_NE2_A": 2.097440411391582,
+        "Zn_E152_min_A": 21.27562836887661,
+        "E37_water_min_A": 5.400732034924209,
+        "Zn_water_A": 1.9682359173035127,
+        "Zn_G7_O_A": 8.421418880368991,
+        "water_G7_C_A": 6.863185331603929,
+        "water_G7_C_G7_O_degrees": 100.43052290194373,
+        "Y115_OH_G7_O_A": 9.756587580878646,
+        "Y115_CZ_OH_G7_O_degrees": 100.26130151362872,
+        "G7_C_M8_N_A": 1.3076472259560588
+      }
+    },
+    {
+      "id": "context_hidden_seed202",
+      "arm": "context_hidden",
+      "pair_seed": 202,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 3.676491103139023,
+      "group_median_rmsd_A": {
+        "zinc": 0.5955493367684568,
+        "water": 0.7525296798429151,
+        "histidine_36": 1.0962146821108132,
+        "histidine_40": 0.4539065798527521,
+        "metal_glutamate_152": 0.7667841958588822,
+        "general_base_37": 0.8071541534398528,
+        "tyrosine_115": 3.676491103139023,
+        "reactive_backbone": 1.4189300062147823
+      },
+      "enzyme_sequence": "AAAALALLERVVRRTLELTADASEELRKRKAAVAAHEFFHLIQARAALGEEPQDEDAEIVVRQVVALDLSQPNSFVETTLTYSREDGRWTLDAIEIRVRPLDLSKTDVERLLELYEKTDLTSAEEALAAGAAALRRAFETGETTPEVVRGVEAGTQAMLDYFAANVAPDAIDTSRWTGGDGSVTRIP",
+      "enzyme_sha256": "9ee09e7e7e7d63b86da50889da105ce16715783121bd2959831176c8b319fef3",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 2.6468672162734723,
+        "ES": 1.4574216989568531
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.036589130421364,
+        "Zn_H40_NE2_A": 2.0854094182199763,
+        "Zn_E152_min_A": 2.5619191921092033,
+        "E37_water_min_A": 2.894675856215701,
+        "Zn_water_A": 2.242830682399114,
+        "Zn_G7_O_A": 3.571605690169807,
+        "water_G7_C_A": 3.5116931612738087,
+        "water_G7_C_G7_O_degrees": 104.16224999543321,
+        "Y115_OH_G7_O_A": 5.476592755553657,
+        "Y115_CZ_OH_G7_O_degrees": 131.71362419988333,
+        "G7_C_M8_N_A": 1.3240100093287201
+      }
+    },
+    {
+      "id": "context_revealed_seed202",
+      "arm": "context_revealed",
+      "pair_seed": 202,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 13.160003184360027,
+      "group_median_rmsd_A": {
+        "zinc": 4.180130569678871,
+        "water": 5.1241490635111555,
+        "histidine_36": 3.645277728186756,
+        "histidine_40": 3.273833580016451,
+        "metal_glutamate_152": 13.030942662247735,
+        "general_base_37": 4.2553882835682595,
+        "tyrosine_115": 8.587677777067002,
+        "reactive_backbone": 8.273550248086593
+      },
+      "enzyme_sequence": "ADAALALLREVVDRTLELTADASEELRKRKAAVAAHEFFHLIARRAALGEEPQAEDAETVVTAVVALDLSQPMSFVEKRDTYSREDGRWTLDAIEIRVRPLDLSKTDLEKLIEIYEKTDLTSAAEALAAAAAAYARAFATGETTDEVVRGAEAGAQAMLDYFAANVAPDAIDTSRWLGGDGRVVRVP",
+      "enzyme_sha256": "22062616b952d55536ec04d81f3c563b8f81827eca2ca7b3dd7f95c9ee0bcd92",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 8.18473272491264,
+        "ES": 9.16550577014086
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 1.9935190517817003,
+        "Zn_H40_NE2_A": 2.0407364863726243,
+        "Zn_E152_min_A": 14.281873996905713,
+        "E37_water_min_A": 6.399899453633021,
+        "Zn_water_A": 1.9116246395362104,
+        "Zn_G7_O_A": 7.472464180811539,
+        "water_G7_C_A": 5.86142617337688,
+        "water_G7_C_G7_O_degrees": 113.2338390668271,
+        "Y115_OH_G7_O_A": 13.043470350417866,
+        "Y115_CZ_OH_G7_O_degrees": 164.525163586204,
+        "G7_C_M8_N_A": 1.304419583230871
+      }
+    },
+    {
+      "id": "context_hidden_seed203",
+      "arm": "context_hidden",
+      "pair_seed": 203,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 4.723544396088637,
+      "group_median_rmsd_A": {
+        "zinc": 0.47421864079599324,
+        "water": 0.4834717867425562,
+        "histidine_36": 0.6645516133621424,
+        "histidine_40": 0.4402765226952078,
+        "metal_glutamate_152": 0.5889142230263866,
+        "general_base_37": 0.8436015851819517,
+        "tyrosine_115": 4.723544396088637,
+        "reactive_backbone": 1.3999180480808335
+      },
+      "enzyme_sequence": "AARALALLREVAERVLELTKDDSLELQKRKAAVAVHEAAHLIFAREALGREARAEDLDTVVSAVTALDLSQPNSIVETTLTYSEADGEWTLDDIRIRVRPLDKSKTDVKKMRELYEKTDLRSAEEALAAGAAALAEAFATGVTTEEVVRGVEASTQALLRYFAENVAPDVIDTSRWTGGTGSTTRTP",
+      "enzyme_sha256": "ddbb9f5645cd02848a404d7cbafce93265f1843aea3bee10cd321dc91003d1c1",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 14.667877537934523,
+        "ES": 1.7778085278946356
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.0466302935174507,
+        "Zn_H40_NE2_A": 2.131086093829088,
+        "Zn_E152_min_A": 2.334093063129217,
+        "E37_water_min_A": 3.086815958947336,
+        "Zn_water_A": 2.0565101007505837,
+        "Zn_G7_O_A": 4.025986120743691,
+        "water_G7_C_A": 3.36167262368285,
+        "water_G7_C_G7_O_degrees": 99.71822122485001,
+        "Y115_OH_G7_O_A": 7.121291663045988,
+        "Y115_CZ_OH_G7_O_degrees": 100.25814639729978,
+        "G7_C_M8_N_A": 1.318343887367394
+      }
+    },
+    {
+      "id": "context_revealed_seed203",
+      "arm": "context_revealed",
+      "pair_seed": 203,
+      "observed_ES": 5,
+      "complete_ES": true,
+      "median_worst_group_rmsd_A": 19.660109761976955,
+      "group_median_rmsd_A": {
+        "zinc": 3.4036140035453153,
+        "water": 5.12175089284621,
+        "histidine_36": 2.8179273017965256,
+        "histidine_40": 2.9765090051618843,
+        "metal_glutamate_152": 19.660109761976955,
+        "general_base_37": 2.6138669837813535,
+        "tyrosine_115": 4.085452508013819,
+        "reactive_backbone": 3.3818778336768096
+      },
+      "enzyme_sequence": "AARALALLREVADRVLELTKDDSLELQKRKAAVAVHEAAHLIQARAALGREPRAEDLDTVVSAVTALDLSQPMSIVEMTLTYSEADGELTLDDIRIRVRPLDLSKTDLKKLIEIYEKTDLRSAEEALAAGAAGLAAAFATGVTTDEVVRAAESSAQALLRHFAEHVAPDVIDTSRWLGGGGSTVRVP",
+      "enzyme_sha256": "2ecdcc8c249dea9f66368bc3734457cb1799ab5fbd5224a229772533a8de1a0d",
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 14.054297301927512,
+        "ES": 14.616743632097696
+      },
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.1659203129856466,
+        "Zn_H40_NE2_A": 2.088038208165189,
+        "Zn_E152_min_A": 18.326479018659015,
+        "E37_water_min_A": 5.546970871627749,
+        "Zn_water_A": 1.7279814552536732,
+        "Zn_G7_O_A": 5.804035234684342,
+        "water_G7_C_A": 4.463292803118853,
+        "water_G7_C_G7_O_degrees": 74.15406797585317,
+        "Y115_OH_G7_O_A": 8.357226487808342,
+        "Y115_CZ_OH_G7_O_degrees": 76.4551773908667,
+        "G7_C_M8_N_A": 1.317648769124196
+      }
+    }
+  ],
+  "claim_boundary": "Computational joint reference-geometry recovery only, on one post hoc selected scaffold. No catalytic activity, cleavage specificity, physical fold or general design advantage claim.",
+  "scientific_freeze_commit": "dddd4e8c77bdc186ad1d56c97d8477eb9ccc861c",
+  "hardware_amendment_commit": "14119cfdb1a54168d5bd5c1a341ea9a9fc0749cd",
+  "execution_base_commit": "837afd8faff28455bc94dfa1cc6ee606e6dbbb54",
+  "foundry_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "runner_sha256": "a979f29859844aa4d44decb80bc40fae16dd3929d50e540a3c5e27d96a87611b",
+  "decision_sha256": "c1de5a6d142821948c1a75e783216aed3a419d85974369633bb27681b7dc51c6",
+  "measurement_script_sha256": "0fb74098df6f06319c71c2dbd132436d41d8970ae62f5f693882190ea810e537",
+  "checkpoint_receipts": [
+    {
+      "file": "ligandmpnn_v_32_010_25.pt",
+      "bytes": 10541943,
+      "sha256": "161cd264061fda9680cbb940255522ae42f2966c552d045d87913d9452a80970",
+      "source": "official IPD server; hashes match previous completed run, not independent vendor attestations"
+    },
+    {
+      "file": "rf3_foundry_01_24_latest_remapped.ckpt",
+      "bytes": 3038876446,
+      "sha256": "364ef592fd8042a9cf4176d045015190f8322f961ccca38d891b20ca578d3bb0",
+      "source": "official IPD server; hashes match previous completed run, not independent vendor attestations"
+    }
+  ],
+  "runtime": {
+    "gpu": "RTX6000Ada48GB",
+    "python": "3.12.15",
+    "torch": "2.11.0+cu128",
+    "atomworks": "2.2.1",
+    "biotite": "1.4.0",
+    "numpy": "2.5.3",
+    "rdkit": "2026.3.6",
+    "missing_MACE_descriptors": true
+  },
+  "inference_started_utc": "2026-10-02T19:59:55Z",
+  "inference_finished_utc": "2026-10-02T20:06:50Z",
+  "inference_exit_code": 0,
+  "bundle": {
+    "file": "result_bundle.tar.gz",
+    "bytes": 12411259,
+    "sha256": "5f0b505a18ac95b9a2e50800cf09286f44c2eee1f05eda65146f59b62e66172b",
+    "manifest_file_count": 431,
+    "created_utc": "2026-10-02T20:07:15.394058+00:00"
+  },
+  "retrieval_verification": {
+    "utc": "2026-10-02T20:07:37.780035+00:00",
+    "bundle_sha256": "5f0b505a18ac95b9a2e50800cf09286f44c2eee1f05eda65146f59b62e66172b",
+    "verified_archived_files": 431,
+    "verified_assigned_CIF_hashes": 80,
+    "original_manifest_preserved": true,
+    "separate_local_path_view": "candidate_manifest_local_paths.json"
+  },
+  "local_recomputation": {
+    "status": "all_values_reproduced_with_expected_path_relocation",
+    "compared_float_values": 1548,
+    "maximum_absolute_difference": 2.842170943040401e-14,
+    "tolerance": 1e-10,
+    "remote_numpy": "2.5.3",
+    "local_numpy": "2.3.1",
+    "excluded_identity_fields": [
+      "manifest_sha256 (relocated path view)"
+    ],
+    "path_comparison": "exact after documented remote-prefix relocation"
+  },
+  "rental": {
+    "pod_id": "39a95f4dd24448cd923ac3ef2ec9ca34",
+    "provider_status": "TERMINATED",
+    "created_utc": "2026-10-02T19:51:36.874000",
+    "terminated_utc": "2026-10-02T20:07:41.102000",
+    "elapsed_seconds": 964.228,
+    "hourly_USD": 0.75,
+    "estimated_USD": 0.20088083333333331,
+    "provider_final_charge_USD": null,
+    "authorized_max_seconds": 7200,
+    "authorized_max_USD": 5
+  },
+  "limitations": [
+    "One post hoc selected scaffold, four prospective paired sequence seeds; correlated prediction outputs are not biological replicates.",
+    "Combined context intervention reveals fixed catalytic AND substrate sidechains; cannot isolate Tyr115.",
+    "This source-derived hybrid scaffold is not an experimentally validated target pose.",
+    "No Atlas-versus-direct efficacy contrast; same source constraint knowledge is available to both arms.",
+    "Public LigandMPNN differs from author EnhancedMPNN; absent MACE cached descriptors remain a shared predictor limitation.",
+    "Native per-input seed resets do not guarantee atom-matched noise or bitwise GPU determinism.",
+    "Isolated substrate termini differ from reporter/full-protein context.",
+    "No activity, specificity, barrier, physical fold or general design-advantage claim."
+  ],
+  "independent_raw_coordinate_check": {
+    "status": "independent_recomputation_matches_immutable_primary",
+    "checker_sha256": "b2abfde3772eb97525d5b4e72bcf3196d565def1e3207f773e364ab1855baae5",
+    "comparison_script_sha256": "d2897ddabd24f0af1f61d4c3667b4cd71046ffd64eda4f4daf7b89de9538fa0e",
+    "independent_result_sha256": "cdeed3179b5077a50de648fc01a44cbe520a62604fba12c091f0755d825dd638",
+    "immutable_primary_result_sha256": "73d5f83cd5833fb3e5588201c4f704c03f2e8af95bb285c333ef042ed130bc1a",
+    "assigned_ES": 40,
+    "assigned_monomer": 40,
+    "observed_ES": 40,
+    "observed_monomer": 40,
+    "unique_sequence_count": 8,
+    "all80_CIF_hashes_and_exact_sequence_identities_verified": true,
+    "all16_prediction_input_JSONs_match_unconditioned_assignment": true,
+    "separate_bijective_Glu_permutations_matched": 80,
+    "max_absolute_discrepancy_A": 2.4868995751603507e-14,
+    "maximum_discrepancies_by_measure": {
+      "group_RMSD_A": 1.7763568394002505e-14,
+      "per_output_W_A": 1.7763568394002505e-14,
+      "candidate_median_W_A": 1.4210854715202004e-14,
+      "candidate_group_median_A": 1.4210854715202004e-14,
+      "paired_W_difference_A": 2.1316282072803006e-14,
+      "paired_group_difference_A": 2.4868995751603507e-14,
+      "CA_RMSD_A": 1.7763568394002505e-14
+    },
+    "comparison_counts": {
+      "group_RMSD_A": 320,
+      "per_output_W_A": 40,
+      "candidate_median_W_A": 8,
+      "candidate_group_median_A": 64,
+      "paired_W_difference_A": 4,
+      "paired_group_difference_A": 32,
+      "CA_RMSD_A": 80
+    },
+    "decision": "no_consistent_joint_reference_recovery_advantage",
+    "paired_medians": [
+      {
+        "pair_seed": 200,
+        "complete": true,
+        "hidden_median_W_A": 18.351129708667045,
+        "revealed_median_W_A": 13.696325124316594,
+        "revealed_minus_hidden_W_A": -4.654804584350451,
+        "revealed_minus_hidden_group_medians_A": {
+          "zinc": -1.8190087994737603,
+          "water": -3.308005472178431,
+          "histidine_36": -0.8627765406084751,
+          "histidine_40": -1.5607236860273788,
+          "metal_glutamate_152": -4.52714796629612,
+          "general_base_37": 0.22692352348165912,
+          "tyrosine_115": -6.52836056181894,
+          "reactive_backbone": 0.2359440391184604
+        }
+      },
+      {
+        "pair_seed": 201,
+        "complete": true,
+        "hidden_median_W_A": 12.733955407194767,
+        "revealed_median_W_A": 21.04298477138726,
+        "revealed_minus_hidden_W_A": 8.309029364192494,
+        "revealed_minus_hidden_group_medians_A": {
+          "zinc": 2.0626952097588007,
+          "water": 2.4968400141946367,
+          "histidine_36": 0.5434854484467941,
+          "histidine_40": 2.1469613374372534,
+          "metal_glutamate_152": 19.687081839368503,
+          "general_base_37": 2.13947755047598,
+          "tyrosine_115": -7.384766166822241,
+          "reactive_backbone": 5.79084776459109
+        }
+      },
+      {
+        "pair_seed": 202,
+        "complete": true,
+        "hidden_median_W_A": 3.676491103139027,
+        "revealed_median_W_A": 13.160003184360031,
+        "revealed_minus_hidden_W_A": 9.483512081221004,
+        "revealed_minus_hidden_group_medians_A": {
+          "zinc": 3.5845812329104136,
+          "water": 4.3716193836682375,
+          "histidine_36": 2.5490630460759416,
+          "histidine_40": 2.8199270001636956,
+          "metal_glutamate_152": 12.264158466388844,
+          "general_base_37": 3.448234130128414,
+          "tyrosine_115": 4.911186673927979,
+          "reactive_backbone": 6.854620241871797
+        }
+      },
+      {
+        "pair_seed": 203,
+        "complete": true,
+        "hidden_median_W_A": 4.723544396088627,
+        "revealed_median_W_A": 19.660109761976948,
+        "revealed_minus_hidden_W_A": 14.93656536588832,
+        "revealed_minus_hidden_group_medians_A": {
+          "zinc": 2.9293953627493217,
+          "water": 4.638279106103653,
+          "histidine_36": 2.1533756884343775,
+          "histidine_40": 2.536232482466675,
+          "metal_glutamate_152": 19.071195538950562,
+          "general_base_37": 1.770265398599407,
+          "tyrosine_115": -0.6380918880748103,
+          "reactive_backbone": 1.981959785595984
+        }
+      }
+    ],
+    "CA_context": [
+      {
+        "id": "context_hidden_seed200",
+        "median_W_A": 18.351129708667045,
+        "median_ES_CA_RMSD_A": 14.554274631010909,
+        "median_monomer_CA_RMSD_A": 1.6108551630953283
+      },
+      {
+        "id": "context_revealed_seed200",
+        "median_W_A": 13.696325124316594,
+        "median_ES_CA_RMSD_A": 9.367581049072001,
+        "median_monomer_CA_RMSD_A": 5.491130540159541
+      },
+      {
+        "id": "context_hidden_seed201",
+        "median_W_A": 12.733955407194767,
+        "median_ES_CA_RMSD_A": 2.8862753743973775,
+        "median_monomer_CA_RMSD_A": 3.1448087837792422
+      },
+      {
+        "id": "context_revealed_seed201",
+        "median_W_A": 21.04298477138726,
+        "median_ES_CA_RMSD_A": 14.448306469223223,
+        "median_monomer_CA_RMSD_A": 13.349534934093073
+      },
+      {
+        "id": "context_hidden_seed202",
+        "median_W_A": 3.676491103139027,
+        "median_ES_CA_RMSD_A": 1.4574216989568531,
+        "median_monomer_CA_RMSD_A": 2.6468672162734728
+      },
+      {
+        "id": "context_revealed_seed202",
+        "median_W_A": 13.160003184360031,
+        "median_ES_CA_RMSD_A": 9.16550577014086,
+        "median_monomer_CA_RMSD_A": 8.18473272491264
+      },
+      {
+        "id": "context_hidden_seed203",
+        "median_W_A": 4.723544396088627,
+        "median_ES_CA_RMSD_A": 1.777808527894636,
+        "median_monomer_CA_RMSD_A": 14.667877537934517
+      },
+      {
+        "id": "context_revealed_seed203",
+        "median_W_A": 19.660109761976948,
+        "median_ES_CA_RMSD_A": 14.616743632097696,
+        "median_monomer_CA_RMSD_A": 14.054297301927518
+      }
+    ],
+    "interpretation": "The sole pair with lower revealed-context medianW regresses the general-base and reactive-backbone group medians. Three other pairs have higher medianW with revealed context. Therefore neither arm meets the frozen four-pair joint-recovery rule. This closes this bounded context-ablation comparison; it does not establish biochemical activity, general context harm or equivalence."
+  },
+  "native_identity_context_check": {
+    "status": "passed",
+    "fixed_positions": 17,
+    "retained_finite_coordinates_per_mpnn_output": 868,
+    "maximum_retained_coordinate_displacement_A": 0.0,
+    "assigned_RF3_outputs_identity_verified": 80,
+    "native_per_input_rng_receipts": 16,
+    "remote_local_context_rows_identical": 398
+  }
+}
