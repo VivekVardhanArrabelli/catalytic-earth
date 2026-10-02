@@ -269,6 +269,11 @@
   "runtime_limitations": [
     "Same pinned official legacy LigandMPNN and RF3 checkpoints as prior run.",
     "Cached MACE descriptors expected absent; preserve actual runtime warning and native missing-feature path in both arms.",
-    "One A100, two hours andUSD5 maximum; no extra designs, retries or rescue sampling."
-  ]
+    "One CUDA GPU, two hours andUSD5 maximum; no extra designs, retries or rescue sampling."
+  ],
+  "runtime_hardware_amendment": {
+    "reason": "Both quoted singleA100 offers vanished before any create request or sampling. One RTX6000Ada48GB offered atUSD0.75/hour; both arms share this hardware.",
+    "changes": "Operational hardware only; no assignment, sequence budget, model/checkpoint, input chemistry, endpoint or decision-rule change.",
+    "bound": "One GPU, two hours, USD5 maximum; terminate and verify provider deletion."
+  }
 }

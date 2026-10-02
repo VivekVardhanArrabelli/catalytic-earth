@@ -52,7 +52,7 @@ be reported from actual logs, not treated as equivalent prediction quality.
 The runtime package contains this folder and the unchanged sibling
 `water_conditioning` consumer files. Bootstrap uses the official pinned
 Foundry source and only the LigandMPNN and RF3 weights. The lead owns the
-separate one-A100, two-hour/$5 ceiling, retrieval and provider termination.
+separate one-GPU, two-hour/$5 ceiling, retrieval and provider termination.
 
 ```sh
 python run_context_comparison.py \
@@ -69,3 +69,8 @@ Output directories must be new. Measure using `measure_context_recovery.py`
 with `--manifest`, `--decision`, `--reference-scaffold` and a new `--output`.
 Keep every assigned output and the full per-group vectors. A mixed or incomplete
 result does not authorize rescue sampling or establish equivalence.
+
+Before sampling, single-A100 offers became unavailable. The operational plan
+was amended to one48GB RTX6000Ada at the observed$0.75/hour within the same
+bounds. No instance or model execution preceded that amendment. Both arms
+share the actual recorded hardware; scientific assignments/readout are unchanged.
