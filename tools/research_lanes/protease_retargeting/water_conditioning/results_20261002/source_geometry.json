@@ -1,0 +1,431 @@
+{
+  "source": {
+    "path_relative_to_lane": "source_motif.pdb",
+    "sha256": "3a3a63587f190a741918e0b594bf8be1727592d82a71187cf73689a3e750a344"
+  },
+  "prospective_input": {
+    "path_relative_to_lane": "inputs/ALQSSWGMMGML78_Zn2plus.pdb",
+    "sha256": "85830251fcf93fb26c00a6c79cfb6c2815b444e3db941e7470cf341cb8ebb8e0"
+  },
+  "readout_operations": {
+    "path_relative_to_lane": "window_metrics.py",
+    "sha256": "31dab57dd98be7786d55263c4cc0f07c30683aa8120457912b81353d76075ad1",
+    "functions": [
+      "distance",
+      "angle"
+    ]
+  },
+  "frozen_plan_sha256": "5e51c72a820b0ef27722ea63b45b2275a212050e86f83e0646fa9adc87f4f07e",
+  "role_mapping": [
+    {
+      "role": "metal_histidine_1",
+      "source_chain": "A",
+      "source_residue_number": 293,
+      "source_residue_name": "HIS",
+      "candidate_chain": "A",
+      "candidate_residue_number": 36
+    },
+    {
+      "role": "general_base",
+      "source_chain": "A",
+      "source_residue_number": 294,
+      "source_residue_name": "GLU",
+      "candidate_chain": "A",
+      "candidate_residue_number": 37
+    },
+    {
+      "role": "metal_histidine_2",
+      "source_chain": "A",
+      "source_residue_number": 297,
+      "source_residue_name": "HIS",
+      "candidate_chain": "A",
+      "candidate_residue_number": 40
+    },
+    {
+      "role": "oxyanion_donor",
+      "source_chain": "A",
+      "source_residue_number": 377,
+      "source_residue_name": "TYR",
+      "candidate_chain": "A",
+      "candidate_residue_number": 115
+    },
+    {
+      "role": "metal_glutamate",
+      "source_chain": "A",
+      "source_residue_number": 316,
+      "source_residue_name": "GLU",
+      "candidate_chain": "A",
+      "candidate_residue_number": 152
+    }
+  ],
+  "source_peptide": "Cropped source coordinates contain V6-N7-F8, not the target sequence. Exactly eight B7/B8 N/CA/C/O coordinates are inherited in prospective G7/M8; metric keys use the frozen target readout labels, while ordered_atoms preserve actual source identities.",
+  "metrics": {
+    "Zn_H36_NE2_A": {
+      "value": 2.0596419591763997,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "ZN1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "A",
+          "residue_number": 293,
+          "residue_name": "HIS",
+          "atom_name": "NE2"
+        }
+      ]
+    },
+    "Zn_H40_NE2_A": {
+      "value": 2.29268706979387,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "ZN1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "A",
+          "residue_number": 297,
+          "residue_name": "HIS",
+          "atom_name": "NE2"
+        }
+      ]
+    },
+    "Zn_water_A": {
+      "value": 2.049537752762803,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "ZN1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "O1"
+        }
+      ]
+    },
+    "Zn_G7_O_A": {
+      "value": 2.1010411704676333,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "ZN1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "O"
+        }
+      ]
+    },
+    "water_G7_C_A": {
+      "value": 2.264328818877681,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "O1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "C"
+        }
+      ]
+    },
+    "water_G7_C_G7_O_degrees": {
+      "value": 86.9332995477455,
+      "unit": "degree",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "O1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "C"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "O"
+        }
+      ]
+    },
+    "Y115_OH_G7_O_A": {
+      "value": 2.5742350320046543,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "A",
+          "residue_number": 377,
+          "residue_name": "TYR",
+          "atom_name": "OH"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "O"
+        }
+      ]
+    },
+    "Y115_CZ_OH_G7_O_degrees": {
+      "value": 111.14308462113863,
+      "unit": "degree",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "A",
+          "residue_number": 377,
+          "residue_name": "TYR",
+          "atom_name": "CZ"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "A",
+          "residue_number": 377,
+          "residue_name": "TYR",
+          "atom_name": "OH"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "O"
+        }
+      ]
+    },
+    "G7_C_M8_N_A": {
+      "value": 1.3229433094430039,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "C"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 8,
+          "residue_name": "PHE",
+          "atom_name": "N"
+        }
+      ]
+    },
+    "Zn_E152_min_A": {
+      "value": 2.064412265028474,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "ZN1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "A",
+          "residue_number": 316,
+          "residue_name": "GLU",
+          "atom_name": "OE1"
+        }
+      ],
+      "operation": "minimum",
+      "alternatives": [
+        {
+          "value": 2.064412265028474,
+          "unit": "angstrom",
+          "ordered_atoms": [
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "C",
+              "residue_number": 1,
+              "residue_name": "ZnO",
+              "atom_name": "ZN1"
+            },
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "A",
+              "residue_number": 316,
+              "residue_name": "GLU",
+              "atom_name": "OE1"
+            }
+          ]
+        },
+        {
+          "value": 2.7987715162192153,
+          "unit": "angstrom",
+          "ordered_atoms": [
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "C",
+              "residue_number": 1,
+              "residue_name": "ZnO",
+              "atom_name": "ZN1"
+            },
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "A",
+              "residue_number": 316,
+              "residue_name": "GLU",
+              "atom_name": "OE2"
+            }
+          ]
+        }
+      ]
+    },
+    "E37_water_min_A": {
+      "value": 2.68577065290393,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "A",
+          "residue_number": 294,
+          "residue_name": "GLU",
+          "atom_name": "OE1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "O1"
+        }
+      ],
+      "operation": "minimum",
+      "alternatives": [
+        {
+          "value": 2.68577065290393,
+          "unit": "angstrom",
+          "ordered_atoms": [
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "A",
+              "residue_number": 294,
+              "residue_name": "GLU",
+              "atom_name": "OE1"
+            },
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "C",
+              "residue_number": 1,
+              "residue_name": "ZnO",
+              "atom_name": "O1"
+            }
+          ]
+        },
+        {
+          "value": 3.0879347467198826,
+          "unit": "angstrom",
+          "ordered_atoms": [
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "A",
+              "residue_number": 294,
+              "residue_name": "GLU",
+              "atom_name": "OE2"
+            },
+            {
+              "model_state": "author_hybrid_source_motif",
+              "chain": "C",
+              "residue_number": 1,
+              "residue_name": "ZnO",
+              "atom_name": "O1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "source_available_amide_register_distances": [
+    {
+      "source_amide": "V6-N7",
+      "value": 5.461945715585244,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "ZN1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 6,
+          "residue_name": "VAL",
+          "atom_name": "O"
+        }
+      ]
+    },
+    {
+      "source_amide": "N7-F8",
+      "value": 2.1010411704676333,
+      "unit": "angstrom",
+      "ordered_atoms": [
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "ZnO",
+          "atom_name": "ZN1"
+        },
+        {
+          "model_state": "author_hybrid_source_motif",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "ASN",
+          "atom_name": "O"
+        }
+      ]
+    }
+  ],
+  "source_closest_available_amide": "N7-F8",
+  "full_target_register_reference": "Unavailable: most prospective target coordinates are zero placeholders and must not be measured. Source B8 lacks its following residue in the crop, so B8 carbonyl is not included as a complete source amide.",
+  "interpretation": "Reference geometry, not productive thresholds or physical optimality. Hybrid source motif is not an experimental structure of a new candidate or TDPn3. No filtering or prediction performed."
+}
