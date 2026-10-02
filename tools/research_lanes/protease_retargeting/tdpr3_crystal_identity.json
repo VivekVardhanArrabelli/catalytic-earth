@@ -1,0 +1,201 @@
+{
+  "record_type": "deposited_mutant_substrate_state_identity",
+  "pdb_id": "11DU",
+  "title": "Crystal structure of TDPr3 with substrate",
+  "coordinate_url": "https://files.rcsb.org/download/11DU.cif.gz",
+  "coordinate_sha256": "0444923382cd41cd0a7704795f2893adabccb9c086cf961e5d7fc9ca2b15407a",
+  "coordinate_scope": "Deposited model 1 and asymmetric unit; no assembly or symmetry expansion, energy minimization, or missing-atom reconstruction.",
+  "evidence_level": "X-ray coordinate model of a catalytic-base mutant; not active wild-type productive geometry",
+  "resolution_angstrom": 3.61,
+  "r_work": 0.2566,
+  "r_free": 0.2969,
+  "protein_identity": {
+    "source_sequence": "Chen v3 Supplementary Table S4 TDPr3",
+    "sequence_length": 184,
+    "source_sequence_sha256": "d5b903782fa0c81d2022033f7b2f423b5b21365e1bc4bea6354cf44dc34fd8fc",
+    "deposited_entity_sequence": "SFEEEVEELAETLREYLRRLGMSERLAEEVAEALRRAARDPDLLESFAVLAAIARLAREGDELAVYVALALLYLLSQTRPEYTKALDEGLSPESKEELRRFLEEVYRRYRDDITLENIIRVTRAHQEAHIRRFASLGYYAVGIVRSDGSGLAVAAETREELDRLVAELREKYPDIIEERRREPD",
+    "exact_identity_except": [
+      {
+        "sequence_position": 126,
+        "table_s4": "E",
+        "deposited_entity": "Q"
+      }
+    ],
+    "mutant_residue_coordinate_identities": [
+      {
+        "auth_asym_id": "A",
+        "auth_seq_id": "126",
+        "auth_comp_id": "GLN",
+        "label_asym_id": "A",
+        "label_seq_id": "126",
+        "label_comp_id": "GLN"
+      },
+      {
+        "auth_asym_id": "C",
+        "auth_seq_id": "126",
+        "auth_comp_id": "GLN",
+        "label_asym_id": "C",
+        "label_seq_id": "126",
+        "label_comp_id": "GLN"
+      },
+      {
+        "auth_asym_id": "E",
+        "auth_seq_id": "126",
+        "auth_comp_id": "GLN",
+        "label_asym_id": "E",
+        "label_seq_id": "126",
+        "label_comp_id": "GLN"
+      },
+      {
+        "auth_asym_id": "G",
+        "auth_seq_id": "126",
+        "auth_comp_id": "GLN",
+        "label_asym_id": "G",
+        "label_seq_id": "126",
+        "label_comp_id": "GLN"
+      }
+    ]
+  },
+  "substrate_identity": {
+    "deposited_entity_sequence": "ALQSSWGM",
+    "reference_assay_peptide": "ALQSSWGMMGML",
+    "reference_positions_one_based": [
+      1,
+      8
+    ],
+    "unrepresented_assay_positions": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "auth_numbering_offset": 192,
+    "scope": "Deposited entity has eight residues; chain H lacks coordinates for its eighth residue. The construct/preparation may contain more residues than the deposited entity."
+  },
+  "resolved_chains": [
+    {
+      "auth_chain": "A",
+      "polymer_entity": "1",
+      "resolved_ca_count": 184,
+      "auth_residue_range": [
+        1,
+        184
+      ],
+      "label_residue_range": [
+        1,
+        184
+      ]
+    },
+    {
+      "auth_chain": "B",
+      "polymer_entity": "2",
+      "resolved_ca_count": 8,
+      "auth_residue_range": [
+        193,
+        200
+      ],
+      "label_residue_range": [
+        1,
+        8
+      ]
+    },
+    {
+      "auth_chain": "C",
+      "polymer_entity": "1",
+      "resolved_ca_count": 182,
+      "auth_residue_range": [
+        1,
+        184
+      ],
+      "label_residue_range": [
+        1,
+        184
+      ]
+    },
+    {
+      "auth_chain": "D",
+      "polymer_entity": "2",
+      "resolved_ca_count": 8,
+      "auth_residue_range": [
+        193,
+        200
+      ],
+      "label_residue_range": [
+        1,
+        8
+      ]
+    },
+    {
+      "auth_chain": "E",
+      "polymer_entity": "1",
+      "resolved_ca_count": 184,
+      "auth_residue_range": [
+        1,
+        184
+      ],
+      "label_residue_range": [
+        1,
+        184
+      ]
+    },
+    {
+      "auth_chain": "F",
+      "polymer_entity": "2",
+      "resolved_ca_count": 8,
+      "auth_residue_range": [
+        193,
+        200
+      ],
+      "label_residue_range": [
+        1,
+        8
+      ]
+    },
+    {
+      "auth_chain": "G",
+      "polymer_entity": "1",
+      "resolved_ca_count": 182,
+      "auth_residue_range": [
+        1,
+        184
+      ],
+      "label_residue_range": [
+        1,
+        184
+      ]
+    },
+    {
+      "auth_chain": "H",
+      "polymer_entity": "2",
+      "resolved_ca_count": 7,
+      "auth_residue_range": [
+        193,
+        199
+      ],
+      "label_residue_range": [
+        1,
+        7
+      ]
+    }
+  ],
+  "resolved_zinc_atoms": 0,
+  "resolved_heteroatom_count": 0,
+  "source_reported_registration": {
+    "notation": "ALQS/SWGMMGML",
+    "cut_after_local_residue": 4,
+    "source": "Chen v3 supplementary discussion section 3.2 (printed heading 1.2), 11DU paragraph",
+    "status": "Authors interpretation of the bound mutant state; not a measured cut or geometry-based independent bond assignment",
+    "comparison": "Differs from TDPr3 intended cut5 and measured-product assignments cut3/cut5."
+  },
+  "source_numbering_conflict": {
+    "figure_and_discussion_label": "E45Q",
+    "preparation_methods_label": "E32Q",
+    "deposit_and_table_s4_exact_sequence_mapping": "E126Q",
+    "resolution": "Use explicit deposited chain/residue and Table S4 sequence identity. No source numbering transform between 45, 32 and 126 is established."
+  },
+  "decision": {
+    "use": "Retain as an experimentally observed catalytic-base-mutant substrate-recognition state and a test of intended-pose transfer; no zero-activity claim is inferred from the coordinates.",
+    "exclude": "Do not borrow the mutant pose, source residue number, or absent zinc geometry as active TDPr3 or TDPn3 catalytic constraints.",
+    "limitation": "Missing resolved zinc does not by itself measure zinc affinity or prove that solution wild-type enzyme is metal-free."
+  }
+}

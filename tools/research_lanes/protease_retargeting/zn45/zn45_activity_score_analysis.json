@@ -1,0 +1,1213 @@
+{
+  "analysis_type": "Retrospective independent reconstruction of author CSV and notebook logic; no author notebook execution",
+  "source_files": {
+    "Zn45-SSM-raw-activity.csv": {
+      "sha256": "7e381e9ed3ae934103529848b6a8b93b291200ecacd3af6822d4183728d369aa",
+      "bytes": 221198
+    },
+    "Zn45-SSM-normalized-activity.csv": {
+      "sha256": "cd654e680d8ceff0fcf2a32ee85fd2bc625e3fe134b46971bc45235b9b1d6200",
+      "bytes": 13023
+    },
+    "Zn45-SSM-author-AF3-data.csv": {
+      "sha256": "9ae86cb065e63f4c48ce093833921effd3b1e684d3f37de1f6f14eaf71e866a4",
+      "bytes": 731996
+    },
+    "Zn45-SSM-activity-screen.ipynb": {
+      "sha256": "ba3965d54dc137e03d5c8d59fed63563b218fa462ead669ccc036c78a31a2966",
+      "bytes": 743368
+    },
+    "Zn45-SSM-author-collect-data.py": {
+      "sha256": "542621c0c6ae65d1901bdc55a5d68b00341ce9e2787f9d4d64337b5b326d58ef",
+      "bytes": 5510
+    },
+    "Zn45-SSM-computational.ipynb": {
+      "sha256": "f0f113442a3c0b08c9a322527f9cd6ff5f29425b4d77d31bc512cf723d18b3bd",
+      "bytes": 228870
+    }
+  },
+  "notebook_checkpoint_verification": {
+    "notebook_sha256": "ba3965d54dc137e03d5c8d59fed63563b218fa462ead669ccc036c78a31a2966",
+    "cell6_progress_display": {
+      "exact_rows_verified": [
+        {
+          "well": "A1",
+          "time_s": 0,
+          "rfu": 9831.0
+        },
+        {
+          "well": "A2",
+          "time_s": 0,
+          "rfu": 10242.0
+        },
+        {
+          "well": "A3",
+          "time_s": 0,
+          "rfu": 9848.0
+        },
+        {
+          "well": "A4",
+          "time_s": 0,
+          "rfu": 10928.0
+        },
+        {
+          "well": "A5",
+          "time_s": 0,
+          "rfu": 10254.0
+        },
+        {
+          "well": "P20",
+          "time_s": 7200,
+          "rfu": 12182.0
+        },
+        {
+          "well": "P21",
+          "time_s": 7200,
+          "rfu": 22245.0
+        },
+        {
+          "well": "P22",
+          "time_s": 7200,
+          "rfu": 12416.0
+        },
+        {
+          "well": "P23",
+          "time_s": 7200,
+          "rfu": 16796.0
+        },
+        {
+          "well": "P24",
+          "time_s": 7200,
+          "rfu": 12025.0
+        }
+      ],
+      "displayed_total_rows_matches": 15744,
+      "exact_match_includes_plate_well_variant_metadata": true
+    },
+    "cell11_normalized_result_display": {
+      "verified_rows": [
+        {
+          "design_name": "blank",
+          "displayed_slope": -3.700743e-17,
+          "displayed_fold": -1.619075e-17
+        },
+        {
+          "design_name": "chainA_A159D",
+          "displayed_slope": 0.7305556,
+          "displayed_fold": 0.3133439
+        },
+        {
+          "design_name": "chainA_A159E",
+          "displayed_slope": 0.8194444,
+          "displayed_fold": 0.3514694
+        },
+        {
+          "design_name": "chainA_A159F",
+          "displayed_slope": 0.5361111,
+          "displayed_fold": 0.2299444
+        },
+        {
+          "design_name": "chainA_A159G",
+          "displayed_slope": 1.747222,
+          "displayed_fold": 0.7494043
+        }
+      ],
+      "absolute_tolerance": 5e-07
+    },
+    "cell23_retest_list": {
+      "exact_names_verified": [
+        "chainA_A30V",
+        "chainA_F48W",
+        "chainA_A73V",
+        "chainA_A75E",
+        "chainA_A75P",
+        "chainA_A79D",
+        "chainA_A79E",
+        "chainA_A79H",
+        "chainA_A79K",
+        "chainA_A79N",
+        "chainA_A79Q",
+        "chainA_Y83D",
+        "chainA_Y83Q",
+        "chainA_A84Y",
+        "chainA_V121I",
+        "chainA_Y152I",
+        "chainA_Y152M",
+        "chainA_Y152R",
+        "chainA_Y152V"
+      ],
+      "count": 19
+    },
+    "identity_boundary": "Notebook references Book2.csv; deposited member is ssm.csv, whose experiment-header basename is 260112_zn45_ssm_plate6.xpt and date is 1/14/2026. Saved notebook raw-value, mapping and normalized-output checkpoints agree, but original Book2.csv bytes are unavailable for a file-hash identity check. This verifies displayed checkpoints, not every unpublished intermediate."
+  },
+  "denominator": {
+    "single_variants": 378,
+    "sites": 21,
+    "wells_per_single_variant": 1,
+    "WT_wells": 3,
+    "blank_wells": 3,
+    "time_points_per_well": 41,
+    "time_range_s": [
+      0,
+      7200
+    ],
+    "missing_activity_variants": [],
+    "missing_score_variants": [],
+    "AF3_samples_per_variant": 5,
+    "AF3_seeds_per_variant": 1,
+    "sample_rows_are_not_independent_assayed_variants": true
+  },
+  "executed_notebook_window": {
+    "times_s": [
+      360,
+      540,
+      720
+    ],
+    "blank_slopes_rfu_per_s": [
+      -0.5055555555555551,
+      -0.44444444444443965,
+      -0.3749999999999869
+    ],
+    "blank_mean_slope_rfu_per_s": -0.4416666666666605,
+    "blank_corrected_WT_slopes_rfu_per_s": [
+      2.363888888888893,
+      2.266666666666672,
+      2.3638888888888947
+    ],
+    "WT_mean_slope_rfu_per_s": 2.3314814814814864,
+    "WT_sample_SD_rfu_per_s": 0.05613127617121341,
+    "WT_sample_CV": 0.024075368651672105
+  },
+  "source_thresholds": {
+    "single_screen_retrospective_AF3_filter": {
+      "logic": "AND",
+      "complex_plddt": {
+        "operator": ">",
+        "value": 94,
+        "unit": "pLDDT score"
+      },
+      "ipae_min": {
+        "operator": "<",
+        "value": 1.5,
+        "unit": "angstrom"
+      },
+      "source": "Chen v3 Supplementary Discussion 6; described retrospectively for the single-mutation landscape",
+      "aggregation_for_primary_analysis": "Arithmetic mean over five AF3 samples from seed1, chosen explicitly for this retrospective reconstruction"
+    },
+    "screen_retest_signal": {
+      "endpoint": "fold of blank-corrected RFU slope over WT",
+      "operator": ">",
+      "value": 1.5,
+      "unit": "dimensionless fold",
+      "source": "Supplementary screening methods and activity notebook cell22"
+    },
+    "distinct_combination_ordering_filter": {
+      "complex_plddt_gt": 93,
+      "ipae_min_lt_A": 1.5,
+      "source": "Supplementary screening methods; NOT used for the 211-of-378 single-screen result"
+    }
+  },
+  "metric_definition_and_quarantine": {
+    "helper_sha256": "542621c0c6ae65d1901bdc55a5d68b00341ce9e2787f9d4d64337b5b326d58ef",
+    "complex_plddt": "sum(atom_plddts) / len(atom_plddts), across the entire complex",
+    "ipae_min": "min(chain_pair_pae_min[0][1], chain_pair_pae_min[1][0]) from summary_confidences, between protein A and substrate B",
+    "pae_interface": "0.5 * mean(PAE_A_to_B) + 0.5 * mean(PAE_B_to_A), using declared protein sequence lengths",
+    "per_chain_plddt_columns": "Retained as source-exported numbers only and omitted from inferential correlations: the helper slices atom_plddts with residue sequence lengths, not atom-chain indices, so biological interpretation as chain means is quarantined."
+  },
+  "comment_window_sensitivity": {
+    "times_s": [
+      540,
+      720,
+      900
+    ],
+    "blank_slopes_rfu_per_s": [
+      -0.30555555555554864,
+      -0.6083333333333276,
+      -0.3305555555555443
+    ],
+    "blank_mean_slope_rfu_per_s": -0.4148148148148068,
+    "blank_corrected_WT_slopes_rfu_per_s": [
+      2.309259259259263,
+      2.0342592592592608,
+      2.2509259259259267
+    ],
+    "WT_mean_slope_rfu_per_s": 2.19814814814815,
+    "WT_sample_SD_rfu_per_s": 0.14489779284161153,
+    "WT_sample_CV": 0.06591811974260334
+  },
+  "window_discrepancy": "Author cell10 names/comments 540-900 seconds, but iloc[2:5] selects 360,540,720 seconds from the captured data.",
+  "reconstructed_gt1p5_variants": [
+    {
+      "design_name": "chainA_A75E",
+      "fold_over_wt": 1.6179507545671172
+    },
+    {
+      "design_name": "chainA_A73V",
+      "fold_over_wt": 1.6834789515488469
+    },
+    {
+      "design_name": "chainA_A75P",
+      "fold_over_wt": 1.5702938840349479
+    },
+    {
+      "design_name": "chainA_A30V",
+      "fold_over_wt": 2.361397934868941
+    },
+    {
+      "design_name": "chainA_A79D",
+      "fold_over_wt": 3.251389992057185
+    },
+    {
+      "design_name": "chainA_A79E",
+      "fold_over_wt": 2.677124702144558
+    },
+    {
+      "design_name": "chainA_A79H",
+      "fold_over_wt": 2.653296266878475
+    },
+    {
+      "design_name": "chainA_A79Q",
+      "fold_over_wt": 1.8359809372517852
+    },
+    {
+      "design_name": "chainA_A79K",
+      "fold_over_wt": 1.5524225575853843
+    },
+    {
+      "design_name": "chainA_A79N",
+      "fold_over_wt": 3.137013502779984
+    },
+    {
+      "design_name": "chainA_F48W",
+      "fold_over_wt": 2.2291501191421763
+    },
+    {
+      "design_name": "chainA_Y83D",
+      "fold_over_wt": 1.9670373312152527
+    },
+    {
+      "design_name": "chainA_Y152V",
+      "fold_over_wt": 1.7990468625893536
+    },
+    {
+      "design_name": "chainA_Y83Q",
+      "fold_over_wt": 2.441223193010321
+    },
+    {
+      "design_name": "chainA_A84Y",
+      "fold_over_wt": 2.6080222398729127
+    },
+    {
+      "design_name": "chainA_V121I",
+      "fold_over_wt": 1.9408260524225582
+    },
+    {
+      "design_name": "chainA_Y152M",
+      "fold_over_wt": 1.510722795869738
+    },
+    {
+      "design_name": "chainA_Y152R",
+      "fold_over_wt": 1.8836378077839515
+    },
+    {
+      "design_name": "chainA_Y152I",
+      "fold_over_wt": 2.76409849086576
+    }
+  ],
+  "positions": [
+    {
+      "position": 22,
+      "n_substitutions": 18,
+      "best_design": "chainA_L22G",
+      "best_fold": 0.5230341540905522,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 27,
+      "n_substitutions": 18,
+      "best_design": "chainA_V27T",
+      "best_fold": 1.0639396346306595,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 30,
+      "n_substitutions": 18,
+      "best_design": "chainA_A30V",
+      "best_fold": 2.361397934868941,
+      "n_fold_gt_1p3": 2,
+      "n_fold_gt_1p5": 1
+    },
+    {
+      "position": 32,
+      "n_substitutions": 18,
+      "best_design": "chainA_F32L",
+      "best_fold": 0.5587768069896762,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 48,
+      "n_substitutions": 18,
+      "best_design": "chainA_F48W",
+      "best_fold": 2.2291501191421763,
+      "n_fold_gt_1p3": 1,
+      "n_fold_gt_1p5": 1
+    },
+    {
+      "position": 52,
+      "n_substitutions": 18,
+      "best_design": "chainA_F52W",
+      "best_fold": 1.0865766481334356,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 73,
+      "n_substitutions": 18,
+      "best_design": "chainA_A73V",
+      "best_fold": 1.6834789515488469,
+      "n_fold_gt_1p3": 1,
+      "n_fold_gt_1p5": 1
+    },
+    {
+      "position": 75,
+      "n_substitutions": 18,
+      "best_design": "chainA_A75E",
+      "best_fold": 1.6179507545671172,
+      "n_fold_gt_1p3": 2,
+      "n_fold_gt_1p5": 2
+    },
+    {
+      "position": 78,
+      "n_substitutions": 18,
+      "best_design": "chainA_A78G",
+      "best_fold": 1.3117553613979336,
+      "n_fold_gt_1p3": 1,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 79,
+      "n_substitutions": 18,
+      "best_design": "chainA_A79D",
+      "best_fold": 3.251389992057185,
+      "n_fold_gt_1p3": 7,
+      "n_fold_gt_1p5": 6
+    },
+    {
+      "position": 81,
+      "n_substitutions": 18,
+      "best_design": "chainA_A81G",
+      "best_fold": 0.8101667990468662,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 83,
+      "n_substitutions": 18,
+      "best_design": "chainA_Y83Q",
+      "best_fold": 2.441223193010321,
+      "n_fold_gt_1p3": 2,
+      "n_fold_gt_1p5": 2
+    },
+    {
+      "position": 84,
+      "n_substitutions": 18,
+      "best_design": "chainA_A84Y",
+      "best_fold": 2.6080222398729127,
+      "n_fold_gt_1p3": 1,
+      "n_fold_gt_1p5": 1
+    },
+    {
+      "position": 121,
+      "n_substitutions": 18,
+      "best_design": "chainA_V121I",
+      "best_fold": 1.9408260524225582,
+      "n_fold_gt_1p3": 1,
+      "n_fold_gt_1p5": 1
+    },
+    {
+      "position": 123,
+      "n_substitutions": 18,
+      "best_design": "chainA_D123N",
+      "best_fold": 0.8745035742652888,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 152,
+      "n_substitutions": 18,
+      "best_design": "chainA_Y152I",
+      "best_fold": 2.76409849086576,
+      "n_fold_gt_1p3": 6,
+      "n_fold_gt_1p5": 4
+    },
+    {
+      "position": 155,
+      "n_substitutions": 18,
+      "best_design": "chainA_I155N",
+      "best_fold": 0.960285941223192,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 157,
+      "n_substitutions": 18,
+      "best_design": "chainA_Q157H",
+      "best_fold": 0.7815726767275628,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 159,
+      "n_substitutions": 18,
+      "best_design": "chainA_A159G",
+      "best_fold": 0.7494042891183473,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 160,
+      "n_substitutions": 18,
+      "best_design": "chainA_E160V",
+      "best_fold": 0.6314535345512305,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    },
+    {
+      "position": 163,
+      "n_substitutions": 18,
+      "best_design": "chainA_A163R",
+      "best_fold": 1.0329626687847477,
+      "n_fold_gt_1p3": 0,
+      "n_fold_gt_1p5": 0
+    }
+  ],
+  "five_sample_mean": {
+    "all": {
+      "complex_plddt": {
+        "n_assayed_variants": 378,
+        "Pearson_r": 0.30217305747989787,
+        "Spearman_rho": 0.3898536097649421
+      },
+      "pae_interface": {
+        "n_assayed_variants": 378,
+        "Pearson_r": -0.28882800841034006,
+        "Spearman_rho": -0.28388653625800464
+      },
+      "ptm": {
+        "n_assayed_variants": 378,
+        "Pearson_r": 0.3231917600665357,
+        "Spearman_rho": 0.39123577131272297
+      },
+      "iptm": {
+        "n_assayed_variants": 378,
+        "Pearson_r": 0.2843003109789678,
+        "Spearman_rho": 0.2769914559171421
+      },
+      "ipae_min": {
+        "n_assayed_variants": 378,
+        "Pearson_r": -0.2797921182358559,
+        "Spearman_rho": -0.242248733366054
+      }
+    },
+    "above_joint_source_threshold": {
+      "complex_plddt": {
+        "n_assayed_variants": 211,
+        "Pearson_r": 0.2542075150873234,
+        "Spearman_rho": 0.2796018699313749
+      },
+      "pae_interface": {
+        "n_assayed_variants": 211,
+        "Pearson_r": -0.0732443457088583,
+        "Spearman_rho": -0.07196453031182612
+      },
+      "ptm": {
+        "n_assayed_variants": 211,
+        "Pearson_r": 0.2900628044090382,
+        "Spearman_rho": 0.36355688609278936
+      },
+      "iptm": {
+        "n_assayed_variants": 211,
+        "Pearson_r": 0.08833953442097507,
+        "Spearman_rho": 0.10368122837316662
+      },
+      "ipae_min": {
+        "n_assayed_variants": 211,
+        "Pearson_r": -0.03786964939665679,
+        "Spearman_rho": -0.020846482021450504
+      }
+    },
+    "filter": {
+      "pass_count": 211,
+      "fail_count": 167,
+      "fold_gt_1.0": {
+        "all_variants_count": 37,
+        "retained_count": 33,
+        "excluded_design_names": [
+          "chainA_A73T",
+          "chainA_A84F",
+          "chainA_A84V",
+          "chainA_V121F"
+        ]
+      },
+      "fold_gt_1.3": {
+        "all_variants_count": 24,
+        "retained_count": 24,
+        "excluded_design_names": []
+      },
+      "fold_gt_1.5": {
+        "all_variants_count": 19,
+        "retained_count": 19,
+        "excluded_design_names": []
+      },
+      "fold_gt_3.0": {
+        "all_variants_count": 2,
+        "retained_count": 2,
+        "excluded_design_names": []
+      }
+    }
+  },
+  "five_sample_median_filter": {
+    "pass_count": 215,
+    "fail_count": 163,
+    "fold_gt_1.0": {
+      "all_variants_count": 37,
+      "retained_count": 33,
+      "excluded_design_names": [
+        "chainA_A73T",
+        "chainA_A84F",
+        "chainA_A84V",
+        "chainA_V121F"
+      ]
+    },
+    "fold_gt_1.3": {
+      "all_variants_count": 24,
+      "retained_count": 24,
+      "excluded_design_names": []
+    },
+    "fold_gt_1.5": {
+      "all_variants_count": 19,
+      "retained_count": 19,
+      "excluded_design_names": []
+    },
+    "fold_gt_3.0": {
+      "all_variants_count": 2,
+      "retained_count": 2,
+      "excluded_design_names": []
+    }
+  },
+  "author_heatmap_choice_sensitivity": {
+    "method": "Last CSV score row for each mutant, reproducing computational notebook cell9 overwrite. Activity notebook cells27-28 scatter all five samples instead; that scatter is not reduced to these last rows.",
+    "filter": {
+      "pass_count": 211,
+      "fail_count": 167,
+      "fold_gt_1.0": {
+        "all_variants_count": 37,
+        "retained_count": 32,
+        "excluded_design_names": [
+          "chainA_A73T",
+          "chainA_Y83D",
+          "chainA_A84F",
+          "chainA_A84V",
+          "chainA_V121F"
+        ]
+      },
+      "fold_gt_1.3": {
+        "all_variants_count": 24,
+        "retained_count": 23,
+        "excluded_design_names": [
+          "chainA_Y83D"
+        ]
+      },
+      "fold_gt_1.5": {
+        "all_variants_count": 19,
+        "retained_count": 18,
+        "excluded_design_names": [
+          "chainA_Y83D"
+        ]
+      },
+      "fold_gt_3.0": {
+        "all_variants_count": 2,
+        "retained_count": 2,
+        "excluded_design_names": []
+      }
+    },
+    "all_correlations": {
+      "complex_plddt": {
+        "n_assayed_variants": 378,
+        "Pearson_r": 0.28601451235778164,
+        "Spearman_rho": 0.3782239317901308
+      },
+      "pae_interface": {
+        "n_assayed_variants": 378,
+        "Pearson_r": -0.28390724711963866,
+        "Spearman_rho": -0.28309210836935017
+      },
+      "ptm": {
+        "n_assayed_variants": 378,
+        "Pearson_r": 0.31106278160109896,
+        "Spearman_rho": 0.34364227420650195
+      },
+      "iptm": {
+        "n_assayed_variants": 378,
+        "Pearson_r": 0.27952999516964494,
+        "Spearman_rho": 0.2827269838990023
+      },
+      "ipae_min": {
+        "n_assayed_variants": 378,
+        "Pearson_r": -0.2700828972688077,
+        "Spearman_rho": -0.24421825263631233
+      }
+    },
+    "passing_correlations": {
+      "complex_plddt": {
+        "n_assayed_variants": 211,
+        "Pearson_r": 0.24824315686456444,
+        "Spearman_rho": 0.28416364390064935
+      },
+      "pae_interface": {
+        "n_assayed_variants": 211,
+        "Pearson_r": -0.09579584526377838,
+        "Spearman_rho": -0.07126957452612849
+      },
+      "ptm": {
+        "n_assayed_variants": 211,
+        "Pearson_r": 0.2805616329494668,
+        "Spearman_rho": 0.2839972226183342
+      },
+      "iptm": {
+        "n_assayed_variants": 211,
+        "Pearson_r": 0.11709839865978973,
+        "Spearman_rho": 0.10990582719134626
+      },
+      "ipae_min": {
+        "n_assayed_variants": 211,
+        "Pearson_r": -0.08069947483280543,
+        "Spearman_rho": -0.0375146130773343
+      }
+    }
+  },
+  "at_least_one_sample_passes_filter": {
+    "pass_count": 227,
+    "fail_count": 151,
+    "fold_gt_1.0": {
+      "all_variants_count": 37,
+      "retained_count": 34,
+      "excluded_design_names": [
+        "chainA_A73T",
+        "chainA_A84F",
+        "chainA_V121F"
+      ]
+    },
+    "fold_gt_1.3": {
+      "all_variants_count": 24,
+      "retained_count": 24,
+      "excluded_design_names": []
+    },
+    "fold_gt_1.5": {
+      "all_variants_count": 19,
+      "retained_count": 19,
+      "excluded_design_names": []
+    },
+    "fold_gt_3.0": {
+      "all_variants_count": 2,
+      "retained_count": 2,
+      "excluded_design_names": []
+    }
+  },
+  "all_five_samples_pass_filter": {
+    "pass_count": 197,
+    "fail_count": 181,
+    "fold_gt_1.0": {
+      "all_variants_count": 37,
+      "retained_count": 32,
+      "excluded_design_names": [
+        "chainA_A73T",
+        "chainA_Y83D",
+        "chainA_A84F",
+        "chainA_A84V",
+        "chainA_V121F"
+      ]
+    },
+    "fold_gt_1.3": {
+      "all_variants_count": 24,
+      "retained_count": 23,
+      "excluded_design_names": [
+        "chainA_Y83D"
+      ]
+    },
+    "fold_gt_1.5": {
+      "all_variants_count": 19,
+      "retained_count": 18,
+      "excluded_design_names": [
+        "chainA_Y83D"
+      ]
+    },
+    "fold_gt_3.0": {
+      "all_variants_count": 2,
+      "retained_count": 2,
+      "excluded_design_names": []
+    }
+  },
+  "per_sample": {
+    "0": {
+      "filter": {
+        "pass_count": 202,
+        "fail_count": 176,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 32,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_Y83D",
+            "chainA_A84F",
+            "chainA_A84V",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 23,
+          "excluded_design_names": [
+            "chainA_Y83D"
+          ]
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 18,
+          "excluded_design_names": [
+            "chainA_Y83D"
+          ]
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "all_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.3189553672749096,
+          "Spearman_rho": 0.39383944565568446
+        },
+        "pae_interface": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.294548351619795,
+          "Spearman_rho": -0.30171909525888413
+        },
+        "ptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.3224077509154426,
+          "Spearman_rho": 0.3878052273090544
+        },
+        "iptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.29038587752258604,
+          "Spearman_rho": 0.3146868416598808
+        },
+        "ipae_min": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.28139329008346836,
+          "Spearman_rho": -0.2689762890364852
+        }
+      },
+      "passing_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 202,
+          "Pearson_r": 0.28617403287822285,
+          "Spearman_rho": 0.31782266870504167
+        },
+        "pae_interface": {
+          "n_assayed_variants": 202,
+          "Pearson_r": -0.1238039073079452,
+          "Spearman_rho": -0.13069306642392453
+        },
+        "ptm": {
+          "n_assayed_variants": 202,
+          "Pearson_r": 0.2981865287457183,
+          "Spearman_rho": 0.3761415108650688
+        },
+        "iptm": {
+          "n_assayed_variants": 202,
+          "Pearson_r": 0.15819407771251692,
+          "Spearman_rho": 0.2078337971120401
+        },
+        "ipae_min": {
+          "n_assayed_variants": 202,
+          "Pearson_r": -0.08321892415888149,
+          "Spearman_rho": -0.09825447192907093
+        }
+      }
+    },
+    "1": {
+      "filter": {
+        "pass_count": 218,
+        "fail_count": 160,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 33,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_A84F",
+            "chainA_A84V",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 24,
+          "excluded_design_names": []
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 19,
+          "excluded_design_names": []
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "all_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.2864236738736863,
+          "Spearman_rho": 0.37690905808677155
+        },
+        "pae_interface": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.28472455493988247,
+          "Spearman_rho": -0.2719452472162314
+        },
+        "ptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.2953210075622307,
+          "Spearman_rho": 0.35884183407609566
+        },
+        "iptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.27848726311274846,
+          "Spearman_rho": 0.2604159178423933
+        },
+        "ipae_min": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.2726334495056477,
+          "Spearman_rho": -0.21589769324386737
+        }
+      },
+      "passing_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 218,
+          "Pearson_r": 0.2347877277407989,
+          "Spearman_rho": 0.2648592549349827
+        },
+        "pae_interface": {
+          "n_assayed_variants": 218,
+          "Pearson_r": -0.07666414395898793,
+          "Spearman_rho": -0.05802738512192082
+        },
+        "ptm": {
+          "n_assayed_variants": 218,
+          "Pearson_r": 0.2532092924534072,
+          "Spearman_rho": 0.305554707261389
+        },
+        "iptm": {
+          "n_assayed_variants": 218,
+          "Pearson_r": 0.06975581840033086,
+          "Spearman_rho": 0.055334867794878
+        },
+        "ipae_min": {
+          "n_assayed_variants": 218,
+          "Pearson_r": -0.038223955742281324,
+          "Spearman_rho": 0.030960576223629844
+        }
+      }
+    },
+    "2": {
+      "filter": {
+        "pass_count": 212,
+        "fail_count": 166,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 33,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_A84F",
+            "chainA_A84V",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 24,
+          "excluded_design_names": []
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 19,
+          "excluded_design_names": []
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "all_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.28061035341815377,
+          "Spearman_rho": 0.37413578103957146
+        },
+        "pae_interface": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.2857547208567388,
+          "Spearman_rho": -0.2683227750545305
+        },
+        "ptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.2931881288882932,
+          "Spearman_rho": 0.33864084924428156
+        },
+        "iptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.2864414501920542,
+          "Spearman_rho": 0.2710054865011666
+        },
+        "ipae_min": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.2806965883216632,
+          "Spearman_rho": -0.23493556463820375
+        }
+      },
+      "passing_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 212,
+          "Pearson_r": 0.23507176707247265,
+          "Spearman_rho": 0.25269256321695704
+        },
+        "pae_interface": {
+          "n_assayed_variants": 212,
+          "Pearson_r": -0.04200350419626328,
+          "Spearman_rho": -0.021071357726934845
+        },
+        "ptm": {
+          "n_assayed_variants": 212,
+          "Pearson_r": 0.2391018679136292,
+          "Spearman_rho": 0.26043457506688567
+        },
+        "iptm": {
+          "n_assayed_variants": 212,
+          "Pearson_r": 0.07425992496039671,
+          "Spearman_rho": 0.060549683077072196
+        },
+        "ipae_min": {
+          "n_assayed_variants": 212,
+          "Pearson_r": -0.013398637325614998,
+          "Spearman_rho": 0.022216087954595495
+        }
+      }
+    },
+    "3": {
+      "filter": {
+        "pass_count": 213,
+        "fail_count": 165,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 33,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_A84F",
+            "chainA_A84V",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 24,
+          "excluded_design_names": []
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 19,
+          "excluded_design_names": []
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "all_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.29635659243858503,
+          "Spearman_rho": 0.38633568938945395
+        },
+        "pae_interface": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.27975334924375583,
+          "Spearman_rho": -0.2779204865788396
+        },
+        "ptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.3095241097009702,
+          "Spearman_rho": 0.3750674999601305
+        },
+        "iptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.27078624852187044,
+          "Spearman_rho": 0.26109767617801105
+        },
+        "ipae_min": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.2702950441737959,
+          "Spearman_rho": -0.22990539535873886
+        }
+      },
+      "passing_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 213,
+          "Pearson_r": 0.2448143737293985,
+          "Spearman_rho": 0.25197213645171174
+        },
+        "pae_interface": {
+          "n_assayed_variants": 213,
+          "Pearson_r": -0.08416907298797821,
+          "Spearman_rho": -0.05531233487918024
+        },
+        "ptm": {
+          "n_assayed_variants": 213,
+          "Pearson_r": 0.20974751726975532,
+          "Spearman_rho": 0.24873331473503563
+        },
+        "iptm": {
+          "n_assayed_variants": 213,
+          "Pearson_r": 0.07933292942174909,
+          "Spearman_rho": 0.060552650328678924
+        },
+        "ipae_min": {
+          "n_assayed_variants": 213,
+          "Pearson_r": -0.05457325075319806,
+          "Spearman_rho": -0.006063332299947916
+        }
+      }
+    },
+    "4": {
+      "filter": {
+        "pass_count": 224,
+        "fail_count": 154,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 34,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_A84F",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 24,
+          "excluded_design_names": []
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 19,
+          "excluded_design_names": []
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "all_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.28304040197465546,
+          "Spearman_rho": 0.36203085554000763
+        },
+        "pae_interface": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.27909596512363566,
+          "Spearman_rho": -0.2755827975504695
+        },
+        "ptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.3093859959363312,
+          "Spearman_rho": 0.3213470856178526
+        },
+        "iptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.2732934155470869,
+          "Spearman_rho": 0.27351322065095346
+        },
+        "ipae_min": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.273935121739211,
+          "Spearman_rho": -0.23676019163855194
+        }
+      },
+      "passing_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 224,
+          "Pearson_r": 0.22089485367349543,
+          "Spearman_rho": 0.22321173564584415
+        },
+        "pae_interface": {
+          "n_assayed_variants": 224,
+          "Pearson_r": -0.07898677057110118,
+          "Spearman_rho": -0.046590351585716436
+        },
+        "ptm": {
+          "n_assayed_variants": 224,
+          "Pearson_r": 0.25596670015497885,
+          "Spearman_rho": 0.2276449773826715
+        },
+        "iptm": {
+          "n_assayed_variants": 224,
+          "Pearson_r": 0.09197351246132662,
+          "Spearman_rho": 0.0712200411081657
+        },
+        "ipae_min": {
+          "n_assayed_variants": 224,
+          "Pearson_r": -0.06280510597984652,
+          "Spearman_rho": 0.008528067955018596
+        }
+      }
+    }
+  },
+  "window_sensitivity": {
+    "Pearson_r": 0.9623216319840185,
+    "Spearman_rho": 0.842281991590525,
+    "comment_window_n_gt1p5": 20,
+    "comment_window_n_gt1p3": 23,
+    "gt1p5_membership_changes": [
+      {
+        "key": "chaina_a79s",
+        "design_name": "chainA_A79S",
+        "fold_over_wt_executed": 1.4725972994440022,
+        "fold_over_wt_comment": 1.5497051390058942
+      },
+      {
+        "key": "chaina_a79k",
+        "design_name": "chainA_A79K",
+        "fold_over_wt_executed": 1.5524225575853843,
+        "fold_over_wt_comment": 1.4612468407750623
+      },
+      {
+        "key": "chaina_y152w",
+        "design_name": "chainA_Y152W",
+        "fold_over_wt_executed": 1.389197776012709,
+        "fold_over_wt_comment": 1.593934288121314
+      }
+    ]
+  },
+  "inference_limit": "Correlations describe an exposed, single-scaffold, fixed-reporter screen. Each mutant has one well, shared WT/blank normalization, and five model samples. Neither model samples nor timepoints are experimental replicates; no confidence interval or predictive validation is claimed.",
+  "csv_metric_columns": "Bare metric names are the arithmetic mean over five AF3 samples from one seed. Suffixes identify sample minimum/maximum/SD and the exact author computational-heatmap choice."
+}

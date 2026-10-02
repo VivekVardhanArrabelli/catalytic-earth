@@ -1,0 +1,165 @@
+{
+  "record_type": "source_scoped_mechanistic_decision",
+  "status": "supported_rejection_and_unexecuted_next_question",
+  "source_scope": {
+    "paper": "Chen et al., Computational design of metalloproteases, bioRxiv v3, 2026-09-21",
+    "doi": "10.1101/2025.11.20.689622",
+    "paper_url": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3.full",
+    "author_archive": "https://zenodo.org/records/22654831",
+    "protein_identity": "All six compared model files exactly match the 187-residue Table S4 TDPn3 core.",
+    "state_provenance": "Initial ES3/analogue0 comparison was superseded by all four saved passing analogue samples; see the linked sensitivity record.",
+    "source_model_record": "tdpn3_constraint_relation.json",
+    "passing_sample_sensitivity": {
+      "record": "../models/r19_state_sensitivity/r19_s5_state_sensitivity.json",
+      "sha256": "26a2dd03e0ad7590ae8089d0cf6170e795ac8735657253df8fd9e49dca281211",
+      "notebook_sha256": "af0bf532c85dc15ebfbb5667023cb71ff0fecae45c3f36771befe4032bcf809d",
+      "selection_scope": {
+        "demonstrated_passing_ES_samples": [
+          3
+        ],
+        "demonstrated_passing_analogue_samples": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "counts_are_saved_output_evidence_not_rerun_filter": true,
+        "not_a_complete_unfiltered_prediction_ensemble": true,
+        "ES_visualization_copy_used": "df_complex_all",
+        "analogue_visualization_copy_used": "df_phosphots_pass",
+        "ES0_role": "Previously retained nonpassing/nonselected diagnostic; excluded from passing-set comparison.",
+        "not_acquired": "ES1 is copied from df_complex_all but absent from saved passing query; omitted. Analogue1 is not in saved passing-copy output; no unsupported per-metric failure reason assigned.",
+        "selection_notebook_execution_order_not_reconstructed": true,
+        "cell86_execution_count": 3,
+        "cell88_execution_count": 9,
+        "per_sample_analogue_score_rows_not_retained": true,
+        "known_ES3_scores": {
+          "complex_plddt": 96.894247,
+          "ipae_min": 0.87
+        },
+        "analogue_filters_and_declared_thresholds_source": "iterate_mpnn.ipynb zero-based cell63; exact inert source also retained in tdpn3-selection-evidence-v1.json; per-model filter values not inferred from PDB B fields.",
+        "saved_copy_member_basenames": [
+          "seed-1_sample-2_model_monomer.pdb",
+          "seed-1_sample-1_model_monomer.pdb",
+          "seed-1_sample-4_model_monomer.pdb",
+          "seed-1_sample-3_model_monomer.pdb",
+          "seed-1_sample-0_model_monomer.pdb",
+          "seed-1_sample-1_model_complex.pdb",
+          "seed-1_sample-3_model_complex.pdb",
+          "seed-1_sample-0_model_complex.pdb",
+          "seed-1_sample-3_model_phosphots.pdb",
+          "seed-1_sample-4_model_phosphots.pdb",
+          "seed-1_sample-0_model_phosphots.pdb",
+          "seed-1_sample-2_model_phosphots.pdb"
+        ]
+      }
+    }
+  },
+  "rejected_priority": {
+    "question": "Does the modeled Arg19-Ser5 network contribute to TDPn3 G7-M8 recognition? Its proposed preferential ES stabilization is not supported across the retained passing analogue predictions.",
+    "status": "deferred_state_preference_premise_withdrawn_after_passing_sample_check",
+    "history": [
+      {
+        "previous_status": "prepared_not_executed_no_ordering_or_outreach",
+        "previous_priority": "Four-condition R19A x S5A kinetic comparison, motivated by apparent contact loss in analogue sample0.",
+        "change": "Withdraw the ES-preferential structural premise and defer the experiment as the leading next action.",
+        "reason": "Three other author passing analogue samples retain the contact and the ES-like Ser5 rotamer. Sample0 was an unrepresentative state comparison; no new experimental result was obtained."
+      }
+    ],
+    "sensitivity_record": "r19_s5_state_sensitivity.json",
+    "sensitivity_record_sha256": "4fe34226b023156c17d13e26b9f586ffd2804ad2fc8dfb33043885a8cb400ae2",
+    "critique": {
+      "state_selection": "The motivating difference was selected post hoc from ES3 versus analogue0 and fails against three other saved passing analogues. Additional static curation should not be used to rescue it.",
+      "chemical_role": "Ser5 is P3 relative to G7-M8; its side-chain recognition contact is chemically distinct from Zn45 Y152 contacting the reacting P1 backbone. No residue correspondence or common energetic role licenses transfer of the Zn45 ground-state-stabilization interpretation.",
+      "E26_and_coupling": "S5A removes the Ser hydroxyl from both the R19 candidate interaction and the E26 network and changes hydration/packing. R19A can reorganize this network. A nonzero kinetic double-mutant interaction would demonstrate functional coupling in this construct, not an isolated R19-S5 bond energy. There is no close direct R19-E26 salt bridge in the three initially compared files (nearest side-chain heavy atoms exceed 5 A).",
+      "alternate_cleavage": "Reporter annotation includes cuts after3 and7, but only cut7 is supported by the retained TDPn3 reporter product mass. The unverified cut3 annotation cannot be dismissed or promoted to a measured rate. S5A changes P3 for cut7 and P2-prime for cut3; a gain in total fluorescence could change register or sequential fragment cleavage. Early bond-resolved products are essential.",
+      "sequence_context": "S5A is a mechanistic probe on an altered target sequence, not success at the original target. The author model represents ten residues and omits assay M11/L12; the reporter fusion and full-length TDP43 are additional contexts. Internal S5 is correctly mapped, but the local contact and kinetic effects do not automatically transfer between these contexts.",
+      "concentration_and_identifiability": "Source TDPn3 kinetics use nominal500nM enzyme with KM52+/-9uM. A change in substrate recognition can move KM outside a practicable substrate range; then kcat and KM cannot be independently identified. Source full-length assays use20uM enzyme against8uM substrate, so their product endpoint does not establish catalytic turnover or a steady-state rate. Nominal normalization is not measured active-site concentration.",
+      "interpretation_limit": "KM is not binding Kd, kcat need not isolate chemistry, and functional rate coupling is not automatically a binding free energy. A low-substrate efficiency null alone does not exclude compensating changes in kcat and KM."
+    }
+  },
+  "measured_alternative": {
+    "question": "For Zn45 on the same S_ZnO36 reporter and cleavage channel, does the Y152F versus Y152I screen contrast survive protein-quality and product controls, and does it reflect catalytic efficiency, turnover, or both?",
+    "source_basis": {
+      "source_text": "Main text Fig4j and Supplementary Discussion5 propose preferential ground-state stabilization by Y152. Extended Data Fig6d reports six selected best-per-position single-mutant kinetic curves; this is not an unbiased matched F/I kinetic comparison.",
+      "raw_source": "zn45/source/Zn45-SSM-raw-activity.csv",
+      "raw_sha256": "7e381e9ed3ae934103529848b6a8b93b291200ecacd3af6822d4183728d369aa",
+      "join": "zn45/zn45_activity_af3_join.csv",
+      "join_sha256": "17458879cecbc76f8054b71645034cea6d30d4ab26bd6a4188f7ba2a3c5c3692",
+      "reconstruction": "zn45/zn45_activity_score_analysis.json",
+      "observations": [
+        {
+          "variant": "Y152F",
+          "well": "P1",
+          "fold_over_WT_executed_window": 0.6266878474980132,
+          "fold_over_WT_comment_window_sensitivity": 0.489469250210615,
+          "mean_complex_plddt": 95.55482785299812,
+          "mean_ipae_min_A": 0.8800000000000001,
+          "all_five_AF3_predictions_pass_source_diagnostic_cutoffs": true
+        },
+        {
+          "variant": "Y152I",
+          "well": "P7",
+          "fold_over_WT_executed_window": 2.76409849086576,
+          "fold_over_WT_comment_window_sensitivity": 2.582139848357203,
+          "mean_complex_plddt": 96.02467441860469,
+          "mean_ipae_min_A": 0.8379999999999999,
+          "all_five_AF3_predictions_pass_source_diagnostic_cutoffs": true
+        },
+        {
+          "variant": "Y152A",
+          "well": "O19",
+          "fold_over_WT_executed_window": 0.5325655281969818,
+          "fold_over_WT_comment_window_sensitivity": 0.6689132266217355,
+          "mean_complex_plddt": 95.93754304207117,
+          "mean_ipae_min_A": 0.89,
+          "all_five_AF3_predictions_pass_source_diagnostic_cutoffs": true
+        }
+      ],
+      "executed_slope_window_s": [
+        360,
+        540,
+        720
+      ],
+      "documented_comment_window_sensitivity_s": [
+        540,
+        720,
+        900
+      ]
+    },
+    "assay_scope": "One assayed well per mutant, three WT and three blank wells; affinity-purified and nominal concentration-normalized at500nM enzyme,3uM substrate,5uM Zn. Fold RFU slope is not a measured kcat, and AF3 confidence is not a folding/active-fraction control. The normalization CSV contains dilution instructions, not independent achieved active concentrations.",
+    "current_conclusion": "Hydroxyl removal alone is insufficient for improved activity in this fixed-concentration screen: F and A are below WT while I is above WT. Phe is a closer aromatic-shape comparison to Tyr than Ile, but the substitutions still change packing, solvation and possibly enzyme competence; no isolated hydroxyl energy or kcat direction is established.",
+    "existing_followup_and_raw_gap": "Y152I/M/R/V appear in the exact19-member >1.5-fold list selected for HPLC retest; Y152F is absent. The source reports single-mutant kinetics in addition to combination kinetics, but the exact six identities and a matched F/I kinetic dataset are not verified in the retained material. All retained central-directory ranges were searched; no exact single-mutant kinetic member capable of settling F/I was identified. This partial inventory cannot prove the data are absent from the archive.",
+    "one_next_information_gain": "Prioritize a matched WT/Y152F/Y152I comparison on the unchanged source substrate and intended cleavage channel, if new measurements are authorized and the missing matched data are not already available. First establish reproducible product-resolved rate ordering with matched preparation/competence controls; then distinguish low-substrate efficiency from saturation-supported turnover. This is an experiment decision, not a protocol, design launch or execution claim.",
+    "minimum_observation_that_changes_recommendation": "If independently repeated, bond-specific rates with comparable enzyme competence do not reproduce the opposite F/I directions, withdraw the screen-driven packing-versus-hydroxyl priority. If the directions survive but both variants raise saturation-supported kcat while F has poorer apparent efficiency, replace the simple opposite-catalysis interpretation with a turnover/recognition tradeoff. Existing exact matched kinetics could supply this observation without new laboratory work.",
+    "possible_outcomes": [
+      "Opposite saturation-supported kcat effects with matched competence: hydroxyl deletion alone does not explain turnover gain; packing/preorganization becomes the stronger mechanistic lead, still without proving a microscopic step.",
+      "Both variants increase kcat but F decreases efficiency: altered kinetic partitioning/recognition can explain the fixed-concentration sign contrast; KM is still not Kd.",
+      "Preparation failure or changed cleavage register explains the contrast: stop the isolated Y152 chemical interpretation and preserve the failure."
+    ],
+    "no_new_raw_acquisition_recommended": "The retained gap contains a tiny tops_list.csv under combo_activity_test and a13.15MB compressed combination-kinetics notebook, not an identified matched F/I dataset. A large notebook or further blind directory search is not justified to restate selected curves."
+  },
+  "selection_against_alternatives": {
+    "R19_S5": "Deferred: its state-preferential premise fails representative sensitivity; functional recognition remains an untested possibility.",
+    "Zn45_Y152F_I": "Preferred consequential uncertainty: directly observed contrasting substitutions remove the same hydroxyl but differ in packing. A matched kinetic comparison could correct the chemistry-to-activity rule without changing the substrate or inventing a new design.",
+    "catalytic_donor_geometry": "Zn45_v2 Y122 substitution causes about10-fold activity loss and nearby V121I gives1.941-fold initial-screen signal in the parent background. A matched V121I x Y122 perturbation could test donor geometry, but those observations currently differ in background/endpoint and would require an additional matched series. It is less direct for deciding whether donor removal itself explains the existing Y152 contrast.",
+    "base_or_metal_knockout": "Whole-active-site dependence is already experimentally supported. Another knockout is a competence control; it does not resolve the sign of a noncatalytic contact contribution.",
+    "further_geometry_curation": "The passing-state check already defeats the specific R19 premise. Stop; additional static contact enumeration will not determine kinetic or free-energy effects.",
+    "direct_source_comparison": "The direct author-data analysis supplies this decision. No Atlas advantage or prospective predictive validity is established."
+  },
+  "execution_boundary": "No model generation, assay, outreach, ordering or laboratory activity was performed. This worker used retained sources only; the sibling model-sensitivity task acquired the three additional author predictions under its separate root authorization. The replacement remains a bounded scientific decision requiring future laboratory authorization/access, not an executed experiment.",
+  "static_model_comparison_status": {
+    "decision": "stopped_before_acquisition_incomplete_cached_mapping",
+    "question": "Could all five AF3 samples each for WT/Y152F/Y152I distinguish static active-site geometry beyond confidence?",
+    "cached_members": {
+      "WT": 5,
+      "Y152F": 0,
+      "Y152I": 5
+    },
+    "interpretation": "The retained partial directory cannot supply all 15 intended samples. Missing cached entries do not establish absence from the author archive; WT and I alone cannot answer the fixed comparison. No coordinate model acquisition or measurement followed.",
+    "known_ten_model_compressed_bytes": 373902,
+    "new_requests": 0,
+    "new_bytes": 0,
+    "feasibility_receipt_sha256": "822dd527b8bcf1051dd84f6f2cf4881173f353539df43e3acc1312f9c521b313"
+  }
+}

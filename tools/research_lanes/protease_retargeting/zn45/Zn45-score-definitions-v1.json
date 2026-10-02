@@ -1,0 +1,77 @@
+{
+  "record_type": "source_scoped_score_definitions",
+  "helper_file": "Zn45-SSM-author-collect-data.py",
+  "helper_sha256": "542621c0c6ae65d1901bdc55a5d68b00341ce9e2787f9d4d64337b5b326d58ef",
+  "helper_was_executed": false,
+  "source_receipt": "Zn45-collect-data-acquisition.json",
+  "definitions": {
+    "complex_plddt": {
+      "source_expression": "sum(atom_plddts) / len(atom_plddts)",
+      "scope": "Mean of all supplied atom_plddts, not an unweighted mean of the three chains. Raw confidence arrays were not acquired."
+    },
+    "ipae_min": {
+      "source_expression": "min(chain_pair_pae_min[0][1], chain_pair_pae_min[1][0])",
+      "scope": "Minimum of the two directed protein A/substrate B chain-pair minimum-PAE entries from summary_confidences.json. This is not mean interface PAE."
+    },
+    "pae_interface": {
+      "source_expression": "mean(PAE[A,B])/2 + mean(PAE[B,A])/2",
+      "observed_table_numeric_check_rows": 1895,
+      "max_absolute_difference_from_pae_chain_matrix": 0.0
+    },
+    "per_chain_plddt_A": {
+      "source_expression": "mean(atom_plddts[:chainA_len])",
+      "limitation": "The helper slices a field named atom_plddts using residue-sequence lengths. Atom-to-chain identifiers are not used; do not treat this as independently verified whole-chain atom-mean confidence."
+    },
+    "per_chain_plddt_B": {
+      "source_expression": "mean(atom_plddts[chainA_len:chainA_len+chainB_len])",
+      "limitation": "Same residue-count versus atom-index limitation."
+    },
+    "per_chain_plddt_C": {
+      "source_expression": "atom_plddts[-1]",
+      "limitation": "Last array element, not necessarily a complete multi-atom ligand chain mean."
+    }
+  },
+  "relevant_code_lines": [
+    {
+      "line": 52,
+      "text": "                avg_plddt = sum(atom_plddts) / len(atom_plddts)"
+    },
+    {
+      "line": 72,
+      "text": "                pae_interface = pae_matrix[chainA_len:chainA_len+chainB_len, :chainA_len].mean()/2+\\"
+    },
+    {
+      "line": 81,
+      "text": "                ipae_min_matrix = ptm_data.get(\"chain_pair_pae_min\", [])"
+    },
+    {
+      "line": 82,
+      "text": "                ipae_min = min(ipae_min_matrix[0][1], ipae_min_matrix[1][0])"
+    },
+    {
+      "line": 88,
+      "text": "                \"complex_plddt\": avg_plddt,"
+    },
+    {
+      "line": 89,
+      "text": "                \"per_chain_plddt_A\": np.array(atom_plddts)[:chainA_len].mean(),"
+    },
+    {
+      "line": 90,
+      "text": "                \"per_chain_plddt_B\": np.array(atom_plddts)[chainA_len:chainA_len+chainB_len].mean(),"
+    },
+    {
+      "line": 91,
+      "text": "                \"per_chain_plddt_C\": np.array(atom_plddts)[-1].mean(),"
+    },
+    {
+      "line": 93,
+      "text": "                \"pae_interface\": pae_interface,"
+    },
+    {
+      "line": 98,
+      "text": "                \"ipae_min\":ipae_min"
+    }
+  ],
+  "decision": "Use the correctly defined complex_plddt and protein/substrate ipae_min for the retrospective 378-mutant comparison. Keep per-chain fields source-named with their indexing limitation; do not add unsupported mechanistic interpretations."
+}
