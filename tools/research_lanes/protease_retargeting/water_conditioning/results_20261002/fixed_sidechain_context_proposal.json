@@ -1,0 +1,107 @@
+{
+  "status": "posthoc_source_backed_next_experiment_proposal_not_implemented_or_run",
+  "current_experiment": "Closed80-output water-coordinate conditioning comparison, no_consistent_advantage. No current assignment, endpoint, sampling or output changed.",
+  "question": "On the existing water_fixed_seed3 scaffold, does exposing the fixed protein and substrate sidechain geometry to native LigandMPNN improve independent recovery of the whole catalytic motif and intended substrate arrangement?",
+  "why_this_instead_of_more_RFD3_or_water_sampling": "The observed candidate recovers its overall scaffold and local water position, but its catalytic donor and intended substrate geometry are displaced. A supported native sequence-conditioning switch tests a concrete possible translation gap while holding the already-generated backbone fixed. This is more informative than simply generating more water-ablation scaffolds.",
+  "selection": {
+    "candidate": "water_fixed_seed3",
+    "posthoc": true,
+    "scope": "Chosen after viewing fold/water recovery and donor/substrate displacement; any future result is exploratory and local to this scaffold, not confirmation of a general conditioning advantage.",
+    "scaffold": ".git/catalytic-earth-runs/20261002T182054Z-protease-water-execution/retrieved/runtime/experiment/candidates/water_fixed_seed3/rfd3/rfd3_input_des_0_model_0.cif.gz",
+    "scaffold_sha256": "1e764d610d69a29b76b942c625b6950ec0eb4f4ca0ea30cc0b2fc91cdd11bca2",
+    "source_water_recovery_median_A": 0.3930309981985927,
+    "apo_CA_rmsd_median_A": 1.7887226557225735,
+    "ES_CA_rmsd_median_A": 1.4254347673485839,
+    "Y115_OH_G7_O_median_A": 8.30507837017906
+  },
+  "actual_current_config": {
+    "file": ".git/catalytic-earth-runs/20261002T182054Z-protease-water-execution/retrieved/runtime/experiment/candidates/water_fixed_seed3/mpnn_config.json",
+    "sha256": "e5231a7b8ef8096c6b360b9a4999d27b800cc679eaa44a0735dbb89cf09393b7",
+    "model_type": "ligand_mpnn",
+    "is_legacy_weights": true,
+    "input_fields": {
+      "seed": 103,
+      "batch_size": 1,
+      "number_of_batches": 1,
+      "temperature": 0.1,
+      "structure_noise": 0.0,
+      "atomize_side_chains": false,
+      "fixed_residues": [
+        "A36",
+        "A37",
+        "A40",
+        "A115",
+        "A152",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12"
+      ]
+    }
+  },
+  "proposed_contrast": {
+    "conditions": [
+      {
+        "atomize_side_chains": false,
+        "meaning": "No protein sidechain geometry revealed as atomized context; fixed amino-acid identities/backbone and actual Zn/water ligand context remain."
+      },
+      {
+        "atomize_side_chains": true,
+        "meaning": "Reveal the fixed-residue sidechain geometry through the native LigandMPNN inference mechanism."
+      }
+    ],
+    "held_fixed": "Same existing scaffold, full12merALQSSWGMMGML, G7-M8 identity, five catalytic residue identities, all substrate identities, chemical species, checkpoint, temperature and equal sequence budgets. New matched sequence seeds and finite budget must be frozen before a separately authorized future run.",
+    "interpretation": "Combined fixed-sidechain-context ablation: five enzyme catalytic residues AND all12 fixed substrate residues (where sidechains exist). It is not a Tyr-only intervention and cannot isolate Tyr causality. Finite nearest-context selection can alter ligand exposure as sidechain atoms are added.",
+    "next_readout": "Unconditioned prediction of each complete designed sequence and complex, with whole motif/substrate recovery and fold agreement defined prospectively. Preserve every assigned sequence and failed/missing output; do not reuse the closed water-primary outcome as the new objective.",
+    "stopping": "No new execution under the closed run. Before any future sampling, confirm actual native feature masks/context match both intended conditions. Bound the subsequent sequence experiment prospectively and stop at that budget; a negative result closes this local conditioning hypothesis for this scaffold, not universal enzyme feasibility."
+  },
+  "causal_limit": "Source code proves a different conditioning path is available. It does not prove omission of this context caused the observed donor displacement, nor that enabling it improves structure or activity.",
+  "biochemical_limit": "Any eventual function claim still needs identified G7-M8 products and matched enzyme-normalized rates; KM is not bindingKd. No laboratory work, ordering or outreach is proposed as already executed.",
+  "source_anchors": [
+    {
+      "file": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/foundry/models/mpnn/src/mpnn/model/mpnn.py",
+      "source_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+      "sha256": "1aeae0716775140f8189b3734d05dab369c2a0328ae74d669b031f9c861b06b2",
+      "lines": [
+        2433,
+        2468
+      ],
+      "claim": "False sets all protein-sidechain hide flags true; True during inference uses designed_residue_mask so only fixed-residue sidechains are revealed.",
+      "source_excerpt": "2433:         if \"atomize_side_chains\" not in input_features:\n2434:             raise ValueError(\"Input features must contain 'atomize_side_chains' key.\")\n2435: \n2436:         # Create the mask for hiding or revealing side chains.\n2437:         # With no side chain atomization, the side chain mask is all ones.\n2438:         if input_features[\"atomize_side_chains\"]:\n2439:             # If we are training, randomly reveal side chains.\n2440:             if self.training:\n2441:                 # With a probability specified as the overall atomization\n2442:                 # side chain probability, we reveal some side chains (otherwise,\n2443:                 # we hide all side chains).\n2444:                 if (\n2445:                     sample_bernoulli_rv(self.overall_atomize_side_chain_probability)\n2446:                     == 1\n2447:                 ):\n2448:                     reveal_side_chain_mask = (\n2449:                         torch.rand(\n2450:                             input_features[\"S\"].shape, device=input_features[\"S\"].device\n2451:                         )\n2452:                         < self.per_residue_atomize_side_chain_probability\n2453:                     )\n2454:                     hide_side_chain_mask = ~reveal_side_chain_mask\n2455:                 else:\n2456:                     hide_side_chain_mask = torch.ones(\n2457:                         input_features[\"S\"].shape, device=input_features[\"S\"].device\n2458:                     ).bool()\n2459:             # If we are not training, only the side chains of fixed residues\n2460:             # are revealed.\n2461:             else:\n2462:                 hide_side_chain_mask = input_features[\"designed_residue_mask\"].clone()\n2463:         else:\n2464:             hide_side_chain_mask = torch.ones(\n2465:                 input_features[\"S\"].shape, device=input_features[\"S\"].device\n2466:             ).bool()\n2467: \n2468:         # Save the hide side chain mask in the input features.",
+      "public_source": "https://github.com/RosettaCommons/foundry/blob/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/mpnn/src/mpnn/model/mpnn.py#L2433-L2468"
+    },
+    {
+      "file": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/foundry/models/mpnn/src/mpnn/model/layers/graph_embeddings.py",
+      "source_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+      "sha256": "5b82a1277ce141f6166060231c95e8e41849fd47e34b853c604975011e04ffd5",
+      "lines": [
+        2300,
+        2341
+      ],
+      "claim": "Revealed fixed sidechain atoms join atomized ligand context, then only the nearest finite num_context_atoms are retained; Zn/water exposure can change.",
+      "source_excerpt": "2300:         if atomize_side_chains:\n2301:             # Gather the atomized side chain atoms coordinates, mask, and types.\n2302:             # ligand_subgraph_R [B, L, num_neighbors_for_atomized_side_chain *\n2303:             # num_side_chain_atoms, 3] - 3D coordinates of the nearest neighbors\n2304:             # side chain atoms for each residue.\n2305:             # ligand_subgraph_R_m [B, L, num_neighbors_for_atomized_side_chain *\n2306:             # num_side_chain_atoms] - mask indicating which nearest neighbors\n2307:             # side chain atoms are valid.\n2308:             # ligand_subgraph_R_t [B, L, num_neighbors_for_atomized_side_chain\n2309:             # * num_side_chain_atoms] - element types of the nearest neighbors\n2310:             # side chain atoms for each residue.\n2311:             ligand_subgraph_R, ligand_subgraph_R_m, ligand_subgraph_R_t = (\n2312:                 self.gather_nearest_atomized_side_chain_atoms(\n2313:                     input_features[\"X\"],\n2314:                     input_features[\"X_m\"],\n2315:                     input_features[\"S\"],\n2316:                     edge_features[\"E_idx\"],\n2317:                     input_features[\"hide_side_chain_mask\"],\n2318:                 )\n2319:             )\n2320: \n2321:             # Get the self.num_context_atoms closest ligand or atomized side\n2322:             # chain atoms to the virtual atoms; overwriting the original\n2323:             # ligand_subgraph_Y, ligand_subgraph_Y_m, and ligand_subgraph_Y_t.\n2324:             ligand_subgraph_Y, ligand_subgraph_Y_m, ligand_subgraph_Y_t = (\n2325:                 self.combine_ligand_and_atomized_side_chain_atoms(\n2326:                     ligand_subgraph_Y,\n2327:                     ligand_subgraph_Y_m,\n2328:                     ligand_subgraph_Y_t,\n2329:                     ligand_subgraph_R,\n2330:                     ligand_subgraph_R_m,\n2331:                     ligand_subgraph_R_t,\n2332:                     input_features[\"X_virtual_atoms\"],\n2333:                     input_features[\"X_m_virtual_atoms\"],\n2334:                     input_features[\"residue_mask\"],\n2335:                 )\n2336:             )\n2337: \n2338:         # Save the ligand subgraph coordinates, mask, and types in the input\n2339:         # features.\n2340:         input_features[\"ligand_subgraph_Y\"] = ligand_subgraph_Y\n2341:         input_features[\"ligand_subgraph_Y_m\"] = ligand_subgraph_Y_m",
+      "public_source": "https://github.com/RosettaCommons/foundry/blob/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/mpnn/src/mpnn/model/layers/graph_embeddings.py#L2300-L2341"
+    },
+    {
+      "file": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/foundry/models/mpnn/src/mpnn/transforms/feature_aggregation/user_settings.py",
+      "source_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+      "sha256": "779217c71d40e210f6af934cf6a90426e588dfd447eec864550cb5c9b53fb748",
+      "lines": [
+        201,
+        208
+      ],
+      "claim": "The native user setting explicitly refers to fixed-residue sidechains and defaults toFalse during inference.",
+      "source_excerpt": "201:         # atomize_side_chains (bool): Whether to atomize side chains of fixed\n202:         # residues.\n203:         atomize_side_chains = data.get(\"atomize_side_chains\", None)\n204:         if atomize_side_chains is None:\n205:             if data[\"model_type\"] == \"ligand_mpnn\":\n206:                 atomize_side_chains = False if self.is_inference else True\n207:             else:\n208:                 atomize_side_chains = False",
+      "public_source": "https://github.com/RosettaCommons/foundry/blob/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/mpnn/src/mpnn/transforms/feature_aggregation/user_settings.py#L201-L208"
+    }
+  ],
+  "immutable_remote_measurement_sha256": "2e40fbb22893a391071b672122aaaaa4e29e065adea73e8148728c40033f774b"
+}

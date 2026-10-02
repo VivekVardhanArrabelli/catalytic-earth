@@ -1,0 +1,346 @@
+{
+  "question": "Does fixing the source-water position during scaffolding consistently improve recovery after sequence design and unconditioned RF3 complex prediction?",
+  "status": "completed_all_assignments",
+  "decision": "no_consistent_advantage",
+  "assigned_candidates": 8,
+  "generated_scaffolds": 8,
+  "designed_sequences": 8,
+  "assigned_RF3_outputs": 80,
+  "observed_RF3_outputs": 80,
+  "measured_ES_outputs": 40,
+  "measured_monomer_outputs": 40,
+  "paired_seed_results": [
+    {
+      "seed": 0,
+      "complete": true,
+      "fixed_minus_free_A": 0.7955093338492253
+    },
+    {
+      "seed": 1,
+      "complete": true,
+      "fixed_minus_free_A": -0.11371704894696899
+    },
+    {
+      "seed": 2,
+      "complete": true,
+      "fixed_minus_free_A": -1.7530457883896835
+    },
+    {
+      "seed": 3,
+      "complete": true,
+      "fixed_minus_free_A": -1.6863036121514807
+    }
+  ],
+  "candidates": [
+    {
+      "id": "water_fixed_seed0",
+      "arm": "water_fixed",
+      "rfd3_seed": 0,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 1.3476274538205042,
+      "enzyme_sequence": "GLPAVPELACDPDVLYAELKKASEGLLAHPEAALVHEAAHCLLAAVEAGVATTAEEAFAKVGAVAVRFIIGNVELTVSFIGEKEVVADRAAAMAALEARARELAAMSTEETVNRYVVEGKKIEPSLADVENFDDFIAAARAFLAAGVKIGPEPLTTAFTMVAAKKGLLEKWAAAVKASKMKFTLETA",
+      "enzyme_sha256": "c3b062a090a9ad1669356b2332b343ecb311350d6fb5e00deebb9d36e623c080",
+      "median_three_anchor_fit_rmsd_A": 0.148640328395541,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 1.9849598564021433,
+        "Zn_H40_NE2_A": 1.9999536901146329,
+        "Zn_E152_min_A": 2.3019918263586234,
+        "E37_water_min_A": 2.8753089617832703,
+        "Zn_water_A": 1.9096172155270086,
+        "Zn_G7_O_A": 8.714376709967866,
+        "water_G7_C_A": 6.81951305645422,
+        "water_G7_C_G7_O_degrees": 80.6880928506908,
+        "Y115_OH_G7_O_A": 15.546500686229349,
+        "Y115_CZ_OH_G7_O_degrees": 117.2292105781387,
+        "G7_C_M8_N_A": 1.3062634472297276
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 15.211278157897926,
+        "ES": 12.915515303066808
+      }
+    },
+    {
+      "id": "water_coordinate_free_seed0",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 0,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 0.5521181199712789,
+      "enzyme_sequence": "SLPAVPALAFDEAECAAEMRRETEGLLAHPEAALVHEYAHLLLFAVESLKITDVDEIAATVGRRSVRVLTPHLAYVAGVVGLKELIADEAAALAQLEARLAELLSMSREELINRYVVEGKKIEDSLKDVENFQDFVDKVVALKKAGVKIGPEPLTTAFTMVAAKKGLLEKLAAAAKASKTKWTVKTA",
+      "enzyme_sha256": "b882a8037e129fdbe8944171a95204dddc21393dbc4f9101f29c4f2006fea7e7",
+      "median_three_anchor_fit_rmsd_A": 0.09179742878683282,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.0644997495840745,
+        "Zn_H40_NE2_A": 2.083207568687843,
+        "Zn_E152_min_A": 2.366516328564572,
+        "E37_water_min_A": 2.461308793184481,
+        "Zn_water_A": 1.9841037581753145,
+        "Zn_G7_O_A": 9.430546218084386,
+        "water_G7_C_A": 11.518269642040833,
+        "water_G7_C_G7_O_degrees": 54.05412807794155,
+        "Y115_OH_G7_O_A": 8.468637142993472,
+        "Y115_CZ_OH_G7_O_degrees": 21.662941144549354,
+        "G7_C_M8_N_A": 1.320938047609711
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 10.60305667193544,
+        "ES": 9.991181492092473
+      }
+    },
+    {
+      "id": "water_fixed_seed1",
+      "arm": "water_fixed",
+      "rfd3_seed": 1,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 1.754598652046268,
+      "enzyme_sequence": "VPEPLSRREIEAAKATLDEVAAMAAQIAPSPFAAHHEANHVAQAIAEGLVPADGLAVHIIRSVVVNPDTKEEVVLTTIAMAATLEAARAIAEATLRAALRALASGELLQAALDMYTNGSVEGARRVIEGSGLGEALGVEATDERIASATRGESTAVRASLPLLPESAAVLAAQGRTLKGVAGIGLVL",
+      "enzyme_sha256": "bc16ccc313f06901028509a1892d97b781769105ef238842955f96fa62f15727",
+      "median_three_anchor_fit_rmsd_A": 0.1870332575553165,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.0051469547451375,
+        "Zn_H40_NE2_A": 2.0102687537499064,
+        "Zn_E152_min_A": 22.76202340114521,
+        "E37_water_min_A": 6.171139760927446,
+        "Zn_water_A": 1.8899231779905121,
+        "Zn_G7_O_A": 8.942721458031397,
+        "water_G7_C_A": 8.919207127546748,
+        "water_G7_C_G7_O_degrees": 72.15838000296807,
+        "Y115_OH_G7_O_A": 15.163691169900748,
+        "Y115_CZ_OH_G7_O_degrees": 138.35912230446704,
+        "G7_C_M8_N_A": 1.3265133568010208
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 14.596139218554404,
+        "ES": 12.440093732055658
+      }
+    },
+    {
+      "id": "water_coordinate_free_seed1",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 1,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 1.868315700993237,
+      "enzyme_sequence": "AMADYELLLETPVMTAEQLKAIVDAMGDRVPLSLYHEYNHLVLLAKKYNVPLSDIYVKIAAYRVTSPVSKKEYLVVNLAAADTVEGVETLHAQTVAATLAALGTADPEQSGREIYLPGEAGRLAATLPVTPGGNPLMHTLSPEDYAKALEEERTTTALALQWAQEQQAKGVVWESAEAELAALKEAF",
+      "enzyme_sha256": "bbe8c29d190c793b3fd6ebbd44dc8cc09c84ac748da5ef32c78eebea5704c352",
+      "median_three_anchor_fit_rmsd_A": 0.1258393619426991,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.0333343950862255,
+        "Zn_H40_NE2_A": 2.048469714269469,
+        "Zn_E152_min_A": 2.3850802248247254,
+        "E37_water_min_A": 3.0807393251185906,
+        "Zn_water_A": 2.263776471675677,
+        "Zn_G7_O_A": 7.5970983238154295,
+        "water_G7_C_A": 7.629959496460227,
+        "water_G7_C_G7_O_degrees": 72.46064470570127,
+        "Y115_OH_G7_O_A": 7.822255317766229,
+        "Y115_CZ_OH_G7_O_degrees": 54.21581785150102,
+        "G7_C_M8_N_A": 1.3296081404568663
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 6.306929127583938,
+        "ES": 2.617112991419657
+      }
+    },
+    {
+      "id": "water_fixed_seed2",
+      "arm": "water_fixed",
+      "rfd3_seed": 2,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 2.9542918214066365,
+      "enzyme_sequence": "PLVFTPETRRLLALGDPTKPVVVNSDEEEEQLEKVHEYMHVVLTFGDPDKANVFLMPPEAVRTIPGVDLNGLYWLTVMAHSPVSSPMSAEKARTALTSLALHIGKKSLEELAAVYAGVTVDPSVRTMGGYGFLLADDGTILPGTEEYGREMESTTTNIAGGYTRADPALQAELLAKADAFLAKVTVL",
+      "enzyme_sha256": "4d1aae75ac55ef0a11899f51def1dd45403843869c04ecb1ecd80ed697f621d3",
+      "median_three_anchor_fit_rmsd_A": 0.19736510954118627,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.4224584797312874,
+        "Zn_H40_NE2_A": 2.293013827458793,
+        "Zn_E152_min_A": 14.527992504639917,
+        "E37_water_min_A": 6.774267780252455,
+        "Zn_water_A": 1.8966978974421453,
+        "Zn_G7_O_A": 8.395276379674115,
+        "water_G7_C_A": 8.440363237959936,
+        "water_G7_C_G7_O_degrees": 101.08359213119124,
+        "Y115_OH_G7_O_A": 13.994604390755077,
+        "Y115_CZ_OH_G7_O_degrees": 93.11444832462041,
+        "G7_C_M8_N_A": 1.306765597381262
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 16.902353156889745,
+        "ES": 15.591492394724337
+      }
+    },
+    {
+      "id": "water_coordinate_free_seed2",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 2,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 4.70733760979632,
+      "enzyme_sequence": "ALVFTPLLRRLLSLGVPGRAVVPASEEEREALIKVHEYAHVELTFGDPDKAKVYRMDLAAIRKVEPVEIEGVEELVLMVAVRKEDGMTAEQAKTALISAAKAISKLTKEELARIYIGTTNAPPGALGGIGDVLSSSDGSDFGTDRAAQLAGERTTTLIADGFTRADPALQAEVLAKADAFMAKVTVL",
+      "enzyme_sha256": "9e9a7185b0dfc5c78cb56176557f80ef25814c889118288d13036ddd22f42424",
+      "median_three_anchor_fit_rmsd_A": 5.115538242967319,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 13.883778967063948,
+        "Zn_H40_NE2_A": 2.8408045222966636,
+        "Zn_E152_min_A": 19.877815986202158,
+        "E37_water_min_A": 15.228101815355007,
+        "Zn_water_A": 2.0610377509420834,
+        "Zn_G7_O_A": 10.790781863683627,
+        "water_G7_C_A": 11.360454407300603,
+        "water_G7_C_G7_O_degrees": 94.14939512609288,
+        "Y115_OH_G7_O_A": 16.492465249832335,
+        "Y115_CZ_OH_G7_O_degrees": 95.58840136771585,
+        "G7_C_M8_N_A": 1.3058429891147794
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 18.96978506086475,
+        "ES": 18.235080456069547
+      }
+    },
+    {
+      "id": "water_fixed_seed3",
+      "arm": "water_fixed",
+      "rfd3_seed": 3,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 0.3930309981985927,
+      "enzyme_sequence": "AAEALAQLREVAERTMELTKDDSLELQKRKAAVSVHEFFHVIQARAALGRAPRKEDAETVVTQVSKLDLSQPNSFVNMTLTYRLEDGEWTLEDINISVEPLDKSKTDVEKLLELYKNTDLKSAEEALAAGAAALARAFATGESTEEVVRGVESSTEAMLRYFAENVMPDVVDTSRWTGGSGSTTRTP",
+      "enzyme_sha256": "d99152e6f0a2beca991dabe52e61861128497411102bc4aed2055edae9333730",
+      "median_three_anchor_fit_rmsd_A": 0.10602227149489314,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.0271794424368825,
+        "Zn_H40_NE2_A": 2.089862712635828,
+        "Zn_E152_min_A": 2.5077802449397275,
+        "E37_water_min_A": 2.848886862958833,
+        "Zn_water_A": 2.187994353674341,
+        "Zn_G7_O_A": 3.739935066399735,
+        "water_G7_C_A": 3.4686937628952474,
+        "water_G7_C_G7_O_degrees": 84.54053791584181,
+        "Y115_OH_G7_O_A": 8.30507837017906,
+        "Y115_CZ_OH_G7_O_degrees": 72.5575828677759,
+        "G7_C_M8_N_A": 1.3163031093992565
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 1.7887226557225735,
+        "ES": 1.4254347673485839
+      }
+    },
+    {
+      "id": "water_coordinate_free_seed3",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 3,
+      "observed_ES": 5,
+      "complete": true,
+      "observed_median_error_A": 2.0793346103500734,
+      "enzyme_sequence": "NPDAEQVLELLRQAEAKAASLPSRTAQEAAAATALHEGTHLLAARRALGKELRQEDVDFVLNTVMALDTTAPLTEVKTTVTYREEDGEWTVEDITAWAEQIDPSKTDIEKLRETYINTDLKSIEEALAAAAAALARAFATGESTPEVERGVEAGTYAAMKYATEELKSPLNINKVVSGGSGSVTRTP",
+      "enzyme_sha256": "1eba28e7b9a42865738af403dace5ea26814bdca94fe92380c0fdb4b006f1369",
+      "median_three_anchor_fit_rmsd_A": 0.09115356788444923,
+      "median_geometry": {
+        "Zn_H36_NE2_A": 2.2020206926710024,
+        "Zn_H40_NE2_A": 2.1029959184032365,
+        "Zn_E152_min_A": 6.239202070041424,
+        "E37_water_min_A": 5.5301403578815025,
+        "Zn_water_A": 2.02191732166489,
+        "Zn_G7_O_A": 3.6938315175116907,
+        "water_G7_C_A": 3.4313347673876438,
+        "water_G7_C_G7_O_degrees": 37.62302480521558,
+        "Y115_OH_G7_O_A": 7.50894716346054,
+        "Y115_CZ_OH_G7_O_degrees": 134.41569079907293,
+        "G7_C_M8_N_A": 1.3209190135648892
+      },
+      "median_enzyme_CA_rmsd_to_scaffold_A": {
+        "monomer": 3.481693694685994,
+        "ES": 3.4129519410252853
+      }
+    }
+  ],
+  "claim_boundary": "Water-position recovery only; no catalysis, rate or Atlas efficacy claim.",
+  "frozen_package_commit": "71cdba8671edba384e90e730d41710581b70fae2",
+  "execution_base_commit": "e881e3057fe3aaaddc11b7ba5a81d6b3857727f6",
+  "foundry_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "runner_sha256": "61941360db3d14939a3f35649f88ac06a1b021244f1ab4390d7b7922fae1be42",
+  "decision_sha256": "5e51c72a820b0ef27722ea63b45b2275a212050e86f83e0646fa9adc87f4f07e",
+  "checkpoint_receipts": [
+    {
+      "file": "rfd3_foundry_2025_12_01_remapped.ckpt",
+      "bytes": 2690316669,
+      "sha256": "9b3f85923e0d51e9453e15cdd2f8c666e7ce096a60577f57d11bbc54ae6d67c1",
+      "source": "official IPD server; RFD3/MPNN hashes recorded on first acquisition, not vendor attestations"
+    },
+    {
+      "file": "ligandmpnn_v_32_010_25.pt",
+      "bytes": 10541943,
+      "sha256": "161cd264061fda9680cbb940255522ae42f2966c552d045d87913d9452a80970",
+      "source": "official IPD server; RFD3/MPNN hashes recorded on first acquisition, not vendor attestations"
+    },
+    {
+      "file": "rf3_foundry_01_24_latest_remapped.ckpt",
+      "bytes": 3038876446,
+      "sha256": "364ef592fd8042a9cf4176d045015190f8322f961ccca38d891b20ca578d3bb0",
+      "source": "official IPD server; RFD3/MPNN hashes recorded on first acquisition, not vendor attestations"
+    }
+  ],
+  "runtime": {
+    "python": "3.12.15",
+    "torch": "2.11.0+cu128",
+    "atomworks": "2.2.1",
+    "biotite": "1.4.0",
+    "numpy": "2.5.3",
+    "rdkit": "2026.3.6",
+    "missing_MACE_descriptors": true
+  },
+  "inference_started_utc": "2026-10-02T18:31:01Z",
+  "inference_finished_utc": "2026-10-02T18:43:17Z",
+  "inference_exit_code": 0,
+  "bundle": {
+    "file": "result_bundle.tar.gz",
+    "bytes": 12724139,
+    "sha256": "1ed41a47f25e90a31291a22ea23230760c50daf5a037ea63366cf22ec64205ee",
+    "manifest_file_count": 457,
+    "created_utc": "2026-10-02T18:43:45.656462+00:00"
+  },
+  "retrieval_verification": {
+    "bundle_sha256": "1ed41a47f25e90a31291a22ea23230760c50daf5a037ea63366cf22ec64205ee",
+    "files_verified": 457,
+    "assigned_RF3_structures_verified": 80,
+    "status": "passed"
+  },
+  "local_recomputation": {
+    "status": "same_decision_and_all_numeric_readouts_within_1e-10",
+    "float_values_compared": 1052,
+    "maximum_absolute_difference": 2.842170943040401e-14,
+    "remote_numpy": "2.5.3",
+    "local_note": "Path-only manifest translation; immutable remote report preserved"
+  },
+  "rental": {
+    "pod_id": "c8e8dd3bf74e4f8885ad3e82febf3ca1",
+    "provider_status": "TERMINATED",
+    "created_utc": "2026-10-02T18:24:42.284000",
+    "terminated_utc": "2026-10-02T18:44:44.240000",
+    "elapsed_seconds": 1201.956,
+    "hourly_USD": 1.2,
+    "estimated_USD": 0.40065199999999995,
+    "provider_final_charge_USD": null,
+    "authorized_max_seconds": 7200,
+    "authorized_max_USD": 5
+  },
+  "limitations": [
+    "Four paired design seeds; five correlated predictions per state do not create biological replicates.",
+    "Source baseline already includes water; this is not Atlas-versus-direct efficacy.",
+    "All40 ES outputs retained, including frames with large residuals; no exclusion or rescue.",
+    "Protein scaffold and sequence both change downstream of water conditioning.",
+    "Isolated12mer termini differ from reporter/full-protein context.",
+    "Public LigandMPNN substitutes author EnhancedMPNN in both arms.",
+    "Missing MACE cached descriptors; shared fallback does not establish descriptor-present quality.",
+    "No catalytic rate, reaction barrier, product identity or measured function."
+  ],
+  "posthoc_analysis_archive": {
+    "file": "posthoc_analysis.tar.gz",
+    "bytes": 48151,
+    "sha256": "be4a47c9a3451d39b8c136f237c7b260fb366506653f3137042966ce140c63a3",
+    "files": 13
+  }
+}
