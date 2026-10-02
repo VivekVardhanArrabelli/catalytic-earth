@@ -1,0 +1,859 @@
+{
+  "status": "passed_native_context_pair",
+  "model_execution": false,
+  "checkpoint_loaded": false,
+  "trained_inference_or_sampling": false,
+  "neural_forward_executed": false,
+  "device": "cpu",
+  "source_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "checker_sha256": "f8f494eb79a32a07fc5220cf3e5f608fcf8dd8b9dd08e4aa77018800fa859b7a",
+  "scaffold": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T192938Z-protease-sidechain-context/package/sidechain_context/selected_scaffold.cif.gz",
+  "scaffold_sha256": "1e764d610d69a29b76b942c625b6950ec0eb4f4ca0ea30cc0b2fc91cdd11bca2",
+  "arms": {
+    "sidechains_hidden": {
+      "input": {
+        "structure_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T192938Z-protease-sidechain-context/package/sidechain_context/selected_scaffold.cif.gz",
+        "name": "native_context_gate",
+        "seed": 200,
+        "batch_size": 1,
+        "number_of_batches": 1,
+        "temperature": 0.1,
+        "structure_noise": 0.0,
+        "atomize_side_chains": false,
+        "remove_ccds": [],
+        "remove_waters": false,
+        "fixed_residues": [
+          "A36",
+          "A37",
+          "A40",
+          "A115",
+          "A152",
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7",
+          "B8",
+          "B9",
+          "B10",
+          "B11",
+          "B12"
+        ]
+      },
+      "fixed_residues": [
+        "A36",
+        "A37",
+        "A40",
+        "A115",
+        "A152",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12"
+      ],
+      "revealed_residues": [],
+      "exposed_sidechain_atom_ids": [],
+      "exposed_sidechain_atom_count": 0,
+      "ligand_Y_shape": [
+        1,
+        2,
+        3
+      ],
+      "context_shape": [
+        1,
+        199,
+        2,
+        3
+      ],
+      "minimum_valid_context_atoms": 2,
+      "maximum_valid_context_atoms": 2,
+      "masked_nonfinite_X_entries": 6,
+      "all_visible_context_coordinates_finite": true,
+      "Zn_visible_residue_count": 199,
+      "water_visible_residue_count": 199,
+      "fixed_site_context": [
+        {
+          "arm": "sidechains_hidden",
+          "residue": "A36",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:ZN1;C1:O1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "A37",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "A40",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "A115",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:ZN1;C1:O1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "A152",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:ZN1;C1:O1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B1",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B2",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B3",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B4",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B5",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B6",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B7",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B8",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B9",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:ZN1;C1:O1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B10",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B11",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:ZN1;C1:O1"
+        },
+        {
+          "arm": "sidechains_hidden",
+          "residue": "B12",
+          "sequence_fixed": true,
+          "sidechain_revealed": false,
+          "valid_context_atoms": 2,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:ZN1;C1:O1"
+        }
+      ],
+      "context_coordinate_sha256": "f52554546b02f2c1c8899332dcc9fb52e93cb61a9fcd81725643ec319af9faec",
+      "context_mask_sha256": "53bcc8751e2c593c56debc6e69e0b9700b79eac7ccfd5feabc3db35d6a354b2c",
+      "pre_mask_features": {
+        "X": {
+          "shape": [
+            1,
+            199,
+            37,
+            3
+          ],
+          "dtype": "torch.float32",
+          "sha256": "c4e58672701b5bba3b5fd3675c258b2c70906d682a5e49ec8c70d02190996b3d"
+        },
+        "X_m": {
+          "shape": [
+            1,
+            199,
+            37
+          ],
+          "dtype": "torch.bool",
+          "sha256": "fd9569041d8eb745b12ac00fc43d29b4a9478c43c9eec65b534a101320bae3a4"
+        },
+        "S": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.int64",
+          "sha256": "d5b248783df1bc3e5be2a097f168a5f3037673713aeb724f220ab77d0511171f"
+        },
+        "R_idx": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.int32",
+          "sha256": "7ac0657a4199f4d0a6c023575698c2c819e0d365757710bb6923e131c534ca8f"
+        },
+        "chain_labels": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.int64",
+          "sha256": "8dbc4fafe7e0310e0f1ff42b0b6d95315a4b524d5828c186af7c8ac4a35dfc9c"
+        },
+        "residue_mask": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.bool",
+          "sha256": "07bb1815af1822aaeff3745dcb71364ec399b7e3bbf7f5c7b70eccbbab279014"
+        },
+        "Y": {
+          "shape": [
+            1,
+            2,
+            3
+          ],
+          "dtype": "torch.float32",
+          "sha256": "b4b4cdddfb7297dbcb21981e0430af21182d692c614b2ae6fe84a805278e66b7"
+        },
+        "Y_t": {
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "torch.int32",
+          "sha256": "f847c481060fa1b19411ac1a86bf9282dbe392a736ee0b554b526aea1f723fa0"
+        },
+        "Y_m": {
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "torch.bool",
+          "sha256": "9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2"
+        },
+        "structure_noise": 0.0,
+        "decode_type": "auto_regressive",
+        "causality_pattern": "auto_regressive",
+        "initialize_sequence_embedding_with_ground_truth": false,
+        "atomize_side_chains": false,
+        "repeat_sample_num": 1,
+        "features_to_return": {
+          "input_features": [
+            "mask_for_loss"
+          ],
+          "decoder_features": [
+            "log_probs",
+            "S_sampled",
+            "S_argmax",
+            "logits"
+          ]
+        },
+        "designed_residue_mask": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.bool",
+          "sha256": "5cd00839fdf5649c4d79c3ed5910165d84df473b4bd301e42b1c0309811ace4c"
+        },
+        "temperature": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.float32",
+          "sha256": "a5a5f470c77deeedfcc759ff1e31870d3092d92204045add5948fe45bbd6c066"
+        },
+        "symmetry_equivalence_group": null,
+        "symmetry_weight": null,
+        "bias": {
+          "shape": [
+            1,
+            199,
+            21
+          ],
+          "dtype": "torch.float32",
+          "sha256": "0fcd9add58a1435b54808468a0e0ab7b783a123dd38ff4bb47bf5193bdaec55f"
+        },
+        "pair_bias": null
+      }
+    },
+    "fixed_sidechains_exposed": {
+      "input": {
+        "structure_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T192938Z-protease-sidechain-context/package/sidechain_context/selected_scaffold.cif.gz",
+        "name": "native_context_gate",
+        "seed": 200,
+        "batch_size": 1,
+        "number_of_batches": 1,
+        "temperature": 0.1,
+        "structure_noise": 0.0,
+        "atomize_side_chains": true,
+        "remove_ccds": [],
+        "remove_waters": false,
+        "fixed_residues": [
+          "A36",
+          "A37",
+          "A40",
+          "A115",
+          "A152",
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7",
+          "B8",
+          "B9",
+          "B10",
+          "B11",
+          "B12"
+        ]
+      },
+      "fixed_residues": [
+        "A36",
+        "A37",
+        "A40",
+        "A115",
+        "A152",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12"
+      ],
+      "revealed_residues": [
+        "A36",
+        "A37",
+        "A40",
+        "A115",
+        "A152",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12"
+      ],
+      "exposed_sidechain_atom_ids": [
+        "A36:CG",
+        "A36:CD2",
+        "A36:ND1",
+        "A36:CE1",
+        "A36:NE2",
+        "A37:CG",
+        "A37:CD",
+        "A37:OE1",
+        "A37:OE2",
+        "A40:CG",
+        "A40:CD2",
+        "A40:ND1",
+        "A40:CE1",
+        "A40:NE2",
+        "A115:CG",
+        "A115:CD1",
+        "A115:CD2",
+        "A115:CE1",
+        "A115:CE2",
+        "A115:OH",
+        "A115:CZ",
+        "A152:CG",
+        "A152:CD",
+        "A152:OE1",
+        "A152:OE2",
+        "B2:CG",
+        "B2:CD1",
+        "B2:CD2",
+        "B3:CG",
+        "B3:CD",
+        "B3:NE2",
+        "B3:OE1",
+        "B4:OG",
+        "B5:OG",
+        "B6:CG",
+        "B6:CD1",
+        "B6:CD2",
+        "B6:CE2",
+        "B6:CE3",
+        "B6:NE1",
+        "B6:CH2",
+        "B6:CZ2",
+        "B6:CZ3",
+        "B8:CG",
+        "B8:SD",
+        "B8:CE",
+        "B9:CG",
+        "B9:SD",
+        "B9:CE",
+        "B11:CG",
+        "B11:SD",
+        "B11:CE",
+        "B12:CG",
+        "B12:CD1",
+        "B12:CD2"
+      ],
+      "exposed_sidechain_atom_count": 55,
+      "ligand_Y_shape": [
+        1,
+        2,
+        3
+      ],
+      "context_shape": [
+        1,
+        199,
+        25,
+        3
+      ],
+      "minimum_valid_context_atoms": 2,
+      "maximum_valid_context_atoms": 25,
+      "masked_nonfinite_X_entries": 6,
+      "all_visible_context_coordinates_finite": true,
+      "Zn_visible_residue_count": 199,
+      "water_visible_residue_count": 199,
+      "fixed_site_context": [
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "A36",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 19,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "A36:CG;A36:ND1;A36:CD2;B8:SD;A36:CE1;A36:NE2;B8:CE;A37:OE2;B8:CG;A37:CD;A37:CG;A37:OE1;C1:ZN1;C1:O1;A40:CD2;A40:NE2;A40:CG;A40:CE1;A40:ND1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "A37",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 25,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "A37:CG;A37:CD;A37:OE1;A37:OE2;A36:CD2;B8:CE;A40:CD2;C1:O1;A36:CG;A40:CG;B8:SD;A36:NE2;A40:NE2;C1:ZN1;A36:ND1;B8:CG;B6:CD1;A40:ND1;A36:CE1;A40:CE1;B6:CG;B6:NE1;B6:CD2;B6:CE2;B6:CE3"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "A40",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 25,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "A40:CG;A40:ND1;A40:CD2;A40:CE1;A40:NE2;B6:CG;B6:CD1;B6:CD2;B6:NE1;B6:CE2;A37:OE1;B6:CE3;B6:CZ2;C1:O1;A36:CD2;C1:ZN1;B6:CZ3;A37:CD;A36:NE2;B6:CH2;A36:CG;A37:CG;A152:OE2;A152:OE1;A37:OE2"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "A115",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 13,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "A115:CG;A115:CD2;A115:CD1;A115:CE2;A115:CE1;A115:CZ;A115:OH;A152:CG;A152:OE1;A152:CD;C1:ZN1;A152:OE2;C1:O1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "A152",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 22,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "A152:CG;A152:CD;A152:OE1;A152:OE2;A115:CZ;A115:CE2;A115:CE1;A115:CD2;A115:CD1;A115:CG;A115:OH;C1:ZN1;C1:O1;B6:CE3;B6:CZ3;B6:CD2;B6:CG;B6:CH2;B6:CE2;B6:CD1;B6:CZ2;B6:NE1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B1",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 9,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B3:CG;B2:CG;B3:NE2;B2:CD2;B3:CD;B2:CD1;B3:OE1;C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B2",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 10,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B2:CG;B2:CD2;B2:CD1;B3:CG;B4:OG;B3:CD;B3:OE1;B3:NE2;C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B3",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 11,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B3:CG;B3:CD;B3:OE1;B3:NE2;B5:OG;B4:OG;B2:CG;B2:CD2;B2:CD1;C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B4",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 20,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B4:OG;B6:CZ2;B6:CH2;B6:CE2;B6:CZ3;B6:NE1;B6:CD2;B6:CE3;B6:CD1;B6:CG;B5:OG;B3:CG;B2:CG;B2:CD1;B2:CD2;B3:CD;B3:OE1;B3:NE2;C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B5",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 17,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B5:OG;B6:CG;B6:CD1;B6:CD2;B6:NE1;B6:CE2;B4:OG;B6:CE3;B6:CZ2;B6:CZ3;B3:OE1;B6:CH2;B3:CG;B3:CD;C1:O1;B3:NE2;C1:ZN1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B6",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 25,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B6:CG;B6:CD1;B6:CD2;B6:CE3;A40:CD2;A40:NE2;B6:NE1;B6:CE2;A40:CG;A152:OE2;A40:CE1;C1:O1;A40:ND1;C1:ZN1;B6:CZ3;A37:OE1;B6:CZ2;A152:CD;B6:CH2;A152:OE1;A37:CD;A152:CG;A37:OE2;B4:OG;B5:OG"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B7",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 25,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "C1:O1;A152:OE2;C1:ZN1;A152:CD;A37:OE1;A152:OE1;A37:OE2;A37:CD;A152:CG;B6:CG;B8:CG;B6:CD1;B6:CD2;A37:CG;B9:CG;B6:CE3;B5:OG;B8:CE;B8:SD;B9:SD;B6:NE1;B6:CE2;B9:CE;B6:CZ3;B6:CZ2"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B8",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 25,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B8:CG;A37:OE2;B8:SD;B8:CE;A36:CD2;C1:O1;A37:CD;A36:NE2;A36:CG;C1:ZN1;A37:OE1;A36:CE1;A36:ND1;A37:CG;B9:CG;B9:SD;B9:CE;B6:CG;B6:CD1;B6:CD2;B6:CE3;B6:NE1;B6:CE2;B6:CZ3;B6:CZ2"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B9",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 11,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B9:CG;B9:SD;B9:CE;B11:SD;B11:CG;B8:CG;B11:CE;B8:SD;C1:ZN1;C1:O1;B8:CE"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B10",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 14,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B9:CG;B11:CG;B8:CG;B11:SD;B8:SD;B8:CE;B9:SD;B11:CE;B9:CE;B12:CD2;B12:CG;B12:CD1;C1:O1;C1:ZN1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B11",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 14,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B11:CG;B11:SD;B11:CE;B9:CG;B12:CG;B9:CE;B9:SD;B12:CD2;B12:CD1;B8:CG;B8:SD;B8:CE;C1:ZN1;C1:O1"
+        },
+        {
+          "arm": "fixed_sidechains_exposed",
+          "residue": "B12",
+          "sequence_fixed": true,
+          "sidechain_revealed": true,
+          "valid_context_atoms": 11,
+          "Zn_in_context": true,
+          "water_in_context": true,
+          "context_atom_ids": "B12:CG;B12:CD2;B12:CD1;B11:CE;B11:CG;B11:SD;B9:CG;B9:SD;B9:CE;C1:ZN1;C1:O1"
+        }
+      ],
+      "context_coordinate_sha256": "bddf1eb88994eec987ddc8f896150f647f1a90ac410707f5735472d9329fb4bb",
+      "context_mask_sha256": "3d03242d756c94f94191ff7c424a36d55e6f9828f15e990e9f526d5ada66a9ef",
+      "pre_mask_features": {
+        "X": {
+          "shape": [
+            1,
+            199,
+            37,
+            3
+          ],
+          "dtype": "torch.float32",
+          "sha256": "c4e58672701b5bba3b5fd3675c258b2c70906d682a5e49ec8c70d02190996b3d"
+        },
+        "X_m": {
+          "shape": [
+            1,
+            199,
+            37
+          ],
+          "dtype": "torch.bool",
+          "sha256": "fd9569041d8eb745b12ac00fc43d29b4a9478c43c9eec65b534a101320bae3a4"
+        },
+        "S": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.int64",
+          "sha256": "d5b248783df1bc3e5be2a097f168a5f3037673713aeb724f220ab77d0511171f"
+        },
+        "R_idx": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.int32",
+          "sha256": "7ac0657a4199f4d0a6c023575698c2c819e0d365757710bb6923e131c534ca8f"
+        },
+        "chain_labels": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.int64",
+          "sha256": "8dbc4fafe7e0310e0f1ff42b0b6d95315a4b524d5828c186af7c8ac4a35dfc9c"
+        },
+        "residue_mask": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.bool",
+          "sha256": "07bb1815af1822aaeff3745dcb71364ec399b7e3bbf7f5c7b70eccbbab279014"
+        },
+        "Y": {
+          "shape": [
+            1,
+            2,
+            3
+          ],
+          "dtype": "torch.float32",
+          "sha256": "b4b4cdddfb7297dbcb21981e0430af21182d692c614b2ae6fe84a805278e66b7"
+        },
+        "Y_t": {
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "torch.int32",
+          "sha256": "f847c481060fa1b19411ac1a86bf9282dbe392a736ee0b554b526aea1f723fa0"
+        },
+        "Y_m": {
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "torch.bool",
+          "sha256": "9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2"
+        },
+        "structure_noise": 0.0,
+        "decode_type": "auto_regressive",
+        "causality_pattern": "auto_regressive",
+        "initialize_sequence_embedding_with_ground_truth": false,
+        "atomize_side_chains": true,
+        "repeat_sample_num": 1,
+        "features_to_return": {
+          "input_features": [
+            "mask_for_loss"
+          ],
+          "decoder_features": [
+            "log_probs",
+            "S_sampled",
+            "S_argmax",
+            "logits"
+          ]
+        },
+        "designed_residue_mask": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.bool",
+          "sha256": "5cd00839fdf5649c4d79c3ed5910165d84df473b4bd301e42b1c0309811ace4c"
+        },
+        "temperature": {
+          "shape": [
+            1,
+            199
+          ],
+          "dtype": "torch.float32",
+          "sha256": "a5a5f470c77deeedfcc759ff1e31870d3092d92204045add5948fe45bbd6c066"
+        },
+        "symmetry_equivalence_group": null,
+        "symmetry_weight": null,
+        "bias": {
+          "shape": [
+            1,
+            199,
+            21
+          ],
+          "dtype": "torch.float32",
+          "sha256": "0fcd9add58a1435b54808468a0e0ab7b783a123dd38ff4bb47bf5193bdaec55f"
+        },
+        "pair_bias": null
+      }
+    }
+  },
+  "source_pins": {
+    "models/mpnn/src/mpnn/utils/inference.py": "aad78c4ac571293dd64a52cc02f0b9ea4cd80a2ff7194f185bd8e6c5d744ff1b",
+    "models/mpnn/src/mpnn/pipelines/mpnn.py": "2b23d9e3bc240e624fd442b75520490f805e263f4b96dccb670b558d4fa69424",
+    "models/mpnn/src/mpnn/model/mpnn.py": "1aeae0716775140f8189b3734d05dab369c2a0328ae74d669b031f9c861b06b2",
+    "models/mpnn/src/mpnn/model/layers/graph_embeddings.py": "5b82a1277ce141f6166060231c95e8e41849fd47e34b853c604975011e04ffd5",
+    "models/mpnn/src/mpnn/collate/feature_collator.py": "40649fbebf40a1c655dae87ca48399ee71b726411884accbc6149581ba73edb6",
+    "models/mpnn/src/mpnn/transforms/feature_aggregation/mpnn.py": "8e4872302a898a9290d8fbe3a8f92fbc2961a225f1fc8f1ed379670de1fdfff3",
+    "models/mpnn/src/mpnn/transforms/feature_aggregation/user_settings.py": "779217c71d40e210f6af934cf6a90426e588dfd447eec864550cb5c9b53fb748"
+  },
+  "versions": {
+    "torch": "2.7.1",
+    "atomworks": "2.2.1",
+    "biotite": "1.4.0",
+    "numpy": "2.3.1",
+    "rdkit": "2026.3.6"
+  },
+  "native_constructor": {
+    "class": "LigandMPNN",
+    "fresh_parameters_initialized_but_unused": true,
+    "num_neighbors": 32,
+    "num_context_atoms": 25,
+    "sidechain_neighbor_residues": 16
+  },
+  "pre_mask_feature_differences": [
+    "atomize_side_chains"
+  ],
+  "unchanged_native_atom_annotations_coordinates_and_bonds": true,
+  "context_table": {
+    "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T192938Z-protease-sidechain-context/native_context_portable.contexts.csv",
+    "sha256": "e118cbe06aa0936aa138b34534125d01b6ee15918750db4dd246608ed623da2c",
+    "rows": 398
+  },
+  "qualification": "Actual native preprocessing, inference masks and parameter-independent context gathering executed on the retained scaffold. Fresh module parameters are unused; no checkpoint, neural encoder/decoder forward, sequence sample or prediction was evaluated. True exposes fixed enzyme and peptide sidechains excluding CB, and may replace Zn/water in finite nearest-neighbor context. No quality/activity/Atlas benefit follows."
+}

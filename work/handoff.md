@@ -1,71 +1,81 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — eight new designs evaluated, 2026-10-02
+## Current research handoff — context intervention closed, 2026-10-02
 
-- **Direction:** build the full computable catalytic-mechanism Atlas through
-  consequential tests toward de novo function. Problem 8 remains the selected
-  question. The previous TDPn3 substrate-window comparison and unsuccessful
-  local QM attempt remain closed; no rescue sampling or QM restart occurred.
-- **Completed experiment:** user-approved execution generated all eight RFD3
-  scaffolds, eight distinct public LigandMPNN sequences and 80 unconditioned
-  RF3 predictions. Both water-conditioning arms passed the actual remote
-  native gates before weights. All 40 complex and 40 monomer outputs were
-  measured, with no replacements, exclusions, templates or pose restraints.
-  [Complete result and raw evidence](../tools/research_lanes/protease_retargeting/water_conditioning/results_20261002/README.md).
-- **Primary decision:** no consistent water-conditioning advantage. Paired
-  fixed-minus-free median source-water errors are +0.796, −0.114, −1.753 and
-  −1.686 Å. Preserve the frozen mixed-sign decision; three favorable pairs do
-  not satisfy the all-four-sign rule. Four design seeds, not 40 correlated
-  outputs, are the comparison units. Large frame residuals remain included.
-- **Scientific consequence:** several predicted enzymes lose scaffold agreement
-  (median all-enzyme C-alpha RMSD around 10–19 Å). Fixed seed 3 recovers its
-  overall scaffold (complex 1.425 Å; monomer 1.789 Å) and source water (0.393 Å),
-  but Tyr115 OH–G7 O remains 8.305 Å versus source-derived 2.574 Å. The scaffold
-  retains source-like donor/substrate geometry; unconditioned prediction moves
-  the donor backbone and sidechain. Water recovery and global fold agreement
-  alone do not recover the full catalytic arrangement. This is a computational
-  diagnostic, not evidence of physical inactivity or measured protease function.
-- **Next consequential action:** freeze a bounded fixed-sidechain-context
-  comparison during sequence design on retained fixed-seed-3 scaffold, with
-  matched sequence seeds and the unchanged direct baseline. Current native
-  `atomize_side_chains=False` hides protein sidechains as geometric context;
-  source inspection confirms True reveals fixed-residue sidechains. Test joint
-  motif/substrate and fold recovery in subsequent unconditioned RF3. This
-  specific possible translation gap beats more water-only backbones or generic
-  dynamics. The option exposes fixed enzyme and substrate sidechains together,
-  not Tyr alone, and may change finite-neighbor Zn/water context. The scaffold
-  selection is post hoc; do not claim generality
-  or causality. Do not change this completed experiment or launch another
-  rental under its exhausted one-instance authorization.
-- **Evidence boundaries:** the source baseline already contains water, so this
-  is not Atlas-versus-direct efficacy. Public LigandMPNN differs from author
-  EnhancedMPNN. Cached MACE descriptors were absent in the pinned RF3 runtime;
-  common fallback does not establish equivalent quality. Source cropped
-  V6–N7–F8 backbone coordinates were adapted to target G7/M8 in an isolated
-  full 12mer, whose termini differ from reporter/full-protein context. No rate,
-  barrier, product identification, experimental specificity or activity claim.
-- **Compute:** A100 `c8e8dd3bf74e4f8885ad3e82febf3ca1` was provider-confirmed
-  TERMINATED at 18:44:44 UTC after about 20 minutes; estimated $0.40 at $1.20/hour,
-  final charge unavailable. Authorized bound was one instance/two hours/$5.
-  All outputs were retrieved and verified before deletion. No paid instance
-  remains from this run; no wet work, outreach, order or further design run.
-- **Verification and ownership:** 457 archived file hashes and all 80 assigned
-  CIF hashes verified. Local recomputation agrees on all 1,052 numeric readouts
-  within 2.85e-14; a separate Astra/max worker independently recomputed all 40
-  water errors from raw coordinates. Three Astra/max workers checked output
-  identity, evidence and mechanism under one lead; not independent expert
-  review. Frozen plan/runner/source bytes, protected registries and seven
-  unrelated demo paths remain unchanged. Hourly automation remains paused.
-- **Run:** started 18:20:54 UTC; base
-  `e881e3057fe3aaaddc11b7ba5a81d6b3857727f6`; branch
-  `codex/protease-water-conditioning-run`; local receipt
-  `.git/catalytic-earth-runs/20261002T182054Z-protease-water-execution/`.
-  PR #137 integrated before this run. Publication status remains in this receipt.
-- **Acquisition:** no new author-source acquisition. Named batch remains
+- **Direction:** pursue the full computable catalytic-mechanism Atlas toward
+  de novo function, using Problem 8 as a consequential test. No working protease
+  or Atlas design advantage is claimed. Both finite design comparisons and the
+  earlier substrate-window comparison remain closed without rescue sampling.
+- **Completed question:** does fixed enzyme/substrate sidechain geometry during
+  LigandMPNN sequence design improve joint recovery on the retained
+  water-fixed-seed-3 scaffold? All eight distinct sequences and 80 unconditioned
+  RF3 predictions completed. No new backbone was generated.
+  [Result and complete evidence](../tools/research_lanes/protease_retargeting/sidechain_context/results_20261002/README.md).
+- **Primary result:** no consistent joint reference-recovery advantage.
+  Revealed-minus-hidden median worst-group RMSDs are −4.655, +8.309, +9.484 and
+  +14.937 Å for paired sequence seeds 200–203. Even seed 200 worsens base and
+  reactive-backbone medians (+0.227/+0.236 Å). All 40 complex and 40 monomer
+  assignments are retained. Four design-seed pairs, not 40 independent complex
+  experiments, are the comparison units. Keep the frozen endpoint unchanged.
+- **Scientific consequence:** the input omission was verified, but exposing it
+  did not repair joint recovery on this scaffold. Native context adds 55 fixed
+  sidechain atoms while retaining Zn/water for every polymer residue. All 868
+  finite audited retained coordinates per sequence-design output are unchanged.
+  Revealed complex fold RMSD medians are 9.166–14.617 Å; isolated donor gains
+  can accompany large metal-ligand losses. Do not adopt this switch as an
+  established repair or try further water/context seeds to find a favorable one.
+- **Reassessment using existing evidence:** retrospective calculation on all 20
+  already completed TDPn3 predictions uses its own correctly mapped author AF3
+  reference. Median worst-group errors are 0.646/0.797 Å for the 10mer versus
+  2.864/2.672 Å for the 12mer, largely water displacement, with close global
+  fold recovery. Published activity therefore coexists with imperfect predicted
+  water geometry. This positive-only context is not an activity discriminator,
+  a new prediction experiment or a cross-scaffold ranking. Original source
+  assays and isolated peptide prediction contexts remain distinct.
+- **Next consequential action:** establish an exact sequence- and assay-matched
+  inactive control retaining the catalytic identities/atoms scored here, using
+  primary construct/assay evidence within the remaining source budget. Stop if
+  a comparable pair cannot be established. TDPn3's general-base knockout lacks
+  an exact retained substitution; do not invent E147A. Even a confirmed E147A
+  removes scored Glu atoms, making a missing-group penalty tautological; such
+  a control needs a separately justified common endpoint. The unnormalized
+  113-design screen cannot automatically supply matched inactive labels.
+  No suitable negative is established, so prediction discrimination is not
+  currently executable. This dependency beats more generative repairs because
+  the current readout is not activity-validated. The positive-only reanalysis
+  is complete; do not repeat it or relabel it validation. No further compute
+  is authorized by the completed rental.
+- **Evidence boundaries:** one post hoc selected imposed hybrid scaffold, four
+  new sequence seeds; combined enzyme/substrate context, not Tyr-only causality.
+  Public LigandMPNN differs from author EnhancedMPNN. RF3 cached MACE features
+  were absent in both arms; common fallback does not establish equivalent
+  quality. Per-input native RNG reset is not atom-matched noise or bitwise GPU
+  identity. No rate, barrier, specificity, physical fold or measured function.
+- **Compute:** current user continuation authorized the bounded follow-up.
+  A100 offers vanished before creation; one RTX6000Ada at $0.75/hour was frozen
+  before sampling under the same two-hour/$5 ceiling. Pod
+  `39a95f4dd24448cd923ac3ef2ec9ca34` was provider-confirmed TERMINATED at
+  20:07:41 UTC after verified retrieval; estimated $0.20, final charge unavailable.
+  No paid instance remains from this run. No wet work, outreach or order.
+- **Verification and ownership:** 431 archived file hashes and all 80 assigned
+  CIF hashes verified. Local recomputation matches all 1,548 numeric readouts
+  within 2.85e-14. Separate Astra/max workers check raw-coordinate arithmetic,
+  native identities/context/RNG and mechanistic interpretation. Same-model
+  checks are not independent expert review. Seven unrelated demo paths and
+  protected registries are preserved; hourly automation remains paused.
+- **Run/publication:** started 19:29:38 UTC; base
+  `837afd8faff28455bc94dfa1cc6ee606e6dbbb54`; branch
+  `codex/protease-sidechain-context`; local receipt
+  `.git/catalytic-earth-runs/20261002T192938Z-protease-sidechain-context/`.
+  Scientific freeze `dddd4e8c`; hardware amendment `14119cfd`, both before sampling.
+  PR #138 was integrated before this run; current publication state is in the
+  local receipt and Git. No second queue or replacement samples were created.
+- **Acquisition:** no new author-source acquisition. Named source batch remains
   30,250,296 of 31,457,280 bytes and 92 of 100 requests. Official runtime/packages
-  and 5,739,735,058 checkpoint bytes were separately authorized; do not reset
-  the named source budget or count unmetered package traffic as exact receipts.
+  and 3,049,418,389 checkpoint bytes were separately authorized for this rental;
+  do not reset the named source budget or treat unmetered package traffic as an
+  exact receipt. Earlier acquisition receipts remain unchanged.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue

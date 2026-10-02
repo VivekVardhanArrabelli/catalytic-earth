@@ -1,0 +1,1568 @@
+{
+  "scope": "Retrospective positive-only context using already completed outputs; no new model execution and no inspection of the new sidechain-context predictions.",
+  "reference": {
+    "path": "tools/research_lanes/protease_retargeting/models/TDPn3-author-complex-seed-1-sample-3-filtered.pdb",
+    "sha256": "a25ad433f43762e4fec54eb4cdb3043ea338131b3f1b9ea2a01748b13683341f",
+    "state": "Author-selected AF3 ES, not experimental geometry; ten-mer substrate"
+  },
+  "prior_raw_archive": {
+    "path_relative_to_repo": "tools/research_lanes/protease_retargeting/window_check/results_20261002/result_bundle.tar.gz",
+    "sha256": "6a09d98e8145b7805de35fc0a12b6d9a115cef57a85a66abe598fe33e184dc82",
+    "bytes": 3402300,
+    "extraction": "Pass its extracted output directory as --prior-output; sample paths in this record are relative to that directory."
+  },
+  "enzyme_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+  "input_12mer_sha256": "5afdbf256678f327b756a51fab8b709c1fa08d2b1b71f7759c5c5d768fe7cdd9",
+  "method": "Same eight-role worst-group RMSD operation: one proper all187-enzyme-CA fit, separate symmetry-aware Glu groups, max group RMSD. TDPn3-specific H146/H150/E45/E147/Y78 mapping is used against its own sequence-identical author reference. No mapping to the new H36/H40/E152/E37/Y115 scaffold is performed.",
+  "comparison_limit": "The reference types differ (selected AF3 model here versus imposed RFD3 scaffold in the new experiment); numerical scores are diagnostic context, not cross-scaffold activity rankings. Only shared G7/M8 backbone is scored, so missing source M11/L12 is not filled. Exposed positive data cannot define a validated classifier threshold.",
+  "ordered_reference_atoms": {
+    "zinc": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "C",
+        "residue_number": 1,
+        "insertion_code": "",
+        "residue_name": "LIG",
+        "atom_name": "ZN1",
+        "element": "ZN"
+      }
+    ],
+    "water": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "C",
+        "residue_number": 1,
+        "insertion_code": "",
+        "residue_name": "LIG",
+        "atom_name": "O1",
+        "element": "O"
+      }
+    ],
+    "histidine_146": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 146,
+        "insertion_code": "",
+        "residue_name": "HIS",
+        "atom_name": "NE2",
+        "element": "N"
+      }
+    ],
+    "histidine_150": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 150,
+        "insertion_code": "",
+        "residue_name": "HIS",
+        "atom_name": "NE2",
+        "element": "N"
+      }
+    ],
+    "metal_glutamate_45": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 45,
+        "insertion_code": "",
+        "residue_name": "GLU",
+        "atom_name": "CD",
+        "element": "C"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 45,
+        "insertion_code": "",
+        "residue_name": "GLU",
+        "atom_name": "OE1",
+        "element": "O"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 45,
+        "insertion_code": "",
+        "residue_name": "GLU",
+        "atom_name": "OE2",
+        "element": "O"
+      }
+    ],
+    "general_base_147": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 147,
+        "insertion_code": "",
+        "residue_name": "GLU",
+        "atom_name": "CD",
+        "element": "C"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 147,
+        "insertion_code": "",
+        "residue_name": "GLU",
+        "atom_name": "OE1",
+        "element": "O"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 147,
+        "insertion_code": "",
+        "residue_name": "GLU",
+        "atom_name": "OE2",
+        "element": "O"
+      }
+    ],
+    "tyrosine_78": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 78,
+        "insertion_code": "",
+        "residue_name": "TYR",
+        "atom_name": "CZ",
+        "element": "C"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "A",
+        "residue_number": 78,
+        "insertion_code": "",
+        "residue_name": "TYR",
+        "atom_name": "OH",
+        "element": "O"
+      }
+    ],
+    "reactive_backbone": [
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 7,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "atom_name": "N",
+        "element": "N"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 7,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "atom_name": "CA",
+        "element": "C"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 7,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "atom_name": "C",
+        "element": "C"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 7,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "atom_name": "O",
+        "element": "O"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 8,
+        "insertion_code": "",
+        "residue_name": "MET",
+        "atom_name": "N",
+        "element": "N"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 8,
+        "insertion_code": "",
+        "residue_name": "MET",
+        "atom_name": "CA",
+        "element": "C"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 8,
+        "insertion_code": "",
+        "residue_name": "MET",
+        "atom_name": "C",
+        "element": "C"
+      },
+      {
+        "model_state": "author_selected_TDPn3_AF3_ES",
+        "chain": "B",
+        "residue_number": 8,
+        "insertion_code": "",
+        "residue_name": "MET",
+        "atom_name": "O",
+        "element": "O"
+      }
+    ]
+  },
+  "groups": {
+    "zinc": [
+      [
+        "ligand",
+        1,
+        "ZN"
+      ]
+    ],
+    "water": [
+      [
+        "ligand",
+        1,
+        "O"
+      ]
+    ],
+    "histidine_146": [
+      [
+        "enzyme",
+        146,
+        "NE2"
+      ]
+    ],
+    "histidine_150": [
+      [
+        "enzyme",
+        150,
+        "NE2"
+      ]
+    ],
+    "metal_glutamate_45": [
+      [
+        "enzyme",
+        45,
+        "CD"
+      ],
+      [
+        "enzyme",
+        45,
+        "OE1"
+      ],
+      [
+        "enzyme",
+        45,
+        "OE2"
+      ]
+    ],
+    "general_base_147": [
+      [
+        "enzyme",
+        147,
+        "CD"
+      ],
+      [
+        "enzyme",
+        147,
+        "OE1"
+      ],
+      [
+        "enzyme",
+        147,
+        "OE2"
+      ]
+    ],
+    "tyrosine_78": [
+      [
+        "enzyme",
+        78,
+        "CZ"
+      ],
+      [
+        "enzyme",
+        78,
+        "OH"
+      ]
+    ],
+    "reactive_backbone": [
+      [
+        "peptide",
+        7,
+        "N"
+      ],
+      [
+        "peptide",
+        7,
+        "CA"
+      ],
+      [
+        "peptide",
+        7,
+        "C"
+      ],
+      [
+        "peptide",
+        7,
+        "O"
+      ],
+      [
+        "peptide",
+        8,
+        "N"
+      ],
+      [
+        "peptide",
+        8,
+        "CA"
+      ],
+      [
+        "peptide",
+        8,
+        "C"
+      ],
+      [
+        "peptide",
+        8,
+        "O"
+      ]
+    ]
+  },
+  "assigned_prior_outputs": 20,
+  "measured_prior_outputs": 20,
+  "summaries": [
+    {
+      "peptide_length": 10,
+      "seed": 0,
+      "n": 5,
+      "median_worst_group_rmsd_A": 0.6456502960036646,
+      "median_enzyme_CA_rmsd_A": 0.29845977241432936,
+      "group_median_rmsd_A": {
+        "zinc": 0.09013772642737035,
+        "water": 0.5291378491459435,
+        "histidine_146": 0.2852978339176526,
+        "histidine_150": 0.20744608949299556,
+        "metal_glutamate_45": 0.4474392005874656,
+        "general_base_147": 0.5191027341587255,
+        "tyrosine_78": 0.5847747464502896,
+        "reactive_backbone": 0.2793222239388875
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 1,
+      "n": 5,
+      "median_worst_group_rmsd_A": 0.7974699749885317,
+      "median_enzyme_CA_rmsd_A": 0.31030581261647944,
+      "group_median_rmsd_A": {
+        "zinc": 0.1514082216525154,
+        "water": 0.42167430871523504,
+        "histidine_146": 0.24658277739891651,
+        "histidine_150": 0.2688388533616894,
+        "metal_glutamate_45": 0.5031419395652877,
+        "general_base_147": 0.4747536670478373,
+        "tyrosine_78": 0.5883971481080569,
+        "reactive_backbone": 0.36624749815674634
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 0,
+      "n": 5,
+      "median_worst_group_rmsd_A": 2.8635959394818005,
+      "median_enzyme_CA_rmsd_A": 0.368268243756903,
+      "group_median_rmsd_A": {
+        "zinc": 0.2562876050903192,
+        "water": 2.8074302332988554,
+        "histidine_146": 0.23977060166199624,
+        "histidine_150": 0.3136713951993544,
+        "metal_glutamate_45": 0.4869361155801109,
+        "general_base_147": 0.518847225710133,
+        "tyrosine_78": 0.68452258078628,
+        "reactive_backbone": 0.9086904858530815
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 1,
+      "n": 5,
+      "median_worst_group_rmsd_A": 2.672038260714074,
+      "median_enzyme_CA_rmsd_A": 0.37950268633290984,
+      "group_median_rmsd_A": {
+        "zinc": 0.24447394570230038,
+        "water": 2.5525370445396542,
+        "histidine_146": 0.24369100430440854,
+        "histidine_150": 0.2550440235922401,
+        "metal_glutamate_45": 0.43072068727593743,
+        "general_base_147": 0.46096593094188065,
+        "tyrosine_78": 0.5536780707479927,
+        "reactive_backbone": 0.7843797258738344
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "peptide_length": 10,
+      "seed": 0,
+      "sample": 0,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_10mer/seed-0_sample-0/TDPn3_ES_window_10mer_seed-0_sample-0_model.cif",
+      "sha256": "70780a9f576f5a950e486fe4e5d9186dfb67f4e0aed74a7316a28fc37d2fcd84",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.3197784289766233,
+      "group_rmsd_A": {
+        "zinc": 0.12310525016623027,
+        "water": 0.3716664356183385,
+        "histidine_146": 0.23550847243169115,
+        "histidine_150": 0.20744608949299556,
+        "metal_glutamate_45": 0.5029944242197368,
+        "general_base_147": 0.5053502695104704,
+        "tyrosine_78": 0.46724417242405214,
+        "reactive_backbone": 0.2961193601777444
+      },
+      "worst_group_rmsd_A": 0.5053502695104704,
+      "worst_group": "general_base_147",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 0,
+      "sample": 1,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_10mer/seed-0_sample-1/TDPn3_ES_window_10mer_seed-0_sample-1_model.cif",
+      "sha256": "9c5f9b605b4f24e694294e35cf17306d9a194eeafc0e7dda1b9b4375defb6df2",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.2656820193633729,
+      "group_rmsd_A": {
+        "zinc": 0.09013772642737035,
+        "water": 0.5291378491459435,
+        "histidine_146": 0.2852978339176526,
+        "histidine_150": 0.21554582997435426,
+        "metal_glutamate_45": 0.3804705373786859,
+        "general_base_147": 0.5191027341587255,
+        "tyrosine_78": 0.7119800528993355,
+        "reactive_backbone": 0.27137315684761987
+      },
+      "worst_group_rmsd_A": 0.7119800528993355,
+      "worst_group": "tyrosine_78",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 0,
+      "sample": 2,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_10mer/seed-0_sample-2/TDPn3_ES_window_10mer_seed-0_sample-2_model.cif",
+      "sha256": "1b901e8d66030ffb914c294dfb5bdae70dc13363517fa85288bcd472640b52e7",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.3079874733823596,
+      "group_rmsd_A": {
+        "zinc": 0.08698211416467398,
+        "water": 0.47137773866951405,
+        "histidine_146": 0.3423219537998265,
+        "histidine_150": 0.12224384340305905,
+        "metal_glutamate_45": 0.4102716515540796,
+        "general_base_147": 0.5333087309760716,
+        "tyrosine_78": 0.5847747464502896,
+        "reactive_backbone": 0.23374731239335464
+      },
+      "worst_group_rmsd_A": 0.5847747464502896,
+      "worst_group": "tyrosine_78",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 0,
+      "sample": 3,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_10mer/seed-0_sample-3/TDPn3_ES_window_10mer_seed-0_sample-3_model.cif",
+      "sha256": "5307be15cc116f6829e62e89c49eabf1a3d5b3dc26be56878efc7ba2df317fd0",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.29845977241432936,
+      "group_rmsd_A": {
+        "zinc": 0.04316588891098503,
+        "water": 0.6456502960036646,
+        "histidine_146": 0.2989416962224722,
+        "histidine_150": 0.1576235322233541,
+        "metal_glutamate_45": 0.45678580425759896,
+        "general_base_147": 0.5236619054349017,
+        "tyrosine_78": 0.5322602108411152,
+        "reactive_backbone": 0.2793222239388875
+      },
+      "worst_group_rmsd_A": 0.6456502960036646,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 0,
+      "sample": 4,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_10mer/seed-0_sample-4/TDPn3_ES_window_10mer_seed-0_sample-4_model.cif",
+      "sha256": "4d8a1dd53ae449962f19671fcbcf81239bc3005ab36d763260eef08a80708ad0",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.2761524611481755,
+      "group_rmsd_A": {
+        "zinc": 0.10348622273444258,
+        "water": 1.6934560880272957,
+        "histidine_146": 0.2722372618417835,
+        "histidine_150": 0.2187319354630722,
+        "metal_glutamate_45": 0.4474392005874656,
+        "general_base_147": 0.4796545849830243,
+        "tyrosine_78": 0.7362391468578098,
+        "reactive_backbone": 0.41663285647840237
+      },
+      "worst_group_rmsd_A": 1.6934560880272957,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 1,
+      "sample": 0,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_10mer/seed-1_sample-0/TDPn3_ES_window_10mer_seed-1_sample-0_model.cif",
+      "sha256": "d4b52cf450c57283ff0429147ef71c2528fa855526063df9986a43ab39ffa44e",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.30927227630922616,
+      "group_rmsd_A": {
+        "zinc": 0.1514082216525154,
+        "water": 0.19320910147455753,
+        "histidine_146": 0.2286526468311911,
+        "histidine_150": 0.2688388533616894,
+        "metal_glutamate_45": 0.44926072615703194,
+        "general_base_147": 0.40933761440357125,
+        "tyrosine_78": 0.39294092962094823,
+        "reactive_backbone": 0.398137130968188
+      },
+      "worst_group_rmsd_A": 0.44926072615703194,
+      "worst_group": "metal_glutamate_45",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 1,
+      "sample": 1,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_10mer/seed-1_sample-1/TDPn3_ES_window_10mer_seed-1_sample-1_model.cif",
+      "sha256": "c01c5e7cc3346380c2af6ae2af44728c0aa751008430dbbdbdbd38e0a8f8b39d",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.8741516935563821,
+      "group_rmsd_A": {
+        "zinc": 0.13760411851457366,
+        "water": 0.7974699749885317,
+        "histidine_146": 0.27820483928224826,
+        "histidine_150": 0.3011931364517686,
+        "metal_glutamate_45": 0.5738003414417978,
+        "general_base_147": 0.4747536670478373,
+        "tyrosine_78": 0.49080297142352536,
+        "reactive_backbone": 0.45826017766520216
+      },
+      "worst_group_rmsd_A": 0.7974699749885317,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 1,
+      "sample": 2,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_10mer/seed-1_sample-2/TDPn3_ES_window_10mer_seed-1_sample-2_model.cif",
+      "sha256": "dc15c0789916e10792d6e36039d2b4c124e38dafeb4afbcdd553cae045f8f0ea",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.37038475200396204,
+      "group_rmsd_A": {
+        "zinc": 0.14202421811230004,
+        "water": 0.42167430871523504,
+        "histidine_146": 0.24658277739891651,
+        "histidine_150": 0.2766664996383341,
+        "metal_glutamate_45": 0.4323453073759185,
+        "general_base_147": 0.491480365374089,
+        "tyrosine_78": 0.5883971481080569,
+        "reactive_backbone": 0.3466389196285464
+      },
+      "worst_group_rmsd_A": 0.5883971481080569,
+      "worst_group": "tyrosine_78",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 1,
+      "sample": 3,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_10mer/seed-1_sample-3/TDPn3_ES_window_10mer_seed-1_sample-3_model.cif",
+      "sha256": "c0f78b05879f77941e19b54c9c07dd6de139c20b2f06b7359918ad3b2faf2542",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.31030581261647944,
+      "group_rmsd_A": {
+        "zinc": 0.15764681517854662,
+        "water": 0.33340354889657803,
+        "histidine_146": 0.2893979746597476,
+        "histidine_150": 0.2199300434046666,
+        "metal_glutamate_45": 0.5031419395652877,
+        "general_base_147": 0.5704643421110994,
+        "tyrosine_78": 0.8258428218737875,
+        "reactive_backbone": 0.2965492565692509
+      },
+      "worst_group_rmsd_A": 0.8258428218737875,
+      "worst_group": "tyrosine_78",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 1,
+      "sample": 4,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_10mer/seed-1_sample-4/TDPn3_ES_window_10mer_seed-1_sample-4_model.cif",
+      "sha256": "ffe69e78b0b37e79be86ddc6521da5cb3e3252d2caa471e0e814c4b18263dad9",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.28111399038634716,
+      "group_rmsd_A": {
+        "zinc": 0.25436574846781285,
+        "water": 1.6604262885111243,
+        "histidine_146": 0.09561142672093505,
+        "histidine_150": 0.2125064893816492,
+        "metal_glutamate_45": 0.5349555229457754,
+        "general_base_147": 0.37144533259381124,
+        "tyrosine_78": 0.7890485875260159,
+        "reactive_backbone": 0.36624749815674634
+      },
+      "worst_group_rmsd_A": 1.6604262885111243,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 0,
+      "sample": 0,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-0/TDPn3_ES_window_12mer_seed-0_sample-0_model.cif",
+      "sha256": "d115df3517e4eb76bdf53fb7928445d8e073a8b0eff9c5cd3d9209b817ff2384",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.625990230084928,
+      "group_rmsd_A": {
+        "zinc": 0.4768689776848212,
+        "water": 3.015106649692302,
+        "histidine_146": 0.3627569984836237,
+        "histidine_150": 0.3977811326971805,
+        "metal_glutamate_45": 0.509219265456431,
+        "general_base_147": 0.30239571123311193,
+        "tyrosine_78": 0.7138367442169333,
+        "reactive_backbone": 0.6918775325196578
+      },
+      "worst_group_rmsd_A": 3.015106649692302,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 0,
+      "sample": 1,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-1/TDPn3_ES_window_12mer_seed-0_sample-1_model.cif",
+      "sha256": "e385867b0215b04a9a599a7dfd48d72d19a733e76b5e670eab23d36c79b6bcb3",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.5018033358822458,
+      "group_rmsd_A": {
+        "zinc": 0.2562876050903192,
+        "water": 2.3181569208377946,
+        "histidine_146": 0.2060966591530821,
+        "histidine_150": 0.3449300275625855,
+        "metal_glutamate_45": 0.3827495112754769,
+        "general_base_147": 0.3794341792886139,
+        "tyrosine_78": 0.6610888432256934,
+        "reactive_backbone": 7.078321163787904
+      },
+      "worst_group_rmsd_A": 7.078321163787904,
+      "worst_group": "reactive_backbone",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 0,
+      "sample": 2,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-2/TDPn3_ES_window_12mer_seed-0_sample-2_model.cif",
+      "sha256": "bdd9b78aade2d4578da59f5378d1ac82b144b040efe97fa0d0f4d76e2efa6c6d",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.3524474084046594,
+      "group_rmsd_A": {
+        "zinc": 0.1913756763281558,
+        "water": 0.2947754800440108,
+        "histidine_146": 0.23262450488331554,
+        "histidine_150": 0.3136713951993544,
+        "metal_glutamate_45": 0.37421440118271665,
+        "general_base_147": 0.6310243940315567,
+        "tyrosine_78": 0.4483694910215924,
+        "reactive_backbone": 0.6271815559489938
+      },
+      "worst_group_rmsd_A": 0.6310243940315567,
+      "worst_group": "general_base_147",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 0,
+      "sample": 3,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-3/TDPn3_ES_window_12mer_seed-0_sample-3_model.cif",
+      "sha256": "ce0cc4c8c8c47bcbfb5c0fd970ab652ef819d27434a2cf58aebbab37daa36182",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.368268243756903,
+      "group_rmsd_A": {
+        "zinc": 0.28015943989186265,
+        "water": 2.8635959394818005,
+        "histidine_146": 0.23977060166199624,
+        "histidine_150": 0.23653460412443678,
+        "metal_glutamate_45": 0.5627081032118386,
+        "general_base_147": 0.518847225710133,
+        "tyrosine_78": 0.7784431390167035,
+        "reactive_backbone": 1.1675256095692126
+      },
+      "worst_group_rmsd_A": 2.8635959394818005,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 0,
+      "sample": 4,
+      "path_relative_to_prior_output": "seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-4/TDPn3_ES_window_12mer_seed-0_sample-4_model.cif",
+      "sha256": "93d3497e3fe2f41e4ef4da3a92c01d2d94e11709c86433070da2e80bc0bc6947",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.35595378178412485,
+      "group_rmsd_A": {
+        "zinc": 0.1983595448013665,
+        "water": 2.8074302332988554,
+        "histidine_146": 0.30886875957857535,
+        "histidine_150": 0.28300443167722944,
+        "metal_glutamate_45": 0.4869361155801109,
+        "general_base_147": 0.5991070342188877,
+        "tyrosine_78": 0.68452258078628,
+        "reactive_backbone": 0.9086904858530815
+      },
+      "worst_group_rmsd_A": 2.8074302332988554,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 1,
+      "sample": 0,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_12mer/seed-1_sample-0/TDPn3_ES_window_12mer_seed-1_sample-0_model.cif",
+      "sha256": "51dc418d40b20442d9c4fa7244b90c98e19e86ec995e607d3f10c079aa0b325a",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.5158952131319663,
+      "group_rmsd_A": {
+        "zinc": 0.3131251370767676,
+        "water": 2.672038260714074,
+        "histidine_146": 0.16219549374405884,
+        "histidine_150": 0.22633910193442142,
+        "metal_glutamate_45": 0.5389658838808572,
+        "general_base_147": 0.34508371532635673,
+        "tyrosine_78": 0.5536780707479927,
+        "reactive_backbone": 0.35068626908862605
+      },
+      "worst_group_rmsd_A": 2.672038260714074,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 1,
+      "sample": 1,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_12mer/seed-1_sample-1/TDPn3_ES_window_12mer_seed-1_sample-1_model.cif",
+      "sha256": "95f52b19cf53aa540ad67f762cc1666381d2b67b7efd86df52e9ede373b0098e",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.37950268633290984,
+      "group_rmsd_A": {
+        "zinc": 0.24447394570230038,
+        "water": 2.8545982989049046,
+        "histidine_146": 0.2670433238370777,
+        "histidine_150": 0.22584100405126586,
+        "metal_glutamate_45": 0.4659033089353429,
+        "general_base_147": 0.5086061045515381,
+        "tyrosine_78": 0.7540666299645886,
+        "reactive_backbone": 0.8103764233898267
+      },
+      "worst_group_rmsd_A": 2.8545982989049046,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 1,
+      "sample": 2,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_12mer/seed-1_sample-2/TDPn3_ES_window_12mer_seed-1_sample-2_model.cif",
+      "sha256": "110daa461c682d5b9a51c2b0b95bce2e60d52856f0cc1744eb5a051c80007e66",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.26510640056288426,
+      "group_rmsd_A": {
+        "zinc": 0.23928501657521614,
+        "water": 2.4728818574743943,
+        "histidine_146": 0.24369100430440854,
+        "histidine_150": 0.2550440235922401,
+        "metal_glutamate_45": 0.43072068727593743,
+        "general_base_147": 0.4501303488313853,
+        "tyrosine_78": 0.5605501029768132,
+        "reactive_backbone": 0.3112879563019648
+      },
+      "worst_group_rmsd_A": 2.4728818574743943,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 1,
+      "sample": 3,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_12mer/seed-1_sample-3/TDPn3_ES_window_12mer_seed-1_sample-3_model.cif",
+      "sha256": "58ca71f1921629833e4546134148173d2f65a87a56fc1a5bbd5c150f8bd8c721",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.3644888217101934,
+      "group_rmsd_A": {
+        "zinc": 0.21982121834640764,
+        "water": 1.3188525081156575,
+        "histidine_146": 0.3499650950360204,
+        "histidine_150": 0.27884721419314407,
+        "metal_glutamate_45": 0.37531757736489824,
+        "general_base_147": 0.46096593094188065,
+        "tyrosine_78": 0.4740144116457619,
+        "reactive_backbone": 12.198242044366662
+      },
+      "worst_group_rmsd_A": 12.198242044366662,
+      "worst_group": "reactive_backbone",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 1,
+      "sample": 4,
+      "path_relative_to_prior_output": "seed-1/predictions/TDPn3_ES_window_12mer/seed-1_sample-4/TDPn3_ES_window_12mer_seed-1_sample-4_model.cif",
+      "sha256": "4f125e23aa5f434331ccbdb7833ced12ea3c7981076ae34566939f341df5e096",
+      "enzyme_CA_rmsd_to_own_author_ES_A": 0.5883151463092922,
+      "group_rmsd_A": {
+        "zinc": 0.26064768106800734,
+        "water": 2.5525370445396542,
+        "histidine_146": 0.22488453663955763,
+        "histidine_150": 0.2720655945558601,
+        "metal_glutamate_45": 0.42971279734592305,
+        "general_base_147": 0.5102963947081662,
+        "tyrosine_78": 0.5486956469256516,
+        "reactive_backbone": 0.7843797258738344
+      },
+      "worst_group_rmsd_A": 2.5525370445396542,
+      "worst_group": "water",
+      "reference_atom_permutations": {
+        "zinc": [
+          0
+        ],
+        "water": [
+          0
+        ],
+        "histidine_146": [
+          0
+        ],
+        "histidine_150": [
+          0
+        ],
+        "metal_glutamate_45": [
+          0,
+          1,
+          2
+        ],
+        "general_base_147": [
+          0,
+          1,
+          2
+        ],
+        "tyrosine_78": [
+          0,
+          1
+        ],
+        "reactive_backbone": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    }
+  ]
+}

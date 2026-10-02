@@ -1,0 +1,279 @@
+{
+  "question": "On a retained scaffold, does revealing fixed enzyme and substrate sidechains to LigandMPNN improve independent joint reference-geometry recovery?",
+  "status": "Prospective frozen endpoint before new sequence design or predictions; selected scaffold was chosen post hoc from the prior experiment.",
+  "reference_scaffold": {
+    "filename": "selected_scaffold.cif.gz",
+    "sha256": "1e764d610d69a29b76b942c625b6950ec0eb4f4ca0ea30cc0b2fc91cdd11bca2",
+    "origin": "water_fixed_seed3 RFD3 scaffold from completed 20261002 water-conditioning experiment",
+    "source_motif_mapping": {
+      "H293": "H36",
+      "E294": "E37",
+      "H297": "H40",
+      "Y377": "Y115",
+      "E316": "E152"
+    },
+    "claim": "Imposed hybrid design geometry, not an experimental target structure or proven physically optimal state."
+  },
+  "target": {
+    "sequence": "ALQSSWGMMGML",
+    "intended_bond": "B:G7:C--B:M8:N",
+    "enzyme_length": 187,
+    "fixed_roles": {
+      "36": "HIS",
+      "37": "GLU",
+      "40": "HIS",
+      "115": "TYR",
+      "152": "GLU"
+    },
+    "chemical_species": "Zn2+ and neutral represented water"
+  },
+  "assignments": [
+    {
+      "id": "context_hidden_seed200",
+      "arm": "context_hidden",
+      "pair_seed": 200,
+      "mpnn_seed": 200,
+      "atomize_side_chains": false
+    },
+    {
+      "id": "context_revealed_seed200",
+      "arm": "context_revealed",
+      "pair_seed": 200,
+      "mpnn_seed": 200,
+      "atomize_side_chains": true
+    },
+    {
+      "id": "context_hidden_seed201",
+      "arm": "context_hidden",
+      "pair_seed": 201,
+      "mpnn_seed": 201,
+      "atomize_side_chains": false
+    },
+    {
+      "id": "context_revealed_seed201",
+      "arm": "context_revealed",
+      "pair_seed": 201,
+      "mpnn_seed": 201,
+      "atomize_side_chains": true
+    },
+    {
+      "id": "context_hidden_seed202",
+      "arm": "context_hidden",
+      "pair_seed": 202,
+      "mpnn_seed": 202,
+      "atomize_side_chains": false
+    },
+    {
+      "id": "context_revealed_seed202",
+      "arm": "context_revealed",
+      "pair_seed": 202,
+      "mpnn_seed": 202,
+      "atomize_side_chains": true
+    },
+    {
+      "id": "context_hidden_seed203",
+      "arm": "context_hidden",
+      "pair_seed": 203,
+      "mpnn_seed": 203,
+      "atomize_side_chains": false
+    },
+    {
+      "id": "context_revealed_seed203",
+      "arm": "context_revealed",
+      "pair_seed": 203,
+      "mpnn_seed": 203,
+      "atomize_side_chains": true
+    }
+  ],
+  "shared_sampling": {
+    "scaffolds": 1,
+    "new_backbone_generation": false,
+    "mpnn_sequences_per_assignment": 1,
+    "mpnn_temperature": 0.1,
+    "mpnn_structure_noise": 0.0,
+    "fixed_residues": [
+      "A36",
+      "A37",
+      "A40",
+      "A115",
+      "A152",
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6",
+      "B7",
+      "B8",
+      "B9",
+      "B10",
+      "B11",
+      "B12"
+    ],
+    "rf3_seed": 0,
+    "rf3_ES_samples_per_sequence": 5,
+    "rf3_monomer_samples_per_sequence": 5,
+    "rf3_templates_or_coordinates": false,
+    "no_replacement_or_rescue": true,
+    "rf3_seed_handling": "Native seed_everything(0) before each input materialization and each single-input engine.run; loaded engine reused. Same seed is not a guarantee of atom-matched noise or bitwise GPU determinism.",
+    "rf3_n_recycles": 10,
+    "rf3_num_steps": 200,
+    "rf3_early_stopping_plddt_threshold": 0.0,
+    "rf3_msa": false
+  },
+  "intervention": {
+    "context_hidden": "atomize_side_chains=False; protein sidechains hidden from geometric atom context",
+    "context_revealed": "atomize_side_chains=True; fixed enzyme AND fixed substrate sidechains exposed as atom context",
+    "interpretation": "Tests this complete context intervention; does not isolate Tyr, one interaction or causal activity."
+  },
+  "primary": {
+    "name": "Worst chemical-group RMSD after a single enzyme-backbone alignment",
+    "groups": {
+      "zinc": [
+        [
+          "ligand",
+          1,
+          "ZN"
+        ]
+      ],
+      "water": [
+        [
+          "ligand",
+          1,
+          "O"
+        ]
+      ],
+      "histidine_36": [
+        [
+          "enzyme",
+          36,
+          "NE2"
+        ]
+      ],
+      "histidine_40": [
+        [
+          "enzyme",
+          40,
+          "NE2"
+        ]
+      ],
+      "metal_glutamate_152": [
+        [
+          "enzyme",
+          152,
+          "CD"
+        ],
+        [
+          "enzyme",
+          152,
+          "OE1"
+        ],
+        [
+          "enzyme",
+          152,
+          "OE2"
+        ]
+      ],
+      "general_base_37": [
+        [
+          "enzyme",
+          37,
+          "CD"
+        ],
+        [
+          "enzyme",
+          37,
+          "OE1"
+        ],
+        [
+          "enzyme",
+          37,
+          "OE2"
+        ]
+      ],
+      "tyrosine_115": [
+        [
+          "enzyme",
+          115,
+          "CZ"
+        ],
+        [
+          "enzyme",
+          115,
+          "OH"
+        ]
+      ],
+      "reactive_backbone": [
+        [
+          "peptide",
+          7,
+          "N"
+        ],
+        [
+          "peptide",
+          7,
+          "CA"
+        ],
+        [
+          "peptide",
+          7,
+          "C"
+        ],
+        [
+          "peptide",
+          7,
+          "O"
+        ],
+        [
+          "peptide",
+          8,
+          "N"
+        ],
+        [
+          "peptide",
+          8,
+          "CA"
+        ],
+        [
+          "peptide",
+          8,
+          "C"
+        ],
+        [
+          "peptide",
+          8,
+          "O"
+        ]
+      ]
+    },
+    "atom_reference_semantics": "Each [role, residue, atom] identifies the exact sequence-matched enzyme/peptide position; ligand entries identify the unique Zn and water heavy elements. Reference chains are A enzyme, B peptide, C source ZnO component. Actual prediction chain identities are resolved by exact sequences, never assumed.",
+    "alignment": "Proper rigid Kabsch fit of all187 enzyme C-alpha atoms to the corresponding retained-scaffold C-alpha atoms. No readout atom is included: peptide C-alpha atoms are on chainB, not fitted chainA. No reflections, motif-only refits, best subsets or post-result realignment.",
+    "symmetry": "For each GLU independently, choose the smaller group RMSD of bijective OE1/OE2 identity or swap while keeping CD fixed. No other atom permutation, histidine tautomer equivalence or peptide register shift.",
+    "per_output": "For each group, sqrt(mean squared atom displacement) in the common aligned frame, in angstrom. W is the maximum of the eight group RMSDs. Retain all group values and selected Glu permutations.",
+    "per_candidate": "Median W across all five assigned ES outputs, only when all five are valid. Also retain the median of each group across all five.",
+    "paired_comparison": "For each sequence seed200-203, revealed minus hidden candidate medianW; group guard uses revealed minus hidden per-group medians within that same seed.",
+    "numerical_tolerance_A": 1e-06,
+    "decision": "Consistent revealed-context reference-recovery benefit requires all four medianW differences < -1e-6 A AND all eight group-median differences <= +1e-6 A in every pair. Consistent hidden benefit uses all four medianW differences > +1e-6 A AND all group-median differences >= -1e-6 A. Otherwise no consistent joint reference-recovery advantage. Tolerance is numerical, not biochemical or a practical effect-size threshold.",
+    "denominator": "8 assigned sequences,40 ES outputs; all40 valid ES and four complete sequence-seed pairs required. Missing/ambiguous identity, group atoms, coordinates or undefined common fit makes the affected assigned output missing; never replace, impute or exclude it. Any incomplete ES assignment yields incomplete_comparison. Forty monomer outputs are essential context with separate explicit missingness; their absence does not alter the40-ES denominator.",
+    "unit_of_comparison": "Four paired sequence-design seeds. The five RF3 outputs share a trunk and are not independent design experiments or biological replicates."
+  },
+  "secondary_context": "All187-CA ES and monomer scaffold RMSD, native confidence, and existing metal/base/water/carbonyl/donor distances, approach/donor angles, G7C-M8N distance and all11 amide-register distances. Three-anchor water recovery is secondary and referenced here to the same retained scaffold. Report paired group/contact medians and all samples; no new pass threshold or geometric exclusion.",
+  "interpretation_limits": [
+    "A lower continuous reference-recovery error is not a productive-state, cleavage, activity, barrier or Atlas-efficacy result.",
+    "The max-group endpoint prevents a favorable group average from masking the worst group; the no-regression guard prevents worsening group medians from being called an unqualified joint improvement. Groups need not all strictly improve; report unchanged groups or a localized improvement explicitly.",
+    "A mixed finite result leaves consistent joint improvement unestablished on this scaffold; it is not equivalence or a universal negative. An incomplete comparison cannot answer the complete assigned comparison.",
+    "Imposed scaffold geometry is not independent evidence that its sequence folds or functions. RF3 disagreement can reflect sequence incompatibility or predictor limitations."
+  ],
+  "strongest_alternative": "Re-evaluating RF3 with another predictor or stopping would address model reliability, but would not test the concrete, source-verified omission of fixed sidechain context in the completed sequence-design run. This bounded paired intervention changes one native input setting on the same retained scaffold and avoids another backbone/water search; if it does not improve joint recovery, do not rescue it with new weights, seeds or thresholds.",
+  "claim_boundary": "Computational joint reference-geometry recovery only, on one post hoc selected scaffold. No catalytic activity, cleavage specificity, physical fold or general design advantage claim.",
+  "runtime_limitations": [
+    "Same pinned official legacy LigandMPNN and RF3 checkpoints as prior run.",
+    "Cached MACE descriptors expected absent; preserve actual runtime warning and native missing-feature path in both arms.",
+    "One CUDA GPU, two hours andUSD5 maximum; no extra designs, retries or rescue sampling."
+  ],
+  "runtime_hardware_amendment": {
+    "reason": "Both quoted singleA100 offers vanished before any create request or sampling. One RTX6000Ada48GB offered atUSD0.75/hour; both arms share this hardware.",
+    "changes": "Operational hardware only; no assignment, sequence budget, model/checkpoint, input chemistry, endpoint or decision-rule change.",
+    "bound": "One GPU, two hours, USD5 maximum; terminate and verify provider deletion."
+  }
+}
