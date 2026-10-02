@@ -1,0 +1,105 @@
+{
+  "input": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/corrected_inputs/ALQSSWGMMGML78_Zn2plus.pdb",
+  "keys": [
+    "extra_info",
+    "metadata",
+    "assemblies",
+    "ligand_info",
+    "chain_info",
+    "asym_unit"
+  ],
+  "views": {
+    "asym_unit": {
+      "atom_count": 418,
+      "chains": {
+        "A": [
+          28,
+          29,
+          30,
+          293,
+          294,
+          295,
+          296,
+          297,
+          315,
+          316,
+          317,
+          376,
+          377,
+          378
+        ],
+        "B": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "C": [
+          1
+        ]
+      },
+      "Zn": [
+        [
+          "C",
+          1,
+          "ZN1",
+          2
+        ]
+      ]
+    },
+    "assemblies": {
+      "atom_count": 418,
+      "chains": {
+        "A": [
+          28,
+          29,
+          30,
+          293,
+          294,
+          295,
+          296,
+          297,
+          315,
+          316,
+          317,
+          376,
+          377,
+          378
+        ],
+        "B": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "C": [
+          1
+        ]
+      },
+      "Zn": [
+        [
+          "C",
+          1,
+          "ZN1",
+          2
+        ]
+      ]
+    }
+  }
+}

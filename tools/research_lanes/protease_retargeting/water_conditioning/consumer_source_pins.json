@@ -1,0 +1,17 @@
+{
+  "commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "scope": "Critical native consumer files; bootstrap separately verifies full checkout commit. No source modifications.",
+  "files": {
+    "models/rfd3/src/rfd3/cli.py": "edb92dae2be22f640cc4a16a22717e62db523e1336ce68473ac2654d5b061aef",
+    "models/rfd3/src/rfd3/engine.py": "6b8a92f4567d8414acb293c5fd66e7892bee3e5555221a3df5e0c32d78ab018e",
+    "models/rfd3/src/rfd3/run_inference.py": "389f401ecf7878cfee93d36c82e3f7c7a7e794d35186cdb4101c2f9da16ef43a",
+    "models/rfd3/src/rfd3/inference/input_parsing.py": "79baccb07cc65924ffd833615e5de6bcb186eeb1c87eedbc4324777c63f7e9ee",
+    "models/rfd3/configs/inference_engine/rfdiffusion3.yaml": "814d103c51702fa4843c5ef8aae0da7446625ed2b51295caca68be51f5338812",
+    "models/rfd3/configs/inference_engine/base.yaml": "7a43f953b6c000ba5e246a70ca3d6fd0de4b884b69b65e65a110ad33c151cd13",
+    "models/mpnn/src/mpnn/inference.py": "c0fb46477db979545579eb17a16b412ba6fff95714f0165a7b921f40ddfe9af0",
+    "models/mpnn/src/mpnn/utils/inference.py": "aad78c4ac571293dd64a52cc02f0b9ea4cd80a2ff7194f185bd8e6c5d744ff1b",
+    "models/mpnn/src/mpnn/inference_engines/mpnn.py": "03f0447eee1156b7c03c5b8e11f66288a2bb62939a230d84a40499f39db9cc6c",
+    "models/rf3/src/rf3/utils/inference.py": "71f306e5dd7369c7736ffd6a3390791465cb1641e67d0d03c0b4399923d1027b",
+    "models/rf3/src/rf3/inference_engines/rf3.py": "292bba9feae83d6001dae83190da170c5e1d303adbdb4f1b5257e55f98b0bd55"
+  }
+}

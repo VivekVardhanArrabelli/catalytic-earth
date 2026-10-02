@@ -1,0 +1,72 @@
+{
+  "assigned_microstates": 2,
+  "converged_microstates": 0,
+  "pair_complete": false,
+  "assignments": [
+    {
+      "name": "water_glutamate",
+      "status": "terminated_early_runtime_infeasibility",
+      "scf_converged": false,
+      "usable_total_energy_hartree": null,
+      "gradient_status": "not_computed",
+      "completed_logged_SCF_cycles": 1,
+      "log_sha256": "593b56d9750e10190896977d3960ceaab1f015df340716c92f437c3401b8951c"
+    },
+    {
+      "name": "hydroxide_glutamic_acid",
+      "status": "not_started_before_early_stop",
+      "scf_converged": false,
+      "usable_total_energy_hartree": null,
+      "gradient_status": "not_computed",
+      "completed_logged_SCF_cycles": 0,
+      "log_sha256": null
+    }
+  ],
+  "watchdog": {
+    "exit_code": -15,
+    "termination_reason": null,
+    "wall_seconds": 1340.2233377499942,
+    "peak_observed_rss_bytes": 2118090752,
+    "rss_sampling_seconds": 2,
+    "threads_requested": 4,
+    "no_retry": true,
+    "decision_sha256": "23fccb8bc985e8e2871ca59cd9fc5c0903632ddd35489627fd6499157a79fd3f"
+  },
+  "early_stop": {
+    "utc": "2026-10-02T17:54:22.075489+00:00",
+    "reason": "Early termination for observed runtime infeasibility, explicitly directed by root; one unconverged SCF iteration after more than20minutes cannot credibly finish the two-state energies and gradients in the remaining budget.",
+    "classification": "early_termination_runtime_infeasibility",
+    "not_a_timeout": true,
+    "not_a_convergence_result": true,
+    "not_a_chemical_finding": true,
+    "pid": 28637,
+    "completed_SCF_cycles": 1,
+    "retained_iteration_lines": [
+      "init E= -3081.95897216323",
+      "  HOMO = -0.264808813997682  LUMO = -0.0967864944636148  gap/eV = 4.57212",
+      "cycle= 1 E= -3078.09218093395  delta_E= 3.87  |g|= 1.84  |ddm|= 22.1",
+      "  HOMO = -0.0178215265657098  LUMO = -0.0158444962151605  gap/eV = 0.05380"
+    ],
+    "decision_sha256": "23fccb8bc985e8e2871ca59cd9fc5c0903632ddd35489627fd6499157a79fd3f",
+    "signal": "SIGTERM"
+  },
+  "execution_classification": "early_termination_runtime_infeasibility",
+  "vertical_delta_hartree": null,
+  "vertical_delta_kcal_per_mol": null,
+  "conclusion": "No energy difference or protonation conclusion is available. The attempt was stopped early for observed runtime infeasibility, not a timeout, completed SCF nonconvergence result or chemical finding.",
+  "energy_definition": "The SCF total includes nuclear repulsion: a Born-Oppenheimer total energy, stored under electronic_energy_hartree in the raw runtime snapshot.",
+  "prohibited_inferences": [
+    "No enzyme protonation preference or pKa",
+    "No reaction barrier, free energy or enzyme activity",
+    "No 10mer/12mer window effect",
+    "No reason to replace source-supported neutral water with hydroxide in RFD3"
+  ],
+  "native_checks_passed": [
+    "Official PySCF 2.14 ARM import and basis build",
+    "60 atoms, C18H32N4O5Zn, 238 electrons, charge 0, singlet",
+    "Two exact equal-composition states differing only in one H position",
+    "Source MCPB C-alpha methyl-cap and HID conventions verified",
+    "Source original+1/singlet cluster charge consistent with Zn2+ and one carboxylate"
+  ],
+  "runtime_scope": "No rescue method, extra hardware or additional calculation was used. Native ARM wheel lacks OpenMP; direct integral evaluation was single-threaded."
+}

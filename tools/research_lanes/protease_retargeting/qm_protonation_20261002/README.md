@@ -1,0 +1,17 @@
+# Fixed-geometry zinc/water protonation attempt
+
+0/2 assigned SCF states converged; the chemical comparison is incomplete. Explicitly stopped after 22.34 minutes; only one SCF iteration had completed. No energy difference or protonation conclusion is available. The attempt was stopped early for observed runtime infeasibility, not a timeout, completed SCF nonconvergence result or chemical finding.
+
+The two native PySCF inputs have identical C18H32N4O5Zn composition, 238 electrons, charge 0 and singlet spin. Source-hybrid H293/H297, E316, E294, zinc and water define the 60-atom fragment. Only one proton moves from water to the nearest general-base oxygen; all heavy atoms and every other H remain identical. The author MCPB fragment supplies the C-alpha methyl-cap and HID conventions. Constructed H orientations are explicit and unoptimized.
+
+The frozen method is B3LYP/def2-SVPD, native grid level 3 and direct RKS SCF, with no solvent, protein embedding, substrate, Tyr donor or geometric relaxation. The basis differs prospectively from the source Gaussian 6-31+G(d), whose Zn entry was unavailable in the native PySCF table. This is not a source-energy reproduction or a test of the observed RF3 window difference.
+
+The 30-minute/4 GiB resident-memory watchdog was retained unchanged. The research lead explicitly stopped the calculation early after observed runtime showed the remaining budget could not credibly complete the pair. This was not a watchdog timeout or a chemical nonconvergence result. Its terminal record and actual native logs are included. Initial and iteration energies in the logs are not converged results. All assigned states, including unattempted states, remain in qm_execution_outcome.json. The raw energy field names refer to total SCF energy including nuclear repulsion.
+
+No result from this isolated, fixed-geometry comparison identifies an enzyme protonation preference, pKa, proton-transfer barrier or activity. It does not justify changing the accepted RFD3 chemical input from source-supported Zn2+ and neutral water.
+
+Source attribution: [author archive, Zenodo 22654831](https://zenodo.org/records/22654831), members MD/Zn45_SSM/MCPB/GS_complex_small.pdb and GS_complex_small_opt.com; source hybrid motif from rfd3_workflow/251222_tdp43_large_batch/motif_generation/251222_motif_with_ANISOU.pdb. Exact bytes, hashes and the two 206 range/CRC receipts are retained. The source small cluster specifies charge +1/singlet for two neutral HID fragments, one carboxylate, neutral water and Zn, consistent with Zn2+.
+
+Reproduction: the frozen state JSON files are the direct inputs to run_protonation_probe.py. Use the pinned PySCF 2.14.0 runtime with recorded NumPy/SciPy/h5py versions, and the original bounded_qm_watchdog.py limits. No retry belongs to this frozen attempt. A future computation must preserve these outcomes and prospectively specify its method and resources; new paid resources need an approved budget. Installed runtime binaries are excluded; their official wheel URL/hash and native import record are included.
+
+The [complete attempt bundle](qm_protonation_attempt.tar.gz) is 38,635 bytes, SHA256 `577ead80b5a0a143b4e9d86cc8fba75376b7cca4c5f4c76db36f9bfdeee14e55`. All 26 retained member hashes were checked. [Assigned outcomes](qm_execution_outcome.json) and the [frozen decision](qm_protonation_decision.json) are also readable directly.

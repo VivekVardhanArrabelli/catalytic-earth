@@ -1,0 +1,33 @@
+{
+  "global_args": {
+    "redesign_motif_sidechains": false
+  },
+  "des": {
+    "input": "ALQSSWGMMGML78_Zn2plus.pdb",
+    "contig": "35,A293-297,35,A28-30,35,A376-378,34,A315-317,34,/0,B1-12",
+    "length": "199",
+    "ligand": "C1",
+    "select_unfixed_sequence": "A28-30,A295-296,A376,A378,A315,A317",
+    "select_hotspots": "B3-7",
+    "select_fixed_atoms": {
+      "B1": "",
+      "B2": "",
+      "B3": "",
+      "B4": "",
+      "B5": "",
+      "B6": "",
+      "B7": "BKBN",
+      "B8": "BKBN",
+      "B9": "",
+      "B10": "",
+      "B11": "",
+      "B12": "",
+      "C1": "ZN1"
+    },
+    "ori_token": [
+      6.787079050497307,
+      45.54150783969011,
+      -6.044966758089851
+    ]
+  }
+}

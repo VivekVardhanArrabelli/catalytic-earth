@@ -1,0 +1,131 @@
+{
+  "status": "passed_actual_native_pair_checks",
+  "model_execution": false,
+  "verifier_sha256": "44b849ec40aabe76dad38c3fd394d792dd1bb9264cf021686e7458888f469d03",
+  "source_pdb": {
+    "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/corrected_inputs/ALQSSWGMMGML78_Zn2plus.pdb",
+    "sha256": "85830251fcf93fb26c00a6c79cfb6c2815b444e3db941e7470cf341cb8ebb8e0"
+  },
+  "arms": {
+    "water_fixed": {
+      "loaded": {
+        "atom_count": 209,
+        "chain_residue_counts": {
+          "B": 12,
+          "C": 1,
+          "A": 14
+        },
+        "peptide_sequence": "ALQSSWGMMGML",
+        "Zn_formal_charge": 2,
+        "O_formal_charge": 0,
+        "water_index": 119,
+        "water_coord_fixed": true,
+        "source_motif_atoms_fixed": 119,
+        "max_source_coordinate_error_A": 2.826319989087002e-06,
+        "role_residue_map": {
+          "A293": 293,
+          "A294": 294,
+          "A297": 297,
+          "A316": 316,
+          "A377": 377
+        },
+        "G7C_M8N_explicit_bonds": [
+          [
+            171,
+            173,
+            1
+          ]
+        ]
+      },
+      "built": {
+        "atom_count": 1074,
+        "chain_residue_counts": {
+          "C": 1,
+          "B": 12,
+          "A": 187
+        },
+        "peptide_sequence": "ALQSSWGMMGML",
+        "Zn_formal_charge": 2.0,
+        "O_formal_charge": 0.0,
+        "water_index": 1072,
+        "water_coord_fixed": true,
+        "source_motif_atoms_fixed": 119,
+        "max_source_coordinate_error_A": 2.8551397216600496e-06,
+        "role_residue_map": {
+          "A293": 36,
+          "A294": 37,
+          "A297": 40,
+          "A316": 152,
+          "A377": 115
+        },
+        "G7C_M8N_explicit_bonds": []
+      }
+    },
+    "water_unfixed": {
+      "loaded": {
+        "atom_count": 209,
+        "chain_residue_counts": {
+          "B": 12,
+          "C": 1,
+          "A": 14
+        },
+        "peptide_sequence": "ALQSSWGMMGML",
+        "Zn_formal_charge": 2,
+        "O_formal_charge": 0,
+        "water_index": 119,
+        "water_coord_fixed": false,
+        "source_motif_atoms_fixed": 119,
+        "max_source_coordinate_error_A": 2.826319989087002e-06,
+        "role_residue_map": {
+          "A293": 293,
+          "A294": 294,
+          "A297": 297,
+          "A316": 316,
+          "A377": 377
+        },
+        "G7C_M8N_explicit_bonds": [
+          [
+            171,
+            173,
+            1
+          ]
+        ]
+      },
+      "built": {
+        "atom_count": 1074,
+        "chain_residue_counts": {
+          "C": 1,
+          "B": 12,
+          "A": 187
+        },
+        "peptide_sequence": "ALQSSWGMMGML",
+        "Zn_formal_charge": 2.0,
+        "O_formal_charge": 0.0,
+        "water_index": 1072,
+        "water_coord_fixed": false,
+        "source_motif_atoms_fixed": 119,
+        "max_source_coordinate_error_A": 2.8551397216600496e-06,
+        "role_residue_map": {
+          "A293": 36,
+          "A294": 37,
+          "A297": 40,
+          "A316": 152,
+          "A377": 115
+        },
+        "G7C_M8N_explicit_bonds": []
+      }
+    }
+  },
+  "annotation_differences": [
+    {
+      "annotation": "is_motif_atom_with_fixed_coord",
+      "atom_index": 1072,
+      "fixed": true,
+      "free": false
+    }
+  ],
+  "coordinate_difference_indices": [
+    1072
+  ],
+  "qualification": "Loaded ordinary peptide edge and chemistry verified. Standard polymer edges are not explicitly retained in the native built graph; this is recorded, not classified as a bug. No inference or catalytic activity follows from acceptance."
+}
