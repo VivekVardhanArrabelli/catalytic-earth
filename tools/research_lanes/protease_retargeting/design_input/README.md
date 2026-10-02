@@ -75,8 +75,8 @@ retain immutable URLs, archive ranges and hashes. Author software is retained
 under its [MIT license](AUTHOR_LICENSE); author data attribution remains in
 the source manifest.
 
-The next computational question is the
-[fixed-enzyme 10-residue versus 12-residue comparison](../window_check/README.md).
-It can challenge transfer of the shortened substrate geometry before fresh
-design generation. Neither this input nor that proposed comparison establishes
-Atlas advantage, a functioning new enzyme or Problem 8 success.
+The [fixed-enzyme 10-residue versus 12-residue comparison](../window_check/README.md)
+has now completed with a mixed primary result and altered secondary water/base
+geometry. This does not qualify an activity filter. Native RFD3 acceptance of
+this reconstructed chemical input remains the next dependency. Neither result
+establishes Atlas advantage, a functioning new enzyme or Problem 8 success.

@@ -1,84 +1,91 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — fixed-bond design input and the next computational test, 2026-10-02
+## Current research handoff — executed Problem 8 window test, 2026-10-02
 
-- **Direction and decision:** retain the full computable catalytic-mechanism
-  Atlas ambition, using Problem 8 to force useful chemical-to-protein transfer.
-  The inherited Zn45 Y152F/I comparison still needs matched product-resolved
-  kinetics; neither more static contacts nor WT-only data can settle it.
-  With no laboratory execution arranged, the next computational question is
-  whether TDPn3's shortened substrate model transfers to the exact longer
-  assay sequence. This can challenge a consequential pose assumption before
-  fresh design generation. It is not an Atlas-benefit comparison.
-- **New usable input:** the [design input](../tools/research_lanes/protease_retargeting/design_input/README.md)
-  reconstructs one G7–M8 fixed-target RFD3 input from the author starting
-  motif and inert notebook. All 205 A/C atoms, eight reactive backbone atoms,
-  ten fixed peptide identities and 64 unfixed placeholders are preserved.
-  This is the source's hybrid native/design template, not final TDPn3 ES
-  coordinates or a new designed enzyme. One contig/origin was selected without
-  sampling. The candidate selects unchanged custom ZnO by C1 instead of the
-  source's mismatched ZO name; chemical graph/charge interpretation still
-  requires actual native parsing. No bond or charge was invented.
-- **Bond registration resolved:** author code independently establishes that
-  ALQSSWGMMG78, LQSSWGMMGM67 and QSSWGMMGML56 all target assay G7–M8.
-  They shift peptide termini and window numbering, not the absolute target
-  bond. The 65 cached monomer groups are candidate proteins, not functional
-  enzymes or independent targets. Exact SAAc8/AbetaF3 source sequences remain
-  available, but bounded retained-source checks found no matching selected
-  models or explicit cleavage assignments. Do not infer a centered cut or
-  continue blind archive searching to manufacture a three-target comparison.
-- **A source-audit hypothesis was rejected:** public RFD3 de novo parsing
-  preserves fixed coordinates for unlisted A residues. The suspected
-  peptide-only-mask defect was wrong after full-path/default inspection;
-  no correction was needed. Its global_args wrapper also works. Partial
-  diffusion has different omitted-residue semantics. The source origin helper
-  uses a Glu378 fallback, not the claimed donor plane; preserve the recorded
-  point as an author placement choice.
-- **Next exact experiment:** the [two RF3 inputs and decision](../tools/research_lanes/protease_retargeting/window_check/README.md)
-  hold the exact 187-aa TDPn3 and disconnected [Zn+2].O input constant while
-  comparing ALQSSWGMMG with ALQSSWGMMGML. Two fixed seeds times five samples
-  per condition give 20 assigned outputs. First verify native chemical input
-  and save atom/bond maps, then pin one checkpoint and retain every output.
-  Report source-filter Zn–G7 O contact plus all prespecified metal, water,
-  donor and register measurements. Outcome categories require complete
-  assigned output; missingness cannot satisfy a contact-count condition.
-  Misplaced metal/water limits catalytic interpretation. Adding ML also moves
-  the free terminus, so this cannot isolate a terminal-charge mechanism or
-  model the fusion/full-length target. RF3 is not an AF3 reproduction control.
-- **Execution state:** neither RFD3 native parsing/generation nor the RF3
-  comparison has executed. Local RFD3/RF3/AtomWorks/Biotite dependencies and
-  cached wheels are absent; further local installation was stopped. Read-only
-  Prime Intellect inspection shows no running instance and an A100 offer at
-  $1.20/hour. The user explicitly approved this new rental ($5 total, 45 minutes, remote
-  official runtime/weights, terminate afterward). One A100 is provisioning;
-  native chemistry parsing and inference remain unexecuted at this checkpoint.
-  A provider-API deadline guard targets termination by 17:08 UTC. This does
-  not authorize later rentals or extra conditions.
-- **Prior conclusions remain:** selected TDPn3 ES3 and four passing analogue
-  models are identified; the ES3/analogue0 R19–S5 state-preference hypothesis
-  failed sample sensitivity and remains withdrawn. The 378-mutant Zn45 screen
-  has one well per mutant, not replicated kinetics. No Atlas design advantage,
-  new functional enzyme, cellular cleavage or Problem 8 completion is shown.
-- **Verification and ownership:** three gpt-6-astra/max workers supplied
-  complementary source, consumer and adversarial checks under root ownership.
-  Same-model review is not independent expert review. Four generated input
-  artifacts reproduce byte-for-byte; absolute window mappings and both RF3
-  input identities were independently checked. Source hashes/CRCs are retained.
-  Protected records, frozen kernels, exposure ledgers and the seven unrelated
-  viewer/demo paths remain unchanged; hourly automation remains paused.
-- **Run and source budget:** base 1b7f4b7481d047d64117a422cdfd8456a6f5344a,
-  branch codex/protease-public-design-input; run began 2026-10-02 15:36:16 UTC.
-  Receipt: .git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/.
-  Cumulative recorded/reserved source use is 30,247,545 of 31,457,280 bytes
-  (1,209,735 remaining), 90 of 100 requests. This carries the previous
-  29,150,747-byte reservation plus 630,684 public-code bytes, 193,227 author
-  input bytes, 5,503 helper bytes, 1,144 license bytes, and conservative
-  262,144/4,096-byte reservations for one unmetered web read and an uncaptured
-  404 body. Earlier unmetered reads remain disclosed; reservations are not
-  measured exact traffic. Do not reset the named-batch budget. Only root may
-  finish publication and release the cooperative lock; no editing workers may
-  remain after release.
+- **Direction:** retain the full computable catalytic-mechanism Atlas North Star,
+  using Problem 8 to force useful chemical-to-protein transfer. This turn moved
+  from source reconstruction to an actual prospective computational experiment.
+  The inherited Zn45 Y152F/I question still needs matched product-resolved
+  kinetics; another static-contact analysis cannot replace that evidence.
+- **Executed result:** the [RF3 window comparison](../tools/research_lanes/protease_retargeting/window_check/results_20261002/README.md)
+  produced all 20 assigned structures with the exact TDPn3 enzyme and unchanged
+  G7–M8 bond. Inputs/rules were committed before inference. Ten-residue peptide
+  contacts were 4/5 and 3/5 for seeds 0/1; twelve-residue contacts were 3/5 and
+  4/5. The prespecified primary result is mixed/inconclusive, with no missing
+  predictions, rescue seeds or post-result parameter changes. Stop this window
+  comparison rather than sampling until a favorable category appears.
+- **Consequential secondary finding:** Zn remains near H146/H150/E45 in all
+  samples. Nevertheless, median E147–water distances shift from 2.644/2.725 Å
+  to 5.261/4.976 Å across the two seeds, while median water–G7 C–G7 O angles
+  shift from 97.3°/92.2° to 45.5°/33.0°. G7 is the closest amide carbonyl in
+  ten short-window and eight long-window samples; the other two favor S5–W6
+  or M11–L12 proximity. This does not assign cleavage or activity. Contact and
+  native confidence alone do not qualify catalytic geometry, and the secondary
+  observations do not turn the mixed primary result into a positive window-loss
+  conclusion. Free-terminal and added-sidechain effects remain confounded.
+- **Runtime limits:** actual native RF3 chemistry checks passed both inputs,
+  preserving exact sequences, peptide bonds, Zn+2 and neutral disconnected
+  water. Pinned Foundry 0932f1cb165ae7d413c11b1a7acc04ee31758817 used one
+  content-hashed official checkpoint, Python 3.12.15, torch 2.11.0+cu128,
+  AtomWorks 2.2.1 and Biotite 1.4.0. No MSA/templates/pose restraints were used.
+  Cached MACE descriptors were absent: the official path supplied zero tensors
+  and absence masks; checkpoint metadata confirms enabled consumers. This is
+  a supported missing-feature path, not evidence of equivalent quality with
+  descriptors present. RDKit reference-conformer features remain separate.
+- **Preservation and compute:** the complete 3,402,300-byte raw bundle, all 20
+  readable measurements, native confidence, input maps, assignments, versions,
+  scripts and warning audit are linked from the result. Four native aggregate
+  CIFs are retained but are not four additional samples. All assigned CIF hashes
+  were verified after retrieval. The user explicitly approved one Prime Intellect
+  A100, $5/45 minutes, including official runtime/weights. Provider termination
+  was verified after 17 minutes (16:30:49–16:47:49 UTC). Rate-times-lifetime is
+  approximately $0.34; final charge is not yet reported. No instance remains
+  from this run, and no further rental or expanded experiment is authorized.
+- **New design input and registration:** the [source-derived RFD3 input](../tools/research_lanes/protease_retargeting/design_input/README.md)
+  preserves the author hybrid starting motif, 205 A/C atoms, eight reactive
+  backbone atoms, ten peptide identities and 64 unfixed placeholders. It is not
+  final TDPn3 ES coordinates or a newly designed enzyme. Three source windows
+  ALQSSWGMMG78/LQSSWGMMGM67/QSSWGMMGML56 all target absolute assay G7–M8.
+  A suspected omitted-residue mask defect was rejected after full-path/default
+  inspection; no mask fix was needed. The original ZnO is selected by C1,
+  without inventing bonds/charges. Its actual RFD3 native interpretation has
+  not run. The recorded origin is an author placement choice using a Glu378
+  fallback, not a demonstrated Zn-donor plane.
+- **Next bounded action and stopping rule:** native RFD3 chemical acceptance
+  of that prepared input, preserving Zn+2/water, intended peptide identity and
+  coordinate masks. This removes a real design-consumer dependency and beats
+  more RF3 contact sampling. Stop if the chemical identity cannot be preserved;
+  do not silently repair the chemistry into another experiment. Fresh scaffold
+  generation needs a prospective comparison and downstream biochemical
+  evaluation plan, rather than accumulating designs behind an unqualified
+  activity filter. This run shows neither Atlas design advantage nor a new
+  functional enzyme, cellular cleavage or Problem 8 completion.
+- **Continuity:** the ES3/analogue0 R19–S5 state-preference hypothesis remains
+  withdrawn after sample sensitivity. The Zn45 screen remains single-well.
+  Exact SAAc8/AbetaF3 source sequences exist, but bounded retained-source checks
+  did not locate matching selected models or explicit cuts; do not invent
+  centered bonds or restart blind archive searching for a three-target result.
+- **Verification and ownership:** three gpt-6-astra/max workers supplied source,
+  consumer, measurement and adversarial checks under root ownership. This is
+  not independent expert review. Four reconstructed artifacts reproduce byte
+  for byte; sequences/window registrations were independently checked. Native
+  RF3 parsing/inference and native Biotite measurement completed; syntax and
+  repository contracts are checked for publication. Protected registries,
+  frozen kernels/exposure records and seven unrelated viewer/demo paths remain
+  unchanged. Hourly automation remains paused.
+- **Run/publication:** base 1b7f4b7481d047d64117a422cdfd8456a6f5344a,
+  branch codex/protease-public-design-input, PR #136. Run began 15:36:16 UTC;
+  local receipt .git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/.
+  Root finishes exact-head CI/publication and releases ownership only after
+  all workers stop. Git and the local receipt carry final integration identity.
+- **Source budget:** cumulative recorded/reserved author/public-code acquisition
+  remains 30,247,545 of 31,457,280 bytes and 90 of 100 requests. Conservative
+  reservations and earlier unmetered reads remain disclosed in the receipt;
+  these are not exact total traffic. Do not reset this named-batch allowance.
+  The separately authorized remote runtime acquisition includes a 3,038,876,446-
+  byte checkpoint plus dependencies/source installation; package traffic was
+  not metered and must not be folded into a false exact source-budget total.
 
 <!-- current-research-handoff:end -->
 

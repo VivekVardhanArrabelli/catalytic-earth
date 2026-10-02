@@ -1,0 +1,510 @@
+{
+  "status": "completed_read_only_runtime_warning_audit",
+  "foundry_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "runtime": {
+    "python": "3.12.15",
+    "torch": "2.11.0+cu128",
+    "atomworks": "2.2.1",
+    "biotite": "1.4.0",
+    "rdkit": "2026.3.6"
+  },
+  "checkpoint": {
+    "filename": "rf3_foundry_01_24_latest_remapped.ckpt",
+    "sha256": "364ef592fd8042a9cf4176d045015190f8322f961ccca38d891b20ca578d3bb0",
+    "bytes": 3038876446,
+    "metadata_member": {
+      "name": "rf3_foundry_01_24_latest_remapped/data.pkl",
+      "bytes": 2374529
+    },
+    "metadata_sha256": "5a619986f616f52713e9af0f04885b2234424d5f99c2e1d3ac146ac46d86da8f",
+    "inspection": "Inert standard-library zipfile and pickletools.genops; no pickle.load, torch.load, native model import, rerun or runtime edit. Memo string _val resolved to disambiguate value from OmegaConf optional/flags booleans.",
+    "scalar_records": [
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2225940,
+        "value_byte_offset": 2226117,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2226112,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2226117,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2226126,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2226127,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2242089,
+        "value_byte_offset": 2242266,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2242261,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2242266,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2242275,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2242276,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2269358,
+        "value_byte_offset": 2269535,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2269530,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2269535,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2269544,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2269545,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2278009,
+        "value_byte_offset": 2278186,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2278181,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2278186,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2278195,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2278196,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2286654,
+        "value_byte_offset": 2286831,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2286826,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2286831,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2286840,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2286841,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2295298,
+        "value_byte_offset": 2295475,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2295470,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2295475,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2295484,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2295485,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2305495,
+        "value_byte_offset": 2305672,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2305667,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2305672,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2305681,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2305682,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2313409,
+        "value_byte_offset": 2313586,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2313581,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2313586,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2313595,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2313596,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2323032,
+        "value_byte_offset": 2323209,
+        "value": 0.333,
+        "proof": [
+          {
+            "position": 2323204,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2323209,
+            "opcode": "BINFLOAT",
+            "argument": 0.333
+          },
+          {
+            "position": 2323218,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2323219,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "p_dropout_atom_level_embeddings",
+        "key_byte_offset": 2331046,
+        "value_byte_offset": 2331223,
+        "value": 0,
+        "proof": [
+          {
+            "position": 2331218,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2331223,
+            "opcode": "BINFLOAT",
+            "argument": 0
+          },
+          {
+            "position": 2331232,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2331233,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "use_atom_level_embedding",
+        "key_byte_offset": 2343955,
+        "value_byte_offset": 2344125,
+        "value": true,
+        "proof": [
+          {
+            "position": 2344120,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2344125,
+            "opcode": "NEWTRUE",
+            "argument": null
+          },
+          {
+            "position": 2344126,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2344127,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      },
+      {
+        "key": "use_atom_level_embedding",
+        "key_byte_offset": 2361164,
+        "value_byte_offset": 2361334,
+        "value": true,
+        "proof": [
+          {
+            "position": 2361329,
+            "opcode": "LONG_BINGET",
+            "memo_index": 87477,
+            "memo_string": "_val"
+          },
+          {
+            "position": 2361334,
+            "opcode": "NEWTRUE",
+            "argument": null
+          },
+          {
+            "position": 2361335,
+            "opcode": "SETITEMS",
+            "argument": null
+          },
+          {
+            "position": 2361336,
+            "opcode": "BUILD",
+            "argument": null
+          }
+        ]
+      }
+    ]
+  },
+  "observed_warning": "Cached data not found for each standard residue present and L:0 at /net/tukwila/lschaaf/datahub/MACE-OMOL-Jul2025/mace_embeddings/...",
+  "findings": [
+    "The public pipeline defaults to a laboratory-local cached-residue path. Missing files produce a warning and are skipped.",
+    "With no cached descriptors, the installed featurizer explicitly returns zero atom_level_embedding and mean_atom_level_embedding tensors, with has_atom_level_embedding false for all atoms.",
+    "The checkpoint metadata contains two use_atom_level_embedding=True scalar values. The enabled pairformer and diffusion atom encoders consume atom_level_embedding; missing descriptors cannot be described as an unused warning.",
+    "Ordinary reference conformers are generated separately through the RDKit path when cached conformers are absent. Missing MACE descriptors do not imply that all chemical/reference features are absent.",
+    "The installed public training default dropout0.5 is not the checkpoint metadata value: checkpoint occurrences show nine0.333 and one0.0 values. Without reconstructing every OmegaConf parent, these are reported as scalar occurrences, not fully resolved config paths.",
+    "The explicit missing-feature fallback supports runtime completion but does not establish equivalent prediction quality with versus without cached MACE descriptors."
+  ],
+  "decision": {
+    "proposed_fix": "None for this completed prespecified run. Preserve all20 assignments and outputs; do not change configuration or resample based on this warning.",
+    "result_scope": "RF3 predictions with no MSA and no cached MACE atom descriptors; exact public runtime and checkpoint fixed. Do not present these as MACE/quantum-informed predictions or as reproducing an embedding-equipped benchmark.",
+    "geometry_scope": "Structural measurements remain descriptive outputs of this qualified missing-feature condition; productive catalysis, specificity, or Atlas benefit is not established.",
+    "quality_effect": "Unknown without a separately justified comparison. Training dropout makes absence an explicit supported representation, not proof of calibration or equal accuracy."
+  },
+  "source_files": [
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/foundry/models/rf3/src/rf3/data/pipelines.py",
+      "sha256": "6d7f7795915c0afcc8a7d9da27c3ab758ea6025617846cca9756cda0f91434a6",
+      "snippets": [
+        {
+          "start": 154,
+          "end": 158,
+          "text": "    # Cache paths\n    msa_cache_dir: PathLike | str | None = None,\n    residue_cache_dir: PathLike\n    | str\n    | None = \"/net/tukwila/lschaaf/datahub/MACE-OMOL-Jul2025/mace_embeddings\","
+        },
+        {
+          "start": 415,
+          "end": 435,
+          "text": "    transforms += [\n        AddGlobalTokenIdAnnotation(),  # required for reference molecule features and TokenToAtomMap\n        AddGlobalResIdAnnotation(),\n        LoadCachedResidueLevelData(\n            # atomworks types `dir` as `str | Path`, but `load_cached_residue_level_data`\n            # treats a None dir as \"no cache\" (it early-returns empty), so None disables caching.\n            dir=Path(residue_cache_dir) if residue_cache_dir is not None else None,  # type: ignore[arg-type]\n            sharding_depth=1,\n        ),\n        RandomSubsampleCachedConformers(n_conformers=n_conformers),\n        EncodeAF3TokenLevelFeatures(sequence_encoding=af3_sequence_encoding),\n        GetAF3ReferenceMoleculeFeatures(\n            conformer_generation_timeout=conformer_generation_timeout,\n            use_element_for_atom_names_of_atomized_tokens=use_element_for_atom_names_of_atomized_tokens,\n        ),\n        FeaturizeAtomLevelEmbeddings(\n            mask_rdkit_conformers=False,\n            p_dropout_atom_level_embeddings=p_dropout_atom_level_embeddings,\n            embedding_dim=embedding_dim,\n            n_conformers=n_conformers,\n        ),"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/venv/lib/python3.12/site-packages/atomworks/ml/transforms/cached_residue_data.py",
+      "sha256": "5caac587c7514f96203163ddeb41fcb3662b50e8b44fbd3746a1b1fdeeabf360",
+      "snippets": [
+        {
+          "start": 103,
+          "end": 107,
+          "text": "    if not exists(dir):\n        return {\n            \"residues\": {},\n            \"metadata\": None,\n        }"
+        },
+        {
+          "start": 136,
+          "end": 149,
+          "text": "        if not file_path.exists():\n            logger.warning(f\"Cached data not found for {res_name} at {file_path}\")\n            continue\n\n        # Load and optionally filter the cached data\n        cached_data = loader(file_path)\n        if keys_to_load is not None:\n            cached_data = keyfilter(lambda k: k in keys_to_load, cached_data)\n\n        cached_data_by_res_name[res_name] = cached_data\n\n    return {\n        \"residues\": cached_data_by_res_name,\n        \"metadata\": metadata,"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/venv/lib/python3.12/site-packages/atomworks/ml/transforms/atom_level_embeddings.py",
+      "sha256": "32f43bb6f9259bf8a0f36dc10fc05b97329fcb96cd1c335022a84b57d393f511",
+      "snippets": [
+        {
+          "start": 54,
+          "end": 84,
+          "text": "    # Infer dimensions from first available descriptors\n    try:\n        first_descriptors = next(\n            res_data[\"descriptors\"]\n            for res_data in cached_residue_level_data.values()\n            if res_data.get(\"descriptors\") is not None\n        )\n        embedding_dim = embedding_dim or first_descriptors.shape[-1]\n        # Get number of conformers from first residue instance\n        n_conformers = n_conformers or (\n            len(next(iter(residue_conformer_indices.values()))) if residue_conformer_indices else 0\n        )\n        _has_descriptors = True\n    except (StopIteration, ValueError):\n        assert (\n            embedding_dim is not None and n_conformers is not None\n        ), \"embedding_dim and n_conformers must be provided if no descriptors are available\"\n        _has_descriptors = False\n\n    default_return = {\n        \"atom_level_embedding\": np.zeros((n_conformers, L, embedding_dim), dtype=np.float32),\n        \"has_atom_level_embedding\": np.zeros(L, dtype=bool),\n        \"mean_atom_level_embedding\": np.zeros((L, embedding_dim), dtype=np.float32),\n    }\n\n    if not _has_descriptors:\n        return default_return\n\n    if (p_dropout_atom_level_embeddings > 0.0) and (np.random.random() < p_dropout_atom_level_embeddings):\n        # With probability p_dropout_atom_level_embeddings, drop out the atom-level embeddings (all 0's)\n        return default_return"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/venv/lib/python3.12/site-packages/atomworks/ml/transforms/af3_reference_molecule.py",
+      "sha256": "b19c9dc88403431c769c118d961fbde8cea09646918ea27ddabbe8552eeeef77",
+      "snippets": [
+        {
+          "start": 268,
+          "end": 290,
+          "text": "    # Extract cached conformers and get remaining stochiometry\n    if cached_residue_level_data is not None:\n        cached_mols, remaining_stochiometry = _extract_cached_conformers(\n            res_stochiometry=res_stochiometry,\n            max_conformers_per_residue=max_conformers_per_residue,\n            cached_residue_level_data=cached_residue_level_data,\n        )\n    else:\n        cached_mols, remaining_stochiometry = {}, res_stochiometry\n\n    # ... get reference molecules with conformers for remaining residues\n    # (We do not generate conformers for unknown CCD codes here, as we will do that later)\n    generated_mols = _get_rdkit_mols_with_conformers(\n        res_stochiometry=remaining_stochiometry,\n        max_conformers_per_residue=max_conformers_per_residue,\n        hydrogen_policy=\"remove\",\n        timeout=conformer_generation_timeout,\n        timeout_strategy=timeout_strategy,\n        **generate_conformers_kwargs,\n    )\n\n    # Merge cached and generated molecules\n    ref_mols = {**cached_mols, **generated_mols}"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/foundry/models/rf3/src/rf3/model/layers/pairformer_layers.py",
+      "sha256": "4c04de341ad75f97305fe7cf5b84866ef48864600e6d01591bbc175563ff4fdb",
+      "snippets": [
+        {
+          "start": 124,
+          "end": 128,
+          "text": "        )  # [L, C_atom]\n\n        if self.use_atom_level_embedding:\n            assert \"atom_level_embedding\" in f\n            C_L = C_L + self.process_atom_level_embedding(f[\"atom_level_embedding\"])"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/foundry/models/rf3/src/rf3/model/layers/af3_diffusion_transformer.py",
+      "sha256": "ac3e1036c8727f5ee094fb76333abd6dd349242ac0e777e4b671b9a117444346",
+      "snippets": [
+        {
+          "start": 130,
+          "end": 132,
+          "text": "        if self.use_atom_level_embedding:\n            assert \"atom_level_embedding\" in f\n            C_L = C_L + self.process_atom_level_embedding(f[\"atom_level_embedding\"])"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/foundry/models/rf3/configs/model/rf3.yaml",
+      "sha256": "4b1ede536fc1f9aa17f2e247872df137f1e27c9f8d0bc76d85ffa36912cc8136",
+      "snippets": [
+        {
+          "start": 8,
+          "end": 22,
+          "text": "net:\n  feature_initializer:\n    input_feature_embedder:\n      atom_attention_encoder:\n        c_atom_1d_features: 393 # 392 + 1 has_atom_level_embedding = 393\n        atom_1d_features: \n            - ref_pos                                                                             \n            - ref_charge                                                                          \n            - ref_mask                                                                            \n            - ref_element                                                                         \n            - ref_atom_name_chars                                                                 \n            - ref_pos_ground_truth \n            - has_atom_level_embedding\n        use_atom_level_embedding: true\n        atom_level_embedding_dim: 384"
+        },
+        {
+          "start": 31,
+          "end": 43,
+          "text": "  diffusion_module:\n    atom_attention_encoder:\n      c_atom_1d_features: 393 # 392 + 1 has_atom_level_embedding = 393\n      atom_1d_features:\n        - ref_pos                                                                             \n        - ref_charge                                                                          \n        - ref_mask                                                                            \n        - ref_element                                                                         \n        - ref_atom_name_chars                                                                 \n        - ref_pos_ground_truth \n        - has_atom_level_embedding\n      use_atom_level_embedding: true\n      atom_level_embedding_dim: 384"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/foundry/models/rf3/configs/datasets/base.yaml",
+      "sha256": "8fa4703f543d76cbf6a8a047f502bfdb6fdbd8d3bf251aee5b2ab3668a5060d5",
+      "snippets": [
+        {
+          "start": 13,
+          "end": 14,
+          "text": "# Embeddings\np_dropout_atom_level_embeddings: 0.5"
+        }
+      ]
+    },
+    {
+      "remote_path": "/home/ubuntu/ce-problem8/runtime/foundry/models/rf3/configs/datasets/val/base.yaml",
+      "sha256": "2ace5c5d7febf9423f87cae75436bdb79d4e9e5ff73192cb98e9192d7890c404",
+      "snippets": [
+        {
+          "start": 23,
+          "end": 29,
+          "text": "    max_atoms_in_crop: null # do not crop for inference\n    return_atom_array: True # return atom array for inference\n    run_confidence_head: ${datasets.run_confidence_head}\n    p_unconditional: 1.0 # unconditional for inference, unless explicitly overridden\n    p_dropout_atom_level_embeddings: 0.0 # always use embeddings in inference\n    take_first_chiral_subordering: ${datasets.take_first_chiral_subordering}\n    use_element_for_atom_names_of_atomized_tokens: ${datasets.use_element_for_atom_names_of_atomized_tokens}"
+        }
+      ]
+    }
+  ],
+  "unperformed": [
+    "No prediction coordinates inspected for selection",
+    "No remote file edited",
+    "No inference or sampling restarted",
+    "No model loaded by this audit",
+    "No cache or additional weight download"
+  ]
+}
