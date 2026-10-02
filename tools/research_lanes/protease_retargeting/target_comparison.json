@@ -1,0 +1,380 @@
+{
+  "record_type": "source_faithful_cross_target_evidence_draft",
+  "status": "development_evidence_not_canonical_atlas_admission",
+  "created_utc": "2026-10-02T13:33:00Z",
+  "question": "What measured evidence links intended bond, substrate context, kinetic performance, competing-substrate behavior, and secondary cleavage to target recognition for TDPn3, SAAc8, AbetaF3, and separately the TDPr3 redesign?",
+  "source": {
+    "title": "Computational design of metalloproteases",
+    "doi": "10.1101/2025.11.20.689622",
+    "version": "v3",
+    "posted_date": "2026-09-21",
+    "main_text_sha256": "59330da48264344ab2030982f57ea67dbc6e7a937dbb26b5009256a0ffe5c805",
+    "supplement_sha256": "1132228c4e00b9e63e6ab9c93c299625ba2c1bf5d3af51c57fefdc0fc045cb07",
+    "source_scope": "Current v3 only; no facts inherited from PMC v1.",
+    "main_text_url": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3.full",
+    "supplement_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/21/2025.11.20.689622/DC1/embed/media-1.docx?download=true",
+    "author_archive_url": "https://zenodo.org/records/22654831"
+  },
+  "assay_definitions": {
+    "reporter": "sfGFP-substrate-mScarlet FRET construct unless a row says otherwise",
+    "tdp_specificity_panel": {
+      "named_reporters": [
+        "S_Zn5",
+        "S_ZnO7",
+        "S_ZnO25",
+        "S_ZnO36",
+        "S_ZnO39",
+        "S_Zn45",
+        "S_tdp43"
+      ],
+      "TDPn3_concentration_um": 0.5,
+      "TDPr3_concentration_um": 6,
+      "replicates": 3,
+      "processing": "buffer-only progress curve subtracted",
+      "source_locator": "Supplement 4.11",
+      "comparison_limit": "TDPn3 and TDPr3 curve amplitudes are not a matched enzyme-concentration comparison.",
+      "source_stated_reporter_stock_concentration_um_each": 3,
+      "mixing": {
+        "substrate_stock_volume_ul": 18,
+        "enzyme_zinc_stock_volume_ul": 2,
+        "derived_final_reporter_concentration_um_each": 2.7,
+        "derivation": "3 micromolar x18/(18+2), assuming additive volumes",
+        "scope": "Methods4.11 states pre-mix reporter normalization. Archive notebook labels concentration3micromolar, but its alias/sequence and concentration interpretation remain distinct source ambiguities."
+      }
+    },
+    "disease_target_panel_extension": {
+      "source_statement": "SAA and A-beta selectivity and kinetics were performed as described in sections 4.9-4.11; ED Figure 9 shows cognate and other study reporters in triplicate.",
+      "figure_legend_apparent_reporters": [
+        "S_Zn5",
+        "S_ZnO7",
+        "S_ZnO25",
+        "S_ZnO36",
+        "S_ZnO39",
+        "S_Zn45",
+        "S_tdp43",
+        "S_SAA",
+        "S_Abeta"
+      ],
+      "panel_count_status": "nine legend entries visible in ED Figure 9; only the seven TDP-panel names are enumerated in prose",
+      "quantitation_policy": "ED Figure 9 panel curves may establish a qualitative within-panel preference. No cognate/off-target rate ratio is reported or inferred: the plotted response is sfGFP fluorescence in arbitrary units, and no reporter-specific product calibration is supplied for this panel.",
+      "source_locator": "Main ED Figure 9 caption; Supplement 4.11",
+      "selectivity_assay_concentration_status": "The methods cross-reference4.11, which normalizes reporter stocks to3uM then mixes18uL substrate and2uL enzyme/Zn stock (dilution-derived final2.7uM assuming additive volumes). It gives construct-specific final enzyme doses0.5uM TDPn3 and6uM TDPr3 but does not explicitly assign enzyme doses to SAAc8/AbetaF3 selectivity panels.",
+      "raw_data_status": "A bridged author-Zenodo central-directory interval exposes the full small fig5 branch (TDP-A3 plus masked-biologic files) before the archive transitions to rfd2mi_workflow. No ED9, SAA, Abeta, amyloid, or Extended Data raw member occurs in that branch."
+    }
+  },
+  "constructs": [
+    {
+      "construct": "TDPn3",
+      "design_class": "fixed-sequence direct de novo design",
+      "campaign": {
+        "tested_design_count": 113,
+        "screen_format": "trans FRET reporter; small-scale proteins were not concentration-normalized",
+        "screen_conditions": "2 uL purified protein added to 3 uM reporter substrate, 50 uM ZnSO4, 40 mM HEPES, 50 mM NaCl; 37 C progress curves",
+        "reported_hit_count": null,
+        "reported_hit_threshold": null,
+        "selection": "TDPn3 described as the most active catalyst; a selected lead is not a 1/113 success rate",
+        "source_locator": "Supplement 4.10 and Fig S23"
+      },
+      "table_s4": {
+        "protease_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+        "protease_length_aa": 187,
+        "protease_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+        "substrate_sequence": "ALQSSWGMMGML",
+        "source_locator": "Table S4"
+      },
+      "intended_bond": {
+        "notation": "ALQSSWG/MMGML",
+        "cut_after_peptide_residue": 7,
+        "status": "explicit in Table S2 and Table S8"
+      },
+      "reporter_cut_evidence": {
+        "table_s2_author_annotation": "ALQ/SSWG/MMGML",
+        "expected_c_terminal_product_mass_da_for_cut_7": 27528,
+        "measured_c_terminal_product_masses_da": [
+          27506
+        ],
+        "mass_difference_da": -22,
+        "supported_cut_positions_from_listed_product_masses": [
+          7
+        ],
+        "author_annotated_cut_positions": [
+          3,
+          7
+        ],
+        "secondary_cut_3_evidence_status": "author annotation retained, but Table S2 lists only one C-terminal product mass and that mass corroborates cut 7; no independent cut-3 product mass or other source witness was found",
+        "source_locator": "Table S2"
+      },
+      "kinetics": {
+        "substrate_context": "TDP-43-derived peptide in sfGFP-mScarlet reporter",
+        "temperature_c": 37,
+        "enzyme_concentration_nm": 500,
+        "replicates": 3,
+        "kcat_s_minus_1": 0.033,
+        "kcat_uncertainty_s_minus_1": 0.003,
+        "KM_um": 52,
+        "KM_uncertainty_um": 9,
+        "kcat_over_KM_M_minus_1_s_minus_1": 640,
+        "kcat_over_KM_uncertainty_M_minus_1_s_minus_1": 130,
+        "uncertainty_label": "as printed; figure reports mean plus/minus standard deviation for plotted points",
+        "source_locator": "Main results and Fig 5c"
+      },
+      "competing_substrate_evidence": {
+        "result_text_attribution": "substantially greater activity toward the TDP target than toward other tested substrates",
+        "numeric_selectivity_ratio": null,
+        "figure_identity_conflict": {
+          "main_results_text": "TDPn3",
+          "Fig_5b_caption": "TDPr3",
+          "Extended_Data_Fig_8c_caption": "TDPr3",
+          "supplement_methods": "both TDPn3 and TDPr3 were assayed but stale Fig. 4b,d references do not map the current plotted panel",
+          "resolution": "still unresolved at sequence identity; raw-data dose makes TDPn3 more likely, but retain the contradictory Fig. 5b caption and do not silently relabel the panel",
+          "author_raw_data_followup": "Author-Zenodo files named tdpA3_specificity use 500 nM enzyme and show TDP-target preference. This condition matches TDPn3 in section 4.11, not 6 uM TDPr3, but the alias lacks sequence-level mapping."
+        },
+        "source_locator": "main_v3.txt:109-115,187-189"
+      },
+      "full_length_tdp43": {
+        "assay": "purified tagged human TDP-43 preparations in vitro",
+        "conditions": "equal volumes of 16 uM substrate and 40 uM protease/control stocks, giving nominal 8 uM substrate, 20 uM protease, and 25 uM ZnSO4 after mixing; 0, 6, 12, 24 h at 37 C",
+        "table_s8_constructs": [
+          {
+            "state": "initially oligomeric peak 1",
+            "construct_description": "TDP43-linker-monoGFP-linker-MBP-His tag",
+            "sequence_length_aa": 1107,
+            "sequence_sha256_slash_removed": "f857b66882f5bf0fc2a86ad1bd6043bb3b7b1ffaf0fd92cc2c3de2e8e35cbdee",
+            "target_sequence_start_in_construct_1_based": 333,
+            "target_notation_in_table": "ALQSSWG/MMGML",
+            "expected_c_terminal_product_mass_da": 83636,
+            "measured_c_terminal_product_mass_da": 83620
+          },
+          {
+            "state": "initially monomeric peak 2",
+            "construct_description": "TDP43-linker-monoGFP",
+            "sequence_length_aa": 710,
+            "sequence_sha256_slash_removed": "3da980773bd33ac178fccb323a498c3ca38416422269e2d5f49a6ea44a9f036b",
+            "target_sequence_start_in_construct_1_based": 333,
+            "target_notation_in_table": "ALQSSWG/MMGML",
+            "expected_c_terminal_product_mass_da": 40187,
+            "measured_c_terminal_product_mass_da": 40169
+          }
+        ],
+        "controls": "No product detected in buffer-only or catalytic-base-knockout lanes; detection limit unreported. Full-length band loss in knockout can reflect precipitation.",
+        "scope": "The two preparations are contexts of one selected sequence, not independent targets. Product masses support cut 7, but the rows do not exhaustively exclude other cuts.",
+        "source_locator": "Main Fig 5d/ED Fig 8f; Supplement 4.12, Table S2, Table S8, Fig S24"
+      }
+    },
+    {
+      "construct": "TDPr3",
+      "design_class": "redesign of ZnO36 scaffold for a fixed TDP-43 sequence",
+      "campaign": {
+        "tested_design_count": 48,
+        "screen_format": "cis SDS-PAGE screen followed by selected trans assays",
+        "screen_detail": "48 designs shown at 4 h; seven designs shown at 10 min; four designs plus their knockout controls shown in trans",
+        "reported_hit_count": null,
+        "reported_hit_threshold": null,
+        "selection_limit": "The seven retested or four trans-tested constructs are not recoded as cohort hits because the source gives no formal hit rule.",
+        "source_locator": "Supplement 4.10, Figs S21-S22"
+      },
+      "table_s4": {
+        "protease_sequence": "SFEEEVEELAETLREYLRRLGMSERLAEEVAEALRRAARDPDLLESFAVLAAIARLAREGDELAVYVALALLYLLSQTRPEYTKALDEGLSPESKEELRRFLEEVYRRYRDDITLENIIRVTRAHEEAHIRRFASLGYYAVGIVRSDGSGLAVAAETREELDRLVAELREKYPDIIEERRREPD",
+        "protease_length_aa": 184,
+        "protease_sequence_sha256": "d5b903782fa0c81d2022033f7b2f423b5b21365e1bc4bea6354cf44dc34fd8fc",
+        "substrate_sequence": "ALQSSWGMMGML",
+        "source_locator": "Table S4"
+      },
+      "intended_bond": {
+        "notation": "ALQSS/WGMMGML",
+        "cut_after_peptide_residue": 5,
+        "status": "explicit in Table S2"
+      },
+      "reporter_cut_evidence": {
+        "expected_c_terminal_product_mass_da_for_cut_5": 28015,
+        "measured_c_terminal_product_masses_da": [
+          27994,
+          28168
+        ],
+        "table_mass_differences_from_intended_expected_da": [
+          -21,
+          153
+        ],
+        "author_annotated_cut_positions": [
+          5,
+          3
+        ],
+        "evidence_interpretation": "The two products differ by 174 Da, consistent with the two intervening serine residues; both author-annotated cuts therefore have independent product-mass support, with the approximately -21 Da fluorophore-maturation offset seen across Table S2.",
+        "source_locator": "Table S2"
+      },
+      "kinetics": {
+        "reported_steady_state_parameters": null,
+        "missingness": "No TDPr3 kcat, KM, or kcat/KM was found in the inspected v3 main text or supplement."
+      },
+      "competing_substrate_evidence": {
+        "result": "cleaved the TDP peptide but retained strong preference for the original ZnO36 cognate substrate",
+        "panel_conditions": "Seven reporters normalized to 3 uM before mixing 18 uL reporter with 2 uL enzyme/Zn stock; dilution-derived final reporter 2.7 uM assuming additive volumes; 6 uM final TDPr3, triplicate, buffer-subtracted progress curves (Supplement 4.11).",
+        "numeric_selectivity_ratio": null,
+        "source_locator": "Main redesign paragraph and ED Fig 8c"
+      },
+      "structure_caution": {
+        "structure": "PDB 11DU, source-reported E45Q-substrate complex",
+        "source_mutation_label_conflict": "The source heading labels E45Q while the methods also call the crystallized variant E32Q. Neither label maps directly to the deposited coordinate sequence numbering.",
+        "deposited_entity_mapping": "The 184-aa deposited enzyme entity matches Table S4 TDPr3 at 183 of 184 residues; the sole E-to-Q difference is deposited author residue 126 (H125-Q126-...-H129). The source does not establish why this is called E45Q/E32Q, for example via design or circular-permutation numbering.",
+        "state": "No HETATM is resolved, including no Zn(II); this is a catalytic-base mutant structure.",
+        "bound_register_annotation": "ALQS/SWGMMGML (cut after reporter residue 4)",
+        "relationship": "The register differs from intended cut 5 and MS-supported cuts 5 and 3; the structure is not productive-geometry evidence.",
+        "source_locator": "Supplementary Discussion 3.2 and crystallography source mapping for PDB 11DU",
+        "coordinate_identity_record": "tdpr3_crystal_identity.json"
+      }
+    },
+    {
+      "construct": "SAAc8",
+      "design_class": "fixed-sequence direct de novo design",
+      "campaign": {
+        "tested_design_count": 14,
+        "screen_format": "same reporter-screen workflow as the disease-target de novo designs",
+        "reported_hit_count": null,
+        "reported_hit_threshold": null,
+        "selection": "only the fastest design was chosen for selectivity and kinetics",
+        "source_locator": "Supplement 4.11"
+      },
+      "table_s4": {
+        "protease_sequence": "SEEEERWIENMRKTIKELFPDVDVSDALKAAREIAERLGYELVVFPSREAAREKLGFTGVTLPDDKVIYAADEELTLLHETMHALMVERPQEPPPEEVLAFIRSLEGIEATIAALALVEGNVNRGILVEIPQEVFDALSRENVEEVRRNLSPEALRIIYTATRENAVEAARRAIEDYF",
+        "protease_length_aa": 178,
+        "protease_sequence_sha256": "156b586907c3e1ff9315237bab2f989bbe473472c1bad671ecb75738614b22e9",
+        "substrate_sequence": "SSRSFFSFLG",
+        "source_locator": "Table S4"
+      },
+      "intended_bond": {
+        "notation": null,
+        "cut_after_peptide_residue": null,
+        "missingness": "The inspected v3 prose and Table S4 specify the fixed peptide but do not slash-annotate the scissile bond; SAAc8 is absent from Table S2. A centered position-5/6 bond must not be promoted from design-pipeline inference to measured fact."
+      },
+      "observed_bond": {
+        "mass_spectrometry_assignment": null,
+        "secondary_cleavage_assessment": null,
+        "scope": "Reporter cleavage does not by itself identify which peptide bond was cut."
+      },
+      "kinetics": {
+        "substrate_context": "SAA-derived peptide SSRSFFSFLG in reporter",
+        "enzyme_concentration_nm": 500,
+        "replicates": 3,
+        "kcat_s_minus_1": 0.003,
+        "kcat_uncertainty_s_minus_1": 0.0004,
+        "KM_um": 70,
+        "KM_uncertainty_um": 20,
+        "kcat_over_KM_M_minus_1_s_minus_1": 50,
+        "kcat_over_KM_uncertainty_M_minus_1_s_minus_1": 10,
+        "transcription_status": "as printed in ED Figure 9; raw fit/progress data are absent from the author deposit's recovered raw_data_for_figures/fig5 branch, so the value is source-image transcription rather than raw-data-verified",
+        "source_locator": "ED Figure 9c; F14.large.jpg sha256 75240782f6b0d307727fff0da88e9aeafc1f549cab46efd54991bf9d6220616b"
+      },
+      "competing_substrate_evidence": {
+        "result": "source reports and ED Figure 9 shows the highest activity on the intended SAA-derived reporter among the study reporters",
+        "numeric_selectivity_ratio": null,
+        "scope": "restricted reporter panel; no full-length SAA, endogenous, cellular, or proteome-wide assay",
+        "source_locator": "Main disease-target paragraph and ED Figure 9b",
+        "quantitative_status": "qualitative preference only; no calibrated cognate/off-target rate ratio"
+      }
+    },
+    {
+      "construct": "AbetaF3",
+      "design_class": "fixed-sequence direct de novo design",
+      "campaign": {
+        "tested_design_count": 34,
+        "screen_format": "same reporter-screen workflow as the disease-target de novo designs",
+        "reported_hit_count": null,
+        "reported_hit_threshold": null,
+        "selection": "only the fastest design was chosen for selectivity and kinetics",
+        "source_locator": "Supplement 4.11"
+      },
+      "table_s4": {
+        "protease_sequence": "DDREELAERMRRIAEAATEEELEEGERETARLLAYLREATDTPEYRRAVEKIREALKDEDRFTQTHEVNHLYLTAALARRAGAEVYAEEVEVETETLPDGRRISRITIPVSDAEAVRRAAAELGRVMGLTGSEEALFEAVMEGLVTAMTAVEEGIPLRTLRDGPNPLYGAGGVVAALRAREVEAFLK",
+        "protease_length_aa": 187,
+        "protease_sequence_sha256": "4cea2d7fc6aa894bdd27c8651a74f15129464abdc825110764e4cdd8cbedb34b",
+        "substrate_sequence": "KGAIIGLMVG",
+        "source_locator": "Table S4"
+      },
+      "intended_bond": {
+        "notation": null,
+        "cut_after_peptide_residue": null,
+        "missingness": "The inspected v3 prose and Table S4 specify the fixed peptide but do not slash-annotate the scissile bond; AbetaF3 is absent from Table S2. A centered position-5/6 bond must not be promoted from design-pipeline inference to measured fact."
+      },
+      "observed_bond": {
+        "mass_spectrometry_assignment": null,
+        "secondary_cleavage_assessment": null,
+        "scope": "Reporter cleavage does not by itself identify which peptide bond was cut."
+      },
+      "kinetics": {
+        "substrate_context": "A-beta-derived peptide KGAIIGLMVG in reporter",
+        "enzyme_concentration_nm": 500,
+        "replicates": 3,
+        "kcat_s_minus_1": null,
+        "KM_um": null,
+        "kcat_over_KM_M_minus_1_s_minus_1": 160.7,
+        "kcat_over_KM_uncertainty_M_minus_1_s_minus_1": 6.4,
+        "fit_scope": "ED Figure 9f presents a linear catalytic-efficiency fit rather than separately resolved kcat and KM.",
+        "transcription_status": "as printed in ED Figure 9; raw fit/progress data are absent from the author deposit's recovered raw_data_for_figures/fig5 branch, so the value is source-image transcription rather than raw-data-verified",
+        "source_locator": "ED Figure 9f; F14.large.jpg sha256 75240782f6b0d307727fff0da88e9aeafc1f549cab46efd54991bf9d6220616b"
+      },
+      "competing_substrate_evidence": {
+        "result": "source reports the highest activity on the intended A-beta-derived reporter among the study reporters; ED Figure 9e also shows substantial activity on at least one competing reporter",
+        "numeric_selectivity_ratio": null,
+        "scope": "restricted reporter panel; no full-length amyloid-beta, endogenous, cellular, or proteome-wide assay",
+        "source_locator": "Main disease-target paragraph and ED Figure 9e",
+        "quantitative_status": "qualitative preference only; no calibrated cognate/off-target rate ratio"
+      }
+    }
+  ],
+  "cross_target_conclusion": {
+    "bond_specific_recognition": "TDPn3 has the strongest bond-specific chain: intended cut 7, a matching reporter C-product mass, and matching C-product masses in two purified full-length TDP-43 construct states. TDPr3 supports intended cut 5 but also a cut after residue 3. SAAc8 and AbetaF3 show sequence-conditioned reporter turnover but no source-reported cut identity.",
+    "specificity": "TDPn3, SAAc8 and AbetaF3 are reported to prefer their intended reporters in restricted panels; TDPr3 prefers its original scaffold substrate. The progress curves support qualitative preference, not quantitative cross-target selectivity, because reporter response is uncalibrated and the ED9 selectivity enzyme doses are not explicit.",
+    "campaign_inference": "Counts 48, 113, 14, and 34 are tested-design denominators, not hit-rate denominators; selected fastest/most-active leads cannot be converted into 1/N successes.",
+    "secondary_cleavage": "TDPr3 secondary cut 3 has product-mass support. TDPn3 cut 3 is an author annotation without a second listed C-product mass. Secondary-cleavage status is unmeasured for SAAc8 and AbetaF3.",
+    "unestablished": [
+      "full-length target cleavage for SAAc8 or AbetaF3",
+      "endogenous intracellular activity for any lead",
+      "proteome-wide specificity",
+      "a matched cross-construct activity comparison between TDPn3 and TDPr3",
+      "cohort hit rates for any fixed-target campaign",
+      "complete exclusion of off-site cleavage",
+      "Problem 8 completion"
+    ]
+  },
+  "raw_data_followup": {
+    "author_deposit": {
+      "doi": "10.5281/zenodo.22654831",
+      "archive_member": "260909_zenodo.zip",
+      "central_directory_gap_http_range": "bytes=2303279421-2303344956",
+      "central_directory_gap_sha256": "d52cec403416362e76db8ea0d7381016d6acebce2218833521a7dbba80481344",
+      "finding": "The recovered central-directory interval includes the fig5 branch with tdpa3_kinetics_specificity, masked_egfr and masked_cytokine, then transitions to rfd2mi_workflow. No SAAc8/AbetaF3 ED9 raw member was located in the inspected fig5 branch. This is a scoped search result, not proof that the entire deposit lacks such data."
+    },
+    "recovered_tdp_a3_specificity_source": {
+      "csv_member": "zenodo_folder/raw_data_for_figures/fig5/tdpa3_kinetics_specificity/tdpA3_specificity.csv",
+      "csv_sha256": "bca69cae89822e3dd4c33dafb40306ee2c20994ed73d2dd141e7098069590f0b",
+      "notebook_member": "zenodo_folder/raw_data_for_figures/fig5/tdpa3_kinetics_specificity/tdpA3_specificity.ipynb",
+      "notebook_sha256": "cfae1b3a9a6f95d9105f01330b82a198b859c533a0153bf5397898c629ffe6b1",
+      "conditions_recorded_in_notebook": {
+        "enzyme_concentration_nm": 500,
+        "zinc_concentration_um": 5,
+        "signal_replicates": 3,
+        "matched_no_enzyme_control_replicates": 3,
+        "reader_temperature_c": 37,
+        "reporter_concentration_um_each_as_labeled_in_notebook": 3,
+        "reporter_concentration_interpretation": "Retained notebook label, not a verified final concentration. Supplement 4.11 normalizes reporter stocks to 3 uM before 18+2 uL mixing; the dilution-derived final concentration is 2.7 uM assuming additive volumes."
+      },
+      "processing": "Per-well time-zero subtraction followed by subtraction of the mean matched no-enzyme control. Publication curves plot sfGFP RFU in arbitrary units. A separate notebook calculation fits 0-1000 s RFU slopes.",
+      "missing_for_quantitative_specificity": "No per-reporter intact-versus-product fluorescence standard curve, molar-product conversion, or reporter-specific inner-filter correction is applied in the specificity notebook.",
+      "identity_scope": "The 500 nM dose and TDP-target preference align with the methods condition assigned to TDPn3 rather than the 6 uM TDPr3 condition, but the archive alias TDP-A3 is not mapped by an enzyme sequence to Table S4. This strengthens the TDPn3 reading of Fig. 5b without resolving the caption/text identity conflict."
+    },
+    "ed9_raw_status": {
+      "SAAc8": "No raw progress-curve or fit table located in the inspected fig5 archive branch; printed ED9 values remain source-image transcription. The full archive was not exhaustively searched.",
+      "AbetaF3": "No raw progress-curve or fit table located in the inspected fig5 archive branch; printed ED9 values remain source-image transcription. The full archive was not exhaustively searched."
+    },
+    "quantitative_comparison_decision": {
+      "cognate_performance": "The printed catalytic efficiencies share units and ED9/TDP kinetics captions specify 500 nM enzyme and triplicates, so they may be reported side by side as source-reported cognate performance. They compare different enzymes on different peptides and are not a measure of target recognition or selectivity.",
+      "specificity": "A quantitative specificity comparison is not supported. The competing-substrate panels are raw arbitrary-unit fluorescence curves; ED9 panel enzyme doses are not stated unambiguously; and the per-reporter optical response is not calibrated to molar cleavage.",
+      "decision_changing_next_assay": "Before ranking fixed-target recognition, measure every enzyme against the same reporter panel at matched active-enzyme concentration and buffer/Zn/temperature, convert each reporter signal with its own intact/product standard and inner-filter correction, and obtain initial rates over a verified low-substrate regime or full concentration series. Report v0/[E][S] or kcat/KM with uncertainty and independently identify the cognate cleavage bond by product mass spectrometry."
+    }
+  },
+  "interpretation_update": {
+    "earlier_record": "fixed_target_evidence.json",
+    "earlier_record_sha256": "89013f8969e1f87f31925f49bd2d2e86b97e3a46e4158e558b0d826dcd29e42e",
+    "clarification": "The earlier record preserves author slash annotations at reporter cuts3 and7. Table S2 gives only one TDPn3 C-product mass, which supports cut7; cut3 must remain an author annotation without independent mass support in that row. No earlier source annotation is removed."
+  }
+}

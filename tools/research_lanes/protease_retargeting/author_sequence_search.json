@@ -1,0 +1,1762 @@
+[
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_31_model_0p150/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 442320437,
+    "compressed_size": 29684,
+    "uncompressed_size": 119483,
+    "crc32": "37c97ee0",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_31_model_0p150",
+    "range_start": 442320437,
+    "range_end": 442350944,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_31_model_0p150/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "466c93b85cd9a32aabde0b349756ffab7d9292c36b629a309b056bea1132c228",
+    "protein_chain": "A",
+    "protein_sequence": "NPIRERIREAVAADPRAFGVVVDIETGETEFFGPIDALTEEQKKAVIMHELFHALIDGLVRGLSPEEIAERIKRVAEGLKRAYPGFTEPLEELKEELRRPENRERAARVAARAAQFIKENIDRLSEQEAFEGAVTGAARALGYEIPSPDPLYTEYGRRALEYIEANPDVDPELVERARRAIELAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPIRERIREAVAADPRAFGVVVDIETGETEFFGPIDALTEEQKKAVIMHELFHALIDGLVRGLSPEEIAERIKRVAEGLKRAYPGFTEPLEELKEELRRPENRERAARVAARAAQFIKENIDRLSEQEAFEGAVTGAARALGYEIPSPDPLYTEYGRRALEYIEANPDVDPELVERARRAIELAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.241935,
+      "SAAc8": 0.264463,
+      "AbetaF3": 0.107527
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_70_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 442628062,
+    "compressed_size": 29467,
+    "uncompressed_size": 118754,
+    "crc32": "ba765fa5",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_70_model_0p122",
+    "range_start": 442628062,
+    "range_end": 442658352,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_70_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "c513a473ac02072cdfa9dec16317eb49899d76ebeda3e638854b642d3d853fdc",
+    "protein_chain": "A",
+    "protein_sequence": "MEIRVEATVTEENGVKRFRVTVTVRDVNVDNYEEAAEEAYRKSREALDKALDEAEATRIELPVFGRTLVLDLRDPRQREIALEGVAAHEAEHVRLYALAQVTPPRPLRPDVEAAVRRAAAYLRETGDKWPVYSEMSLVLRDATPEEAAAYYNALEGEEKFAVNEGYTNRVMGEKIERLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEIRVEATVTEENGVKRFRVTVTVRDVNVDNYEEAAEEAYRKSREALDKALDEAEATRIELPVFGRTLVLDLRDPRQREIALEGVAAHEAEHVRLYALAQVTPPRPLRPDVEAAVRRAAAYLRETGDKWPVYSEMSLVLRDATPEEAAAYYNALEGEEKFAVNEGYTNRVMGEKIERLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.162162,
+      "SAAc8": 0.221607,
+      "AbetaF3": 0.286486
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_74_model_0p108/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 443020492,
+    "compressed_size": 29536,
+    "uncompressed_size": 118997,
+    "crc32": "ab235bd6",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_74_model_0p108",
+    "range_start": 443020492,
+    "range_end": 443050851,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_74_model_0p108/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "c2648f0388d157359ee3e3131f111fa663a898556ae961a306a469ea63b3aadf",
+    "protein_chain": "A",
+    "protein_sequence": "NPIRERIREAVAADPRAFGVVVNIETGETETFGPIERLTEEQREAVIMHEVMHALIQGLVEGLSPEEIAERIRRVVDGLVRAEPIFREPTERLKARLRDPENRERAARVAARAAEFVKENIDRLTEEEAFEGAVTGASRALGYSIPSPDPLYTEYGERALEYIEANPDVDPALVERARRALELAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPIRERIREAVAADPRAFGVVVNIETGETETFGPIERLTEEQREAVIMHEVMHALIQGLVEGLSPEEIAERIRRVVDGLVRAEPIFREPTERLKARLRDPENRERAARVAARAAEFVKENIDRLTEEEAFEGAVTGASRALGYSIPSPDPLYTEYGERALEYIEANPDVDPALVERARRALELAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.182796,
+      "SAAc8": 0.269972,
+      "AbetaF3": 0.295699
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_100_model_0p110/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 443537575,
+    "compressed_size": 29209,
+    "uncompressed_size": 117701,
+    "crc32": "5f797271",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_100_model_0p110",
+    "range_start": 443537575,
+    "range_end": 443567608,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_100_model_0p110/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "d00e6a80acfbc8aa90402d466c9244f3595ae031bcc7552954c354ed246a49a1",
+    "protein_chain": "A",
+    "protein_sequence": "MRVRVEATVEERDGVRSFRVTVTVEDVDVENYEEAAEEAFEKSREALDRALDEAEATRIEIPANGKTIVLDLTDPREREIALEGVATHEATHVRLYALSQVTPPRPLRPDVEAAVERAAAYLRETGDRWPVYSEMSKVLADATPEEAAAYYNALEGERRFAVNEGYTNSQLARKIEELLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVRVEATVEERDGVRSFRVTVTVEDVDVENYEEAAEEAFEKSREALDRALDEAEATRIEIPANGKTIVLDLTDPREREIALEGVATHEATHVRLYALSQVTPPRPLRPDVEAAVERAAAYLRETGDRWPVYSEMSKVLADATPEEAAAYYNALEGERRFAVNEGYTNSQLARKIEELLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.227027,
+      "SAAc8": 0.271468,
+      "AbetaF3": 0.221622
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_1_model_3_7_phosphots_seed-1_sample-1_model_87_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 443900611,
+    "compressed_size": 30133,
+    "uncompressed_size": 121751,
+    "crc32": "846453ab",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_1_model_3_7_phosphots_seed-1_sample-1_model_87_model_0p142",
+    "range_start": 443900611,
+    "range_end": 443931565,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_1_model_3_7_phosphots_seed-1_sample-1_model_87_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "0250e64b804a381a8ddb272cfc0b64a5a1972219958aba98d0f14bf36cc37cb7",
+    "protein_chain": "A",
+    "protein_sequence": "MTPVEEIQELGVRAYRAEPLPLIDRLAEELDLTPEEAARVYAVEEALVVAIIKVGLPELTPVVERIAERASPEVRRVYLEGADIIIERRDELPPYLREVFERLVAEMERIINSEETKEIAEKIKELWKEVTGKELPEEEAKTIAVHERLHALIVDGEILEIRATPERVTAVVEAPEESVQRFLDALK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MTPVEEIQELGVRAYRAEPLPLIDRLAEELDLTPEEAARVYAVEEALVVAIIKVGLPELTPVVERIAERASPEVRRVYLEGADIIIERRDELPPYLREVFERLVAEMERIINSEETKEIAEKIKELWKEVTGKELPEEEAKTIAVHERLHALIVDGEILEIRATPERVTAVVEAPEESVQRFLDALK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.262032,
+      "SAAc8": 0.30137,
+      "AbetaF3": 0.197861
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 444179149,
+    "compressed_size": 29263,
+    "uncompressed_size": 118754,
+    "crc32": "610cd5b5",
+    "method": 8,
+    "group": "alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128",
+    "range_start": 444179149,
+    "range_end": 444209234,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "f7347af939dbca54c399c0e52a0e968e9516246428863187e508a5192a1cd16b",
+    "protein_chain": "A",
+    "protein_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK"
+    },
+    "target_similarity": {
+      "TDPn3": 1.0,
+      "SAAc8": 0.252055,
+      "AbetaF3": 0.283422
+    },
+    "exact_target_matches": [
+      "TDPn3"
+    ],
+    "substring_target_matches": [
+      "TDPn3"
+    ],
+    "saved_path": ".git/catalytic-earth-runs/20261002T131112Z-protease-acceleration/models/TDPn3-author-pass-monomer.pdb"
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_56_model_0p120/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 444628949,
+    "compressed_size": 29102,
+    "uncompressed_size": 116810,
+    "crc32": "c4b969af",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_56_model_0p120",
+    "range_start": 444628949,
+    "range_end": 444658874,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_56_model_0p120/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "b2e82e06edcbdfcf659a1817e0fc9c004e9684222cd963acc2acb9696b0eecb6",
+    "protein_chain": "A",
+    "protein_sequence": "MKIEVRAEVTERDGVRSFRVTVTMEDVDVSNYEEAAEEAFRKSREALDRALDEARATRIELPANGETIVLDLTDPTQREIALEGVATHEAEHVRLYALAQVTPPRELRPEVQEAVDRAADYLRETGDKTPVYSDMSKVLADATPEEAAAYYNALEGERRFAVNEGYTNSKMAERIEELLAAAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKIEVRAEVTERDGVRSFRVTVTMEDVDVSNYEEAAEEAFRKSREALDRALDEARATRIELPANGETIVLDLTDPTQREIALEGVATHEAEHVRLYALAQVTPPRELRPEVQEAVDRAADYLRETGDKTPVYSDMSKVLADATPEEAAAYYNALEGERRFAVNEGYTNSKMAERIEELLAAAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.286486,
+      "SAAc8": 0.216066,
+      "AbetaF3": 0.291892
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_20_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 444959053,
+    "compressed_size": 29618,
+    "uncompressed_size": 119240,
+    "crc32": "c73397b1",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_20_model_0p122",
+    "range_start": 444959053,
+    "range_end": 444989494,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_20_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "cccdb36dddc45cd54a057337954e5cc711082138c280d13ddc49daeee73d63e8",
+    "protein_chain": "A",
+    "protein_sequence": "NPIRERIERAVAADPRAFGVVVDIETGETETYGPIEKLTEEQKKAVIMHELFHALIQGLVEGLTPEEIAERIRRVAEGLKRAFPGFREPLEQLEAELRRPEERERAAVVAARAAQYVRENIDELTFEEAFEGAVTGASRALGYSIPSPDPLYTEYGERALKYIEENPDVDPELVERAREALALAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPIRERIERAVAADPRAFGVVVDIETGETETYGPIEKLTEEQKKAVIMHELFHALIQGLVEGLTPEEIAERIRRVAEGLKRAFPGFREPLEQLEAELRRPEERERAAVVAARAAQYVRENIDELTFEEAFEGAVTGASRALGYSIPSPDPLYTEYGERALKYIEENPDVDPELVERAREALALAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.193548,
+      "SAAc8": 0.220386,
+      "AbetaF3": 0.268817
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_64_model_0p138/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 445232164,
+    "compressed_size": 29448,
+    "uncompressed_size": 118754,
+    "crc32": "ca76cea2",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_64_model_0p138",
+    "range_start": 445232164,
+    "range_end": 445262435,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_64_model_0p138/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "4baca2b2dafb5f80be515048f82690103113050adac8453c05a875cfd48f0ccc",
+    "protein_chain": "A",
+    "protein_sequence": "MRVRVEARVTEEDGVRSFEVTVTVEDVDTSNYREAAEEAFRKSREALDRALDEARATRIELPAFGRTIVLDLTDPRQREIALEGVATHEATHVELYALAQVTPPRALRPDVREAVDRAADYLRETGDRWPVYSEMSLVLRDATPEEAAAYFNAEEGERRFAVNEGYTNRKMAEKIEELLAEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVRVEARVTEEDGVRSFEVTVTVEDVDTSNYREAAEEAFRKSREALDRALDEARATRIELPAFGRTIVLDLTDPRQREIALEGVATHEATHVELYALAQVTPPRALRPDVREAVDRAADYLRETGDRWPVYSEMSLVLRDATPEEAAAYFNAEEGERRFAVNEGYTNRKMAEKIEELLAEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.194595,
+      "SAAc8": 0.199446,
+      "AbetaF3": 0.151351
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_35_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 445832970,
+    "compressed_size": 28981,
+    "uncompressed_size": 116972,
+    "crc32": "3dbbd239",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_35_model_0p142",
+    "range_start": 445832970,
+    "range_end": 445862774,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_35_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "e35a0c2e58681ca4e44663f1b0ae24fb51da77976193ee3eab37529a8d247132",
+    "protein_chain": "A",
+    "protein_sequence": "MKVEVRAEVTEKDGVRSFRVTVTVEDVDVNNYEEAAEEAYRKSREALDEALDEAEATRIEIPANGRTIVLDLTDPVQREIALEGVAAHEAEHVRLYALAQVTPPRELRPEVAEAVRRAAAYLRETGDRWPVYSDMSKVLADATPEEAAAYYNALEGEERFAVNEGYTNSVLARKIEELLAQAR",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKVEVRAEVTEKDGVRSFRVTVTVEDVDVNNYEEAAEEAYRKSREALDEALDEAEATRIEIPANGRTIVLDLTDPVQREIALEGVAAHEAEHVRLYALAQVTPPRELRPEVAEAVRRAAAYLRETGDRWPVYSDMSKVLADATPEEAAAYYNALEGEERFAVNEGYTNSVLARKIEELLAQAR"
+    },
+    "target_similarity": {
+      "TDPn3": 0.167568,
+      "SAAc8": 0.182825,
+      "AbetaF3": 0.297297
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_59_model_0p146/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 446164859,
+    "compressed_size": 30096,
+    "uncompressed_size": 121427,
+    "crc32": "4c987495",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_59_model_0p146",
+    "range_start": 446164859,
+    "range_end": 446195776,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_59_model_0p146/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "e2c8d825af4be1fb784c040141e1ec1c709a63d6a107bc96f50ed4e4aebf80e5",
+    "protein_chain": "A",
+    "protein_sequence": "MSPVERVQELGLEAQKEDPRPEVKTNAENLNLTEEEAARLYAVVEALVVAIVIEGLPELRPVIEELAAKASPAVRRVYLEGARIFIEERDKLPPYIRERYDRLVAEMPALAASEETREIAERIRELYKEVTGKELPERKALAIALHELVHARLFDGEILEIRATKDSVTVTVEVPEEELKRFLEALK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSPVERVQELGLEAQKEDPRPEVKTNAENLNLTEEEAARLYAVVEALVVAIVIEGLPELRPVIEELAAKASPAVRRVYLEGARIFIEERDKLPPYIRERYDRLVAEMPALAASEETREIAERIRELYKEVTGKELPERKALAIALHELVHARLFDGEILEIRATKDSVTVTVEVPEEELKRFLEALK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.374332,
+      "SAAc8": 0.169863,
+      "AbetaF3": 0.256684
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_32_model_0p136/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 446413507,
+    "compressed_size": 29036,
+    "uncompressed_size": 117296,
+    "crc32": "b4d912b9",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_32_model_0p136",
+    "range_start": 446413507,
+    "range_end": 446443366,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_32_model_0p136/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "b667c95c2330286fe3ec6573e81b45159d1026d801d2c06e347efe8135f931df",
+    "protein_chain": "A",
+    "protein_sequence": "MKIEVEARVTEENGVRSFRVTVTMEDVDVSNYEEAAEEAFEKTREALDRALDEAKATRIELPAFGRTITLDLTDPVQREIALEGVAAHEAEHVRLYALAQVTPPRELRPDVREAVERAAAWLRETGDWWPVYSDMSLVLADATPEEAAAYYNALEGEERIAVNEGYTNAVMARRIEELLAAAR",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKIEVEARVTEENGVRSFRVTVTMEDVDVSNYEEAAEEAFEKTREALDRALDEAKATRIELPAFGRTITLDLTDPVQREIALEGVAAHEAEHVRLYALAQVTPPRELRPDVREAVERAAAWLRETGDWWPVYSDMSLVLADATPEEAAAYYNALEGEERIAVNEGYTNAVMARRIEELLAAAR"
+    },
+    "target_similarity": {
+      "TDPn3": 0.216216,
+      "SAAc8": 0.221607,
+      "AbetaF3": 0.048649
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_36_model_0p104/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 447015936,
+    "compressed_size": 29650,
+    "uncompressed_size": 119159,
+    "crc32": "ba4f7382",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_36_model_0p104",
+    "range_start": 447015936,
+    "range_end": 447046409,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_36_model_0p104/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "fea014dfa51304b1404e8dfda78644c0fd67e8f45289ad971bc831fb88334803",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEATVEERDGVRSFRVRVTVEDVDVSNYREAAEEAFRKSREALDRALDEAEARRIEIPANGETIVLDLTDPRQREIALEGVATHEATHVILYAKAQVTPPRELRPDVREAVERAADYLRETGDRWPVYSEMSKVLADLTLEEAAAYYNAEEGERRFAVNEGYTNSKLAEKIEELLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEATVEERDGVRSFRVRVTVEDVDVSNYREAAEEAFRKSREALDRALDEAEARRIEIPANGETIVLDLTDPRQREIALEGVATHEATHVILYAKAQVTPPRELRPDVREAVERAADYLRETGDRWPVYSEMSKVLADLTLEEAAAYYNAEEGERRFAVNEGYTNSKLAEKIEELLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.259459,
+      "SAAc8": 0.216066,
+      "AbetaF3": 0.156757
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_99_model_0p150/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 447466876,
+    "compressed_size": 29151,
+    "uncompressed_size": 117296,
+    "crc32": "09cb87d8",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_99_model_0p150",
+    "range_start": 447466876,
+    "range_end": 447496850,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_99_model_0p150/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "92df2811d199957a9cb1f333902886ecd21abfb6266df7c4735d7a63583dec59",
+    "protein_chain": "A",
+    "protein_sequence": "MKVEVRAEVTEEDGVRRFRVTVTVEDVDVSNYEEAAEEAFRKSREALDRALDEAEATRIEIPANGETIVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVREAVDRAADYLDETGDLWPVYSEMSKVLADATPEEAAAYFNAEEGSRRLAVNEGYTNSKLAERIEQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKVEVRAEVTEEDGVRRFRVTVTVEDVDVSNYEEAAEEAFRKSREALDRALDEAEATRIEIPANGETIVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVREAVDRAADYLDETGDLWPVYSEMSKVLADATPEEAAAYFNAEEGSRRLAVNEGYTNSKLAERIEQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.167568,
+      "SAAc8": 0.299169,
+      "AbetaF3": 0.237838
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_95_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 447855039,
+    "compressed_size": 28887,
+    "uncompressed_size": 116891,
+    "crc32": "f408fec5",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_95_model_0p100",
+    "range_start": 447855039,
+    "range_end": 447884749,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_95_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "7709baa8c0f30a4716c0ab356753cfb2c578d965540e38f900f6bfa37b05b9d1",
+    "protein_chain": "A",
+    "protein_sequence": "MRIEVEARVTEEDGVRSFRVTVTMEDVNVDNYEEAAEEAFRKSREALAEALDEAEATRIELPMDGETLVLDLTDPVQREIALEAVATHEAEHVRLYALAQVTPPRPLRPDVAEAVRRAAAYLRETGDRWPVYSDMSKVLADATPEEAAAYYNALEGEERFAVNEGYTNSVMSRKARELLEAAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIEVEARVTEEDGVRSFRVTVTMEDVNVDNYEEAAEEAFRKSREALAEALDEAEATRIELPMDGETLVLDLTDPVQREIALEAVATHEAEHVRLYALAQVTPPRPLRPDVAEAVRRAAAYLRETGDRWPVYSDMSKVLADATPEEAAAYYNALEGEERFAVNEGYTNSVMSRKARELLEAAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.178378,
+      "SAAc8": 0.193906,
+      "AbetaF3": 0.32973
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_35_model_0p114/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 447973595,
+    "compressed_size": 29004,
+    "uncompressed_size": 116729,
+    "crc32": "e794ec3a",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_35_model_0p114",
+    "range_start": 447973595,
+    "range_end": 448003422,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_35_model_0p114/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "62730eca12bedd0b1cfb64ac083d059cf70e6b57bca303fdf9af8c415a7d2129",
+    "protein_chain": "A",
+    "protein_sequence": "MKVEVRAEVTERDGVRSFRVTVTVEDVNVDNYEEAAEEAFRKSREALEKALDEAKATRIELPVYGETIVLDLTDPVQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVAEAVDRAAAYLEETGDRWPVYSEMSKVLRDATPEEAAAYYNAETGARRFAVNEGYTNRKMGEKIAELQAAAQ",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKVEVRAEVTERDGVRSFRVTVTVEDVNVDNYEEAAEEAFRKSREALEKALDEAKATRIELPVYGETIVLDLTDPVQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVAEAVDRAAAYLEETGDRWPVYSEMSKVLRDATPEEAAAYYNAETGARRFAVNEGYTNRKMGEKIAELQAAAQ"
+    },
+    "target_similarity": {
+      "TDPn3": 0.12973,
+      "SAAc8": 0.188366,
+      "AbetaF3": 0.32973
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_81_model_0p140/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 448693730,
+    "compressed_size": 29394,
+    "uncompressed_size": 118511,
+    "crc32": "fe4f28ad",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_81_model_0p140",
+    "range_start": 448693730,
+    "range_end": 448723947,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_81_model_0p140/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "c03b04d44e474f09c7c45416d27ea0574fd91b6ac8bb81d8ad431752ca6128e9",
+    "protein_chain": "A",
+    "protein_sequence": "MEVRVRAEVTEEDGVRSFRVTVTVRDVNVDNYEEAARRAFELSREALARALDEAEARKIEIPANGKTIVLDLTDPVEREIALEGVATHEATHVRLYALSQVTPPRPLRPDVEEAVREAARYYEETGDEWPVYSEMSKVLADATPEEAAAYFNYNEGARAFAVNEGYTNNRLAERIEELREQAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEVRVRAEVTEEDGVRSFRVTVTVRDVNVDNYEEAARRAFELSREALARALDEAEARKIEIPANGKTIVLDLTDPVEREIALEGVATHEATHVRLYALSQVTPPRPLRPDVEEAVREAARYYEETGDEWPVYSEMSKVLADATPEEAAAYFNYNEGARAFAVNEGYTNNRLAERIEELREQAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.281081,
+      "SAAc8": 0.088643,
+      "AbetaF3": 0.264865
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_24_model_0p128/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 448814037,
+    "compressed_size": 29549,
+    "uncompressed_size": 118916,
+    "crc32": "77b64a31",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_24_model_0p128",
+    "range_start": 448814037,
+    "range_end": 448844409,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_24_model_0p128/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "d067f8ef24d2c56562948dcb0c4677678787077d61f4b65185a3d425edaee4c4",
+    "protein_chain": "A",
+    "protein_sequence": "MRVRVRAEVTEEDGVKRFRVTVTVEDVDVENYEEAAEEAFRKSREALDRALDEAEATRIEIPVYGETLVLDLTDPVQREIALEGVATHEATHVRLYALAQVTPPRALRPEVEEAVERAAAYLEETGDRWPVYSEMSKVLRGLTPEEAAAYYNAETGWRKFAVNEGYTNSRMGEKIRELLEKAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVRVRAEVTEEDGVKRFRVTVTVEDVDVENYEEAAEEAFRKSREALDRALDEAEATRIEIPVYGETLVLDLTDPVQREIALEGVATHEATHVRLYALAQVTPPRALRPEVEEAVERAAAYLEETGDRWPVYSEMSKVLRGLTPEEAAAYYNAETGWRKFAVNEGYTNSRMGEKIRELLEKAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.243243,
+      "SAAc8": 0.282548,
+      "AbetaF3": 0.183784
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_22_model_0p112/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 449385362,
+    "compressed_size": 28992,
+    "uncompressed_size": 116162,
+    "crc32": "661bdf1e",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_22_model_0p112",
+    "range_start": 449385362,
+    "range_end": 449415177,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_22_model_0p112/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "65f0531635e884735124a3d1fd4461a221d2e0ecbe8e759ba6eb88ffb54408d2",
+    "protein_chain": "A",
+    "protein_sequence": "MRIEVRAEVTERDGVKSFRVTVTVENVDVSNYEEAAEEAFRKSREALDRALDEAEAKRIELPANGETIVLDLTDPKQREIALEGVGAHEATHVILYAKAQVTPPRALRPDVEAAVERAAAYLEETGDLWPVYSDMSRVLRDATLEEAAAYYNALEGSRKLAVNEGYTNSVMAEKIEKLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIEVRAEVTERDGVKSFRVTVTVENVDVSNYEEAAEEAFRKSREALDRALDEAEAKRIELPANGETIVLDLTDPKQREIALEGVGAHEATHVILYAKAQVTPPRALRPDVEAAVERAAAYLEETGDLWPVYSDMSRVLRDATLEEAAAYYNALEGSRKLAVNEGYTNSVMAEKIEKLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.118919,
+      "SAAc8": 0.277008,
+      "AbetaF3": 0.248649
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_76_model_0p102/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 449595248,
+    "compressed_size": 28936,
+    "uncompressed_size": 117215,
+    "crc32": "4f2048bb",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_76_model_0p102",
+    "range_start": 449595248,
+    "range_end": 449625007,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_76_model_0p102/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "08504b93a38a2b51db788056a06565e6c803776d6d81474233e171c4f0cfaff3",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEATVTEEDGVKRFRVTVTVEDVDVSNYKEAAEEAYRKSREALDKALDEAEAKRIELPANGRTIVLDLTDPVQREIALEGVATHEATHVILYAKALVTPPRELRPDVAEAVRRAAAYLRETGDKWPVYSDMSLVLRDATLEEAAAYYNALEGEERFAVNEGYTNSKMAEKIEKLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEATVTEEDGVKRFRVTVTVEDVDVSNYKEAAEEAYRKSREALDKALDEAEAKRIELPANGRTIVLDLTDPVQREIALEGVATHEATHVILYAKALVTPPRELRPDVAEAVRRAAAYLRETGDKWPVYSDMSLVLRDATLEEAAAYYNALEGEERFAVNEGYTNSKMAEKIEKLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.162162,
+      "SAAc8": 0.34349,
+      "AbetaF3": 0.205405
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_37_model_0p134/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 449984877,
+    "compressed_size": 29161,
+    "uncompressed_size": 117053,
+    "crc32": "4906429e",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_37_model_0p134",
+    "range_start": 449984877,
+    "range_end": 450014861,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_37_model_0p134/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "58652a0948ed8eb004c328fd0305d7d4a6762c1bad59b3f23affe1dc3279e323",
+    "protein_chain": "A",
+    "protein_sequence": "MEIEVRAEVTEEDGVKRFRVTVTMRDVDVSNYEEAAEEAYRKSREALDRALDEAEATRIEIPANGETIVLDLRDPVQREIALEGVAAHEAEHVRLYALSQVTPPRALRPDVEAAVDEAAARLEETGDKTPVYSNMSKVLADLTPEEAAAYYNALEGERRFAVNEGYTNSVLYETIKRLQEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEIEVRAEVTEEDGVKRFRVTVTMRDVDVSNYEEAAEEAYRKSREALDRALDEAEATRIEIPANGETIVLDLRDPVQREIALEGVAAHEAEHVRLYALSQVTPPRALRPDVEAAVDEAAARLEETGDKTPVYSNMSKVLADLTPEEAAAYYNALEGERRFAVNEGYTNSVLYETIKRLQEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.194595,
+      "SAAc8": 0.265928,
+      "AbetaF3": 0.27027
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_1_model_3_4_phosphots_seed-1_sample-0_model_77_model_0p136/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 450507692,
+    "compressed_size": 30532,
+    "uncompressed_size": 123371,
+    "crc32": "0aead298",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_1_model_3_4_phosphots_seed-1_sample-0_model_77_model_0p136",
+    "range_start": 450507692,
+    "range_end": 450539045,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_1_model_3_4_phosphots_seed-1_sample-0_model_77_model_0p136/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "ffebf0b6fdfbe7d7ee5ff706cfb75dd9b5eef6e6d1881ac85b405969b8419d54",
+    "protein_chain": "A",
+    "protein_sequence": "MSPVERVQELGLEAQAERPQPEVFENAENFNLTVEEAARVWAVVEAMVNAIIFEGLPELRPVVERLGERASPAVRRMYIEGAEIFVRERDELPPYLRERLDRLVARAPELLASEETQRLAEEIRRKYREITGRELPEEEARTIALHELLHAEIFDGRILEIRVTADRVTAKVEVPEEEFQRLLDAIA",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSPVERVQELGLEAQAERPQPEVFENAENFNLTVEEAARVWAVVEAMVNAIIFEGLPELRPVVERLGERASPAVRRMYIEGAEIFVRERDELPPYLRERLDRLVARAPELLASEETQRLAEEIRRKYREITGRELPEEEARTIALHELLHAEIFDGRILEIRVTADRVTAKVEVPEEEFQRLLDAIA"
+    },
+    "target_similarity": {
+      "TDPn3": 0.219251,
+      "SAAc8": 0.158904,
+      "AbetaF3": 0.256684
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_54_model_0p116/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 450570062,
+    "compressed_size": 29351,
+    "uncompressed_size": 117620,
+    "crc32": "28592b99",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_54_model_0p116",
+    "range_start": 450570062,
+    "range_end": 450600236,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_54_model_0p116/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "f6f60b2f90d3e7e740d74cb12c07b74455576fdf4030a8b61ddceedb149774fe",
+    "protein_chain": "A",
+    "protein_sequence": "MKIRVEATVTEKDGVKSFEVRVTMEDVNVENYEEAAEEAYRKSREALAEALDRAKATRIELPANGETIVLDLTDPTQREIALEGVAAHEATHVRLYALSQVTPPRALRPDVERAVEEAAAYLRETGDRWPVYSRMSKVLADATPEEAAAYYNALEGERKFAVNEGYTNNVMYQKIRQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKIRVEATVTEKDGVKSFEVRVTMEDVNVENYEEAAEEAYRKSREALAEALDRAKATRIELPANGETIVLDLTDPTQREIALEGVAAHEATHVRLYALSQVTPPRALRPDVERAVEEAAAYLRETGDRWPVYSRMSKVLADATPEEAAAYYNALEGERKFAVNEGYTNNVMYQKIRQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.248649,
+      "SAAc8": 0.188366,
+      "AbetaF3": 0.205405
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_87_model_0p140/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 451204089,
+    "compressed_size": 29450,
+    "uncompressed_size": 118997,
+    "crc32": "f28471c6",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_87_model_0p140",
+    "range_start": 451204089,
+    "range_end": 451234362,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_87_model_0p140/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "1519d2cf66b6f6a9e6ef9e5f14825a893bb0617b3a1a7ae9ab9387350e5038ea",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEARVTEEDGVRRFEVTVTVEDVNVDNYEEAAEEAFRKSREALDRALAEAEARRIEIPVYGRTIVLDLTDPRQREIALEGVATHEATHVILYAKAQVTPPRPLPPRVAEAVDRAAEWLRETGDRWPVYSDMSLVLRDATLEEAAAYYNALEGERRFAVNEGYTNSRLGEKIEQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEARVTEEDGVRRFEVTVTVEDVNVDNYEEAAEEAFRKSREALDRALAEAEARRIEIPVYGRTIVLDLTDPRQREIALEGVATHEATHVILYAKAQVTPPRPLPPRVAEAVDRAAEWLRETGDRWPVYSDMSLVLRDATLEEAAAYYNALEGERRFAVNEGYTNSRLGEKIEQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.216216,
+      "SAAc8": 0.177285,
+      "AbetaF3": 0.205405
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_94_model_0p104/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 451595247,
+    "compressed_size": 29488,
+    "uncompressed_size": 118673,
+    "crc32": "12ade2c7",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_94_model_0p104",
+    "range_start": 451595247,
+    "range_end": 451625558,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_94_model_0p104/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "729d80635ceab40da3bb18dcdf4c933fa90b5d3df695d2b8f8de89a96dc4f585",
+    "protein_chain": "A",
+    "protein_sequence": "MEIRVEARVEERDGVRSFRVTVTMRDVNVENYEEAAEEAYEKSRRALAEALDRAEARRIELPANGETIVLDLTDPREREIALEGVAAHEAEHVRLYALAQVTPPRELRPEVREAVDRAADYLRETGDKRPVYSEMSKVLAGATPEEAAAYYNALEGERKFAVNEGYTNSVMYQKIQQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEIRVEARVEERDGVRSFRVTVTMRDVNVENYEEAAEEAYEKSRRALAEALDRAEARRIELPANGETIVLDLTDPREREIALEGVAAHEAEHVRLYALAQVTPPRELRPEVREAVDRAADYLRETGDKRPVYSEMSKVLAGATPEEAAAYYNALEGERKFAVNEGYTNSVMYQKIQQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.237838,
+      "SAAc8": 0.249307,
+      "AbetaF3": 0.264865
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_37_model_0p148/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 452106996,
+    "compressed_size": 29114,
+    "uncompressed_size": 118349,
+    "crc32": "42734bac",
+    "method": 8,
+    "group": "alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_37_model_0p148",
+    "range_start": 452106996,
+    "range_end": 452136932,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_37_model_0p148/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "a6f943d1f98887f0085503b29025683908dc0d37e5f50c44a2dedccc5c3b64ed",
+    "protein_chain": "A",
+    "protein_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVKLVAPEAYEAIAEAIKKMDPLAYQVYVQGADDLLAAAEAGDPVAQELLERARRLGEEALTNEEGKRLRERVEEIVDELETEASREAVIEAATIHEYLHAALFDGEILELRVEGPWLVSTIAVPREKLDELLEKVK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVKLVAPEAYEAIAEAIKKMDPLAYQVYVQGADDLLAAAEAGDPVAQELLERARRLGEEALTNEEGKRLRERVEEIVDELETEASREAVIEAATIHEYLHAALFDGEILELRVEGPWLVSTIAVPREKLDELLEKVK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.893048,
+      "SAAc8": 0.153425,
+      "AbetaF3": 0.256684
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_93_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 452258549,
+    "compressed_size": 29666,
+    "uncompressed_size": 119645,
+    "crc32": "c7e974a2",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_93_model_0p100",
+    "range_start": 452258549,
+    "range_end": 452289038,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_93_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "8dd84461cf60d899fe7a6393823fd70c5902ea4c6b5801e01ded8c04313cc884",
+    "protein_chain": "A",
+    "protein_sequence": "MKIEVRATVTEEDGRRRFEVTVTMEDVDVSNYEEAAEEAFRKSREALAEALDRAEARRIEIPVYGRTLVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRPLRPDVEEAVERAAAYLRETGDRWPVYSEMSLVLRDATPEEAAAYYNALEGERRFAVNEGYTNSKLGERIERLLREAE",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKIEVRATVTEEDGRRRFEVTVTMEDVDVSNYEEAAEEAFRKSREALAEALDRAEARRIEIPVYGRTLVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRPLRPDVEEAVERAAAYLRETGDRWPVYSEMSLVLRDATPEEAAAYYNALEGERRFAVNEGYTNSKLGERIERLLREAE"
+    },
+    "target_similarity": {
+      "TDPn3": 0.210811,
+      "SAAc8": 0.182825,
+      "AbetaF3": 0.205405
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_38_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 452679611,
+    "compressed_size": 28939,
+    "uncompressed_size": 116648,
+    "crc32": "bc9f1543",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_38_model_0p124",
+    "range_start": 452679611,
+    "range_end": 452709373,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_38_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "b6fe17ba821292c992dd45b57a2e2c847f5f1b1da085ae2743c55b557beca036",
+    "protein_chain": "A",
+    "protein_sequence": "MRIEVEATVTERDGVRSFRVTVTMEDVNVDNYEEAAEEAFEKSREALARALDEAEATRIELPANGRTLVLDLRDPVQREIALEAVATHEATHVRLYALAQVTPPRALRPDVEEAVNRAAAYLRETGDRWPVYSEMSKVLATATPEEAAAYYNAETGDRKFAVNEGYTNSKMAERAEELLEAAR",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIEVEATVTERDGVRSFRVTVTMEDVNVDNYEEAAEEAFEKSREALARALDEAEATRIELPANGRTLVLDLRDPVQREIALEAVATHEATHVRLYALAQVTPPRALRPDVEEAVNRAAAYLRETGDRWPVYSEMSKVLATATPEEAAAYYNAETGDRKFAVNEGYTNSKMAERAEELLEAAR"
+    },
+    "target_similarity": {
+      "TDPn3": 0.205405,
+      "SAAc8": 0.265928,
+      "AbetaF3": 0.243243
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_97_model_0p136/seed-1_sample-1_model_monomer.pdb",
+    "local_offset": 453074681,
+    "compressed_size": 29801,
+    "uncompressed_size": 120050,
+    "crc32": "b672376d",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_97_model_0p136",
+    "range_start": 453074681,
+    "range_end": 453105305,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_97_model_0p136/seed-1_sample-1_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "82233af5dbda91c9ee157743c459c48739365fa6d515ea7dc6e1d19a4ca798f0",
+    "protein_chain": "A",
+    "protein_sequence": "NPIRERIRAAVAADPRAFGVVVNIETGETEFFGPLERLTKEQKKAVIMHELFHALIQGLVEGLTPEEIAERIRRVREGLKRAFPGFVEPLDELEAELRDPERREEAARVAARAAEFIKENIDRLTFEEAFEGAVTGAARALGYSIPSPDPLYTEYGERALRYIEENPDVDPELVERARRAIELAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPIRERIRAAVAADPRAFGVVVNIETGETEFFGPLERLTKEQKKAVIMHELFHALIQGLVEGLTPEEIAERIRRVREGLKRAFPGFVEPLDELEAELRDPERREEAARVAARAAEFIKENIDRLTFEEAFEGAVTGAARALGYSIPSPDPLYTEYGERALRYIEENPDVDPELVERARRAIELAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.274194,
+      "SAAc8": 0.31405,
+      "AbetaF3": 0.091398
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_83_model_0p136/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 453227104,
+    "compressed_size": 29400,
+    "uncompressed_size": 118835,
+    "crc32": "9b4d461e",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_83_model_0p136",
+    "range_start": 453227104,
+    "range_end": 453257327,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_83_model_0p136/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "a9e8c081c237714371bc74d12187a414a9353a02081f3719ecca77a41d5398e9",
+    "protein_chain": "A",
+    "protein_sequence": "MEIRVRAEVTEEDGVRRFRVTVTVRDVNVENYEEAAEEAYRKSREALDRALDEAEATRIELPGNGETIVLDLTDPRQREIALEGVATHEAEHVRLYALSQVTPPRELRPDVREAVERAAAYLEETGDEWPVYSEMSKVLADLTPEEAAAYYNAEEGARRFAVNEGYTNSKMVEKIEQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEIRVRAEVTEEDGVRRFRVTVTVRDVNVENYEEAAEEAYRKSREALDRALDEAEATRIELPGNGETIVLDLTDPRQREIALEGVATHEAEHVRLYALSQVTPPRELRPDVREAVERAAAYLEETGDEWPVYSEMSKVLADLTPEEAAAYYNAEEGARRFAVNEGYTNSKMVEKIEQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.183784,
+      "SAAc8": 0.282548,
+      "AbetaF3": 0.264865
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori6_contig3_seed5_des_2_model_2_pt12_des_2_model_0_pt4_des_1_model_1_23_phosphots_seed-1_sample-0_model_67_model_0p114/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 453739874,
+    "compressed_size": 29143,
+    "uncompressed_size": 117863,
+    "crc32": "0139b8ed",
+    "method": 8,
+    "group": "alqsswgmmg78_ori6_contig3_seed5_des_2_model_2_pt12_des_2_model_0_pt4_des_1_model_1_23_phosphots_seed-1_sample-0_model_67_model_0p114",
+    "range_start": 453739874,
+    "range_end": 453769839,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori6_contig3_seed5_des_2_model_2_pt12_des_2_model_0_pt4_des_1_model_1_23_phosphots_seed-1_sample-0_model_67_model_0p114/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "bd2df7dee79f337ca0e6b57fddcf0878ee813a60a9630ad8afa70a6c07afa47f",
+    "protein_chain": "A",
+    "protein_sequence": "MNMQEVVELAARLAEERLPGVRAEARATPDGSSATVTITIEDGTRPLTFEEAAEKIEETAEVLIPKLREMGANEEKIRVGVHEMVHVFLSLVMVNLGIPLADTEEGIEEVARALGVSREEAIEIVYEVPGREALERSRGKPLAELIRTGVEVGRRLGEEWGLSPRGIAVVIMEGTVEAVTEYLMEKFSK",
+    "protein_length": 189,
+    "all_chain_sequences": {
+      "A": "MNMQEVVELAARLAEERLPGVRAEARATPDGSSATVTITIEDGTRPLTFEEAAEKIEETAEVLIPKLREMGANEEKIRVGVHEMVHVFLSLVMVNLGIPLADTEEGIEEVARALGVSREEAIEIVYEVPGREALERSRGKPLAELIRTGVEVGRRLGEEWGLSPRGIAVVIMEGTVEAVTEYLMEKFSK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.297872,
+      "SAAc8": 0.26158,
+      "AbetaF3": 0.223404
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_70_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 454249392,
+    "compressed_size": 29232,
+    "uncompressed_size": 117863,
+    "crc32": "c6e389b0",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_70_model_0p124",
+    "range_start": 454249392,
+    "range_end": 454279447,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_70_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "2454898d8e0c306f4023dfe39d6c82bf6e8a62c86f4ec54d1bab66b3c3e8e46c",
+    "protein_chain": "A",
+    "protein_sequence": "MRIEVEARVTERDGVKSFRVTVTVEDVDTSNYEEAAEEAFEKSREALDKALEEAEATRIEIPAFGETIVLDLTDPREREIALEGVAAHEATHVRLYALAQVTPPRELRPDVRAAVDRAAAYLEETGDRWPVYSEMSLVLRDLTPEEAAAYYNAEEGARRFAVNEGYTNSVLAEKIRELQERAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIEVEARVTERDGVKSFRVTVTVEDVDTSNYEEAAEEAFEKSREALDKALEEAEATRIEIPAFGETIVLDLTDPREREIALEGVAAHEATHVRLYALAQVTPPRELRPDVRAAVDRAAAYLEETGDRWPVYSEMSLVLRDLTPEEAAAYYNAEEGARRFAVNEGYTNSVLAEKIRELQERAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.162162,
+      "SAAc8": 0.254848,
+      "AbetaF3": 0.183784
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_27_model_0p102/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 454643547,
+    "compressed_size": 29346,
+    "uncompressed_size": 118430,
+    "crc32": "ceeb97b6",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_27_model_0p102",
+    "range_start": 454643547,
+    "range_end": 454673716,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_27_model_0p102/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "9faa2f43849598abeb0d5ec2594fa1b79593c5d1849a9125fa0394faac410e77",
+    "protein_chain": "A",
+    "protein_sequence": "NPIRERILEAVAADPRAFGVVVNIETGETETYGPIEKLTKEQKKAVIMHELFHALIQGLVEGLTPEEIAERIRRVAEGLKRAEPSFVEPLDELKAELRRPENRERAAVVAARAAQYIKENIDELSFEEAFEGAVTGAAEAMGYSIPSPDPLYTEYGRRALEYIEANPDVDPELVERAREAIRLAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPIRERILEAVAADPRAFGVVVNIETGETETYGPIEKLTKEQKKAVIMHELFHALIQGLVEGLTPEEIAERIRRVAEGLKRAEPSFVEPLDELKAELRRPENRERAAVVAARAAQYIKENIDELSFEEAFEGAVTGAAEAMGYSIPSPDPLYTEYGRRALEYIEANPDVDPELVERAREAIRLAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.177419,
+      "SAAc8": 0.264463,
+      "AbetaF3": 0.27957
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_40_model_0p144/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 455126158,
+    "compressed_size": 29497,
+    "uncompressed_size": 118835,
+    "crc32": "26b6410e",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_40_model_0p144",
+    "range_start": 455126158,
+    "range_end": 455156478,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_40_model_0p144/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "62b52fa80e7c67977bc1f9ec3d5ecc00e32c206dee31e3b0ff733f4fc2de8238",
+    "protein_chain": "A",
+    "protein_sequence": "MEIEVRAEVTEEDGVRRFRVTVTVKDVDVNNYEEAAELAYEKSREALDEALDRAEATRIEIPVFGRTLVLDLRDPVQREIALEGVAAHEAEHVRLYALAQVTPPRALRPDVREAVDRAAAYLRETGDRWPVYSEMSLVLRDLTPEEAAAYWNAETGERRFAVNEGYTNSVMGEVIERLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEIEVRAEVTEEDGVRRFRVTVTVKDVDVNNYEEAAELAYEKSREALDEALDRAEATRIEIPVFGRTLVLDLRDPVQREIALEGVAAHEAEHVRLYALAQVTPPRALRPDVREAVDRAAAYLRETGDRWPVYSEMSLVLRDLTPEEAAAYWNAETGERRFAVNEGYTNSVMGEVIERLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.151351,
+      "SAAc8": 0.204986,
+      "AbetaF3": 0.205405
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_17_model_0p138/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 455395574,
+    "compressed_size": 28997,
+    "uncompressed_size": 116972,
+    "crc32": "2744298c",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_17_model_0p138",
+    "range_start": 455395574,
+    "range_end": 455425394,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_17_model_0p138/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "8d9b4ddae2e41d9fac0d58283ec6ac878432cffcb97fef4830aeb270ed4dd47a",
+    "protein_chain": "A",
+    "protein_sequence": "MEVRVEARVTEENGVRSFEVRVTVRDVDVSNYEEAAEEAYEKSREALAEALDEAEATRIEIPANGETITLDLTDPVQREIALEGVATHEAEHVRLYALSQVTPPRPLRPDVAEAVDRAAAYLEETGDRWPVYSDMSKVLADATPEEAAAYYNAETGWRRFAVNEGYTNSKLAEKIEQLLKEAE",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEVRVEARVTEENGVRSFEVRVTVRDVDVSNYEEAAEEAYEKSREALAEALDEAEATRIEIPANGETITLDLTDPVQREIALEGVATHEAEHVRLYALSQVTPPRPLRPDVAEAVDRAAAYLEETGDRWPVYSDMSKVLADATPEEAAAYYNAETGWRRFAVNEGYTNSKLAEKIEQLLKEAE"
+    },
+    "target_similarity": {
+      "TDPn3": 0.183784,
+      "SAAc8": 0.199446,
+      "AbetaF3": 0.318919
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_26_model_0p144/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 455757534,
+    "compressed_size": 29158,
+    "uncompressed_size": 117782,
+    "crc32": "42c4094b",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_26_model_0p144",
+    "range_start": 455757534,
+    "range_end": 455787515,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_26_model_0p144/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "a0ec09dd5e21cb480a82060cdb865b69747598a0ddf1d65ec5ebb09542b22df8",
+    "protein_chain": "A",
+    "protein_sequence": "MRIRVRAEVTEEDGVKSFRVTVTVEDVDVSNYEEAAEEAFRKSVEALDKALDEAKATRIEIPAFGETITLDLTDPVQREIALRGVGAHEAEHVRLYALAQVTPPRELPPRVEEAVRRAAAWLRETGDRWPVYSEMSLVLRDATPEEAAAWFNATEGEERFAVNEGYTNSVMAEVIRRLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIRVRAEVTEEDGVKSFRVTVTVEDVDVSNYEEAAEEAFRKSVEALDKALDEAKATRIEIPAFGETITLDLTDPVQREIALRGVGAHEAEHVRLYALAQVTPPRELPPRVEEAVRRAAAWLRETGDRWPVYSEMSLVLRDATPEEAAAWFNATEGEERFAVNEGYTNSVMAEVIRRLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.254054,
+      "SAAc8": 0.299169,
+      "AbetaF3": 0.232432
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_59_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 455997637,
+    "compressed_size": 29352,
+    "uncompressed_size": 117944,
+    "crc32": "12d572ec",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_59_model_0p124",
+    "range_start": 455997637,
+    "range_end": 456027812,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_59_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "6e583213403a166539f601f95d8ee812d07ef79781271f499495d9cbb82f4198",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEATVTERDGVRSFRVRVTVEDVDVSNYEEAAREAFEKSRAALDEALDRAEARRIELPANGETIVLDLTDPVQREIALEGVATHEATHVRLYALSQVTPPRELRPDVAEAVDRAAAYLRETGDRWPVYSEMSKVLADATPEEAAAYYNALEGDRKFAVNEGYTNRKMYEKIEELLKEAE",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEATVTERDGVRSFRVRVTVEDVDVSNYEEAAREAFEKSRAALDEALDRAEARRIELPANGETIVLDLTDPVQREIALEGVATHEATHVRLYALSQVTPPRELRPDVAEAVDRAAAYLRETGDRWPVYSEMSKVLADATPEEAAAYYNALEGDRKFAVNEGYTNRKMYEKIEELLKEAE"
+    },
+    "target_similarity": {
+      "TDPn3": 0.210811,
+      "SAAc8": 0.204986,
+      "AbetaF3": 0.216216
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_42_model_0p132/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 456479811,
+    "compressed_size": 29732,
+    "uncompressed_size": 120374,
+    "crc32": "47ca52ac",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_42_model_0p132",
+    "range_start": 456479811,
+    "range_end": 456510364,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_42_model_0p132/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "99f6276e4614498d1f0730fcf07bbbd6e2979546ad840c85b4405507c3edca9b",
+    "protein_chain": "A",
+    "protein_sequence": "MTPVEEVQELGVEAQKEDPRPEVAVNAENLGLTEEEAARVYAVVEALVVAIVILGLPELRPVIEELAARASPADRRVYLEGADIFIERRDELPPYIRERVDRLVAEMPEIAASEETERIAEKIRELYKEVTGKELPEEKARAIALHELVHARLFDGEILEIRATETSVTSVVEIPEEELERFLEALK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MTPVEEVQELGVEAQKEDPRPEVAVNAENLGLTEEEAARVYAVVEALVVAIVILGLPELRPVIEELAARASPADRRVYLEGADIFIERRDELPPYIRERVDRLVAEMPEIAASEETERIAEKIRELYKEVTGKELPEEKARAIALHELVHARLFDGEILEIRATETSVTSVVEIPEEELERFLEALK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.385027,
+      "SAAc8": 0.120548,
+      "AbetaF3": 0.235294
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_94_model_0p110/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 457024722,
+    "compressed_size": 29325,
+    "uncompressed_size": 118268,
+    "crc32": "ef72423d",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_94_model_0p110",
+    "range_start": 457024722,
+    "range_end": 457054870,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_94_model_0p110/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "fcf48898caf6bf3e1c2dbcb4be51f7c07b4529093589a79fef3a02d23df5975a",
+    "protein_chain": "A",
+    "protein_sequence": "MEVRVEARVTERDGVRSFEVRVTVRDVDVSNYREAAEEARRKSREALDEALERAEATRIEIPVYGETLVLDLRDPTQREIALEAVATHEATHVELYALAQVTPPRPLRPDVEKAVEEAAAYLEETGDKWPVYSDMSKVLRDATPEEAAAWYNNLTGSRKFAVNEGYTNSKLGEKARQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEVRVEARVTERDGVRSFEVRVTVRDVDVSNYREAAEEARRKSREALDEALERAEATRIEIPVYGETLVLDLRDPTQREIALEAVATHEATHVELYALAQVTPPRPLRPDVEKAVEEAAAYLEETGDKWPVYSDMSKVLRDATPEEAAAWYNNLTGSRKFAVNEGYTNSKLGEKARQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.167568,
+      "SAAc8": 0.144044,
+      "AbetaF3": 0.248649
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_78_model_0p130/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 457234964,
+    "compressed_size": 29651,
+    "uncompressed_size": 119240,
+    "crc32": "44d189bc",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_78_model_0p130",
+    "range_start": 457234964,
+    "range_end": 457265438,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_78_model_0p130/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "b2059fc741342a41c802a4133ae35f9e7df8f19159615913f207447ede918a91",
+    "protein_chain": "A",
+    "protein_sequence": "MKITVRAEVTEEDGVRSFRVTVTMEDVNVDNYEEAAEEAYEKSREALDRALDEAEARRIELPAYGETIVLDLTDPRQREIALEGVATHEAEHVRLYALSQVTPPRALRPDVREAVDRAAAYLRETGDKWPVYSEMSLVLRDLTPEEAAAYYNAETGERKFAVNEGYTNSKMYEKIRQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKITVRAEVTEEDGVRSFRVTVTMEDVNVDNYEEAAEEAYEKSREALDRALDEAEARRIELPAYGETIVLDLTDPRQREIALEGVATHEAEHVRLYALSQVTPPRALRPDVREAVDRAAAYLRETGDKWPVYSEMSLVLRDLTPEEAAAYYNAETGERKFAVNEGYTNSKMYEKIRQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.162162,
+      "SAAc8": 0.155125,
+      "AbetaF3": 0.221622
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_78_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 457750454,
+    "compressed_size": 29504,
+    "uncompressed_size": 118430,
+    "crc32": "694e3e56",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_78_model_0p142",
+    "range_start": 457750454,
+    "range_end": 457780781,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_78_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "5546e5d45e4f3d56d68cdb863e1963a23582079d46b6f046eec39c1695d30ffd",
+    "protein_chain": "A",
+    "protein_sequence": "MKVEVRAEVTERDGVRSFRVTVTVEDVDVSNYEEAAEEAFRKSREALDRALDEAEARRIELPAYGRTIVLDLTDPRQREIALEGVATHEAEHVRLYALSQVTPPRELRPDVRAAVEEAAAYLRETGDRWPVYSDMSLVLRDATPEEAAAYYNALEGEEKFAVNEGYTNSKMAEKIEELLEKAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKVEVRAEVTERDGVRSFRVTVTVEDVDVSNYEEAAEEAFRKSREALDRALDEAEARRIELPAYGRTIVLDLTDPRQREIALEGVATHEAEHVRLYALSQVTPPRELRPDVRAAVEEAAAYLRETGDRWPVYSDMSLVLRDATPEEAAAYYNALEGEEKFAVNEGYTNSKMAEKIEELLEKAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.243243,
+      "SAAc8": 0.177285,
+      "AbetaF3": 0.2
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_63_model_0p138/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 458205042,
+    "compressed_size": 29386,
+    "uncompressed_size": 118349,
+    "crc32": "f1821e30",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_63_model_0p138",
+    "range_start": 458205042,
+    "range_end": 458235251,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_63_model_0p138/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "95458ee32b26d2b729aadf89cf9cc96a8455e3be3ed24cd827ba2ccd188e1d9b",
+    "protein_chain": "A",
+    "protein_sequence": "MKIEVEARVTERDGVKSFRVTVTMEDVDVSNYEEAAREAFEKSREALDRALDEAEAKKIEIPANGRTIVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVEEAVRRAAAYLRETGDRWPVYSEMSKVLADLTPEEAAAYYNALEGEEKFAVNEGYTNSKLYEKIQELLEKAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKIEVEARVTERDGVKSFRVTVTMEDVDVSNYEEAAREAFEKSREALDRALDEAEAKKIEIPANGRTIVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVEEAVRRAAAYLRETGDRWPVYSEMSKVLADLTPEEAAAYYNALEGEEKFAVNEGYTNSKLYEKIQELLEKAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.27027,
+      "SAAc8": 0.216066,
+      "AbetaF3": 0.313514
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_17_model_0p126/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 458694921,
+    "compressed_size": 30311,
+    "uncompressed_size": 121670,
+    "crc32": "50a5b643",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_17_model_0p126",
+    "range_start": 458694921,
+    "range_end": 458726053,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_17_model_0p126/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "d1ba9fdeca35833700198ac18c7ddb11d9752c4ee60705ae2127fdee18eab527",
+    "protein_chain": "A",
+    "protein_sequence": "MSPVEEVQELGLEAQKEDPRPEVDTNAERLNLTREEAARLYAVVEALVVAIVIEGLPELRPVIEELAARASPAVRRVYLEGARIFIERRDELPPYIRERVDRLVAEMPRIAESEETKRIAEKIRELYKEVTGKELPEREALAIALHEKVHALLFDGEILEITATKDSVTVTVEVPEEKLREFLEALK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSPVEEVQELGLEAQKEDPRPEVDTNAERLNLTREEAARLYAVVEALVVAIVIEGLPELRPVIEELAARASPAVRRVYLEGARIFIERRDELPPYIRERVDRLVAEMPRIAESEETKRIAEKIRELYKEVTGKELPEREALAIALHEKVHALLFDGEILEITATKDSVTVTVEVPEEKLREFLEALK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.368984,
+      "SAAc8": 0.136986,
+      "AbetaF3": 0.229947
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt5_des_5_model_3_6_phosphots_seed-1_sample-0_model_91_model_0p112/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 459088823,
+    "compressed_size": 29363,
+    "uncompressed_size": 118430,
+    "crc32": "d6ca24cc",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt5_des_5_model_3_6_phosphots_seed-1_sample-0_model_91_model_0p112",
+    "range_start": 459088823,
+    "range_end": 459119008,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt5_des_5_model_3_6_phosphots_seed-1_sample-0_model_91_model_0p112/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "c995be5f488ff687e0a6606acadfe4f7a74ad5a535e88acd0efbcc3d593cfe8d",
+    "protein_chain": "A",
+    "protein_sequence": "SPMKEEALRLIEEDDRAFFVSVDLETGEAEVYGPVDKLSREQLKAIVVHEVNHALIQGLIEGLSPEEIAERMRKVEEGLVRADPRFREPIEEVRADFADPEVAERAARVFAAAADFVEDYKGELTETEAMEGAVVGASELMGYKLKSPLPVYTKYGELAKEYIRANPSTDEEKIETAREAIRLFV",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "SPMKEEALRLIEEDDRAFFVSVDLETGEAEVYGPVDKLSREQLKAIVVHEVNHALIQGLIEGLSPEEIAERMRKVEEGLVRADPRFREPIEEVRADFADPEVAERAARVFAAAADFVEDYKGELTETEAMEGAVVGASELMGYKLKSPLPVYTKYGELAKEYIRANPSTDEEKIETAREAIRLFV"
+    },
+    "target_similarity": {
+      "TDPn3": 0.198925,
+      "SAAc8": 0.264463,
+      "AbetaF3": 0.215054
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_56_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 459357575,
+    "compressed_size": 28876,
+    "uncompressed_size": 116243,
+    "crc32": "0867d82f",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_56_model_0p100",
+    "range_start": 459357575,
+    "range_end": 459387274,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_56_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "0abefb54b2c9593ae395b24caa549a1e530dbd3d76e03d113128989521c789ab",
+    "protein_chain": "A",
+    "protein_sequence": "MKIEVEARVTEENGVKSFEVTVTMEDVNVENYEEAAEEAYRKSREALEKALDEAKATRIELPANGETIVLDLTDPVQREIALEGVAAHEATHVRLYALAQVTPPRELPADVRAAVDRAAAYLEETGDKWPVYSEMSKVLAGATPEEAAAYYNAEEGWRRFAVNEGYTNSVMARKIEELLEKAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MKIEVEARVTEENGVKSFEVTVTMEDVNVENYEEAAEEAYRKSREALEKALDEAKATRIELPANGETIVLDLTDPVQREIALEGVAAHEATHVRLYALAQVTPPRELPADVRAAVDRAAAYLEETGDKWPVYSEMSKVLAGATPEEAAAYYNAEEGWRRFAVNEGYTNSVMARKIEELLEKAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.216216,
+      "SAAc8": 0.199446,
+      "AbetaF3": 0.043243
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_13_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 459746785,
+    "compressed_size": 29276,
+    "uncompressed_size": 118106,
+    "crc32": "87f50ce8",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_13_model_0p118",
+    "range_start": 459746785,
+    "range_end": 459776884,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_13_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "6c8e1ed54faa32bdc4bc9bc1d7eb7118acd27616047274cfffa0b6043840a4b4",
+    "protein_chain": "A",
+    "protein_sequence": "MEIEVEARVTERDGVRSFEVRVTMRDVDVNNYKEAAELAFEKSREALDRALDEAEATRIELPVYGRTLVLDLRDPRQREIALEGVATHEATHVELYALAQVTPPRALRPDVAAAVDRAADYLRETGDRWPVYSEMSLVLRDATPEEAAAYYNALEGERKFAVNEGYTNSKMGEKIEELLEAAR",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEIEVEARVTERDGVRSFEVRVTMRDVDVNNYKEAAELAFEKSREALDRALDEAEATRIELPVYGRTLVLDLRDPRQREIALEGVATHEATHVELYALAQVTPPRALRPDVAAAVDRAADYLRETGDRWPVYSEMSLVLRDATPEEAAAYYNALEGERKFAVNEGYTNSKMGEKIEELLEAAR"
+    },
+    "target_similarity": {
+      "TDPn3": 0.243243,
+      "SAAc8": 0.254848,
+      "AbetaF3": 0.048649
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_64_model_0p144/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 460046775,
+    "compressed_size": 29130,
+    "uncompressed_size": 117053,
+    "crc32": "dc802cb1",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_64_model_0p144",
+    "range_start": 460046775,
+    "range_end": 460076728,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_64_model_0p144/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "466fea2945a78ed0499ea4f83e9a38bd3765d30e3242fef85ed523fcd069162b",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEARVTERDGVRSFRVTVTVEDVDVSNYEEAAEEAFRKSREALDEALDRAEATRIEIPANGETIVLDLTDPRQREIALEGVATHEATHVRLYALAQVTAPRALPPRVREAVDRAAAYLRETGDLWPVYSDMSKVLADATPEEAAAWYNAEEGERRLAVNEGYTNSKLAEKIEELLEQAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEARVTERDGVRSFRVTVTVEDVDVSNYEEAAEEAFRKSREALDEALDRAEATRIEIPANGETIVLDLTDPRQREIALEGVATHEATHVRLYALAQVTAPRALPPRVREAVDRAAAYLRETGDLWPVYSDMSKVLADATPEEAAAWYNAEEGERRLAVNEGYTNSKLAEKIEELLEQAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.210811,
+      "SAAc8": 0.204986,
+      "AbetaF3": 0.189189
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori6_contig3_seed5_des_2_model_2_pt12_des_2_model_0_pt4_des_1_model_1_23_phosphots_seed-1_sample-0_model_12_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 460375024,
+    "compressed_size": 29159,
+    "uncompressed_size": 117701,
+    "crc32": "8d4a4b60",
+    "method": 8,
+    "group": "alqsswgmmg78_ori6_contig3_seed5_des_2_model_2_pt12_des_2_model_0_pt4_des_1_model_1_23_phosphots_seed-1_sample-0_model_12_model_0p142",
+    "range_start": 460375024,
+    "range_end": 460405005,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori6_contig3_seed5_des_2_model_2_pt12_des_2_model_0_pt4_des_1_model_1_23_phosphots_seed-1_sample-0_model_12_model_0p142/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "0ac9d874888511d4ff32df64fec547e718a6f7515ddf4fdb2eaf710adba0ef49",
+    "protein_chain": "A",
+    "protein_sequence": "MNMQEVVELAARIAEERVPGVRAVARASPDGKSTTVTITIEDGTRPLTFEEAAELIEKTAEELIPRLRAMGADEEKIRVGVHEMVHVFLSLVLVNLGIPLADTEKGIEEVAEALGVSREEAIKIVYEEPGRRALELSKGKPLSELIRKGVEVGKELGEKWGLSPEGISVVIMEGTVEAVTEYLMEKFKE",
+    "protein_length": 189,
+    "all_chain_sequences": {
+      "A": "MNMQEVVELAARIAEERVPGVRAVARASPDGKSTTVTITIEDGTRPLTFEEAAELIEKTAEELIPRLRAMGADEEKIRVGVHEMVHVFLSLVLVNLGIPLADTEKGIEEVAEALGVSREEAIKIVYEEPGRRALELSKGKPLSELIRKGVEVGKELGEKWGLSPEGISVVIMEGTVEAVTEYLMEKFKE"
+    },
+    "target_similarity": {
+      "TDPn3": 0.25,
+      "SAAc8": 0.305177,
+      "AbetaF3": 0.276596
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_73_model_0p140/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 460922715,
+    "compressed_size": 30122,
+    "uncompressed_size": 121832,
+    "crc32": "9f533f83",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_73_model_0p140",
+    "range_start": 460922715,
+    "range_end": 460953658,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_73_model_0p140/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "4bb8b4781e0e0254413e972de77063ae60b78c08335bf9b45797183a867ba8ab",
+    "protein_chain": "A",
+    "protein_sequence": "MTPVQRVQELGLEAQREDPQPEVAINAKNLNLTEEEAARLYAVEEALVVAIVIEGLPELRPVLERLAARASPAVRRVYLEGARIFIEERDQLPPYIRERYDRLVAEMPEIAASEETARIAEEIRRLYREVTGRELPEEEALAIALHERVHALLFDGKILEIRATETSVTVTVEVPEEELERFLEALK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MTPVQRVQELGLEAQREDPQPEVAINAKNLNLTEEEAARLYAVEEALVVAIVIEGLPELRPVLERLAARASPAVRRVYLEGARIFIEERDQLPPYIRERYDRLVAEMPEIAASEETARIAEEIRRLYREVTGRELPEEEALAIALHERVHALLFDGKILEIRATETSVTVTVEVPEEELERFLEALK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.256684,
+      "SAAc8": 0.147945,
+      "AbetaF3": 0.13369
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_99_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 461136138,
+    "compressed_size": 28890,
+    "uncompressed_size": 116810,
+    "crc32": "d2a23996",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_99_model_0p100",
+    "range_start": 461136138,
+    "range_end": 461165851,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_99_model_0p100/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "c47bfb4388273141ed3499bb275fa81ce2eafbee1d284490e8bf966ac6eba18b",
+    "protein_chain": "A",
+    "protein_sequence": "MRIEVEARVTERDGVRSFEVRVTMEDVNVENYEEAAEEAYRKSREALDEALREAEATRIEIPVFGETLVLDLTDPVQREIALEGVAAHEATHVILYAKAQVTPPRELPADVREAVERAAAYLRETGDWWPVYSEMSKVLAGATLEEAAAYYNALEGEEKVAVNEGYTNSVMGQKIRELLAAAR",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIEVEARVTERDGVRSFEVRVTMEDVNVENYEEAAEEAYRKSREALDEALREAEATRIEIPVFGETLVLDLTDPVQREIALEGVAAHEATHVILYAKAQVTPPRELPADVREAVERAAAYLRETGDWWPVYSEMSKVLAGATLEEAAAYYNALEGEEKVAVNEGYTNSVMGQKIRELLAAAR"
+    },
+    "target_similarity": {
+      "TDPn3": 0.172973,
+      "SAAc8": 0.177285,
+      "AbetaF3": 0.194595
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_21_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 461615763,
+    "compressed_size": 29564,
+    "uncompressed_size": 118916,
+    "crc32": "bfd8a2fe",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_21_model_0p124",
+    "range_start": 461615763,
+    "range_end": 461646150,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_21_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "9f6881ba642378c14081f475c2ab463870f2a0fca7907c626c4da9a4f873cf95",
+    "protein_chain": "A",
+    "protein_sequence": "MRIEVRAEVTERDGVRSFRVTVTMEDVNVENYEEAAEEAFRKSREALDRALDEAEATRIELPVFGRTLVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVEEAVERAAAYLEETGDRWPVYSEMSLVLRDLTPEEAAAYYNALEGARRFAVNEGYTNSKMGERIEQLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIEVRAEVTERDGVRSFRVTVTMEDVNVENYEEAAEEAFRKSREALDRALDEAEATRIELPVFGRTLVLDLTDPRQREIALEGVATHEAEHVRLYALAQVTPPRALRPDVEEAVERAAAYLEETGDRWPVYSEMSLVLRDLTPEEAAAYYNALEGARRFAVNEGYTNSKMGERIEQLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.118919,
+      "SAAc8": 0.265928,
+      "AbetaF3": 0.243243
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_23_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 462069206,
+    "compressed_size": 29467,
+    "uncompressed_size": 119159,
+    "crc32": "f307ecf7",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_23_model_0p118",
+    "range_start": 462069206,
+    "range_end": 462099496,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_23_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "1776c5fda8fdc341ecc1592db92c93c9a5b032a7639bfb4b405541a94c8fbc6a",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEARVTERDGVRSFEVTVTVEDVNVDNYEEAAEEAFRKSREALDRALDEAEARRIELPAFGRTIVLDLTDPREREIALEGVATHEAEHVRLYALAQVTPPRPLRPDVEEAVRRAAAWLRETGDRWPVYSDMSLVLRDATPEEAAAYYNALEGAERFAVNEGYTNSKMAEKIEELRERAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEARVTERDGVRSFEVTVTVEDVNVDNYEEAAEEAFRKSREALDRALDEAEARRIELPAFGRTIVLDLTDPREREIALEGVATHEAEHVRLYALAQVTPPRPLRPDVEEAVRRAAAWLRETGDRWPVYSDMSLVLRDATPEEAAAYYNALEGAERFAVNEGYTNSKMAEKIEELRERAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.264865,
+      "SAAc8": 0.160665,
+      "AbetaF3": 0.210811
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_83_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 462401838,
+    "compressed_size": 29562,
+    "uncompressed_size": 118916,
+    "crc32": "637b084c",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_83_model_0p118",
+    "range_start": 462401838,
+    "range_end": 462432223,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_83_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "0d30ed12fb629905eb027a6cba541be454fc0ae6d4c23504b5772c6626c8ae76",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEATVTEEDGVRRFRVTVTVEDVNVENYEEAAEEAFRKSREALDRALEEAEATRIEIPAMGETITLDLRDPRQREIALEGVATHEATHVILYAKSQVTPPRELPPRVREAVERAAAWLRETGDRWPVYSDMSKVLADATLEEAAAWYNALEGEERFAVNEGYTNRKLYEKIQELLAAAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEATVTEEDGVRRFRVTVTVEDVNVENYEEAAEEAFRKSREALDRALEEAEATRIEIPAMGETITLDLRDPRQREIALEGVATHEATHVILYAKSQVTPPRELPPRVREAVERAAAWLRETGDRWPVYSDMSKVLADATLEEAAAWYNALEGEERFAVNEGYTNRKLYEKIQELLAAAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.221622,
+      "SAAc8": 0.254848,
+      "AbetaF3": 0.2
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_52_model_0p148/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 462705504,
+    "compressed_size": 29158,
+    "uncompressed_size": 118268,
+    "crc32": "a7f70e02",
+    "method": 8,
+    "group": "alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_52_model_0p148",
+    "range_start": 462705504,
+    "range_end": 462735484,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_52_model_0p148/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "d72bfe837ecdfa46aefe719f0b330b3b05e07445889b306b9bb4d04fd8e515a6",
+    "protein_chain": "A",
+    "protein_sequence": "MSLREIFDALVEPTERVPRLAGTIDELVAAGYDRRDAARLVAAIEALAFAGVKLVAPEAYRAIAEAIKVLDPTAYQVYVEGADALLAAAEAGDPVAQELLERARRLGEEALTNEEGKELRRRIEEIVDEMETLASREDVIEAATIHEYLHAALFDGEILDLRVEGPWLISRIAVPRERLDELLDLVR",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSLREIFDALVEPTERVPRLAGTIDELVAAGYDRRDAARLVAAIEALAFAGVKLVAPEAYRAIAEAIKVLDPTAYQVYVEGADALLAAAEAGDPVAQELLERARRLGEEALTNEEGKELRRRIEEIVDEMETLASREDVIEAATIHEYLHAALFDGEILDLRVEGPWLISRIAVPRERLDELLDLVR"
+    },
+    "target_similarity": {
+      "TDPn3": 0.871658,
+      "SAAc8": 0.126027,
+      "AbetaF3": 0.26738
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_84_model_0p134/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 463128720,
+    "compressed_size": 29924,
+    "uncompressed_size": 121346,
+    "crc32": "236b780c",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_84_model_0p134",
+    "range_start": 463128720,
+    "range_end": 463159467,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_84_model_0p134/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "5d91ae8ca79017c6faac7dfb24e9a9a0a700484ea16b7275494665ea829cdad3",
+    "protein_chain": "A",
+    "protein_sequence": "NPIEERIREAVAADPRAFGVVVDIETGRTEFYGPIERLTEEQRKAVIMHELFHALIQGLVEGLSPEEIAERIRRVRRGLVEAEPLFREPLAELEAWLRRPENRERAARVAARAAEFVKENIDRLTEEEAFEGAVTGAARALGYEIPSPDPLYTEYGERALRYIRENPDVDPELVERAREALRLAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPIEERIREAVAADPRAFGVVVDIETGRTEFYGPIERLTEEQRKAVIMHELFHALIQGLVEGLSPEEIAERIRRVRRGLVEAEPLFREPLAELEAWLRRPENRERAARVAARAAEFVKENIDRLTEEEAFEGAVTGAARALGYEIPSPDPLYTEYGERALRYIRENPDVDPELVERAREALRLAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.123656,
+      "SAAc8": 0.220386,
+      "AbetaF3": 0.091398
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_17_model_0p132/seed-1_sample-1_model_monomer.pdb",
+    "local_offset": 463499589,
+    "compressed_size": 29772,
+    "uncompressed_size": 120131,
+    "crc32": "8c64fe60",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_17_model_0p132",
+    "range_start": 463499589,
+    "range_end": 463530184,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_17_model_0p132/seed-1_sample-1_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "275620df8d17664f192371cbe9342d631331aee87effdb3e83919f3367065081",
+    "protein_chain": "A",
+    "protein_sequence": "NPVRERIREAVAADPRAFGVVVDIETGRTEFFGPIERLTEEQKKAVIMHELMHALIQGLVEGLSPEEIAERIRRVRDGLVEAFPGFREPLERLEEELRRPENRERAAVVAARAAQYIKENIDELTEEEAFEGAVTGASRELGYSIPSPDPLYTEYGNRALDYIRANPDVDPELVERARRAIELAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPVRERIREAVAADPRAFGVVVDIETGRTEFFGPIERLTEEQKKAVIMHELMHALIQGLVEGLSPEEIAERIRRVRDGLVEAFPGFREPLERLEEELRRPENRERAAVVAARAAQYIKENIDELTEEEAFEGAVTGASRELGYSIPSPDPLYTEYGNRALDYIRANPDVDPELVERARRAIELAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.274194,
+      "SAAc8": 0.258953,
+      "AbetaF3": 0.102151
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_41_model_0p148/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 463837186,
+    "compressed_size": 29399,
+    "uncompressed_size": 118835,
+    "crc32": "c766334f",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_41_model_0p148",
+    "range_start": 463837186,
+    "range_end": 463867408,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_41_model_0p148/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "470e1675802784c06df8b68cf09a6167eb2c35f70eeca889e9b21ec82b1692af",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVEARVTEEDGVRRFEVTVTVEDVDVSNYEEAAEMAREKSREALDRALDEAEATRIEIPVFGRTLVLDLTDPTQREIALEAVAEHEAEHVRLYAVSQVTPPRPLRPEVEEAVERAAAYLRETGDRWPVYSEMSLVLRDATLEEAAAWYNALEGERRFAVNEGYTNRRLGEKAEELLKAAE",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVEARVTEEDGVRRFEVTVTVEDVDVSNYEEAAEMAREKSREALDRALDEAEATRIEIPVFGRTLVLDLTDPTQREIALEAVAEHEAEHVRLYAVSQVTPPRPLRPEVEEAVERAAAYLRETGDRWPVYSEMSLVLRDATLEEAAAWYNALEGERRFAVNEGYTNRRLGEKAEELLKAAE"
+    },
+    "target_similarity": {
+      "TDPn3": 0.254054,
+      "SAAc8": 0.188366,
+      "AbetaF3": 0.205405
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_27_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 464380748,
+    "compressed_size": 29252,
+    "uncompressed_size": 117458,
+    "crc32": "a1afdb56",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_27_model_0p118",
+    "range_start": 464380748,
+    "range_end": 464410823,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_27_model_0p118/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "43cc245b7f666ffd053685af084960fc3d660c32e153d69cc54f82184ad6af71",
+    "protein_chain": "A",
+    "protein_sequence": "MRVEVRATVTEEDGVKRFRVEVTVEDVNVDNYEEAAEEAYRKSREALAEALDEAEARRIEIPANGRTIVLDLTDPRQREIALEGVAAHEAEHVRLYALAQVTPPRELRPEVREAVERAAAYLEETGDLWPVYSDMSKVLADATPEEAAAYYNAEEGARRLAVNEGYTNRVLAETIERLLAEAE",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRVEVRATVTEEDGVKRFRVEVTVEDVNVDNYEEAAEEAYRKSREALAEALDEAEARRIEIPANGRTIVLDLTDPRQREIALEGVAAHEAEHVRLYALAQVTPPRELRPEVREAVERAAAYLEETGDLWPVYSDMSKVLADATPEEAAAYYNAEEGARRLAVNEGYTNRVLAETIERLLAEAE"
+    },
+    "target_similarity": {
+      "TDPn3": 0.183784,
+      "SAAc8": 0.155125,
+      "AbetaF3": 0.237838
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_35_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 464751486,
+    "compressed_size": 29930,
+    "uncompressed_size": 120617,
+    "crc32": "3540f7dc",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_35_model_0p122",
+    "range_start": 464751486,
+    "range_end": 464782237,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_35_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "075b5acb5a084b870205fd5f09e4d1b234edc12a97f544843c35dd24359d8822",
+    "protein_chain": "A",
+    "protein_sequence": "MSPVEEVQELGVEAQKEDPRPEVDTNAENLKLTREEAARLYAVDEALVVAIVILGLPELRPVLEELAAQASPAVRRVYIEGARIFIERRDELPPYIRERVDRLVAEMPEIAASEETAEIAEEIRRLYKEVTGKELPEEKARAIALHELVHARLYNGEILEITATKDSVTVTVEVPEEELEEFLKALK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSPVEEVQELGVEAQKEDPRPEVDTNAENLKLTREEAARLYAVDEALVVAIVILGLPELRPVLEELAAQASPAVRRVYIEGARIFIERRDELPPYIRERVDRLVAEMPEIAASEETAEIAEEIRRLYKEVTGKELPEEKARAIALHELVHARLYNGEILEITATKDSVTVTVEVPEEELEEFLKALK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.336898,
+      "SAAc8": 0.142466,
+      "AbetaF3": 0.122995
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_97_model_0p110/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 465084066,
+    "compressed_size": 28991,
+    "uncompressed_size": 117134,
+    "crc32": "4c4a3828",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_97_model_0p110",
+    "range_start": 465084066,
+    "range_end": 465113880,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_97_model_0p110/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "df06d37e3a597cb0e550d73775c7287ba7a01fe3d8741bf8aaaa6239f9a961b5",
+    "protein_chain": "A",
+    "protein_sequence": "MEVRVEATVEERDGVRSFRVTVTVRDVDVSNYEEAAEQAYELSRRALDEALDKAEATRIELPVYGETLVLDLTDPVQREIALEGVATHEAEHVRLYALAQVTPPRPLRPDVAEAVDRAAAYLRETGDLWPVYSEMSKVLADATPEEAAAYYNAEEGERRLAVNEGYTNSKMGEKIRELLEQAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEVRVEATVEERDGVRSFRVTVTVRDVDVSNYEEAAEQAYELSRRALDEALDKAEATRIELPVYGETLVLDLTDPVQREIALEGVATHEAEHVRLYALAQVTPPRPLRPDVAEAVDRAAAYLRETGDLWPVYSEMSKVLADATPEEAAAYYNAEEGERRLAVNEGYTNSKMGEKIRELLEQAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.194595,
+      "SAAc8": 0.243767,
+      "AbetaF3": 0.254054
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_19_model_0p150/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 465352648,
+    "compressed_size": 29368,
+    "uncompressed_size": 118187,
+    "crc32": "7a1bf4a7",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_19_model_0p150",
+    "range_start": 465352648,
+    "range_end": 465382839,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_19_model_0p150/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "bf63de85166b10685a2af315638b93b63612d3b17189d8e71640780f82cf3d7f",
+    "protein_chain": "A",
+    "protein_sequence": "MEVRVEATVTERDGVRSFRVRVTVRDVNVENYEEAAEEAFRKSREALAEALDRAEARRIEIPANGETIVLDLTDPVEREIALEGVATHEAEHVRLYALSQVTPPRALRPEVEEAVRRAARYLEETGDWWPVYSEMSKVLADATPEEAAAWYNALTGYEKLAVNEGYTNSKLAEKIEELKAEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEVRVEATVTERDGVRSFRVRVTVRDVNVENYEEAAEEAFRKSREALAEALDRAEARRIEIPANGETIVLDLTDPVEREIALEGVATHEAEHVRLYALSQVTPPRALRPEVEEAVRRAARYLEETGDWWPVYSEMSKVLADATPEEAAAWYNALTGYEKLAVNEGYTNSKLAEKIEELKAEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.227027,
+      "SAAc8": 0.177285,
+      "AbetaF3": 0.297297
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_19_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 465956885,
+    "compressed_size": 29248,
+    "uncompressed_size": 117701,
+    "crc32": "ba36990b",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_19_model_0p124",
+    "range_start": 465956885,
+    "range_end": 465986956,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_19_model_0p124/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "0e69ffef9fc2de0a4881a1a09bfa89d1718ead24ce4c3f14a2d98a07c7301110",
+    "protein_chain": "A",
+    "protein_sequence": "MRIEVEATVTEEDGVKSFRVTVTMEDVDVDNYEEAAEEAYEKSRRALDEALRAAEARRIELPAFGRTIVLDLTDPVQREIALEGVATHEAEHVRLYALAQVTPPRELRPDVREAVERAAAYLEETGDLWPVYSDMSKVLRDATPEEAAAYLNAEEGARRLAVNEGYTNRKMAEKIEKLLEEAK",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MRIEVEATVTEEDGVKSFRVTVTMEDVDVDNYEEAAEEAYEKSRRALDEALRAAEARRIELPAFGRTIVLDLTDPVQREIALEGVATHEAEHVRLYALAQVTPPRELRPDVREAVERAAAYLEETGDLWPVYSDMSKVLRDATPEEAAAYLNAEEGARRLAVNEGYTNRKMAEKIEKLLEEAK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.248649,
+      "SAAc8": 0.199446,
+      "AbetaF3": 0.043243
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_66_model_0p134/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 466358497,
+    "compressed_size": 30164,
+    "uncompressed_size": 121670,
+    "crc32": "b4b95e35",
+    "method": 8,
+    "group": "lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_66_model_0p134",
+    "range_start": 466358497,
+    "range_end": 466389482,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/lqsswgmmgm67_ori4_contig6_seed9_des_0_model_0_pt11_des_4_model_0_pt4_des_3_model_3_6_phosphots_seed-1_sample-3_model_66_model_0p134/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "13520bb29ca77a965e96c44d218043c8fd7fdd6dcd0812e2fb5ce3291304de12",
+    "protein_chain": "A",
+    "protein_sequence": "MSPVERVQELGVEAQKEDPQPEVDINAKNLNLTREEAARLYAVEEALVVAIVILGLPELRPVLERLAARASPAVRRVYLEGARIFIEERDKLPPYIRERVDELVARMPEMAASEETREIAERIRELYREVTGEELPEEEALAIALHELVHAELFNGRILEIRATRDSVTVTVEVPEEELKEFLEALK",
+    "protein_length": 187,
+    "all_chain_sequences": {
+      "A": "MSPVERVQELGVEAQKEDPQPEVDINAKNLNLTREEAARLYAVEEALVVAIVILGLPELRPVLERLAARASPAVRRVYLEGARIFIEERDKLPPYIRERVDELVARMPEMAASEETREIAERIRELYREVTGEELPEEEALAIALHELVHAELFNGRILEIRATRDSVTVTVEVPEEELKEFLEALK"
+    },
+    "target_similarity": {
+      "TDPn3": 0.278075,
+      "SAAc8": 0.235616,
+      "AbetaF3": 0.192513
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_7_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 466542501,
+    "compressed_size": 29644,
+    "uncompressed_size": 119645,
+    "crc32": "eb7a1793",
+    "method": 8,
+    "group": "qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_7_model_0p122",
+    "range_start": 466542501,
+    "range_end": 466572967,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori1_contig7_seed21_des_2_model_0_pt12_des_4_model_0_pt4_des_4_model_3_11_phosphots_seed-1_sample-0_model_7_model_0p122/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "254a0fb59b0bb0f74f563d8f88ef492a825b6beb49a7a146cc840c61e60adc34",
+    "protein_chain": "A",
+    "protein_sequence": "NPIEDRIEEAVAADPRAFGVVVNIETGETRFYGPIERLTEEQKKAVIMHELFHALIQGLIRGDSPEEIAERIKRVARGLKEAFPGFREPLEKLKAELRDEENRDRAARVAARAAQFVLENIDELTFEEAMEGAVTGASRELGYSIPSPDPLYTEYGERALEYIRANPDVDPELVERAREAIRLAF",
+    "protein_length": 185,
+    "all_chain_sequences": {
+      "A": "NPIEDRIEEAVAADPRAFGVVVNIETGETRFYGPIERLTEEQKKAVIMHELFHALIQGLIRGDSPEEIAERIKRVARGLKEAFPGFREPLEKLKAELRDEENRDRAARVAARAAQFVLENIDELTFEEAMEGAVTGASRELGYSIPSPDPLYTEYGERALEYIRANPDVDPELVERAREAIRLAF"
+    },
+    "target_similarity": {
+      "TDPn3": 0.177419,
+      "SAAc8": 0.203857,
+      "AbetaF3": 0.102151
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  },
+  {
+    "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_24_model_0p130/seed-1_sample-0_model_monomer.pdb",
+    "local_offset": 466939545,
+    "compressed_size": 28989,
+    "uncompressed_size": 116486,
+    "crc32": "bde9d585",
+    "method": 8,
+    "group": "qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_24_model_0p130",
+    "range_start": 466939545,
+    "range_end": 466969357,
+    "local_name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/qsswgmmgml56_ori3_contig3_seed11_des_1_model_1_pt15_des_0_model_0_pt7_des_3_model_4_15_phosphots_seed-1_sample-3_model_24_model_0p130/seed-1_sample-0_model_monomer.pdb",
+    "crc_verified": true,
+    "extracted_sha256": "cd8cff7392d2345eb0181f82e24c1d98973728299b915ef0855c610357ee80ec",
+    "protein_chain": "A",
+    "protein_sequence": "MEIEVRAEVTEKDGVKSFRVTVTMRDVDVNNYEEAAEEAFEKSREALDRALDEAEATRIEIPANGETIVLDLRDPRQREIALEGVATHEAEHVRLYALSLVTPPAPLRPDVAEAVDRAAAYLEETGDLWPVYSEMSKVLADATPEEAAAWYNALEGARRLAVNEGYTNSKLAEKIEELLREAE",
+    "protein_length": 183,
+    "all_chain_sequences": {
+      "A": "MEIEVRAEVTEKDGVKSFRVTVTMRDVDVNNYEEAAEEAFEKSREALDRALDEAEATRIEIPANGETIVLDLRDPRQREIALEGVATHEAEHVRLYALSLVTPPAPLRPDVAEAVDRAAAYLEETGDLWPVYSEMSKVLADATPEEAAAWYNALEGARRLAVNEGYTNSKLAEKIEELLREAE"
+    },
+    "target_similarity": {
+      "TDPn3": 0.178378,
+      "SAAc8": 0.293629,
+      "AbetaF3": 0.313514
+    },
+    "exact_target_matches": [],
+    "substring_target_matches": []
+  }
+]

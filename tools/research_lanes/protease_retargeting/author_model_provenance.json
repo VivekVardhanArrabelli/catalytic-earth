@@ -1,0 +1,601 @@
+{
+  "record_type": "source_scoped_immutable_model_provenance",
+  "version": 2,
+  "created_utc": "2026-10-02T13:57:35.611717+00:00",
+  "source": {
+    "doi": "10.5281/zenodo.22654831",
+    "record_id": 22654831,
+    "record_revision": 3,
+    "archive_file": "260909_zenodo.zip",
+    "archive_url": "https://zenodo.org/api/records/22654831/files/260909_zenodo.zip/content",
+    "archive_total_bytes": 2313094705,
+    "archive_md5_author_reported_not_whole_archive_verified": "md5:7051767808e1406402894d12ad5c4353",
+    "acquisition": "Selected byte ranges only; full archive not downloaded. ZIP local member names, compressed sizes, CRC32, and decompressed file identities independently checked against retained responses.",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "basis": "Author Zenodo metadata license.id cc-by-4.0",
+      "attribution": "Chen et al., Computational design of metalloproteases, Zenodo record22654831 and bioRxiv10.1101/2025.11.20.689622v3."
+    }
+  },
+  "construct_anchor": {
+    "protease_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+    "protease_length_aa": 187,
+    "protease_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+    "substrate_sequence": "ALQSSWGMMGML",
+    "source_locator": "Table S4; supplement_v3.txt:1984-1986"
+  },
+  "author_design_group": "alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128",
+  "sequence_search": {
+    "candidate_groups_examined": 65,
+    "exact_TDPn3_sequence_matches": 1,
+    "scope": "one representative passing monomer per candidate group in the locally retained final visualization-folder listing; not an exhaustive search of the full archive",
+    "inventory_file": "author_sequence_search.json",
+    "inventory_sha256": "5fddb927f0a80846fbe11fc22236df2c9e9b9ca25b6bf2054605eec4e6c51380"
+  },
+  "selection_evidence_file": "author_model_selection.json",
+  "selection_evidence_sha256": "b347ea6b911d41d3e60a9909ddfbfef7892ffdf326db99ff4f91de33bbf209d1",
+  "complex_selected_saved_row": {
+    "Unnamed: 0": 110388.0,
+    "description": "alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128",
+    "pdb_path": "/net/scratch/achen918/cleave_real_targets/260123_tdp43_large_batch_iterate_mpnn/af3_complex/output/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/seed-1_sample-3/model.pdb",
+    "complex_plddt": 96.894247,
+    "per_chain_plddt_A": 96.275187,
+    "per_chain_plddt_B": 98.909,
+    "per_chain_plddt_C": 86.23,
+    "pae_chain_matrix": "[[1.4774057021933715, 1.6311229946524064, 1.5545454545454545], [3.735561497326203, 2.2110000000000003, 2.5900000000000003], [10.157754010695188, 6.94, 0.8]]",
+    "pae_interface": 2.683342,
+    "chainA_len": 187.0,
+    "chainB_len": 10.0,
+    "ptm": 0.96,
+    "iptm": 0.95,
+    "ipae_min": 0.87,
+    "mpnn_seq_name": "alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128",
+    "diffusion_bb": "alqsswgmmg78_ori4_contig6_seed9_des_0_model_0",
+    "zinc_his0": 2.009898,
+    "zinc_his1": 2.00132,
+    "zinc_glu_chel_O1": 2.096505,
+    "zinc_glu_chel_O2": 3.08843,
+    "co_glu_base_1": 5.27865,
+    "co_glu_base_2": 4.210595,
+    "zinc_co_C": 3.456068,
+    "zinc_co_O": 2.946661,
+    "co_tyr": 2.305612,
+    "leaving_n_glu_1": 5.224466,
+    "leaving_n_glu_2": 3.672753,
+    "water_O_CO_C": 2.942636,
+    "water_O_glu_base_1": 2.911589,
+    "water_O_glu_base_2": 2.653726,
+    "zinc_glu_chel_O": 2.096505,
+    "rmsd_zinc_chelation": 0.137199,
+    "leaving_n_glu": 3.672753,
+    "water_O_glu_base_steal": 2.911589,
+    "angle_zinc_his_0": 135.963493,
+    "angle_zinc_his_1": 123.177713,
+    "angle_zinc_glu": 121.110928,
+    "three_angle_rmsd": 7.917977,
+    "C_zinc_his_0": 110.327434,
+    "C_zinc_his_1": 136.650169,
+    "C_zinc_glu": 105.324027,
+    "water_O_CO_C_CO_O": 88.455212,
+    "glu_water_amide_substrate_placement": 54.944027,
+    "glu_water_amide_substrate_placement_2": 67.56259,
+    "dihedral_zinc_his_0": -167.01462,
+    "dihedral_zinc_his_1": -175.29704,
+    "dihedral_zinc_glu": 1.786276,
+    "three_dihedral_rmsd": 8.025106,
+    "water_O_amide_plane": 92.239494,
+    "water_O_Zn_glu_C_CO_C": -37.267162,
+    "Zn_water_O_CO_C_CO_O": 7.1824,
+    "ca_rmsd": 2.075934,
+    "sc_rmsd": 0.912483,
+    "largest_opening_angle": 58.867475,
+    "his0_plddt": 98.36800000000001,
+    "his1_plddt": 98.36800000000001,
+    "glu_base_plddt": 97.92222222222222,
+    "glu_chel_plddt": 98.56444444444445,
+    "tyr_plddt": 98.78833333333331,
+    "p1_plddt": 96.8725,
+    "p1_prime_plddt": 92.96374999999999,
+    "plddt_key_res_avg": 98.3244,
+    "plddt_key_res_min": 97.922222,
+    "dataframe_index": 167254.0
+  },
+  "models": [
+    {
+      "state": "monomer",
+      "status": "selected_passing_monomer",
+      "seed": 1,
+      "sample": 0,
+      "immutable_local_file": "TDPn3-author-monomer-seed-1-sample-0-filtered.pdb",
+      "byte_length": 118754,
+      "sha256": "f7347af939dbca54c399c0e52a0e968e9516246428863187e508a5192a1cd16b",
+      "archive_member": {
+        "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/seed-1_sample-0_model_monomer.pdb",
+        "method": 8,
+        "crc32": "610cd5b5",
+        "compressed_bytes": 29263,
+        "uncompressed_bytes": 118754,
+        "local_header_offset": 444179149
+      },
+      "extraction_verification": {
+        "retained_response_file": "request-034-pass-monomers.multipart",
+        "retained_response_sha256": "9fd6e5b4f31786cc2183b1e26301d71fc9f35999c47cd30ae965acaca976a2da",
+        "local_header_name_matches": true,
+        "decompressed_bytes_match_immutable_file": true,
+        "zip_local_header_position_in_retained_response": 152844,
+        "zip_crc32_verified": true
+      },
+      "sequence_and_atoms": {
+        "chain_A_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+        "chain_A_length": 187,
+        "chain_A_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+        "other_chain_residues": {},
+        "hetero_atoms": []
+      },
+      "packaged_file": "models/TDPn3-author-monomer-seed-1-sample-0-filtered.pdb",
+      "packaging": {
+        "format": "original_PDB",
+        "original_coordinate_bytes_unchanged": true
+      }
+    },
+    {
+      "state": "enzyme_substrate",
+      "status": "selected_passing_ES_saved_query",
+      "seed": 1,
+      "sample": 3,
+      "immutable_local_file": "TDPn3-author-complex-seed-1-sample-3-filtered.pdb",
+      "byte_length": 124995,
+      "sha256": "a25ad433f43762e4fec54eb4cdb3043ea338131b3f1b9ea2a01748b13683341f",
+      "archive_member": {
+        "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/seed-1_sample-3_model_complex.pdb",
+        "method": 8,
+        "crc32": "9a29281e",
+        "compressed_bytes": 29514,
+        "uncompressed_bytes": 124995,
+        "local_header_offset": 444328979
+      },
+      "extraction_verification": {
+        "retained_response_file": "request-036-tdpn3-pass-complex.bin",
+        "retained_response_sha256": "9b8cf7eb18fe56f9afab4cdbe753d9906beef3768189abf126a454bc40db8e63",
+        "local_header_name_matches": true,
+        "decompressed_bytes_match_immutable_file": true,
+        "zip_local_header_position_in_retained_response": 0,
+        "zip_crc32_verified": true
+      },
+      "sequence_and_atoms": {
+        "chain_A_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+        "chain_A_length": 187,
+        "chain_A_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+        "other_chain_residues": {
+          "B": [
+            {
+              "residue_number": 1,
+              "insertion_code": "",
+              "residue_name": "ALA"
+            },
+            {
+              "residue_number": 2,
+              "insertion_code": "",
+              "residue_name": "LEU"
+            },
+            {
+              "residue_number": 3,
+              "insertion_code": "",
+              "residue_name": "GLN"
+            },
+            {
+              "residue_number": 4,
+              "insertion_code": "",
+              "residue_name": "SER"
+            },
+            {
+              "residue_number": 5,
+              "insertion_code": "",
+              "residue_name": "SER"
+            },
+            {
+              "residue_number": 6,
+              "insertion_code": "",
+              "residue_name": "TRP"
+            },
+            {
+              "residue_number": 7,
+              "insertion_code": "",
+              "residue_name": "GLY"
+            },
+            {
+              "residue_number": 8,
+              "insertion_code": "",
+              "residue_name": "MET"
+            },
+            {
+              "residue_number": 9,
+              "insertion_code": "",
+              "residue_name": "MET"
+            },
+            {
+              "residue_number": 10,
+              "insertion_code": "",
+              "residue_name": "GLY"
+            }
+          ],
+          "C": [
+            {
+              "residue_number": 1,
+              "insertion_code": "",
+              "residue_name": "LIG"
+            }
+          ]
+        },
+        "hetero_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "element": "ZN"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "element": "O"
+          }
+        ]
+      },
+      "packaged_file": "models/TDPn3-author-complex-seed-1-sample-3-filtered.pdb",
+      "packaging": {
+        "format": "original_PDB",
+        "original_coordinate_bytes_unchanged": true
+      }
+    },
+    {
+      "state": "author_phosphoTS_analogue",
+      "status": "selected_passing_phosphots",
+      "seed": 1,
+      "sample": 0,
+      "immutable_local_file": "TDPn3-author-phosphoTS-seed-1-sample-0-filtered.pdb",
+      "byte_length": 124995,
+      "sha256": "168d84af0111f1ae1dffa1a29286ac6f32571c5c677bbe1ed4a218d63e994c6f",
+      "archive_member": {
+        "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/seed-1_sample-0_model_phosphots.pdb",
+        "method": 8,
+        "crc32": "9c8e02fd",
+        "compressed_bytes": 29733,
+        "uncompressed_bytes": 124995,
+        "local_header_offset": 444477430
+      },
+      "extraction_verification": {
+        "retained_response_file": "request-035-tdpn3-states.multipart",
+        "retained_response_sha256": "4a8a93ba0a1654041ac589c428acb09b31a0883d45a64dfe422aa45bb1d6084c",
+        "local_header_name_matches": true,
+        "decompressed_bytes_match_immutable_file": true,
+        "zip_local_header_position_in_retained_response": 30735,
+        "zip_crc32_verified": true
+      },
+      "sequence_and_atoms": {
+        "chain_A_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+        "chain_A_length": 187,
+        "chain_A_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+        "other_chain_residues": {
+          "B": [
+            {
+              "residue_number": 1,
+              "insertion_code": "",
+              "residue_name": "ALA"
+            },
+            {
+              "residue_number": 2,
+              "insertion_code": "",
+              "residue_name": "LEU"
+            },
+            {
+              "residue_number": 3,
+              "insertion_code": "",
+              "residue_name": "GLN"
+            },
+            {
+              "residue_number": 4,
+              "insertion_code": "",
+              "residue_name": "SER"
+            },
+            {
+              "residue_number": 5,
+              "insertion_code": "",
+              "residue_name": "SER"
+            },
+            {
+              "residue_number": 6,
+              "insertion_code": "",
+              "residue_name": "TRP"
+            },
+            {
+              "residue_number": 7,
+              "insertion_code": "",
+              "residue_name": "pts"
+            },
+            {
+              "residue_number": 8,
+              "insertion_code": "",
+              "residue_name": "MET"
+            },
+            {
+              "residue_number": 9,
+              "insertion_code": "",
+              "residue_name": "GLY"
+            }
+          ],
+          "C": [
+            {
+              "residue_number": 1,
+              "insertion_code": "",
+              "residue_name": "LIG"
+            }
+          ]
+        },
+        "hetero_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "N1",
+            "element": "N"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "C1",
+            "element": "C"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "P1",
+            "element": "P"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O1",
+            "element": "O"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O2",
+            "element": "O"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "N2",
+            "element": "N"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "C2",
+            "element": "C"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "C3",
+            "element": "C"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O3",
+            "element": "O"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "C4",
+            "element": "C"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "C5",
+            "element": "C"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "S1",
+            "element": "S"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "C6",
+            "element": "C"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "element": "ZN"
+          }
+        ]
+      },
+      "packaged_file": "models/TDPn3-author-phosphoTS-seed-1-sample-0-filtered.pdb",
+      "packaging": {
+        "format": "original_PDB",
+        "original_coordinate_bytes_unchanged": true
+      }
+    },
+    {
+      "state": "enzyme_substrate",
+      "status": "retained_unfiltered_alternative_not_in_saved_passing_query",
+      "seed": 1,
+      "sample": 0,
+      "immutable_local_file": "TDPn3-author-complex-seed-1-sample-0-unfiltered.pdb",
+      "byte_length": 124995,
+      "sha256": "4ad4fde6bfb4cb66cbf57b699d18107486beed0da470af04a6e9296c5c5ebac2",
+      "archive_member": {
+        "name": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/seed-1_sample-0_model_complex.pdb",
+        "method": 8,
+        "crc32": "e598f0ee",
+        "compressed_bytes": 29680,
+        "uncompressed_bytes": 124995,
+        "local_header_offset": 444268867
+      },
+      "extraction_verification": {
+        "retained_response_file": "request-035-tdpn3-states.multipart",
+        "retained_response_sha256": "4a8a93ba0a1654041ac589c428acb09b31a0883d45a64dfe422aa45bb1d6084c",
+        "local_header_name_matches": true,
+        "decompressed_bytes_match_immutable_file": true,
+        "zip_local_header_position_in_retained_response": 116,
+        "zip_crc32_verified": true
+      },
+      "sequence_and_atoms": {
+        "chain_A_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+        "chain_A_length": 187,
+        "chain_A_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+        "other_chain_residues": {
+          "B": [
+            {
+              "residue_number": 1,
+              "insertion_code": "",
+              "residue_name": "ALA"
+            },
+            {
+              "residue_number": 2,
+              "insertion_code": "",
+              "residue_name": "LEU"
+            },
+            {
+              "residue_number": 3,
+              "insertion_code": "",
+              "residue_name": "GLN"
+            },
+            {
+              "residue_number": 4,
+              "insertion_code": "",
+              "residue_name": "SER"
+            },
+            {
+              "residue_number": 5,
+              "insertion_code": "",
+              "residue_name": "SER"
+            },
+            {
+              "residue_number": 6,
+              "insertion_code": "",
+              "residue_name": "TRP"
+            },
+            {
+              "residue_number": 7,
+              "insertion_code": "",
+              "residue_name": "GLY"
+            },
+            {
+              "residue_number": 8,
+              "insertion_code": "",
+              "residue_name": "MET"
+            },
+            {
+              "residue_number": 9,
+              "insertion_code": "",
+              "residue_name": "MET"
+            },
+            {
+              "residue_number": 10,
+              "insertion_code": "",
+              "residue_name": "GLY"
+            }
+          ],
+          "C": [
+            {
+              "residue_number": 1,
+              "insertion_code": "",
+              "residue_name": "LIG"
+            }
+          ]
+        },
+        "hetero_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "element": "ZN"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "element": "O"
+          }
+        ]
+      },
+      "packaged_file": "models/TDPn3-author-complex-seed-1-sample-0-unfiltered.pdb",
+      "packaging": {
+        "format": "original_PDB",
+        "original_coordinate_bytes_unchanged": true
+      }
+    }
+  ],
+  "state_mapping": {
+    "ES_peptide_chain": "B",
+    "ES_sequence": "ALQSSWGMMG",
+    "ES_full_reporter_target_positions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ES_intended_bond": "B:GLY7 C -> B:MET8 N",
+    "ES_zinc_and_water": "C:LIG1 ZN1 and O1",
+    "TSA_peptide_mapping": "B:pts7 replaces the G7-M8 bond region; B:MET8 maps to target M9 and B:GLY9 maps to target G10. Do not transfer ES numbering after residue 7.",
+    "TSA_water": "No independent water atom; an analogue oxygen is not a separate water.",
+    "truncation": "Both modeled peptide states omit target M11 and L12; they are not the complete ALQSSWGMMGML reporter substrate or full-length TDP43.",
+    "TSA_chemical_label": {
+      "source_term": "phosphoaminate modification",
+      "source_locator": "Supplement methods AF3 modeling of TSA complex; supplement_v3.txt:162",
+      "canonical_label_in_this_record": "author_phosphoTS_analogue",
+      "atom_identity_note": "The author pts residue includes P1 and N2 in the surrogate bond region; retain explicit atom identity. This record avoids assigning a phosphonate class from the filename."
+    }
+  },
+  "superseded_alias_warning": {
+    "file": "tdpn3-state-files.json",
+    "stale_field": "Entry for sample0 complex points saved_path to TDPn3-author-pass-complex.pdb, whose bytes were subsequently replaced by sample3. This immutable manifest supersedes that saved_path. Original record and both actual samples remain retained.",
+    "generic_aliases_not_citable": [
+      "TDPn3-author-pass-complex.pdb",
+      "TDPn3-author-pass-monomer.pdb",
+      "TDPn3-author-pass-phosphoTS.pdb"
+    ]
+  },
+  "claim_boundary": "All structures are author computational predictions. The sequence match establishes source construct identity, not measured geometry, reaction-competent occupancy, target specificity, or catalysis by the modeled conformations. The retained sample0 alternative is excluded from the representative selected triplet, not a separately assayed inactive enzyme.",
+  "supersedes": {
+    "file": "tdpn3-immutable-provenance-v1.json",
+    "sha256": "e4ad1e2a5f5ad4ce03c4ca274c0c289ccde8f496bcb60b776b754eb162d751eb",
+    "reason": "Correct chemical-class overstatement and include representative-selection scope; all model bytes and scientific source links unchanged."
+  },
+  "representative_selection_scope": "The local monomer sample0 and phosphots sample0 are representatives among author-filtered models for the exact construct; the notebook copy output records additional passing monomer/TSA samples. ES sample3 is the single row shown by the saved exact-construct query of df_complex_pass. These three files are not claimed to be a uniquely designated author triplet or a physical conformational trajectory."
+}

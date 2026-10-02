@@ -1,0 +1,289 @@
+{
+  "record_type": "source_scoped_computational_experimental_link",
+  "status": "retrospective_mechanistic_hypothesis_with_explicit_barrier_ranking_exclusion",
+  "question": "After structure-confidence filtering, do the reported local reaction barriers or Michaelis-state dynamics explain measured Zn45 turnover differences?",
+  "source": {
+    "doi": "10.1101/2025.11.20.689622",
+    "version": "v3",
+    "posted_date": "2026-09-21",
+    "url": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3.full",
+    "text_witnesses": [
+      {
+        "file": "../specificity/main_v3.txt",
+        "sha256": "f8dd2672cc8ea153bab515604fcaa5b38fa7c5f1facf0c84dc6835b57b5f8d24"
+      },
+      {
+        "file": "../specificity/supplement_v3.txt",
+        "sha256": "f2fbc40a5086171a5d62621f36cf1f1ff9c688a784e5f7a18d9b75905c6c7aca"
+      }
+    ],
+    "locators": {
+      "kinetics_wt": {
+        "file": "../specificity/main_v3.txt",
+        "line_1based_LF": 88,
+        "paragraph_starts_with": "We characterized steady-state kinetics for two protease-substrate pairs: ZnO7 on its cognate substrate, which "
+      },
+      "MLFF_between_enzymes": {
+        "file": "../specificity/main_v3.txt",
+        "line_1based_LF": 102,
+        "paragraph_starts_with": "To examine these effects, we used machine learning force fields (MLFF)40 to calculate enthalpic activation bar"
+      },
+      "F48W_and_Y152": {
+        "file": "../specificity/main_v3.txt",
+        "line_1based_LF": 103,
+        "paragraph_starts_with": "To identify sub-optimal features of the designs not captured by the MLFF calculations, we systematically mutat"
+      },
+      "kinetics_v2": {
+        "file": "../specificity/main_v3.txt",
+        "line_1based_LF": 104,
+        "paragraph_starts_with": "Zn45_v2 which combines F48W and Y152I with A79Q and Y83Q, which may help refine the positioning of the \u03b1-helix"
+      },
+      "MD_observations": {
+        "file": "../specificity/main_v3.txt",
+        "line_1based_LF": 105,
+        "paragraph_starts_with": "Molecular dynamics (MD) simulations of Michaelis complexes provided a structural rationale for the improved ac"
+      },
+      "MD_preparation": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 397,
+        "paragraph_starts_with": "Molecular dynamics simulations were performed using the GPU-accelerated AMBER 24 (Case 2024) software package "
+      },
+      "MD_sampling": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 401,
+        "paragraph_starts_with": "Following minimization, a two-step equilibration protocol was employed. The first equilibration step heated th"
+      },
+      "NEB_step_assumption": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 404,
+        "paragraph_starts_with": "To elucidate the structural and energetic origins of the activity differences between designed and native enzy"
+      },
+      "NEB_cluster": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 406,
+        "paragraph_starts_with": "System Preparation: Initial structural models of the native and designed enzymes were generated using AlphaFol"
+      },
+      "NEB_potential": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 408,
+        "paragraph_starts_with": "Machine Learning Potential: Reaction pathways were modeled using a reactive, polarizable electrostatic foundat"
+      },
+      "NEB_search": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 410,
+        "paragraph_starts_with": "Transition State Search: Reaction barriers were calculated using the Nudged Elastic Band (NEB) method implemen"
+      },
+      "NEB_energy_definition": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 411,
+        "paragraph_starts_with": "Barrier Analysis The activation energy (\u0394E\u2021) was defined as the energy difference between the highest energy i"
+      },
+      "rate_limit_alternatives": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 431,
+        "paragraph_starts_with": "Based on several QM/MM calculations for the reaction pathways of metalloproteases, nucleophilic attack (Pelmen"
+      },
+      "lower_bound_argument": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 433,
+        "paragraph_starts_with": "As our theozyme contains components from astacin, we chose to calculate the energy landscape of the nucleophil"
+      },
+      "NEB_failure_within_Zn45": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 435,
+        "paragraph_starts_with": "However, the quantitative prediction of activity using free energy predictors requires careful considerations "
+      },
+      "ground_state_stabilization": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 439,
+        "paragraph_starts_with": "We observed an interesting preference of LigandMPNN for the sequence design of metalloprotease in two of our d"
+      },
+      "AF3_MPNN_limit": {
+        "file": "../specificity/supplement_v3.txt",
+        "line_1based_LF": 442,
+        "paragraph_starts_with": "In the single mutation space of Zn45-S_ZnO36, we noticed that AF3 can predict some deleterious mutations with "
+      }
+    },
+    "acquisition_for_this_followup": {
+      "requests": 0,
+      "bytes": 0
+    }
+  },
+  "selection": {
+    "strongest_feasible_alternative": "Use the already measured single-mutant screen and kinetics to choose among tested Zn45 variants.",
+    "why_this_followup_changes_a_decision": "It closes the reported truncated-cluster NEB method as a justified predictor of the known Zn45-v2 gain and identifies ensemble and chemical-state requirements that static confidence cannot supply.",
+    "stop_rule": "No new energy model, MD run, or broad archive acquisition follows from these retrospective examples alone."
+  },
+  "experimental_comparisons": [
+    {
+      "construct": "Zn45",
+      "substrate_context": "S_ZnO36 peptide in sfGFP-mScarlet reporter",
+      "kcat_s_minus1": 0.025,
+      "kcat_reported_uncertainty_s_minus1": 0.002,
+      "KM_um": 26,
+      "KM_reported_uncertainty_um": 5,
+      "kcat_over_KM_M_minus1_s_minus1": 900,
+      "kcat_over_KM_reported_uncertainty": 200,
+      "source": "kinetics_wt"
+    },
+    {
+      "construct": "Zn45_F48W",
+      "background": "Zn45",
+      "substitution": "F48W",
+      "kcat_fold_over_background_author_reported": 10,
+      "absolute_kcat_s_minus1": null,
+      "interpretation": "Activity improvement is measured; improved E77 positioning is an author hypothesis. An isolated F48W MD or NEB comparison is not established in the retained evidence.",
+      "source": "F48W_and_Y152"
+    },
+    {
+      "construct": "Zn45_v2",
+      "background": "Zn45",
+      "substitutions": [
+        "F48W",
+        "A79Q",
+        "Y83Q",
+        "Y152I"
+      ],
+      "substrate_context": "S_ZnO36 peptide in sfGFP-mScarlet reporter",
+      "kcat_s_minus1": 0.75,
+      "kcat_reported_uncertainty_s_minus1": 0.04,
+      "KM_um": 24,
+      "KM_reported_uncertainty_um": 3,
+      "kcat_over_KM_M_minus1_s_minus1": 31000,
+      "kcat_over_KM_reported_uncertainty": 5000,
+      "kcat_fold_over_background_from_central_values": 30.0,
+      "source": "kinetics_v2"
+    },
+    {
+      "construct": "ZnO7",
+      "substrate_context": "Cognate S_ZnO7 peptide in sfGFP-mScarlet reporter",
+      "kcat_s_minus1": 0.001,
+      "kcat_reported_uncertainty_s_minus1": 0.0001,
+      "KM_um": 4.9,
+      "KM_reported_uncertainty_um": 1.2,
+      "source": "kinetics_wt",
+      "comparison_limit": "Different scaffold and substrate; not a matched Zn45 mutational comparison."
+    }
+  ],
+  "local_reaction_energy": {
+    "evidence_level": "author computational prediction, not measured barrier or free energy",
+    "state_segment": "General-base proton abstraction and Zn-water nucleophilic attack toward the tetrahedral intermediate. The full hydrolytic cycle is not modeled.",
+    "rate_determining_assumption": "This segment is assumed to control turnover; the paper also discusses hydrogen-bond rearrangement and product release as alternative rate-limiting steps in metalloproteases.",
+    "initial_state": "AF3 starting structures, neutral-pH protonation with manually adjusted metal ligands and proton-transfer residues",
+    "cluster_rule": "Substrate plus residues with at least one atom within 5 angstrom of substrate",
+    "method": "Reactive polarizable MACE-extension potential trained on OMOL25 DFT; optimized cluster NEB/CI-NEB path with 11 images",
+    "reported_quantity": "Delta E double-dagger = maximum path-image energy minus optimized reactant energy; main text calls this an enthalpic activation barrier. Entropic contributions are absent, so this is not a measured or complete Delta G barrier.",
+    "barriers_kcal_per_mol": [
+      {
+        "construct": "Zn45",
+        "value": 17.3,
+        "source": "NEB_failure_within_Zn45"
+      },
+      {
+        "construct": "Zn45_v2",
+        "value": 17.1,
+        "source": "NEB_failure_within_Zn45"
+      }
+    ],
+    "difference_v2_minus_WT_kcal_per_mol": -0.2,
+    "mutation_coverage": {
+      "v2_substitutions_total": 4,
+      "v2_substitutions_inside_cluster": 1,
+      "inside_substitution_identity": null,
+      "source": "NEB_failure_within_Zn45"
+    },
+    "cross_enzyme_author_observation": {
+      "Zn45_barrier_above_astacin_kcal_per_mol": 3.6,
+      "ZnO7_barrier_above_astacin_kcal_per_mol": 15.1,
+      "qualitative_order_agrees_with_activity": true,
+      "quantitative_rate_differences_reproduced": false,
+      "source": "MLFF_between_enzymes",
+      "limit": "Retrospective cross-scaffold comparison on different substrates does not validate within-scaffold activity ranking."
+    },
+    "omissions": [
+      "Three of the four Zn45-v2 substitutions in the chosen cluster",
+      "Long-range interactions outside the cluster",
+      "Full reaction path and alternative rate-limiting steps",
+      "Entropic contributions",
+      "Michaelis-state conformational ensemble and preorganization"
+    ],
+    "decision": {
+      "may_use_these_barriers_to_rank_Zn45_v2_vs_WT_turnover": false,
+      "may_call_cross_enzyme_order_a_validated_predictor": false,
+      "reason": "The method explicitly fails to capture the known 30-fold gain and omits most mutated sites and relevant physical contributions."
+    }
+  },
+  "Michaelis_dynamics": {
+    "evidence_level": "author classical MD prediction, interpreted retrospectively beside kinetics",
+    "systems": [
+      "Zn45",
+      "Zn45_v2",
+      "astacin"
+    ],
+    "method": "AMBER24 ff14SB, explicit TIP3P solvent, bonded Zn coordination parameters from MCPB/B3LYP cluster calculations",
+    "production_sampling": {
+      "replicas_per_system": 5,
+      "production_ns_per_replica": 500,
+      "temperature_kelvin": 300,
+      "pressure_atm": 1,
+      "coordinate_interval_ps": 200
+    },
+    "initial_states": {
+      "designs": "Author AF3 protein-substrate complexes",
+      "astacin": "Author Michaelis model derived from PDB 1QJI; 1QJI itself is an inhibitor complex. Preparation into the simulated Michaelis state is not independently reconstructed here."
+    },
+    "source": "MD_preparation",
+    "chemistry_boundary": "Fixed-topology classical Michaelis-state dynamics; no peptide hydrolysis or turnover is observed in these trajectories. The bonded Zn model does not independently test metal binding or ligand exchange.",
+    "reported_observables": [
+      {
+        "name": "general_base_oxygen_to_nearest_water_hydrogen_distance",
+        "units": "angstrom",
+        "Zn45": null,
+        "Zn45_status": "Broad fluctuations reported; no numeric WT mean transcribed from the retained text",
+        "Zn45_v2": 1.75,
+        "astacin": 1.88,
+        "statistic": "source-reported average",
+        "atom_scope": "General-base oxygen and closest hydrogen of Zn-bound water; exact per-frame atom/minimum convention not reconstructed",
+        "source": "MD_observations"
+      },
+      {
+        "name": "nucleophile_attack_angle",
+        "ordered_roles": [
+          "Zn-bound_water_O",
+          "scissile_carbonyl_C",
+          "scissile_carbonyl_O"
+        ],
+        "angle_vertex": "scissile_carbonyl_C",
+        "units": "degrees",
+        "Zn45": 37.4,
+        "Zn45_v2": 99.4,
+        "astacin": 87.1,
+        "statistic": "source-reported average",
+        "source": "MD_observations"
+      }
+    ],
+    "causal_limit": "The WT-v2 comparison changes four residues together. It is consistent with improved preorganization but does not assign the MD effect to F48W alone, prove causality, calibrate a rate predictor, or validate a universal geometry cutoff."
+  },
+  "chemical_state_hypothesis": {
+    "construct_contexts": [
+      "Zn45_Y152I",
+      "ZnO36_R79A"
+    ],
+    "author_inference": "Removing a substrate carbonyl hydrogen-bond donor can improve catalysis if that donor stabilizes the ground state more than the transition-state region.",
+    "observations": "Both substitutions increase measured activity; the original donors were introduced by MPNN.",
+    "not_established": "No measured or calculated mutation-specific ground-state-versus-transition-state stabilization energy is provided in this retained evidence.",
+    "source": "ground_state_stabilization"
+  },
+  "candidate_Atlas_contribution": {
+    "representation": "Connect perturbation and measured turnover to reaction-state-specific interactions and ensemble geometric observables, with model coverage explicitly attached.",
+    "testable_features": [
+      "General-base/Zn-water proton-transfer geometry across conformations",
+      "Water-carbonyl attack geometry across conformations",
+      "Differential stabilization of ES versus the tetrahedral-intermediate/transition-state region",
+      "Whether a computational region contains the substitutions whose effect it is asked to predict"
+    ],
+    "immediate_supported_exclusion": "Do not substitute the reported 5 angstrom cluster barrier or an extra ground-state hydrogen bond for a validated turnover rank among passing Zn45 variants.",
+    "future_evaluation_requirement": "A matched comparison against the existing direct measured-screen/AF3 baseline with structure-state identity, full relevant perturbation coverage, and endpoints fixed before observing new activity. No such prospective test or Atlas advantage is claimed here.",
+    "new_runs_authorized_by_this_record": false
+  }
+}

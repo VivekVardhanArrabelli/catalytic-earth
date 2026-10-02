@@ -1,0 +1,704 @@
+{
+  "scope": "Deposited inhibitor-state coordinates plus source-reported catalytic roles; no observed transition state, protonation assignment, catalytic rate prediction or author ES reconstruction.",
+  "structures": [
+    {
+      "pdb_id": "4QHP",
+      "url": "https://files.rcsb.org/download/4QHP.cif.gz",
+      "source_sha256": "f42a97e386c55e126b2fe4ee2cfca2aed75f95b560b69d381bc50093f4a655a1",
+      "coordinate_scope": "Deposited model1, asymmetric-unit author chainA; no assembly or symmetry expansion",
+      "title": "Crystal structure of Aminopeptidase N in complex with the phosphinic dipeptide analogue LL-(R,S)-hPheP[CH2]Phe(4-CH2NH2)",
+      "resolution_angstrom": 1.6,
+      "state": "Observed aminopeptidase-N inhibitor complex used as a catalytic-group donor; not an observed reacting ES complex.",
+      "metal": {
+        "id": "13910",
+        "auth_asym_id": "A",
+        "auth_seq_id": "908",
+        "auth_comp_id": "ZN",
+        "auth_atom_id": "ZN",
+        "label_asym_id": "I",
+        "label_seq_id": ".",
+        "label_comp_id": "ZN",
+        "label_atom_id": "ZN",
+        "label_alt_id": ".",
+        "pdbx_pdb_ins_code": "?",
+        "pdbx_pdb_model_num": "1",
+        "occupancy": "0.47",
+        "b_iso_or_equiv": "9.96",
+        "pdbx_formal_charge": "?",
+        "coordinates_angstrom": [
+          7.887,
+          46.233,
+          -3.841
+        ]
+      },
+      "roles": [
+        {
+          "role": "metal_histidine_1",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "4664",
+              "auth_asym_id": "A",
+              "auth_seq_id": "293",
+              "auth_comp_id": "HIS",
+              "auth_atom_id": "NE2",
+              "label_asym_id": "A",
+              "label_seq_id": "296",
+              "label_comp_id": "HIS",
+              "label_atom_id": "NE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "10.96",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                5.905,
+                45.579,
+                -4.326
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "NE2": 2.142723733942384
+          }
+        },
+        {
+          "role": "general_base",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "4679",
+              "auth_asym_id": "A",
+              "auth_seq_id": "294",
+              "auth_comp_id": "GLU",
+              "auth_atom_id": "OE1",
+              "label_asym_id": "A",
+              "label_seq_id": "297",
+              "label_comp_id": "GLU",
+              "label_atom_id": "OE1",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "14.08",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                8.837,
+                44.795,
+                -8.066
+              ]
+            },
+            {
+              "id": "4680",
+              "auth_asym_id": "A",
+              "auth_seq_id": "294",
+              "auth_comp_id": "GLU",
+              "auth_atom_id": "OE2",
+              "label_asym_id": "A",
+              "label_seq_id": "297",
+              "label_comp_id": "GLU",
+              "label_atom_id": "OE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "16.27",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                7.689,
+                43.078,
+                -7.37
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "OE1": 4.562999999999999,
+            "OE2": 4.737833893246993
+          }
+        },
+        {
+          "role": "metal_histidine_2",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "4737",
+              "auth_asym_id": "A",
+              "auth_seq_id": "297",
+              "auth_comp_id": "HIS",
+              "auth_atom_id": "NE2",
+              "label_asym_id": "A",
+              "label_seq_id": "300",
+              "label_comp_id": "HIS",
+              "label_atom_id": "NE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "10.57",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                7.952,
+                47.933,
+                -5.044
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "NE2": 2.0836108081885176
+          }
+        },
+        {
+          "role": "third_metal_ligand",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "5058",
+              "auth_asym_id": "A",
+              "auth_seq_id": "316",
+              "auth_comp_id": "GLU",
+              "auth_atom_id": "OE1",
+              "label_asym_id": "A",
+              "label_seq_id": "319",
+              "label_comp_id": "GLU",
+              "label_atom_id": "OE1",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "12.38",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                7.548,
+                47.032,
+                -2.129
+              ]
+            },
+            {
+              "id": "5059",
+              "auth_asym_id": "A",
+              "auth_seq_id": "316",
+              "auth_comp_id": "GLU",
+              "auth_atom_id": "OE2",
+              "label_asym_id": "A",
+              "label_seq_id": "319",
+              "label_comp_id": "GLU",
+              "label_atom_id": "OE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "12.37",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                9.651,
+                47.582,
+                -2.428
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "OE1": 1.9194441903842892,
+            "OE2": 2.632121957660779
+          }
+        },
+        {
+          "role": "oxyanion_hbond_donor",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "6037",
+              "auth_asym_id": "A",
+              "auth_seq_id": "377",
+              "auth_comp_id": "TYR",
+              "auth_atom_id": "CZ",
+              "label_asym_id": "A",
+              "label_seq_id": "380",
+              "label_comp_id": "TYR",
+              "label_atom_id": "CZ",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "14.44",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                8.637,
+                44.495,
+                0.344
+              ]
+            },
+            {
+              "id": "6038",
+              "auth_asym_id": "A",
+              "auth_seq_id": "377",
+              "auth_comp_id": "TYR",
+              "auth_atom_id": "OH",
+              "label_asym_id": "A",
+              "label_seq_id": "380",
+              "label_comp_id": "TYR",
+              "label_atom_id": "OH",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "15.02",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                9.746,
+                44.543,
+                -0.478
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "CZ": 4.593187237637935,
+            "OH": 4.197826818724184
+          }
+        }
+      ],
+      "oxyanion_analogue_atom": {
+        "id": "13747",
+        "auth_asym_id": "A",
+        "auth_seq_id": "901",
+        "auth_comp_id": "32Q",
+        "auth_atom_id": "O13",
+        "label_asym_id": "B",
+        "label_seq_id": ".",
+        "label_comp_id": "32Q",
+        "label_atom_id": "O13",
+        "label_alt_id": ".",
+        "pdbx_pdb_ins_code": "?",
+        "pdbx_pdb_model_num": "1",
+        "occupancy": "0.81",
+        "b_iso_or_equiv": "11.10",
+        "pdbx_formal_charge": "?",
+        "coordinates_angstrom": [
+          8.963,
+          44.533,
+          -2.918
+        ]
+      },
+      "tyr_contact": {
+        "ordered_atoms": [
+          {
+            "id": "6037",
+            "auth_asym_id": "A",
+            "auth_seq_id": "377",
+            "auth_comp_id": "TYR",
+            "auth_atom_id": "CZ",
+            "label_asym_id": "A",
+            "label_seq_id": "380",
+            "label_comp_id": "TYR",
+            "label_atom_id": "CZ",
+            "label_alt_id": ".",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "occupancy": "1.00",
+            "b_iso_or_equiv": "14.44",
+            "pdbx_formal_charge": "?",
+            "coordinates_angstrom": [
+              8.637,
+              44.495,
+              0.344
+            ]
+          },
+          {
+            "id": "6038",
+            "auth_asym_id": "A",
+            "auth_seq_id": "377",
+            "auth_comp_id": "TYR",
+            "auth_atom_id": "OH",
+            "label_asym_id": "A",
+            "label_seq_id": "380",
+            "label_comp_id": "TYR",
+            "label_atom_id": "OH",
+            "label_alt_id": ".",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "occupancy": "1.00",
+            "b_iso_or_equiv": "15.02",
+            "pdbx_formal_charge": "?",
+            "coordinates_angstrom": [
+              9.746,
+              44.543,
+              -0.478
+            ]
+          },
+          {
+            "id": "13747",
+            "auth_asym_id": "A",
+            "auth_seq_id": "901",
+            "auth_comp_id": "32Q",
+            "auth_atom_id": "O13",
+            "label_asym_id": "B",
+            "label_seq_id": ".",
+            "label_comp_id": "32Q",
+            "label_atom_id": "O13",
+            "label_alt_id": ".",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "occupancy": "0.81",
+            "b_iso_or_equiv": "11.10",
+            "pdbx_formal_charge": "?",
+            "coordinates_angstrom": [
+              8.963,
+              44.533,
+              -2.918
+            ]
+          }
+        ],
+        "angle_degrees": 108.734525536442,
+        "distance_oh_to_analogue_o_angstrom": 2.5625746818385613,
+        "paper_rounded_angle_degrees": 108.7,
+        "angle_definition": "Tyr CZ-OH-inhibitor O, vertex OH; not an O-H...O angle",
+        "scope": "Coordinate-derived geometry compatible with the paper assignment; not a measured interaction energy or causal catalytic requirement"
+      }
+    },
+    {
+      "pdb_id": "1QJI",
+      "url": "https://files.rcsb.org/download/1QJI.cif.gz",
+      "source_sha256": "8fabcbd7f0af2f86e894d8250a05ee20d56f73feb8e1697ebedb0348359949a5",
+      "coordinate_scope": "Deposited model1, asymmetric-unit author chainA; no assembly or symmetry expansion",
+      "title": "Structure of astacin with a transition-state analogue inhibitor",
+      "resolution_angstrom": 2.14,
+      "state": "Observed astacin inhibitor complex. The author substrate donor is a separate AF3-predicted astacin ES state, not these inhibitor coordinates.",
+      "metal": {
+        "id": "1931",
+        "auth_asym_id": "A",
+        "auth_seq_id": "1201",
+        "auth_comp_id": "ZN",
+        "auth_atom_id": "ZN",
+        "label_asym_id": "B",
+        "label_seq_id": ".",
+        "label_comp_id": "ZN",
+        "label_atom_id": "ZN",
+        "label_alt_id": ".",
+        "pdbx_pdb_ins_code": "?",
+        "pdbx_pdb_model_num": "1",
+        "occupancy": "1.00",
+        "b_iso_or_equiv": "3.71",
+        "pdbx_formal_charge": "?",
+        "coordinates_angstrom": [
+          17.789,
+          24.453,
+          21.298
+        ]
+      },
+      "roles": [
+        {
+          "role": "metal_histidine_1",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "838",
+              "auth_asym_id": "A",
+              "auth_seq_id": "92",
+              "auth_comp_id": "HIS",
+              "auth_atom_id": "NE2",
+              "label_asym_id": "A",
+              "label_seq_id": "92",
+              "label_comp_id": "HIS",
+              "label_atom_id": "NE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "2.99",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                16.807,
+                26.385,
+                21.266
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "NE2": 2.167480565080115
+          }
+        },
+        {
+          "role": "general_base",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "848",
+              "auth_asym_id": "A",
+              "auth_seq_id": "93",
+              "auth_comp_id": "GLU",
+              "auth_atom_id": "OE1",
+              "label_asym_id": "A",
+              "label_seq_id": "93",
+              "label_comp_id": "GLU",
+              "label_atom_id": "OE1",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "2.00",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                16.295,
+                23.697,
+                25.722
+              ]
+            },
+            {
+              "id": "849",
+              "auth_asym_id": "A",
+              "auth_seq_id": "93",
+              "auth_comp_id": "GLU",
+              "auth_atom_id": "OE2",
+              "label_asym_id": "A",
+              "label_seq_id": "93",
+              "label_comp_id": "GLU",
+              "label_atom_id": "OE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "2.75",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                17.354,
+                25.533,
+                25.244
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "OE1": 4.730258766706112,
+            "OE2": 4.114187769171458
+          }
+        },
+        {
+          "role": "metal_histidine_2",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "878",
+              "auth_asym_id": "A",
+              "auth_seq_id": "96",
+              "auth_comp_id": "HIS",
+              "auth_atom_id": "NE2",
+              "label_asym_id": "A",
+              "label_seq_id": "96",
+              "label_comp_id": "HIS",
+              "label_atom_id": "NE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "3.85",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                16.179,
+                23.132,
+                21.384
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "NE2": 2.0843552960088174
+          }
+        },
+        {
+          "role": "third_metal_ligand",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "936",
+              "auth_asym_id": "A",
+              "auth_seq_id": "102",
+              "auth_comp_id": "HIS",
+              "auth_atom_id": "NE2",
+              "label_asym_id": "A",
+              "label_seq_id": "102",
+              "label_comp_id": "HIS",
+              "label_atom_id": "NE2",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "2.50",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                18.417,
+                24.142,
+                19.491
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "NE2": 1.938131574480947
+          }
+        },
+        {
+          "role": "oxyanion_hbond_donor",
+          "source": "Chen v3 supplementary methods 1.1 and supplementary discussion 1; Fig. S9",
+          "atoms": [
+            {
+              "id": "1436",
+              "auth_asym_id": "A",
+              "auth_seq_id": "149",
+              "auth_comp_id": "TYR",
+              "auth_atom_id": "CZ",
+              "label_asym_id": "A",
+              "label_seq_id": "149",
+              "label_comp_id": "TYR",
+              "label_atom_id": "CZ",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "7.56",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                22.292,
+                25.634,
+                18.748
+              ]
+            },
+            {
+              "id": "1437",
+              "auth_asym_id": "A",
+              "auth_seq_id": "149",
+              "auth_comp_id": "TYR",
+              "auth_atom_id": "OH",
+              "label_asym_id": "A",
+              "label_seq_id": "149",
+              "label_comp_id": "TYR",
+              "label_atom_id": "OH",
+              "label_alt_id": ".",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_model_num": "1",
+              "occupancy": "1.00",
+              "b_iso_or_equiv": "6.48",
+              "pdbx_formal_charge": "?",
+              "coordinates_angstrom": [
+                22.444,
+                24.484,
+                19.48
+              ]
+            }
+          ],
+          "distances_to_zinc_angstrom": {
+            "CZ": 5.307944046427014,
+            "OH": 4.997510380179312
+          }
+        }
+      ],
+      "oxyanion_analogue_atom": {
+        "id": "1960",
+        "auth_asym_id": "A",
+        "auth_seq_id": "1202",
+        "auth_comp_id": "PKF",
+        "auth_atom_id": "O6",
+        "label_asym_id": "C",
+        "label_seq_id": ".",
+        "label_comp_id": "PKF",
+        "label_atom_id": "O6",
+        "label_alt_id": ".",
+        "pdbx_pdb_ins_code": "?",
+        "pdbx_pdb_model_num": "1",
+        "occupancy": "0.51",
+        "b_iso_or_equiv": "2.00",
+        "pdbx_formal_charge": "?",
+        "coordinates_angstrom": [
+          20.711,
+          24.473,
+          21.523
+        ]
+      },
+      "tyr_contact": {
+        "ordered_atoms": [
+          {
+            "id": "1436",
+            "auth_asym_id": "A",
+            "auth_seq_id": "149",
+            "auth_comp_id": "TYR",
+            "auth_atom_id": "CZ",
+            "label_asym_id": "A",
+            "label_seq_id": "149",
+            "label_comp_id": "TYR",
+            "label_atom_id": "CZ",
+            "label_alt_id": ".",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "occupancy": "1.00",
+            "b_iso_or_equiv": "7.56",
+            "pdbx_formal_charge": "?",
+            "coordinates_angstrom": [
+              22.292,
+              25.634,
+              18.748
+            ]
+          },
+          {
+            "id": "1437",
+            "auth_asym_id": "A",
+            "auth_seq_id": "149",
+            "auth_comp_id": "TYR",
+            "auth_atom_id": "OH",
+            "label_asym_id": "A",
+            "label_seq_id": "149",
+            "label_comp_id": "TYR",
+            "label_atom_id": "OH",
+            "label_alt_id": ".",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "occupancy": "1.00",
+            "b_iso_or_equiv": "6.48",
+            "pdbx_formal_charge": "?",
+            "coordinates_angstrom": [
+              22.444,
+              24.484,
+              19.48
+            ]
+          },
+          {
+            "id": "1960",
+            "auth_asym_id": "A",
+            "auth_seq_id": "1202",
+            "auth_comp_id": "PKF",
+            "auth_atom_id": "O6",
+            "label_asym_id": "C",
+            "label_seq_id": ".",
+            "label_comp_id": "PKF",
+            "label_atom_id": "O6",
+            "label_alt_id": ".",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "occupancy": "0.51",
+            "b_iso_or_equiv": "2.00",
+            "pdbx_formal_charge": "?",
+            "coordinates_angstrom": [
+              20.711,
+              24.473,
+              21.523
+            ]
+          }
+        ],
+        "angle_degrees": 109.79910950389899,
+        "distance_oh_to_analogue_o_angstrom": 2.679040686514484,
+        "paper_rounded_angle_degrees": 109.8,
+        "angle_definition": "Tyr CZ-OH-inhibitor O, vertex OH; not an O-H...O angle",
+        "scope": "Coordinate-derived geometry compatible with the paper assignment; not a measured interaction energy or causal catalytic requirement"
+      }
+    }
+  ],
+  "source_conflicts": [
+    {
+      "source": "Chen v3 supplementary methods 1.1 first residue list",
+      "printed_identity": "H293 and E293",
+      "coordinate_resolution": "4QHP authorA293 is HIS, authorA294 is GLU; the paper alignment paragraph also specifies E294",
+      "action": "Use source-confirmed A294 for the glutamate role and retain the first-list inconsistency"
+    },
+    {
+      "source": "Chen v3 supplementary methods 1.1 alignment versus chelation filter",
+      "alignment_atom": "4QHP E316 OE2",
+      "nearest_glutamate_oxygen_to_deposited_zinc": "OE1",
+      "action": "Preserve alignment correspondence separately from closest-oxygen coordination distance; no atom-name swap or reconstructed author ES model"
+    }
+  ]
+}

@@ -1,0 +1,545 @@
+{
+  "record_type": "source_scoped_state_dependent_functional_group_relation",
+  "question": "Does native astacin Tyr149 have a state-dependent coordination/contact role that would be lost by assigning one static functional-group role?",
+  "decision": "supported_native_state_dependent_role_mapping; no reaction-trajectory or de_novo_transfer_claim",
+  "pair_identity": {
+    "same_deposited_canonical_sequence": true,
+    "sequence_length_aa": 200,
+    "same_UniProt_reference": "P07584",
+    "matched_residue": "author A:TYR149, label A:TYR149",
+    "same_preparation_or_crystallization_conditions_established": false,
+    "mutations": "No sequence differences; deposited mutation fields are unknown, not affirmative mutation-free certificates."
+  },
+  "states": [
+    {
+      "pdb_id": "1AST",
+      "source_url": "https://files.rcsb.org/download/1AST.cif.gz",
+      "coordinate_file": "native/1AST.cif.gz",
+      "coordinate_sha256": "5587b7872a96903b15fdd207eb70e7feee5625507c800185343665674bc41cd7",
+      "primary_citation": {
+        "id": "primary",
+        "title": "Structure of astacin and implications for activation of astacins and zinc-ligation of collagenases.",
+        "journal_abbrev": "Nature",
+        "journal_volume": "358",
+        "page_first": "164",
+        "page_last": "167",
+        "year": "1992",
+        "journal_id_astm": "NATUAS",
+        "country": "UK",
+        "journal_id_issn": "0028-0836",
+        "journal_id_csd": "0006",
+        "book_publisher": "?",
+        "pdbx_database_id_pubmed": "1319561",
+        "pdbx_database_id_doi": "10.1038/358164a0"
+      },
+      "title": "STRUCTURE OF ASTACIN AND IMPLICATIONS FOR ACTIVATION OF ASTACINS AND ZINC-LIGATION OF COLLAGENASES",
+      "coordinate_scope": "Deposited model 1, asymmetric-unit author chain A; no assembly or symmetry expansion. Distances are intrinsic within each structure; no cross-crystal absolute-coordinate displacement is used.",
+      "resolution_angstrom": 1.8,
+      "R_work": 0.158,
+      "R_free": null,
+      "crystal_conditions": [],
+      "starting_model": "?",
+      "protein_identity": {
+        "description": "ASTACIN",
+        "source_method_deposit_code": "man",
+        "mutation_field_as_deposited": "?",
+        "fragment_as_deposited": "?",
+        "sequence_length": 200,
+        "sequence_sha256": "92d44bd7f1a19ffb6a81139bce547e9b5ef7dac267e148eece900e3c951ec3c9",
+        "sequence": "AAILGDEYLWSGGVIPYTFAGVSGADQSAILSGMQELEEKTCIRFVPRTTESDYVEIFTSGSGCWSYVGRISGAQQVSLQANGCVYHGTIIHELMHAIGFYHEHTRMDRDNYVTINYQNVDPSMTSNFDIDTYSRYVGEDYQYYSIMHYGKYSFSIQWGVLETIVPLQNGIDLTDPYDKAHMLQTDANQINNLYTNECSL",
+        "UniProt_reference": [
+          "P07584"
+        ],
+        "deposited_CA_residue_count": 200
+      },
+      "ligand_entities": [
+        {
+          "id": "2",
+          "type": "non-polymer",
+          "src_method": "syn",
+          "pdbx_description": "ZINC ION",
+          "formula_weight": "65.409",
+          "pdbx_number_of_molecules": "1",
+          "pdbx_ec": "?",
+          "pdbx_mutation": "?",
+          "pdbx_fragment": "?",
+          "details": "?"
+        },
+        {
+          "id": "3",
+          "type": "water",
+          "src_method": "nat",
+          "pdbx_description": "water",
+          "formula_weight": "18.015",
+          "pdbx_number_of_molecules": "182",
+          "pdbx_ec": "?",
+          "pdbx_mutation": "?",
+          "pdbx_fragment": "?",
+          "details": "?"
+        }
+      ],
+      "atoms": {
+        "Tyr149_OH": {
+          "id": "1185",
+          "auth_asym_id": "A",
+          "auth_seq_id": "149",
+          "auth_comp_id": "TYR",
+          "auth_atom_id": "OH",
+          "label_asym_id": "A",
+          "label_seq_id": "149",
+          "label_comp_id": "TYR",
+          "label_atom_id": "OH",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "10.05",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            20.384,
+            26.499,
+            21.73
+          ]
+        },
+        "Tyr149_CZ": {
+          "id": "1184",
+          "auth_asym_id": "A",
+          "auth_seq_id": "149",
+          "auth_comp_id": "TYR",
+          "auth_atom_id": "CZ",
+          "label_asym_id": "A",
+          "label_seq_id": "149",
+          "label_comp_id": "TYR",
+          "label_atom_id": "CZ",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "10.53",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            20.735,
+            27.284,
+            20.656
+          ]
+        },
+        "Zn": {
+          "id": "1592",
+          "auth_asym_id": "A",
+          "auth_seq_id": "999",
+          "auth_comp_id": "ZN",
+          "auth_atom_id": "ZN",
+          "label_asym_id": "B",
+          "label_seq_id": ".",
+          "label_comp_id": "ZN",
+          "label_atom_id": "ZN",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "10.40",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            18.125,
+            25.345,
+            21.609
+          ]
+        },
+        "nearest_deposited_water_O": {
+          "id": "1593",
+          "auth_asym_id": "A",
+          "auth_seq_id": "300",
+          "auth_comp_id": "HOH",
+          "auth_atom_id": "O",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "HOH",
+          "label_atom_id": "O",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "9.88",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            18.691,
+            24.931,
+            23.494
+          ]
+        }
+      },
+      "geometry": {
+        "Tyr149_OH_to_Zn_angstrom": 2.5395743737878598,
+        "nearest_deposited_water_O_to_Zn_angstrom": 2.011212818177129,
+        "Tyr149_CZ_OH_Zn_angle_degrees": 116.68011956054897,
+        "histidine_NE2_to_Zn_angstrom": {
+          "92": 2.026814989090027,
+          "96": 2.189494233835751,
+          "102": 2.011573762008247
+        }
+      },
+      "deposited_Tyr_Zn_connection": [
+        {
+          "id": "metalc4",
+          "conn_type_id": "metalc",
+          "pdbx_leaving_atom_flag": "?",
+          "pdbx_pdb_id": "?",
+          "ptnr1_label_asym_id": "A",
+          "ptnr1_label_comp_id": "TYR",
+          "ptnr1_label_seq_id": "149",
+          "ptnr1_label_atom_id": "OH",
+          "pdbx_ptnr1_label_alt_id": "?",
+          "pdbx_ptnr1_pdb_ins_code": "?",
+          "pdbx_ptnr1_standard_comp_id": "?",
+          "ptnr1_symmetry": "1_555",
+          "ptnr2_label_asym_id": "B",
+          "ptnr2_label_comp_id": "ZN",
+          "ptnr2_label_seq_id": ".",
+          "ptnr2_label_atom_id": "ZN",
+          "pdbx_ptnr2_label_alt_id": "?",
+          "pdbx_ptnr2_pdb_ins_code": "?",
+          "ptnr1_auth_asym_id": "A",
+          "ptnr1_auth_comp_id": "TYR",
+          "ptnr1_auth_seq_id": "149",
+          "ptnr2_auth_asym_id": "A",
+          "ptnr2_auth_comp_id": "ZN",
+          "ptnr2_auth_seq_id": "999",
+          "ptnr2_symmetry": "1_555",
+          "pdbx_ptnr3_label_atom_id": "?",
+          "pdbx_ptnr3_label_seq_id": "?",
+          "pdbx_ptnr3_label_comp_id": "?",
+          "pdbx_ptnr3_label_asym_id": "?",
+          "pdbx_ptnr3_label_alt_id": "?",
+          "pdbx_ptnr3_pdb_ins_code": "?",
+          "details": "?",
+          "pdbx_dist_value": "2.540",
+          "pdbx_value_order": "?",
+          "pdbx_role": "?"
+        }
+      ],
+      "chemical_state": "zinc-bound astacin with no deposited organic substrate or inhibitor",
+      "Tyr149_role": {
+        "label": "zinc_coordination_partner",
+        "evidence": "Explicit deposited metal connection, coordinate distance, and 1992 primary-paper abstract describing tyrosine as a more remote Zn ligand."
+      }
+    },
+    {
+      "pdb_id": "1QJI",
+      "source_url": "https://files.rcsb.org/download/1QJI.cif.gz",
+      "coordinate_file": "native/1QJI.cif.gz",
+      "coordinate_sha256": "8fabcbd7f0af2f86e894d8250a05ee20d56f73feb8e1697ebedb0348359949a5",
+      "primary_citation": {
+        "id": "primary",
+        "title": "Structure of Astacin with a Transition-State Analogue Inhibitor",
+        "journal_abbrev": "Nat.Struct.Biol.",
+        "journal_volume": "3",
+        "page_first": "671",
+        "page_last": "?",
+        "year": "1996",
+        "journal_id_astm": "NSBIEW",
+        "country": "US",
+        "journal_id_issn": "1072-8368",
+        "journal_id_csd": "2024",
+        "book_publisher": "?",
+        "pdbx_database_id_pubmed": "8756323",
+        "pdbx_database_id_doi": "10.1038/NSB0896-671"
+      },
+      "title": "Structure of astacin with a transition-state analogue inhibitor",
+      "coordinate_scope": "Deposited model 1, asymmetric-unit author chain A; no assembly or symmetry expansion. Distances are intrinsic within each structure; no cross-crystal absolute-coordinate displacement is used.",
+      "resolution_angstrom": 2.14,
+      "R_work": 0.164,
+      "R_free": null,
+      "crystal_conditions": [
+        {
+          "crystal_id": "1",
+          "method": "VAPOR DIFFUSION, HANGING DROP",
+          "temp": "?",
+          "temp_details": "?",
+          "ph": "7.00",
+          "pdbx_ph_range": "?",
+          "pdbx_details": "HANGING DROP VAPOUR DIFFUSION PH 7.0, 1M AMMONIUM SULFATE"
+        }
+      ],
+      "starting_model": "PDB ENTRY 1AST",
+      "protein_identity": {
+        "description": "ASTACIN",
+        "source_method_deposit_code": "nat",
+        "mutation_field_as_deposited": "?",
+        "fragment_as_deposited": "CATALYTIC DOMAIN",
+        "sequence_length": 200,
+        "sequence_sha256": "92d44bd7f1a19ffb6a81139bce547e9b5ef7dac267e148eece900e3c951ec3c9",
+        "sequence": "AAILGDEYLWSGGVIPYTFAGVSGADQSAILSGMQELEEKTCIRFVPRTTESDYVEIFTSGSGCWSYVGRISGAQQVSLQANGCVYHGTIIHELMHAIGFYHEHTRMDRDNYVTINYQNVDPSMTSNFDIDTYSRYVGEDYQYYSIMHYGKYSFSIQWGVLETIVPLQNGIDLTDPYDKAHMLQTDANQINNLYTNECSL",
+        "UniProt_reference": [
+          "P07584"
+        ],
+        "deposited_CA_residue_count": 200
+      },
+      "ligand_entities": [
+        {
+          "id": "2",
+          "type": "non-polymer",
+          "src_method": "syn",
+          "pdbx_description": "ZINC ION",
+          "formula_weight": "65.409",
+          "pdbx_number_of_molecules": "1",
+          "pdbx_ec": "?",
+          "pdbx_mutation": "?",
+          "pdbx_fragment": "?",
+          "details": "?"
+        },
+        {
+          "id": "3",
+          "type": "non-polymer",
+          "src_method": "syn",
+          "pdbx_description": "CARBOBENZOXY-PRO-LYS-PHE-Y(PO2)-ALA-PRO-OME",
+          "formula_weight": "743.807",
+          "pdbx_number_of_molecules": "1",
+          "pdbx_ec": "?",
+          "pdbx_mutation": "?",
+          "pdbx_fragment": "?",
+          "details": "?"
+        },
+        {
+          "id": "4",
+          "type": "water",
+          "src_method": "nat",
+          "pdbx_description": "water",
+          "formula_weight": "18.015",
+          "pdbx_number_of_molecules": "165",
+          "pdbx_ec": "?",
+          "pdbx_mutation": "?",
+          "pdbx_fragment": "?",
+          "details": "?"
+        }
+      ],
+      "atoms": {
+        "Tyr149_OH": {
+          "id": "1437",
+          "auth_asym_id": "A",
+          "auth_seq_id": "149",
+          "auth_comp_id": "TYR",
+          "auth_atom_id": "OH",
+          "label_asym_id": "A",
+          "label_seq_id": "149",
+          "label_comp_id": "TYR",
+          "label_atom_id": "OH",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "6.48",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            22.444,
+            24.484,
+            19.48
+          ]
+        },
+        "Tyr149_CZ": {
+          "id": "1436",
+          "auth_asym_id": "A",
+          "auth_seq_id": "149",
+          "auth_comp_id": "TYR",
+          "auth_atom_id": "CZ",
+          "label_asym_id": "A",
+          "label_seq_id": "149",
+          "label_comp_id": "TYR",
+          "label_atom_id": "CZ",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "7.56",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            22.292,
+            25.634,
+            18.748
+          ]
+        },
+        "Zn": {
+          "id": "1931",
+          "auth_asym_id": "A",
+          "auth_seq_id": "1201",
+          "auth_comp_id": "ZN",
+          "auth_atom_id": "ZN",
+          "label_asym_id": "B",
+          "label_seq_id": ".",
+          "label_comp_id": "ZN",
+          "label_atom_id": "ZN",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "3.71",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            17.789,
+            24.453,
+            21.298
+          ]
+        },
+        "nearest_deposited_water_O": {
+          "id": "2311",
+          "auth_asym_id": "A",
+          "auth_seq_id": "2108",
+          "auth_comp_id": "HOH",
+          "auth_atom_id": "O",
+          "label_asym_id": "D",
+          "label_seq_id": ".",
+          "label_comp_id": "HOH",
+          "label_atom_id": "O",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "1.00",
+          "b_iso_or_equiv": "17.42",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            21.491,
+            20.697,
+            19.972
+          ]
+        },
+        "inhibitor_O5": {
+          "id": "1959",
+          "auth_asym_id": "A",
+          "auth_seq_id": "1202",
+          "auth_comp_id": "PKF",
+          "auth_atom_id": "O5",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "PKF",
+          "label_atom_id": "O5",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "0.51",
+          "b_iso_or_equiv": "2.55",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            18.69,
+            24.401,
+            22.912
+          ]
+        },
+        "inhibitor_O6": {
+          "id": "1960",
+          "auth_asym_id": "A",
+          "auth_seq_id": "1202",
+          "auth_comp_id": "PKF",
+          "auth_atom_id": "O6",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "PKF",
+          "label_atom_id": "O6",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "0.51",
+          "b_iso_or_equiv": "2.00",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            20.711,
+            24.473,
+            21.523
+          ]
+        },
+        "inhibitor_P1": {
+          "id": "1974",
+          "auth_asym_id": "A",
+          "auth_seq_id": "1202",
+          "auth_comp_id": "PKF",
+          "auth_atom_id": "P1",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "PKF",
+          "label_atom_id": "P1",
+          "label_alt_id": ".",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_model_num": "1",
+          "occupancy": "0.51",
+          "b_iso_or_equiv": "3.35",
+          "pdbx_formal_charge": "?",
+          "coordinates_angstrom": [
+            20.296,
+            24.305,
+            22.953
+          ]
+        }
+      },
+      "geometry": {
+        "Tyr149_OH_to_Zn_angstrom": 4.997510380179312,
+        "nearest_deposited_water_O_to_Zn_angstrom": 5.4378870896700295,
+        "Tyr149_CZ_OH_Zn_angle_degrees": 95.51560556500495,
+        "histidine_NE2_to_Zn_angstrom": {
+          "92": 2.167480565080115,
+          "96": 2.0843552960088174,
+          "102": 1.938131574480947
+        },
+        "Tyr149_OH_to_inhibitor_O6_angstrom": 2.679040686514484,
+        "Tyr149_CZ_OH_inhibitor_O6_angle_degrees": 109.79910950389899,
+        "Zn_to_inhibitor_O5_angstrom": 1.8491892818205502,
+        "Zn_to_inhibitor_O6_angstrom": 2.9307181713702843
+      },
+      "deposited_Tyr_Zn_connection": [],
+      "chemical_state": "astacin bound to phosphinic pseudopeptide transition-state-analogue inhibitor PKF; not a reacting substrate or measured transition state",
+      "Tyr149_role": {
+        "label": "inhibitor_oxygen_contact_consistent_with_hydrogen_bond_donation",
+        "evidence": "Coordinate-derived Tyr OH\u2013PKF O6 contact and heavy-atom orientation in the author-deposited inhibitor complex; donor assignment is a chemical interpretation, not direct hydrogen localization or a measured interaction energy."
+      },
+      "occupancy_limit": "Inhibitor P1/O5/O6 occupancy is 0.51 while Tyr149 OH and Zn occupancy are 1.00. These are the deposited model/refinement values, not a directly measured reacting fraction."
+    }
+  ],
+  "comparison": {
+    "Tyr149_OH_Zn_distance_increase_angstrom": 2.4579360063914524,
+    "state_free_role": "Deposited Zn coordination partner",
+    "state_inhibitor_role": "Near-contact to inhibitor phosphinic oxygen O6, consistent with hydrogen-bond donation; Zn is approximately 5 angstrom away",
+    "water_state": "1AST contains a Zn-bound water O at 2.011 angstrom. In 1QJI no deposited water O lies within 5.438 angstrom of Zn; inhibitor oxygens occupy the nearby coordination region. This is a comparison of deposited models, not proof of the water-displacement pathway.",
+    "causal_boundary": "Identical sequence controls residue identity; different crystals and chemical states do not isolate the causal effect of inhibitor binding. 1QJI refinement used 1AST as a starting model.",
+    "coordinate_uncertainty": "Neither deposited R_free nor a coordinate-error estimate is available in the inspected refinement records. Resolution and atom occupancies/B values are retained; no numerical geometry confidence interval is invented."
+  },
+  "primary_literature": [
+    {
+      "pubmed_id": "1319561",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1319561/",
+      "title": "Structure of astacin and implications for activation of astacins and zinc-ligation of collagenases.",
+      "abstract_available": true,
+      "abstract_sha256": "5004df99c439cd2e58329c588a0cdbbecc36c8c4797b1686807da0094d8a812b",
+      "used_claim": "Astacin Zn is coordinated by three histidines, water and a more remote tyrosine."
+    },
+    {
+      "pubmed_id": "8756323",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8756323/",
+      "title": "Structure of astacin with a transition-state analogue inhibitor.",
+      "abstract_available": false,
+      "abstract_sha256": null,
+      "used_claim": null
+    }
+  ],
+  "source_receipts": {
+    "new_requests": 4,
+    "new_captured_body_bytes": 211093,
+    "assigned_cap_bytes": 262144,
+    "assigned_request_cap": 5,
+    "failed_primary_publisher_attempt": "The Nature page for the 1996 paper exceeded a bounded 131072-byte read and was aborted after 131073 bytes, counted in the total. Its text is not used. The PubMed entry has no abstract.",
+    "abstract_xml_sha256": "5fb5756e71189137fce4e06f5ab38c6e37b1de5b73f751e5f8d0c42877acb261",
+    "acquisition_receipt_scope": "Acquisition receipts and abstract XML are local run evidence, not dependencies of this coordinate relation. Both exact coordinate sources are packaged under native/; literature URLs and hashes remain in this record."
+  },
+  "representational_consequence": {
+    "required_context": [
+      "construct and exact residue identity",
+      "observed chemical state and bound component identity",
+      "state-specific atom contact or coordination role",
+      "source/model occupancy and provenance"
+    ],
+    "allowed_transfer": "Represent the same native functional group with different state-conditioned coordination/contact relations. An inhibitor-state oxyanion-contact template does not define the substrate-free metal coordination state.",
+    "unsupported_transfer": [
+      "Do not merge the two observed state-specific geometries into an experimentally observed simultaneous motif.",
+      "Do not infer that TDPn3 or all zinc proteases exhibit this same switching behavior.",
+      "Do not treat phosphinic inhibitor geometry as a measured transition state or turn two crystals into a reaction trajectory.",
+      "Do not infer protonation, catalytic rates, interaction energies or metal-ligation kinetics from these distances."
+    ],
+    "value_over_stopping": "This establishes a concrete observed native example where a single context-free role label is incomplete. The next Atlas representation can preserve state-conditioned roles without adding a new energy model."
+  }
+}

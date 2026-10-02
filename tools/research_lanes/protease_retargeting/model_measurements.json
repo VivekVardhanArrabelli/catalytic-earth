@@ -1,0 +1,4867 @@
+{
+  "evidence_level": "coordinate-derived measurements of author computational models",
+  "precision": "PDB coordinates are stored to 0.001 angstrom; additional arithmetic digits are retained only for reproducibility and are not accuracy or an uncertainty estimate",
+  "model_files": {
+    "apo_monomer": {
+      "file": "models/TDPn3-author-monomer-seed-1-sample-0-filtered.pdb",
+      "path_basis": "relative_to_measurement_record",
+      "sha256": "f7347af939dbca54c399c0e52a0e968e9516246428863187e508a5192a1cd16b"
+    },
+    "enzyme_substrate_Zn_water": {
+      "file": "models/TDPn3-author-complex-seed-1-sample-3-filtered.pdb",
+      "path_basis": "relative_to_measurement_record",
+      "sha256": "a25ad433f43762e4fec54eb4cdb3043ea338131b3f1b9ea2a01748b13683341f"
+    },
+    "author_phosphoTS_analogue": {
+      "file": "models/TDPn3-author-phosphoTS-seed-1-sample-0-filtered.pdb",
+      "path_basis": "relative_to_measurement_record",
+      "sha256": "168d84af0111f1ae1dffa1a29286ac6f32571c5c677bbe1ed4a218d63e994c6f"
+    },
+    "rejected_unfiltered_ES_sample0": {
+      "file": "models/TDPn3-author-complex-seed-1-sample-0-unfiltered.pdb",
+      "path_basis": "relative_to_measurement_record",
+      "sha256": "4ad4fde6bfb4cb66cbf57b699d18107486beed0da470af04a6e9296c5c5ebac2"
+    }
+  },
+  "identity": {
+    "designed_core_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+    "core_residues": 187,
+    "ES_substrate_sequence": "ALQSSWGMMG",
+    "ES_missing_assay_positions": [
+      11,
+      12
+    ],
+    "assay_construct_scope": "Exact Table S4 designed core match, not identity to a full tagged experimental construct."
+  },
+  "role_atoms": {
+    "zn_ligand_histidine_1": {
+      "apo_monomer": [
+        {
+          "atom_id": "A:HIS146:NE2",
+          "chain": "A",
+          "residue_number": 146,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            0.872,
+            0.722,
+            4.399
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 87.76
+        }
+      ],
+      "enzyme_substrate_Zn_water": [
+        {
+          "atom_id": "A:HIS146:NE2",
+          "chain": "A",
+          "residue_number": 146,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            -0.636,
+            0.659,
+            3.163
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.76
+        }
+      ],
+      "author_phosphoTS_analogue": [
+        {
+          "atom_id": "A:HIS146:NE2",
+          "chain": "A",
+          "residue_number": 146,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            0.647,
+            -1.642,
+            0.57
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.24
+        }
+      ],
+      "rejected_unfiltered_ES_sample0": [
+        {
+          "atom_id": "A:HIS146:NE2",
+          "chain": "A",
+          "residue_number": 146,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            1.205,
+            1.945,
+            2.631
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.63
+        }
+      ]
+    },
+    "zn_ligand_histidine_2": {
+      "apo_monomer": [
+        {
+          "atom_id": "A:HIS150:NE2",
+          "chain": "A",
+          "residue_number": 150,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            2.721,
+            -1.166,
+            3.229
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 84.03
+        }
+      ],
+      "enzyme_substrate_Zn_water": [
+        {
+          "atom_id": "A:HIS150:NE2",
+          "chain": "A",
+          "residue_number": 150,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            1.835,
+            1.851,
+            4.624
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.01
+        }
+      ],
+      "author_phosphoTS_analogue": [
+        {
+          "atom_id": "A:HIS150:NE2",
+          "chain": "A",
+          "residue_number": 150,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            1.856,
+            -1.598,
+            3.478
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.52
+        }
+      ],
+      "rejected_unfiltered_ES_sample0": [
+        {
+          "atom_id": "A:HIS150:NE2",
+          "chain": "A",
+          "residue_number": 150,
+          "residue_name": "HIS",
+          "atom_name": "NE2",
+          "element": "N",
+          "coordinates_angstrom": [
+            2.306,
+            0.258,
+            0.257
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 96.82
+        }
+      ]
+    },
+    "zn_ligand_glutamate": {
+      "apo_monomer": [
+        {
+          "atom_id": "A:GLU45:OE1",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            4.052,
+            1.803,
+            0.753
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 83.27
+        },
+        {
+          "atom_id": "A:GLU45:OE2",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            2.107,
+            1.971,
+            1.74
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 85.25
+        }
+      ],
+      "enzyme_substrate_Zn_water": [
+        {
+          "atom_id": "A:GLU45:OE1",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            -0.494,
+            3.632,
+            3.429
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.76
+        },
+        {
+          "atom_id": "A:GLU45:OE2",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            -0.127,
+            5.0,
+            5.097
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.49
+        }
+      ],
+      "author_phosphoTS_analogue": [
+        {
+          "atom_id": "A:GLU45:OE1",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            -1.192,
+            -2.185,
+            2.961
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.16
+        },
+        {
+          "atom_id": "A:GLU45:OE2",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            -1.111,
+            -3.223,
+            4.89
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.99
+        }
+      ],
+      "rejected_unfiltered_ES_sample0": [
+        {
+          "atom_id": "A:GLU45:OE1",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            -0.514,
+            1.794,
+            0.148
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.64
+        },
+        {
+          "atom_id": "A:GLU45:OE2",
+          "chain": "A",
+          "residue_number": 45,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            -0.08,
+            1.991,
+            -1.986
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.35
+        }
+      ]
+    },
+    "general_base_glutamate": {
+      "apo_monomer": [
+        {
+          "atom_id": "A:GLU147:OE1",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            3.819,
+            -0.471,
+            7.477
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 82.06
+        },
+        {
+          "atom_id": "A:GLU147:OE2",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            4.641,
+            -2.336,
+            6.643
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 83.37
+        }
+      ],
+      "enzyme_substrate_Zn_water": [
+        {
+          "atom_id": "A:GLU147:OE1",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            1.341,
+            -1.401,
+            7.314
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 96.07
+        },
+        {
+          "atom_id": "A:GLU147:OE2",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            -0.741,
+            -1.711,
+            6.711
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 95.28
+        }
+      ],
+      "author_phosphoTS_analogue": [
+        {
+          "atom_id": "A:GLU147:OE1",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            5.3,
+            -3.525,
+            1.695
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.33
+        },
+        {
+          "atom_id": "A:GLU147:OE2",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            4.295,
+            -4.37,
+            -0.061
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 97.07
+        }
+      ],
+      "rejected_unfiltered_ES_sample0": [
+        {
+          "atom_id": "A:GLU147:OE1",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE1",
+          "element": "O",
+          "coordinates_angstrom": [
+            5.948,
+            1.796,
+            1.283
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 95.74
+        },
+        {
+          "atom_id": "A:GLU147:OE2",
+          "chain": "A",
+          "residue_number": 147,
+          "residue_name": "GLU",
+          "atom_name": "OE2",
+          "element": "O",
+          "coordinates_angstrom": [
+            5.062,
+            3.496,
+            2.345
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 94.86
+        }
+      ]
+    },
+    "oxyanion_stabilizing_tyrosine": {
+      "apo_monomer": [
+        {
+          "atom_id": "A:TYR78:CZ",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "CZ",
+          "element": "C",
+          "coordinates_angstrom": [
+            2.439,
+            5.533,
+            2.645
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 83.62
+        },
+        {
+          "atom_id": "A:TYR78:OH",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "OH",
+          "element": "O",
+          "coordinates_angstrom": [
+            3.744,
+            5.184,
+            2.651
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 80.81
+        }
+      ],
+      "enzyme_substrate_Zn_water": [
+        {
+          "atom_id": "A:TYR78:CZ",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "CZ",
+          "element": "C",
+          "coordinates_angstrom": [
+            -4.14,
+            4.227,
+            3.425
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.69
+        },
+        {
+          "atom_id": "A:TYR78:OH",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "OH",
+          "element": "O",
+          "coordinates_angstrom": [
+            -3.602,
+            4.324,
+            4.684
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.26
+        }
+      ],
+      "author_phosphoTS_analogue": [
+        {
+          "atom_id": "A:TYR78:CZ",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "CZ",
+          "element": "C",
+          "coordinates_angstrom": [
+            -3.211,
+            -4.517,
+            1.2
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.79
+        },
+        {
+          "atom_id": "A:TYR78:OH",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "OH",
+          "element": "O",
+          "coordinates_angstrom": [
+            -2.325,
+            -5.138,
+            2.047
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.57
+        }
+      ],
+      "rejected_unfiltered_ES_sample0": [
+        {
+          "atom_id": "A:TYR78:CZ",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "CZ",
+          "element": "C",
+          "coordinates_angstrom": [
+            -2.108,
+            5.14,
+            0.4
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.61
+        },
+        {
+          "atom_id": "A:TYR78:OH",
+          "chain": "A",
+          "residue_number": 78,
+          "residue_name": "TYR",
+          "atom_name": "OH",
+          "element": "O",
+          "coordinates_angstrom": [
+            -1.107,
+            5.171,
+            -0.541
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.09
+        }
+      ]
+    },
+    "zinc": {
+      "apo_monomer": [],
+      "enzyme_substrate_Zn_water": [
+        {
+          "atom_id": "C:LIG1:ZN1",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "LIG",
+          "atom_name": "ZN1",
+          "element": "ZN",
+          "coordinates_angstrom": [
+            -0.164,
+            1.947,
+            4.632
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.34
+        }
+      ],
+      "author_phosphoTS_analogue": [
+        {
+          "atom_id": "C:LIG1:ZN1",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "LIG",
+          "atom_name": "ZN1",
+          "element": "ZN",
+          "coordinates_angstrom": [
+            0.542,
+            -2.561,
+            2.305
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.91
+        }
+      ],
+      "rejected_unfiltered_ES_sample0": [
+        {
+          "atom_id": "C:LIG1:ZN1",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "LIG",
+          "atom_name": "ZN1",
+          "element": "ZN",
+          "coordinates_angstrom": [
+            1.367,
+            1.963,
+            0.662
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 98.34
+        }
+      ]
+    },
+    "catalytic_water": {
+      "apo_monomer": [],
+      "enzyme_substrate_Zn_water": [
+        {
+          "atom_id": "C:LIG1:O1",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "LIG",
+          "atom_name": "O1",
+          "element": "O",
+          "coordinates_angstrom": [
+            -0.139,
+            0.806,
+            6.124
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 86.23
+        }
+      ],
+      "author_phosphoTS_analogue": [],
+      "rejected_unfiltered_ES_sample0": [
+        {
+          "atom_id": "C:LIG1:O1",
+          "chain": "C",
+          "residue_number": 1,
+          "residue_name": "LIG",
+          "atom_name": "O1",
+          "element": "O",
+          "coordinates_angstrom": [
+            1.679,
+            2.994,
+            -0.059
+          ],
+          "occupancy": 1.0,
+          "stored_b_factor_field": 85.62
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "enzyme_substrate_Zn_water": [
+      {
+        "id": "zinc_His146_NE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 146,
+            "residue_name": "HIS",
+            "atom_name": "NE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.0098977585937052,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_His150_NE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 150,
+            "residue_name": "HIS",
+            "atom_name": "NE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.0013198145224065,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_Glu45_OE1",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.0965051872103726,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_Glu45_OE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 3.0884305075555774,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.946661331066059,
+        "unit": "angstrom",
+        "meaning": "Zn to P1 Gly7 carbonyl oxygen"
+      },
+      {
+        "id": "tyr_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.3056118493796824,
+        "unit": "angstrom",
+        "meaning": "candidate oxyanion-donor contact"
+      },
+      {
+        "id": "tyr_CZ_OH_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "CZ",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 134.32016300899875,
+        "unit": "degree",
+        "meaning": "heavy-atom donor angle, vertex Tyr OH; no hydrogen position is supplied"
+      },
+      {
+        "id": "base_OE1_leaving_nitrogen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 5.224466097124184,
+        "unit": "angstrom",
+        "meaning": "proposed acid-to-leaving-group contact; ES/TSA is not product-release state"
+      },
+      {
+        "id": "base_OE1_nucleophile_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.911588741563616,
+        "unit": "angstrom",
+        "meaning": "base-to-modeled-water oxygen"
+      },
+      {
+        "id": "base_OE2_leaving_nitrogen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 3.6727533268652826,
+        "unit": "angstrom",
+        "meaning": "proposed acid-to-leaving-group contact; ES/TSA is not product-release state"
+      },
+      {
+        "id": "base_OE2_nucleophile_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.6537260597130223,
+        "unit": "angstrom",
+        "meaning": "base-to-modeled-water oxygen"
+      },
+      {
+        "id": "scissile_C_N",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 1.3303089866643765,
+        "unit": "angstrom",
+        "meaning": "intended substrate amide bond"
+      },
+      {
+        "id": "zinc_water",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 1.8784488281558271,
+        "unit": "angstrom",
+        "meaning": "Zn to modeled catalytic water oxygen"
+      },
+      {
+        "id": "water_carbonyl_carbon",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 2.9426364029556895,
+        "unit": "angstrom",
+        "meaning": "modeled nucleophile-to-electrophile separation"
+      },
+      {
+        "id": "water_C_O_attack_angle",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "value": 88.45521432993225,
+        "unit": "degree",
+        "meaning": "water O-P1 carbonyl C-P1 carbonyl O, vertex C; a snapshot angle, not a transition state"
+      }
+    ],
+    "author_phosphoTS_analogue": [
+      {
+        "id": "zinc_His146_NE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "A",
+            "residue_number": 146,
+            "residue_name": "HIS",
+            "atom_name": "NE2",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 1.9661665748354082,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_His150_NE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "A",
+            "residue_number": 150,
+            "residue_name": "HIS",
+            "atom_name": "NE2",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 2.0074595886343514,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_Glu45_OE1",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 1.8916839059420048,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_Glu45_OE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 3.1389294353330084,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O1",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 1.990564995170969,
+        "unit": "angstrom",
+        "meaning": "Zn to oxyanion-like TSA O1"
+      },
+      {
+        "id": "tyr_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O1",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 2.5592625891064795,
+        "unit": "angstrom",
+        "meaning": "candidate oxyanion-donor contact"
+      },
+      {
+        "id": "tyr_CZ_OH_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "CZ",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O1",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 117.60792536170283,
+        "unit": "degree",
+        "meaning": "heavy-atom donor angle, vertex Tyr OH; no hydrogen position is supplied"
+      },
+      {
+        "id": "base_OE1_leaving_nitrogen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "N2",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 4.8157127198370135,
+        "unit": "angstrom",
+        "meaning": "proposed acid-to-leaving-group contact; ES/TSA is not product-release state"
+      },
+      {
+        "id": "base_OE1_nucleophile_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O2",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 2.9038810237335824,
+        "unit": "angstrom",
+        "meaning": "base-to-TSA O2"
+      },
+      {
+        "id": "base_OE2_leaving_nitrogen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "N2",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 3.377272716260859,
+        "unit": "angstrom",
+        "meaning": "proposed acid-to-leaving-group contact; ES/TSA is not product-release state"
+      },
+      {
+        "id": "base_OE2_nucleophile_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "author_phosphoTS_analogue"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "pts",
+            "atom_name": "O2",
+            "model_state": "author_phosphoTS_analogue"
+          }
+        ],
+        "value": 2.6498020680798025,
+        "unit": "angstrom",
+        "meaning": "base-to-TSA O2"
+      }
+    ],
+    "rejected_unfiltered_ES_sample0": [
+      {
+        "id": "zinc_His146_NE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "A",
+            "residue_number": 146,
+            "residue_name": "HIS",
+            "atom_name": "NE2",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 1.9757350530878373,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_His150_NE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "A",
+            "residue_number": 150,
+            "residue_name": "HIS",
+            "atom_name": "NE2",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 1.9881576899230102,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_Glu45_OE1",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 1.9572731030696764,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_Glu45_OE2",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 3.0176973009233383,
+        "unit": "angstrom",
+        "meaning": "metal-to-protein-ligand distance"
+      },
+      {
+        "id": "zinc_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 3.3168628250200523,
+        "unit": "angstrom",
+        "meaning": "Zn to P1 Gly7 carbonyl oxygen"
+      },
+      {
+        "id": "tyr_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 2.282767180419414,
+        "unit": "angstrom",
+        "meaning": "candidate oxyanion-donor contact"
+      },
+      {
+        "id": "tyr_CZ_OH_target_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "CZ",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 138.0995031111561,
+        "unit": "degree",
+        "meaning": "heavy-atom donor angle, vertex Tyr OH; no hydrogen position is supplied"
+      },
+      {
+        "id": "base_OE1_leaving_nitrogen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 5.374641011267637,
+        "unit": "angstrom",
+        "meaning": "proposed acid-to-leaving-group contact; ES/TSA is not product-release state"
+      },
+      {
+        "id": "base_OE1_nucleophile_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 4.632551025083264,
+        "unit": "angstrom",
+        "meaning": "base-to-modeled-water oxygen"
+      },
+      {
+        "id": "base_OE2_leaving_nitrogen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 3.861793624729318,
+        "unit": "angstrom",
+        "meaning": "proposed acid-to-leaving-group contact; ES/TSA is not product-release state"
+      },
+      {
+        "id": "base_OE2_nucleophile_oxygen",
+        "ordered_atoms": [
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 4.180419715770176,
+        "unit": "angstrom",
+        "meaning": "base-to-modeled-water oxygen"
+      },
+      {
+        "id": "scissile_C_N",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 1.3361358463868862,
+        "unit": "angstrom",
+        "meaning": "intended substrate amide bond"
+      },
+      {
+        "id": "zinc_water",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "ZN1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 1.2962044591807267,
+        "unit": "angstrom",
+        "meaning": "Zn to modeled catalytic water oxygen"
+      },
+      {
+        "id": "water_carbonyl_carbon",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 2.6346654436569357,
+        "unit": "angstrom",
+        "meaning": "modeled nucleophile-to-electrophile separation"
+      },
+      {
+        "id": "water_C_O_attack_angle",
+        "ordered_atoms": [
+          {
+            "chain": "C",
+            "residue_number": 1,
+            "residue_name": "LIG",
+            "atom_name": "O1",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          },
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "rejected_unfiltered_ES_sample0"
+          }
+        ],
+        "value": 54.27144164815468,
+        "unit": "degree",
+        "meaning": "water O-P1 carbonyl C-P1 carbonyl O, vertex C; a snapshot angle, not a transition state"
+      }
+    ]
+  },
+  "selected_ES_contacts": {
+    "enumeration_cutoffs_angstrom": {
+      "residue_pair_minimum_by_substrate_atom_class": 4.0,
+      "backbone_N_O_candidate": 3.5
+    },
+    "scope": "Selected ES sample3 only. Cutoffs are analyst enumeration choices, not causal or energetic thresholds. No assembly/symmetry expansion.",
+    "residue_pair_contacts": [
+      {
+        "assay_peptide_position": 1,
+        "substrate_residue": "ALA",
+        "protein_residue": "A:VAL174",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 1,
+            "residue_name": "ALA",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 174,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.6460167306253553,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 1,
+        "substrate_residue": "ALA",
+        "protein_residue": "A:VAL174",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 1,
+            "residue_name": "ALA",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 174,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.6127533821173015,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:ALA173",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 173,
+            "residue_name": "ALA",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.361667740869106,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:ALA30",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 30,
+            "residue_name": "ALA",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.9200965549333096,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:ARG176",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 176,
+            "residue_name": "ARG",
+            "atom_name": "CG",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.8666644540223554,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:LEU179",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 179,
+            "residue_name": "LEU",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.7624452155479946,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:LEU27",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "CD2",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 27,
+            "residue_name": "LEU",
+            "atom_name": "CD2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.913608564994716,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:TYR32",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 32,
+            "residue_name": "TYR",
+            "atom_name": "CE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.696479135609993,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:VAL172",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 172,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.5990894681849737,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:VAL174",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 174,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 2.799250792622912,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 2,
+        "substrate_residue": "LEU",
+        "protein_residue": "A:VAL174",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 174,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.6338428694702807,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 3,
+        "substrate_residue": "GLN",
+        "protein_residue": "A:LEU159",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 3,
+            "residue_name": "GLN",
+            "atom_name": "CG",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 159,
+            "residue_name": "LEU",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.395772371640949,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 3,
+        "substrate_residue": "GLN",
+        "protein_residue": "A:VAL172",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 3,
+            "residue_name": "GLN",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 172,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.329720408682987,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 3,
+        "substrate_residue": "GLN",
+        "protein_residue": "A:VAL172",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 3,
+            "residue_name": "GLN",
+            "atom_name": "CG",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 172,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.785051783001126,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 4,
+        "substrate_residue": "SER",
+        "protein_residue": "A:GLU171",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 171,
+            "residue_name": "GLU",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.522068852251472,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 4,
+        "substrate_residue": "SER",
+        "protein_residue": "A:GLU26",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 26,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.3670081674982617,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 4,
+        "substrate_residue": "SER",
+        "protein_residue": "A:GLU26",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 26,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.529082883696556,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 4,
+        "substrate_residue": "SER",
+        "protein_residue": "A:LEU27",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "OG",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 27,
+            "residue_name": "LEU",
+            "atom_name": "CD2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.596718643430425,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 4,
+        "substrate_residue": "SER",
+        "protein_residue": "A:SER170",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 170,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.881975399200773,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 4,
+        "substrate_residue": "SER",
+        "protein_residue": "A:VAL172",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 172,
+            "residue_name": "VAL",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 2.944568219620663,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 5,
+        "substrate_residue": "SER",
+        "protein_residue": "A:ARG19",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 5,
+            "residue_name": "SER",
+            "atom_name": "OG",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 19,
+            "residue_name": "ARG",
+            "atom_name": "NH2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 2.9516834179837104,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 5,
+        "substrate_residue": "SER",
+        "protein_residue": "A:GLU26",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 5,
+            "residue_name": "SER",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 26,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 2.721388983589079,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 5,
+        "substrate_residue": "SER",
+        "protein_residue": "A:GLU26",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 5,
+            "residue_name": "SER",
+            "atom_name": "OG",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 26,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 2.982880989915622,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 5,
+        "substrate_residue": "SER",
+        "protein_residue": "A:SER170",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 5,
+            "residue_name": "SER",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 170,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.3410809628023084,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 5,
+        "substrate_residue": "SER",
+        "protein_residue": "A:THR23",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 5,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 23,
+            "residue_name": "THR",
+            "atom_name": "OG1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 2.695971253555942,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:GLU147",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.8712376573907212,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:GLU45",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "CE3",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.412543626094764,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:HIS150",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 150,
+            "residue_name": "HIS",
+            "atom_name": "CE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.5211919856775777,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:ILE168",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 168,
+            "residue_name": "ILE",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.9223993932285883,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:ILE44",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "CH2",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 44,
+            "residue_name": "ILE",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.5001338545832783,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:SER170",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 170,
+            "residue_name": "SER",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 2.754111653510075,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:THR23",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "CZ3",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 23,
+            "residue_name": "THR",
+            "atom_name": "CG2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.7099940700761236,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:VAL169",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 169,
+            "residue_name": "VAL",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.2836342670888303,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:VAL172",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "NE1",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 172,
+            "residue_name": "VAL",
+            "atom_name": "CG2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.3729816186869446,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 6,
+        "substrate_residue": "TRP",
+        "protein_residue": "A:VAL41",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "CZ3",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 41,
+            "residue_name": "VAL",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.8976192733513617,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 7,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:GLU45",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 45,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.3994420130368455,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 7,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:ILE168",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 168,
+            "residue_name": "ILE",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.2459858286813272,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 7,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:TRP167",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 167,
+            "residue_name": "TRP",
+            "atom_name": "CE3",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.5104525349305047,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 7,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:TYR78",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 7,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 2.3056118493796824,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:ALA143",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "SD",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 143,
+            "residue_name": "ALA",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.854839555675437,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:GLU147",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.6727533268652826,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:GLU147",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "CG",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 147,
+            "residue_name": "GLU",
+            "atom_name": "OE2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.3805659289533163,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:HIS146",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 146,
+            "residue_name": "HIS",
+            "atom_name": "CD2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.4920007159220345,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:ILE168",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 168,
+            "residue_name": "ILE",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 2.9143517289441916,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:ILE63",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "CE",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 63,
+            "residue_name": "ILE",
+            "atom_name": "CG2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.979850499704731,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:PRO166",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 166,
+            "residue_name": "PRO",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.874373755847517,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:TRP167",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "C",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 167,
+            "residue_name": "TRP",
+            "atom_name": "CE3",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.3676560097492145,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 8,
+        "substrate_residue": "MET",
+        "protein_residue": "A:TYR78",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 78,
+            "residue_name": "TYR",
+            "atom_name": "OH",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.866947762771046,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:ASP71",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "CE",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 71,
+            "residue_name": "ASP",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.6998093194109347,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:ILE63",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 63,
+            "residue_name": "ILE",
+            "atom_name": "CG2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.6116316257337204,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:ILE67",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 67,
+            "residue_name": "ILE",
+            "atom_name": "CG1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.4112581256773873,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:LEU70",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "SD",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 70,
+            "residue_name": "LEU",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.397796197537456,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:PRO166",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "CA",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 166,
+            "residue_name": "PRO",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.4133212564890516,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:PRO166",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "CG",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 166,
+            "residue_name": "PRO",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.7655352873130803,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:TRP167",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 167,
+            "residue_name": "TRP",
+            "atom_name": "CE3",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.503983019365248,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 9,
+        "substrate_residue": "MET",
+        "protein_residue": "A:TRP167",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 9,
+            "residue_name": "MET",
+            "atom_name": "CE",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 167,
+            "residue_name": "TRP",
+            "atom_name": "CZ2",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_sidechain",
+        "distance_angstrom": 3.4744324716419515,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:ALA134",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "OXT",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 134,
+            "residue_name": "ALA",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "artificial_truncated_C_terminal_OXT",
+        "distance_angstrom": 3.433940011124248,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": true
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:ALA66",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "OXT",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 66,
+            "residue_name": "ALA",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "artificial_truncated_C_terminal_OXT",
+        "distance_angstrom": 3.1159106213112087,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": true
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:ALA66",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 66,
+            "residue_name": "ALA",
+            "atom_name": "CB",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.837836630186335,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:ILE63",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "OXT",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 63,
+            "residue_name": "ILE",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "artificial_truncated_C_terminal_OXT",
+        "distance_angstrom": 3.9037770171975756,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": true
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:LEU70",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 70,
+            "residue_name": "LEU",
+            "atom_name": "CD1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.3279290857829293,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:PRO166",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 166,
+            "residue_name": "PRO",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.028720356850397,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:THR132",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "OXT",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 132,
+            "residue_name": "THR",
+            "atom_name": "OG1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "artificial_truncated_C_terminal_OXT",
+        "distance_angstrom": 2.5419136492021126,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": true
+      },
+      {
+        "assay_peptide_position": 10,
+        "substrate_residue": "GLY",
+        "protein_residue": "A:THR132",
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "C",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 132,
+            "residue_name": "THR",
+            "atom_name": "OG1",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "substrate_atom_class": "substrate_backbone",
+        "distance_angstrom": 3.001278727476006,
+        "excluded_from_full_12mer_by_terminal_atom_mismatch": false
+      }
+    ],
+    "backbone_register_contacts": [
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 174,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 2.799250792622912,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 2,
+            "residue_name": "LEU",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 174,
+            "residue_name": "VAL",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 3.043783500842331,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 172,
+            "residue_name": "VAL",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 3.0834333136943304,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 4,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 172,
+            "residue_name": "VAL",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 2.944568219620663,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 170,
+            "residue_name": "SER",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 2.8180897785556795,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 6,
+            "residue_name": "TRP",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 170,
+            "residue_name": "SER",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 2.754111653510075,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 168,
+            "residue_name": "ILE",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 2.9920504674888093,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 8,
+            "residue_name": "MET",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 168,
+            "residue_name": "ILE",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 2.9143517289441916,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      },
+      {
+        "ordered_atoms": [
+          {
+            "chain": "B",
+            "residue_number": 10,
+            "residue_name": "GLY",
+            "atom_name": "N",
+            "model_state": "enzyme_substrate_Zn_water"
+          },
+          {
+            "chain": "A",
+            "residue_number": 166,
+            "residue_name": "PRO",
+            "atom_name": "O",
+            "model_state": "enzyme_substrate_Zn_water"
+          }
+        ],
+        "distance_angstrom": 3.028720356850397,
+        "interpretation": "candidate backbone hydrogen-bond pair; hydrogens absent, so no H-bond energy/occupancy claim"
+      }
+    ]
+  },
+  "state_comparisons": {
+    "apo_monomer": {
+      "alignment": "least-squares proper rotation of all 187 corresponding protein CA atoms; no local active-site refit",
+      "fitted_atom_selection": {
+        "reference_state": "enzyme_substrate_Zn_water",
+        "mobile_state": "apo_monomer",
+        "chain": "A",
+        "residue_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187
+        ],
+        "atom_name": "CA"
+      },
+      "CA_RMSD_angstrom": 0.38870807342781954,
+      "same_atom_name_displacements_after_CA_fit": [
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.18254634654443405
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.5452780962725363
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 2.20637357633876
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 2.194198647839061
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 2.0845139805938993
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 2.3190786414432867
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.5701021313288276
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.7121990481496961
+        }
+      ],
+      "same_atom_name_catalytic_RMSD_angstrom": 1.6034654517745637,
+      "carboxylate_symmetry_aware_displacements_after_CA_fit": [
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.18254634654443405
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.5452780962725363
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.4003917109388965
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.14772976235318974
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.23198852673040068
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.17298984576164042
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.5701021313288276
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "apo_monomer"
+            }
+          ],
+          "displacement_angstrom": 0.7121990481496961
+        }
+      ],
+      "carboxylate_symmetry_aware_catalytic_RMSD_angstrom": 0.42260754006924256,
+      "symmetry_rule": "After the unchanged CA fit, independently choose same or exchanged OE1/OE2 correspondence for each glutamate by minimum squared displacement. This compares carboxylate geometry without imposing equivalence on a specified protonated oxygen; protonation is absent from these models.",
+      "scope": "coordinate consistency among author predictions, not a measured conformational distribution, binding cost, or evidence that the active geometry is occupied"
+    },
+    "author_phosphoTS_analogue": {
+      "alignment": "least-squares proper rotation of all 187 corresponding protein CA atoms; no local active-site refit",
+      "fitted_atom_selection": {
+        "reference_state": "enzyme_substrate_Zn_water",
+        "mobile_state": "author_phosphoTS_analogue",
+        "chain": "A",
+        "residue_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187
+        ],
+        "atom_name": "CA"
+      },
+      "CA_RMSD_angstrom": 0.1680516330029764,
+      "same_atom_name_displacements_after_CA_fit": [
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.22166528270033142
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.17026121263345426
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.10880607217064926
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.183975711730911
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.22673952710650183
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.37808644462034496
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.22995017970129306
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.27039862440825957
+        }
+      ],
+      "same_atom_name_catalytic_RMSD_angstrom": 0.23562758643535386,
+      "carboxylate_symmetry_aware_displacements_after_CA_fit": [
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.22166528270033142
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.17026121263345426
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.10880607217064926
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.183975711730911
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.22673952710650183
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.37808644462034496
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.22995017970129306
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "author_phosphoTS_analogue"
+            }
+          ],
+          "displacement_angstrom": 0.27039862440825957
+        }
+      ],
+      "carboxylate_symmetry_aware_catalytic_RMSD_angstrom": 0.23562758643535386,
+      "symmetry_rule": "After the unchanged CA fit, independently choose same or exchanged OE1/OE2 correspondence for each glutamate by minimum squared displacement. This compares carboxylate geometry without imposing equivalence on a specified protonated oxygen; protonation is absent from these models.",
+      "scope": "coordinate consistency among author predictions, not a measured conformational distribution, binding cost, or evidence that the active geometry is occupied"
+    },
+    "rejected_unfiltered_ES_sample0": {
+      "alignment": "least-squares proper rotation of all 187 corresponding protein CA atoms; no local active-site refit",
+      "fitted_atom_selection": {
+        "reference_state": "enzyme_substrate_Zn_water",
+        "mobile_state": "rejected_unfiltered_ES_sample0",
+        "chain": "A",
+        "residue_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187
+        ],
+        "atom_name": "CA"
+      },
+      "CA_RMSD_angstrom": 0.16680878566240936,
+      "same_atom_name_displacements_after_CA_fit": [
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.1156891874078219
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.06949152035048235
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.08716934593019716
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.1424073846860128
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.24241493220615679
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.20167123480219812
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.046707240815723125
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.052442777791475596
+        }
+      ],
+      "same_atom_name_catalytic_RMSD_angstrom": 0.1371402180055941,
+      "carboxylate_symmetry_aware_displacements_after_CA_fit": [
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 146,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.1156891874078219
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 150,
+              "residue_name": "HIS",
+              "atom_name": "NE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.06949152035048235
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.08716934593019716
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 45,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.1424073846860128
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE1",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.24241493220615679
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 147,
+              "residue_name": "GLU",
+              "atom_name": "OE2",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.20167123480219812
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "CZ",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.046707240815723125
+        },
+        {
+          "ordered_atoms": [
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "enzyme_substrate_Zn_water"
+            },
+            {
+              "chain": "A",
+              "residue_number": 78,
+              "residue_name": "TYR",
+              "atom_name": "OH",
+              "model_state": "rejected_unfiltered_ES_sample0"
+            }
+          ],
+          "displacement_angstrom": 0.052442777791475596
+        }
+      ],
+      "carboxylate_symmetry_aware_catalytic_RMSD_angstrom": 0.1371402180055941,
+      "symmetry_rule": "After the unchanged CA fit, independently choose same or exchanged OE1/OE2 correspondence for each glutamate by minimum squared displacement. This compares carboxylate geometry without imposing equivalence on a specified protonated oxygen; protonation is absent from these models.",
+      "scope": "coordinate consistency among author predictions, not a measured conformational distribution, binding cost, or evidence that the active geometry is occupied"
+    }
+  }
+}

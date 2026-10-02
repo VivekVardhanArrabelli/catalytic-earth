@@ -1,68 +1,86 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — Problem 8 fixed-target evidence, 2026-09-28
+## Current research handoff — fixed-bond constraints and a rejected hypothesis, 2026-10-02
 
-- **Direction:** build the full computable catalytic-mechanism Atlas through
-  consequential scientific questions, starting with
-  [Problem 8](https://millenniumproblems.bio/). Each research turn must add usable
-  knowledge, resolve uncertainty, demonstrate capability or remove a named
-  dependency; report unsuccessful attempts honestly. Delegate complementary,
-  bounded questions. Atlas-versus-direct comparisons belong at decision
-  milestones, not in permanent teams duplicating every step.
-- **Scientific advance:** the current Chen metalloprotease preprint is v3,
-  posted 2026-09-21; PMC is v1. The [new source-bound relation](../tools/research_lanes/protease_retargeting/README.md)
-  distinguishes fixed target sequence from fixed cleavage bond and preserves
-  assay context. TDPr3 and TDPn3 use the same peptide but target cuts after
-  positions 5 and 7, respectively, with different pipelines. Both synthetic
-  reporter substrates have additional reported cleavage at position 3;
-  full-length TDPn3 rows assign only position 7, without an exhaustive exclusion
-  or detection-limit claim. This prevents treating these as a matched fixed-site
-  experiment or transferring reporter cleavage distributions to full-length
-  protein. Published assays are not project-run experiments.
-- **Specificity and missingness:** TDPr3 retains original-substrate preference.
-  The v3 text attributes improved target preference to TDPn3, but Fig. 5b's
-  caption names TDPr3; this conflict remains unresolved. Screen sizes of 48
-  redesigns and 113 de novo designs are not numbers of independent targets and
-  do not supply cohort hit rates. The selected full-length lead cannot be
-  counted as a 1/113 success rate. No intracellular/endogenous cleavage,
-  proteome-wide specificity, blinded 20-site success or Atlas advantage is
-  established. The disordered target region is not itself disqualified by the
-  challenge, which asks for an accessible site in an endogenous folded protein.
-- **Decision and next action:** compile the source-supported catalytic and
-  recognition constraints for TDPn3 at its exact intended bond, linking each
-  constraint to a computational state or experimental observation. Keep TDPr3
-  at its different intended bond as a separate problem. First determine whether
-  the existing author model/structure material supplies the required mapping;
-  do not substitute a catalytic-knockout or metal-free bound pose as productive
-  geometry. Expected gain is a usable chemical-to-protein constraint relation
-  for a fixed bond, with cognate and competing-substrate outcomes. Stop that
-  mapping if source identity/state cannot be established; retain missingness
-  rather than inventing atoms or launching a design. A prospective comparison
-  follows only when enough foundation and a consequential constraint difference
-  exist; no model run is queued.
-- **Task selection and coordination:** the lead selected fixed-target evidence
-  over another translation fixture or a premature Atlas-versus-direct trial.
-  Source worker checked the current manuscript/supplement; representation worker
-  found no existing fixed-target answer and recommended the existing research
-  namespace rather than renewing the global projection's 123 file pins;
-  selection review required a changed decision, not a repeated co-design warning.
-  Root checked Table S2 directly and retained the panel-identity conflict.
-  Review is computational, not independent expert validation. The JSON and an
-  ordinary query suffice; no new runtime, schema registry or scorecard is added.
-- **Execution and continuation:** base `bc9580ec`; branch
-  `codex/problem8-scientific-steps`; start 2026-09-28 23:24:24 UTC. Local receipt:
-  `.git/catalytic-earth-runs/20260928T232424Z-problem8-foundation/`.
-  Six source/discovery calls in this turn include four metered captures totaling
-  18,060,257 bytes and two web reads/searches with unmetered response bytes.
-  The 17,453,588-byte supplement exceeded the worker's assigned 10 MiB sub-budget;
-  acquisition stopped and the captured total remains below the repository's
-  30 MiB named-batch limit. Preserve this accounting across continuations.
-  Protected records, exposure ledgers and seven unrelated viewer/demo paths
-  remain unchanged. Hourly automation remains paused; no model/effort/schedule
-  setting changed. The earlier RA95 and 6HA3 translation attempts remain closed.
-  Required checks and exact publication/lock-release receipts belong in the
-  task output; do not start a competing writer while this owner holds the lock.
+- **Direction:** pursue the full computable catalytic-mechanism Atlas through
+  consequential questions. This sprint resolves the inherited TDPn3 identity,
+  chemical-role and bond-registration dependency in the
+  [source research lane](../tools/research_lanes/protease_retargeting/README.md).
+  It is exposed development evidence, outside canonical Atlas admission.
+  Published experiments remain distinct from our coordinate/data reanalysis.
+- **Usable chemical-to-protein relation:** exact Table S4 TDPn3 sequence links
+  the intended `ALQSSWG/MMGML` bond to author-selected ES sample 3, passing
+  analogue representatives, monomer, native templates and measured outcomes.
+  A saved copy helper included unselected ES models: sample 0 must not substitute
+  for selected sample 3. The query preserves source-state distinctions, missing
+  assay residues M11/L12, the artificial terminal G10 OXT contact and equivalent
+  Glu oxygen names. Native 1AST/1QJI show different Tyr149 roles between chemical
+  states; this is not a trajectory or evidence that TDPn3 has the same switch.
+  TDPr3 crystal 11DU is a separately identified E126Q core with no resolved Zn;
+  the source's E45Q/E32Q names lack an established numbering transform.
+- **Measured evidence reconstructed:** 378 Zn45 substitutions, one screening
+  well each, join to five AF3 samples per variant. The authors purified and
+  normalized total protein concentration; achieved active fractions are unknown.
+  Means of the five samples with complex pLDDT >94 and minimum interface PAE
+  <1.5 retain 211/378 variants and all 19 >1.5-fold screening signals. Within the
+  retained set, Pearson r is 0.254 for pLDDT and -0.038 for interface PAE.
+  These are retrospective reporter-slope results, not kcat, hit-rate validation
+  or independent model-sample replicates. Source code/window and per-chain
+  confidence-definition pitfalls are preserved in the reconstruction.
+- **A hypothesis was withdrawn:** ES3 versus analogue0 initially suggested an
+  ES-only R19-S5 contact. All four saved passing analogue samples were then
+  checked; the other three retain the contact and ES-like Ser5 rotamer. The
+  [sensitivity result](../tools/research_lanes/protease_retargeting/r19_s5_state_sensitivity.json)
+  defeats that premise and defers the proposed R19 experiment. Three of four
+  prediction samples is not a physical-state probability.
+- **Next consequential question:** the same hydroxyl-removing Y152 substitutions
+  yield opposed Zn45 screen signals: F 0.627-fold versus I 2.764-fold parent,
+  with both variants passing all five confidence samples. Prioritize an existing
+  or newly measured matched WT/F/I kinetic comparison on the unchanged source
+  substrate, with product identity and comparable enzyme competence. Determine
+  whether the contrast survives replication and affects efficiency, turnover or
+  preparation/cleavage context. Reverse this priority if product-resolved rates
+  do not reproduce the contrast. No matched F/I kinetic source was identified;
+  a partial directory search is not proof of global absence. A predefined
+  15-model static-geometry alternative stopped before acquisition because the
+  cached index lacks F coordinates. Further blind searching, additional static
+  contacts, WT-only kinetics or another confidence correlation would not resolve
+  this dependency. Laboratory access and execution remain unarranged; this is a
+  question to resolve, not a launched design or assay.
+- **Claims and comparison:** a competent direct workflow supplied the same
+  source-derived decisions; no Atlas advantage, new functional enzyme or
+  Problem 8 completion is established. The reusable role/atom/state/outcome
+  query and the sample-sensitive rejection are the concrete gains. Original
+  fixed-target evidence is preserved; its TDPn3 cut-3 annotation is distinguished
+  from the one listed mass supporting cut 7. Source panel identity, dose,
+  cross-reporter optical calibration and hit-count gaps remain explicit.
+- **Coordination and verification:** root integrated immutable sources and
+  independently checked sequences, geometry, raw-data reconstruction and
+  correlation arithmetic. Three replacement workers ran gpt-6-astra with max
+  reasoning at the user's request; assignments changed from identity/evidence/
+  representation to sample sensitivity and causal alternatives. All workers
+  stopped before publication. Ordinary queries, the 41 core geometric metrics,
+  114 contact/angle values, the complete 378-mutant reconstruction and original
+  file hashes reproduce locally; the scientific figure was visually inspected.
+  Same-model checks are not independent expert review. Required repository/CI
+  publication receipts belong in the task output and local run receipt.
+- **Execution and budget:** base `0415900ba584f7d9f310cb633acc6cd61f2be24b`, branch
+  `codex/protease-constraint-atlas`; run began 2026-10-02 13:11:12 UTC. User
+  authorized an interactive sprint using Codex/ChatGPT usage expiring around
+  17:09:20 UTC, superseding the ordinary hourly timebox. Local receipt:
+  `.git/catalytic-earth-runs/20261002T131112Z-protease-acceleration/`.
+  Cumulative named-batch use is conservatively 29,150,747 of 31,457,280 bytes
+  (2,306,533 remaining), with 68 requests counted or conservatively reserved.
+  This includes prior 18,060,257 captured bytes, a full 8,388,608-byte reservation
+  for the original model worker because four individual receipts are unresolved,
+  687,843 specificity bytes, 809,305 root bytes, 903,559 Zn45 bytes, 211,093 native
+  state bytes and 90,082 sensitivity bytes. Earlier unmetered web reads remain
+  disclosed; the full 2.3 GB archive was not downloaded. Do not reset this budget.
+  Protected records, frozen kernels, benchmark claims, exposure ledgers and seven
+  unrelated viewer/demo paths remain unchanged. No new model, paid compute,
+  outreach, order, assay or schedule change occurred; hourly automation remains
+  paused. Only the owning lead may finish publication and release the lock.
 
 <!-- current-research-handoff:end -->
 

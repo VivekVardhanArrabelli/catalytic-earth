@@ -1,0 +1,770 @@
+{
+  "record_type": "source_scoped_perturbation_transfer",
+  "status": "source_scoped_retrospective_analysis_complete_not_predictive_validation",
+  "question": "Which Zn45 perturbation results distinguish catalytic improvement from substrate stabilization, and can AF3 or MPNN rank beneficial variants?",
+  "sources": {
+    "chen_v3_main": {
+      "title": "Computational design of metalloproteases",
+      "doi": "10.1101/2025.11.20.689622",
+      "version": "v3",
+      "posted": "2026-09-21",
+      "url": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3.full",
+      "sha256": "59330da48264344ab2030982f57ea67dbc6e7a937dbb26b5009256a0ffe5c805"
+    },
+    "chen_v3_supplement": {
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/21/2025.11.20.689622/DC1/embed/media-1.docx?download=true",
+      "sha256": "1132228c4e00b9e63e6ab9c93c299625ba2c1bf5d3af51c57fefdc0fc045cb07"
+    },
+    "author_deposit": {
+      "url": "https://zenodo.org/records/22654831",
+      "title": "Author raw data and computational materials",
+      "doi": "10.5281/zenodo.22654831",
+      "archive_url": "https://zenodo.org/api/records/22654831/files/260909_zenodo.zip/content",
+      "raw_member_names": {
+        "Zn45-SSM-normalized-activity.csv": "zenodo_folder/raw_data_for_figures/fig4/ssm_activity_test/260113_normalize_all.csv",
+        "Zn45-SSM-author-AF3-data.csv": "zenodo_folder/raw_data_for_figures/fig4/computational_SSM/af3_complex_analysis/folding_out/af3_data.csv",
+        "Zn45-SSM-raw-activity.csv": "zenodo_folder/raw_data_for_figures/fig4/ssm_activity_test/ssm.csv",
+        "Zn45-SSM-activity-screen.ipynb": "zenodo_folder/raw_data_for_figures/fig4/ssm_activity_test/activity_screen.ipynb",
+        "Zn45-SSM-computational.ipynb": "zenodo_folder/raw_data_for_figures/fig4/computational_SSM/ssm.ipynb",
+        "Zn45-SSM-author-collect-data.py": "zenodo_folder/raw_data_for_figures/fig4/computational_SSM/af3_complex_analysis/collect_data.py"
+      }
+    }
+  },
+  "evidence_boundary": {
+    "experimental": "Published author measurements, not project-run experiments.",
+    "analysis": "Retrospective reanalysis of an exposed source surface; no independent predictive validation or Atlas-versus-direct advantage.",
+    "scope": "One Zn45 scaffold assayed against S_ZnO36; the local mutation landscape does not establish transfer to other scaffolds, targets, or fixed cleavage bonds."
+  },
+  "assay": {
+    "enzyme_parent": "Zn45",
+    "enzyme_parent_sequence_Table_S4": "MPDREELVRIGREEGRRGAESLARTGVATARFPLDVPPEQARAYAEAFIEAFRERAIELVREGRIDAETAAWAIAHEAAHARYAVELTERLARGERREEVEQIQKFQKVIDPNDEEMWEAVYDASKKEELEEYIEEIKEKYGEEVAEGLRLYAEIEQAAEREAERRAPEILREIEREVA",
+    "substrate_name": "S_ZnO36",
+    "target_peptide_Table_S4": "ARILRVNFKI",
+    "Zn45_cut_site": "ARILRVN/FKI",
+    "cut_evidence": "Main text and Figure S14 report that the modeled seventh-residue carbonyl matches the MS-supported site for Zn45 acting on S_ZnO36. Per-mutant product-MS validation is not established by the screening assays.",
+    "reporter": "sfGFP-peptide-mScarlet FRET reporter",
+    "single_screen": {
+      "enzyme_nM": 500,
+      "substrate_uM": 3,
+      "Zn_uM": 5,
+      "readout": "Slope of a selected linear region of fluorescence progress curve, divided by WT slope. This fixed-substrate activity is not an independently resolved kcat or kcat/KM for each mutant.",
+      "purification": "Strep-tag affinity purification; initial screen omits final HPLC; concentrations normalized according to ED Figure 6 caption."
+    },
+    "single_retest": {
+      "selection": "Initial fold activity >1.5",
+      "additional_purification": "HPLC",
+      "substrate_uM": [
+        3,
+        30
+      ],
+      "normalization": "Concentrations normalized before confirming improvements."
+    },
+    "combination_screen": {
+      "selection": "Combinations of single substitutions reported >3-fold improved; AF3 filter before ordering.",
+      "enzyme_nM": 50,
+      "substrate_uM": 3,
+      "Zn_uM": 5
+    },
+    "kinetic_assay": {
+      "method": "Calibrated product-minus-intact reporter fluorescence, concentration-dependent inner-filter correction, initial-rate Michaelis-Menten fit by nonlinear least squares.",
+      "temperature_C": 37,
+      "WT_enzyme_nM": 500,
+      "Zn45_v2_enzyme_nM": 50,
+      "replicates": 3,
+      "enzyme_denominator": "Nominal purified-protein concentration; active-site titration is not stated.",
+      "KM_boundary": "KM is a kinetic parameter and is not in general the substrate-binding dissociation constant."
+    },
+    "source_locations": [
+      "Main Figures 3g, 4n and ED Figures 6-7",
+      "Supplementary Methods: Kinetics; Screening of the active site single site saturation mutagenesis library and the combinatorial library"
+    ],
+    "parent_residue_identity_check": "All 378 mutation labels match the 179-residue Table S4 Zn45 sequence at the declared one-based positions; no WT substitution or cysteine substitution is present."
+  },
+  "reported_denominators": {
+    "single_sites": 21,
+    "single_substitutions": 378,
+    "choice": "Sites within 4 A of the five catalytic residues or substrate P2, P1, P1-prime residues; each site mutated to every amino acid except cysteine and the parent identity.",
+    "arithmetic": "Raw identity verified: 21 sites x 18 non-parent, non-cysteine substitutions = 378. The 384-well plate contains one well per variant, three WT wells and three blanks; all 378 variants have raw activity and five AF3 samples.",
+    "positions_with_reported_improvement_ge_1p3": 10,
+    "positions_without_reported_improvement_ge_1p3": 11,
+    "single_variants_with_kinetics": 6,
+    "single_kinetic_selection": "Most active selected variant at each of six corresponding positions; not random sampling of the 378.",
+    "combination_space": 288,
+    "combinations_reported_passed_filter_and_ordered": 148,
+    "combination_filter": {
+      "complex_plddt_gt": 93,
+      "ipae_min_lt": 1.5
+    },
+    "ED7_mutation_count_histogram": {
+      "1": 11,
+      "2": 38,
+      "3": 52,
+      "4": 34,
+      "5": 10,
+      "6": 1
+    },
+    "ED7_histogram_total": 146,
+    "unresolved_count_discrepancy": "Caption describes 148 combinatorial variants, but its mutation-count bins sum to 146; whether two controls explain the discrepancy is not established without matching raw data.",
+    "unmeasured_combinations": "The 140 combinations excluded by the stated AF3 filter do not have a reported screen in the inspected methods. Their activity must remain unknown; no filter false-negative rate can be inferred from the tested 148.",
+    "hit_rate_boundary": "Selected single-variant kinetic measurements and an AF3-filtered combination library cannot supply an unbiased design success rate.",
+    "missing_single_activity_variants": [],
+    "missing_single_score_variants": [],
+    "first_screen_vs_recombination_selection": "Only two first-screen mutants exceed 3-fold in the reconstructed initial screen. The methods select recombination substitutions after HPLC purification and confirmation at 3 and 30 uM. Those follow-up raw activity and recombination tables were not recovered; do not apply the initial-screen 3-fold count as the recombination selection denominator."
+  },
+  "kinetic_comparison": {
+    "WT": {
+      "kcat_s_inverse": 0.025,
+      "kcat_reported_error": 0.002,
+      "KM_uM": 26,
+      "KM_reported_error": 5,
+      "kcat_over_KM_M_inverse_s_inverse": 900,
+      "kcat_over_KM_reported_error": 200
+    },
+    "Zn45_v2": {
+      "substitutions": [
+        "F48W",
+        "A79Q",
+        "Y83Q",
+        "Y152I"
+      ],
+      "kcat_s_inverse": 0.75,
+      "kcat_reported_error": 0.04,
+      "KM_uM": 24,
+      "KM_reported_error": 3,
+      "kcat_over_KM_M_inverse_s_inverse": 31000,
+      "kcat_over_KM_reported_error": 5000
+    },
+    "derived_kcat_ratio_from_reported_point_estimates": 30.0,
+    "interpretation": "The improved source construct has much faster saturated turnover with similar reported KM. Improvement therefore appears in turnover, not only in a reduced apparent KM. This does not separately identify binding free energy, a rate-limiting microscopic step, or the active-enzyme fractions.",
+    "source_locations": [
+      "Main text Design selectivity and activity; Origin of activity discrepancies",
+      "Figures 3g and 4n"
+    ]
+  },
+  "perturbation_relations": [
+    {
+      "perturbation": "Zn45 F48W",
+      "measured_outcome": "kcat approximately 10-fold higher",
+      "mechanistic_proposal": "F48 is adjacent to general base E77; tryptophan may improve its positioning.",
+      "causal_boundary": "The substitution affects measured turnover; E77 preorganization is an interpretation rather than a directly measured elementary-rate mechanism.",
+      "source_locations": [
+        "Main text Origin of activity discrepancies",
+        "Figure 4i; ED Figure 6d"
+      ],
+      "relation_id": "Zn45-F48W-turnover-gain",
+      "role": "neighbor_of_general_base",
+      "initial_screen_fold_over_WT": 2.2291501191421763,
+      "endpoint_distinction": "The approximately 10-fold kcat effect is a separate selected full-kinetic result; the initial 3 uM reporter screen gives about 2.23-fold slope."
+    },
+    {
+      "perturbation": "Zn45 Y152 substitutions I,L,M,V,W,R",
+      "measured_outcome": "Activity improves in the source screen",
+      "mechanistic_proposal": "An MPNN-introduced contact to the P1 backbone may stabilize ground-state substrate or compete with the intended oxyanion hole.",
+      "causal_boundary": "No direct experimental ground-state-versus-transition-state binding-energy decomposition was reported; the contact geometry and explanation are model-based.",
+      "source_locations": [
+        "Figure 4j",
+        "Supplementary Discussion 5"
+      ],
+      "relation_id": "Zn45-Y152-screen-gain",
+      "role": "MPNN_added_substrate_contact",
+      "initial_screen_fold_over_WT": {
+        "I": 2.76409849086576,
+        "L": 1.4285146942017517,
+        "M": 1.510722795869738,
+        "V": 1.7990468625893536,
+        "W": 1.389197776012709,
+        "R": 1.8836378077839515
+      }
+    },
+    {
+      "perturbation": "ZnO36 R79A",
+      "measured_outcome": "Activity increases",
+      "mechanistic_proposal": "Removal of a substrate-carbonyl hydrogen-bond donor may reduce preferential ground-state stabilization.",
+      "causal_boundary": "A second scaffold supports this as a design caution, not a universal direction-of-effect rule for all substrate hydrogen bonds.",
+      "source_locations": [
+        "Figure 3b",
+        "Supplementary Discussion 5"
+      ],
+      "relation_id": "ZnO36-R79A-gain",
+      "role": "MPNN_added_substrate_contact"
+    },
+    {
+      "perturbation": "Zn45_v2 Y122 replacement",
+      "measured_outcome": "Approximately 10-fold activity loss reported for the putative oxyanion-stabilizing-residue substitution",
+      "mechanistic_proposal": "The intended oxyanion donor contributes to activity, though it may remain suboptimally positioned.",
+      "causal_boundary": "Y122 is not Y152. Removing the intended donor has the opposite activity direction from removal of the proposed distracting substrate contact.",
+      "source_locations": [
+        "Main text following Zn45_v2 MD rationale",
+        "ED Figure 7e"
+      ],
+      "relation_id": "Zn45v2-Y122-knockout-loss",
+      "role": "designed_oxyanion_stabilizing_donor"
+    },
+    {
+      "perturbation": "Zn45 V121I",
+      "measured_outcome": "Beneficial single substitution reported",
+      "mechanistic_proposal": "Conservative substitution refines neighboring oxyanion donor Y122 in the AF3 prediction.",
+      "causal_boundary": "The small model geometry change is explanatory evidence only; it does not validate an activity predictor.",
+      "source_locations": [
+        "Main text",
+        "Figure S20"
+      ],
+      "relation_id": "Zn45-V121I-screen-gain",
+      "role": "neighbor_of_oxyanion_donor",
+      "initial_screen_fold_over_WT": 1.9408260524225585
+    }
+  ],
+  "model_evidence": {
+    "AF3_single_variant_source_claim": {
+      "filter": {
+        "complex_plddt_gt": 94,
+        "minimum_ipae_lt": 1.5
+      },
+      "result": "Source reports no significantly improved single variant would be removed by this retrospective filter; above the thresholds, no further activity correlation is claimed.",
+      "metric_boundary": "Prediction confidence/interface PAE are not catalytic-rate estimates. The thresholds were described after measured variant outcomes were available.",
+      "source_locations": [
+        "Supplementary Discussion 6",
+        "ED Figure 6g"
+      ]
+    },
+    "MPNN_source_claim": {
+      "assessment": "Mask each site where beneficial substitutions were found and redesign that residue; n=5 probability measurements according to ED Figure 6f.",
+      "result": "WT amino acids retain high probability; total probability assigned to all beneficial substitutions is <20% at each assessed site and usually <5%.",
+      "boundary": "This is an activity-selected subset of sites and a conditional sequence-probability readout, not a prospective mutation-success rate.",
+      "source_locations": [
+        "Supplementary Discussion 6",
+        "ED Figure 6f"
+      ]
+    },
+    "MD_source_analysis": {
+      "systems": [
+        "Zn45",
+        "Zn45_v2",
+        "astacin"
+      ],
+      "replicates_per_system": 5,
+      "water_proton_to_general_base_oxygen_mean_A": {
+        "Zn45_v2": 1.75,
+        "astacin": 1.88
+      },
+      "nucleophilic_approach_angle_mean_degrees": {
+        "Zn45": 37.4,
+        "Zn45_v2": 99.4,
+        "astacin": 87.1
+      },
+      "interpretation": "Author simulations are consistent with improved preorganization of E77 and scissile amide in Zn45_v2. They are retrospective structural rationale, not direct measured catalytic geometries or prospective prediction.",
+      "source_locations": [
+        "Main Figure 4k-l",
+        "Supplementary MD methods"
+      ]
+    },
+    "MLFF_NEB_source_analysis": {
+      "activation_barrier_kcal_per_mol": {
+        "Zn45": 17.3,
+        "Zn45_v2": 17.1
+      },
+      "boundary": "Only one of the four variant residues lies within the modeled truncated region; the calculation does not capture the measured activity difference. These are enthalpic barrier estimates for selected early steps, not full free-energy kinetic predictions.",
+      "source_locations": [
+        "Supplementary Discussion 4"
+      ]
+    }
+  },
+  "decision": {
+    "supported_use": "Use the measured perturbations to distinguish the intended oxyanion donor from potentially unproductive ground-state substrate contacts, and require catalytic-state/preorganization evidence beyond static binding confidence.",
+    "unsupported_transfer": "Do not treat high AF3 confidence, low PAE, high MPNN residue probability, or extra substrate hydrogen bonds as a validated ranking of beneficial catalytic mutations.",
+    "strongest_direct_alternative": "The original paper plus the reconstructed 378-variant activity-score join already supplies this decision. Atlas can preserve role/state distinctions and prevent unsupported transfer; greater predictive or experimental benefit has not been demonstrated.",
+    "next_information_gain": "The consequential retrospective result is complete. A prospective matched screen would be needed to test whether this confidence prescreen transfers beyond this exposed Zn45 landscape; new score tuning or another static structure does not establish catalytic prediction."
+  },
+  "raw_reanalysis": {
+    "analysis_artifact": "zn45_activity_score_analysis.json",
+    "mutant_level_join": "zn45_activity_af3_join.csv",
+    "well_level_activity": "zn45_reconstructed_well_activity.csv",
+    "reconstruction_script": "reconstruct_zn45_activity.py",
+    "endpoint": "Blank-corrected sfGFP RFU slope over the source notebook executed window, divided by mean blank-corrected WT slope. Same reporter and nominal enzyme concentration for all singles.",
+    "unit": "One assayed mutant; n=378. Five AF3 samples and 41 timepoints do not increase the biological denominator.",
+    "source_metric_names": {
+      "complex_plddt": "Author collection helper computes arithmetic mean of atom_plddts across the entire complex; higher is conventionally more confident.",
+      "ipae_min": "Author collection helper computes min(chain_pair_pae_min[0][1], chain_pair_pae_min[1][0]) from summary_confidences, for chains A and B; lower is conventionally more confident.",
+      "pae_interface": "Author collection helper computes one half of mean A-to-B PAE plus one half of mean B-to-A PAE; these scores are confidence/uncertainty, not activation energies or rates.",
+      "per_chain_plddt_caution": "Author helper slices atom_plddts using sequence lengths for A and B and the last array element for C. These labels do not establish atom-correct chain means without checking atom-chain indexing; no chain-specific biological interpretation is made."
+    },
+    "denominator": {
+      "single_variants": 378,
+      "sites": 21,
+      "wells_per_single_variant": 1,
+      "WT_wells": 3,
+      "blank_wells": 3,
+      "time_points_per_well": 41,
+      "time_range_s": [
+        0,
+        7200
+      ],
+      "missing_activity_variants": [],
+      "missing_score_variants": [],
+      "AF3_samples_per_variant": 5,
+      "AF3_seeds_per_variant": 1,
+      "sample_rows_are_not_independent_assayed_variants": true
+    },
+    "source_notebook_consistency": {
+      "notebook_sha256": "ba3965d54dc137e03d5c8d59fed63563b218fa462ead669ccc036c78a31a2966",
+      "cell6_progress_display": {
+        "exact_rows_verified": [
+          {
+            "well": "A1",
+            "time_s": 0,
+            "rfu": 9831.0
+          },
+          {
+            "well": "A2",
+            "time_s": 0,
+            "rfu": 10242.0
+          },
+          {
+            "well": "A3",
+            "time_s": 0,
+            "rfu": 9848.0
+          },
+          {
+            "well": "A4",
+            "time_s": 0,
+            "rfu": 10928.0
+          },
+          {
+            "well": "A5",
+            "time_s": 0,
+            "rfu": 10254.0
+          },
+          {
+            "well": "P20",
+            "time_s": 7200,
+            "rfu": 12182.0
+          },
+          {
+            "well": "P21",
+            "time_s": 7200,
+            "rfu": 22245.0
+          },
+          {
+            "well": "P22",
+            "time_s": 7200,
+            "rfu": 12416.0
+          },
+          {
+            "well": "P23",
+            "time_s": 7200,
+            "rfu": 16796.0
+          },
+          {
+            "well": "P24",
+            "time_s": 7200,
+            "rfu": 12025.0
+          }
+        ],
+        "displayed_total_rows_matches": 15744,
+        "exact_match_includes_plate_well_variant_metadata": true
+      },
+      "cell11_normalized_result_display": {
+        "verified_rows": [
+          {
+            "design_name": "blank",
+            "displayed_slope": -3.700743e-17,
+            "displayed_fold": -1.619075e-17
+          },
+          {
+            "design_name": "chainA_A159D",
+            "displayed_slope": 0.7305556,
+            "displayed_fold": 0.3133439
+          },
+          {
+            "design_name": "chainA_A159E",
+            "displayed_slope": 0.8194444,
+            "displayed_fold": 0.3514694
+          },
+          {
+            "design_name": "chainA_A159F",
+            "displayed_slope": 0.5361111,
+            "displayed_fold": 0.2299444
+          },
+          {
+            "design_name": "chainA_A159G",
+            "displayed_slope": 1.747222,
+            "displayed_fold": 0.7494043
+          }
+        ],
+        "absolute_tolerance": 5e-07
+      },
+      "cell23_retest_list": {
+        "exact_names_verified": [
+          "chainA_A30V",
+          "chainA_F48W",
+          "chainA_A73V",
+          "chainA_A75E",
+          "chainA_A75P",
+          "chainA_A79D",
+          "chainA_A79E",
+          "chainA_A79H",
+          "chainA_A79K",
+          "chainA_A79N",
+          "chainA_A79Q",
+          "chainA_Y83D",
+          "chainA_Y83Q",
+          "chainA_A84Y",
+          "chainA_V121I",
+          "chainA_Y152I",
+          "chainA_Y152M",
+          "chainA_Y152R",
+          "chainA_Y152V"
+        ],
+        "count": 19
+      },
+      "identity_boundary": "Notebook references Book2.csv; deposited member is ssm.csv, whose experiment-header basename is 260112_zn45_ssm_plate6.xpt and date is 1/14/2026. Saved notebook raw-value, mapping and normalized-output checkpoints agree, but original Book2.csv bytes are unavailable for a file-hash identity check. This verifies displayed checkpoints, not every unpublished intermediate."
+    },
+    "source_window_discrepancy": "Author cell10 names/comments 540-900 seconds, but iloc[2:5] selects 360,540,720 seconds from the captured data.",
+    "primary_window_seconds": [
+      360,
+      540,
+      720
+    ],
+    "mean_score_filter": {
+      "pass_count": 211,
+      "fail_count": 167,
+      "fold_gt_1.0": {
+        "all_variants_count": 37,
+        "retained_count": 33,
+        "excluded_design_names": [
+          "chainA_A73T",
+          "chainA_A84F",
+          "chainA_A84V",
+          "chainA_V121F"
+        ]
+      },
+      "fold_gt_1.3": {
+        "all_variants_count": 24,
+        "retained_count": 24,
+        "excluded_design_names": []
+      },
+      "fold_gt_1.5": {
+        "all_variants_count": 19,
+        "retained_count": 19,
+        "excluded_design_names": []
+      },
+      "fold_gt_3.0": {
+        "all_variants_count": 2,
+        "retained_count": 2,
+        "excluded_design_names": []
+      }
+    },
+    "mean_score_correlations": {
+      "all": {
+        "complex_plddt": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.30217305747989787,
+          "Spearman_rho": 0.3898536097649421
+        },
+        "ipae_min": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.2797921182358559,
+          "Spearman_rho": -0.242248733366054
+        },
+        "pae_interface": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.28882800841034006,
+          "Spearman_rho": -0.28388653625800464
+        }
+      },
+      "above_joint_source_threshold": {
+        "complex_plddt": {
+          "n_assayed_variants": 211,
+          "Pearson_r": 0.2542075150873234,
+          "Spearman_rho": 0.2796018699313749
+        },
+        "ipae_min": {
+          "n_assayed_variants": 211,
+          "Pearson_r": -0.03786964939665679,
+          "Spearman_rho": -0.020846482021450504
+        },
+        "pae_interface": {
+          "n_assayed_variants": 211,
+          "Pearson_r": -0.0732443457088583,
+          "Spearman_rho": -0.07196453031182612
+        }
+      }
+    },
+    "sample_selection_sensitivity": {
+      "five_sample_median_filter": {
+        "pass_count": 215,
+        "fail_count": 163,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 33,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_A84F",
+            "chainA_A84V",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 24,
+          "excluded_design_names": []
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 19,
+          "excluded_design_names": []
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "at_least_one_sample_passes_filter": {
+        "pass_count": 227,
+        "fail_count": 151,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 34,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_A84F",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 24,
+          "excluded_design_names": []
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 19,
+          "excluded_design_names": []
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "all_five_samples_pass_filter": {
+        "pass_count": 197,
+        "fail_count": 181,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 32,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_Y83D",
+            "chainA_A84F",
+            "chainA_A84V",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 23,
+          "excluded_design_names": [
+            "chainA_Y83D"
+          ]
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 18,
+          "excluded_design_names": [
+            "chainA_Y83D"
+          ]
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      }
+    },
+    "window_sensitivity": {
+      "Pearson_r": 0.9623216319840185,
+      "Spearman_rho": 0.842281991590525,
+      "comment_window_n_gt1p5": 20,
+      "comment_window_n_gt1p3": 23,
+      "gt1p5_membership_changes": [
+        {
+          "key": "chaina_a79s",
+          "design_name": "chainA_A79S",
+          "fold_over_wt_executed": 1.4725972994440022,
+          "fold_over_wt_comment": 1.5497051390058942
+        },
+        {
+          "key": "chaina_a79k",
+          "design_name": "chainA_A79K",
+          "fold_over_wt_executed": 1.5524225575853843,
+          "fold_over_wt_comment": 1.4612468407750623
+        },
+        {
+          "key": "chaina_y152w",
+          "design_name": "chainA_Y152W",
+          "fold_over_wt_executed": 1.389197776012709,
+          "fold_over_wt_comment": 1.593934288121314
+        }
+      ]
+    },
+    "plotting_distinction": "Computational notebook cell9 uses the last CSV score for each mutant and first WT row to fill heatmap cells. Activity notebook cells27-28 instead join and plot all five prediction samples for each repeated measured activity; it is not the last-row heatmap calculation.",
+    "interpretation": "At this retrospective source threshold, the mean-score filter removes 167/378 variants while retaining all 19 single-well signals above 1.5-fold and all 24 above 1.3-fold. Among the 211 retained mutants, interface metrics have near-zero activity association; complex pLDDT retains a modest positive association (r=0.254, rho=0.280), so the literal claim of no remaining correlation is too strong. These data support a candidate prescreen, not confident ranking of beneficial catalytic mutations.",
+    "precision_boundary": "The 19 screen signals have one well each and share WT/blank normalization. No per-mutant assay uncertainty, prospective test, or independently validated hit count is inferred.",
+    "missing_followup": "MPNN probability arrays, HPLC follow-up activity, selected six single-mutant kinetic curves and the combinatorial raw screen were not acquired; their details remain author-reported.",
+    "source_thresholds": {
+      "single_screen_retrospective_AF3_filter": {
+        "logic": "AND",
+        "complex_plddt": {
+          "operator": ">",
+          "value": 94,
+          "unit": "pLDDT score"
+        },
+        "ipae_min": {
+          "operator": "<",
+          "value": 1.5,
+          "unit": "angstrom"
+        },
+        "source": "Chen v3 Supplementary Discussion 6; described retrospectively for the single-mutation landscape",
+        "aggregation_for_primary_analysis": "Arithmetic mean over five AF3 samples from seed1, chosen explicitly for this retrospective reconstruction"
+      },
+      "screen_retest_signal": {
+        "endpoint": "fold of blank-corrected RFU slope over WT",
+        "operator": ">",
+        "value": 1.5,
+        "unit": "dimensionless fold",
+        "source": "Supplementary screening methods and activity notebook cell22"
+      },
+      "distinct_combination_ordering_filter": {
+        "complex_plddt_gt": 93,
+        "ipae_min_lt_A": 1.5,
+        "source": "Supplementary screening methods; NOT used for the 211-of-378 single-screen result"
+      }
+    },
+    "metric_definition_and_quarantine": {
+      "helper_sha256": "542621c0c6ae65d1901bdc55a5d68b00341ce9e2787f9d4d64337b5b326d58ef",
+      "complex_plddt": "sum(atom_plddts) / len(atom_plddts), across the entire complex",
+      "ipae_min": "min(chain_pair_pae_min[0][1], chain_pair_pae_min[1][0]) from summary_confidences, between protein A and substrate B",
+      "pae_interface": "0.5 * mean(PAE_A_to_B) + 0.5 * mean(PAE_B_to_A), using declared protein sequence lengths",
+      "per_chain_plddt_columns": "Retained as source-exported numbers only and omitted from inferential correlations: the helper slices atom_plddts with residue sequence lengths, not atom-chain indices, so biological interpretation as chain means is quarantined."
+    },
+    "source_file_hashes": {
+      "Zn45-SSM-raw-activity.csv": {
+        "sha256": "7e381e9ed3ae934103529848b6a8b93b291200ecacd3af6822d4183728d369aa",
+        "bytes": 221198
+      },
+      "Zn45-SSM-normalized-activity.csv": {
+        "sha256": "cd654e680d8ceff0fcf2a32ee85fd2bc625e3fe134b46971bc45235b9b1d6200",
+        "bytes": 13023
+      },
+      "Zn45-SSM-author-AF3-data.csv": {
+        "sha256": "9ae86cb065e63f4c48ce093833921effd3b1e684d3f37de1f6f14eaf71e866a4",
+        "bytes": 731996
+      },
+      "Zn45-SSM-activity-screen.ipynb": {
+        "sha256": "ba3965d54dc137e03d5c8d59fed63563b218fa462ead669ccc036c78a31a2966",
+        "bytes": 743368
+      },
+      "Zn45-SSM-author-collect-data.py": {
+        "sha256": "542621c0c6ae65d1901bdc55a5d68b00341ce9e2787f9d4d64337b5b326d58ef",
+        "bytes": 5510
+      },
+      "Zn45-SSM-computational.ipynb": {
+        "sha256": "f0f113442a3c0b08c9a322527f9cd6ff5f29425b4d77d31bc512cf723d18b3bd",
+        "bytes": 228870
+      }
+    },
+    "author_heatmap_choice_sensitivity": {
+      "method": "Last CSV score row for each mutant, reproducing computational notebook cell9 overwrite. Activity notebook cells27-28 scatter all five samples instead; that scatter is not reduced to these last rows.",
+      "filter": {
+        "pass_count": 211,
+        "fail_count": 167,
+        "fold_gt_1.0": {
+          "all_variants_count": 37,
+          "retained_count": 32,
+          "excluded_design_names": [
+            "chainA_A73T",
+            "chainA_Y83D",
+            "chainA_A84F",
+            "chainA_A84V",
+            "chainA_V121F"
+          ]
+        },
+        "fold_gt_1.3": {
+          "all_variants_count": 24,
+          "retained_count": 23,
+          "excluded_design_names": [
+            "chainA_Y83D"
+          ]
+        },
+        "fold_gt_1.5": {
+          "all_variants_count": 19,
+          "retained_count": 18,
+          "excluded_design_names": [
+            "chainA_Y83D"
+          ]
+        },
+        "fold_gt_3.0": {
+          "all_variants_count": 2,
+          "retained_count": 2,
+          "excluded_design_names": []
+        }
+      },
+      "all_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.28601451235778164,
+          "Spearman_rho": 0.3782239317901308
+        },
+        "pae_interface": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.28390724711963866,
+          "Spearman_rho": -0.28309210836935017
+        },
+        "ptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.31106278160109896,
+          "Spearman_rho": 0.34364227420650195
+        },
+        "iptm": {
+          "n_assayed_variants": 378,
+          "Pearson_r": 0.27952999516964494,
+          "Spearman_rho": 0.2827269838990023
+        },
+        "ipae_min": {
+          "n_assayed_variants": 378,
+          "Pearson_r": -0.2700828972688077,
+          "Spearman_rho": -0.24421825263631233
+        }
+      },
+      "passing_correlations": {
+        "complex_plddt": {
+          "n_assayed_variants": 211,
+          "Pearson_r": 0.24824315686456444,
+          "Spearman_rho": 0.28416364390064935
+        },
+        "pae_interface": {
+          "n_assayed_variants": 211,
+          "Pearson_r": -0.09579584526377838,
+          "Spearman_rho": -0.07126957452612849
+        },
+        "ptm": {
+          "n_assayed_variants": 211,
+          "Pearson_r": 0.2805616329494668,
+          "Spearman_rho": 0.2839972226183342
+        },
+        "iptm": {
+          "n_assayed_variants": 211,
+          "Pearson_r": 0.11709839865978973,
+          "Spearman_rho": 0.10990582719134626
+        },
+        "ipae_min": {
+          "n_assayed_variants": 211,
+          "Pearson_r": -0.08069947483280543,
+          "Spearman_rho": -0.0375146130773343
+        }
+      }
+    }
+  }
+}

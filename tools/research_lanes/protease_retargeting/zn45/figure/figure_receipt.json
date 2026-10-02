@@ -1,0 +1,47 @@
+{
+  "input_csv": "zn45_activity_af3_join.csv",
+  "input_sha256": "17458879cecbc76f8054b71645034cea6d30d4ab26bd6a4188f7ba2a3c5c3692",
+  "total": 378,
+  "retained": 211,
+  "excluded": 167,
+  "signals": 19,
+  "signals_retained": 19,
+  "retained_other": 192,
+  "pearson_retained": {
+    "complex_plddt": 0.2542075150873234,
+    "ipae_min": -0.03786964939665679
+  },
+  "axes": {
+    "complex_plddt": [
+      87,
+      97
+    ],
+    "ipae_min": [
+      0.5,
+      4.5
+    ],
+    "fold_over_wt": [
+      -0.2,
+      3.5
+    ]
+  },
+  "data_ranges": {
+    "complex_plddt": [
+      87.36718422753717,
+      96.37436164736171
+    ],
+    "ipae_min": [
+      0.8,
+      4.16
+    ],
+    "fold_over_wt": [
+      -0.10484511517076993,
+      3.251389992057185
+    ]
+  },
+  "endpoint": "blank-corrected reporter RFU slope divided by WT slope; not kcat",
+  "replication": "one screening well per mutant; five AF3 model samples summarized as means",
+  "scope": "retrospective one-scaffold source dataset",
+  "pdf_sha256": "875977b86a3b211630652e27f3dcaca047cd7fc7fb4c3d4e084e454e1d76b35a",
+  "svg_sha256": "6989d3735e2e6896909ab06db836db9e7265c62506fa58582e539a954ac66224"
+}

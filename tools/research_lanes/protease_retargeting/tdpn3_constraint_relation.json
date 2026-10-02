@@ -1,0 +1,1216 @@
+{
+  "record_type": "source_scoped_chemical_to_protein_constraint_relation",
+  "record_status": "complete_source_scoped_mapping_selected_author_models_not_mechanism_validation",
+  "atlas_status": "research_annotation_not_canonical_admission",
+  "case_id": "chen-metalloproteases-2026-v3:TDPn3:ALQSSWG/MMGML",
+  "question": "Which source-supported chemical and protein constraints place TDPn3 around the G7-M8 amide of ALQSSWGMMGML, and which observations test activity without proving the detailed mechanism or causal specificity?",
+  "source": {
+    "title": "Computational design of metalloproteases",
+    "doi": "10.1101/2025.11.20.689622",
+    "version": "v3",
+    "posted_date": "2026-09-21",
+    "publication_type": "preprint",
+    "lineage_rule": "Facts are taken from the retained v3 main text and v3 supplement; no PMC v1 facts are imported.",
+    "main_text": {
+      "url": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3.full",
+      "original_capture_filename": "biorxiv_v3_full.html",
+      "original_capture_sha256": "59330da48264344ab2030982f57ea67dbc6e7a937dbb26b5009256a0ffe5c805",
+      "capture_availability": "Retained upstream capture was inspected during development; it is not redistributed in this lane. Portable source URL and original capture hash are preserved."
+    },
+    "supplement": {
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/21/2025.11.20.689622/DC1/embed/media-1.docx?download=true",
+      "original_capture_filename": "biorxiv_v3_supplement.docx",
+      "original_capture_sha256": "1132228c4e00b9e63e6ab9c93c299625ba2c1bf5d3af51c57fefdc0fc045cb07",
+      "capture_availability": "Retained upstream capture was inspected during development; it is not redistributed in this lane. Portable source URL and original capture hash are preserved."
+    },
+    "prior_fixed_target_record": {
+      "path": "fixed_target_evidence.json",
+      "path_basis": "relative_to_this_record",
+      "sha256": "89013f8969e1f87f31925f49bd2d2e86b97e3a46e4158e558b0d826dcd29e42e"
+    },
+    "exposure": "exposed_source_used_for_development_not_independent_validation",
+    "citation_url": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3"
+  },
+  "target": {
+    "name": "TDP-43-derived peptide",
+    "sequence": "ALQSSWGMMGML",
+    "sequence_length": 12,
+    "numbering_basis": "one-based local numbering in the 12-residue peptide, computed directly from the exact sequence",
+    "residues": [
+      {
+        "local_index": 1,
+        "amino_acid_one_letter": "A",
+        "subsite": "P7"
+      },
+      {
+        "local_index": 2,
+        "amino_acid_one_letter": "L",
+        "subsite": "P6"
+      },
+      {
+        "local_index": 3,
+        "amino_acid_one_letter": "Q",
+        "subsite": "P5"
+      },
+      {
+        "local_index": 4,
+        "amino_acid_one_letter": "S",
+        "subsite": "P4"
+      },
+      {
+        "local_index": 5,
+        "amino_acid_one_letter": "S",
+        "subsite": "P3"
+      },
+      {
+        "local_index": 6,
+        "amino_acid_one_letter": "W",
+        "subsite": "P2"
+      },
+      {
+        "local_index": 7,
+        "amino_acid_one_letter": "G",
+        "subsite": "P1"
+      },
+      {
+        "local_index": 8,
+        "amino_acid_one_letter": "M",
+        "subsite": "P1_prime"
+      },
+      {
+        "local_index": 9,
+        "amino_acid_one_letter": "M",
+        "subsite": "P2_prime"
+      },
+      {
+        "local_index": 10,
+        "amino_acid_one_letter": "G",
+        "subsite": "P3_prime"
+      },
+      {
+        "local_index": 11,
+        "amino_acid_one_letter": "M",
+        "subsite": "P4_prime"
+      },
+      {
+        "local_index": 12,
+        "amino_acid_one_letter": "L",
+        "subsite": "P5_prime"
+      }
+    ],
+    "intended_cut_after_local_residue": 7,
+    "intended_cut_notation": "ALQSSWG/MMGML",
+    "scissile_bond": {
+      "bond": "P1 Gly7 backbone carbonyl C - P1' Met8 backbone N",
+      "carbonyl_oxygen": "P1 Gly7 backbone O",
+      "carbonyl_carbon": "P1 Gly7 backbone C",
+      "leaving_group_nitrogen": "P1' Met8 backbone N",
+      "id": "G7-M8",
+      "ordered_model_atoms": [
+        {
+          "model_state": "enzyme_substrate_Zn_water",
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "GLY",
+          "atom_name": "C"
+        },
+        {
+          "model_state": "enzyme_substrate_Zn_water",
+          "chain": "B",
+          "residue_number": 8,
+          "residue_name": "MET",
+          "atom_name": "N"
+        }
+      ]
+    },
+    "full_length_construct_mapping": {
+      "source": "Supplementary Table S8",
+      "motif_construct_positions_one_based": [
+        333,
+        344
+      ],
+      "cut_after_construct_position": 339,
+      "four_residue_n_terminal_prefix": "MAAA",
+      "tdp43_positions_after_removing_prefix": [
+        329,
+        340
+      ],
+      "tdp43_cut": "Gly335-Met336",
+      "scope": "Derived by exact substring matching within both Table S8 monomeric and oligomeric construct sequences; this mapping does not establish endogenous cleavage."
+    },
+    "source_locator": "Supplementary Methods: computational design of de novo metalloprotease to target TDP-43; Supplementary Table S2; Supplementary Table S4 design/substrate sequences; Supplementary Table S8 full-length constructs",
+    "chemical_transformation": {
+      "reaction_class": "amide_bond_hydrolysis",
+      "broken_bond": "Gly7 carbonyl C - Met8 backbone N",
+      "formed_bond": "Gly7 carbonyl C - attacking water O",
+      "product_classes": [
+        "carboxylic acid/carboxylate on the Gly7 fragment",
+        "amine/ammonium on the Met8 fragment"
+      ],
+      "protonation_scope": "Hydrogens and protonation microstates are not resolved in these author models; product protonation and timing remain unassigned."
+    },
+    "model_to_assay_mapping": {
+      "ES": {
+        "modeled_sequence": "ALQSSWGMMG",
+        "mapping": [
+          {
+            "model_chain": "B",
+            "model_residue_number": 1,
+            "assay_position": 1
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 2,
+            "assay_position": 2
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 3,
+            "assay_position": 3
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 4,
+            "assay_position": 4
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 5,
+            "assay_position": 5
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 6,
+            "assay_position": 6
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 7,
+            "assay_position": 7
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 8,
+            "assay_position": 8
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 9,
+            "assay_position": 9
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 10,
+            "assay_position": 10
+          }
+        ],
+        "missing_assay_positions": [
+          11,
+          12
+        ]
+      },
+      "TSA": {
+        "unchanged_prefix": "B1-B6 map to assay positions 1-6",
+        "modified_dipeptide": {
+          "chain": "B",
+          "residue_number": 7,
+          "residue_name": "pts",
+          "assay_positions": [
+            7,
+            8
+          ],
+          "mapped_atoms": [
+            {
+              "atom_name": "N1",
+              "role": "Gly7 backbone N analogue"
+            },
+            {
+              "atom_name": "C1",
+              "role": "Gly7 CA analogue"
+            },
+            {
+              "atom_name": "P1",
+              "role": "tetrahedral phosphorus replaces Gly7 carbonyl carbon"
+            },
+            {
+              "atom_name": "O1",
+              "role": "oxyanion-like oxygen contacted by Zn and Tyr78"
+            },
+            {
+              "atom_name": "O2",
+              "role": "second phosphorus oxygen toward Glu147; nucleophile-side analogue, not a water molecule"
+            },
+            {
+              "atom_name": "N2",
+              "role": "Met8 leaving nitrogen analogue"
+            },
+            {
+              "atom_name": "C2",
+              "role": "Met8 CA analogue"
+            },
+            {
+              "atom_name": "C3",
+              "role": "Met8 carbonyl carbon"
+            },
+            {
+              "atom_name": "O3",
+              "role": "Met8 carbonyl oxygen"
+            },
+            {
+              "atom_name": "C4",
+              "role": "Met8 CB analogue"
+            },
+            {
+              "atom_name": "C5",
+              "role": "Met8 CG analogue"
+            },
+            {
+              "atom_name": "S1",
+              "role": "Met8 SD analogue"
+            },
+            {
+              "atom_name": "C6",
+              "role": "Met8 CE analogue"
+            }
+          ],
+          "assignment_basis": "modified-residue atom connectivity and covalent geometry in retained author coordinates; chemical-analogue mapping, not identity to a reacting intermediate"
+        },
+        "downstream_mapping": [
+          {
+            "model_chain": "B",
+            "model_residue_number": 8,
+            "residue_name": "MET",
+            "assay_position": 9
+          },
+          {
+            "model_chain": "B",
+            "model_residue_number": 9,
+            "residue_name": "GLY",
+            "assay_position": 10
+          }
+        ],
+        "missing_assay_positions": [
+          11,
+          12
+        ],
+        "author_terminology": "Supplementary Methods calls this a phosphoaminate modification. This record uses the neutral author phosphorus-containing transition-state analogue and exact pts atom identifiers, without asserting a nomenclature correction."
+      },
+      "terminal_artifact": "ES B:Gly10 OXT is present because the modeled peptide ends at 10. Assay Gly10 is internal to the 12-residue peptide. OXT-specific contacts must not be transferred to the assay, while other Thr132 contacts remain unassessed."
+    }
+  },
+  "construct": {
+    "name": "TDPn3",
+    "protein_sequence_source": "Supplementary Table S4 design and substrate sequences",
+    "protein_sequence": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+    "protein_sequence_length": 187,
+    "author_model": {
+      "archive": "Zenodo 10.5281/zenodo.22654831",
+      "archive_group": "zenodo_folder/rfd3_workflow/260123_tdp43_large_batch_iterate_mpnn/pass_monomer_complex_phosphots_for_visualization/alqsswgmmg78_ori4_contig6_seed9_des_0_model_0_pt14_des_4_model_0_pt5_des_1_model_4_24_phosphots_seed-1_sample-0_model_88_model_0p128/",
+      "identity_status": "exact Table S4 TDPn3 protein-sequence match in all three paired author states",
+      "states": {
+        "apo_monomer": {
+          "path": "models/TDPn3-author-monomer-seed-1-sample-0-filtered.pdb",
+          "archive_entry": "seed-1_sample-0_model_monomer.pdb",
+          "sha256": "f7347af939dbca54c399c0e52a0e968e9516246428863187e508a5192a1cd16b",
+          "crc32": "610cd5b5",
+          "chain_mapping": "A = exact 187-residue TDPn3",
+          "path_basis": "relative_to_this_record"
+        },
+        "enzyme_substrate_Zn_water": {
+          "selection_status": "sole exact-design row returned by author notebook df_complex_pass query",
+          "path": "models/TDPn3-author-complex-seed-1-sample-3-filtered.pdb",
+          "archive_entry": "seed-1_sample-3_model_complex.pdb",
+          "zip_local_header_offset": 444328979,
+          "sha256": "a25ad433f43762e4fec54eb4cdb3043ea338131b3f1b9ea2a01748b13683341f",
+          "crc32": "9a29281e",
+          "chain_mapping": {
+            "A": "exact 187-residue TDPn3",
+            "B": "ALQSSWGMMG, aligned to assay-peptide positions 1-10; assay residues M11-L12 are absent and must not be filled",
+            "C": "LIG residue 1, atoms ZN1 and O1; author Zn-water representation"
+          },
+          "path_basis": "relative_to_this_record"
+        },
+        "author_phosphoTS_analogue": {
+          "path": "models/TDPn3-author-phosphoTS-seed-1-sample-0-filtered.pdb",
+          "archive_entry": "seed-1_sample-0_model_phosphots.pdb",
+          "sha256": "168d84af0111f1ae1dffa1a29286ac6f32571c5c677bbe1ed4a218d63e994c6f",
+          "crc32": "9c8e02fd",
+          "chain_mapping": {
+            "A": "exact 187-residue TDPn3",
+            "B": "ALQSSW then modified residue pts B7 representing the Gly7-Met8 phosphorus-containing dipeptide, followed by Met9-Gly10 as B8-B9",
+            "C": "LIG residue 1, atom ZN1"
+          },
+          "path_basis": "relative_to_this_record"
+        }
+      },
+      "identity_checks": {
+        "protein_chain": "pass: exact 187/187 Table S4 sequence in monomer, ES and TSA states",
+        "substrate_alignment": "pass with explicit truncation: ES B1-B10 = assay positions 1-10 ALQSSWGMMG; M11-L12 omitted",
+        "bond_registration": "pass: ES B:Gly7 C-B:Met8 N; TSA B:pts7 P1-N2 represents the same targeted linkage",
+        "state_scope": "Author AF3 computational models, selected using retained notebook evidence; not observed structures, physical occupancies, or a measured productive ensemble.",
+        "selection_provenance": "Author notebook cell 86 queries this exact design in df_complex_pass and returns only seed-1 sample-3. Cell 88 organized complexes using df_complex_all, so other copied complex samples are not selected filter passes."
+      },
+      "selection_notebook": {
+        "original_notebook_filename": "iterate_mpnn.ipynb",
+        "original_notebook_sha256": "af0bf532c85dc15ebfbb5667023cb71ff0fecae45c3f36771befe4032bcf809d",
+        "relevant_cells": [
+          86,
+          88
+        ],
+        "packaged_selection_excerpt": {
+          "path": "author_model_selection.json",
+          "path_basis": "relative_to_this_record",
+          "sha256": "b347ea6b911d41d3e60a9909ddfbfef7892ffdf326db99ff4f91de33bbf209d1"
+        },
+        "scope": "Inert retained notebook cell source and saved output; the original notebook was not executed and is not redistributed here."
+      },
+      "unselected_same_design_sample": {
+        "path": "models/TDPn3-author-complex-seed-1-sample-0-unfiltered.pdb",
+        "archive_entry": "seed-1_sample-0_model_complex.pdb",
+        "zip_local_header_offset": 444268867,
+        "sha256": "4ad4fde6bfb4cb66cbf57b699d18107486beed0da470af04a6e9296c5c5ebac2",
+        "crc32": "e598f0ee",
+        "scope": "Same exact sequence/design, copied because the organizer used df_complex_all; absent from the sole exact-design df_complex_pass row. Retained only as model-state variability/counterevidence, not the chosen ES pose.",
+        "measurement_state": "rejected_unfiltered_ES_sample0",
+        "path_basis": "relative_to_this_record"
+      },
+      "excluded_near_match": {
+        "reason": "This CRC-verified author-archive ES model has a different 182-residue protein sequence (starting MYKPLRIPR...) and is not TDPn3; its residue identities and geometry must not populate TDPn3 fields.",
+        "original_unbundled_filename": "TDP_A9_reference_complex.pdb",
+        "availability": "Excluded near-match is not redistributed; do not substitute its identities or coordinates for the packaged exact-design models."
+      }
+    },
+    "assayed_construct_boundary": "All selected models match the 187-residue Table S4 designed protease core. Experimental tags/fusions and preparation are additional construct context; exact modeled-core identity is not identity to the entire assayed expression construct."
+  },
+  "mechanism_hypothesis": {
+    "evidence_level": "source mechanism proposal transferred to the source's TDPn3 design model; not directly observed for TDPn3",
+    "ordered_steps": [
+      {
+        "step": 1,
+        "event": "Zn(II) is coordinated by two histidine imidazole nitrogens, one glutamate carboxylate oxygen, and water as the fourth ligand.",
+        "role": "metal coordination and water polarization",
+        "source_locator": "Main text, Computational design of metalloproteases, Fig. 1a; Supplementary Methods 1.1",
+        "role_ids": [
+          "zn_ligand_histidine_1",
+          "zn_ligand_histidine_2",
+          "zn_ligand_glutamate",
+          "zinc",
+          "catalytic_water"
+        ]
+      },
+      {
+        "step": 2,
+        "event": "A separate glutamate acts as general base and abstracts a proton from the Zn-bound water.",
+        "role": "nucleophile activation",
+        "source_locator": "Main text, Computational design of metalloproteases, Fig. 1a",
+        "role_ids": [
+          "general_base_glutamate",
+          "catalytic_water"
+        ]
+      },
+      {
+        "step": 3,
+        "event": "The activated water oxygen attacks the P1 Gly7 carbonyl carbon to form a tetrahedral oxyanionic intermediate.",
+        "role": "amide addition",
+        "source_locator": "Main text, Computational design of metalloproteases, Fig. 1a",
+        "role_ids": [
+          "oxyanion_stabilizing_tyrosine",
+          "zinc",
+          "catalytic_water"
+        ]
+      },
+      {
+        "step": 4,
+        "event": "A tyrosine hydroxyl is proposed to donate a hydrogen bond to the developing oxyanion and stabilize the high-energy intermediate and flanking transition states.",
+        "role": "oxyanion stabilization",
+        "source_locator": "Main text, Computational design of metalloproteases, Fig. 1a",
+        "role_ids": [
+          "oxyanion_stabilizing_tyrosine"
+        ]
+      },
+      {
+        "step": 5,
+        "event": "The protonated general-base glutamate transfers a proton to the P1' Met8 amine leaving group as the tetrahedral intermediate breaks down and products are released.",
+        "role": "general acid assistance and product formation",
+        "source_locator": "Main text, Computational design of metalloproteases, Fig. 1a",
+        "role_ids": [
+          "general_base_glutamate"
+        ]
+      }
+    ],
+    "alternatives_and_limits": [
+      "The source notes that nucleophilic attack, hydrogen-bond rearrangement, or product release can be rate limiting in related metalloproteases; the detailed TDPn3 energy landscape was not measured or calculated.",
+      "The author phosphorus-containing transition-state analogue complex is a transition-state-analog model, not the actual transition state.",
+      "The source does not directly observe proton transfers, the tetrahedral intermediate, or the reaction coordinate in TDPn3."
+    ]
+  },
+  "designed_chemistry_constraints": {
+    "template_provenance": {
+      "catalytic_group_template": "aminopeptidase N phosphinic transition-state-analog complex, PDB 4QHP",
+      "substrate_pose_template": "AF3-predicted native astacin enzyme-substrate complex based on the source-described astacin substrate system",
+      "hybridization": "source combined aminopeptidase-N catalytic functional-group coordinates with astacin P1-P2' substrate backbone and adjacent guide-strand backbone",
+      "source_inconsistency": "Supplementary Methods first names H293, E293, H297, E316, Y377, but its superposition atom list names H293, E294, H297, E316, Y377. Deposited 4QHP author chain A confirms H293, E294, H297, E316 and Y377; the first list is retained as a source typo rather than silently rewritten.",
+      "native_deposit_bridge": {
+        "4QHP": {
+          "state": "experimental aminopeptidase-N phosphinic inhibitor/TSA complex",
+          "template_relation": "catalytic functional-group coordinate donor",
+          "native_role_record": "native_role_measurements:structures[pdb_id=4QHP]",
+          "retained_caveats": [
+            "first source list typo E293 resolved as E294 by source alignment and deposited identity",
+            "source alignment uses Glu316 OE2; nearest deposited Zn oxygen is OE1",
+            "metal occupancy 0.47 and inhibitor oxyanion O13 occupancy 0.81"
+          ]
+        },
+        "1QJI": {
+          "state": "experimental astacin inhibitor/TSA complex",
+          "template_relation": "role analogy and precursor sequence source; actual substrate-coordinate donor was a separate author AF3 ES prediction",
+          "native_role_record": "native_role_measurements:structures[pdb_id=1QJI]",
+          "retained_caveats": [
+            "His102 is chemically different from aminopeptidase-N Glu316",
+            "do not present inhibitor coordinates as the author AF3 Michaelis pose",
+            "inhibitor O6 occupancy 0.51"
+          ]
+        }
+      }
+    },
+    "constraint_policy": {
+      "model_defining_for_source_design": [
+        "preserve the intended G7-M8 bond registration",
+        "provide two His NE2 and one Glu carboxylate oxygen as the three protein Zn ligands",
+        "provide a fourth, water oxygen ligand to Zn in the modeled ES state",
+        "provide a separate Glu carboxylate positioned to activate the Zn-bound water and to serve the proposed later general-acid role"
+      ],
+      "soft_conditional": [
+        "retain Tyr as the oxyanion donor only when its OH is both close to and directionally compatible with the oxyanion-like oxygen; otherwise redesign its rotamer/environment or test an alternative donor"
+      ],
+      "policy_boundary": "Model-defining means needed to reproduce this source design hypothesis. Cross-design perturbations show contribution in tested scaffolds, not universal catalytic necessity or complete loss. Exact selected-model geometry is linked separately from experiments."
+    },
+    "groups": [
+      {
+        "role": "zn_ligand_histidine_1",
+        "tdpn3_residue": "A:HIS146",
+        "required_atom": "His NE2",
+        "template_correspondence": "4QHP A:HIS293 NE2",
+        "constraint_strength": "model_defining_with_cross_design_contribution_evidence",
+        "evidence_basis": "source theozyme definition plus at least sevenfold activity loss on mutation of each Zn-binding residue in the main-text five-design cohort; transfer to TDPn3 remains a mechanism hypothesis",
+        "id": "zn_ligand_histidine_1",
+        "mechanism_step_ids": [
+          1
+        ],
+        "model_atom_role_id": "zn_ligand_histidine_1",
+        "measurement_links": [
+          {
+            "model_state": "enzyme_substrate_Zn_water",
+            "metric_ids": [
+              "zinc_His146_NE2"
+            ]
+          },
+          {
+            "model_state": "author_phosphoTS_analogue",
+            "metric_ids": [
+              "zinc_His146_NE2"
+            ]
+          }
+        ],
+        "native_role_links": [
+          {
+            "pdb_id": "4QHP",
+            "role": "metal_histidine_1",
+            "relation": "source catalytic-group template"
+          },
+          {
+            "pdb_id": "1QJI",
+            "role": "metal_histidine_1",
+            "relation": "role analogy; astacin third ligand is His rather than Glu"
+          }
+        ],
+        "outcome_ids": [
+          "tdpn3_target_kinetics",
+          "tdpn3_reporter_cut_assignment",
+          "tdpn3_full_length_cut_assignment",
+          "main_five_core_catalytic_group_knockouts"
+        ],
+        "outcome_link_scope": "TDPn3 turnover/products test the whole construct. They do not isolate this role or validate the listed model contacts."
+      },
+      {
+        "role": "zn_ligand_histidine_2",
+        "tdpn3_residue": "A:HIS150",
+        "required_atom": "His NE2",
+        "template_correspondence": "4QHP A:HIS297 NE2",
+        "constraint_strength": "model_defining_with_cross_design_contribution_evidence",
+        "evidence_basis": "source theozyme definition plus at least sevenfold activity loss on mutation of each Zn-binding residue in the main-text five-design cohort; transfer to TDPn3 remains a mechanism hypothesis",
+        "id": "zn_ligand_histidine_2",
+        "mechanism_step_ids": [
+          1
+        ],
+        "model_atom_role_id": "zn_ligand_histidine_2",
+        "measurement_links": [
+          {
+            "model_state": "enzyme_substrate_Zn_water",
+            "metric_ids": [
+              "zinc_His150_NE2"
+            ]
+          },
+          {
+            "model_state": "author_phosphoTS_analogue",
+            "metric_ids": [
+              "zinc_His150_NE2"
+            ]
+          }
+        ],
+        "native_role_links": [
+          {
+            "pdb_id": "4QHP",
+            "role": "metal_histidine_2",
+            "relation": "source catalytic-group template"
+          },
+          {
+            "pdb_id": "1QJI",
+            "role": "metal_histidine_2",
+            "relation": "role analogy; astacin third ligand is His rather than Glu"
+          }
+        ],
+        "outcome_ids": [
+          "tdpn3_target_kinetics",
+          "tdpn3_reporter_cut_assignment",
+          "tdpn3_full_length_cut_assignment",
+          "main_five_core_catalytic_group_knockouts"
+        ],
+        "outcome_link_scope": "TDPn3 turnover/products test the whole construct. They do not isolate this role or validate the listed model contacts."
+      },
+      {
+        "role": "zn_ligand_glutamate",
+        "tdpn3_residue": "A:GLU45",
+        "required_atom": "Glu carboxylate oxygen",
+        "template_correspondence": "4QHP A:GLU316; source alignment uses OE2 but deposited nearest oxygen is OE1",
+        "constraint_strength": "model_defining_with_cross_design_contribution_evidence",
+        "evidence_basis": "source theozyme definition plus at least sevenfold activity loss on mutation of each Zn-binding residue in the main-text five-design cohort; transfer to TDPn3 remains a mechanism hypothesis",
+        "id": "zn_ligand_glutamate",
+        "mechanism_step_ids": [
+          1
+        ],
+        "model_atom_role_id": "zn_ligand_glutamate",
+        "measurement_links": [
+          {
+            "model_state": "enzyme_substrate_Zn_water",
+            "metric_ids": [
+              "zinc_Glu45_OE1",
+              "zinc_Glu45_OE2"
+            ]
+          },
+          {
+            "model_state": "author_phosphoTS_analogue",
+            "metric_ids": [
+              "zinc_Glu45_OE1",
+              "zinc_Glu45_OE2"
+            ]
+          }
+        ],
+        "native_role_links": [
+          {
+            "pdb_id": "4QHP",
+            "role": "third_metal_ligand",
+            "relation": "source catalytic-group template"
+          },
+          {
+            "pdb_id": "1QJI",
+            "role": "third_metal_ligand",
+            "relation": "role analogy; astacin third ligand is His rather than Glu"
+          }
+        ],
+        "outcome_ids": [
+          "tdpn3_target_kinetics",
+          "tdpn3_reporter_cut_assignment",
+          "tdpn3_full_length_cut_assignment",
+          "main_five_core_catalytic_group_knockouts"
+        ],
+        "outcome_link_scope": "TDPn3 turnover/products test the whole construct. They do not isolate this role or validate the listed model contacts.",
+        "model_coordinating_oxygen": "OE1 in both selected ES and TSA; source-native alignment atom OE2 is a separate correspondence."
+      },
+      {
+        "role": "general_base_glutamate",
+        "tdpn3_residue": "A:GLU147",
+        "required_atoms": [
+          "Glu OE1",
+          "Glu OE2"
+        ],
+        "template_correspondence": "4QHP A:GLU294",
+        "constraint_strength": "model_defining_with_cross_design_and_tdpn3_control_evidence",
+        "evidence_basis": "at least sevenfold activity loss for the general-base mutation in the main-text five-design cohort, plus no detected full-length TDP-43 products for the source-described TDPn3 base knockout; the TDPn3 mutation identity and detection limit are unreported",
+        "experimental_identity_status": "retained v3 text calls the control a base knockout but does not name the TDPn3 residue in text; do not infer mutant identity solely from model proximity",
+        "id": "general_base_glutamate",
+        "mechanism_step_ids": [
+          2,
+          5
+        ],
+        "model_atom_role_id": "general_base_glutamate",
+        "measurement_links": [
+          {
+            "model_state": "enzyme_substrate_Zn_water",
+            "metric_ids": [
+              "base_OE1_leaving_nitrogen",
+              "base_OE1_nucleophile_oxygen",
+              "base_OE2_leaving_nitrogen",
+              "base_OE2_nucleophile_oxygen"
+            ]
+          },
+          {
+            "model_state": "author_phosphoTS_analogue",
+            "metric_ids": [
+              "base_OE1_leaving_nitrogen",
+              "base_OE1_nucleophile_oxygen",
+              "base_OE2_leaving_nitrogen",
+              "base_OE2_nucleophile_oxygen"
+            ]
+          }
+        ],
+        "native_role_links": [
+          {
+            "pdb_id": "4QHP",
+            "role": "general_base",
+            "relation": "source catalytic-group template"
+          },
+          {
+            "pdb_id": "1QJI",
+            "role": "general_base",
+            "relation": "role analogy; astacin third ligand is His rather than Glu"
+          }
+        ],
+        "outcome_ids": [
+          "tdpn3_target_kinetics",
+          "tdpn3_reporter_cut_assignment",
+          "tdpn3_full_length_cut_assignment",
+          "main_five_core_catalytic_group_knockouts",
+          "tdpn3_base_knockout_full_length_control"
+        ],
+        "outcome_link_scope": "TDPn3 turnover/products test the whole construct. They do not isolate this role or validate the listed model contacts.",
+        "selected_model_interpretation": "ES places both Glu147 carboxylate oxygens within 3 angstrom of modeled water; nearest oxygen is OE2. Proximity is compatible with the source base hypothesis, but no hydrogens/proton-transfer trajectory are observed. The source-described experimental knockout residue identity remains unreported."
+      },
+      {
+        "role": "oxyanion_stabilizing_tyrosine",
+        "tdpn3_residue": "A:TYR78",
+        "required_atom": "Tyr OH",
+        "template_correspondence": "4QHP A:TYR377 OH",
+        "constraint_strength": "soft_conditional_geometry",
+        "evidence_basis": "Tyr-to-Phe is strongly deleterious in four main-text designs, but Zn44 Tyr-to-Phe slightly increases activity when the modeled heavy-atom donor angle is 170.0 degrees despite a short 2.4-angstrom OH-to-oxyanion contact",
+        "comparison_definition": {
+          "distance": "Tyr OH to P1 Gly7 carbonyl O",
+          "angle": "Tyr CZ - Tyr OH - P1 Gly7 carbonyl O",
+          "angle_scope": "heavy-atom donor geometry, not an O-H...O hydrogen angle"
+        },
+        "conditional_geometry_evidence": {
+          "responsive_design_models": [
+            {
+              "construct": "Zn5",
+              "Tyr_CZ_OH_oxyanion_O_angle_degrees": 119.8,
+              "Tyr_OH_to_oxyanion_O_distance_angstrom": 2.6
+            },
+            {
+              "construct": "ZnO7",
+              "Tyr_CZ_OH_oxyanion_O_angle_degrees": 113.9,
+              "Tyr_OH_to_oxyanion_O_distance_angstrom": 2.5
+            },
+            {
+              "construct": "ZnO36",
+              "Tyr_CZ_OH_oxyanion_O_angle_degrees": 121.6,
+              "Tyr_OH_to_oxyanion_O_distance_angstrom": 2.8
+            },
+            {
+              "construct": "ZnO39",
+              "Tyr_CZ_OH_oxyanion_O_angle_degrees": 134.7,
+              "Tyr_OH_to_oxyanion_O_distance_angstrom": 2.4
+            }
+          ],
+          "counterexample": {
+            "construct": "Zn44",
+            "Tyr_CZ_OH_oxyanion_O_angle_degrees": 170.0,
+            "Tyr_OH_to_oxyanion_O_distance_angstrom": 2.4,
+            "Y_to_F_result": "slight activity increase"
+          },
+          "source_locator": "Supplementary Methods 3.6 and Supplementary Fig. S9",
+          "interpretation": "The 2.4-angstrom Zn44 distance is as short as ZnO39, so a distance-only contact rule fails on the source counterexample. The 113.9-134.7-degree span is an observed range in four favorable models, not a validated universal cutoff."
+        },
+        "id": "oxyanion_stabilizing_tyrosine",
+        "mechanism_step_ids": [
+          3,
+          4
+        ],
+        "model_atom_role_id": "oxyanion_stabilizing_tyrosine",
+        "measurement_links": [
+          {
+            "model_state": "enzyme_substrate_Zn_water",
+            "metric_ids": [
+              "tyr_target_oxygen",
+              "tyr_CZ_OH_target_oxygen"
+            ]
+          },
+          {
+            "model_state": "author_phosphoTS_analogue",
+            "metric_ids": [
+              "tyr_target_oxygen",
+              "tyr_CZ_OH_target_oxygen"
+            ]
+          }
+        ],
+        "native_role_links": [
+          {
+            "pdb_id": "4QHP",
+            "role": "oxyanion_hbond_donor",
+            "relation": "source catalytic-group template"
+          },
+          {
+            "pdb_id": "1QJI",
+            "role": "oxyanion_hbond_donor",
+            "relation": "role analogy; astacin third ligand is His rather than Glu"
+          }
+        ],
+        "outcome_ids": [
+          "tdpn3_target_kinetics",
+          "tdpn3_reporter_cut_assignment",
+          "tdpn3_full_length_cut_assignment",
+          "main_five_core_catalytic_group_knockouts",
+          "zn44_tyr_geometry_exception"
+        ],
+        "outcome_link_scope": "TDPn3 turnover/products test the whole construct. They do not isolate this role or validate the listed model contacts.",
+        "selected_model_interpretation": "Selected ES and TSA retain a near Tyr-O contact with different donor angles; comparison to source design exceptions makes the donor conditional. Neither geometry establishes interaction energy, a universal angular cutoff, or TDPn3 Tyr necessity.",
+        "contrast_ids": [
+          "oxyanion_donor_versus_added_substrate_contact"
+        ]
+      },
+      {
+        "role": "zinc",
+        "tdpn3_residue": "C:LIG1",
+        "required_atom": "Zn",
+        "constraint_strength": "model_defining_species",
+        "id": "zinc",
+        "mechanism_step_ids": [
+          1,
+          3
+        ],
+        "model_atom_role_id": "zinc",
+        "measurement_links": [
+          {
+            "model_state": "enzyme_substrate_Zn_water",
+            "metric_ids": [
+              "zinc_His146_NE2",
+              "zinc_His150_NE2",
+              "zinc_Glu45_OE1",
+              "zinc_Glu45_OE2",
+              "zinc_target_oxygen",
+              "zinc_water"
+            ]
+          },
+          {
+            "model_state": "author_phosphoTS_analogue",
+            "metric_ids": [
+              "zinc_His146_NE2",
+              "zinc_His150_NE2",
+              "zinc_Glu45_OE1",
+              "zinc_Glu45_OE2",
+              "zinc_target_oxygen"
+            ]
+          }
+        ],
+        "native_role_links": [],
+        "outcome_ids": [
+          "tdpn3_target_kinetics",
+          "tdpn3_reporter_cut_assignment",
+          "tdpn3_full_length_cut_assignment"
+        ],
+        "outcome_link_scope": "TDPn3 turnover/products test the whole construct. They do not isolate this role or validate the listed model contacts.",
+        "model_coordinating_atoms": "H146 NE2, H150 NE2, E45 OE1, water O1 in selected ES; Gly7 carbonyl O is a longer contact. In TSA, pts O1 replaces the relevant substrate oxygen geometry; there is no separate water."
+      },
+      {
+        "role": "catalytic_water",
+        "tdpn3_residue": "C:LIG1",
+        "required_atom": "water O",
+        "constraint_strength": "model_defining_species",
+        "modeling_note": "The design campaign represented Zn and coordinating water together with [Zn+2].O; this is an imposed/predicted species, not a TDPn3 crystallographic water.",
+        "id": "catalytic_water",
+        "mechanism_step_ids": [
+          1,
+          2,
+          3
+        ],
+        "model_atom_role_id": "catalytic_water",
+        "measurement_links": [
+          {
+            "model_state": "enzyme_substrate_Zn_water",
+            "metric_ids": [
+              "base_OE1_nucleophile_oxygen",
+              "base_OE2_nucleophile_oxygen",
+              "zinc_water",
+              "water_carbonyl_carbon",
+              "water_C_O_attack_angle"
+            ]
+          }
+        ],
+        "native_role_links": [],
+        "outcome_ids": [
+          "tdpn3_target_kinetics",
+          "tdpn3_reporter_cut_assignment",
+          "tdpn3_full_length_cut_assignment"
+        ],
+        "outcome_link_scope": "TDPn3 turnover/products test the whole construct. They do not isolate this role or validate the listed model contacts.",
+        "selected_model_interpretation": "Selected sample3 has Zn-water 1.878 angstrom, water-carbonyl C 2.943 angstrom and water-C-O 88.455 degrees. The rejected sample0 has distinct geometry. A selected snapshot is not evidence for the water occupancy or a productive reaction trajectory."
+      }
+    ],
+    "source_design_filters": [
+      {
+        "state": "AF3 enzyme-substrate Zn-water model, final iteration",
+        "constraint": "catalytic residue side-chain RMSD to design motif",
+        "threshold": "<1.5 angstrom"
+      },
+      {
+        "state": "AF3 enzyme-substrate Zn-water model, final iteration",
+        "constraint": "Zn(II) to intended amide carbonyl oxygen distance",
+        "threshold": "<3.2 angstrom",
+        "target_atom": "P1 Gly7 backbone O"
+      },
+      {
+        "state": "AF3 author phosphorus-containing transition-state analogue transition-state-analog complex, final iteration",
+        "constraint": "catalytic residue side-chain RMSD to design motif",
+        "threshold": "<1.3 angstrom"
+      },
+      {
+        "state": "AF3 apo monomer model, final iteration",
+        "constraint": "monomer pLDDT and monomer-to-complex C-alpha RMSD",
+        "threshold": "pLDDT >85 and RMSD <1 angstrom"
+      }
+    ],
+    "interpretation": "These thresholds describe candidate selection and intended preorganization. They do not show that TDPn3 occupies the modeled geometry during turnover.",
+    "source_design_filters_note": "Manuscript thresholds above are reported design policy. The saved author notebook contains more detailed and iteration-specific geometry filters; exact cell 85 and unique cell 86 sample3 selection are preserved in author_model_provenance. Author CA-to-design metric is not the independently computed monomer-to-ES CA RMSD."
+  },
+  "substrate_recognition_constraints": {
+    "transferable_backbone_constraints": [
+      {
+        "constraint": "place substrate P1-P2' backbone in the source's astacin-derived pose adjacent to the five catalytic groups",
+        "scope": "mechanism-class design prior"
+      },
+      {
+        "constraint": "form an antiparallel beta-strand-like hydrogen-bonding register between substrate and an enzyme guide strand",
+        "scope": "transferable backbone recognition strategy, not a guarantee of sequence specificity"
+      },
+      {
+        "constraint": "maintain the intended G7-M8 scissile bond at the Zn-water attack center",
+        "scope": "bond-specific geometry"
+      }
+    ],
+    "target_specific_constraints": [
+      {
+        "constraint": "The source fixes the input substrate sequence while allowing side-chain rotamers to diffuse. The recovered selected ES models ALQSSWGMMG (assay positions 1-10); the Table S4 assay peptide is ALQSSWGMMGML. Do not claim that all 12 assay residues are present in the selected model.",
+        "source_locator": "Supplementary Methods, Computational design of de novo metalloprotease to target TDP-43"
+      },
+      {
+        "constraint": "only P1 Gly7 and P1' Met8 substrate backbone atoms are fixed during initial motif scaffolding",
+        "source_locator": "Supplementary Methods, Computational design of de novo metalloprotease to target TDP-43"
+      },
+      {
+        "constraint": "individual modeled enzyme-substrate contacts",
+        "measurement_record": "model_measurements:selected_ES_contacts",
+        "status": "complete_for_selected_ES_sample3_and_explicit_10_residue_model",
+        "causal_scope": "Residue-pair minima at 4 angstrom and backbone N/O candidates at 3.5 angstrom are analyst enumeration cutoffs, not energetic or specificity thresholds. No TDPn3 contact-by-contact mutagenesis is retained."
+      }
+    ],
+    "registration_counterevidence": [
+      "Supplementary Table S2 annotates the TDPn3 reporter as ALQ/SSWG/MMGML, but lists only one measured C-fragment mass. That mass supports the intended cut-7 product after the source-wide approximately 21-22 Da offset; the table supplies no second fragment mass that independently establishes cut 3. The annotation still prevents an exclusive-fidelity claim.",
+      "Source-described TDPr3 substrate crystal 11DU lacks resolved Zn and places the S4-S5 bond at the active site, differing from intended S5-W6. This is a different construct/state/bond; no TDPn3 productive geometry can be filled from it. Mutation naming in source and deposit is handled separately by the lead."
+    ],
+    "backbone_register": {
+      "model_state": "enzyme_substrate_Zn_water",
+      "orientation": "antiparallel",
+      "reciprocal_pairs": [
+        {
+          "substrate_chain": "B",
+          "substrate_position": 2,
+          "enzyme_chain": "A",
+          "enzyme_position": 174
+        },
+        {
+          "substrate_chain": "B",
+          "substrate_position": 4,
+          "enzyme_chain": "A",
+          "enzyme_position": 172
+        },
+        {
+          "substrate_chain": "B",
+          "substrate_position": 6,
+          "enzyme_chain": "A",
+          "enzyme_position": 170
+        },
+        {
+          "substrate_chain": "B",
+          "substrate_position": 8,
+          "enzyme_chain": "A",
+          "enzyme_position": 168
+        }
+      ],
+      "additional_pair": {
+        "substrate": "B:Gly10 N",
+        "enzyme": "A:Pro166 O"
+      },
+      "measurement_record": "model_measurements:selected_ES_contacts.backbone_register_contacts",
+      "scope": "Observed N/O proximity pattern in one AF3 model, not experimental hydrogen-bond occupancy. The glycine10 N contact is distinct from its nontransferable terminal OXT contacts."
+    },
+    "contact_transfer_exclusion": {
+      "excluded_atom": {
+        "model_state": "enzyme_substrate_Zn_water",
+        "chain": "B",
+        "residue_number": 10,
+        "residue_name": "GLY",
+        "atom_name": "OXT"
+      },
+      "reason": "Modeled peptide ends at 10; assay Gly10 is internal with Met11-Leu12 following. The OXT-specific contact to A:Thr132 OG1 cannot constrain recognition of the assay peptide.",
+      "narrow_scope": "Does not exclude every possible Thr132 interaction, alter the internal Gly10 backbone-N contact, or infer a full-length bound conformation."
+    }
+  },
+  "measured_perturbation_and_outcome_evidence": [
+    {
+      "id": "main_five_core_catalytic_group_knockouts",
+      "evidence_type": "experimental_perturbation_context_from_other_designs",
+      "constructs": [
+        "Zn5",
+        "ZnO7",
+        "ZnO36",
+        "ZnO39",
+        "Zn45"
+      ],
+      "perturbations": "Each of two Zn-ligating histidines was changed to Ala, the Zn-ligating glutamate to Gln, the separate general-base glutamate to Gln, and the proposed oxyanion Tyr to Phe.",
+      "result": "For all five main-text designs, mutation of any Zn-binding residue or the general base reduced activity at least sevenfold. Tyr-to-Phe reduced activity at least eightfold in four of the five.",
+      "assay_state": "Separate protease and mScarlet-sfGFP substrate chains; source normalized proteases to 20 micromolar and substrates to 5 micromolar before mixing 5 microliters of each with 1 microliter of 500 micromolar ZnSO4 stock; 37 degrees C; 1 h and 8 h endpoints; triplicate SDS-PAGE densitometry with matched minus-Zn groups.",
+      "source_locator": "Main text Fig. 3b and catalytic-residue paragraph; Supplementary Methods 3.6; Supplementary Figs. S6-S7",
+      "supports": "The three-protein-ligand Zn center and separate general-base role are experimentally consequential across the main five source designs; a Tyr donor often contributes strongly.",
+      "does_not_support": "the magnitude or necessity of any role in TDPn3, the identity of the fifth Tyr response from text alone, or universal necessity of Tyr in every designed catalyst"
+    },
+    {
+      "id": "zn44_tyr_geometry_exception",
+      "evidence_type": "cross_design_perturbation_geometry_relation",
+      "construct": "Zn44",
+      "perturbation": "designed oxyanion-stabilizing Tyr-to-Phe",
+      "result": "slight increase in protease activity",
+      "modeled_TSA_geometry": {
+        "Tyr_CZ_OH_oxyanion_O_angle_degrees": 170.0,
+        "Tyr_OH_to_oxyanion_O_distance_angstrom": 2.4,
+        "comparison_design_angles_degrees": {
+          "Zn5": 119.8,
+          "ZnO7": 113.9,
+          "ZnO36": 121.6,
+          "ZnO39": 134.7
+        },
+        "native_template_angles_degrees": {
+          "4QHP_aminopeptidase_N_paper_rounded": 108.7,
+          "1QJI_astacin_paper_rounded": 109.8
+        },
+        "angle_definition": "Tyr CZ - Tyr OH - oxyanion-like O, with the vertex at OH; a heavy-atom donor-orientation measure"
+      },
+      "source_locator": "Supplementary Methods 3.6; Supplementary Fig. S9",
+      "supports": "For this designed Tyr role, orientation must be assessed together with distance. A short model contact alone is not enough to make Tyr a hard requirement.",
+      "does_not_support": "a universal 134.7-degree upper cutoff, proof that the modeled angle caused the Zn44 phenotype, or removal of oxyanion stabilization as a transferable chemical need"
+    },
+    {
+      "id": "tdpn3_target_kinetics",
+      "evidence_type": "experimental_observation",
+      "construct": "TDPn3",
+      "substrate": "TDP-43-derived sfGFP-peptide-mScarlet reporter",
+      "values": {
+        "kcat_s_inverse": {
+          "value": 0.033,
+          "reported_uncertainty": 0.003
+        },
+        "KM_micromolar": {
+          "value": 52,
+          "reported_uncertainty": 9
+        },
+        "kcat_over_KM_M_inverse_s_inverse": {
+          "value": 640,
+          "reported_uncertainty": 130
+        }
+      },
+      "replication": "source states measurements were made in triplicate",
+      "source_locator": "Main text, Fig. 5c",
+      "supports": "the selected construct turns over the reporter substrate under the reported conditions",
+      "does_not_support": "the detailed Zn-water proton-transfer sequence, occupancy of one productive pose, or specificity outside the tested panel"
+    },
+    {
+      "id": "tdpn3_reporter_cut_assignment",
+      "evidence_type": "experimental_observation",
+      "method": "intact-protein mass spectrometry",
+      "authors_reported_cut_annotation_after_local_residue": [
+        3,
+        7
+      ],
+      "source_notation": "ALQ/SSWG/MMGML",
+      "expected_C_fragment_mass_for_intended_cut_Da": 27528,
+      "listed_measured_C_fragment_masses_Da": [
+        27506
+      ],
+      "mass_difference_Da": -22,
+      "mass_support_interpretation": "The only listed mass matches the expected cut-7 C fragment with the approximately minus-21 to minus-22 Da offset seen across reporter rows. No second listed mass independently supports the cut-3 annotation.",
+      "source_locator": "Supplementary Table S2",
+      "supports": "the intended G7-M8 product assignment",
+      "does_not_support": "independent mass confirmation of the cut-3 annotation, exclusive fidelity to the intended bond, relative product abundance, or order of cleavage"
+    },
+    {
+      "id": "tdpn3_full_length_cut_assignment",
+      "evidence_type": "experimental_observation",
+      "substrate_contexts": [
+        "purified initially monomeric full-length TDP-43",
+        "purified oligomeric full-length TDP-43"
+      ],
+      "reported_cuts_after_local_residue": [
+        7
+      ],
+      "source_locator": "Supplementary Table S2; Fig. 5d; Fig. S24",
+      "supports": "the source assigned the intended local cut in both selected purified full-length preparations",
+      "does_not_support": "absence of every other cut, an endogenous intracellular result, or a detection-limit-bounded fidelity estimate"
+    },
+    {
+      "id": "tdpn3_base_knockout_full_length_control",
+      "evidence_type": "experimental_perturbation_observation",
+      "perturbation": "source-described catalytic-base knockout",
+      "perturbed_residue_identity": null,
+      "result": "no cleavage products detected in retained full-length assay description",
+      "detection_limit": null,
+      "source_locator": "Main text, full-length TDP-43 paragraph; Extended Data Fig. 8f; Fig. S24",
+      "supports": "activity depends on the source's base-knockout perturbation under these assay conditions",
+      "does_not_support": "zero residual rate, the identity of the unreported mutation, or proof of every proposed elementary step"
+    },
+    {
+      "id": "restricted_substrate_panel",
+      "evidence_type": "experimental_observation_with_source_identity_conflict",
+      "tested_reporter_substrates": [
+        "S_Zn5",
+        "S_ZnO7",
+        "S_ZnO25",
+        "S_ZnO36",
+        "S_ZnO39",
+        "S_Zn45",
+        "S_tdp43"
+      ],
+      "conditions": "Reporter substrate normalized to 3 micromolar before mixing 18 microliters substrate with 2 microliters enzyme/Zn stock; derived substrate concentration is 2.7 micromolar if volumes are additive. Source-stated final TDPn3 is 500 nM; derived final ZnSO4 is 10 micromolar. Triplicate progress curves after buffer subtraction.",
+      "source_result": "results text attributes greater target activity to TDPn3",
+      "conflict": "Fig. 5b caption calls the plotted construct TDPr3",
+      "source_locator": "Main text TDP-43 result and Fig. 5b caption; Supplementary Methods 4.11",
+      "supports": "at most a source-reported restricted-panel preference pending construct-identity resolution",
+      "does_not_support": "a quantitative TDPn3 specificity ratio, proteome-wide specificity, or causation by any individual modeled contact"
+    }
+  ],
+  "evidence_separation": {
+    "proposed_chemistry": "The Zn-water/general-acid-base mechanism and an oxyanion-stabilizing donor are source mechanism hypotheses. The source initially instantiated five amino-acid groups, but its Zn44 result makes Tyr identity conditional on useful geometry rather than universally hard.",
+    "designed_geometry": "The author model and AF3/TSA filters encode a selected geometry and candidate-selection criteria.",
+    "recognition_model": "Backbone pairing and individual contacts are computational recognition hypotheses.",
+    "measured_function": "Kinetics, mass-spectrometric cut assignments, and knockout/control outcomes show selected-construct function under stated assay contexts.",
+    "causal_gap": "No TDPn3 contact-by-contact mutagenesis or experimental productive-state structure links an individual recognition contact to specificity or an exact catalytic geometry to rate.",
+    "coordinates": "All selected/rejected ES, TSA and monomer coordinates are author predictions; native 4QHP and 1QJI are experimental inhibitor complexes; kinetics/products are experimental outcomes from the source. No equality of these evidence levels is implied."
+  },
+  "transferability": {
+    "transferable_constraints": [
+      "two-His/one-Glu Zn ligation with a fourth, water ligand",
+      "a separate general-base/general-acid glutamate positioned for proton transfer",
+      "an oxyanion-stabilization strategy; Tyr OH is one source implementation with geometry that must be assessed alongside perturbation evidence, not assumed productive from identity or proximity alone",
+      "an attack trajectory that brings activated water to the scissile carbonyl carbon while Zn engages the carbonyl oxygen",
+      "an enzyme guide strand that constrains substrate backbone register around P1-P2'",
+      "explicit evaluation of apo, Zn-water enzyme-substrate, and transition-state-analog states"
+    ],
+    "target_specific_interactions": [
+      "the exact ALQSSWGMMGML side-chain environment",
+      "pockets and contacts for W6, G7, M8, M9 and flanking residues in the selected TDPn3 model",
+      "the exact enzyme residue identities and rotamers realizing those contacts"
+    ],
+    "not_transferable_without_new_evidence": [
+      "the observed cut distribution from the TDP reporter to other substrate formats",
+      "the full-length TDP-43 outcome to endogenous intracellular TDP-43",
+      "the source's qualitative panel preference to proteome-wide specificity",
+      "a claim that any contact visible in the model causally creates specificity",
+      "a claim that passing AF3 geometry thresholds predicts activity or fidelity for new targets",
+      "Gly10 terminal OXT-specific contacts from the truncated 10-mer model to the internal Gly10 of the full 12-residue assay peptide"
+    ],
+    "scope": "The two-His/one-Glu Zn-water topology is specific to this hybrid design strategy; native astacin uses a chemically different third histidine ligand. These are candidate constraints to test when transferring this strategy, not universal requirements for peptide hydrolysis."
+  },
+  "unresolved": [
+    "The retained v3 text does not name the TDPn3 base-knockout residue or report its sequence.",
+    "No experimentally observed productive TDPn3 structure is reported.",
+    "The Fig. 5b TDPn3-versus-TDPr3 construct identity conflict prevents quantitative specificity extraction.",
+    "Supplementary Table S2 annotates reporter cleavage after local residue 3 but provides no second mass value independently supporting that annotation or its abundance.",
+    "The detailed TDPn3 rate-limiting step and energy landscape are unknown.",
+    "The source typo/inconsistency in the aminopeptidase-N theozyme residue list remains part of source provenance; deposited 4QHP coordinates resolve the actual adjacent residues as H293 and E294.",
+    "No retained TDPn3 mutation series establishes causal specificity contributions of the selected-model recognition contacts.",
+    "The 10-residue model omits assay positions 11-12 and supplies a different C terminus; the full 12-residue or full-length bound pose remains unmodeled here.",
+    "The saved monomer/ES/TSA predictions are not an equilibrium ensemble; favorable consistency cannot establish catalytic preorganization in solution."
+  ],
+  "raw_evidence_followup": {
+    "question": "What are the exact replicate-level fold effects for each catalytic-group substitution, which main-five Tyr response is below the eightfold threshold, and how variable is the Zn44 Tyr-to-Phe increase?",
+    "status": "nominated_from_retained_archive_index_not_acquired",
+    "required_entries": [
+      "zenodo_folder/raw_data_for_figures/fig3/specificity_catalytic_residue_KO/single_cata_res_KO/cata_res_ko_1h_r1.csv",
+      "zenodo_folder/raw_data_for_figures/fig3/specificity_catalytic_residue_KO/single_cata_res_KO/cata_res_ko_1h_r2.csv",
+      "zenodo_folder/raw_data_for_figures/fig3/specificity_catalytic_residue_KO/single_cata_res_KO/cata_res_ko_1h_r3.csv",
+      "zenodo_folder/raw_data_for_figures/fig3/specificity_catalytic_residue_KO/single_cata_res_KO/cata_res_ko_8h_r1.csv",
+      "zenodo_folder/raw_data_for_figures/fig3/specificity_catalytic_residue_KO/single_cata_res_KO/cata_res_ko_8h_r2.csv",
+      "zenodo_folder/raw_data_for_figures/fig3/specificity_catalytic_residue_KO/single_cata_res_KO/cata_res_ko_8h_r3.csv",
+      "zenodo_folder/raw_data_for_figures/fig3/specificity_catalytic_residue_KO/gel_analyses_final_publication.ipynb"
+    ],
+    "why_not_figure_only": "The source text and Fig. 3b establish thresholded effects; the six CSVs supply replicate-level values, while the notebook is needed to preserve lane-to-variant mapping and the source's background/digested-fraction calculation. Figure S9 already supplies the angle/distance comparison."
+  },
+  "decision": {
+    "usable_relation": "Exact 187-residue author-core identity now links chemical roles, selected ES/TSA/monomer atoms, a G7-M8 bond-registered contact map and source-measured turnover/products. Rejected sample0, native inhibitor templates and experimental assay states remain separate.",
+    "changed_inferences": [
+      "Do not infer catalytic-base failure or a 54-degree attack geometry from the copied unfiltered ES sample0; selected ES sample3 gives a nearby base/water and 88.455-degree approach.",
+      "Do not carry the truncated-model Gly10 OXT-Thr132 contact into a 12-residue/full-length recognition constraint.",
+      "Do not make Tyr identity or a short Tyr-O distance universally sufficient: source Zn44 geometry/perturbation is a counterexample.",
+      "Do not infer apo Glu mispreorganization from OE1/OE2 label exchanges; symmetry-aware coordinate matching changes that conclusion."
+    ],
+    "design_use": "Preserve the source-specific metal/base topology and exact bond registration for any reproduction. Treat Tyr orientation, water placement and antiparallel register as hypotheses to retain and test together. Sidechain pockets are testable suggestions, not verified specificity determinants.",
+    "direct_approach_baseline": "A competent direct workflow using the same paper, notebook and coordinates can recover these constraints. This relation demonstrates a reusable join and prevents concrete state/atom-transfer errors; it does not establish better designed enzymes, comparative accuracy or measured time savings over that baseline.",
+    "completion_boundary": "The identity-and-coordinate mapping dependency is resolved. Further no-change geometry annotation is not the next task. A next design step requires a consequential role-dependent constraint difference and an authorized comparison or experimental plan; no new design/model execution is implied."
+  },
+  "model_measurements": {
+    "path": "model_measurements.json",
+    "sha256": "4eaef5796c93abedb4fc66d903777f7812cda3882911977d0a53bd9c50d2d845",
+    "path_basis": "relative_to_this_record",
+    "reproducer": "measure_author_models.py",
+    "scope": "All exact computed geometry and contacts are stored once here; role links select rows by state and metric ID.",
+    "original_source_record_sha256": "9708970738c4f3ceda0bbb33e9ab121c5fde6f3fefa8f08efbb8f9e74dd30234"
+  },
+  "native_role_measurements": {
+    "path": "native_role_geometry.json",
+    "sha256": "2b5758c80cfb6aa13dd397c0c596967bafad83b94482996733262fdb0b8e3f47",
+    "path_basis": "relative_to_this_record",
+    "original_source_record_sha256": "2b5758c80cfb6aa13dd397c0c596967bafad83b94482996733262fdb0b8e3f47"
+  },
+  "author_model_provenance": {
+    "path": "author_model_provenance.json",
+    "sha256": "86feddc584d33e0efd2b00d010d7b3b1f7e0e9b3387980cd41d884174e91e5f8",
+    "path_basis": "relative_to_this_record",
+    "original_source_record_sha256": "d5eea596efd95b3003b4a55e248a61882cef94b8843503f6cd07674bfe98d8fb"
+  },
+  "recognition_outcome_ids": [
+    "tdpn3_target_kinetics",
+    "tdpn3_reporter_cut_assignment",
+    "tdpn3_full_length_cut_assignment",
+    "restricted_substrate_panel"
+  ],
+  "role_contrasts": [
+    {
+      "id": "oxyanion_donor_versus_added_substrate_contact",
+      "question": "Does a modeled substrate hydrogen bond imply that its donor should be retained?",
+      "evidence_record": {
+        "path": "zn45/perturbation_transfer.json",
+        "path_basis": "relative_to_this_record",
+        "sha256": "54005c6b19869783e198b88a4a3953083b89db1305c3dc49acc0fc8d65e55687",
+        "original_source_record_sha256": "54005c6b19869783e198b88a4a3953083b89db1305c3dc49acc0fc8d65e55687"
+      },
+      "relation_list_field": "perturbation_relations",
+      "relation_id_field": "relation_id",
+      "relation_ids": [
+        "Zn45-Y152-screen-gain",
+        "Zn45v2-Y122-knockout-loss",
+        "ZnO36-R79A-gain"
+      ],
+      "interpretation": "No universal retention rule follows from proximity. The source reports increased activity after removing or replacing an additional substrate-contact donor in Zn45/ZnO36 but decreased activity after replacing the designed oxyanion donor in Zn45_v2. Chemical role and construct background must accompany the contact.",
+      "assay_boundary": "Zn45 Y152 fixed-concentration screen and Zn45_v2 Y122 knockout are distinct variants, backgrounds and endpoints; do not calculate an opposing effect ratio or treat them as a matched kinetic comparison.",
+      "mechanistic_boundary": "Preferential ground-state stabilization, competition with an oxyanion hole and altered preorganization are proposed explanations, not measured per-mutant activation free energies.",
+      "tdpn3_transfer_boundary": "This contrast informs a role-dependent design policy only. No source-supported correspondence maps Zn45 Y152, Zn45_v2 Y122 or ZnO36 R79 onto a particular TDPn3 recognition residue."
+    }
+  ]
+}

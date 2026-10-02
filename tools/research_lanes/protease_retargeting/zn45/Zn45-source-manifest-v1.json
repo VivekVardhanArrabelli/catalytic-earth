@@ -1,0 +1,114 @@
+{
+  "record_type": "source_scoped_immutable_raw_data_manifest",
+  "created_utc": "2026-10-02T14:08:14.543389+00:00",
+  "source_doi": "10.5281/zenodo.22654831",
+  "archive_url": "https://zenodo.org/api/records/22654831/files/260909_zenodo.zip/content",
+  "archive_file": "260909_zenodo.zip",
+  "archive_bytes": 2313094705,
+  "archive_md5_author_reported_not_whole_archive_verified": "7051767808e1406402894d12ad5c4353",
+  "files": [
+    {
+      "file": "Zn45-SSM-normalized-activity.csv",
+      "sha256": "cd654e680d8ceff0fcf2a32ee85fd2bc625e3fe134b46971bc45235b9b1d6200",
+      "bytes": 13023,
+      "archive_member": {
+        "name": "zenodo_folder/raw_data_for_figures/fig4/ssm_activity_test/260113_normalize_all.csv",
+        "method": 8,
+        "crc32": "e8c62dc8",
+        "compressed_bytes": 4799,
+        "uncompressed_bytes": 13023,
+        "local_header_offset": 131165000
+      },
+      "acquisition_request_number": 37,
+      "acquisition_response_file": "request-037-Zn45-activity.bin",
+      "acquisition_response_sha256": "a652d73494bdd5b75268c8152d5609315defe879fc273c08848b457e2f3ef155",
+      "local_header_filename_and_crc_verified": true,
+      "independent_reextraction_identical": true
+    },
+    {
+      "file": "Zn45-SSM-author-AF3-data.csv",
+      "sha256": "9ae86cb065e63f4c48ce093833921effd3b1e684d3f37de1f6f14eaf71e866a4",
+      "bytes": 731996,
+      "archive_member": {
+        "name": "zenodo_folder/raw_data_for_figures/fig4/computational_SSM/af3_complex_analysis/folding_out/af3_data.csv",
+        "method": 8,
+        "crc32": "8319ca35",
+        "compressed_bytes": 146735,
+        "uncompressed_bytes": 731996,
+        "local_header_offset": 132130841
+      },
+      "acquisition_request_number": 38,
+      "acquisition_response_file": "request-038-Zn45-af3.bin",
+      "acquisition_response_sha256": "26bb65dca6b32811e53c213bc12a31fa3475dc95843e07891509904498a3f2bd",
+      "local_header_filename_and_crc_verified": true,
+      "independent_reextraction_identical": true
+    },
+    {
+      "file": "Zn45-SSM-raw-activity.csv",
+      "sha256": "7e381e9ed3ae934103529848b6a8b93b291200ecacd3af6822d4183728d369aa",
+      "bytes": 221198,
+      "archive_member": {
+        "name": "zenodo_folder/raw_data_for_figures/fig4/ssm_activity_test/ssm.csv",
+        "method": 8,
+        "crc32": "98325d5a",
+        "compressed_bytes": 81363,
+        "uncompressed_bytes": 221198,
+        "local_header_offset": 131083494
+      },
+      "acquisition_request_number": 39,
+      "acquisition_response_file": "request-039-Zn45-raw.bin",
+      "acquisition_response_sha256": "30c8c194e835a1cfa2d5ad2416e467405d4a576fed3d696672b01dca06f88508",
+      "local_header_filename_and_crc_verified": true,
+      "independent_reextraction_identical": true
+    },
+    {
+      "file": "Zn45-SSM-activity-screen.ipynb",
+      "sha256": "ba3965d54dc137e03d5c8d59fed63563b218fa462ead669ccc036c78a31a2966",
+      "bytes": 743368,
+      "archive_member": {
+        "name": "zenodo_folder/raw_data_for_figures/fig4/ssm_activity_test/activity_screen.ipynb",
+        "method": 8,
+        "crc32": "72c17abf",
+        "compressed_bytes": 513944,
+        "uncompressed_bytes": 743368,
+        "local_header_offset": 131169959
+      },
+      "acquisition_request_number": 40,
+      "acquisition_response_file": "request-040-Zn45-activity_notebook.bin",
+      "acquisition_response_sha256": "2f0420eaf694e651fb7316c536b2e3d3ee601d245b805bdfd81a12f51a1f2450",
+      "local_header_filename_and_crc_verified": true,
+      "independent_reextraction_identical": true
+    },
+    {
+      "file": "Zn45-SSM-computational.ipynb",
+      "sha256": "f0f113442a3c0b08c9a322527f9cd6ff5f29425b4d77d31bc512cf723d18b3bd",
+      "bytes": 228870,
+      "archive_member": {
+        "name": "zenodo_folder/raw_data_for_figures/fig4/computational_SSM/ssm.ipynb",
+        "method": 8,
+        "crc32": "7a951272",
+        "compressed_bytes": 151440,
+        "uncompressed_bytes": 228870,
+        "local_header_offset": 131684180
+      },
+      "acquisition_request_number": 41,
+      "acquisition_response_file": "request-041-Zn45-score_notebook.bin",
+      "acquisition_response_sha256": "5b766198884d5c49ff6da837959b3712a211468a6ce64a6117d4c32e4f62f981",
+      "local_header_filename_and_crc_verified": true,
+      "independent_reextraction_identical": true
+    }
+  ],
+  "acquisition": {
+    "requests": 5,
+    "downloaded_response_body_bytes": 901387,
+    "response_receipt_file": "Zn45-compact-acquisition.jsonl",
+    "response_receipt_sha256": "10ef85baf4e4682bfaeba04192b9dda3647b7a65d9769fdfdbb07bc3099882b0",
+    "method": "HTTP byte-range retrieval and raw-DEFLATE extraction of specifically named ZIP members; no whole-archive download"
+  },
+  "interpretation_limits": [
+    "Author notebooks were parsed as inert JSON, never executed.",
+    "The normalized-activity file is dilution and well mapping, not a measured endpoint table.",
+    "The raw CSV is named ssm.csv and its embedded experiment metadata says260112_zn45_ssm_plate6.xpt; the saved activity notebook refers to260114_zn45_ssm_4_plates/Book2.csv. Independent reconstruction matches captured notebook values and hits (see evidence worker), but original Book2 byte identity is not established.",
+    "AF3 dataframe has378 single-mutant identifiers andWT, each seed1 with5 samples; this is prediction coverage, not1,895 independent assays."
+  ]
+}
