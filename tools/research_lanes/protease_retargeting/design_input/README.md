@@ -1,10 +1,14 @@
 # Fixed-bond input for the public design consumer
 
-One source-derived RFD3 input now connects the intended `ALQSSWG/MMGML`
+One source-derived RFD3 input connects the intended `ALQSSWG/MMGML`
 bond to the authors' starting catalytic motif and substrate constraints.
-**The coordinates and configuration are prepared; native parsing and design
-generation have not run.** This removes manual reconstruction of the starting
-input, not the remaining chemical-compatibility or model-execution dependency.
+**Actual native parsing has now run and rejected this original candidate.**
+It reads Zn with charge zero and treats `A28-A30` as only `A28`, leaving A29/A30
+sequence-fixed. These source-derived artifacts remain unchanged. The
+[versioned native acceptance result](../native_gate_20261002/README.md) preserves
+the failure and a corrected prospective 12-residue input. Both corrected water
+conditioning arms pass native checks; no design generation is implied by that
+acceptance.
 
 The [input PDB](ALQSSWGMMG78.pdb) and
 [public candidate configuration](tdp_G7_M8_public_candidate.json) are derived
@@ -57,11 +61,11 @@ identity. The [source-style configuration](tdp_G7_M8_author_dialect.json) remain
 unchanged for comparison. This resolves a selector mismatch without renaming
 the component or asserting that its chemical graph is valid.
 
-Before generation, the actual native loader must establish metal/water
-retention, chemical graph and charge interpretation, peptide connectivity and
-conditioning masks. No native import or model ran locally: the necessary
-structural packages and cached dependencies are absent. Do not treat a JSON
-check as consumer acceptance. The source origin calculation also falls back
+The native load/build result now establishes metal/water retention, peptide
+identity and coordinate masks, and exposes the charge and sequence-range defects
+above. The corrected input explicitly uses the PDB `2+` charge field and the
+public range syntax `A28-30`. It does not rename `ZnO` or add a Zn–O bond.
+The source origin calculation also falls back
 from residue 376 to Glu378; the saved point is retained as a placement choice,
 not described as the Zn-donor plane.
 
@@ -76,7 +80,7 @@ under its [MIT license](AUTHOR_LICENSE); author data attribution remains in
 the source manifest.
 
 The [fixed-enzyme 10-residue versus 12-residue comparison](../window_check/README.md)
-has now completed with a mixed primary result and altered secondary water/base
-geometry. This does not qualify an activity filter. Native RFD3 acceptance of
-this reconstructed chemical input remains the next dependency. Neither result
+has completed with a mixed primary result and altered secondary water/base
+geometry. This does not qualify an activity filter. Native RFD3 acceptance is
+now established for the explicitly corrected prospective inputs. Neither result
 establishes Atlas advantage, a functioning new enzyme or Problem 8 success.

@@ -1,0 +1,36 @@
+{
+  "kind": "prospective_explicit_chemical_encoding_not_author_source",
+  "source_pdb_sha256": "194eaad4cb8a394d1342c38595b2274774aae43d9013a6a1490afd9ee1cb8ce8",
+  "corrected_pdb_sha256": "85830251fcf93fb26c00a6c79cfb6c2815b444e3db941e7470cf341cb8ebb8e0",
+  "edits": [
+    {
+      "line": 206,
+      "before": "HETATM  205 ZN1  ZnO C   1       7.875  45.967  -3.867  1.00 98.79          Zn  ",
+      "after": "HETATM  205 ZN1  ZnO C   1       7.875  45.967  -3.867  1.00 98.79          Zn2+"
+    }
+  ],
+  "other_pdb_changes": false,
+  "component_renamed": false,
+  "covalent_bond_added": false,
+  "formal_charge_field": "PDB columns79-80 = 2+ for C1:ZN1; O1 remains neutral in native inspection",
+  "inputs": [
+    {
+      "arm": "water_fixed",
+      "proposed_sha256": "4beadee343286b7713becef44155c29b9fdfdb6a2c05df07c74b19b343980d23",
+      "corrected_sha256": "5d3cac4d1588bb5662b2f3b8a61e896d012601526e85ce553262775892d1c390",
+      "source_range_to_public_range": [
+        "A28-A30",
+        "A28-30"
+      ]
+    },
+    {
+      "arm": "water_unfixed",
+      "proposed_sha256": "1d0a57378a268a5b0ad61512fdb55fb9a320e6f3929a90fe21d388bc0e2432ee",
+      "corrected_sha256": "43399d8c7b3e89f663306789d9abc2bc07f4b07b7c5fb9fbfaebe4ab8875a943",
+      "source_range_to_public_range": [
+        "A28-A30",
+        "A28-30"
+      ]
+    }
+  ]
+}

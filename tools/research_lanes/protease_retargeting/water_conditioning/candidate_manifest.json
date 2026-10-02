@@ -1,0 +1,769 @@
+{
+  "source_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "target_sequence": "ALQSSWGMMGML",
+  "intended_bond": "B:G7:C--B:M8:N",
+  "role_map": {
+    "metal_histidine_1": {
+      "chain": "A",
+      "position": 36,
+      "identity": "H",
+      "atom": "NE2"
+    },
+    "general_base": {
+      "chain": "A",
+      "position": 37,
+      "identity": "E"
+    },
+    "metal_histidine_2": {
+      "chain": "A",
+      "position": 40,
+      "identity": "H",
+      "atom": "NE2"
+    },
+    "oxyanion_donor": {
+      "chain": "A",
+      "position": 115,
+      "identity": "Y",
+      "atom": "OH"
+    },
+    "metal_glutamate": {
+      "chain": "A",
+      "position": 152,
+      "identity": "E"
+    }
+  },
+  "assigned_candidates": 8,
+  "assigned_RF3_outputs": 80,
+  "primary_assigned_ES_outputs": 40,
+  "missingness_rule": "No replacement, rescue, score selection or imputation. Produced does not mean chemically valid or active.",
+  "candidates": [
+    {
+      "id": "water_fixed_seed0",
+      "arm": "water_fixed",
+      "rfd3_seed": 0,
+      "mpnn_seed": 100,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    },
+    {
+      "id": "water_coordinate_free_seed0",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 0,
+      "mpnn_seed": 100,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    },
+    {
+      "id": "water_fixed_seed1",
+      "arm": "water_fixed",
+      "rfd3_seed": 1,
+      "mpnn_seed": 101,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    },
+    {
+      "id": "water_coordinate_free_seed1",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 1,
+      "mpnn_seed": 101,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    },
+    {
+      "id": "water_fixed_seed2",
+      "arm": "water_fixed",
+      "rfd3_seed": 2,
+      "mpnn_seed": 102,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    },
+    {
+      "id": "water_coordinate_free_seed2",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 2,
+      "mpnn_seed": 102,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    },
+    {
+      "id": "water_fixed_seed3",
+      "arm": "water_fixed",
+      "rfd3_seed": 3,
+      "mpnn_seed": 103,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    },
+    {
+      "id": "water_coordinate_free_seed3",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 3,
+      "mpnn_seed": 103,
+      "status": "assigned_not_started",
+      "enzyme_sequence": null,
+      "enzyme_sha256": null,
+      "scaffold_path": null,
+      "mpnn_output_path": null,
+      "rf3_input_paths": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_output_dirs": {
+        "monomer": null,
+        "ES": null
+      },
+      "rf3_assignments": [
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "monomer",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 0,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 1,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 2,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 3,
+          "status": "assigned_not_started",
+          "path": null
+        },
+        {
+          "state": "ES",
+          "seed": 0,
+          "sample": 4,
+          "status": "assigned_not_started",
+          "path": null
+        }
+      ]
+    }
+  ]
+}

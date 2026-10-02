@@ -1,0 +1,233 @@
+{
+  "status": "native_parser_executed_chemical_and_sequence_mask_gate_failed",
+  "source_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "input_sha256": "7fc6f1ac2e53c74fe38ffa9905e2557eb16eda1ecdf7efb8874fcf022d6ee97f",
+  "pdb_sha256": "138d2de4d54a3c8dfb227aa512212773f1b3f8f50cdbdc8bcce1292abe6ed7ed",
+  "attempts": [
+    {
+      "path": "attempt-1",
+      "result": "Driver API misuse: native Compose rejects empty transform list; no chemical parse occurred."
+    },
+    {
+      "path": "attempt-2",
+      "result": "Actual native DesignInputSpecification.safe_init and to_pipeline_input completed. No upstream source or input chemistry changed."
+    }
+  ],
+  "stage_results": {
+    "loaded": {
+      "snapshot": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/attempt-2/native_loaded_atoms.json",
+      "snapshot_sha256": "07f03db53c09c5d03c9dafaf2bf20cd1189042f159adf636d0863a91fbc49f2a",
+      "atom_count": 193,
+      "chain_residue_counts": {
+        "A": 14,
+        "B": 10,
+        "C": 1
+      },
+      "zinc": {
+        "index": 120,
+        "element": "Zn",
+        "charge": 0,
+        "fixed_coord": true,
+        "fixed_seq": true
+      },
+      "represented_water_oxygen": {
+        "index": 119,
+        "element": "O",
+        "charge": 0,
+        "fixed_coord": true,
+        "fixed_seq": true
+      },
+      "ligand_incident_bonds": [],
+      "peptide_fixed_atoms": [
+        [
+          7,
+          "N"
+        ],
+        [
+          7,
+          "CA"
+        ],
+        [
+          7,
+          "C"
+        ],
+        [
+          7,
+          "O"
+        ],
+        [
+          8,
+          "N"
+        ],
+        [
+          8,
+          "CA"
+        ],
+        [
+          8,
+          "C"
+        ],
+        [
+          8,
+          "O"
+        ]
+      ],
+      "all_peptide_sequence_fixed": true,
+      "G7_M8_distance_A": 1.3229409551775044,
+      "G7_M8_explicit_bonds": [
+        [
+          171,
+          173,
+          1
+        ]
+      ],
+      "selected_A_source_atoms": 119,
+      "all_selected_A_source_coordinates_fixed": true,
+      "max_selected_A_coordinate_error_after_global_translation_A": 2.826319989087002e-06,
+      "fixed_A_sequence_source_residues": [
+        29,
+        30,
+        293,
+        294,
+        297,
+        316,
+        377
+      ]
+    },
+    "built": {
+      "snapshot": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/attempt-2/native_built_atoms.json",
+      "snapshot_sha256": "af156776dfcb7a68075738960ce5fd091e850f6ccab9f08fa7cde61aaee348ec",
+      "atom_count": 1038,
+      "chain_residue_counts": {
+        "A": 183,
+        "B": 10,
+        "C": 1
+      },
+      "zinc": {
+        "index": 1037,
+        "element": "Zn",
+        "charge": 0.0,
+        "fixed_coord": true,
+        "fixed_seq": true
+      },
+      "represented_water_oxygen": {
+        "index": 1036,
+        "element": "O",
+        "charge": 0.0,
+        "fixed_coord": true,
+        "fixed_seq": true
+      },
+      "ligand_incident_bonds": [],
+      "peptide_fixed_atoms": [
+        [
+          7,
+          "N"
+        ],
+        [
+          7,
+          "CA"
+        ],
+        [
+          7,
+          "C"
+        ],
+        [
+          7,
+          "O"
+        ],
+        [
+          8,
+          "N"
+        ],
+        [
+          8,
+          "CA"
+        ],
+        [
+          8,
+          "C"
+        ],
+        [
+          8,
+          "O"
+        ]
+      ],
+      "all_peptide_sequence_fixed": true,
+      "G7_M8_distance_A": 1.3229409551775044,
+      "G7_M8_explicit_bonds": [],
+      "selected_A_source_atoms": 119,
+      "all_selected_A_source_coordinates_fixed": true,
+      "max_selected_A_coordinate_error_after_global_translation_A": 2.8551397216600496e-06,
+      "fixed_A_sequence_source_residues": [
+        29,
+        30,
+        293,
+        294,
+        297,
+        316,
+        377
+      ]
+    }
+  },
+  "decision": {
+    "accepted_for_generation": false,
+    "reason": "Zn is native charge0 rather than required+2; additionally A28-A30 silently selects A28 only for sequence unfixing. Both require an explicit, versioned input decision before generation.",
+    "canonical_bond_boundary": "Native loaded G7C-M8N is single. Post-build explicit bond disappears, but native token bond features intentionally exclude ordinary polymer-polymer edges. B7/B8 remain consecutive in chainB with unchanged1.322940955A fixed backbone geometry. No consumer bug, prediction or catalysis inference follows from graph absence alone.",
+    "chemical_edit_policy": "No silent rename to CCD ZNO, no invented Zn\u2013O bond, no mutation of source bytes. A future explicitly declared chemical encoding must pass the same actual native path before generation."
+  },
+  "runtime": {
+    "venv": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/venv",
+    "torch": "2.7.1 inherited from Conda base; no replacement",
+    "exact_package_payload_bytes": 154290708,
+    "exact_pinned_runtime_source_archive_body_bytes": 148863396,
+    "prior_resolver_traffic": "Not exactly metered; advertised sizes/log retained, so no exact all-setup total claimed.",
+    "new_model_weight_bytes": 0,
+    "disk_logical_bytes": 664802342,
+    "disk_cap_bytes": 838860800
+  },
+  "source_boundary_anchors": [
+    {
+      "file": "foundry/models/rfd3/src/rfd3/inference/input_parsing.py",
+      "lines": [
+        1420,
+        1467
+      ],
+      "claim": "component accumulation concatenates token arrays and restores only specified nonstandard connectivity",
+      "sha256": "79baccb07cc65924ffd833615e5de6bcb186eeb1c87eedbc4324777c63f7e9ee"
+    },
+    {
+      "file": "venv/lib/python3.12/site-packages/atomworks/ml/transforms/bonds.py",
+      "lines": [
+        287,
+        292
+      ],
+      "claim": "AF3 token bond featurizer removes polymer-polymer bonds",
+      "sha256": "52e62aa05e53f8dbc2170a3ad2bbfcb9f7f8b719d63dcbfe1a879149b3ab1766"
+    },
+    {
+      "file": "foundry/src/foundry/utils/components.py",
+      "lines": [
+        64,
+        75
+      ],
+      "sha256": "7e0c99fc665581714eb11e32b5b2a8dba982c3ab00a09842a729a38a5c8f3a3e",
+      "claim": "Unanchored numeric-end range regex parses A28-A30 as A28 only."
+    }
+  ],
+  "sequence_mask_mismatch": {
+    "supplied": "A28-A30,A295-296,A376,A378,A315,A317",
+    "observed_unfixed_A_source_residues": [
+      28,
+      295,
+      296,
+      315,
+      317,
+      376,
+      378
+    ],
+    "A29_A30_remain_fixed": true,
+    "native_range_spelling": "A28-30",
+    "cause": "extract_pn_unit_info uses re.match rather than fullmatch; its numeric end pattern does not accept a repeated chain letter, and trailing text is ignored.",
+    "scope": "Measured public parser behavior at pinned commit; no assertion about the authors internal wrapper. No mutation to preserved author-style or candidate inputs."
+  }
+}

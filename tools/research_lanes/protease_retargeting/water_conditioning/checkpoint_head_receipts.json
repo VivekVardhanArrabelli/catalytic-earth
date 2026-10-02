@@ -1,0 +1,51 @@
+{
+  "scope": "Separately authorized official runtime metadata; no weight body downloaded or author-source budget alteration.",
+  "results": [
+    {
+      "checkpoint": "rfd3",
+      "initial_url": "https://files.ipd.uw.edu/pub/rfd3/rfd3_foundry_2025_12_01_remapped.ckpt",
+      "method": "HEAD",
+      "started_utc": "2026-10-02T17:30:21.521055+00:00",
+      "redirects": [],
+      "body_bytes_read": 0,
+      "status": 200,
+      "final_url": "https://files.ipd.uw.edu/pub/rfd3/rfd3_foundry_2025_12_01_remapped.ckpt",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Fri, 02 Oct 2026 17:30:21 GMT",
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "2690316669",
+        "Last-Modified": "Wed, 03 Dec 2025 01:13:36 GMT",
+        "Connection": "close",
+        "ETag": "\"692f8ec0-a05af97d\"",
+        "Alt-Svc": "h3=\":443\"; ma=86400",
+        "Accept-Ranges": "bytes"
+      },
+      "content_length_bytes": 2690316669,
+      "http_requests_including_redirects": 1
+    },
+    {
+      "checkpoint": "ligandmpnn",
+      "initial_url": "https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_010_25.pt",
+      "method": "HEAD",
+      "started_utc": "2026-10-02T17:30:21.521274+00:00",
+      "redirects": [],
+      "body_bytes_read": 0,
+      "status": 200,
+      "final_url": "https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_010_25.pt",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Fri, 02 Oct 2026 17:30:21 GMT",
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "10541943",
+        "Last-Modified": "Mon, 22 Jan 2024 02:38:43 GMT",
+        "Connection": "close",
+        "ETag": "\"65add533-a0db77\"",
+        "Alt-Svc": "h3=\":443\"; ma=86400",
+        "Accept-Ranges": "bytes"
+      },
+      "content_length_bytes": 10541943,
+      "http_requests_including_redirects": 1
+    }
+  ]
+}

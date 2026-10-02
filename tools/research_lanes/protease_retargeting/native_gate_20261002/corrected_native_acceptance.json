@@ -1,0 +1,183 @@
+{
+  "status": "actual_native_chemical_and_mask_acceptance_passed_both_prospective_inputs",
+  "source_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "actual_api": [
+    "rfd3.inference.datasets.ContigJsonDataset",
+    "rfd3.inference.input_parsing.DesignInputSpecification.safe_init",
+    "DesignInputSpecification.to_pipeline_input"
+  ],
+  "source_code_modified": false,
+  "model_or_weight_execution": false,
+  "checkpoint_loaded": false,
+  "corrections": {
+    "provenance_sha256": "34de39c1eff139ab954af00d0975fd125663ae6466387717b35e1634ac50dcab",
+    "pdb_sha256": "85830251fcf93fb26c00a6c79cfb6c2815b444e3db941e7470cf341cb8ebb8e0",
+    "pdb_edit": "Only C1:ZN1 formal-charge columns79-80 explicitly set2+; unchanged ZnO name, coordinates, no CONECT or Zn-O covalent bond added.",
+    "range_edit": "A28-A30 to public A28-30; observed nine source residues sequence-unfixed now.",
+    "role": "Prospective explicit chemical encoding, not recovered author RFD3 settings or measured enzyme."
+  },
+  "arms": {
+    "water_fixed": {
+      "input_file": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/corrected_inputs/water_fixed.json",
+      "input_sha256": "5d3cac4d1588bb5662b2f3b8a61e896d012601526e85ce553262775892d1c390",
+      "native_receipt_sha256": "067cae7518a54b6a6e7dc7e7477b03c2a8f553a51d8e452489e6ef2d92ff8b55",
+      "loaded_snapshot_sha256": "2c55496ffe9846517c2037a573fbdd053aefeedd1a7abb0471d28bcbc08c228e",
+      "built_snapshot_sha256": "2e2c93d5ffd5463d108b556a6c5ecf8df86ec1a134ed42222f7240afef155aa6",
+      "atom_count": 1074,
+      "chain_residue_counts": {
+        "A": 187,
+        "B": 12,
+        "C": 1
+      },
+      "peptide_sequence": "ALQSSWGMMGML",
+      "peptide_sequence_fixed": true,
+      "fixed_peptide_atoms": [
+        "B:7:N",
+        "B:7:CA",
+        "B:7:C",
+        "B:7:O",
+        "B:8:N",
+        "B:8:CA",
+        "B:8:C",
+        "B:8:O"
+      ],
+      "zinc": {
+        "index": 1073,
+        "formal_charge": 2.0,
+        "coord_fixed": true,
+        "sequence_fixed": true,
+        "component": "ZnO"
+      },
+      "represented_water_oxygen": {
+        "index": 1072,
+        "formal_charge": 0.0,
+        "coord_fixed": true,
+        "sequence_fixed": true,
+        "coord": [
+          2.141921043395996,
+          -0.43450927734375,
+          0.6449666023254395
+        ]
+      },
+      "ligand_incident_bonds": [],
+      "G7C_M8N_distance_A": 1.3229409551775044,
+      "G7C_M8N_explicit_bond_after_build": false,
+      "source_to_output_role_residue_map": {
+        "A293": [
+          36
+        ],
+        "A294": [
+          37
+        ],
+        "A297": [
+          40
+        ],
+        "A316": [
+          152
+        ],
+        "A377": [
+          115
+        ]
+      },
+      "selected_A_source_atoms_coord_fixed": 119,
+      "max_A_source_coord_error_after_origin_translation_A": 2.8551397216600496e-06
+    },
+    "water_unfixed": {
+      "input_file": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/native/corrected_inputs/water_unfixed.json",
+      "input_sha256": "43399d8c7b3e89f663306789d9abc2bc07f4b07b7c5fb9fbfaebe4ab8875a943",
+      "native_receipt_sha256": "c64d09fd9aedf5cad5d900a537e96622bd91268bb1a49f54c87eb6286438d0af",
+      "loaded_snapshot_sha256": "6b63d4d564deb74af9f6369276bad369fa572a8385218767f9e4e847fb13105f",
+      "built_snapshot_sha256": "2fee1577d31be47f680d317b46b97ce1953307d1ca2acd71abcf8af241a60bc1",
+      "atom_count": 1074,
+      "chain_residue_counts": {
+        "A": 187,
+        "B": 12,
+        "C": 1
+      },
+      "peptide_sequence": "ALQSSWGMMGML",
+      "peptide_sequence_fixed": true,
+      "fixed_peptide_atoms": [
+        "B:7:N",
+        "B:7:CA",
+        "B:7:C",
+        "B:7:O",
+        "B:8:N",
+        "B:8:CA",
+        "B:8:C",
+        "B:8:O"
+      ],
+      "zinc": {
+        "index": 1073,
+        "formal_charge": 2.0,
+        "coord_fixed": true,
+        "sequence_fixed": true,
+        "component": "ZnO"
+      },
+      "represented_water_oxygen": {
+        "index": 1072,
+        "formal_charge": 0.0,
+        "coord_fixed": false,
+        "sequence_fixed": true,
+        "coord": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "ligand_incident_bonds": [],
+      "G7C_M8N_distance_A": 1.3229409551775044,
+      "G7C_M8N_explicit_bond_after_build": false,
+      "source_to_output_role_residue_map": {
+        "A293": [
+          36
+        ],
+        "A294": [
+          37
+        ],
+        "A297": [
+          40
+        ],
+        "A316": [
+          152
+        ],
+        "A377": [
+          115
+        ]
+      },
+      "selected_A_source_atoms_coord_fixed": 119,
+      "max_A_source_coord_error_after_origin_translation_A": 2.8551397216600496e-06
+    }
+  },
+  "between_arm_annotation_differences": [
+    {
+      "annotation": "is_motif_atom_with_fixed_coord",
+      "atom_index": 1072,
+      "fixed_arm": true,
+      "free_arm": false
+    }
+  ],
+  "between_arm_coordinate_differences": [
+    {
+      "atom_index": 1072,
+      "fixed_arm": [
+        2.141921043395996,
+        -0.43450927734375,
+        0.6449666023254395
+      ],
+      "free_arm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "native_mask_effect": "The only requested input difference is C1 fixed-atoms ALL versus ZN1. Native masking then zeroes only O1 starting coordinates; all other coordinates and annotations remain identical.",
+  "ordinary_peptide_representation": "Loaded native inputs retain ordinary G7C-M8N single bond. Built arrays have contiguous B7/B8 and unchanged1.322940955A geometry but no explicit edge; native token bond features intentionally remove polymer-polymer edges. This gate certifies ordinary sequence/bond assignment and reactive geometry in source/native input, not explicit edge retention in built graph or reaction chemistry.",
+  "limits": [
+    "Actual native loader/build acceptance only, not trained-model inference or catalytic activity.",
+    "Represented water is one neutral O atom; no explicit water hydrogens, proton-transfer state or electronic simulation is established.",
+    "No independently inferred productive pose; fixed source coordinates remain author-derived."
+  ],
+  "disk_logical_bytes": 665870155,
+  "disk_cap_bytes": 838860800
+}

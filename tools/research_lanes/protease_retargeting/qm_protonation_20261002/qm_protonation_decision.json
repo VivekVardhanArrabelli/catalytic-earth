@@ -1,0 +1,93 @@
+{
+  "status": "frozen before any SCF energy",
+  "question": "For this fixed source-hybrid isolated Zn cluster, what vertical electronic-energy and proton-force contrast follows from moving one water proton to the proposed general base?",
+  "composition": {
+    "C": 18,
+    "N": 4,
+    "H": 32,
+    "O": 5,
+    "Zn": 1
+  },
+  "total_electrons": 238,
+  "charge": 0,
+  "spin_2S": 0,
+  "multiplicity": 1,
+  "fragments": {
+    "H293_H297": "two neutral C5H8N2 HID methyl-capped sidechains; ND1 protonated, NE2 unprotonated",
+    "E316": "C4H7O2 carboxylate, -1",
+    "E294_state_A": "C4H7O2 carboxylate, -1",
+    "Zn": "formal +2, d10 closed-shell chemical assignment",
+    "water_state_A": "H2O neutral",
+    "state_B_change": "one water H moves to E294, giving OH(-1) plus neutral C4H8O2; global charge unchanged"
+  },
+  "caps": "Author MCPB small.pdb uses CH3 at CA with CB onward retained. New cap-H directions follow hybrid N/C/HA directions; lengths and unchanged sidechain-H classes follow the author small cluster. Cap coordinates are constructed, not author optimized coordinates.",
+  "source_files": [
+    {
+      "path": ".git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/abeta/design_input/251222_motif_with_ANISOU.pdb",
+      "sha256": "3a3a63587f190a741918e0b594bf8be1727592d82a71187cf73689a3e750a344"
+    },
+    {
+      "path": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/simulation/GS_complex_small.pdb",
+      "sha256": "9ef913ebae02fd8fc95a26456b0e097a910f02ab01c71adffa36a8268d0db898"
+    },
+    {
+      "path": ".git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/simulation/GS_complex_small_opt.com",
+      "sha256": "fa5fc288c73d3b01a47d980d67ee6e56a96b9ecd68b1e32a70c3b6dbe1d677a5"
+    }
+  ],
+  "fixed_geometry": "Every coordinate except transfer:H is identical across states; all coordinates are held fixed during each single-point calculation. No Zn-water, base-water or attack-angle restraint or fitted metal force field is used.",
+  "transfer_atom_index_zero_based": 57,
+  "transfer_axis_water_to_E294": [
+    -0.03425460022080723,
+    -0.11616777466186644,
+    -0.9926387411812126
+  ],
+  "acceptor": "A294:OE1",
+  "water_acceptor_distance_angstrom": 2.68577065290393,
+  "initial_OH_distance_angstrom": 0.9600002304557032,
+  "environment": "Isolated vacuum cluster, as in the source Gaussian input without solvent keyword; protein, peptide, Y donor, dielectric screening and conformational entropy are absent. These omissions make this an exploratory local electronic diagnostic, not a protein microstate preference.",
+  "method": {
+    "engine": "PySCF2.14.0",
+    "functional": "B3LYP using native LibXC definition",
+    "basis": "def2-SVPD on all atoms, all-electron Zn",
+    "basis_change": "Prospectively chosen complete diffuse basis; native source-named 6-31+G(d) lacks Zn. Not a reproduction of the source Gaussian energy.",
+    "grid_level": 3,
+    "SCF": "restricted Kohn-Sham, native default DIIS and minao initial guess",
+    "conv_tol_hartree": 1e-08,
+    "max_cycle": 80,
+    "max_memory_MB": 3000,
+    "threads": 4,
+    "outputs": [
+      "SCF convergence and energy",
+      "analytic gradient",
+      "transfer-H force projected along water-to-E294 axis"
+    ],
+    "no_rescue": "Nonconvergence or watchdog termination remains missing; no later method or threshold adjustment.",
+    "integral_strategy": "Direct SCF; no density fitting, no retained four-center integral tensor or large auxiliary-tensor disk file.",
+    "native_basis_functions": 845,
+    "native_thread_caveat": "Wheel has no OpenMP; integrals may be single-threaded. BLAS thread environment is capped at4."
+  },
+  "limits": {
+    "wall_seconds_for_pair": 1800,
+    "resident_bytes": 4294967296,
+    "cpu_threads": 4
+  },
+  "state_files": [
+    {
+      "name": "water_glutamate",
+      "json_sha256": "ba9fbba7214b112429cff951190fa0b3e945dd6773526ce9268bc8e6fab62913",
+      "xyz_sha256": "fcb1d1b0c0ae36b16ed9a625e7ea2c760e9c73823fc1ee6e30ce3db0dae79356"
+    },
+    {
+      "name": "hydroxide_glutamic_acid",
+      "json_sha256": "75a63e24142c4f75e7265ad4dadaa71835a43b11d07953befd3f8a3e61a27e8e",
+      "xyz_sha256": "7b664befe0480a54ecb8c9d9848ffb3d5af6a846b43a3c165f9d3dc37f829538"
+    }
+  ],
+  "interpretation": "Delta E is a frozen-geometry vertical electronic contrast between analyst-positioned proton microstates. It is not an optimized energy, pKa, proton-transfer barrier, free energy, rate, or 10mer/12mer comparison. A converged result removes a real native-QM execution dependency and exposes the magnitude/direction of this precise chemical assumption; it does not qualify an enzyme.",
+  "hydrogen_orientation_caveat": "The two oxygen-bound H positions are constructed, not optimized. Only transfer:H moves. The vertical contrast can depend on these assumed orientations and on the methyl caps; no equilibrium proton preference follows.",
+  "execution_scripts": {
+    "run_protonation_probe.py": "684eecc90a425ed2147d5c4a468c8c8465dea81f44596366cd82150c56078d6c",
+    "bounded_qm_watchdog.py": "05e46755ed6877ad22513aed3554e5c7e94f0e375a1a96de205d52465da57a8e"
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "question": "Does retaining the source water coordinate during fixed-target scaffolding improve its recovery after sequence design and independent unconditioned complex prediction?",
+  "scope": "A prospective native conditioning ablation yielding at most 8 new computational candidates. The source baseline already contains the water; this is not Atlas-versus-direct efficacy, MD, a reaction simulation or an activity prediction.",
+  "status": "Assignments frozen before generation; corrected native chemical and full-build mask acceptance passed both arms without model execution. Paid execution remains separately authorized.",
+  "consumer_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "source_basis": {
+    "source_derived_motif": "Prior run abeta/design_input/ALQSSWGMMG78.pdb; original hybrid motif from author round1_example.ipynb cells7/8/17",
+    "assay_target": "TableS4 ALQSSWGMMGML; intended G7-M8 supported by TableS2 product mass. Adding M11/L12 is our declared prospective adaptation, not author execution replay.",
+    "source_rules": "Predetermined peptide identity; only P1/P1prime backbone fixed; five protein catalytic residues and Zn/water motif preserved."
+  },
+  "shared_input": {
+    "peptide": "ALQSSWGMMGML",
+    "bond": "B:G7:C--B:M8:N",
+    "contig": "35,A293-297,35,A28-30,35,A376-378,34,A315-317,34,/0,B1-12",
+    "length": "199",
+    "expected_polymer_lengths": {
+      "enzyme": 187,
+      "substrate": 12
+    },
+    "length_basis": "Native full build confirms A187/B12: 14 source A motif residues plus173 fixed gap residues makes A187; B12 gives total199. All five gap sizes lie within source ranges.",
+    "select_unfixed_sequence": "A28-30,A295-296,A376,A378,A315,A317",
+    "select_hotspots": "B3-7",
+    "redesign_motif_sidechains": false,
+    "substrate_coordinate_selection": {
+      "B1": "",
+      "B2": "",
+      "B3": "",
+      "B4": "",
+      "B5": "",
+      "B6": "",
+      "B7": "BKBN",
+      "B8": "BKBN",
+      "B9": "",
+      "B10": "",
+      "B11": "",
+      "B12": ""
+    },
+    "ligand": "C1",
+    "preserve": "Original ZnO component name, O1/ZN1 atoms and source coordinates preserved. Prospective explicit PDB Zn charge columns2+ correct the native charge0 interpretation; O1 remains neutral with no invented heavy-atom bond. Source ori_token unchanged. All nonreactive peptide coordinates start unfixed, including added M11/L12."
+  },
+  "arms": {
+    "water_fixed": {
+      "select_fixed_atoms_C1": "ALL",
+      "meaning": "Zn and water coordinates retained as in source-constrained baseline."
+    },
+    "water_coordinate_free": {
+      "select_fixed_atoms_C1": "ZN1",
+      "meaning": "Zn remains fixed; only water O1 coordinate conditioning is released. The water atom/species remains present and its chemical graph is unchanged."
+    }
+  },
+  "native_acceptance": {
+    "status": "passed_actual_native_pair_checks",
+    "receipt": "../native/portable_pair_verification_v2.json",
+    "corrected_gate_sha256": "f15419140fcda27bf57b5f391fffc0c38de81c6348f85714cf3a63dac688574f",
+    "input_changes": [
+      "Explicit PDB Zn formal charge2+; original blank charge parsed0. This is prospective chemistry encoding, not recovery of author settings.",
+      "Public rangeA28-30 replaces source-styleA28-A30, which released onlyA28. All nine intended A residues are now sequence-unfixed."
+    ],
+    "verified": [
+      "A187/B12 and exact ALQSSWGMMGML sequence",
+      "Source-to-output roles H36/E37/H40/Y115/E152",
+      "Exactly B7/B8 N/CA/C/O fixed",
+      "Both Zn+2 and neutral O retained, no Zn-O heavy bond",
+      "Only O1 fixed-coordinate annotation differs; native masking then zeroes only O1 starting coordinates. All other coordinates and annotations match."
+    ],
+    "recheck": "The remote runtime reruns the actual native load/build and pair verifier before weights are acquired. No substituted parser body."
+  },
+  "assignments": [
+    {
+      "id": "water_fixed_seed0",
+      "arm": "water_fixed",
+      "rfd3_seed": 0,
+      "mpnn_seed": 100,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    },
+    {
+      "id": "water_coordinate_free_seed0",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 0,
+      "mpnn_seed": 100,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    },
+    {
+      "id": "water_fixed_seed1",
+      "arm": "water_fixed",
+      "rfd3_seed": 1,
+      "mpnn_seed": 101,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    },
+    {
+      "id": "water_coordinate_free_seed1",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 1,
+      "mpnn_seed": 101,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    },
+    {
+      "id": "water_fixed_seed2",
+      "arm": "water_fixed",
+      "rfd3_seed": 2,
+      "mpnn_seed": 102,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    },
+    {
+      "id": "water_coordinate_free_seed2",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 2,
+      "mpnn_seed": 102,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    },
+    {
+      "id": "water_fixed_seed3",
+      "arm": "water_fixed",
+      "rfd3_seed": 3,
+      "mpnn_seed": 103,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    },
+    {
+      "id": "water_coordinate_free_seed3",
+      "arm": "water_coordinate_free",
+      "rfd3_seed": 3,
+      "mpnn_seed": 103,
+      "backbones": 1,
+      "sequences_per_backbone": 1
+    }
+  ],
+  "rfd3": {
+    "checkpoint": "rfd3_foundry_2025_12_01_remapped.ckpt; record identical content hash for all8",
+    "command_tokens": [
+      "rfd3",
+      "design",
+      "inputs=<single-arm-json>",
+      "out_dir=<unique-assignment-directory>",
+      "ckpt_path=<pinned-rfd3-checkpoint>",
+      "seed=<assigned-rfd3-seed>",
+      "n_batches=1",
+      "diffusion_batch_size=1",
+      "inference_sampler.num_timesteps=200",
+      "inference_sampler.step_scale=1.5",
+      "skip_existing=False",
+      "dump_prediction_metadata_json=True",
+      "dump_trajectories=False"
+    ],
+    "command_rule": "One native invocation per arm/seed so each arm starts from the assigned RNG seed; retain all8 assignments, structures and native metadata. Do not choose a best output or retry an unfavorable design."
+  },
+  "sequence_design": {
+    "consumer": "python -m mpnn.inference --config_json <resolved-config.json>",
+    "model_type": "ligand_mpnn",
+    "checkpoint": "Official ligandmpnn_v_32_010_25.pt; record identical content hash",
+    "is_legacy_weights": true,
+    "per_input_fields": {
+      "seed": "100+rfd3_seed",
+      "batch_size": 1,
+      "number_of_batches": 1,
+      "temperature": 0.1,
+      "structure_noise": 0.0,
+      "atomize_side_chains": false,
+      "remove_ccds": [],
+      "remove_waters": false
+    },
+    "fixed_residues": "Exactly native-verified A36,A37,A40,A115,A152 plus B1 through B12. Before MPNN weights load, use MPNNInferenceInput to verify all five A residues and all B residues are fixed, while every other A residue is designed. Do not mix residue and chain selectors.",
+    "budget": "One full enzyme sequence per assigned backbone; no best-of or extra temperature sweep. Verify all five catalytic identities and unchanged12mer after sampling.",
+    "qualification": "Public LigandMPNN substitutes for the author EnhancedMPNN configuration; both arms use the same implementation. Generated sequences are not source constructs or validated enzymes."
+  },
+  "independent_evaluation": {
+    "consumer": "Pinned RF3, same checkpoint/features for all candidates; source-defined native chemistry gate first.",
+    "inputs": "For each full generated enzyme sequence, predict monomer and enzyme+unchanged12mer+[Zn+2].O. No RFD3 coordinates, templates, MSA or motif restraints supplied.",
+    "seed": 0,
+    "diffusion_batch_size": 5,
+    "n_recycles": 10,
+    "num_steps": 200,
+    "early_stopping_plddt_threshold": 0.0,
+    "assigned_outputs": 80,
+    "accounting": "8 candidates x2 states x5 outputs; no replacement candidates or rescue seeds. Structure draws share a trunk pass; the four design-seed pairs, not40 ES structures, are the comparison units.",
+    "missing_MACE": "If descriptors remain absent, retain the official supported absence path and disclose it identically for both arms; no claim of equivalence to descriptor-present inference."
+  },
+  "primary_readout": {
+    "name": "Recovery error of the source water position after independent ES prediction",
+    "definition": "Fit a proper rigid transform from the predicted Zn, first source-histidine NE2 and second source-histidine NE2 to the corresponding3 non-water source-motif atoms. Apply that transform to predicted water O; report its Euclidean distance in angstrom from source water O. Do not use water in the alignment. Preserve the3-anchor fit residual and reject undefined/degenerate frames as missing.",
+    "summary": "For each generated candidate retain all5 ES errors and their median. For each assigned design seed report median(error_fixed)-median(error_free).",
+    "decision": "With all40 valid ES outputs and complete four design-seed pairs: all4 differences<0 supports consistent water-position recovery benefit in this small computational experiment; all4>0 supports the reverse; mixed signs, ties or any missing/invalid ES assignment establishes no consistent advantage. All40 assigned monomer outputs remain essential context and their missingness is reported separately; they do not silently change the ES primary denominator. No significance test, activity inference or post-result threshold."
+  },
+  "essential_context": "Report monomer/ES backbone agreement to the generated scaffold and native confidence, together with the existing Zn-ligand, Zn-water, base-water, water-C-O angle, donor-carbonyl and amide-register measurements for every ES output. Unusually short contacts remain visible and cannot count as chemically productive merely because primary recovery error is low. Reference-motif recovery is not a catalytic barrier or a validated kinetic proxy.",
+  "biochemical_connection": "If later wet work is authorized, retain all8 assigned candidates for matched purification/concentration assessment and a product-resolved G7-M8 initial-rate comparison, with source TDPn3 as positive reference and no-enzyme/buffer controls. Verify the intended products directly before calling a fluorescence change cleavage. Compare activity at matched enzyme/substrate conditions and retain failed expression/solubility as missing functional data, not resample replacements. Follow a positive signal with substrate-dependent rates and an independently assessed catalytic-site or metal-dependence control. Report apparent kcat if active fraction is unknown; KM is not binding Kd. No gene ordering, outreach or lab execution is included now.",
+  "stopping": "Stop before generation on a failed native chemistry/mask gate; stop an affected assignment on unmappable catalytic residues or altered target identity. Keep the assigned denominator. Finish the finite8-candidate/80-output comparison without a rescue search. A physical protonation diagnostic may run independently but is not a prerequisite to this bounded generation experiment.",
+  "input_files": {
+    "water_fixed.json": "5d3cac4d1588bb5662b2f3b8a61e896d012601526e85ce553262775892d1c390",
+    "water_unfixed.json": "43399d8c7b3e89f663306789d9abc2bc07f4b07b7c5fb9fbfaebe4ab8875a943",
+    "ALQSSWGMMGML78_Zn2plus.pdb": "85830251fcf93fb26c00a6c79cfb6c2815b444e3db941e7470cf341cb8ebb8e0"
+  },
+  "frozen_role_map_A": {
+    "metal_histidine_1": 36,
+    "general_base": 37,
+    "metal_histidine_2": 40,
+    "oxyanion_donor": 115,
+    "metal_glutamate": 152
+  },
+  "run_bounds": {
+    "prospective_request": "One A100 GPU, no more than2 hours rental time and $5 total. No current rental is implied. Root handles approval/provider lifecycle.",
+    "runner_seconds": 5400,
+    "assigned_rfd3_outputs": 8,
+    "assigned_mpnn_sequences": 8,
+    "assigned_rf3_ES": 40,
+    "assigned_rf3_monomer": 40,
+    "no_rescue": true,
+    "hard_limit": "Root separately stops instance before paid cap, reserves retrieval time and retains all partial outputs.",
+    "minimum_remaining_before_RF3_seconds": 900
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "status": "passed_bounded_measurement_checks",
+  "measurement_source": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T171100Z-problem8-simulation/experiment/package/measure_water_recovery.py",
+  "measurement_sha256": "260b1a51ed541aeccac0d98c08c2959c346f3918c0140b093917e13ce7c707d7",
+  "test_driver_sha256": "a13f2fdaebe20024ed8a4aaf492382129e1c1cbabb1f989c314e4e9b903c9e8c",
+  "model_execution": false,
+  "tests": [
+    {
+      "name": "rigid_rotation_translation",
+      "status": "passed",
+      "source_water_recovery_error_A": 1.0841599276764049e-14,
+      "three_anchor_fit_rmsd_A": 2.4592546852033086e-15
+    },
+    {
+      "name": "water_displaced_1A",
+      "status": "passed",
+      "source_water_recovery_error_A": 1.0000000000000053,
+      "three_anchor_fit_rmsd_A": 2.4592546852033086e-15
+    },
+    {
+      "name": "collinear_anchors",
+      "status": "rejected_as_required",
+      "error": "Undefined collinear or coincident anchor frame"
+    },
+    {
+      "name": "coincident_anchors",
+      "status": "rejected_as_required",
+      "error": "Undefined collinear or coincident anchor frame"
+    },
+    {
+      "name": "actual_prior_output_slots_exclude_aggregate",
+      "status": "passed",
+      "assigned_samples": 5,
+      "matched_files": [
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/retrieved/bundle/output/seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-0/TDPn3_ES_window_12mer_seed-0_sample-0_model.cif",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/retrieved/bundle/output/seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-1/TDPn3_ES_window_12mer_seed-0_sample-1_model.cif",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/retrieved/bundle/output/seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-2/TDPn3_ES_window_12mer_seed-0_sample-2_model.cif",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/retrieved/bundle/output/seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-3/TDPn3_ES_window_12mer_seed-0_sample-3_model.cif",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/retrieved/bundle/output/seed-0/predictions/TDPn3_ES_window_12mer/seed-0_sample-4/TDPn3_ES_window_12mer_seed-0_sample-4_model.cif"
+      ],
+      "excluded_aggregate": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/20261002T153616Z-problem8-continuation/retrieved/bundle/output/seed-0/predictions/TDPn3_ES_window_12mer/TDPn3_ES_window_12mer_model.cif"
+    },
+    {
+      "name": "empty_manifest_preserves_all_assignments",
+      "status": "passed",
+      "assigned_candidates": 8,
+      "assigned_ES_outputs": 40,
+      "assigned_monomer_outputs": 40,
+      "decision": "incomplete_comparison",
+      "result_sha256": "c05747c12415681f935be6b44c22cb43c4223534a0f8bbbc6d4870cf70acc8e0"
+    }
+  ],
+  "qualification": "Tests establish coordinate-transform arithmetic and assigned-output accounting, not biological function or scientific usefulness."
+}
