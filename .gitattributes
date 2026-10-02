@@ -17,5 +17,7 @@ tools/research_lanes/assembly_input_translation/6ha3/assembly.pdb whitespace=-bl
 
 # Preserve exact author bytes and fixed-column charge fields for source evidence.
 tools/research_lanes/protease_retargeting/models/*.pdb -text whitespace=-blank-at-eol
+tools/research_lanes/protease_retargeting/design_input/*.pdb -text whitespace=-blank-at-eol
+tools/research_lanes/protease_retargeting/design_input/round1_example.ipynb -text
 tools/research_lanes/protease_retargeting/zn45/source/* -text whitespace=-blank-at-eol
 tools/research_lanes/protease_retargeting/zn45/figure/*.pdf binary

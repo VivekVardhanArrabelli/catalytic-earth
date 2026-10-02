@@ -11,6 +11,13 @@ and its [author archive](https://zenodo.org/records/22654831), outside canonical
 Atlas admission. Published experiments are not project-run experiments;
 computational predictions are not observed productive catalysis.
 
+The [source-derived design input](design_input/README.md) now carries the
+G7–M8 bond into the authors' starting motif and public RFD3 configuration.
+Native chemical parsing and generation remain unexecuted. Three author peptide
+windows were resolved to this same absolute bond. The next computational step
+is the prepared [10-residue/12-residue RF3 comparison](window_check/README.md),
+which tests substrate-window transfer with the enzyme sequence held constant.
+
 ## What can be transferred
 
 The native-template [atom and geometry record](native_role_geometry.json)

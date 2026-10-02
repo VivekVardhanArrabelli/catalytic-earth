@@ -1,0 +1,62 @@
+{
+  "question": "Does extending the exact TDPn3 substrate window from ALQSSWGMMG to ALQSSWGMMGML change predicted geometry at the unchanged G7-M8 bond within RF3?",
+  "status": "Two source-sequence native inputs prepared; native import, weights/runtime and inference not yet executed by this record.",
+  "source": {
+    "paper": "https://www.biorxiv.org/content/10.1101/2025.11.20.689622v3.full",
+    "sequence": "Table S4 exact187aa TDPn3 and12mer; exact author ES model uses10mer",
+    "enzyme_sequence_sha256": "b5a77431300a76ff417cab0e36e3d1839cb8c191917d81256220b5cca2061165",
+    "native_format": "https://github.com/RosettaCommons/foundry/blob/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rf3/README.md",
+    "foundry_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817"
+  },
+  "conditions": [
+    {
+      "input": "tdpn3_rf3_window_10mer.json",
+      "sha256": "626d3f2600929c55004260ba235d26f3a94c693a2ef1502f96c2eeddb11e65c7",
+      "peptide": "ALQSSWGMMG",
+      "assigned_structures": 10
+    },
+    {
+      "input": "tdpn3_rf3_window_12mer.json",
+      "sha256": "5afdbf256678f327b756a51fab8b709c1fa08d2b1b71f7759c5c5d768fe7cdd9",
+      "peptide": "ALQSSWGMMGML",
+      "assigned_structures": 10
+    }
+  ],
+  "invariants": "Same full enzyme sequence, [Zn+2].O chemical input, checkpoint and settings. No MSA, templates, catalytic-pose restraints, redesign or alternate target bond. The intended G7 C-M8 N identity is an evaluation target, not a imposed geometric constraint.",
+  "fixed_sampling": {
+    "seeds": [
+      0,
+      1
+    ],
+    "diffusion_batch_size": 5,
+    "n_recycles": 10,
+    "num_steps": 200,
+    "early_stopping_plddt_threshold": 0.0,
+    "dump_predictions": true,
+    "one_model_per_file": true,
+    "annotate_b_factor_with_plddt": true,
+    "total_assigned_structures": 20,
+    "checkpoint": "Pin RF3 rf3_foundry_01_24_latest_remapped.ckpt content hash before inference; use the identical file for both conditions.",
+    "output_rule": "Distinct seed directories; keep every sample, score and failed/missing assignment. No rescue seeds, alternate templates, ranking-only selection or post-result parameter changes. Diffusion samples share a trunk pass; neither samples nor seeds are biological replicates."
+  },
+  "native_import_gate": "Verify exact A187/B10-or12 sequences and ordinary peptide connectivity, including G7 C-M8 N. Ligand must retain one Zn with formal charge+2 and one neutral water O; the dot-disconnected input has no Zn-O covalent bond. Save parser-created chain/atom map; identify ligand atoms by chemistry, not presumed names. Stop on ligand loss, identity drift or unsupported disconnected chemistry.",
+  "primary": {
+    "metric": "Distance between ligand Zn and B:Gly7 backbone O in angstrom, per assigned sample.",
+    "source_contact_rule": "Strictly <3.2angstrom, from fixed-target ES selection in Supplement methods paragraph198; it is a source computational filter, not a validated catalytic threshold.",
+    "report": "For each condition and seed: all five distances; median/range; counts contact/noncontact/missing with assigned denominator5. Report the12mer minus10mer seed-median difference. Do not substitute or pair individual diffusion indices as matched physical conformers.",
+    "chemical_interpretation_gate": "Zn outside the enzyme H146/H150/E45 site makes its carbonyl contact uninformative about catalytic-site recognition. Displaced water prevents a catalytic-preorganization interpretation even when Zn-carbonyl contact persists. Evaluate these using all prespecified secondary measurements, without inventing new post-result cutoffs."
+  },
+  "essential_secondary": "For every output report Zn-H146 NE2, Zn-H150 NE2, minimum Zn-E45 OE1/OE2, Zn-water O, minimum E147 OE1/OE2-water O, water O-G7 C, angle(water O,G7 C,G7 O), Y78 OH-G7 O and angle(Y78 CZ,Y78 OH,G7 O). Record each peptide amide carbonyl-to-Zn distance, especially Q3-S4, and G7 rank among them; proximity does not assign cleavage. Keep RF3 confidence in its native definitions/scale, without AF3 cutoffs. These diagnose altered metal geometry, nucleophile placement or register; no hydrogen-bond or catalytic-barrier claim follows from a distance.",
+  "decision": {
+    "reproducible_loss": "If each seed has >=4/5 short-window contacts and <=1/5 long-window contacts, reject portability of this short-window target contact within RF3. Diagnose local versus general metal-site disruption from the prespecified secondary metrics; neither case supports transferring the short-window pose unchanged.",
+    "reproducible_gain": "The reverse pattern supports window-dependent prediction and rejects treating the short window as a sufficient proxy; it does not predict higher enzyme activity.",
+    "contact_retained": "If both windows have >=4/5 contacts in each seed, report no large loss in this one metric, together with all secondary geometry changes. This does not establish full catalytic geometry or mechanistic invariance.",
+    "otherwise": "Report mixed/inconclusive or noninformative baseline performance, and stop this bounded comparison without rescue sampling. Missing outputs remain missing, not failures or imputed contacts.",
+    "rule_scope": "The4/5 and1/5 patterns are prespecified descriptive consistency rules for this small computational test, not calibrated probabilities, p-values or biological success rates.",
+    "completeness_gate": "Apply the loss/gain/retained classifications only when all four assigned condition-by-seed sets contain all five readable output structures with identified atoms. Otherwise report the incomplete comparison and observed values; missing outputs cannot satisfy <=1/5 or any other classification."
+  },
+  "interpretation_limit": "RF3 is a new predictor; the10mer is its internal reference condition, not reproduction of the author AF3 result. Adding M11/L12 also moves the modeled terminal carboxyl group, so this pair cannot separate sidechain/context effects from terminal chemistry. Both are free-peptide models, not the reporter fusion or full-length TDP43. This tests a window-transfer assumption and neither retargeting activity nor Atlas advantage.",
+  "decision_value": "New predictions can falsify unchanged-window geometry transfer; further measurements of the same selected10mer cannot. The strongest feasible alternative is stopping if native chemistry or a qualified fixed runtime is unavailable, rather than treating input preparation as a computational result.",
+  "execution_boundary": "Prepared, not executed at preregistration checkpoint. One user-authorized A100 is provisioning; native input parsing must pass before loading weights or inference. No extra conditions, rescue sampling or later rentals authorized.",
+  "execution_authorization": "Direct user approval on 2026-10-02: one Prime Intellect A100, $5 total cap, terminate within45minutes; official remote runtime/weights and this20outputcomparison. Provisioning; no native parsing or inference at preregistration checkpoint."
+}
