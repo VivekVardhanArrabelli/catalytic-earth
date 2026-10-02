@@ -1,0 +1,17 @@
+{
+  "name": "TDPn3_ES_window_12mer",
+  "components": [
+    {
+      "seq": "MSLSEIFDRLVEPTLRVPRLARTVDELVAAGYDRRDAARLVAAIEALAFAGVALVAPEAYREIAEAIRELDPTAYEVYVEGAEALLAAARAGDPVAQELLERARRLGEEALTNERGKELRERIEEIVDELETRASREAVIEAATIHEYLHAALFDGEILALRVEGPWIVSEVAVPRERLDELLEKVK",
+      "chain_id": "A"
+    },
+    {
+      "seq": "ALQSSWGMMGML",
+      "chain_id": "B"
+    },
+    {
+      "smiles": "[Zn+2].O",
+      "chain_id": "C"
+    }
+  ]
+}

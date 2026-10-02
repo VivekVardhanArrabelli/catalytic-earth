@@ -1,0 +1,154 @@
+{
+  "input": "ALQSSWGMMG78.pdb",
+  "input_sha256": "138d2de4d54a3c8dfb227aa512212773f1b3f8f50cdbdc8bcce1292abe6ed7ed",
+  "scope": "Source-derived first-round design input, not TDPn3 selected ES geometry and not a generated design.",
+  "substrate": {
+    "sequence": "ALQSSWGMMG",
+    "assay_sequence": "ALQSSWGMMGML",
+    "model_to_assay_positions": "B1-10 maps to assay1-10; M11/L12 absent.",
+    "scissile_bond": [
+      {
+        "chain": "B",
+        "residue_number": 7,
+        "residue_name": "GLY",
+        "atom_name": "C"
+      },
+      {
+        "chain": "B",
+        "residue_number": 8,
+        "residue_name": "MET",
+        "atom_name": "N"
+      }
+    ],
+    "sequence_fixed": true,
+    "coordinate_fixed_backbone_residues": [
+      7,
+      8
+    ]
+  },
+  "catalytic_roles": {
+    "zinc_ligands": [
+      {
+        "chain": "A",
+        "residue_number": 293,
+        "residue_name": "HIS",
+        "atom_name": "NE2"
+      },
+      {
+        "chain": "A",
+        "residue_number": 297,
+        "residue_name": "HIS",
+        "atom_name": "NE2"
+      },
+      {
+        "chain": "A",
+        "residue_number": 316,
+        "residue_name": "GLU",
+        "atom_name": "OE1"
+      }
+    ],
+    "general_base": [
+      {
+        "chain": "A",
+        "residue_number": 294,
+        "residue_name": "GLU",
+        "atom_name": "OE1"
+      },
+      {
+        "chain": "A",
+        "residue_number": 294,
+        "residue_name": "GLU",
+        "atom_name": "OE2"
+      }
+    ],
+    "oxyanion_donor": [
+      {
+        "chain": "A",
+        "residue_number": 377,
+        "residue_name": "TYR",
+        "atom_name": "OH"
+      },
+      {
+        "chain": "A",
+        "residue_number": 377,
+        "residue_name": "TYR",
+        "atom_name": "CZ"
+      }
+    ],
+    "water": {
+      "chain": "C",
+      "residue_number": 1,
+      "residue_name": "ZnO",
+      "atom_name": "O1"
+    },
+    "zinc": {
+      "chain": "C",
+      "residue_number": 1,
+      "residue_name": "ZnO",
+      "atom_name": "ZN1"
+    }
+  },
+  "selection": {
+    "source_contig_ordinal": 1,
+    "source_ori_ordinal": 1,
+    "contig": "15-100,A293-297,10-100,A28-30,10-100,A376-378,10-100,A315-317,15-100,/0,B1-10",
+    "ori": [
+      6.787079050497307,
+      45.54150783969011,
+      -6.044966758089851
+    ],
+    "scope": "One preselected notebook contig/origin; no grid, sampling or optimization."
+  },
+  "source_provenance": {
+    "notebook": {
+      "file": "round1_example.ipynb",
+      "sha256": "0e645c88ca9985515f67ddd90aa7d06287f79a6b3dd4ecde1e7403b0086c925a",
+      "cells": [
+        7,
+        8,
+        9,
+        11,
+        13,
+        17
+      ]
+    },
+    "motif": {
+      "file": "251222_motif_with_ANISOU.pdb",
+      "sha256": "3a3a63587f190a741918e0b594bf8be1727592d82a71187cf73689a3e750a344"
+    },
+    "template_origin": "Notebook cell7 describes substrate/guide strand from Zn45-S_ZnO36 plus active site from4QHP; this is an author hybrid computational input."
+  },
+  "transformations": [
+    "Remove ANISOU records; preserve source A/C atom fields except atom serials.",
+    "Replace B with the exact10mer; copy only B7/B8 N,CA,C,O coordinates; initialize all other peptide atoms tozero.",
+    "Reassign B7 ASN toGLY and B8 PHE toMET identity as the fixed target requires; their source backbone coordinates are reused.",
+    "Save one source-style JSON with ligand ZO unchanged for provenance.",
+    "Save a public candidate with only ligand selection changed from ZO to C1; preserve the source wrapper, sequence and coordinate masks."
+  ],
+  "compatibility_issues": [
+    "Author JSON ligand ZO does not literally match input residue name ZnO; public candidate selects C1 and preserves component identity.",
+    "Public candidate is not yet validated by the complete native consumer; custom ZnO chemical graph and preprocessing must be checked.",
+    "No Zn-O covalent bond was invented; original PDB contains no CONECT record.",
+    "Source ori cell11 asks for residue376 OE1 and its fallback selectsGLU378, not Zn ligandGLU316; saved ori output confirms this. Preserved as a placement choice, not a donor-plane claim.",
+    "Notebook example epitope dictionary outputs are tau windows; applying its documented generic routine to ALQSSWGMMG is a source-derived reconstruction, not execution of saved TDP commands."
+  ],
+  "local_checks": {
+    "source_A_C_atoms_preserved": 205,
+    "fixed_substrate_backbone_atoms": 8,
+    "zero_coordinate_substrate_placeholders": 64,
+    "atom_count_by_chain": {
+      "A": 203,
+      "C": 2,
+      "B": 72
+    },
+    "no_OXT": true,
+    "no_invented_CONECT": true,
+    "notebook_executed": false,
+    "inference_executed": false
+  },
+  "remaining_dependencies": [
+    "Native public parser/annotation check for fixed atom and fixed sequence masks, ZnO retention and graph handling.",
+    "Pinned RFD3 runtime/checkpoint and authorized capable inference environment.",
+    "One bounded diffusion output followed by sequence design and separate monomer/complex evaluation before a fresh candidate can be assessed."
+  ]
+}

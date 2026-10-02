@@ -1,0 +1,132 @@
+{
+  "author_archive_url": "https://zenodo.org/records/22654831",
+  "author_archive_doi": "10.5281/zenodo.22654831",
+  "author_source_files": [
+    {
+      "url": "https://zenodo.org/api/records/22654831/files/260909_zenodo.zip/content",
+      "member": {
+        "name": "zenodo_folder/rfd3_workflow/251222_tdp43_large_batch/round1_example.ipynb",
+        "method": 8,
+        "crc32": "9f0e7201",
+        "compressed_bytes": 184969,
+        "uncompressed_bytes": 357854,
+        "local_header_offset": 432214093
+      },
+      "output_file": "round1_example.ipynb",
+      "range_start": 432214093,
+      "range_end": 432399676,
+      "body_bytes": 185584,
+      "sha256": "0e645c88ca9985515f67ddd90aa7d06287f79a6b3dd4ecde1e7403b0086c925a",
+      "extracted_bytes": 357854,
+      "crc32_verified": true
+    },
+    {
+      "url": "https://zenodo.org/api/records/22654831/files/260909_zenodo.zip/content",
+      "member": {
+        "name": "zenodo_folder/rfd3_workflow/251222_tdp43_large_batch/motif_generation/251222_motif_with_ANISOU.pdb",
+        "method": 8,
+        "crc32": "418edbb2",
+        "compressed_bytes": 7003,
+        "uncompressed_bytes": 26991,
+        "local_header_offset": 432472294
+      },
+      "output_file": "251222_motif_with_ANISOU.pdb",
+      "range_start": 432472294,
+      "range_end": 432479936,
+      "body_bytes": 7643,
+      "sha256": "3a3a63587f190a741918e0b594bf8be1727592d82a71187cf73689a3e750a344",
+      "extracted_bytes": 26991,
+      "crc32_verified": true
+    },
+    {
+      "url": "https://zenodo.org/api/records/22654831/files/260909_zenodo.zip/content",
+      "member": "zenodo_folder/LICENSE",
+      "range_start": 2301378146,
+      "response_bytes": 1144,
+      "status": 206,
+      "content_range": "bytes 2301378146-2301379289/2313094705",
+      "member_sha256": "30e0a26b9e077f03b7487314a233cae67de61d5d5f73ca827507757d73429a4b",
+      "crc32": "e952dd8e"
+    }
+  ],
+  "public_consumer_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "public_source_files": [
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/docs/tutorials/advanced_enzyme_design_tutorial.md",
+      "sha256": "07faea3eb55bb79d271fede3d3a00211066f711683077f1c7a6ecb73211235ff",
+      "bytes": 33810
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/docs/tutorials/advanced_enzyme_tutorial_files/metalloprotease_rfd3_input.json",
+      "sha256": "ce5840751cc2dc7b09f4800775d5d6b4e50e595bb5f7bb9f605a2e9bd2244f7a",
+      "bytes": 600
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/docs/input.md",
+      "sha256": "0512aa033a6a8e2ea15ccb208e45c9a79bebbba4aeef442434b3347b544a72cc",
+      "bytes": 27888
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/README.md",
+      "sha256": "96297c9130198fc262fb49c26f018d5ef81efacb43cb42f7095364ac323ed979",
+      "bytes": 12162
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/src/rfd3/inference/input_parsing.py",
+      "sha256": "79baccb07cc65924ffd833615e5de6bcb186eeb1c87eedbc4324777c63f7e9ee",
+      "bytes": 62480
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/src/rfd3/utils/inference.py",
+      "sha256": "7ee29f526ab379f980a95a2ec79aa93895a69cb8321dcf137a593831eefc3bd9",
+      "bytes": 26981
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/src/rfd3/inference/parsing.py",
+      "sha256": "e6d3965e6dbaaed35c148e33ffc8df1300e4520ed35dbb4e21013661c70c31c3",
+      "bytes": 5417
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/pyproject.toml",
+      "sha256": "4783138db11e8201cb5e55082f28808f5a91e89de6f9b51b6b5e9bb417fa5edd",
+      "bytes": 9601
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/src/rfd3/constants.py",
+      "sha256": "c0bbc3ceb4e1a4eacaf13df0185350786ae10173894337bc977bffee98c874c3",
+      "bytes": 13141
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/src/foundry/utils/components.py",
+      "sha256": "7e0c99fc665581714eb11e32b5b2a8dba982c3ab00a09842a729a38a5c8f3a3e",
+      "bytes": 16078
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rfd3/src/rfd3/inference/datasets.py",
+      "sha256": "2533f135c06ffd783a89ffb6e1dfbeb67ac5a648fcfafaaebbca5e595c381098",
+      "bytes": 6598
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rf3/README.md",
+      "sha256": "d8ea70fac2bc35388909829dd0eee0ee8db64d0bb7afbc1c1013ee441b4472e1",
+      "bytes": 32695
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rf3/src/rf3/utils/inference.py",
+      "sha256": "71f306e5dd7369c7736ffd6a3390791465cb1641e67d0d03c0b4399923d1027b",
+      "bytes": 26055
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RosettaCommons/foundry/0932f1cb165ae7d413c11b1a7acc04ee31758817/models/rf3/src/rf3/inference_engines/rf3.py",
+      "sha256": "292bba9feae83d6001dae83190da170c5e1d303adbdb4f1b5257e55f98b0bd55",
+      "bytes": 31241
+    }
+  ],
+  "native_consumer_executed": false,
+  "source_audit_corrections": [
+    "The suspected omitted-A fixed-coordinate bug was rejected: de novo mode initializes fixed_coord=True and skips unlisted components; no mask fix was needed.",
+    "global_args is natively supported by the public dataset loader.",
+    "C1 selection is supported by the public component parser; preservation and chemical interpretation of the custom ZnO component remain unexecuted."
+  ],
+  "retention": "Author notebook/motif/license are retained beside this manifest. Public source files are pinned by immutable URLs and hashes; the task run retains acquisition bodies. No public-source module was executed."
+}

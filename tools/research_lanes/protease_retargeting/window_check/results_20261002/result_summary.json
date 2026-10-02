@@ -1,0 +1,423 @@
+{
+  "status": "executed_complete_mixed_primary_result",
+  "preregistration_commit": "62464126",
+  "foundry_commit": "0932f1cb165ae7d413c11b1a7acc04ee31758817",
+  "checkpoint_sha256": "364ef592fd8042a9cf4176d045015190f8322f961ccca38d891b20ca578d3bb0",
+  "assigned": 20,
+  "observed_identity_verified": 20,
+  "extra_ranked_aggregate_cifs": 4,
+  "summary": {
+    "assigned_total": 20,
+    "readable_identity_verified_outputs": 20,
+    "all_required_geometry_complete": true,
+    "condition_seed_groups": [
+      {
+        "peptide_length": 10,
+        "seed": 0,
+        "assigned": 5,
+        "samples": [
+          {
+            "sample": 0,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.2313864734090907
+          },
+          {
+            "sample": 1,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.077414643205464
+          },
+          {
+            "sample": 2,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.1903111327156033
+          },
+          {
+            "sample": 3,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.1088255919332504
+          },
+          {
+            "sample": 4,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 2.678621430731313
+          }
+        ],
+        "contact_count": 4,
+        "noncontact_count": 1,
+        "missing_count": 0,
+        "observed_primary": 5,
+        "median_angstrom": 3.1088255919332504,
+        "range_angstrom": [
+          2.678621430731313,
+          3.2313864734090907
+        ]
+      },
+      {
+        "peptide_length": 10,
+        "seed": 1,
+        "assigned": 5,
+        "samples": [
+          {
+            "sample": 0,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 2.961797671767322
+          },
+          {
+            "sample": 1,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.247973461508733
+          },
+          {
+            "sample": 2,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.2047931714823403
+          },
+          {
+            "sample": 3,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.099190805242334
+          },
+          {
+            "sample": 4,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.056306955913078
+          }
+        ],
+        "contact_count": 3,
+        "noncontact_count": 2,
+        "missing_count": 0,
+        "observed_primary": 5,
+        "median_angstrom": 3.099190805242334,
+        "range_angstrom": [
+          2.961797671767322,
+          3.247973461508733
+        ]
+      },
+      {
+        "peptide_length": 12,
+        "seed": 0,
+        "assigned": 5,
+        "samples": [
+          {
+            "sample": 0,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 2.6177610424536155
+          },
+          {
+            "sample": 1,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 9.298185008226826
+          },
+          {
+            "sample": 2,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.2290471336610187
+          },
+          {
+            "sample": 3,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 2.424494538027875
+          },
+          {
+            "sample": 4,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 2.7135021376878763
+          }
+        ],
+        "contact_count": 3,
+        "noncontact_count": 2,
+        "missing_count": 0,
+        "observed_primary": 5,
+        "median_angstrom": 2.7135021376878763,
+        "range_angstrom": [
+          2.424494538027875,
+          9.298185008226826
+        ]
+      },
+      {
+        "peptide_length": 12,
+        "seed": 1,
+        "assigned": 5,
+        "samples": [
+          {
+            "sample": 0,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.0085959817733765
+          },
+          {
+            "sample": 1,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 2.987200793880513
+          },
+          {
+            "sample": 2,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 3.0890763230823306
+          },
+          {
+            "sample": 3,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 12.315758611658435
+          },
+          {
+            "sample": 4,
+            "status": "measured",
+            "Zn_G7_O_angstrom": 2.8733457208627917
+          }
+        ],
+        "contact_count": 4,
+        "noncontact_count": 1,
+        "missing_count": 0,
+        "observed_primary": 5,
+        "median_angstrom": 3.0085959817733765,
+        "range_angstrom": [
+          2.8733457208627917,
+          12.315758611658435
+        ]
+      }
+    ],
+    "seed_median_differences": [
+      {
+        "seed": 0,
+        "12mer_minus_10mer_median_angstrom": -0.3953234542453741,
+        "complete_primary_sets": true
+      },
+      {
+        "seed": 1,
+        "12mer_minus_10mer_median_angstrom": -0.09059482346895731,
+        "complete_primary_sets": true
+      }
+    ],
+    "contact_count_pattern": "mixed_inconclusive_or_noninformative_baseline",
+    "chemical_interpretation_status": "Requires joint inspection of all prespecified metal/site-water metrics; no new site/water cutoff is applied."
+  },
+  "secondary_seed_summaries": [
+    {
+      "peptide_length": 10,
+      "seed": 0,
+      "secondary_geometry": {
+        "Zn_H146_NE2": {
+          "minimum": 1.9911252195591065,
+          "median": 2.001382156727256,
+          "maximum": 2.0754723634872856
+        },
+        "Zn_H150_NE2": {
+          "minimum": 1.958128785564464,
+          "median": 1.9826322644743437,
+          "maximum": 1.9901976464787354
+        },
+        "Zn_E45_min": {
+          "minimum": 2.0984127432078656,
+          "median": 2.1721140576918447,
+          "maximum": 2.2106099688222427
+        },
+        "Zn_water_O": {
+          "minimum": 1.097161013097535,
+          "median": 2.3716330093688933,
+          "maximum": 2.526274555998575
+        },
+        "E147_water_min": {
+          "minimum": 2.512503583025715,
+          "median": 2.6438989532606585,
+          "maximum": 4.45487957492337
+        },
+        "water_O_G7_C": {
+          "minimum": 2.9008312098843527,
+          "median": 3.1354844556129127,
+          "maximum": 3.168430831243261
+        },
+        "water_O_G7_C_G7_O": {
+          "minimum": 52.16433170093745,
+          "median": 97.2884553979626,
+          "maximum": 101.06939016189489
+        },
+        "Y78_OH_G7_O": {
+          "minimum": 1.7516702432441134,
+          "median": 1.8615069384784593,
+          "maximum": 2.235906873434421
+        },
+        "Y78_CZ_OH_G7_O": {
+          "minimum": 138.83195530784116,
+          "median": 141.1121412833262,
+          "maximum": 148.077930514062
+        }
+      }
+    },
+    {
+      "peptide_length": 10,
+      "seed": 1,
+      "secondary_geometry": {
+        "Zn_H146_NE2": {
+          "minimum": 2.009983439233119,
+          "median": 2.0296955812223527,
+          "maximum": 2.084912779002784
+        },
+        "Zn_H150_NE2": {
+          "minimum": 1.9697308697800813,
+          "median": 1.9986117405880734,
+          "maximum": 2.04622465945715
+        },
+        "Zn_E45_min": {
+          "minimum": 2.0148718612447722,
+          "median": 2.1455382555184768,
+          "maximum": 2.2215264723693737
+        },
+        "Zn_water_O": {
+          "minimum": 1.421300916098173,
+          "median": 2.1453827718953007,
+          "maximum": 2.374280147858749
+        },
+        "E147_water_min": {
+          "minimum": 2.6429421318866124,
+          "median": 2.7245953609234608,
+          "maximum": 4.308343717132588
+        },
+        "water_O_G7_C": {
+          "minimum": 2.7532910475476,
+          "median": 2.9130752622871756,
+          "maximum": 3.2103495582708987
+        },
+        "water_O_G7_C_G7_O": {
+          "minimum": 60.82555838964717,
+          "median": 92.22530338883058,
+          "maximum": 96.10509917558589
+        },
+        "Y78_OH_G7_O": {
+          "minimum": 1.9321778921523076,
+          "median": 1.9797222775002625,
+          "maximum": 2.0866196813331457
+        },
+        "Y78_CZ_OH_G7_O": {
+          "minimum": 131.69662132766496,
+          "median": 141.68891173883688,
+          "maximum": 150.96080885780827
+        }
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 0,
+      "secondary_geometry": {
+        "Zn_H146_NE2": {
+          "minimum": 2.0268964757562076,
+          "median": 2.069711772475423,
+          "maximum": 2.0914320906024706
+        },
+        "Zn_H150_NE2": {
+          "minimum": 2.0523865051211363,
+          "median": 2.0791521639533403,
+          "maximum": 2.0832237657735537
+        },
+        "Zn_E45_min": {
+          "minimum": 2.025074200895298,
+          "median": 2.0870420257067286,
+          "maximum": 2.123671979830846
+        },
+        "Zn_water_O": {
+          "minimum": 1.80239696594316,
+          "median": 2.2864963181605664,
+          "maximum": 2.4878401640337455
+        },
+        "E147_water_min": {
+          "minimum": 2.64880455532269,
+          "median": 5.260690722881169,
+          "maximum": 5.498834437094522
+        },
+        "water_O_G7_C": {
+          "minimum": 2.270029984409954,
+          "median": 3.0907963801138294,
+          "maximum": 7.853802189451183
+        },
+        "water_O_G7_C_G7_O": {
+          "minimum": 9.47087503866068,
+          "median": 45.47927728890755,
+          "maximum": 88.14049489195361
+        },
+        "Y78_OH_G7_O": {
+          "minimum": 2.4406742266387433,
+          "median": 2.8121770184402393,
+          "maximum": 7.159437936885598
+        },
+        "Y78_CZ_OH_G7_O": {
+          "minimum": 71.00246308116017,
+          "median": 122.59531645617544,
+          "maximum": 124.89033609569276
+        }
+      }
+    },
+    {
+      "peptide_length": 12,
+      "seed": 1,
+      "secondary_geometry": {
+        "Zn_H146_NE2": {
+          "minimum": 2.000353814199038,
+          "median": 2.032920049566729,
+          "maximum": 2.040356481706651
+        },
+        "Zn_H150_NE2": {
+          "minimum": 2.051029511474781,
+          "median": 2.0685795650245944,
+          "maximum": 2.0871734400350865
+        },
+        "Zn_E45_min": {
+          "minimum": 1.9921103336766828,
+          "median": 2.0413907967109157,
+          "maximum": 2.0698815982435
+        },
+        "Zn_water_O": {
+          "minimum": 1.7069173192357183,
+          "median": 1.7902945810502477,
+          "maximum": 2.1972425391662482
+        },
+        "E147_water_min": {
+          "minimum": 3.858868144200545,
+          "median": 4.97587889509025,
+          "maximum": 5.34855806562305
+        },
+        "water_O_G7_C": {
+          "minimum": 2.3414794994228427,
+          "median": 2.4288108971816236,
+          "maximum": 11.68878060396722
+        },
+        "water_O_G7_C_G7_O": {
+          "minimum": 13.240816489464196,
+          "median": 33.037314486867885,
+          "maximum": 107.40258131144668
+        },
+        "Y78_OH_G7_O": {
+          "minimum": 2.153401502328082,
+          "median": 2.5739344047044908,
+          "maximum": 13.728586331686204
+        },
+        "Y78_CZ_OH_G7_O": {
+          "minimum": 129.06832306231576,
+          "median": 135.85445133630301,
+          "maximum": 143.4261953744165
+        }
+      }
+    }
+  ],
+  "runtime_condition": "No MSA, templates, pose restraints or cached MACE descriptors. Missing descriptor path supplies zero tensors and absent masks; enabled model consumers are confirmed in checkpoint metadata. Reference conformers are generated separately. No rescue sampling.",
+  "raw_bundle": {
+    "file": "result_bundle.tar.gz",
+    "bytes": 3402300,
+    "sha256": "6a09d98e8145b7805de35fc0a12b6d9a115cef57a85a66abe598fe33e184dc82",
+    "scope": "20 assigned individual CIFs plus4native aggregate CIFs, all native confidence/score outputs, input maps/assignments, scripts, environment versions and logs. No weights or credentials."
+  },
+  "full_measurements": {
+    "bundle_path": "measurements.json",
+    "sha256": "19dbc8dc3b2fee2cb7539378525a606de3d4a3f1ca7234cc107b2643e545d83d"
+  },
+  "execution": {
+    "provider": "Prime Intellect / Massed Compute",
+    "gpu": "one A10080GB PCIe",
+    "hourly_usd": 1.2,
+    "created_utc": "2026-10-02T16:30:49.597Z",
+    "terminated_utc": "2026-10-02T16:47:49.287Z",
+    "termination_verified": true,
+    "elapsed_minutes": 16.994833333333332,
+    "estimated_max_compute_usd": 0.34,
+    "billing_scope": "Rate times creation-to-termination interval, rounded upward; actual final charge not yet reported by provider. $5/45-minute authorization respected."
+  },
+  "interpretation": "Primary pattern is mixed/inconclusive. Preserved enzyme metal coordination with altered base/water and peptide geometry is a secondary computational observation, not a positive preregistered window-loss finding, activity prediction, or demonstrated Atlas benefit."
+}

@@ -1,0 +1,117 @@
+{
+  "record_type": "author_defined_window_reactive_bond_correspondence",
+  "status": "source_semantics_verified",
+  "question": "Do ALQSSWGMMG78/LQSSWGMMGM67/QSSWGMMGML56 author windows target the same assay bond?",
+  "answer": "Yes. Author code defines the two suffix digits as local P1/P1prime; all three exact sequence windows map those residues to assay G7/M8. The absolute mapping is arithmetic, not a guessed filename convention.",
+  "assay_sequence": "ALQSSWGMMGML",
+  "window_mappings": [
+    {
+      "author_name_token": "ALQSSWGMMG78",
+      "window_sequence": "ALQSSWGMMG",
+      "window_length": 10,
+      "local_P1": 7,
+      "local_P1prime": 8,
+      "local_bond_residues": [
+        "GLY",
+        "MET"
+      ],
+      "ES_reactive_atoms": [
+        "B:GLY7:C",
+        "B:GLY7:O",
+        "B:MET8:N"
+      ],
+      "assay_window_start_one_based": 1,
+      "assay_window_end_one_based": 10,
+      "assay_P1": 7,
+      "assay_P1prime": 8,
+      "assay_bond": "ALQSSWG/MMGML",
+      "alignment_status": "unique exact substring; absolute positions are our deterministic arithmetic from author-defined local positions",
+      "modeled_N_terminus_assay_position": 1,
+      "modeled_C_terminus_assay_position": 10,
+      "assay_positions_omitted": [
+        11,
+        12
+      ],
+      "AF3_analogue_chainB_sequence_before_modification": "ALQSSWGMG",
+      "AF3_analogue_ptmPosition": 7,
+      "analogue_correspondence": "One pts modification at local P1 represents the original local P1/P1prime pair; residues downstream of P1prime shift down by one in the modified chain.",
+      "cached_final_monomer_groups": 5
+    },
+    {
+      "author_name_token": "LQSSWGMMGM67",
+      "window_sequence": "LQSSWGMMGM",
+      "window_length": 10,
+      "local_P1": 6,
+      "local_P1prime": 7,
+      "local_bond_residues": [
+        "GLY",
+        "MET"
+      ],
+      "ES_reactive_atoms": [
+        "B:GLY6:C",
+        "B:GLY6:O",
+        "B:MET7:N"
+      ],
+      "assay_window_start_one_based": 2,
+      "assay_window_end_one_based": 11,
+      "assay_P1": 7,
+      "assay_P1prime": 8,
+      "assay_bond": "ALQSSWG/MMGML",
+      "alignment_status": "unique exact substring; absolute positions are our deterministic arithmetic from author-defined local positions",
+      "modeled_N_terminus_assay_position": 2,
+      "modeled_C_terminus_assay_position": 11,
+      "assay_positions_omitted": [
+        1,
+        12
+      ],
+      "AF3_analogue_chainB_sequence_before_modification": "LQSSWGMGM",
+      "AF3_analogue_ptmPosition": 6,
+      "analogue_correspondence": "One pts modification at local P1 represents the original local P1/P1prime pair; residues downstream of P1prime shift down by one in the modified chain.",
+      "cached_final_monomer_groups": 8
+    },
+    {
+      "author_name_token": "QSSWGMMGML56",
+      "window_sequence": "QSSWGMMGML",
+      "window_length": 10,
+      "local_P1": 5,
+      "local_P1prime": 6,
+      "local_bond_residues": [
+        "GLY",
+        "MET"
+      ],
+      "ES_reactive_atoms": [
+        "B:GLY5:C",
+        "B:GLY5:O",
+        "B:MET6:N"
+      ],
+      "assay_window_start_one_based": 3,
+      "assay_window_end_one_based": 12,
+      "assay_P1": 7,
+      "assay_P1prime": 8,
+      "assay_bond": "ALQSSWG/MMGML",
+      "alignment_status": "unique exact substring; absolute positions are our deterministic arithmetic from author-defined local positions",
+      "modeled_N_terminus_assay_position": 3,
+      "modeled_C_terminus_assay_position": 12,
+      "assay_positions_omitted": [
+        1,
+        2
+      ],
+      "AF3_analogue_chainB_sequence_before_modification": "QSSWGMGML",
+      "AF3_analogue_ptmPosition": 5,
+      "analogue_correspondence": "One pts modification at local P1 represents the original local P1/P1prime pair; residues downstream of P1prime shift down by one in the modified chain.",
+      "cached_final_monomer_groups": 52
+    }
+  ],
+  "source": {
+    "archive": "https://zenodo.org/records/22654831",
+    "notebook": "round1_example.ipynb",
+    "sha256": "0e645c88ca9985515f67ddd90aa7d06287f79a6b3dd4ecde1e7403b0086c925a",
+    "cells_zero_based": [
+      7,
+      8,
+      17
+    ],
+    "independent_crosscheck": "The author complex geometry and phosphoTS helpers independently parse the last two name digits as P1/P1prime; retained acquisition and source hashes are in the task run receipt."
+  },
+  "scope": "The65cachedmonomer groups are different candidate proteins/terminal windows around one absolute bond, not65functional enzymes or3independent cleavage targets. Only the selectedTDPn3 ALQSSWGMMG78 group has exactsequence/state-linked ES/analogue coordinates in the published lane. No contacts for the other windows were measured."
+}
