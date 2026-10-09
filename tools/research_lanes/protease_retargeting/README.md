@@ -197,6 +197,22 @@ retain the qualitative library-enrichment evidence, but do not call the 19
 clones a frozen intended-bond prospective benchmark or use them to choose PGCN
 over a sequence baseline.
 
+The bounded follow-on
+[public panel survey](public_bond_resolved_panel_survey.json) identifies one
+new, materially stronger candidate rather than manufacturing an external-data
+stop. Choi et al.'s version-3 de novo cysteine-protease preprint, posted on
+2026-09-21, reports 13 active designs from a 69-design cohort, supplies protein
+and plasmid sequences, reports intended-site product masses and deposits six
+structures. Unlike the outcome-selected PGCN clones, this may support a complete
+prospective success/failure cohort. It is **not qualified yet**: accessible
+top-level evidence distinguishes active and inactive designs by post-IMAC band
+state but does not establish a continuous quantitative value for every negative,
+exact per-case substrate/model pairing, or the coverage of product mapping.
+Audit the version-3 supplement once and preserve all 69 cases before any model
+execution. Stop if the tables omit attempted cases, provide only qualitative
+negatives, cannot bind products to intended bonds or lack same-case structural
+inputs.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected

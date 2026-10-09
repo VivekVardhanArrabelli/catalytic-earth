@@ -1,70 +1,56 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — PGCN prospective-benchmark stop, 2026-10-09
+## Current research handoff — new public bond-resolved candidate, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T135933Z`, shared-control
-  epoch 6, from merged main `ca640d08ce93cb9ce035a35352ecef1997104665`.
-  PRs #143–#145 and their frozen evidence were preserved. This run executed
-  PR #145's exact next action; no model, scorer or paid provider was run.
-- **Question:** can Lu et al.'s published PGCN TEV validation supply a frozen
-  prospective intended-bond benchmark and a fair released comparison with a
-  competent sequence-only baseline? No. The evidence supports a narrower,
-  useful result: prospective PGCN-guided library enrichment and qualitative
-  reporter cleavage on new exact protease identities.
-- **Split and identity audit:** the GitHub tree omits its named split indices,
-  but bounded range reads from the paper-linked Zenodo archive recover exact
-  membership and reproduce the reported 4,340/542/543 TEV train/validation/test
-  counts. The split has no exact protease–peptide pair duplicates, but 120/532
-  validation and 132/533 test unique peptides also occur in train under another
-  protease. The 5,425-row source table contains none of the 19 exact clonal
-  protease identities and neither exact full target (`TKNLYFQAGT`,
-  `TENLYYQAGT`); the component motifs do occur in other contexts.
-- **Chronology:** a pretrained PGCN scored 280 P2 and 4,320 P6 Rosetta designs
-  before YESS and guided combinatorial-library construction. However, the exact
-  19 displayed clones were chosen after FACS outcomes—nine from the cleaved pool
-  and ten from the uncleaved pool. The pair-level evaluation is outcome-
-  conditioned, not a pre-outcome frozen test set. Of the 19, 16 are P2/P6 target
-  clones and three are P3 negative controls; PGCN calls all nine positives and
-  seven of ten negatives correctly in the released table. The three P3 rows
-  also conflict with the paper's description of the 19 as P2/P6 pool clones.
-- **Endpoint/baseline:** YESS infers binary cleavage from HA/FLAG tag loss and
-  flow cytometry. No product mapping establishes the intended Q/A bond for the
-  clones, and no rate, efficiency, product distribution or off-target panel is
-  supplied. The exact 19-clone table has no sequence-baseline prediction. A
-  notebook points to unreleased scratch logits for post-hoc comparisons, so an
-  aligned released PGCN-versus-sequence comparison is not executable. Rosetta
-  energy, visual selection and mutation enrichment also confound attribution to
-  PGCN without matched design-stage control arms. Table S8 also gives two
-  measured positives confidence 0.605 and 0.692, conflicting with the paper's
-  statement that all nine exceed 0.75.
-- **Decision:** the inherited stop rule is met. Do not run or retrain PGCN for
-  a clean method-selection claim from these 19 clones, call the outcome-selected
-  clones a prospective test set, or relabel reporter tag loss as intended-bond
-  validation. Retain the study as qualitative prospective library-enrichment
-  evidence. Exact sources, counts, hashes and boundaries are in
-  `tools/research_lanes/protease_retargeting/pgcn_tev_prospective_audit.json`.
-- **Next action:** run one bounded public-source survey for a different
-  cleavage-site-resolved design study that releases (1) a pre-outcome candidate
-  list, (2) exact enzyme and substrate sequences, (3) paired positive and
-  quantitative negative outcomes with intended-bond product identification and
-  (4) inputs that support the same-case structure and sequence baselines. Stop
-  after that survey if no study exposes all four; record the missing prospective
-  bond-resolved panel as an external assay/data dependency instead of weakening
-  the endpoint.
-- **Acquisition/boundaries:** batch `pgcn_reproducibility_audit_20261009` now
-  records three Git clone/fetch sequences across scheduled work, all resolving
-  commit `c769a0e`. Known pack payload plus persisted direct-HTTP bodies is
-  21,244,634/31,457,280 bytes; six Zenodo ranges account for 106,602 bytes and
-  did not download the 897,469,246-byte archive. Git wire overhead, an unsaved
-  metadata response and connector/web transport bytes are not exposed, so this
-  is a lower bound rather than exact wire accounting. The TEV
-  L2F source batch remains 6 requests and 25,648,340 bytes; Chen-v3 remains
-  92/100 and 30,250,296 bytes. No paid launch, provider mutation, separately
-  billed API, lab order or outreach. Prime remains disabled; USD 8/job and USD
-  50/Chicago month unchanged. Frozen evidence, protected registries and all
-  prior outcomes are preserved.
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T143229Z`, shared-control
+  epoch 7, from merged main `f1ff98b34aa06816a90321c209a088afa31f79d2`.
+  PRs #143–#145 and all frozen evidence were preserved. No model, scorer or paid
+  provider was run.
+- **Question:** does one public cleavage-site-resolved protease-design study
+  expose the four elements required by PR #145: a pre-outcome candidate cohort,
+  exact enzyme/substrate sequences, positive and quantitative negative outcomes
+  with intended-bond products, and same-case inputs for structure and sequence
+  baselines?
+- **Finding:** a 2026-09-21 update not covered by the earlier retained route is
+  materially stronger. Choi et al., *De novo design of cysteine proteases*
+  version 3, reports 13/69 active de novo designs, exact protein sequences in
+  Supplementary Table 1, complete plasmid sequences, intended-recognition-site
+  product masses for reported cleavages and six deposited structures within
+  1.2 angstrom C-alpha RMSD of design models. This is a plausible full-cohort
+  prospective benchmark, not another outcome-selected clone table.
+- **Qualification boundary:** it does not yet pass. Search-visible primary text
+  distinguishes active and inactive constructs by post-IMAC band state but does
+  not establish a continuous, calibrated value for every negative. The exact
+  69-row chronology, expression/purification attrition, per-case substrate/model
+  pairing, product-MS coverage and secondary products remain unaudited. The
+  preprint is not independent validation or peer review.
+- **Other candidates:** Huber's DNA recorder has large public exact-sequence
+  reporter data but evaluates design utility post hoc on measured cases and has
+  no product bond map. CleaveNet's 95-by-12 MMP panel is quantitative but
+  fluorescence-only and lacks exact assayed constructs. Chen's 7-by-6 panel has
+  cognate product evidence, but follows hit selection and does not map every
+  noncognate positive to a bond. None independently qualifies the endpoint.
+- **Decision:** do not declare the public benchmark unavailable yet, but do not
+  run a model from the top-level 13/69 claim. The exact evidence and boundaries
+  are in `tools/research_lanes/protease_retargeting/public_bond_resolved_panel_survey.json`.
+- **Next action:** audit Choi version-3 Supplementary Table 1 and source files
+  once. Reconstruct all 69 attempted cases, bind exact enzyme/substrate identity,
+  preserve expression and activity failures, map quantitative outcomes and
+  intended-bond products, and inventory per-case structure inputs. Stop and
+  record an external data dependency if attempted cases are omitted, negatives
+  are only qualitative, product identity cannot be bound to the intended bond,
+  or same-case structural inputs require invented identity.
+- **Acquisition/boundaries:** new batch
+  `public_bond_resolved_panel_survey_20261009` records seven direct HTTP attempts
+  and 102,482 retained bytes. bioRxiv returned HTTP 429 for the PDF/HTML attempts;
+  no supplement, large archive, model weights or research dataset was downloaded.
+  Search/connector transport is unexposed. Earlier source batches remain
+  unchanged. No paid launch, provider mutation, separately billed API, lab
+  order or outreach. Prime remains disabled; USD 8/job and USD 50/Chicago month
+  unchanged. Frozen evidence, protected registries and all prior outcomes are
+  preserved.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue
