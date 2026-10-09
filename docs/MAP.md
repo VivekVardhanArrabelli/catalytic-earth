@@ -11,6 +11,15 @@ framing correction 2026-07-03; strategic unification and truth reset 2026-07-13
 
 ---
 
+## Current direction — 2026-10-09
+
+**Problem 8, programmable proteases, is the primary scientific target.** Develop
+the full computable Atlas through the mechanistic knowledge, constraints and
+evidence needed to design enzymes that cut chosen protein sequences specifically
+and efficiently. The [current direction](SCIENTIFIC_DIRECTION.md) and marked
+[handoff](../work/handoff.md) govern work selection. The historical mission
+ordering below is superseded; its evidence corrections remain in force.
+
 ## 2026-07-13 — strategic unification: the full atlas is the mission
 
 The project is not being narrowed into a benchmark. The north star is the

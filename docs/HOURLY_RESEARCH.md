@@ -4,7 +4,7 @@ Read [the repository agent instructions](../AGENTS.md) before selecting work.
 They carry the shared ambition, scientific independence and obligation to
 reconsider the approach into every research session, including scheduled runs.
 
-Effective 2026-09-09; task-selection corrections 2026-09-12 and 2026-09-28.
+Effective 2026-09-09; task-selection corrections 2026-09-12, 2026-09-28 and 2026-10-09.
 This is the standing brief for the single `catalytic-earth-work-loop`
 scheduled task. It supersedes the old Lever 3,
 predictor, minimum-duration and mandatory-artifact instructions for that task.
@@ -20,16 +20,19 @@ corrections under the same lock; it is not a second concurrent research writer.
 
 ## Scientific purpose
 
-Build the world's computable catalytic-mechanism atlas: a continuously expanding,
-provenance-grounded map connecting reactions, elementary mechanisms, catalytic
-roles and geometry, protein evidence, uncertainty and experimental outcomes.
-The ultimate use is de novo enzyme design, directly or through a dataset that
-enables other researchers and models to design functioning catalysts. This is
-the existing North Star extended downstream, not a replacement mission.
+The primary scientific target is Problem 8: programmable proteases that can be
+designed on demand to cut a chosen protein sequence specifically and efficiently.
+Choose work for its contribution to that capability and measured function.
+Develop the full computable catalytic-mechanism Atlas through this research,
+retaining reusable connections among reactions, mechanisms, catalytic roles,
+geometry, protein evidence, uncertainty and experimental outcomes. Use the
+strongest available approach; Atlas's added value is a research question, not
+a prerequisite for advancing the protease objective.
 
-Advance coverage, mechanistic resolution, cross-case comparability or useful
-inference. Grounded curation of established chemistry can be a scientific
-contribution. Each increment need not discover new biology. Tests, commits,
+Coverage, curation, mechanistic resolution and cross-case inference should
+resolve a consequential Problem 8 dependency or preserve demonstrated reuse
+from that research. Grounded curation can be a scientific contribution;
+each increment need not discover new biology. Tests, commits,
 agent counts, source arrows and mixed record totals are not scientific outcomes.
 Keep protein, reaction, mechanism-proposal, step and evidence counts separate.
 

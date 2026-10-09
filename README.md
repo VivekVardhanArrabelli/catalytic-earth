@@ -11,9 +11,14 @@ research purpose, standards of evidence and obligation to reconsider the approac
 
 ## North Star
 
-Build the world's computable catalytic-mechanism atlas: a continuously
-expanding, provenance-grounded map from biochemical reaction and protein
-evidence to explicit, testable chemical-function hypotheses.
+The primary scientific target is **Problem 8: programmable proteases** —
+enzymes that can be designed on demand to cut a chosen protein sequence
+specifically and efficiently. Progress is judged by advances toward that
+capability and measured function.
+
+Build the full computable catalytic-mechanism Atlas through this pursuit:
+a continuously expanding, provenance-grounded map from biochemical reaction
+and protein evidence to explicit, testable chemical-function hypotheses.
 
 ```text
 protein sequence
@@ -27,12 +32,13 @@ protein sequence
 = mechanism-level function hypothesis
 ```
 
-The full atlas is the mission. A typed mechanism intermediate representation
-and evidence compiler are the engine. Benchmarks, exposure ledgers, and fresh
-external tests are quality-control systems inside the atlas; they are not the
-product or the limit of its ambition. Search/API surfaces deliver the atlas to
-users, and prospective experimental loops correct it against biological
-reality.
+Problem 8 determines the research priorities. The Atlas grows from the reusable
+mechanistic knowledge, design constraints, evidence and failures needed to solve
+it. A typed mechanism representation and evidence compiler support this work.
+Benchmarks, exposure ledgers and external tests provide quality control;
+prospective experiments test the resulting hypotheses against biological
+reality. Use the strongest available design approach, evaluating Atlas's added
+value at consequential milestones.
 
 A downstream aim is de novo enzyme design: connecting desired chemistry to
 catalytic requirements, protein implementations and measured function. A
