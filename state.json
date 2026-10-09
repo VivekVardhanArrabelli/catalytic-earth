@@ -16,8 +16,8 @@
   },
   "coordinator": {
     "epoch": 8,
-    "heartbeat_at": "2026-10-09T16:20:43Z",
-    "lease_expires_at": "2026-10-09T16:35:43Z",
+    "heartbeat_at": "2026-10-09T16:27:27Z",
+    "lease_expires_at": "2026-10-09T16:42:27Z",
     "owner": "automation-6ac8bd9adeb8819096b82a61101ea18a:0c229833-4b30-4a94-b8a7-07f1c31169d8"
   },
   "job": null,
