@@ -134,6 +134,19 @@ alias-to-sequence mapping, so the identity conflict remains open. TDPn3 and
 TDPr3 panel methods used 0.5 and 6 µM enzyme, respectively. Uncalibrated reporter
 fluorescence also prevents quantitative cross-reporter catalytic ratios.
 
+A strict feasibility check now closes the proposed cross-target intended-bond
+comparison on the retained primary data. **Zero target systems qualify.** TDPn3
+has an explicit intended bond and product-mass support, but its specificity-panel
+alias is not sequence-resolved and its reporter responses are not calibrated to
+molar cleavage. SAAc8 and AbetaF3 have exact enzyme and peptide sequences but no
+reported intended slash position or product-mass bond assignment; their ED9
+panel doses are also not explicit. TDPr3 is a second enzyme on the same TDP
+target, not a second target, and supports two cleavage products. The structured
+eligibility record and exact reopen condition are retained in
+`target_comparison.json`. Do not select a computational specificity score from
+these inputs; reopen only with product-verified bonds and matched, calibrated
+rates for at least two distinct targets.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected

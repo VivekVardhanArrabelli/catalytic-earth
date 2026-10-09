@@ -372,6 +372,56 @@
       "decision_changing_next_assay": "Before ranking fixed-target recognition, measure every enzyme against the same reporter panel at matched active-enzyme concentration and buffer/Zn/temperature, convert each reporter signal with its own intact/product standard and inner-filter correction, and obtain initial rates over a verified low-substrate regime or full concentration series. Report v0/[E][S] or kcat/KM with uncertainty and independently identify the cognate cleavage bond by product mass spectrometry."
     }
   },
+  "cross_target_intended_bond_feasibility": {
+    "question": "Can the retained author primary data support a sequence- and dose-matched intended-bond specificity comparison on more than one target?",
+    "eligibility_rule": "Each target must bind an exact protease sequence to a cognate peptide and intended bond, verify the observed cognate product bond, assay the same reporter panel at explicit matched active-enzyme and substrate doses under matched buffer/Zn/temperature, and calibrate each reporter response to molar cleavage so cognate and off-target rates are comparable.",
+    "targets": {
+      "TDPn3": {
+        "exact_sequence_and_cognate_peptide": true,
+        "intended_bond_explicit": true,
+        "observed_cognate_product_bond": true,
+        "specificity_panel_exact_sequence_alias": false,
+        "specificity_panel_explicit_matched_dose": true,
+        "reporter_specific_molar_calibration": false,
+        "eligible": false,
+        "limiting_evidence": "The tdpA3 archive alias is not sequence-mapped to Table S4, and arbitrary-unit fluorescence lacks reporter-specific product calibration."
+      },
+      "SAAc8": {
+        "exact_sequence_and_cognate_peptide": true,
+        "intended_bond_explicit": false,
+        "observed_cognate_product_bond": false,
+        "specificity_panel_exact_sequence_alias": true,
+        "specificity_panel_explicit_matched_dose": false,
+        "reporter_specific_molar_calibration": false,
+        "eligible": false,
+        "limiting_evidence": "Neither an intended slash position nor product-mass bond assignment is reported; the ED9 panel dose is not explicit and the reporter response is uncalibrated."
+      },
+      "AbetaF3": {
+        "exact_sequence_and_cognate_peptide": true,
+        "intended_bond_explicit": false,
+        "observed_cognate_product_bond": false,
+        "specificity_panel_exact_sequence_alias": true,
+        "specificity_panel_explicit_matched_dose": false,
+        "reporter_specific_molar_calibration": false,
+        "eligible": false,
+        "limiting_evidence": "Neither an intended slash position nor product-mass bond assignment is reported; the ED9 panel dose is not explicit and the reporter response is uncalibrated."
+      },
+      "TDPr3": {
+        "exact_sequence_and_cognate_peptide": true,
+        "intended_bond_explicit": true,
+        "observed_cognate_product_bond": true,
+        "specificity_panel_exact_sequence_alias": false,
+        "specificity_panel_explicit_matched_dose": true,
+        "reporter_specific_molar_calibration": false,
+        "eligible": false,
+        "limiting_evidence": "It is a second enzyme for the TDP peptide rather than a second target, has two supported cleavage products, conflicts with the TDPn3 panel identity, and lacks reporter calibration."
+      }
+    },
+    "eligible_target_count": 0,
+    "decision": "Stop the retained-source route to a cross-target intended-bond specificity score. It cannot qualify a computational scoring rule or compare target-programming success across more than one target.",
+    "reopen_condition": "For at least two distinct target peptides, obtain exact construct aliases, explicit intended and product-verified cleavage bonds, matched active-enzyme and substrate doses under common conditions, and reporter-specific molar calibration or direct product-rate measurements.",
+    "strongest_feasible_alternative": "Use TDPn3 only for bond-registration and positive-function constraints while seeking a separately source-qualified matched cleavage panel; do not turn its restricted qualitative reporter preference into a quantitative specificity benchmark."
+  },
   "interpretation_update": {
     "earlier_record": "fixed_target_evidence.json",
     "earlier_record_sha256": "89013f8969e1f87f31925f49bd2d2e86b97e3a46e4158e558b0d826dcd29e42e",
