@@ -57,11 +57,11 @@
     "additive_null": "Y(i,j) = alpha_i + beta_j; every 2 by 2 difference-in-differences is zero.",
     "interaction_contrast": "I = Y(PA,A) + Y(PB,B) - Y(PA,B) - Y(PB,A)",
     "score_contrast": "Compute the identical contrast I_score from the prospectively frozen interaction-aware score before measurements. Its sign is frozen.",
-    "minimum_effect": "A two-fold crossed interaction, abs(I) >= log(2), is the smallest confirmatory effect of interest. This threshold is a prospective design choice, not a claim derived from the L2F effect size.",
-    "confirmatory_success": "The two-sided 95 percent confidence interval for I excludes zero, its point estimate has the frozen sign of I_score, and the confidence interval excludes effects smaller than log(2) in that direction. Both diagonal intended products must be bond-verified and quantitatively detected.",
+    "powered_alternative": "A true two-fold crossed interaction, abs(I) = log(2), is the prospective effect used for sample-size planning. It is not a second null margin and is not claimed from the L2F effect size.",
+    "confirmatory_success": "The two-sided 95 percent confidence interval for I excludes the additive null of zero and its point estimate has the frozen sign of I_score. Both diagonal intended products must be bond-verified and quantitatively detected. Report the point estimate and interval against log(2), but do not require the interval to clear log(2); that stronger gate is not powered by this design.",
     "method_failure": "A resolved interaction in the opposite direction from I_score rejects the interaction-aware score on this panel even if both diagonal cells are active.",
     "additive_not_beaten": "If the interval includes zero, the panel does not show improvement over additive enzyme and substrate effects. Do not rescue the result with a different crop, score, endpoint or subset.",
-    "censoring_rule": "Fit an interval-censored model when any primary cell is censored. A success is allowed only if the conservative lower bound on the signed interaction still exceeds log(2); otherwise the result is inconclusive, not positive.",
+    "censoring_rule": "Fit an interval-censored model when any primary cell is censored. A success is allowed only if the conservative bound on the signed interaction still excludes zero in the frozen direction; otherwise the result is inconclusive, not positive. Report separately whether the bound reaches log(2).",
     "separate_function_readouts": [
       "Report both diagonal catalytic efficiencies against the exposed L2F/HPLVGHM value of 0.0002 s^-1 micromolar^-1 as a reference, not as a universal sufficiency threshold.",
       "Report PA and PB activity on N relative to P0/N as retained-activity controls without making native ordering part of the primary interaction gate.",
@@ -84,7 +84,7 @@
   "decision_outcomes": {
     "interaction_score_supported_on_panel": "The confirmatory interaction and bond gates pass. This supports prospective pair discrimination for two selected TEV designs only; it is not a family-wide or de novo success-rate claim.",
     "interaction_present_score_wrong": "The measured interaction resolves opposite to the frozen score. Reject this score/candidate-selection rule for the panel and preserve the designs as informative failures.",
-    "additive_sufficient_or_underpowered": "The interval includes zero or the signed log(2) margin. Stop the comparison; do not add post hoc substrates or variants.",
+    "additive_sufficient_or_underpowered": "The interval includes zero. Stop the comparison; do not add post hoc substrates or variants.",
     "assay_or_identity_failure": "Any construct ambiguity, missing intended-product assignment, uncalibrated nondetection, unresolved primary censoring or failed independent replication makes the panel inconclusive and blocks a specificity claim."
   },
   "strongest_feasible_alternative": {

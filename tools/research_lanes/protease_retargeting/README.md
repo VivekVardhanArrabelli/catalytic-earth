@@ -296,10 +296,11 @@ one frozen HPLC or LC-MS protocol. Nondetections remain interval-censored; they
 are never zero. The exposed L2F fitted positives give a conservative planning
 log standard deviation of 0.20 after propagation of the reported fit
 uncertainties, but this is not a measured between-day variance. Five independent
-complete assay blocks provide approximately 82% two-sided power for a two-fold
-interaction under that assumption. Success additionally requires the frozen
-score sign, a 95% interval beyond both zero and the log(2) margin, two
+complete assay blocks provide approximately 82% two-sided power when the true
+interaction is two-fold under that assumption. Success additionally requires
+the frozen score sign, a 95% interval excluding the additive null of zero, two
 bond-verified diagonal products and quantitative bounds for every negative.
+The two-fold value is the powered alternative, not a second confidence margin.
 The specification stops here: actual candidates, scoring, lab work, orders and
 outreach remain unexecuted and require a complete external measurement route.
 

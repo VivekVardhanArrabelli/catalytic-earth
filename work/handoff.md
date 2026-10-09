@@ -29,16 +29,17 @@
   LC-MS and log(kcat/Km) under one frozen protocol. Preserve raw observations
   and exact constructs, flanks and intended bonds. Nondetections are intervals
   with per-run LOD/LOQ and conditions, never zero. Any censored primary cell
-  must still give a conservative signed interaction bound beyond log(2), or the
-  result is inconclusive.
+  must still give a conservative signed interaction bound excluding zero in the
+  frozen direction, or the result is inconclusive.
 - **Power/decision:** the three fitted L2F positives give propagated relative
   uncertainties 0.131–0.200; 0.20 is a planning log SD, not a between-day
   estimate. With independent cell errors, the interaction SD is 0.40. Five
   independent complete assay blocks give about 0.821 two-sided power at alpha
-  0.05 for a two-fold interaction. Confirmatory success requires the frozen
-  score sign, a 95% interval beyond both zero and log(2), and two bond-verified
-  diagonal positives. Opposite sign rejects the score; an interval crossing the
-  gate stops without post hoc cells.
+  0.05 when the true interaction is two-fold. Confirmatory success requires the
+  frozen score sign, a 95% interval excluding zero and two bond-verified
+  diagonal positives. The two-fold value is the powered alternative, not a
+  second margin. Opposite sign rejects the score; an interval crossing zero
+  stops without post hoc cells.
 - **Next consequential action/dependency:** candidate identity and scoring are
   deliberately not executed. Actual PA/PB/A/B selection is justified only when
   a measurement route can meet the complete nine-cell product, censoring and
