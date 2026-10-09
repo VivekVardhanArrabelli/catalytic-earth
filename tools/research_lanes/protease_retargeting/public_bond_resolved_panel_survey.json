@@ -1,0 +1,76 @@
+{
+  "record_type": "public_protease_benchmark_survey",
+  "status": "new_candidate_requires_source_table_audit",
+  "created_utc": "2026-10-09T14:50:00Z",
+  "question": "Does a public cleavage-site-resolved protease design study expose a pre-outcome candidate cohort, exact enzyme and substrate sequences, paired positive and quantitative negative outcomes with intended-bond product identification, and inputs for same-case structure and sequence baselines?",
+  "decision_rule": {
+    "qualify": "All four elements must be available on one fixed cohort without selecting cases after observing activity. Product evidence must identify the intended bond for positives; a reporter or disappearing band alone is insufficient.",
+    "stop": "If no study passes the four-element screen, record the missing prospective bond-resolved panel as an external data dependency rather than weakening the endpoint."
+  },
+  "new_candidate": {
+    "citation": "Choi et al., De novo design of cysteine proteases, bioRxiv 2025.11.21.689808 version 3 (posted 2026-09-21)",
+    "doi": "10.1101/2025.11.21.689808",
+    "url": "https://www.biorxiv.org/content/10.1101/2025.11.21.689808v3",
+    "why_it_changes_the_search": "This version postdates the earlier retained source route and reports a complete-looking de novo campaign rather than a post-sort clone subset: 13 active designs among 69 tested, exact protein sequences in Supplementary Table 1, complete plasmid sequences in the supplement, six deposited structures, and intended-site product masses for reported cleavages.",
+    "top_level_evidence": {
+      "fixed_tested_cohort": "The abstract reports a 13/69 (19%) success rate. This is consistent with preserving positives and failures from a computationally selected cohort, but the selection chronology and any expression or purification attrition still require direct table-level verification.",
+      "exact_sequences": "The version-3 data-availability text states that protein sequences are supplied in Supplementary Table 1 and complete plasmid DNA sequences in supplementary material. Exact per-case substrate pairing has not yet been reconstructed.",
+      "intended_bond_products": "The version-3 primary PDF states that observed molecular weights matched theoretical values in all reported cases, confirming cleavage at the intended recognition site. The exact set of cases covered by that statement must be bound to the 69-row cohort.",
+      "structure_inputs": "The study reports six crystal structures within 1.2 angstrom C-alpha RMSD of design models; PDB 9YNL is a Dokki_15 C100A complex and 9YNM is WT apo. Public RFdiffusion2-MI code includes a cysteine-protease design example. Availability of original design complexes for every positive and negative is not yet established.",
+      "negative_endpoint": "The primary figure legend distinguishes active from inactive designs by post-IMAC SDS-PAGE cleavage state. The accessible top-level record does not establish a continuous, calibrated negative value for every inactive design. This is the present qualification blocker."
+    },
+    "qualification": "plausible_but_not_yet_established",
+    "blocking_questions": [
+      "Does the supplement enumerate all 69 attempted designs, including expression or purification failures, before activity-based selection?",
+      "Does it provide a quantitative per-design outcome for every negative rather than only a gel classification?",
+      "Which exact positives have product masses that identify the intended bond, and are secondary products reported?",
+      "Are exact substrate sequences and usable design or predicted complex inputs available for the same positive and negative cases?"
+    ]
+  },
+  "other_candidates": [
+    {
+      "study": "Huber et al., Data-driven protease engineering by DNA-recording and epistasis-aware machine learning, Nature Communications 16, 5466 (2025)",
+      "url": "https://www.nature.com/articles/s41467-025-60622-7",
+      "strength": "Public processed data and code cover roughly 600000 exact protease-substrate pairs with quantitative reporter outcomes and many negatives.",
+      "failure": "The model-guided design result is emulated on an already measured held-out set; purified variants were chosen after recorder outcomes, and DNA-recording/FRET readouts do not product-map the intended bond."
+    },
+    {
+      "study": "Martin-Alonso et al., Deep learning guided design of protease substrates, Nature Communications (2025)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12775482/",
+      "strength": "A public 95-substrate by 12-MMP quantitative FRET panel plus prospectively nominated generated substrate sequences.",
+      "failure": "The panel is fluorescence-only, lacks per-cell product/bond localization, and uses vendor enzyme identities rather than exact assayed construct sequences."
+    },
+    {
+      "study": "Chen et al., Computational design of metalloproteases, bioRxiv 2025.11.20.689622",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12667880/",
+      "strength": "Exact sequences, design models, cognate intended-bond product evidence, and a quantitative 7-protease by 6-substrate cross-reactivity matrix.",
+      "failure": "The retained cross-reactivity panel follows activity-based hit selection and contains noncognate positive cells without product localization for every cell; band loss cannot establish that those cells cut the intended bond."
+    }
+  ],
+  "decision": {
+    "conclusion": "The one-survey stopping rule cannot yet be closed as a proven external-data dependency because the 2026-09-21 Choi version-3 release is a materially stronger candidate that plausibly contains all four elements. It is not qualified from abstract and search-visible text alone.",
+    "next_action": "Perform one source-table audit of Choi version 3 and its supplementary files. Reconstruct the complete 69-case cohort, bind exact enzyme and substrate sequences, preserve every failure, map quantitative outcomes and intended-bond product evidence, and inventory per-case structure inputs.",
+    "next_stop": "Stop and declare the public benchmark unavailable if any attempted cases are omitted, negatives lack quantitative values, positive product evidence cannot be tied to the intended bond, or same-case structure inputs cannot be formed without inventing missing identity. Do not run a model before this audit passes."
+  },
+  "evidence_boundary": {
+    "preprint_not_peer_reviewed": true,
+    "supplement_not_yet_audited": true,
+    "new_model_execution": false,
+    "new_training": false,
+    "paid_compute": false,
+    "wet_lab_validation": false,
+    "outreach": false,
+    "atlas_advantage": false
+  },
+  "source_acquisition": {
+    "batch": "public_bond_resolved_panel_survey_20261009",
+    "known_direct_http_requests": 7,
+    "persisted_response_bytes": 102482,
+    "successful_material": "One PMC metadata page and one NCBI BioC error body were retained locally for inspection; neither contains the version-3 supplement.",
+    "failed_material": "One version-3 PDF request and three version-3 HTML attempts returned HTTP 429; one NCBI OA endpoint returned HTTP 404.",
+    "accounting_boundary": "Search and connector transport bytes are not exposed. No large archive, model weights, source supplement or binary research dataset was downloaded.",
+    "default_request_cap": 100,
+    "default_byte_cap": 31457280,
+    "relationship_to_other_batches": "A distinct public-panel survey. It does not reset the retained PGCN, TEV L2F or Chen-v3 batches."
+  }
+}
