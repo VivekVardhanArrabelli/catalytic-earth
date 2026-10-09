@@ -10,9 +10,9 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": null,
-    "repository_commit": null,
-    "workers_terminal": false
+    "repository_branch": "main",
+    "repository_commit": "ca640d08ce93cb9ce035a35352ecef1997104665",
+    "workers_terminal": true
   },
   "coordinator": {
     "epoch": 5,
