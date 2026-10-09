@@ -1,7 +1,26 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — Problem 8 priority clarified, 2026-10-09
+## Current research handoff — cloud team deployment, 2026-10-09
+
+- **Standing execution authorization:** the owner requests hourly research in
+  Codex Cloud, independent of the laptop, using only Codex/ChatGPT allowance.
+  Prime Intellect may cost at most **USD 8 per logical job and USD 50 per
+  America/Chicago calendar month**, including retries, failures and overhead.
+  This supersedes the completed rental's narrower authorization for future
+  justified jobs, but does not establish operational readiness. Follow
+  [the cloud team instructions](../docs/CLOUD_RESEARCH.md). No separately billed
+  agent API, lab orders or outreach are authorized.
+- **Deployment checkpoint:** private `catalytic-earth` Codex Cloud environment
+  prepared on 2026-10-09; CPU build and 872 core tests (3 skipped) passed.
+  GitHub API reports repository write permission; public research domains and
+  Prime's unauthenticated HTTPS endpoint are reachable. The setup chat is
+  `01a11ffa-26ca-7641-8f06-492c6773f001` on host `durable`. The environment is
+  published; fresh-session/shared-control activation checks are in progress. No hourly
+  cloud schedule is activated at this checkpoint. All old local schedules stay
+  paused. No Prime cloud secret or tested unattended paid lifecycle exists yet;
+  paid launches remain disabled. The shared control helper is coordination and
+  budget infrastructure, not a provider adapter or scientific result.
 
 - **Direction:** the owner clarified on 2026-10-09 that Problem 8 is the primary
   target: design proteases on demand that cut a chosen protein sequence
@@ -50,8 +69,9 @@
   it can unlock. If unavailable, close that evaluation route and choose another
   justified experiment toward the same Problem 8 capability; this is not a
   prerequisite for all protease research or Atlas development. The positive-only
-  reanalysis is complete; do not repeat it or relabel it validation. No further
-  compute is authorized by the completed rental.
+  reanalysis is complete; do not repeat it or relabel it validation. Any new
+  compute requires a justified new question and the standing execution limits
+  and readiness checks above; the completed rental is closed.
 - **Evidence boundaries:** one post hoc selected imposed hybrid scaffold, four
   new sequence seeds; combined enzyme/substrate context, not Tyr-only causality.
   Public LigandMPNN differs from author EnhancedMPNN. RF3 cached MACE features
@@ -69,7 +89,7 @@
   within 2.85e-14. Separate Astra/max workers check raw-coordinate arithmetic,
   native identities/context/RNG and mechanistic interpretation. Same-model
   checks are not independent expert review. Seven unrelated demo paths and
-  protected registries are preserved; hourly automation remains paused.
+  protected registries are preserved; deployment status is recorded above.
 - **Completed experiment/publication:** started 2026-10-02 at 19:29:38 UTC; base
   `837afd8faff28455bc94dfa1cc6ee606e6dbbb54`; branch
   `codex/protease-sidechain-context`; local receipt
