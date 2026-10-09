@@ -10,9 +10,9 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": null,
-    "repository_commit": null,
-    "workers_terminal": false
+    "repository_branch": "codex/huber-reporter-benchmark-audit",
+    "repository_commit": "528589851f1afe58b8961a328a3f99ebbc49f83a",
+    "workers_terminal": true
   },
   "coordinator": {
     "epoch": 9,
