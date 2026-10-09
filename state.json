@@ -1,5 +1,5 @@
 {
-  "active_run_id": "activation-08e82710-389f-4f52-b2ab-f3dc4cb7ad87",
+  "active_run_id": null,
   "budget": {
     "calendar_month_cap_cents": 5000,
     "currency": "USD",
@@ -10,19 +10,19 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": "codex/cloud-research-team",
-    "repository_commit": "510e6629ee117f01ec07fd19876111bc16383ca4",
-    "workers_terminal": true
+    "repository_branch": null,
+    "repository_commit": null,
+    "workers_terminal": false
   },
   "coordinator": {
     "epoch": 1,
-    "heartbeat_at": "2026-10-09T09:51:19Z",
-    "lease_expires_at": "2026-10-09T10:06:19Z",
-    "owner": "cloud-activation:08e82710-389f-4f52-b2ab-f3dc4cb7ad87"
+    "heartbeat_at": null,
+    "lease_expires_at": null,
+    "owner": null
   },
   "job": null,
   "job_history": [],
-  "phase": "researching",
+  "phase": "idle",
   "recovery": {
     "claimed_at": null,
     "previous_owner": null,
