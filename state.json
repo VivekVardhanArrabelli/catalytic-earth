@@ -10,9 +10,9 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": null,
-    "repository_commit": null,
-    "workers_terminal": false
+    "repository_branch": "codex/cloud-zn45-budget-ranking",
+    "repository_commit": "819bc8886562acc92af911bc73c7f772d13cf7dc",
+    "workers_terminal": true
   },
   "coordinator": {
     "epoch": 2,
