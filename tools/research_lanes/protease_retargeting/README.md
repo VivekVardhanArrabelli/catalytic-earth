@@ -258,6 +258,29 @@ not call either design the other. The next bounded source candidate must expose
 processed quantitative outcomes, exact enzyme/substrate identities and its
 filtering contract together; stop rather than weaken those requirements.
 
+The resulting one-candidate
+[CleaveNet matrix qualification](cleavenet_matrix_qualification.json) also
+stops. Its public release does preserve all 95 peptide IDs, all 12 named MMPs,
+two fold-change columns per pair and a complete processed 95-by-12 grid. All 95
+IDs join to unique 10-mer sequences. That apparent completeness is not the
+requested measurement contract. The methods provide vendor names but no exact
+assayed MMP sequences, catalog numbers or construct boundaries, and the vendor
+list names MMP11 where the matrix contains MMP13 while leaving MMP7's vendor
+unassigned. Fluorescence dequenching does not locate the cleaved bond.
+
+The 617 processed zeroes have no per-cell detection limits or censoring bounds.
+The repository's so-called raw file begins at fold changes rather than released
+fluorescence time series or cleavage rates. The stated normalization says
+non-cleaved cells are 0 and each MMP maximum is 1, yet five released efficiency
+cells are negative and MMP3's maximum is 0.911741613. The publisher source-data
+sheet reproduces the processed values but adds none of the missing raw or
+identity evidence. Do not score this matrix as intended-bond specificity or
+treat its zeroes as quantitative off-target rates. Huber and CleaveNet are now
+two consecutive failures of the same public-matrix route, so stop serial dataset
+hunting. The next useful action is to specify a minimal new TEV-family matched
+measurement panel, using the exposed L2F tetrad only for design and power
+assumptions, not model selection or validation.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected
