@@ -1,5 +1,5 @@
 {
-  "active_run_id": null,
+  "active_run_id": "automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T160301Z",
   "budget": {
     "calendar_month_cap_cents": 5000,
     "currency": "USD",
@@ -15,14 +15,14 @@
     "workers_terminal": false
   },
   "coordinator": {
-    "epoch": 7,
-    "heartbeat_at": null,
-    "lease_expires_at": null,
-    "owner": null
+    "epoch": 8,
+    "heartbeat_at": "2026-10-09T16:04:34Z",
+    "lease_expires_at": "2026-10-09T16:19:34Z",
+    "owner": "automation-6ac8bd9adeb8819096b82a61101ea18a:0c229833-4b30-4a94-b8a7-07f1c31169d8"
   },
   "job": null,
   "job_history": [],
-  "phase": "idle",
+  "phase": "researching",
   "recovery": {
     "claimed_at": null,
     "previous_owner": null,
