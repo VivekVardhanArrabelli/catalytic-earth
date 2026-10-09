@@ -317,7 +317,8 @@ identifiable. The latter preserves quantitative off-target evidence but supports
 only condition-specific product discrimination, and its variance/power plan
 must be frozen separately. The exact interval contrast and
 an executable unboundedness witness are retained in
-`tev_censoring_identifiability.py`. No candidate or score was selected.
+`../../../src/catalytic_earth/tev_censoring_identifiability.py`. No candidate
+or score was selected.
 
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes

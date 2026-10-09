@@ -28,9 +28,10 @@
   direction remain valid. A fixed-interval result would establish only product
   discrimination under that assay condition, not a universal catalytic-
   efficiency interaction or full-protein specificity; the prior five-block
-  power number does not transfer to the changed endpoint. Evidence and executable
-  witness: `tev_censoring_identifiability.json` and `.py` beside the original
-  specification. No source requests or bytes were consumed.
+  power number does not transfer to the changed endpoint. Evidence:
+  `tev_censoring_identifiability.json`; executable witness:
+  `src/catalytic_earth/tev_censoring_identifiability.py`. No source requests or
+  bytes were consumed.
 - **Next consequential action/dependency:** candidate identity and scoring remain
   deliberately unexecuted. If a laboratory route becomes separately authorized,
   validate its dynamic range and choose endpoint option A or B before selecting

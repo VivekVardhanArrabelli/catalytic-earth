@@ -11,7 +11,7 @@
     "model": "v0 = E*kcat*S/(Km+S) = E*(kcat/Km)*Km*S/(Km+S)",
     "finding": "For any proposed efficiency e=kcat/Km, any finite set of positive substrate concentrations and positive rate detection limits can remain nondetected by choosing Km sufficiently small and kcat=e*Km. Because v0 < E*e*Km, choosing Km below min(rate_limit)/(E*e) satisfies every nondetection while e can be arbitrarily large.",
     "consequence": "An all-nondetected kinetic series does not identify a finite upper bound on kcat/Km unless the analysis adds a justified lower bound on Km or another measurement that identifies the low-substrate slope. A censored nonlinear fit does not create that information.",
-    "executable_check": "tev_censoring_identifiability.py"
+    "executable_check": "../../../src/catalytic_earth/tev_censoring_identifiability.py"
   },
   "sharp_interval_rule": {
     "contrast": "I = Y(PA,A) + Y(PB,B) - Y(PA,B) - Y(PB,A)",

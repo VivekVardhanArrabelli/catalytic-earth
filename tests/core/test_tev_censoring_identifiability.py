@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from tools.research_lanes.protease_retargeting.tev_censoring_identifiability import (
+from catalytic_earth.tev_censoring_identifiability import (
     interaction_interval,
     witness_unbounded_efficiency,
 )

@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
 """Check identifiability of censored TEV interaction measurements.
 
 This module deliberately separates a Michaelis--Menten specificity constant
-from a directly bounded, fixed-condition initial product rate.  A finite set
-of nondetections at positive substrate concentrations does not, by itself,
-place a finite upper bound on kcat/Km when both kcat and Km are unknown.
+from a directly bounded, fixed-condition product observation. A finite set of
+nondetections at positive substrate concentrations does not, by itself, place a
+finite upper bound on kcat/Km when both kcat and Km are unknown.
 """
 
 from __future__ import annotations
