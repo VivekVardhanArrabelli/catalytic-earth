@@ -673,12 +673,16 @@ def complete_run(state: dict[str, object], owner: str, epoch: int, now: datetime
 
 def _git(cwd: Path, args: list[str], *, input_text: str | None = None, env: dict[str, str] | None = None) -> str:
     process = subprocess.run(
-        ["git", *args], cwd=cwd, input=input_text, text=True, capture_output=True,
+        # Git plumbing consumes exact bytes. Text-mode stdin turns LF into CRLF
+        # on Windows, making mktree store a filename ending in a carriage return.
+        ["git", *args], cwd=cwd,
+        input=input_text.encode("utf-8") if input_text is not None else None,
+        capture_output=True,
         env=env, check=False,
     )
     if process.returncode:
         raise ControlError("Git control operation failed; credentials and remote output are suppressed")
-    return process.stdout.strip()
+    return process.stdout.decode("utf-8").strip()
 
 
 class GitRefStore:

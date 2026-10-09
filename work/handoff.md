@@ -16,8 +16,17 @@
   GitHub API reports repository write permission; public research domains and
   Prime's unauthenticated HTTPS endpoint are reachable. The setup chat is
   `01a11ffa-26ca-7641-8f06-492c6773f001` on host `durable`. The environment is
-  published; fresh-session/shared-control activation checks are in progress. No hourly
-  cloud schedule is activated at this checkpoint. All old local schedules stay
+  published. The schedulable cloud Work controller is
+  `6ac8b6f5-a864-83ea-8ee0-e81d7dc82f8d` (backend
+  `01a1200a-b70b-73df-8012-3235ce7a6030`, host `durable`). It verified cloud
+  Python/Git, public source access and GitHub connector writes, then completed
+  the live shared-control start/heartbeat/checkpoint/complete cycle, ending idle
+  at `6caab4e5c797017fc166cb72c19dd9f20ccc80a8`. Separate cloud checkouts saw the
+  same record; all nine helper tests passed there. This Work chat cannot attach
+  the published environment and has no shell push credential; use the tested
+  connector path. PR #141 contains the deployment changes. No hourly cloud
+  schedule is activated at this checkpoint; activation requires its passing CI,
+  merge and a real scheduled-run check. All old local schedules stay
   paused. No Prime cloud secret or tested unattended paid lifecycle exists yet;
   paid launches remain disabled. The shared control helper is coordination and
   budget infrastructure, not a provider adapter or scientific result.
