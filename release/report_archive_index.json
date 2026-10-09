@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 77635)
-Total output lines: 8136
-
 {
   "bundle_asset": "catalytic-earth-report-archive-0.1.0.zip",
   "bundle_groups": {
@@ -2713,7 +2710,2784 @@ Total output lines: 8136
       "bytes": 8213,
       "git_object_id": "7a9e76b24b40cfb69ee93e888f95490a2796a756",
       "path": "work/fmo_structure_geometry_audit_20260527.md"
-    }…27635 tokens truncated…echanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2001,
+      "git_object_id": "c252eead0fe4a3350746cbfbdf9c591a5dc96564",
+      "path": "work/fmo_subtype_hard_negative_packet_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 7178,
+      "git_object_id": "3d933a731d39728562eb4d71447eae03397d954a",
+      "path": "work/fmo_v2_fingerprint_design_proposal_20260527.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1538,
+      "git_object_id": "d23e76cdd81d14d2ed986b5025d2695fce221c54",
+      "path": "work/fold_augmented_abstention_gate_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5141,
+      "git_object_id": "67d99f5cda3c8e06738ef3990edb582cdd5631b6",
+      "path": "work/fold_augmented_abstention_threshold_contract_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2821,
+      "git_object_id": "f5ac54c9ed7d95c93a478d5ddac2782f24db1ff3",
+      "path": "work/fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2833,
+      "git_object_id": "808c015d117c69e051043abaff0a5d1bf915540a",
+      "path": "work/fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1568,
+      "git_object_id": "61107ffbbd5c8d296a6682c9104a56834b1fa9aa",
+      "path": "work/fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1781,
+      "git_object_id": "84bc18772ec8406c98ab8047ba910b5676363958",
+      "path": "work/fold_augmented_blocker_human_decision_application_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2693,
+      "git_object_id": "ca644df12617e39fe8e616c777979e1ba681ea73",
+      "path": "work/fold_augmented_confounded_deployment_closure_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 14449,
+      "git_object_id": "728535faeaa91f448329a2caf2921c7070a82285",
+      "path": "work/fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1270,
+      "git_object_id": "0c16e0cfd4f3cac66ec4c6f89fcd95d13d9997fb",
+      "path": "work/fold_augmented_confounded_proxy_afdb_version_sweep_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4020,
+      "git_object_id": "9a9f2992206bd167a1378253f24260854106b18e",
+      "path": "work/fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2390,
+      "git_object_id": "e7c13798c079172b60c5fe3a54182179ac7682c9",
+      "path": "work/fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3902,
+      "git_object_id": "064e2563eec9d9b8e1228ba861f9d95ba22d209e",
+      "path": "work/fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4827,
+      "git_object_id": "adcf440664ca009bbc29a042ebf188b7fed96e40",
+      "path": "work/fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2723,
+      "git_object_id": "7324738373bdfab7388541b84de657c8cc873699",
+      "path": "work/fold_augmented_confounded_proxy_current_unavailable_coordinate_reprobe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2681,
+      "git_object_id": "e7871097f342ec35eaf9e8d9130ffb94970a5d7f",
+      "path": "work/fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4607,
+      "git_object_id": "4ccab9b9fbd4f5ef53fe59bd1e4ce1a1df2c0594",
+      "path": "work/fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 14557,
+      "git_object_id": "289c410ac4b32e1464eb77c5fb5560995066d114",
+      "path": "work/fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 160,
+      "git_object_id": "728923f5a341c28bebe4461f92ee4592f632db4a",
+      "path": "work/fold_augmented_confounded_proxy_extended_train_cal_oos_surface_after_tranche1_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4514,
+      "git_object_id": "9a41a18b8aaea778aa2f5acaa1767d53f8d9b1ad",
+      "path": "work/fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 9753,
+      "git_object_id": "b7c552ec8a28e591a246dad82e1615b05949a2d0",
+      "path": "work/fold_augmented_confounded_proxy_gap_targets_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5655,
+      "git_object_id": "1508674424b269e13a556d51cfb04ffbd31468c8",
+      "path": "work/fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2904,
+      "git_object_id": "18f3e76e95d19d43e264e3707e2966f3b1ec3dcd",
+      "path": "work/fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4512,
+      "git_object_id": "e02b3e9418b75faaf1eea53e59f8f2b9d0694ac3",
+      "path": "work/fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2838,
+      "git_object_id": "a7da4fa5325268aca95e83a1b13290fca14df43d",
+      "path": "work/fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 14023,
+      "git_object_id": "0e728952025cd0cf165bd0b2d109a61ce26f9f23",
+      "path": "work/fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4918,
+      "git_object_id": "d1b986b3300e3a5e75f94addac9481a3fe8544c2",
+      "path": "work/fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 9025,
+      "git_object_id": "5153ca39eed89735f93cbc4c0a36fe3465d2390b",
+      "path": "work/fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3202,
+      "git_object_id": "c305e4d883409a76a7abeeaa6bf4b8280a60fbea",
+      "path": "work/fold_augmented_confounded_proxy_p10746_decision_impact_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1789,
+      "git_object_id": "0d72c8268f6f5bf9a92eba80fc2b373f8f44de9b",
+      "path": "work/fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2643,
+      "git_object_id": "706c873b05a88f12fbac44f39276b6e43461400c",
+      "path": "work/fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3297,
+      "git_object_id": "dd24267f668f530c0eb5a5a986a43bdd8c6670e6",
+      "path": "work/fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 11343,
+      "git_object_id": "17b7569c4d3abdc7a54f91d4daf550e5fe42837d",
+      "path": "work/fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2877,
+      "git_object_id": "d6f82191393a56713e29979d70544879ca7ad37a",
+      "path": "work/fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2054,
+      "git_object_id": "b2e969ab88da7278a08883c0198a37995f582cfd",
+      "path": "work/fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2596,
+      "git_object_id": "d5b31d663030a5a8ce63a773bb0f2b170eded403",
+      "path": "work/fold_augmented_confounded_proxy_surface_and_calibration_state_after_q43088_p07658_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2808,
+      "git_object_id": "a8f1b36ec1fe2f888b999d4ae558d19bf37cea65",
+      "path": "work/fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1576,
+      "git_object_id": "fea17047172485090b44b731243b8228f8a7743f",
+      "path": "work/fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2230,
+      "git_object_id": "bec48749b351226d9a9199643f14e549e51fd370",
+      "path": "work/fold_augmented_confounded_proxy_threshold_stress_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 14845,
+      "git_object_id": "42e24cb0abb41dbfb87e888ecdb91359d17cc0d2",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2373,
+      "git_object_id": "190faafd7de8cdb4a0ad29f6bb73808b3ad1c4ab",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 8412,
+      "git_object_id": "0b5390ab404a14f7b190d24d3f3dc5ea38e7c46d",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2590,
+      "git_object_id": "a6359da4b7982a8f41fe3d6047ab97c4ebf42c7d",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_contract_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1377,
+      "git_object_id": "d97cfe7746af4ac677943b25d6d5b66357ec5851",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_extended_train_cal_oos_surface_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1908,
+      "git_object_id": "6298b71f07b31818c2268b3c2064d9c9a58c2317",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_fixed_threshold_readout_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1603,
+      "git_object_id": "4e16624412614d2f17422eaba0b71411cf99153b",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scored_extension_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4286,
+      "git_object_id": "985ce95be46dfb54be9384d5770f9d6dcbbbdb47",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scoring_input_manifest_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2558,
+      "git_object_id": "ccd8918465a45d5b178e63be5b9a3c23be739100",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1478,
+      "git_object_id": "f246b0290db52f0d182ee7f4006388df084ead77",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2066,
+      "git_object_id": "a3fc6f40f33f864e5d31cb20dd0a5fda9195545c",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1921,
+      "git_object_id": "11b71612c80d5b867a9106ef0fe65a6d3dd294ce",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4234,
+      "git_object_id": "2432b60c2716368c5e36c80537a9ec2fe4927a99",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 14908,
+      "git_object_id": "b29b9cae63ed701a8d05099532f874fc707054da",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_blocker_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2329,
+      "git_object_id": "7aa4f357392ffdc6b00627b0ca77711199c6d88a",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_scout_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1861,
+      "git_object_id": "cb925427da24c779984d575476040ee5d55ed7ec",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_contract_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1588,
+      "git_object_id": "cbc41342ddac9cd768e2dcc756455a1bf1a68779",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1662,
+      "git_object_id": "b7a473ba826c81cd6f23ce63e1a42dc8297716b4",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_scored_readout_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4335,
+      "git_object_id": "16405c2a641cc53c3664571c7ad0ddc15d94751b",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_scoring_input_manifest_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2372,
+      "git_object_id": "ef32a8e85de9f51eb8246ca3d92208ac0c97506a",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_proxy_design_preflight_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1537,
+      "git_object_id": "1df7c455ace4cf847db56ff34c0b62a8d238f0c5",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_acquisition_manifest_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2306,
+      "git_object_id": "58d69444b1525cb62aca2a6106bdb8fd364eb1e7",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_locus_scan_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2154,
+      "git_object_id": "79dfe60773a4c81605e745db1d15307b6b307310",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4779,
+      "git_object_id": "f9bddf879c11fa9697daccc25bc152f42eec5fa4",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_scored_extension_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4429,
+      "git_object_id": "66930a2c2b9591a02112d0fe2f34f329499beaa5",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_scored_extension_tranche2_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4184,
+      "git_object_id": "93c101ce97d39154ed2e9966730e87ec2522e3e1",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4615,
+      "git_object_id": "e4d6f9cd5f5c968fcb24e29c6a1ff12cae09511c",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_tranche2_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1533,
+      "git_object_id": "9ff921e10914d952d1160cb26d159a0311c7f8ce",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 8112,
+      "git_object_id": "ce2d2974c1a9f968c3cd6773e24c5fdb9c847fba",
+      "path": "work/fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_tranche2_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1482,
+      "git_object_id": "3fa861bab0b39b18bb46fc70268c62251aa1acfe",
+      "path": "work/fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3385,
+      "git_object_id": "8717d506dd39cb4ede209c5633e140e3dd9c306a",
+      "path": "work/fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1696,
+      "git_object_id": "f89e9e9bb83f90a63b9cead40b6278cbd588a257",
+      "path": "work/fold_augmented_family_panel_accepted_import_preview_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 10174,
+      "git_object_id": "c17a1cdbd08a10d0282e03e1b11392a0f2a189b9",
+      "path": "work/fold_augmented_family_panel_countability_gate_preflight_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4214,
+      "git_object_id": "44217483e0a87776a27bcf25b60d5ddaaa394779",
+      "path": "work/fold_augmented_family_panel_expert_import_decision_application_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5212,
+      "git_object_id": "bef7f93e6ac8dbdad8658c20bf887965858cf44b",
+      "path": "work/fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 8960,
+      "git_object_id": "4476fd51048ddbe7b4d50cd2c4ee6918e536ffc3",
+      "path": "work/fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1489,
+      "git_object_id": "684fdbd5d6f4ccdfdb08054b966dc4707fa64a29",
+      "path": "work/fold_augmented_family_panel_label_factory_gate_readiness_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1931,
+      "git_object_id": "eeead261ff9aa5f9cbc7cde7b6dabe49941df309",
+      "path": "work/fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3309,
+      "git_object_id": "b90ba9ad5047337a5cc3bcfc049604e8bd4364fb",
+      "path": "work/fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2211,
+      "git_object_id": "69b610d05ebe29f9d3672300fb6e89868753e695",
+      "path": "work/fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3952,
+      "git_object_id": "c13d3e4ea91bcfa02c9f313609cc2449b5979627",
+      "path": "work/fold_augmented_family_panel_research_readout_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5455,
+      "git_object_id": "40da06a1f0f576ca2fb41f27509f9ffa2a0ccd1d",
+      "path": "work/fold_augmented_family_panel_source_check_completion_reconciliation_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2090,
+      "git_object_id": "acf46e660e379afabf42d55d4f2ac51b2261f23a",
+      "path": "work/fold_augmented_family_panel_source_check_m_csa116_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1913,
+      "git_object_id": "f1780ef3c2cca0c4fcb7b23107ee190b5d9dfe2f",
+      "path": "work/fold_augmented_family_panel_source_check_m_csa131_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2182,
+      "git_object_id": "85e52e94042a811a7518d847162a49ce02cdcee6",
+      "path": "work/fold_augmented_family_panel_source_check_m_csa132_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1985,
+      "git_object_id": "8862cfa24e44e4ffcd90c15cdb2c67377ac7528f",
+      "path": "work/fold_augmented_family_panel_source_check_m_csa267_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1946,
+      "git_object_id": "08e92ce48cc90f9a3e567f6bee444da8aeac000b",
+      "path": "work/fold_augmented_family_panel_source_check_m_csa551_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2213,
+      "git_object_id": "96c3788b6a47526924791f80d1d5fb3084b330ec",
+      "path": "work/fold_augmented_family_panel_source_check_m_csa750_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4557,
+      "git_object_id": "807be04b76567fdb3e7ebf431d835aa36fb9a0f7",
+      "path": "work/fold_augmented_family_panel_source_check_queue_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1333,
+      "git_object_id": "4371c3049886eea5a4433a3bceee8269d56a2ae5",
+      "path": "work/fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1946,
+      "git_object_id": "0d325dffb1fac627d3c2c7672a7e34b1199f1719",
+      "path": "work/fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 977,
+      "git_object_id": "9688c58652b999899040fd8e4025df6f885444f2",
+      "path": "work/fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1602,
+      "git_object_id": "14288f1d4a6271262892bee8194c81b78b14b4b9",
+      "path": "work/fold_augmented_fold_only_deployment_contract_decision_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2453,
+      "git_object_id": "ca576c43532dc8154b7429083ac8c21ac3bd09d0",
+      "path": "work/fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3823,
+      "git_object_id": "fbab07eca469ed65e74ce7c952db8bb7a91ab369",
+      "path": "work/fold_augmented_lever3_channel_veto_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5158,
+      "git_object_id": "671221fd51dff15a750131655f27a2b91a54e6f3",
+      "path": "work/fold_augmented_lever3_closure_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4786,
+      "git_object_id": "85fb36960be9750b1a1d45042216c4a52ee4dee4",
+      "path": "work/fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3929,
+      "git_object_id": "174f39c5513ef6a1f5648198b1faf763b2cc0ee8",
+      "path": "work/fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3707,
+      "git_object_id": "26325ef0b84e606ed5f1c75094be39fd4f8e3357",
+      "path": "work/fold_augmented_lever3_current_measured_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2569,
+      "git_object_id": "71753d2010d276fd062c0d93ba5404e606453732",
+      "path": "work/fold_augmented_lever3_current_run_guardrail_audit_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 7838,
+      "git_object_id": "5e2b304158d1288f4e8c7d4247ff724b02cfa17c",
+      "path": "work/fold_augmented_lever3_deployment_action_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 14844,
+      "git_object_id": "317f72dc91c74701360337e64d79af2e880e9c98",
+      "path": "work/fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5360,
+      "git_object_id": "50e8836fbfccbfc8a2be2fd48aec090dd5171625",
+      "path": "work/fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3015,
+      "git_object_id": "1204aec5b8255dfe84847e4cebdc30eea2f07e26",
+      "path": "work/fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3212,
+      "git_object_id": "af6232007782864fd0885824b7a7493b269f4cd3",
+      "path": "work/fold_augmented_lever3_deployment_input_gap_audit_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4075,
+      "git_object_id": "4c217bd6a73f4dc5600e819aeed1f0dfb882f684",
+      "path": "work/fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2947,
+      "git_object_id": "2b5ce9136877bfb4eea9658301d49131b7c48c41",
+      "path": "work/fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4090,
+      "git_object_id": "40cbf60c55af95c4d85c64dbbf9b862ee8bdb431",
+      "path": "work/fold_augmented_lever3_deployment_operator_route_class_provenance_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2720,
+      "git_object_id": "820052c0017749ede35a5205944d7b3d15f1a814",
+      "path": "work/fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 8198,
+      "git_object_id": "25ff5e3cd65076725b5fcf1bc0ac9f427887deff",
+      "path": "work/fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2569,
+      "git_object_id": "3c5f338f68365379e4e149ebb721114698dfdf78",
+      "path": "work/fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3016,
+      "git_object_id": "1d409aaf3b25d3447274612a4904c04a728b028f",
+      "path": "work/fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2786,
+      "git_object_id": "a9a2e137360f8ddcc8c16db0ca125b2b375fe886",
+      "path": "work/fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 7466,
+      "git_object_id": "26068777f77d34d46a6ef70a15296d8cc0663f40",
+      "path": "work/fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2703,
+      "git_object_id": "c2c8e635ceed3fb095528b10c510cb5ecdd81c89",
+      "path": "work/fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3488,
+      "git_object_id": "95f96fa05036a7f449a290736f373d1cb7555065",
+      "path": "work/fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2868,
+      "git_object_id": "9b7076f41685caffdb62229c6183b73ccb55201c",
+      "path": "work/fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3255,
+      "git_object_id": "5cdd9955fd1b477aad180ad6ab4b02df5bd7becb",
+      "path": "work/fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2919,
+      "git_object_id": "2363e41e0cdde9080c0477a9c4b71ed3c4726fca",
+      "path": "work/fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2345,
+      "git_object_id": "759e7c6a52e8d63ec6375f390a2d1d849d5b1058",
+      "path": "work/fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4612,
+      "git_object_id": "e937c43313556efb3af0c077c51d4d2f26820598",
+      "path": "work/fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5484,
+      "git_object_id": "8e1e0e59a9780817d678e2dafa3f4ca11a1f3d5d",
+      "path": "work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1777,
+      "git_object_id": "adc4c5ec0d21cc732def570ea5516303e482dee3",
+      "path": "work/fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 8262,
+      "git_object_id": "dfb179ed485db90420ba7bd70f4ad780792386ce",
+      "path": "work/fold_augmented_lever3_operating_point_application_audit_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 7514,
+      "git_object_id": "e4b5e2fa7f9c12ba8e7411fe50608715c9bb1ce1",
+      "path": "work/fold_augmented_lever3_operating_point_closure_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2900,
+      "git_object_id": "f93f23ca16bb7bd19e01050eae9dca474784f29a",
+      "path": "work/fold_augmented_lever3_operating_point_deployment_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2704,
+      "git_object_id": "6dc55b354b0db9a707f457af3cd2707565460923",
+      "path": "work/fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2795,
+      "git_object_id": "6c528bb2f5e76f500fd1bc997f43c3bdecef4c0f",
+      "path": "work/fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6684,
+      "git_object_id": "bdf56494cf2409bcfa1a1d72a51855346cc208e7",
+      "path": "work/fold_augmented_lever3_p07658_local_input_inventory_audit_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1014,
+      "git_object_id": "1f771b7eced326877584fd4246e70779e19093d0",
+      "path": "work/fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6052,
+      "git_object_id": "ee4690823fdcdc5591b30f2af7a17fede93ab710",
+      "path": "work/fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1911,
+      "git_object_id": "575045029328f1e1f46415a1972444dafc9ecdab",
+      "path": "work/fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1941,
+      "git_object_id": "b88aac23b1b477849334ce632a11fa41e55344ba",
+      "path": "work/fold_augmented_lever3_post_bandpass_p07658_live_probe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2752,
+      "git_object_id": "7d4475bdc4b42df3b52e6df7ce06669fa521ffe0",
+      "path": "work/fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 7290,
+      "git_object_id": "7d4b6d2698383d8d8a05f3524812b83c6bdc04ee",
+      "path": "work/fold_augmented_lever3_residual_safety_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 11305,
+      "git_object_id": "0b820b8d4adbc3b2ee2b0430d1e436f23f65b5a9",
+      "path": "work/fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3800,
+      "git_object_id": "e615a7d70e5dd7d69ab84a02d2a2bf1152d3d8a1",
+      "path": "work/fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5859,
+      "git_object_id": "8659c5464e2f90270c20032f38196aa852249833",
+      "path": "work/fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5899,
+      "git_object_id": "cbf93464e96cc0be6cf5e5db7f965570f8529bf5",
+      "path": "work/fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5817,
+      "git_object_id": "8c6e469672287617089359121da6a296b5bdbefa",
+      "path": "work/fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4573,
+      "git_object_id": "1f297c4a07719124f30cf168cfef4adb560ba925",
+      "path": "work/fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4062,
+      "git_object_id": "457846cb65382ce2287f12e49de20d6fb1601139",
+      "path": "work/fold_augmented_lever3_retention_frontier_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2933,
+      "git_object_id": "9b461d38d7268c32621eabd64a6e82d2c830e4bd",
+      "path": "work/fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2258,
+      "git_object_id": "51f065bc5f592e8e1c92c8e93b692c891c18da10",
+      "path": "work/fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1256,
+      "git_object_id": "ed7bead106fca8db51362a9d9022c18f08cb251b",
+      "path": "work/fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1976,
+      "git_object_id": "77f3979b4c6f187f76e110f7eb57c7df7a3dcf1f",
+      "path": "work/fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1352,
+      "git_object_id": "736bc37d0176a559f9ec8a8ad73b928bb14b321b",
+      "path": "work/fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 777,
+      "git_object_id": "e515c8f50314f8bcc5bfe4e21d738c890ac201a7",
+      "path": "work/fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2844,
+      "git_object_id": "0b38c47e5f8b0441fb4822c4dee14b3b99b6fb2d",
+      "path": "work/fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1680,
+      "git_object_id": "3e70dd17f59982b1acd675b6ac8d5b67ebf8f573",
+      "path": "work/fold_augmented_p07658_esmfold_api_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 816,
+      "git_object_id": "64d953baf6095af5eca70fe331c3a26f22392695",
+      "path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2716,
+      "git_object_id": "819cf00dfd6df54ec98a9bae84a3fb9087a3d283",
+      "path": "work/fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1627,
+      "git_object_id": "f3fad91f4691f7ef80cd590f553f1ec50089b9dd",
+      "path": "work/fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2023,
+      "git_object_id": "efc9dca23ed80415d02fa54160ddf3d256df875f",
+      "path": "work/fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2206,
+      "git_object_id": "30d99e55ed164d39b5ab420957a42a4126312b1f",
+      "path": "work/fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3469,
+      "git_object_id": "d9d3bc8d3ae67e66289ef2bf85c8f55aa17ecc9b",
+      "path": "work/fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1888,
+      "git_object_id": "ed95a08e68e59057d7ed2de5a58301c4975ac49c",
+      "path": "work/fold_augmented_p07658_prediction_provenance_template_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1822,
+      "git_object_id": "71c74318abffd543562995579768c076baea2a74",
+      "path": "work/fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1431,
+      "git_object_id": "c765c8286f03c69f8f4b916c319333b7650704da",
+      "path": "work/fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1423,
+      "git_object_id": "9ef7104022f3d4b784dff464963164ab3c2d0836",
+      "path": "work/fold_augmented_p10746_deployment_caveat_decision_application_prior_human_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1884,
+      "git_object_id": "cd87abbe77dc2589b3ec9272eab0a7a3c5cbc9c1",
+      "path": "work/fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1467,
+      "git_object_id": "6dfb7144d9648e59a13da5dafde7261ac2e3a1fb",
+      "path": "work/fold_augmented_p10746_prior_human_decision_reviewed_stub_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1208,
+      "git_object_id": "2bbb261d52440efc76fd87933ecbb686d101dd0b",
+      "path": "work/fold_augmented_p10746_source_feature_refresh_audit_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2312,
+      "git_object_id": "2672102bfe55348b48b0ca17ef9cc1ab8c14943a",
+      "path": "work/fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1375,
+      "git_object_id": "26d9f7cd7ba744d4fcac1d9f4824cbaa78be81fe",
+      "path": "work/fold_augmented_p23007_alternate_accession_scout_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1265,
+      "git_object_id": "7ceca3512d41b1b1efafb52d55f9dd6088255247",
+      "path": "work/fold_augmented_post_decision_deployment_closure_status_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1676,
+      "git_object_id": "0b8c927b7ad0206d9ecb32f21265bd277c485d8e",
+      "path": "work/fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1321,
+      "git_object_id": "b73198f8d2c17aa0fd3c204ed316f3b44b5daeeb",
+      "path": "work/fold_augmented_post_rerun_deployment_closure_status_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2649,
+      "git_object_id": "f5554486739c324c5cd87b730cb900abdd6a5e8e",
+      "path": "work/fold_augmented_q43088_geometry_locator_blocker_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2378,
+      "git_object_id": "5d75923831844821c6229a53cce97354369d4360",
+      "path": "work/fold_augmented_q43088_locator_approval_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2855,
+      "git_object_id": "b87bba676caf61f7e274106043744e2f362a7ab2",
+      "path": "work/fold_augmented_q43088_locator_review_priority_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2995,
+      "git_object_id": "27def4c1aa4f1dc2742fe3599e7ebdf6993d302f",
+      "path": "work/fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2585,
+      "git_object_id": "3445791a8b9bf73b295cdde51ed6503003eb43b2",
+      "path": "work/fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2291,
+      "git_object_id": "8f18fe4733d56feaf85a3d549305e112ad6fb69a",
+      "path": "work/fold_augmented_remaining_blocker_coordinate_reprobe_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1751,
+      "git_object_id": "7ee44ef34e6834a2fe68619353d4e893e6d6ef09",
+      "path": "work/fold_augmented_remaining_blocker_decision_matrix_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1014,
+      "git_object_id": "284fa0e90bb4aa23e2ef3cffba766c48ae02ee0f",
+      "path": "work/fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1201,
+      "git_object_id": "981f4bb7e20e7fe8d4799a3f19026e1897fa92ed",
+      "path": "work/fold_augmented_source_feature_active_site_sidecar_candidates_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2318,
+      "git_object_id": "4e77379e39153d70da14db5735e6844039b9d884",
+      "path": "work/fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3015,
+      "git_object_id": "78b57fcbf52c02428c5ef8f8b6c3fe4d8c873357",
+      "path": "work/fold_augmented_source_sidecar_clearance_preflight_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1992,
+      "git_object_id": "2e2caeaf7b185ff251e41d47840b64eb2a727b07",
+      "path": "work/fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1766,
+      "git_object_id": "f66989f8068975e89537d03424498ffa44060f08",
+      "path": "work/fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4978,
+      "git_object_id": "0f91c8a6a4ac50acaa751b231d519e7f290216b3",
+      "path": "work/fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2406,
+      "git_object_id": "eb3f22dbb92218774b4a0e79bc1a2abfbc839d4e",
+      "path": "work/fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2084,
+      "git_object_id": "684d8427425afe5bac2d67463fe2a65046e45d4a",
+      "path": "work/fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3607,
+      "git_object_id": "e10e1a882ae423004786ac9f25a246722980ca61",
+      "path": "work/fold_channel_deployment_readiness_summary_current702_20260628.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 3470,
+      "git_object_id": "2a98f944bffb73bcf4f070c2e2452fddab5c619e",
+      "path": "work/fold_conflict_packet1_expert_disposition_20260527.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2729,
+      "git_object_id": "a4bbd38d6d53591a985d0caf725723d512bc973d",
+      "path": "work/fold_level_novelty_signal_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1540,
+      "git_object_id": "9d4a3f739406072017e7847559353ad6ef9bccbc",
+      "path": "work/fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1570,
+      "git_object_id": "837f21783f6ea6ec10bf6a4aaa0fa0a8db80cb73",
+      "path": "work/fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1132,
+      "git_object_id": "25d4d7ac5cc6cb7849d48fb3acfb2dd705ebf2a9",
+      "path": "work/fold_only_train_cal_oos_negative_surface_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 2832,
+      "git_object_id": "2376c931e996d5caa53965f567a62db3589339b2",
+      "path": "work/foldseek_geometry_atlas_feature_prep_20260528.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 2735,
+      "git_object_id": "6001b7976c8a33a0c94028496f563e9f74c48154",
+      "path": "work/foldseek_readiness_notes.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 3667,
+      "git_object_id": "b1753b5114b3c86cf529f898fc83ee4fe041e002",
+      "path": "work/full_tm_structural_signal_20260528.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5624,
+      "git_object_id": "0a9cbd9a60e44e93d19741974eb62ed2cfe6da4b",
+      "path": "work/gate3_active_site_verification_20260629.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 10988,
+      "git_object_id": "bfdb02f53ae3da43d5878dc2e83413293a678217",
+      "path": "work/gate3_lab_candidate_shortlist_20260629.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6088,
+      "git_object_id": "d82a719501ecf00e6d465e83f33daa3e75e577a3",
+      "path": "work/gate3_novel_dark_target_shortlist_20260629.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 1218,
+      "git_object_id": "47a6d326b1f7f42c6e4cd8d12f145833014a6bc3",
+      "path": "work/geometry_nonlinear_head_audit_702_20260529.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 928,
+      "git_object_id": "45ef1815c595ad50719eef2e1f0bec63b3e1e265",
+      "path": "work/ghkl_histidine_kinase_mechanism_handle_scout_current702_20260613.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 2050,
+      "git_object_id": "8c00319d84071d0b9404365fe6c75b55c4c5c854",
+      "path": "work/ghmp_small_molecule_kinase_sourcing_current702.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1942,
+      "git_object_id": "7dee0e732906d59076539c3a0bba870805eff2e7",
+      "path": "work/glutathione_s_transferase_sourcing_current702_20260618.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2083,
+      "git_object_id": "037c933c20c0102f504586102ee315a7bf10bce3",
+      "path": "work/glycoside_hydrolase_alt_name_only_window40_80_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2083,
+      "git_object_id": "a5e6cb9adbb0cd5800a740feefeb77ca183068eb",
+      "path": "work/glycoside_hydrolase_alt_name_window40_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2170,
+      "git_object_id": "e72bf29bb54c90bf1b941fa97cf6c76bddee36fa",
+      "path": "work/glycoside_hydrolase_floor500_window420_80_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 566,
+      "git_object_id": "49b2ee6f122edaa0fc2b5c3d1aaac19378ecd169",
+      "path": "work/glycoside_hydrolase_floor500_window_row_guardrail_audit_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 937,
+      "git_object_id": "76faa4b08eaa2d2c5039fe2f11000a2da6d9f5dc",
+      "path": "work/glycoside_hydrolase_floor_topup_live_fetch_blocker_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1016,
+      "git_object_id": "2db722481c503660d739600b7e5d35911245ca9d",
+      "path": "work/glycoside_hydrolase_mechanism_handle_scout_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2085,
+      "git_object_id": "61b7db8228b7b84b0b60d109dd9f3e95a7db7b01",
+      "path": "work/glycoside_hydrolase_page2_window500_80_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2085,
+      "git_object_id": "d08a341292d53df281d4c72c6748fe59ed3cca7e",
+      "path": "work/glycoside_hydrolase_page2_window580_80_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 643,
+      "git_object_id": "3a07e562605ec989fd477dae6e35e94d298ba1b9",
+      "path": "work/glycoside_hydrolase_row_guardrail_audit_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2093,
+      "git_object_id": "74f0475937583f154199d43e77380d7131535625",
+      "path": "work/glycoside_hydrolase_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2407,
+      "git_object_id": "8870798573726789e95a083c9213fe0cb1cdc923",
+      "path": "work/glycoside_hydrolase_tier2_unreviewed_window0_40_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2291,
+      "git_object_id": "3d160d9e0acd802514076981e689cd6e4f6b5f1e",
+      "path": "work/glycoside_hydrolase_tier2_unreviewed_window40_40_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2324,
+      "git_object_id": "3ea8eacd03deb488f9369eb624ec6447324654b2",
+      "path": "work/glycoside_hydrolase_tier2_unreviewed_window80_40_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 735,
+      "git_object_id": "6d55329a1e59248e8cd6ad090e34846fb859cd09",
+      "path": "work/glycoside_hydrolase_topup_row_guardrail_audit_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2064,
+      "git_object_id": "a1b42a32428dc3be99b386f7d79fe8d43d8912bf",
+      "path": "work/glycoside_hydrolase_topup_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 2177,
+      "git_object_id": "409b97501bdb8a5a2982ec5375aa054719f955e1",
+      "path": "work/glycosyltransferase_cap_fill_current702.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2018,
+      "git_object_id": "cbb9a11b5d516282c41b6ae097f861d795e312b6",
+      "path": "work/glycosyltransferase_handle_cap_probe_current702_20260616_run0210.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 617,
+      "git_object_id": "d0d60e89c55cf2e3e848f37422de0020a89e97f9",
+      "path": "work/glycosyltransferase_handle_cap_probe_row_guardrail_audit_current702_20260616_run0210.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1877,
+      "git_object_id": "08db31113d9b6e525670cbef96e34a4e871eab5e",
+      "path": "work/had_like_phosphatase_broad500_sourcing_current702_20260614.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1297,
+      "git_object_id": "c805fb62e83142d7b2a7226ec711d263b43b5925",
+      "path": "work/had_like_phosphatase_lane_preregistration_current702_20260614_post_silver_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1873,
+      "git_object_id": "1af720c3381c3e326bd8ff78346c080a9d7babec",
+      "path": "work/had_like_phosphatase_sourcing_current702_20260614.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1767,
+      "git_object_id": "0c040faa346aa4f3977516559cd8bd1c74b69840",
+      "path": "work/had_like_phosphatase_sourcing_current702_20260617.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 2074233,
+      "git_object_id": "2bce204c08dfcc0acf7f3c4fa6a4531d560a7a81",
+      "path": "work/handoff.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1637,
+      "git_object_id": "c86a8134fa6f398ebe948e628df52849ffc26dd1",
+      "path": "work/handoff_glycoside_nucleoside_shard_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1030,
+      "git_object_id": "ebe55df04770fefaa7a076621da6011c4b4e5ba7",
+      "path": "work/handoff_metal_hydrolase_shard_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3062,
+      "git_object_id": "9d7b17e7e89218ffbe8f710630f3a8ddfc5bffa8",
+      "path": "work/handoff_near_orphan_tail_shard_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2156,
+      "git_object_id": "45a0030e5b99c9e3c5ef19575350d23fb6b83d5c",
+      "path": "work/handoff_phosphoryl_transfer_shard_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2653,
+      "git_object_id": "913f1662843efae03b8eec95cfc3f90f60ff4cc1",
+      "path": "work/handoff_plp_children_shard_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1116,
+      "git_object_id": "6bbbff30196218e0da4c78e48bd16b6a85f8041a",
+      "path": "work/handoff_radical_sam_cobalamin_shard_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2691,
+      "git_object_id": "7fc833429832374883e4591f8824d30cb545d4c0",
+      "path": "work/handoff_redox_oxygen_sulfur_shard_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6381,
+      "git_object_id": "f47c4975006a4be5810a26f95c36e2543982f50d",
+      "path": "work/handoff_scaleout_merger_20260608.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1919,
+      "git_object_id": "84e6f07399e7a911683981462f5d500a261010cd",
+      "path": "work/heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 744,
+      "git_object_id": "202d611bc2ecee5a912bca2c23f38126e1a28fa9",
+      "path": "work/heldout_oneshot_eval_result_current702_20260628.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3458,
+      "git_object_id": "ef75a251aa910fd79b0926a4c2ddbb07b032f797",
+      "path": "work/heldout_oneshot_preregistration_current702_20260628.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5855,
+      "git_object_id": "ca1ca35330c6659b97c5b1f7bcdcad950724eed7",
+      "path": "work/high_yield_family_lane_factory_37fp_current702_20260614.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5923,
+      "git_object_id": "cc7bcccf4cbd8ad1196cebe31beb442bb6b21b2d",
+      "path": "work/high_yield_family_lane_factory_current702_20260614.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6006,
+      "git_object_id": "3b7c5c6bff6aa9b091277ba9eee66481109cef2c",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_aldehyde_dehydrogenase_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5915,
+      "git_object_id": "a814c0f24f2f0d513ee8cfa9f2e727ca6e21c055",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_alpha_beta_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5855,
+      "git_object_id": "cc27b9a4577caf6419539709cc098b3bf5b32089",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_alpha_beta_preview_only.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6023,
+      "git_object_id": "f35da5346caec73897ea67c9739d94b9c204e18a",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_had_like_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5958,
+      "git_object_id": "fcdcbeb8b155006580d1e455555eaef136e443a7",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_pdb_backfill.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5958,
+      "git_object_id": "68b5efbe7b328721995538e22ab8c6dc6360d444",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_registry_shard.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5702,
+      "git_object_id": "6d2124ceee44c1488e93d993856dd4a4098d2600",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_ser_thr_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5773,
+      "git_object_id": "164388e509ab645448bb24a1b3116473f7325667",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_ser_thr_runner.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5958,
+      "git_object_id": "fb4fcceb6973342564c03654bdbb3bb4789db452",
+      "path": "work/high_yield_family_lane_factory_current702_20260614_post_silver_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6793,
+      "git_object_id": "0aa55045fafc1b72c84289c5ba66cfab606fd837",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_discovery_compass.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6222,
+      "git_object_id": "b6717b99f4addedd03e805a0166224cfef9e2249",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_post_aph_44fp_infra.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6215,
+      "git_object_id": "391cd1efa6e57bf9f4b3b9102cd4706b2f9c689b",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_post_aph_tier2_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6619,
+      "git_object_id": "c0fe8c597c78e256f158f990e9c87cc1146332d5",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6686,
+      "git_object_id": "8b285a7aa77c51dfa8dcdf79b8d2217307f3ee5b",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_infra.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6256,
+      "git_object_id": "5a9e9f95bd1939b4720577d73d5b02c71f437c51",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_post_pde_43fp_infra.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6221,
+      "git_object_id": "50f564051f7cf1c8a0bb72bf52f4ae39476b38da",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_run2213_post_sdr_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6215,
+      "git_object_id": "e43efad722f669e2d1664d74677f4f4d2b6d5a96",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_run2213_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6221,
+      "git_object_id": "88b592fbd0826e71922cefead0b710a29440b53f",
+      "path": "work/high_yield_family_lane_factory_current702_20260615_run2314_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "09b2ca6fbc9dac45977bfe5ee313b31a8b1c492c",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run0008_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "f57c7458b35f75417db3781014d462c892f3dd16",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run0009_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6204,
+      "git_object_id": "fca36b298fd5aa0f129e33b0e697052af42d4275",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run0014_post_sbl_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6221,
+      "git_object_id": "9f98020bcf731d8932cb7769679fe3400374758c",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run0014_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6204,
+      "git_object_id": "1a4d3160f738b04a04b81f15db9d3deb5f738b34",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run0114_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "00c62d7749f42d44b6fbe64956b2dee24f0c08ee",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run0210_post_terminal_replay.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "c41e8786692a183df593a8757f1916ecbe1d907a",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run0310_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6204,
+      "git_object_id": "bb7a8c9fa1e9c679233f607c61abf8454241cf70",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run1209_post_tier2_scout.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "edefcb79379a43022e29bbc34d3166609159bcf2",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run1302_post_pde_apply.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "a0c79bcfdb367fe96d8c939b62e784bbf01d19aa",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run1403_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "b5a32af2b7a45f8f675dcf5ea491957fdc258e33",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run1503_pre_gate.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "d6383b2ee37db1b15f6cb93854cd4def2b847083",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run1704_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "c546df9f4f50a598d54761890aa0762bbf3e2f6b",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run1804_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "0ea38515d3f467c527d8e6ea5d45c90c868e151c",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run1904_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "48784171faacc80ed1d57f58358e62653c522af1",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run2004_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "05ec4915549fc241dd13f9568dd84a72dffb808d",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run2105_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6198,
+      "git_object_id": "253e2c7f330590891afa009c390da0a42fead805",
+      "path": "work/high_yield_family_lane_factory_current702_20260616_run2205_pre_lane.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5990,
+      "git_object_id": "3f22b999bb75baa62121d382297fe92405c36c8e",
+      "path": "work/high_yield_family_lane_factory_post_terpene_current702_20260614.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 7413,
+      "git_object_id": "796760243a8932efe60523e340b87457cb2814a0",
+      "path": "work/high_yield_family_supply_scout_current702_20260614.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 2064,
+      "git_object_id": "76bbc5e37eaec5232ece239f532162899bf58f4a",
+      "path": "work/holo_structure_promotion_current702.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1614,
+      "git_object_id": "b701148c4133cc16b04466d74a7d1ae10e435f60",
+      "path": "work/holo_structure_promotion_current702_20260614_post_pdb_backfill.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1181,
+      "git_object_id": "64be8f05d87ee4080e0537a141188a74513c0142",
+      "path": "work/in_distribution_predicted_geometry_recovery_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1187,
+      "git_object_id": "495ec866e2ddb3d7ea950abe1f6f020966addf45",
+      "path": "work/in_distribution_predicted_geometry_recovery_motif_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4172,
+      "git_object_id": "06d3987bc4dcef8a9b33fb33cfdef3efb52b9771",
+      "path": "work/june9_router_fold_fusion_readout_current702_20260628.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 17559,
+      "git_object_id": "a3f608f9f44b13bf52cfa19a00342784e18fcac1",
+      "path": "work/label_factory_notes.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 784,
+      "git_object_id": "27e463b720bf8400bfc8b135013ad52f832b2042",
+      "path": "work/label_pdb_id_backfill_aldehyde_dehydrogenase_current702_20260614.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 976,
+      "git_object_id": "976721354a27f9d2134e9174ec229fbbe5cbb3ea",
+      "path": "work/label_pdb_id_backfill_current702_20260614_fifth_chunk.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 978,
+      "git_object_id": "58bd172b5110af5a855da34b00e080256c8907b1",
+      "path": "work/label_pdb_id_backfill_current702_20260614_fourth_chunk.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 974,
+      "git_object_id": "42144cd72a7dcebed16f4e75f563f43808fd31f2",
+      "path": "work/label_pdb_id_backfill_current702_20260614_post_registry_shard.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 973,
+      "git_object_id": "1370d3377231bcb8eb31bb3df8571b59a2909967",
+      "path": "work/label_pdb_id_backfill_current702_20260614_post_ser_thr_apply_limit150.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 973,
+      "git_object_id": "ddff83d6630bf5b1fc13b0f684146251adac7453",
+      "path": "work/label_pdb_id_backfill_current702_20260614_post_silver_apply_remaining.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 975,
+      "git_object_id": "187300df6b004566be1b628bd0157d0f1873da1f",
+      "path": "work/label_pdb_id_backfill_current702_20260614_second_chunk.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 977,
+      "git_object_id": "ac27d46edd0963a2b5fda7ac0d48a3b02a5da19f",
+      "path": "work/label_pdb_id_backfill_current702_20260614_third_chunk.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 407,
+      "git_object_id": "602ac2ab41cf3f552afaca5d5b1b7286d4fb37b1",
+      "path": "work/label_pdb_id_backfill_preview_ser_thr_protein_phosphatase_current702_20260614_post_ser_thr_apply.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1567,
+      "git_object_id": "375f163fe6813add5d4881c6dca2d607de5d750f",
+      "path": "work/label_preview_1000_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 8517,
+      "git_object_id": "0c904ff5ad37827da322656fcb6a0a0619b8cf40",
+      "path": "work/label_preview_1025_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 5724,
+      "git_object_id": "94adcd80dcb106fbdc6db36280cc38747d90343f",
+      "path": "work/label_preview_675_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 9725,
+      "git_object_id": "1285874f483181ed85f5dfafeeb12d7bddf8f33b",
+      "path": "work/label_preview_700_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 3380,
+      "git_object_id": "edfa2a4381bc10c664e514dbe0d0e65653284896",
+      "path": "work/label_preview_725_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1663,
+      "git_object_id": "8d8b37dead7c9fe2b18375ae63b8d7c6afa4450c",
+      "path": "work/label_preview_750_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1877,
+      "git_object_id": "c5f9098069deb182144c97a7c46008f2c9388bb9",
+      "path": "work/label_preview_775_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1819,
+      "git_object_id": "4c745561773845252b2089c0710ac7af547a7213",
+      "path": "work/label_preview_850_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1803,
+      "git_object_id": "ec5955e666d6af65aef70782fab113910ad856c8",
+      "path": "work/label_preview_950_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1513,
+      "git_object_id": "9816d849d324e540c72c7da1894c82bc0e122c91",
+      "path": "work/label_preview_975_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 5151,
+      "git_object_id": "a47b9ceaa7668359f997c07f4f0f65240cd504d9",
+      "path": "work/label_queue_500_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 3060,
+      "git_object_id": "f59ff17a8fb86792a47657c34b72c212bdbc3bac",
+      "path": "work/label_queue_525_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 3229,
+      "git_object_id": "55cb8d9335da298d7a6ea427cd2497fad35ac0b8",
+      "path": "work/label_queue_550_notes.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1297,
+      "git_object_id": "8886909d565862446df58a95eb0b1efd3289491e",
+      "path": "work/label_sequence_backfill_current702.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 1924,
+      "git_object_id": "b532ea62439eb175ac84700f5c1ff7ea1d048ba9",
+      "path": "work/label_structure_backfill_current702.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3320,
+      "git_object_id": "a4d9d6da314e34e6dcba0ca8094a719be118e18f",
+      "path": "work/learned_mechanism_feature_embedding_plan_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 8227,
+      "git_object_id": "f0df39f07a120e306cdf96ea78c1257204f22a08",
+      "path": "work/lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3892,
+      "git_object_id": "0b6bd481a9f5509189eff179ebd277a709e403fe",
+      "path": "work/lever2_event_axis_bond_signature_excluded_frontier_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4607,
+      "git_object_id": "6b6aca530938eaa7e511f72c69220bc0cc8ff5e4",
+      "path": "work/lever2_event_axis_current_extended_frontier_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5496,
+      "git_object_id": "e6a9e1928b3b32c9000d38777c758888dab39d3d",
+      "path": "work/lever2_event_axis_loo_current_extended_frontier_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3692,
+      "git_object_id": "377717dfe4732d052a1988d2b8dc2eb61b3eecf0",
+      "path": "work/lever2_event_axis_primary_controlled_null_altseed_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3602,
+      "git_object_id": "aeceb362872420e7199bba4ca4da12fe1b6a0052",
+      "path": "work/lever2_event_axis_primary_controlled_null_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4364,
+      "git_object_id": "8995c97017e1e9890ff35cad77ec93e8ea5e2e84",
+      "path": "work/lever2_event_axis_primary_controlled_rescue_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4769,
+      "git_object_id": "aeed9edbce194372ec38bcb070d782942d0ac853",
+      "path": "work/lever2_event_axis_primary_safe_frontier_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3830,
+      "git_object_id": "195e4d844131609ba2dff729c1d11cd3cfe5db30",
+      "path": "work/lever2_event_axis_signature_excluded_frontier_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2358,
+      "git_object_id": "466b8764698bd9298a3742e160e2df97a4f3119c",
+      "path": "work/lever2_event_axis_signature_exclusion_sensitivity_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4699,
+      "git_object_id": "a47d212cc26841a0515ea02d53613bf0fa133f09",
+      "path": "work/lever2_event_motif_interaction_null_altseed_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4659,
+      "git_object_id": "52ea48ed03b8746763ccadc4ac5b7c1f796176e9",
+      "path": "work/lever2_event_motif_interaction_null_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5768,
+      "git_object_id": "8e8e7bf6dfae3a9c687dcdfec515a9627bf993dd",
+      "path": "work/lever2_mechanism_feature_incremental_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 295285,
+      "git_object_id": "806802ae5fca2b293f4826b8a6eae3a016465e2e",
+      "path": "work/lever2_research_handoff.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3488,
+      "git_object_id": "a9ebc2870ad5ee3b3c42a70f6d52153a216931b2",
+      "path": "work/lever2_source_free_electron_flow_acquisition_ceiling_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3480,
+      "git_object_id": "d152f965d01cc7fe153df7440e8cdcb4dacc1202",
+      "path": "work/lever2_source_free_electron_flow_approval_import_candidate_sidecar_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3337,
+      "git_object_id": "2205a81c48785ae4db1085bdb838b13adb36e634",
+      "path": "work/lever2_source_free_electron_flow_approval_import_delta_package_contract_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2665,
+      "git_object_id": "dafe7070c15d80c8781e9c14d1d18d472de2c648",
+      "path": "work/lever2_source_free_electron_flow_approval_import_delta_package_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4171,
+      "git_object_id": "56c9268f28e4b51d14692bae4c551da7c94dc39e",
+      "path": "work/lever2_source_free_electron_flow_approval_import_dry_run_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4979,
+      "git_object_id": "321912da66e4ef9004b1b1769e8030e9b96cc3d0",
+      "path": "work/lever2_source_free_electron_flow_approval_import_smoke_materialization_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3800,
+      "git_object_id": "372115b982ecc5b4a6099000054ec227c77be13b",
+      "path": "work/lever2_source_free_electron_flow_approval_import_smoke_review_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4095,
+      "git_object_id": "adab3b1ceffad0e00fb015737c08c94daf511eca",
+      "path": "work/lever2_source_free_electron_flow_candidate_train_cal_bundle_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3123,
+      "git_object_id": "4e804d61be546b74c9dc914161a2a45d0d9e37bc",
+      "path": "work/lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5807,
+      "git_object_id": "05694ed3870155200cee300281a6172a1b86396d",
+      "path": "work/lever2_source_free_electron_flow_coordinate_proxy_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3266,
+      "git_object_id": "1fefed1a5a0c559b4c4ff173e2fffd4973d58953",
+      "path": "work/lever2_source_free_electron_flow_current_split_field_sensitivity_readout_current702_20260606.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2720,
+      "git_object_id": "e4103c6ec999b8afcc8d6416b29cd38b64d83073",
+      "path": "work/lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2613,
+      "git_object_id": "871fbe73ba94ef7ea424241632093eb87f5b0038",
+      "path": "work/lever2_source_free_electron_flow_current_split_row_gate_audit_readout_current702_20260606.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2953,
+      "git_object_id": "7dba3c4e13d44fb3168507366463eb3c3ab23991",
+      "path": "work/lever2_source_free_electron_flow_current_split_sensitivity_readout_current702_20260606.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3544,
+      "git_object_id": "a2d0b86f149b478a36098ff653ee69fe1c7fec01",
+      "path": "work/lever2_source_free_electron_flow_current_split_smoke_materialization_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4324,
+      "git_object_id": "720cf76fd5ef4e9fc41a0d760557fbf58d8bbd01",
+      "path": "work/lever2_source_free_electron_flow_donor_acceptor_contact_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3240,
+      "git_object_id": "b894532db458e572a0a6bee0ded5451405982f6c",
+      "path": "work/lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5015,
+      "git_object_id": "4fee398a3e668848eeae15d5b8826fee704ec979",
+      "path": "work/lever2_source_free_electron_flow_iron_sulfur_projection_support_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4465,
+      "git_object_id": "5e22f6a3e9c72dc031cda80a59fff9a789619101",
+      "path": "work/lever2_source_free_electron_flow_iron_sulfur_support_subset_preflight_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5403,
+      "git_object_id": "e866228daa65f7628c0c506a44fc37f21c57a1ba",
+      "path": "work/lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2596,
+      "git_object_id": "ce5e5b032bd121ab8bdc4c072b18e75ed1744a6b",
+      "path": "work/lever2_source_free_electron_flow_pqq_current_split_sidecar_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2732,
+      "git_object_id": "09a475bbac5427afbc1992559824773b0c44f2d3",
+      "path": "work/lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4909,
+      "git_object_id": "766faf1ebfcd6ee03d753cbc5b07e73aba7fdad3",
+      "path": "work/lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3431,
+      "git_object_id": "cfab15ccea7256989f6d3f88c0a2e72419f0cfbf",
+      "path": "work/lever2_source_free_electron_flow_pqq_primitive_axis_audit_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2645,
+      "git_object_id": "f50973893dcd672159ac0494904807fe8f6456f8",
+      "path": "work/lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2552,
+      "git_object_id": "d9bf7b8b51c0f254b7d14702a02a47a8d7742274",
+      "path": "work/lever2_source_free_electron_flow_protected_import_sequence_preflight_readout_current702_20260606.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2847,
+      "git_object_id": "6b2461d89ca909f1524b1c5fa9e0369273c0bbb0",
+      "path": "work/lever2_source_free_electron_flow_protected_train_cal_approved_sidecar_import_readout_current702_20260606.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3621,
+      "git_object_id": "f068ca7c98cf4c1e131f9e5cffda29cbab0bf1f3",
+      "path": "work/lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 8030,
+      "git_object_id": "cc5ab4682fc8c15bb015bc5d35e85c3427a49d3b",
+      "path": "work/lever2_source_free_electron_flow_smoke_tranche_evidence_scan_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 11662,
+      "git_object_id": "14d010189ffd837e22e8af74e6d80d5fe4f1246d",
+      "path": "work/lever2_source_free_electron_flow_split_alignment_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3601,
+      "git_object_id": "eb0d64e836caef468685b83155981ed91d180c3f",
+      "path": "work/lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout_current702_20260605.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2541,
+      "git_object_id": "6862c470d839b354728d41f01a1ad55478a8ae9f",
+      "path": "work/lever2_source_free_mechanism_axis_acquisition_ranking_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6409,
+      "git_object_id": "26c39f900945b0540c964b4ce1a8b1ceb39335de",
+      "path": "work/lever2_source_free_partial_surface_current_split_portability_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 5164,
+      "git_object_id": "b7647215de177fade87c2bcc12daf6b05200d963",
+      "path": "work/lomo_frozen_snapshot_transfer_current702_20260530.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 1576,
+      "git_object_id": "bf164725fa5ae0f3237bb5f5fa20ba6f9370bfc4",
+      "path": "work/m_csa497_label_revision_20260527.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3315,
+      "git_object_id": "ff2c5f1ef83541740157e566996d107edd8ce41d",
+      "path": "work/manganese_iron_superoxide_dismutase_next_lane_spec_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 503,
+      "git_object_id": "4376e645b71ba04bee06f82e1259b8c5d0e4dafd",
+      "path": "work/manganese_iron_superoxide_dismutase_row_guardrail_audit_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4710,
+      "git_object_id": "3e86f51669347c2104c3491edcf21d69b71a8c33",
+      "path": "work/manganese_iron_superoxide_dismutase_source_mechanism_scout_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2087,
+      "git_object_id": "aef74c67819f6168ffebf072552952c03877a0d7",
+      "path": "work/manganese_iron_superoxide_dismutase_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2014,
+      "git_object_id": "f323a775b1002e5955a4128f966253cb938d6ecf",
+      "path": "work/manganese_iron_superoxide_dismutase_topup_sourcing_current702_20260613.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 5673,
+      "git_object_id": "be324908427abbc29949a07712747ceb655b7bfb",
+      "path": "work/mcsa_card_enzyme_crossmap_scout_20260528.md"
+    },
+    {
+      "bundle_group": "undated",
+      "bytes": 6100,
+      "git_object_id": "d74d76e518b7a4a990c2e8d0c292911406ca55ec",
+      "path": "work/mcsa_pymol_expert_review_cockpit_plan.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 1893,
+      "git_object_id": "bbfb407ef55573acc3ccf990d6519245a12cd2f8",
+      "path": "work/mechanism_abstention_gate_eval_current702_20260531.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1545,
+      "git_object_id": "8934bf0e18bc2b7ad3c2805b3e161d2a0801d6dc",
+      "path": "work/mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 2876,
+      "git_object_id": "10d766a94ab2ae474bce9515bd4a37fe63bd7034",
+      "path": "work/mechanism_deployment_abstention_gate_eval_current702_20260531.md"
+    },
+    {
+      "bundle_group": "202605",
+      "bytes": 3670,
+      "git_object_id": "713706410661dc4b68564cadcef42997544b5a0d",
+      "path": "work/mechanism_eval_sharpening_handoff_20260525.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1377,
+      "git_object_id": "12dd7dd92e843a35198954851d9d31f7e942a5ca",
+      "path": "work/mechanism_feature_active_site_role_graph_sidecar_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 774,
+      "git_object_id": "5f9f99707de13c81ccc81c39d49ec46c6f73ab92",
+      "path": "work/mechanism_feature_cobalamin_locus_sidecar_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 775,
+      "git_object_id": "31cbe7aeca22c2eb64160fb402b50443c40fb544",
+      "path": "work/mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4531,
+      "git_object_id": "fefbe005f0ea8ca0299caa2ad5753da2b9e7d966",
+      "path": "work/mechanism_feature_embedding_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1803,
+      "git_object_id": "afabf700725842bec23e0e27382e5d81809a626a",
+      "path": "work/mechanism_feature_embedding_feature_contract_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1045,
+      "git_object_id": "58937d20c26d0e5c6ab446637e41af105ce0efed",
+      "path": "work/mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1239,
+      "git_object_id": "e4d54cf6c2c8de1097e9749c3df21f99dad3b008",
+      "path": "work/mechanism_feature_embedding_heldout_readout_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1412,
+      "git_object_id": "05db8e406d4bf8c933bd7820472609fc87ae47c8",
+      "path": "work/mechanism_feature_embedding_pilot_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 915,
+      "git_object_id": "4bf65424ca0301ec60940c0df4bc5f3502e80139",
+      "path": "work/mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1881,
+      "git_object_id": "c935bb2dcf05ffe7e85abc77a7b0abfadbf930f0",
+      "path": "work/mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1382,
+      "git_object_id": "2ac95b6aabcf61e4278b5aadaf0c05f909f0129a",
+      "path": "work/mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1714,
+      "git_object_id": "608f5f3b538c16c0fec6c9ba94306af2eeea4c29",
+      "path": "work/mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4263,
+      "git_object_id": "6c9d735862a7895a43feed86db5f978ec9462aae",
+      "path": "work/mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 925,
+      "git_object_id": "d4f01a3240d059ea9dd5b961f59692904c0e1949",
+      "path": "work/mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 885,
+      "git_object_id": "c46978906d89c44e7bfcca647b88f105a83f80b1",
+      "path": "work/mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2313,
+      "git_object_id": "f6c734476dc96d96e71851dffa1b28ad19e66e4c",
+      "path": "work/mechanism_feature_metal_ion_locus_sidecar_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1450,
+      "git_object_id": "19cbe18a8a3d6b73f389d6a04fa2ccf21a2747d0",
+      "path": "work/mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 920,
+      "git_object_id": "68e4a39e7ce773f47abb481c5893ed9ca554843a",
+      "path": "work/mechanism_feature_radical_sam_locus_sidecar_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 883,
+      "git_object_id": "b1b2e35db821413cfa4d0534f48e997dd6c2ba80",
+      "path": "work/mechanism_feature_radical_sam_locus_sidecar_schema_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1104,
+      "git_object_id": "3bef737895cf1b70e42b402eeec525b44a33c1e3",
+      "path": "work/mechanism_feature_reaction_center_template_sidecar_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3597,
+      "git_object_id": "60652749a8345116a67ed096d9a6d3e856f6106c",
+      "path": "work/mechanism_feature_residual_robustness_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 856,
+      "git_object_id": "be80ba5f2d89a6de21ce08e8f0789fc7bf124c32",
+      "path": "work/mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2613,
+      "git_object_id": "c31345e3ed671a3605290de5278429cc085ab640",
+      "path": "work/mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 708,
+      "git_object_id": "c5943ba9970065cdc183a9c41222e02e7e525d45",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 954,
+      "git_object_id": "ee8e733510bd63614ff0fd01692e16ffad99b332",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2959,
+      "git_object_id": "7739511ec8c2a751832a761e137e8ad4d0f07255",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 830,
+      "git_object_id": "5a0c80950f88d269cfc787deaf5e21ec84e502ce",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2467,
+      "git_object_id": "75f35652f64cb9ff90bb8fa6e5970d97d1031a51",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2465,
+      "git_object_id": "12f8414fbc3f86ec3cb41a99b636f7f98ddb7c19",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_no_template_rerun_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 4442,
+      "git_object_id": "d9e247b29f2286bf4ac4f2dd8f41390d4ec83700",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3928,
+      "git_object_id": "47e665df799401708085c80ba3eb36f9f23da08f",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2618,
+      "git_object_id": "4e622dae80a21bd5cd3c8c096a981fe39df96557",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2041,
+      "git_object_id": "6a1bdcfa7912f60468dc5dc2df7a34cede5ad296",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1091,
+      "git_object_id": "a546874666b4afc4c3e21776a669d6444a796522",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1632,
+      "git_object_id": "5e60c5bc2d08411e5e0c5cc0c0fec9407da854bd",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 37528,
+      "git_object_id": "9c1c43234f8319966ad26a8e45e3f2f112206306",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 994,
+      "git_object_id": "51466e964bbbfbc070ccc8a86524a05b3ddc9988",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 30563,
+      "git_object_id": "91ea2d7cd2a261376562c5ddf695441e0543fdba",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 24874,
+      "git_object_id": "1fd598e51ea4f1e34a985abbd1a8a7f04b242fa7",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 19001,
+      "git_object_id": "57bfff6b6cc4b11ac50316792cf88dd9cd682eb4",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 24955,
+      "git_object_id": "3e5182fdc72c41ae5c48611a8b1cd1bbabe8ebef",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 15751,
+      "git_object_id": "c5f405af6928f9ebd1be2d67ea9a08f5ad1f2e89",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1429,
+      "git_object_id": "a722c024a5d6054cfaa739b7c73fe8b91c6c84b0",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1744,
+      "git_object_id": "66efc6f29e97de1bd131053ba70c9ee39d04e186",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2294,
+      "git_object_id": "df7615d5650a798bb460b5a8ed1b414dc86e48e6",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2713,
+      "git_object_id": "ba65a56d4f02f6c5d7fc058cdb9a173134a429c5",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2485,
+      "git_object_id": "f2ac4a9853d1b3c1d8f53bdd17c4143ddf90e98e",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 17977,
+      "git_object_id": "37af3221cb39b4bda589dfb9f7819ae2c8e79116",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1272,
+      "git_object_id": "faf689cfab5e57ff3b206e1df388349be0365ffd",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1581,
+      "git_object_id": "658f3b8d732387bda122c909034c4c398d4365b2",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1871,
+      "git_object_id": "89b0915a6742ad438b64898776904d03a1c47649",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_coverage_gap_after_event_axis_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2146,
+      "git_object_id": "a6dad79642acb23c3c3a5fc57f46e5acb14146f0",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 9273,
+      "git_object_id": "24acf9556d9bb1752e3cae7155aafe9e81faf4b2",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5953,
+      "git_object_id": "a005e333c39406710bc7867dfc4a059ca6148235",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5953,
+      "git_object_id": "21ad346744216ee2bd4820a28cd0c7902bf3f9f8",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1382,
+      "git_object_id": "6dda22e5775e90986a1a27702cdb5e2bf6fa2c06",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1851,
+      "git_object_id": "23351d05f9b7c2e25328024062625faa2514452b",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2040,
+      "git_object_id": "101b380bfcb5e4a5d2addfd4fb06709943f45618",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 29599,
+      "git_object_id": "e9b184ad156a7d9b5b79ab9899745720ffaccd98",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2831,
+      "git_object_id": "d92a5f5adc2705d5c1319cedb95d8f9e75f364fa",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1997,
+      "git_object_id": "6e0ee0aaa640bfebb859c4e85584ed00456812b6",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6511,
+      "git_object_id": "76052c25a1f751f9c7bb3b51cdbc2ede91ad8f45",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2393,
+      "git_object_id": "5d9709cc233d2054a8c05ff38d2c88c0a05e0ce9",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 6392,
+      "git_object_id": "e70c1fe5de827d42233f259c9312cacc40a3ff1f",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5330,
+      "git_object_id": "059e63d773e8e6d12f5586ff731ff5d9fee25c60",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_current702_20260604.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1658,
+      "git_object_id": "cba0129c6872fec01e8c95c0db9b0ebc167e9912",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2830,
+      "git_object_id": "08623d9eb8de0ed56c9b8db742792a4ad23a6a69",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3147,
+      "git_object_id": "71f606588181b8953533cba219d5bbe159aa824c",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1591,
+      "git_object_id": "33d852b0ca4b39c91422ec244907cbfd11f595a6",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2025,
+      "git_object_id": "94d5bf06da13eefb47e8cb81c5377856be13ac84",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1103,
+      "git_object_id": "63711c3b0c7a423a7fdd7d758de646ba8c06b1d6",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1631,
+      "git_object_id": "061da6ad3fe13577312011454ad04d4e9f01e89d",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2754,
+      "git_object_id": "10489a6365e499eb6c60fb02e7f1637d7b5057a2",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_sidecar_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 5121,
+      "git_object_id": "3b8e31b25ffe2b07f92b76f1534a21c35e8107a5",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1696,
+      "git_object_id": "5080bc951d0b3e8ac5369179c277ac5ab69880aa",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2123,
+      "git_object_id": "50095bd84cc59515a414496620c1e31b8cbd78cb",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2117,
+      "git_object_id": "96b435f0dca931ad6280119268dd538d21e557eb",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3256,
+      "git_object_id": "9f6c65c1427b8e8569d7ebe2a6fce51dbe61b0ef",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1626,
+      "git_object_id": "4f58b07e16a2f29df5f7585500ccb8b6edd74d05",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3017,
+      "git_object_id": "168cb32e26496232a9301378c2fcea6c846af064",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2082,
+      "git_object_id": "49a7da35e2b60a738c712eac0e867a33d62b8e10",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1036,
+      "git_object_id": "7873e4a5ce9584b9c739b6877470ed2313dc5b56",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 7769,
+      "git_object_id": "9de88c3969b97f6475185fd3ab57a48cd662f497",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 701,
+      "git_object_id": "03ca661602655b231dbcae63f674d79c32262f5f",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2856,
+      "git_object_id": "a0c677468476c977bf8644f10dc8a8d19dbc8240",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_free_token_reselection_train_cal_current702_20260603.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1612,
+      "git_object_id": "c352f460d24f1644ac365ba3fa77eec8ac02fcd3",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3047,
+      "git_object_id": "acf2691148111952d3f173c45fdea8351e8440c8",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 2285,
+      "git_object_id": "7f6020ef199c645728839c7bcfc882dd3f696a71",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 796,
+      "git_object_id": "5c30256eedca05772f5d27203a0ef5d0a234a998",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3461,
+      "git_object_id": "682a78bc73bf927fbc4a0953ff17469f3ac738f6",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1006,
+      "git_object_id": "e2939827e0d0c17fc8e06f66fda5ce4306c8e4f5",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 3618,
+      "git_object_id": "95726167dc132c8cce742df6f5dd96bd851ac54c",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap_current702_20260602.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 972,
+      "git_object_id": "b74d1f9a9ff391211a2cc257c0d3c7f2051ff3b8",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1433,
+      "git_object_id": "f174ff0b7f295eafa61638fd4bdcec2deb1c3d4a",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 986,
+      "git_object_id": "a703db677355f0e0e600256e89bb1f984f5630fe",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 850,
+      "git_object_id": "14e8ae4cfebc2770655cd3df3545288a6a4fd64c",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 934,
+      "git_object_id": "3f39f0d20cb7107dd139170c3d975332f38629e6",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1074,
+      "git_object_id": "979607f8364fc4dc7ac93c790cbd292436b1049c",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.md"
+    },
+    {
+      "bundle_group": "202606",
+      "bytes": 1180,
+      "git_object_id": "0a58a7812854ed297b327279339cf75d5369abe5",
+      "path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.md"
     },
     {
       "bundle_group": "202606",
