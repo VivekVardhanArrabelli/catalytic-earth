@@ -1,60 +1,53 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — Huber benchmark narrowed, 2026-10-09
+## Current research handoff — Huber DMS route stopped, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T163745Z`, shared-control
-  epoch 9, from merged main `dc8947d9e2029a2dc5ab1d181d8ddb2487422218`.
-  PRs #143–#148, the Choi stop and all frozen evidence were preserved. Three
-  complementary same-model source/data/critical reviews were used; they are not
-  independent expert review.
-- **Question:** can Huber et al.'s public exact-sequence DNA-recording panel
-  support the inherited family- or substrate-held-out sequence-specificity
-  benchmark with comparable quantitative negatives?
-- **Finding:** no for that proposed split. The author ML task contains one
-  TEVp-I scaffold, six mutable protease positions and 20 ENLYFQX substrates.
-  The model receives only the six protease residues and emits 20
-  substrate-specific heads, so family holdout is impossible and substrate
-  holdout is not the released task. The fixed 1,000-variant test is randomly
-  selected from 1,625 fully measured AB variants with at least 100 reads per
-  substrate; the paper's design analysis explicitly emulates search on these
-  already measured outcomes. This is an exposed, coverage-selected retrospective
-  test, not a new prospective cohort.
-- **Endpoint and identity:** the released code supplies the constant full parent
-  sequence and mutation-block mapping, and the raw campaign reproduces the
-  1,625-row complete cohort and seed-42 test identity. The recorder provides
-  continuous fraction-flipped AUC4h, reads and within-screen quantitative
-  negatives. It subtracts screen-specific inactive controls, sets values inside
-  their 95% interval to zero and retains a small C151A binding contribution.
-  Raw AUC is not a common cleavage scale across screens, and reporter activation
-  does not localize the peptide bond. Selected post-screen FRET checks cannot
-  calibrate the full panel. The primary Methods report hysteretic thresholds
-  p1=0.01/p2=0.1, while archived code/config use 0.01/0.05; any later work must
-  freeze and disclose a sensitivity analysis rather than silently choose one.
-- **Decision:** do not repeat the spent random split or preregister it as family
-  or substrate generalization. The only supported scope is retrospective
-  within-scaffold reporter-activity prediction; it cannot show intended-bond
-  cleavage, rate, de novo design, new-scaffold transfer or Problem 8 success.
-  Exact hashes, reconstruction counts and boundaries are in
-  `tools/research_lanes/protease_retargeting/huber_reporter_benchmark_qualification.json`.
-- **Next consequential action:** qualify and preregister the separate, single-
-  campaign TEVp-0 single-mutant by 134 single-mutant-substrate matrix for
-  two-axis blocked folds. Compare a row-plus-column additive baseline with
-  Hamming/biochemical interaction and Atlas representations. Continue only if
-  exact construct/control provenance survives and interaction information beats
-  the additive baseline on every frozen fold; otherwise stop. Any result remains
-  retrospective reporter generalization.
-- **Acquisition incident:** the two source-repository clones materialized known
-  pack files totaling 96,056,357 bytes before size inspection, exceeding the
-  new batch's default 30 MiB cap. Further acquisition for
-  `huber_reporter_audit_20261009` is stopped. The 864 MB processed and 37 MB raw
-  release assets were not downloaded; the checked-in raw archive was sufficient.
-  This breach is recorded rather than used to reset the allowance.
-- **Boundaries:** no model, scorer, training, paid compute, provider mutation,
-  separately billed API, lab order or outreach. Prime remains disabled; USD 8
-  per job and USD 50 per Chicago month are unchanged. Protected registries and
-  prior outcomes remain frozen.
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T180010Z`, shared-control
+  epoch 10, from merged main `ebc95193ac2cbe9e1cd52ee424d43f58dfb652eb`.
+  PRs #143–#149, the prior Huber audit
+  and all frozen evidence were preserved. No subagent was needed for this
+  bounded source/data qualification; same-model review is not independent
+  expert review.
+- **Question:** can the TEVp-0 single-mutant by 134 single-mutant-substrate
+  screen support the inherited interaction-generalization benchmark against a
+  row-plus-column additive baseline?
+- **Finding:** no from the bounded released artifacts. The checked-in exact-pair
+  aggregate contains 366,077 eligible parent/single-mutant pairs, 4,437
+  proteases and 134 substrates—10,980 pairs more than the paper's processed
+  355,097-pair matrix. It predates the authors' barcode-level mutated-backbone,
+  replicate-divergence, false-positive and positive-control corrections. The
+  published Fig. 2d workbook retains processed activity values but only
+  substrate position/amino-acid fields, not TEVp identity. The two artifacts
+  cannot be losslessly joined.
+- **Acquisition stop:** reconstructing the paper cohort requires the released
+  35,178,112-byte barcode-level archive, which exceeds the 31,457,280-byte batch
+  cap even alone. It was not downloaded. The new
+  `huber_dms_qualification_20261009` batch used 24,044,544 known response-body
+  bytes and stopped within cap. Exact paths, hashes, counts and selected XLSX
+  member boundaries are in
+  `tools/research_lanes/protease_retargeting/huber_dms_benchmark_qualification.json`.
+- **Split correction:** checkerboard pair holdout keeps every test protease and
+  substrate represented with other partners in training, so a row-plus-column
+  baseline is identifiable; it measures new-combination interpolation. A true
+  double-cold row-and-column holdout makes those identity effects unestimable
+  and needs descriptor-based baselines. The inherited phrase “two-axis blocked”
+  conflated these tasks. No fold outcomes were computed.
+- **Decision:** do not preregister or score the Huber DMS route from a
+  contaminated raw cohort or identity-stripped processed table. This closes the
+  proposed follow-on without weakening the endpoint. It does not challenge the
+  paper's experimental screen; it limits a new exact-pair benchmark.
+- **Next consequential action:** qualify one different public single-campaign
+  cleavage matrix whose processed table retains exact enzyme identity, exact
+  substrate identity, quantitative negatives and the complete filtering
+  contract in one bounded artifact. Stop after one candidate if any element is
+  absent; do not resume serial dataset hunting or substitute reporter-only
+  convenience for intended-bond evidence.
+- **Boundaries:** no model, scorer, fold evaluation, training, paid compute,
+  provider mutation, separately billed API, lab order or outreach. Prime
+  remains disabled; USD 8 per job and USD 50 per Chicago month are unchanged.
+  Protected registries and prior outcomes remain frozen.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue
