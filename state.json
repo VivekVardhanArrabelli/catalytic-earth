@@ -10,9 +10,9 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": null,
-    "repository_commit": null,
-    "workers_terminal": false
+    "repository_branch": "codex/cloud-research-team",
+    "repository_commit": "510e6629ee117f01ec07fd19876111bc16383ca4",
+    "workers_terminal": true
   },
   "coordinator": {
     "epoch": 1,
