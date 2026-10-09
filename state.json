@@ -1,0 +1,32 @@
+{
+  "active_run_id": null,
+  "budget": {
+    "calendar_month_cap_cents": 5000,
+    "currency": "USD",
+    "funding_source": "prime_intellect_usd_authorization",
+    "job_cap_cents": 800,
+    "ledger": [],
+    "reconciled_months": [],
+    "timezone": "America/Chicago"
+  },
+  "checkpoint": {
+    "repository_branch": null,
+    "repository_commit": null,
+    "workers_terminal": false
+  },
+  "coordinator": {
+    "epoch": 0,
+    "heartbeat_at": null,
+    "lease_expires_at": null,
+    "owner": null
+  },
+  "job": null,
+  "job_history": [],
+  "phase": "idle",
+  "recovery": {
+    "claimed_at": null,
+    "previous_owner": null,
+    "required": false
+  },
+  "schema_version": "catalytic-earth.cloud-research-control.v1"
+}
