@@ -147,6 +147,28 @@ eligibility record and exact reopen condition are retained in
 these inputs; reopen only with product-verified bonds and matched, calibrated
 rates for at least two distinct targets.
 
+A separate public-source search found one compact panel that does meet the
+pre-compute eligibility rule without repairing or reopening the retained design
+paper. Packer, Rees and Liu's evolved TEV L2F study supplies two exactly defined
+protease constructs and two exact synthetic substrates in one calibrated HPLC
+assay. The resulting four cells contain three fitted kinetic positives and one
+explicitly censored negative: wild-type TEV S219V produced no detectable
+HPLVGHM product after 30 minutes at 1 micromolar enzyme and 2 millimolar
+substrate, with a 1 nanomolar product detection limit. Synthetic product
+standards bind the intended ENLYFQ/S and HPLVGH/M bonds to the HPLC readout, and
+full-length IL-23 LC-MS independently supports the HPLVGH/M cut.
+
+The frozen source record is [tev_l2f_discrimination.json](tev_l2f_discrimination.json).
+It is an **exposed four-cell calibration challenge**, not an untouched holdout
+or broad benchmark. Its defensible future question is whether a score recovers
+the protease-by-substrate interaction: L2F gains measurable target cleavage
+without losing native-substrate activity. It cannot establish cross-family
+generalization, de novo design success or zinc-protease transfer. Larger qPISA,
+MMP-FRET and MSP-MS panels each miss either per-peptide product/bond verification
+or calibrated negatives, so they remain method templates rather than appended
+labels. The source search stops here unless a future computation first requires
+a larger panel and states a new eligibility rule.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected

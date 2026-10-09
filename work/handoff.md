@@ -1,46 +1,48 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — intended-bond specificity feasibility, 2026-10-09
+## Current research handoff — public matched discrimination panel, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T110027Z`, shared-control
-  epoch 3, from main `11fbdf895375f51381f9b6e69b0357d4a5005181`. Recovered the idle record,
-  retained one reservation and first completed prior PR #142 as merge
-  `c66bdac9b579a114d6b9e862b970126c90089251` after all four CI jobs passed.
-  Cloud shell and authenticated connector writes were exercised. Schedule
-  `6ac8bd9adeb8819096b82a61101ea18a` is enabled hourly, America/Chicago, new chat
-  per run; ChatGPT `6ac8bdc8-da70-83e8-882d-fad7426c02f8`, backend
-  `01a12025-6266-72bd-baff-32b480c64037` on durable. Saved schedule model is
-  GPT-5.6 Sol Ultra; actual execution model remains unexposed.
-- **Question/finding:** can retained author primary data support a sequence- and
-  dose-matched intended-bond specificity comparison on more than one target?
-  No: zero target systems meet the full eligibility rule. TDPn3 has an intended
-  cut and product-mass support, but its specificity alias is not sequence-bound
-  and fluorescence is uncalibrated. SAAc8 and AbetaF3 lack explicit intended
-  and observed product bonds plus explicit ED9 panel doses. TDPr3 is another
-  enzyme for the same TDP peptide, has two supported cuts and shares the panel
-  identity conflict. This closes the proposed source route; it cannot qualify
-  a computational specificity score.
-- **Evidence/limits:** structured per-target criteria and reopen condition are in
-  `tools/research_lanes/protease_retargeting/target_comparison.json`; the evidence
-  guide summarizes the decision. This composes already retained v3 main,
-  supplement, Table S2/S4/S8, ED9 and author-archive evidence. No new source
-  request or experimental/model run. Qualitative restricted-panel preference
-  and cognate kinetic values remain valid but are not cross-target specificity.
-- **Alternative/direction:** the stronger source-search alternative cannot repair
-  missing product identity or reporter calibration in the retained public data.
-  Keep TDPn3 as a positive bond-registration constraint and require matched,
-  calibrated product rates for at least two distinct targets before reopening.
-  Problem 8 remains primary; Atlas gains an explicit assay-eligibility constraint,
-  not a design-success claim.
-- **Next action:** identify one public matched cleavage panel that binds exact
-  protease and substrate sequences to product-verified cut sites plus quantitative
-  negatives, and test whether it can support a pre-compute substrate-discrimination
-  benchmark. Stop if only heterogeneous database annotations or uncalibrated
-  reporter panels are available; do not treat native-protease specificity as
-  validation of de novo target programming.
-- **Publication/boundaries:** branch `codex/protease-specificity-feasibility`.
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T120252Z`, shared-control
+  epoch 4, from merged main `a60a6c8e9d6db6c96ecccf41d41ce9df535c4c1a`.
+  Prior PR #143 and its zero-eligible-target result were preserved; this run
+  pursued its explicit alternative rather than reopening the retained source.
+- **Question/finding:** does one public engineered-protease study contain exact
+  construct identities and substrate sequences, product-verified intended bonds,
+  matched quantitative positives and a bounded quantitative negative? Yes, in a
+  deliberately small four-cell panel. Packer et al. (2017) report TEV S219V and
+  evolved TEV L2F against ENLYFQS and HPLVGHM in one product-calibrated HPLC
+  assay: three kinetic positives plus wild-type/HPLVGHM nondetection at a stated
+  1 nM product limit after 30 min with 1 uM enzyme and 2 mM substrate. L2F's
+  complete 20-mutation genotype is public; synthetic product standards specify
+  both scissile bonds, and full-length IL-23 LC-MS independently supports
+  HPLVGH/M.
+- **Evidence/limits:** the exact constructs, assay peptides, product standards,
+  2x2 kinetic matrix, censoring rule and provenance are frozen in
+  `tools/research_lanes/protease_retargeting/tev_l2f_discrimination.json` from
+  DOI `10.1038/s41467-017-01055-9`, PMCID `PMC5643515`, Supplementary Table 11,
+  Addgene MSP851/98798 and BioProject PRJNA397152. This is exposed development
+  evidence, not an untouched holdout. Four cells cannot establish broad
+  specificity, cross-family transfer, de novo success or Atlas advantage.
+  New batch `tev_l2f_matched_panel_20261009` used 6 successful shell requests
+  and 25,648,340/31,457,280 bytes, including two complete supplement downloads;
+  search-index lookups are not byte-counted. The retained Chen-v3 batch stays
+  92/100 requests and 30,250,296/31,457,280 bytes.
+- **Alternative/direction:** qPISA has matched quantitative substrate depletion
+  but no per-peptide product/bond verification; CleaveNet's MMP panel has a larger
+  replicated FRET matrix but no localized products; MSP-MS localizes cuts but its
+  unobserved sites are not calibrated negatives. The compact TEV panel is the
+  strongest qualifying source because it keeps product identity, rates and the
+  negative bound in one assay. Native/evolved TEV does not validate designed zinc
+  proteases; it is only a calibration case for substrate-discrimination logic.
+- **Next action:** before any score is run, specify one sequence/structure scoring
+  rule and a protease-by-substrate interaction endpoint on these four frozen
+  cells. Compare it with the simplest sequence-only positional model. Stop after
+  this calibration if both methods miss the evolved target gain, if the result
+  depends on replacing the censored negative with zero, or if the four exposed
+  cells cannot discriminate the methods; do not add post hoc source panels.
+- **Publication/boundaries:** branch `codex/tev-l2f-discrimination`.
   No paid launch, provider mutation, separately billed API, lab order or outreach.
   Prime remains disabled pending cloud credentials, reconciled billing, durable
   retrieval and independent termination tests. USD 8/job and USD 50/Chicago

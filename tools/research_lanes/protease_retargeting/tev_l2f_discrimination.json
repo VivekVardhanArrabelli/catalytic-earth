@@ -1,0 +1,183 @@
+{
+  "record_type": "source_faithful_matched_protease_substrate_discrimination_panel",
+  "status": "development_evidence_not_canonical_atlas_admission",
+  "created_utc": "2026-10-09T12:20:00Z",
+  "question": "Can one public engineered-protease study supply exact construct identities, exact substrate sequences, product-verified intended bonds, matched quantitative positives, and a bounded quantitative negative before any computational scoring rule is selected?",
+  "source": {
+    "title": "Phage-assisted continuous evolution of proteases with altered substrate specificity",
+    "authors": [
+      "Michael S. Packer",
+      "Holly A. Rees",
+      "David R. Liu"
+    ],
+    "journal": "Nature Communications",
+    "year": 2017,
+    "doi": "10.1038/s41467-017-01055-9",
+    "pmcid": "PMC5643515",
+    "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5643515/",
+    "supplement_url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5643515/bin/41467_2017_1055_MOESM1_ESM.pdf",
+    "raw_specificity_reads": "NCBI BioProject PRJNA397152",
+    "construct_repository": "https://www.addgene.org/98798/",
+    "license": "CC BY 4.0"
+  },
+  "eligibility_rule": {
+    "required": [
+      "exact and reconstructible protease identity",
+      "exact assayed substrate sequence",
+      "explicit intended scissile bond",
+      "product-specific quantitative measurement",
+      "at least one matched positive and one quantitative negative or censored upper bound",
+      "common assay chemistry and stated conditions"
+    ],
+    "eligible": true,
+    "scope": "A four-cell calibration panel only; it is not an untouched holdout, a broad specificity benchmark, or evidence of de novo design success."
+  },
+  "proteases": [
+    {
+      "id": "TEV_S219V_paper_wild_type",
+      "source_identity": "Mature 242-residue TEV NIa protease sequence from UniProt P04517 with the self-cleavage-resistant S219V substitution; the paper explicitly calls this construct wild-type.",
+      "reference_accession": "UniProt P04517",
+      "mutations_from_reference": [
+        "S219V"
+      ],
+      "source_locator": "Main text, first PACE validation paragraph"
+    },
+    {
+      "id": "TEV_L2F",
+      "source_identity": "TEV_S219V_paper_wild_type plus the complete 20-nonsilent-mutation genotype listed below; Addgene plasmid MSP851 / 98798 is the deposited expression construct.",
+      "reference_accession": "UniProt P04517",
+      "background_mutations": [
+        "S219V"
+      ],
+      "evolved_mutations": [
+        "T17S",
+        "H28L",
+        "T30A",
+        "N68D",
+        "E107D",
+        "D127A",
+        "F132L",
+        "S135F",
+        "T146S",
+        "D148P",
+        "S153N",
+        "F162S",
+        "S170A",
+        "N171D",
+        "N176T",
+        "N177M",
+        "V209M",
+        "W211I",
+        "M218F",
+        "K229E"
+      ],
+      "disambiguation": "Use Supplementary Table 11's selected L2F genotype. Do not substitute the different trajectory-2 stage-8 representative in main Table 1, which carries T146C rather than L2F's T146S.",
+      "addgene": {
+        "name": "MSP851",
+        "catalog_id": 98798,
+        "url": "https://www.addgene.org/98798/"
+      },
+      "source_locator": "Supplementary Table 11"
+    }
+  ],
+  "substrates": [
+    {
+      "id": "TEV_native_peptide",
+      "recognition_heptapeptide": "ENLYFQS",
+      "intended_bond": "ENLYFQ/S",
+      "assayed_peptide": "TENLYFQSGTRRW-DNP-Lys",
+      "quantified_product_standard": "SGTRRW-DNP-Lys"
+    },
+    {
+      "id": "IL23_target_peptide",
+      "recognition_heptapeptide": "HPLVGHM",
+      "intended_bond": "HPLVGH/M",
+      "assayed_peptide": "THPLVGHMGTRRW-DNP-Lys",
+      "quantified_product_standard": "MGTRRW-DNP-Lys",
+      "full_length_product_confirmation": "LC-MS of cleaved heterodimeric human IL-23 found one product 3598 Da below the starting IL-23p19 mass, matching cleavage at HPLVGH/M.",
+      "protein_context_limit": "With isolated IL-23p19 and excess L2F, LC-MS also supported secondary cleavage at ARVFAH/G. The peptide-panel target positive therefore does not establish unique-site specificity in every protein context."
+    }
+  ],
+  "assay": {
+    "readout": "Reverse-phase C18 HPLC quantification against synthetic cleaved-product standard curves at 355 nm",
+    "reaction_conditions": "0.05-0.1 micromolar protease, 50 micromolar to 2 millimolar substrate, 30 C, 10 min; progress constrained below 25 percent substrate consumption and fitted to Michaelis-Menten kinetics.",
+    "negative_control_condition": "For wild-type TEV on HPLVGHM, no product was observed after 30 min with 1 micromolar protease and 2 millimolar substrate; product limit of detection was 1 nanomolar.",
+    "replication": "Kinetic reactions were conducted in triplicate after time-course checks.",
+    "source_locator": "Methods, HPLC kinetics assay; main Table 2 footnote"
+  },
+  "matched_matrix": [
+    {
+      "protease_id": "TEV_S219V_paper_wild_type",
+      "substrate_id": "TEV_native_peptide",
+      "kcat_s_minus_1": 0.23,
+      "kcat_sd_s_minus_1": 0.011,
+      "Km_micromolar": 170,
+      "Km_sd_micromolar": 22,
+      "kcat_over_Km_s_minus_1_micromolar_minus_1": 0.0013,
+      "class": "quantitative_positive"
+    },
+    {
+      "protease_id": "TEV_S219V_paper_wild_type",
+      "substrate_id": "IL23_target_peptide",
+      "kcat_s_minus_1": null,
+      "Km_micromolar": null,
+      "kcat_over_Km_s_minus_1_micromolar_minus_1": null,
+      "class": "censored_quantitative_negative",
+      "censoring": "No product above the 1 nanomolar HPLC detection limit after 30 min at 1 micromolar protease and 2 millimolar substrate; do not replace this bound with zero or a fitted kinetic constant."
+    },
+    {
+      "protease_id": "TEV_L2F",
+      "substrate_id": "TEV_native_peptide",
+      "kcat_s_minus_1": 0.27,
+      "kcat_sd_s_minus_1": 0.019,
+      "Km_micromolar": 150,
+      "Km_sd_micromolar": 28,
+      "kcat_over_Km_s_minus_1_micromolar_minus_1": 0.0017,
+      "class": "quantitative_positive"
+    },
+    {
+      "protease_id": "TEV_L2F",
+      "substrate_id": "IL23_target_peptide",
+      "kcat_s_minus_1": 0.19,
+      "kcat_sd_s_minus_1": 0.01,
+      "Km_micromolar": 920,
+      "Km_sd_micromolar": 110,
+      "kcat_over_Km_s_minus_1_micromolar_minus_1": 0.0002,
+      "class": "quantitative_positive"
+    }
+  ],
+  "decision": {
+    "supported_use": "Freeze these four cells as an exposed calibration challenge for whether a future sequence/structure score ranks the evolved target gain while preserving the observed native-substrate activity. The primary contrast is the protease-by-substrate interaction, not the absolute difference between unrelated assays.",
+    "unsupported_uses": [
+      "training or selecting a model and then calling the same four cells an independent test",
+      "estimating generalization across protease families or target proteins",
+      "claiming product identity for every phage-display specificity-library member",
+      "claiming that IL-23 LC-MS verifies every peptide-matrix cell; it independently verifies only L2F cleavage at the target bond in protein context",
+      "treating the censored negative as exact zero",
+      "computing only on the core heptapeptides without freezing that crop before scoring; the assayed substrates include the listed flanks and DNP-lysine",
+      "validating de novo metalloprotease design or transferring TEV subsite geometry to zinc proteases"
+    ],
+    "strongest_feasible_alternatives": {
+      "qPISA": "More than 40000 exact peptides and two matched exopeptidases with quantitative substrate depletion, but individual products and scissile bonds are not verified per peptide.",
+      "CleaveNet_MMP_panel": "A 95-substrate by 12-MMP replicated quantitative FRET matrix, but fluorophore separation does not localize or identify the cleavage product.",
+      "MSP_MS_proteasome_panel": "LC-MS/MS-localized cut sites across exact peptides, but non-observed sites are censored rather than calibrated quantitative negatives."
+    },
+    "stopping_rule_met": "Yes. One compact qualifying panel was found. Stop source search and do not expand it with heterogeneous native-protease panels unless a future scoring question needs more than this four-cell calibration and states a new eligibility rule first."
+  },
+  "evidence_boundary": {
+    "exposure": "exposed_source_used_for_development_not_independent_validation",
+    "project_experiment": false,
+    "new_compute": false,
+    "wet_lab_validation": false,
+    "atlas_advantage": false
+  },
+  "source_acquisition": {
+    "batch": "tev_l2f_matched_panel_20261009",
+    "successful_shell_requests": 6,
+    "downloaded_bytes": 25648340,
+    "default_request_cap": 100,
+    "default_byte_cap": 31457280,
+    "counting_scope": "BioC article JSON, NCBI ID conversion, PMC article XML, Europe PMC full-text XML, and two complete supplementary archives. Search-index lookups are not represented as byte-exact downloads.",
+    "relationship_to_retained_v3_batch": "Separate question and source; does not reset or consume the retained Chen-v3 batch recorded in the handoff."
+  }
+}
