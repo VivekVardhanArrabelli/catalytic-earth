@@ -184,6 +184,19 @@ exposed tetrad therefore cannot fairly choose between these methods. No score
 was run, and heterogeneous cells must not be appended post hoc to rescue the
 comparison.
 
+The follow-up [PGCN TEV prospective audit](pgcn_tev_prospective_audit.json)
+separates a useful prospective library-enrichment result from a clean
+method-selection benchmark. A pretrained PGCN guided the combinatorial library
+before YESS, and the 19 released clones use new exact protease identities.
+However, those exact clones were selected after cleaved/uncleaved FACS outcomes,
+the release omits the exact TEV train/validation/test membership, and no aligned
+sequence-baseline predictions are released for the 19 cases. The tag-loss YESS
+endpoint establishes broad binary reporter cleavage rather than product mapping
+to the intended Q/A bond. This route therefore stops without model execution:
+retain the qualitative library-enrichment evidence, but do not call the 19
+clones a frozen intended-bond prospective benchmark or use them to choose PGCN
+over a sequence baseline.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected
