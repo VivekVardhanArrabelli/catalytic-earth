@@ -5,6 +5,12 @@ They carry the shared ambition, scientific independence and obligation to
 reconsider the approach into every research session, including scheduled runs.
 
 Effective 2026-09-09; task-selection corrections 2026-09-12, 2026-09-28 and 2026-10-09.
+The owner-requested [cloud research team](CLOUD_RESEARCH.md) supersedes the local
+deployment and compute restrictions below for its verified cloud deployment.
+Standing limits are USD 8 per Prime Intellect job and USD 50 per calendar month;
+agents use Codex/ChatGPT allowance only. The current handoff records activation status.
+Keep the older local task paused during migration.
+
 This is the standing brief for the single `catalytic-earth-work-loop`
 scheduled task. It supersedes the old Lever 3,
 predictor, minimum-duration and mandatory-artifact instructions for that task.
@@ -13,10 +19,9 @@ the saved local project each hour; Git and `work/handoff.md` carry continuity.
 The computer must be on and the desktop app running. This is ordinary scheduled
 work, without an open-ended goal.
 
-A separate direction review runs in the oversight task every twelve hours.
-Read [its current assessment and priority](SCIENTIFIC_DIRECTION.md) before
-selecting the next work. It can retarget the hourly prompt and publish necessary
-corrections under the same lock; it is not a second concurrent research writer.
+Read [the current direction assessment and priority](SCIENTIFIC_DIRECTION.md)
+before selecting work. The cloud lead owns direction review with complementary
+critical review; do not activate a second concurrent research writer.
 
 ## Scientific purpose
 
@@ -130,6 +135,8 @@ the same cooperative lock before changing repository files or Git refs. It is
 stored in the Git common directory, shared by linked worktrees. Only one lead
 may hold research ownership. Subagents work under that ownership; they do not
 independently acquire, release, commit, merge or push.
+Separate cloud clones additionally need the shared ownership procedure in
+[CLOUD_RESEARCH.md](CLOUD_RESEARCH.md); this filesystem lock alone is insufficient.
 
 Generate a unique owner token including the task ID when available and a UUID.
 Keep that token for this run; do not adopt another run's token from lock status.
@@ -196,8 +203,9 @@ Do not leave editing subagents or commands running after release.
 Use primary sources, preserve provenance and exposure history, and follow the
 current source-scoped development policy. Public acquisition is bounded by the
 existing 100-request/30-MiB limit per named batch, counted cumulatively across
-runs rather than reset each hour. Stay within current approvals; no paid
-compute, services, outreach or commissioned experiments. Preserve protected
+runs rather than reset each hour. Stay within current approvals; the cloud
+team's bounded Prime authorization is defined in CLOUD_RESEARCH.md. Other paid
+services, outreach and commissioned experiments remain unauthorized. Preserve protected
 registries, frozen kernels and benchmark claims. Same-model review is not
 independent expert review; published experiments are not project-run experiments.
 

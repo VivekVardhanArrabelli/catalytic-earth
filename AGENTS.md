@@ -79,3 +79,10 @@ and publication. Execute within current user authorization and the current
 handoff's compute, evidence and coordination boundaries. Keep the next action
 and its decision value in the existing handoff rather than creating a second
 research queue here.
+
+For the owner-requested unattended cloud team, also follow
+[the cloud research instruction](docs/CLOUD_RESEARCH.md). Standing authorization
+is Prime Intellect up to USD 8 per job and USD 50 per calendar month, with agent
+usage limited to Codex/ChatGPT allowance. Verify cloud ownership, job recovery,
+budget and independent termination before unattended paid launches. Deployment
+preparation is not activation or scientific progress.
