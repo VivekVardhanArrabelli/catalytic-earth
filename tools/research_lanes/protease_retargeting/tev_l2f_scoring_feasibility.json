@@ -1,0 +1,91 @@
+{
+  "record_type": "exposed_tetrad_scoring_feasibility_decision",
+  "status": "stop_method_comparison_panel_not_discriminating",
+  "created_utc": "2026-10-09T13:20:00Z",
+  "question": "Can the frozen TEV S219V/L2F by ENLYFQS/HPLVGHM tetrad fairly discriminate one structure-aware interaction score from the strongest simple sequence-only positional baseline?",
+  "frozen_input": "tev_l2f_discrimination.json",
+  "observed_endpoint": {
+    "supported": [
+      "TEV L2F has fitted positive kinetics on HPLVGHM while TEV S219V has no detected product under the paper's stronger 30-minute, 1 micromolar-enzyme, 2 millimolar-substrate check.",
+      "Both proteases have fitted positive kinetics on ENLYFQS; their reported catalytic-efficiency point estimates are close enough that exact native-substrate ordering is not a defensible hard gate."
+    ],
+    "not_supported": [
+      "A symmetric continuous 2 by 2 catalytic-efficiency interaction. The wild-type/HPLVGHM cell has neither kcat nor Km and its nondetection condition differs from the fitted kinetic protocol.",
+      "Replacing the censored cell with zero, the detection limit, or an invented kcat-over-Km value.",
+      "A method-superiority, generalization, de-novo-design, cross-family, Atlas-advantage, or intended-bond-prediction claim from one exposed tetrad."
+    ]
+  },
+  "prospective_score_contract": {
+    "score_orientation": "Higher S(protease, substrate) must mean greater predicted cleavage under one frozen representation and scoring protocol.",
+    "target_gain": "G_target = S(L2F, HPLVGHM) - S(S219V, HPLVGHM)",
+    "native_gain": "G_native = S(L2F, ENLYFQS) - S(S219V, ENLYFQS)",
+    "interaction": "J = G_target - G_native",
+    "primary_ordinal_pass": "G_target > 0 and J > 0",
+    "secondary_only": "S(L2F, ENLYFQS) >= S(S219V, ENLYFQS) may be reported against point estimates but is not a hard gate.",
+    "failure_conditions": [
+      "an exact tie, non-finite score, missing pose, or protocol failure in any required cell",
+      "any imputation of the censored experimental cell into the computational score",
+      "selection of crop, pose, seed, aggregation, endpoint, sign, or threshold after viewing the four scores"
+    ],
+    "interpretation": "If both methods pass or both fail, the tetrad is panel_not_discriminating. If exactly one passes, the result is only descriptive compatibility on this one exposed case."
+  },
+  "method_feasibility": {
+    "substrate_only_positional_score": {
+      "decision": "reject_as_straw_baseline",
+      "reason": "A protease-independent additive motif score has G_target = G_native = J = 0 by construction and cannot represent retargeting."
+    },
+    "protease_specific_sequence_positional_score": {
+      "decision": "credible_baseline_but_not_independent_on_this_tetrad",
+      "reason": "A WT-specific and L2F-specific positional model can represent the interaction, but the public specificity profiles were generated on these exact proteases and explicitly show the L2F shift toward HPLVGHM residues. This is exposed calibration, not a held-out comparison."
+    },
+    "pgcn_structure_aware_score": {
+      "source": {
+        "citation": "Lu et al., Prediction and design of protease enzyme specificity using a structure-aware graph convolutional network, PNAS 120 e2303590120 (2023)",
+        "doi": "10.1073/pnas.2303590120",
+        "code": "https://github.com/Nucleus2014/protease-gcnn-pytorch",
+        "code_commit": "c769a0eb53f3b3ec99d53da738ad380376be9bcf"
+      },
+      "decision": "do_not_run_as_a_clean_method_comparison",
+      "reasons": [
+        "The released TEV training classification contains both WT and L2F labels, including WT_TENLYFQSGT.pdb and L2F_TENLYFQSGT.pdb, so the exact protease identities and native cell are exposed to model development.",
+        "The released README says source structures for the pretrained HCV/TEV models must be requested from the authors. Generating new graphs requires Rosetta-modeled complexes; an exact deterministic HPLVGHM inference path is therefore not reproducible from the checked-in repository alone.",
+        "No L2F/HPLVGHM structure is experimentally deposited. Choosing a modeled target pose, peptide crop, seed, decoy, or aggregation rule after inspecting this tetrad would add unbounded analyst freedom."
+      ],
+      "verified_files": {
+        "README_sha256": "c96902786caba66d486ddd0eee67f0b5bd4e360815daab34baa948f3ab115ca9",
+        "TEV_classification_sha256": "76263caa2df0438800507e938ce95baf0448dc4c384466dd0ead56c55f9a681a",
+        "TEV_model_sha256": "8dae7488b5ff1f96d06cfb29dbddb0a82e90078e924398f75caa4729152b4559"
+      }
+    }
+  },
+  "structure_template_audit": {
+    "primary_structure_source": "Phan et al., Structural basis for the substrate specificity of Tobacco Etch Virus protease, JBC (2002), DOI 10.1074/jbc.M207224200, PMID 12377789",
+    "pdb_1LVB": "The usable intact canonical-substrate template is the 2.20-Angstrom catalytically inactive C151A complex. Author chains A/B are enzyme; C/D are TENLYFQSGT peptide. P6 through P1-prime map to E302 through S308. Enzyme residues 222-236 are unresolved.",
+    "pdb_1LVM": "The 1.80-Angstrom structure is autolysis-resistant S219D with cleavage product, not intact substrate and not S219V. Product residues after Q307 are unresolved; it cannot define the scissile-bond pose required here.",
+    "l2f_coverage": "All L2F substitution sites except K229 have coordinates in 1LVB. K229 is unresolved, and no deposited S219V, L2F, or HPLVGHM-bound TEV structure exists.",
+    "consequence": "In-place mutation of HPLVGHM onto 1LVB would inherit the ENLYFQS-bound geometry despite six of seven recognition-position changes and documented N176/N177 epistasis. A contact or energy score from that pose is hypothesis-generating, not a calibrated matched specificity score."
+  },
+  "decision": {
+    "conclusion": "The tetrad is a useful source-faithful ordinal unit test but cannot fairly choose between a sequence-only positional method and a structure-aware method. No score was run; doing so now would either compare against a baseline that cannot express retargeting, reuse exposed labels, or introduce post hoc pose choices.",
+    "stopping_rule": "Met: the four exposed cells cannot discriminate methods without leakage or underdetermined structure generation. Do not add heterogeneous cells to rescue this comparison post hoc.",
+    "next_question": "Does the published PGCN TEV design validation contain a genuinely prospective, frozen train/design/test separation and measured paired outcomes for noncanonical substrates that can support a method-versus-sequence-baseline decision?",
+    "next_stop": "Stop that route if design selection used the same measured labels, if exact split membership cannot be reconstructed from released files, or if the assay supports only a broad cleavage-classification claim rather than the intended-bond claim being tested."
+  },
+  "evidence_boundary": {
+    "panel_exposure": "fully_exposed_development_calibration",
+    "project_score_run": false,
+    "new_model_training": false,
+    "paid_compute": false,
+    "wet_lab_validation": false,
+    "atlas_advantage": false
+  },
+  "source_acquisition": {
+    "batch": "pgcn_reproducibility_audit_20261009",
+    "successful_shell_requests": 1,
+    "operation": "shallow git clone of the public code repository",
+    "git_pack_bytes": 6344712,
+    "default_request_cap": 100,
+    "default_byte_cap": 31457280,
+    "relationship_to_other_batches": "Distinct method-reproducibility question; does not reset or consume the retained Chen-v3 or TEV L2F source batches."
+  }
+}

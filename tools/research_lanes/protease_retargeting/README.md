@@ -169,6 +169,21 @@ or calibrated negatives, so they remain method templates rather than appended
 labels. The source search stops here unless a future computation first requires
 a larger panel and states a new eligibility rule.
 
+The subsequent [scoring-feasibility decision](tev_l2f_scoring_feasibility.json)
+closes method selection on this tetrad before an arbitrary score is run. The
+wild-type/HPLVGHM cell is a nondetection under a stronger fixed-dose check, not
+a fitted kinetic datum, so there is no symmetric continuous 2-by-2 efficiency
+interaction. A defensible future score can use only the ordinal interaction
+`G_target > 0` and `J = G_target - G_native > 0`; it cannot impute the censored
+cell. A protease-independent motif baseline has zero interaction by construction,
+whereas a protease-specific positional baseline is already trained on exposed
+WT/L2F specificity profiles. The strongest public structure-aware comparator,
+PGCN, likewise includes WT and L2F labels and does not release the source
+Rosetta complexes needed to reproduce a deterministic HPLVGHM graph. One
+exposed tetrad therefore cannot fairly choose between these methods. No score
+was run, and heterogeneous cells must not be appended post hoc to rescue the
+comparison.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected
