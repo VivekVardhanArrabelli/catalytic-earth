@@ -199,19 +199,25 @@ over a sequence baseline.
 
 The bounded follow-on
 [public panel survey](public_bond_resolved_panel_survey.json) identifies one
-new, materially stronger candidate rather than manufacturing an external-data
-stop. Choi et al.'s version-3 de novo cysteine-protease preprint, posted on
+new, materially stronger candidate. Choi et al.'s version-3 de novo
+cysteine-protease preprint, posted on
 2026-09-21, reports 13 active designs from a 69-design cohort, supplies protein
 and plasmid sequences, reports intended-site product masses and deposits six
-structures. Unlike the outcome-selected PGCN clones, this may support a complete
-prospective success/failure cohort. It is **not qualified yet**: accessible
-top-level evidence distinguishes active and inactive designs by post-IMAC band
-state but does not establish a continuous quantitative value for every negative,
-exact per-case substrate/model pairing, or the coverage of product mapping.
-Audit the version-3 supplement once and preserve all 69 cases before any model
-execution. Stop if the tables omit attempted cases, provide only qualitative
-negatives, cannot bind products to intended bonds or lack same-case structural
-inputs.
+structures. The completed
+[qualification audit](choi_v3_benchmark_qualification.json) stops this
+all-in-one benchmark route. Accessible primary evidence does not expose a
+lossless 69-row enzyme/substrate/outcome/model join or cohort-wide quantitative
+negative calibration; the six structures are a positive-enriched validation
+subset. The 13/69 outcome was already public in version 1 in November 2025,
+and the cognate campaign has no matched noncognate cross-target matrix. The
+version-3 prose does support intended-site LC-MS for all 13 reported positives,
+but that does not turn qualitative negatives into calibrated measurements or
+measure programmable specificity. No model was run. Reopen only with a public
+hashed source bundle that resolves the named cohort and input gaps; a clean
+prospective specificity claim also requires a previously unexposed cohort and
+matched cross-target panel. The next route is a narrower, explicitly
+reporter-level sequence-generalization question on an already-public exact-pair
+dataset, not a weakened bond-resolved claim.
 
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
