@@ -1,6 +1,66 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
+## Current research handoff — Zn45 confidence budget analysis, 2026-10-09
+
+- **Run/activation:** problem8-control-search-b86a0666-e3ba-4e90-9f40-616eb0a28123; owner `cloud-work-20261009:4f22f451-34e8-4f81-93e2-ada96a09c815`, shared-control epoch 2.
+  Started 10:11:24 UTC from main `11fbdf895375f51381f9b6e69b0357d4a5005181`
+  (PR #141 merged, four CI passes per activation evidence). Cloud shell,
+  authenticated GitHub connector, shared control idle/access and a complementary
+  read-only subagent were actually exercised. Start control commit
+  `342432882fbc99919229f366069ea3d94af07ea6`; same reservation retained.
+  Schedule `6ac8bd9adeb8819096b82a61101ea18a` (Catalytic Earth — Problem 8 research), enabled
+  hourly on the hour, America/Chicago, new chat per run. ChatGPT
+  `6ac8bdc8-da70-83e8-882d-fad7426c02f8`; backend `01a12025-6266-72bd-baff-32b480c64037` on durable.
+  Saved schedule model GPT-5.6 Sol Ultra; actual execution model is not exposed.
+  Local recovery receipt: `.git/catalytic-earth-runs/problem8-control-search-b86a0666-e3ba-4e90-9f40-616eb0a28123/receipt.json`.
+- **Question/finding:** at a source-derived 19-member shortlist size, confidence
+  filtering does not establish useful subsequent activity ranking. Highest
+  mean pLDDT captures 3 elevated screening signals; lowest mean ipae_min captures
+  0 (cutoff-tie range 0–1), versus 1.711 expected under uniform selection within
+  the 211 passing variants. All 19 signals pass the existing filter. Modest
+  pLDDT enrichment is exposed retrospective evidence, not predictive validation.
+  Do not adopt lowest PAE as a scarce-retest allocator from these inputs.
+- **Evidence:** [analysis and limits](../tools/research_lanes/protease_retargeting/zn45/BUDGET_RANKING.md),
+  `budget_ranking.py`, `budget_ranking_result.json` and all 422 rows in
+  `budget_ranking_curves.csv` under that directory. Existing primary-file
+  manifest, reconstructed well/AF3 join and score definitions remain unchanged.
+  One assay well per variant, shared normalization, one scaffold/target;
+  >1.5-fold reporter slope is not intended-bond cleavage or improved turnover.
+  The executed assay window is unchanged; its inherited sensitivity remains.
+- **Direction/alternative:** no retained exact inactive control unlocks the
+  frozen TDPn3 readout: unnamed base-knockout substitution and missing catalytic
+  atoms, or unmatched Zn45 scaffold/substrate with no inactivity bound. Close
+  that route on present evidence, rather than relabel low signals or search for
+  a favorable water/context seed. The new budget consequence beats repeating
+  the same geometry rescue; retain filter-versus-rank limits for Atlas reuse.
+  No working protease, design advantage or independent biological validation
+  is claimed. Reconsideration today leaves Problem 8 primary.
+- **Next action:** bounded primary-data feasibility for a sequence- and
+  dose-matched intended-bond specificity comparison across more than one target.
+  Establish construct aliases, product identity, reporter calibration and doses
+  before selecting computational scoring. Stop if comparable endpoints cannot
+  be established; do not repeat the known alias ambiguity as new progress.
+- **Verification/publication:** complementary same-model-class review is not
+  independent expert validation; calculations and ties checked against retained
+  CSV. Reproduction, source hashes, full-curve checks, staged archive binding
+  and diff checks recorded in the run receipt. Branch
+  `codex/cloud-zn45-budget-ranking`; reviewed-head PR publication pending at
+  this staged handoff. Exact resulting SHA/CI/control completion lives in Git
+  and the recovery receipt, without self-referential follow-up commits.
+- **Execution boundaries:** no paid launch, provider mutation, API agent bill,
+  source acquisition, lab order or outreach. Prime remains disabled: cloud
+  credentials, reconciled billing, durable retrieval and independent termination
+  untested. A secret-backed Actions adapter is only an unbuilt/untested possible
+  route. USD 8/job and USD 50/Chicago month unchanged; control's empty ledger
+  does not establish zero billing. The earlier terminated rental's final charge
+  remains unresolved. No new blocker notice required for this unchanged limit.
+  Named source batch remains 92/100 requests and 30,250,296/31,457,280 bytes.
+  Frozen experiments/evidence and protected registries are preserved.
+<!-- current-research-handoff:end -->
+
+## Historical handoffs — superseded as an execution queue
+
 ## Current research handoff — cloud team deployment, 2026-10-09
 
 - **Standing execution authorization:** the owner requests hourly research in
@@ -116,9 +176,7 @@
   and 3,049,418,389 checkpoint bytes were separately authorized for this rental;
   do not reset the named source budget or treat unmetered package traffic as an
   exact receipt. Earlier acquisition receipts remain unchanged.
-<!-- current-research-handoff:end -->
 
-## Historical handoffs — superseded as an execution queue
 
 ## Session run - Option B started: M-CSA held-out EXHAUSTED; new untouched off-M-CSA bronze held-out FROZEN before any router fix (2026-06-28)
 
