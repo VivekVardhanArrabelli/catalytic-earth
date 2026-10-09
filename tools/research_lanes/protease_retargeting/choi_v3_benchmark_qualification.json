@@ -1,0 +1,72 @@
+{
+  "record_type": "public_protease_benchmark_qualification",
+  "status": "stopped_external_source_dependency",
+  "created_utc": "2026-10-09T16:18:00Z",
+  "study": {
+    "citation": "Choi et al., De novo design of cysteine proteases, bioRxiv 2025.11.21.689808 version 3",
+    "doi": "10.1101/2025.11.21.689808",
+    "version": 3,
+    "posted": "2026-09-21",
+    "primary_url": "https://www.biorxiv.org/content/10.1101/2025.11.21.689808v3",
+    "metadata_url": "https://api.biorxiv.org/details/biorxiv/10.1101/2025.11.21.689808/na/xml"
+  },
+  "question": "Can the public version-3 release support one fixed 69-case prospective comparison of sequence and structure baselines against calibrated intended-bond cleavage outcomes?",
+  "decision_rule": {
+    "qualify": "The public sources must enumerate all 69 pre-outcome attempts, preserve expression and assay attrition, provide exact paired enzyme and substrate identities, give every negative a comparable quantitative value or calibrated censoring bound, bind every positive product to the intended scissile bond, and expose same-case inputs for both baselines without invented joins.",
+    "stop": "Any missing cohort rows, qualitative-only negatives, unbound product identity, or unavailable same-case input closes this all-in-one benchmark route. Do not run a model on the top-level 13/69 summary."
+  },
+  "audit": {
+    "cohort": {
+      "supported": "The version-3 abstract reports 13 active designs among 69 tested.",
+      "unresolved": "The accessible primary metadata and indexed manuscript text do not enumerate the 69 attempts or expose expression, purification and assay attrition. A positive-led reconstruction would be outcome-selected. The same 13/69 outcome was public in version 1 on 2025-11-22, so a model selected or tuned later cannot be called a prospective test on this cohort."
+    },
+    "sequences": {
+      "supported": "Indexed version-3 manuscript text says protein sequences are in Supplementary Table 1 and complete plasmid sequences are in Supplementary Information 1 and 2.",
+      "unresolved": "The supplementary bytes and their opaque filenames could not be retrieved or inventoried, so exact 69-row enzyme-to-substrate pairing and translation checks are unavailable."
+    },
+    "negative_outcomes": {
+      "supported": "The public manuscript distinguishes active and inactive designs using post-IMAC cleavage state.",
+      "unresolved": "No cohort-wide quantitative measurement, common calibration, detection limit or censoring bound for every inactive design was accessible. A band class cannot support the frozen quantitative comparison."
+    },
+    "product_identity": {
+      "supported": "The indexed version-3 manuscript states that LC-MS of SEC-purified samples confirmed all 13 active designs cleaved precisely at the intended target site.",
+      "unresolved": "The inaccessible underlying product table prevents an independent row-level audit and inventory of any secondary products, but the primary prose supports intended-bond identity for the 13 reported positives."
+    },
+    "structure_inputs": {
+      "supported": "Six public structures exist: 9YNL, 9YNM, 9YOX, 9YOY, 9YOZ and 9YP0. They cover Dokki_15 C100A complex, Dokki_15 WT apo, Gawi_09 WT apo, HC12 C103A complex, HC12 WT complex and HC34 WT apo.",
+      "unresolved": "Six deposited structures are a validation subset, not 69 author design complexes. Exact same-case design inputs for every positive and negative were not exposed by the retrieved sources."
+    }
+  },
+  "source_access": {
+    "result": "The bioRxiv metadata API confirms version 3, its 2026-09-21 date, abstract and canonical PDF link. Direct version-3 PDF and JATS requests returned HTTP 429. The NCBI OA-package endpoint returned HTTP 404, and the PMC EFetch record explicitly withholds full-text XML. No version-3 supplementary file was retrieved.",
+    "batch": "public_bond_resolved_panel_survey_20261009",
+    "cumulative_known_direct_http_requests": 17,
+    "cumulative_persisted_response_bytes": 185438,
+    "this_run_known_direct_http_requests": 10,
+    "this_run_persisted_response_bytes": 82956,
+    "default_request_cap": 100,
+    "default_byte_cap": 31457280,
+    "transport_boundary": "Search and connector transport bytes are not exposed. Failed HTTP response bodies were not retained."
+  },
+  "conclusion": {
+    "decision": "Do not use Choi version 3 as the frozen all-in-one prospective benchmark. Publicly accessible evidence in this audit does not support a lossless 69-row cohort with calibrated negatives and same-case structure inputs; the outcomes have also been public since version 1 in November 2025.",
+    "scope": "This is an evidence-and-access stop for the proposed comparison, not a claim that the study lacks the data, not a criticism of the reported 13/69 result, and not evidence against the designed proteases.",
+    "external_dependency": "A public hashed source bundle containing the complete attempted-design table, cohort-wide quantitative assay values with detection limits and original design complexes would be required to reconstruct the activity screen. A clean prospective specificity benchmark additionally needs a previously unexposed cohort and a matched noncognate cross-target panel."
+  },
+  "strongest_alternative": {
+    "question": "Can an already-public exact-sequence protease-substrate panel support a prospective sequence-specificity generalization test even though it does not localize product bonds?",
+    "candidate": "Huber et al. 2025 DNA-recording dataset",
+    "why": "It preserves a large quantitative set of exact protease-substrate pairs and negatives. It can answer a narrower sequence-specificity question without pretending to validate intended-bond cleavage or de novo enzyme-design success.",
+    "next_action": "Audit its public train/test chronology and raw reporter calibration once, then preregister a family- or substrate-held-out sequence-only baseline if and only if the split can be fixed before scoring.",
+    "next_stop": "Stop if design choices were selected after viewing the same held-out measurements, if exact assayed constructs cannot be reconstructed, or if reporter normalization is not comparable across the proposed split."
+  },
+  "boundaries": {
+    "model_execution": false,
+    "training": false,
+    "paid_compute": false,
+    "wet_lab_validation": false,
+    "outreach": false,
+    "atlas_advantage": false,
+    "preprint_peer_reviewed": false
+  }
+}

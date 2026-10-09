@@ -1,6 +1,6 @@
 {
   "record_type": "public_protease_benchmark_survey",
-  "status": "new_candidate_requires_source_table_audit",
+  "status": "completed_candidate_failed_public_qualification",
   "created_utc": "2026-10-09T14:50:00Z",
   "question": "Does a public cleavage-site-resolved protease design study expose a pre-outcome candidate cohort, exact enzyme and substrate sequences, paired positive and quantitative negative outcomes with intended-bond product identification, and inputs for same-case structure and sequence baselines?",
   "decision_rule": {
@@ -19,7 +19,7 @@
       "structure_inputs": "The study reports six crystal structures within 1.2 angstrom C-alpha RMSD of design models; PDB 9YNL is a Dokki_15 C100A complex and 9YNM is WT apo. Public RFdiffusion2-MI code includes a cysteine-protease design example. Availability of original design complexes for every positive and negative is not yet established.",
       "negative_endpoint": "The primary figure legend distinguishes active from inactive designs by post-IMAC SDS-PAGE cleavage state. The accessible top-level record does not establish a continuous, calibrated negative value for every inactive design. This is the present qualification blocker."
     },
-    "qualification": "plausible_but_not_yet_established",
+    "qualification": "failed_public_qualification_see_choi_v3_benchmark_qualification.json",
     "blocking_questions": [
       "Does the supplement enumerate all 69 attempted designs, including expression or purification failures, before activity-based selection?",
       "Does it provide a quantitative per-design outcome for every negative rather than only a gel classification?",
@@ -48,13 +48,14 @@
     }
   ],
   "decision": {
-    "conclusion": "The one-survey stopping rule cannot yet be closed as a proven external-data dependency because the 2026-09-21 Choi version-3 release is a materially stronger candidate that plausibly contains all four elements. It is not qualified from abstract and search-visible text alone.",
-    "next_action": "Perform one source-table audit of Choi version 3 and its supplementary files. Reconstruct the complete 69-case cohort, bind exact enzyme and substrate sequences, preserve every failure, map quantitative outcomes and intended-bond product evidence, and inventory per-case structure inputs.",
-    "next_stop": "Stop and declare the public benchmark unavailable if any attempted cases are omitted, negatives lack quantitative values, positive product evidence cannot be tied to the intended bond, or same-case structure inputs cannot be formed without inventing missing identity. Do not run a model before this audit passes."
+    "conclusion": "The bounded version-3 audit did not recover a public lossless 69-row cohort with calibrated quantitative negatives and same-case structure inputs. Primary prose supports intended-site LC-MS for all 13 reported positives, but the outcome has been public since version 1 and the cognate campaign lacks a matched cross-target matrix. The all-in-one prospective specificity benchmark route is stopped; this does not assert that the authors lack additional data.",
+    "next_action": "Test a narrower, honestly labeled sequence-specificity question on a public exact-sequence quantitative panel. Audit Huber et al.'s train/test chronology and reporter calibration once before freezing any split.",
+    "next_stop": "Do not reopen Choi from snippets or run a model on 13/69. Reopen the activity-screen reconstruction only if a public hashed source bundle resolves the cohort, negative calibration and same-case inputs named in choi_v3_benchmark_qualification.json; a prospective specificity claim also requires a new unexposed cohort and matched cross-target panel."
   },
   "evidence_boundary": {
     "preprint_not_peer_reviewed": true,
-    "supplement_not_yet_audited": true,
+    "supplement_directly_audited": false,
+    "qualification_audit_complete": true,
     "new_model_execution": false,
     "new_training": false,
     "paid_compute": false,
@@ -64,10 +65,10 @@
   },
   "source_acquisition": {
     "batch": "public_bond_resolved_panel_survey_20261009",
-    "known_direct_http_requests": 7,
-    "persisted_response_bytes": 102482,
-    "successful_material": "One PMC metadata page and one NCBI BioC error body were retained locally for inspection; neither contains the version-3 supplement.",
-    "failed_material": "One version-3 PDF request and three version-3 HTML attempts returned HTTP 429; one NCBI OA endpoint returned HTTP 404.",
+    "known_direct_http_requests": 17,
+    "persisted_response_bytes": 185438,
+    "successful_material": "The retained responses include bioRxiv version metadata, a dated API listing and PMC metadata; none contains the version-3 supplement.",
+    "failed_material": "Version-3 PDF, HTML and JATS attempts returned HTTP 429; NCBI OA returned HTTP 404 and PMC EFetch withheld full-text XML.",
     "accounting_boundary": "Search and connector transport bytes are not exposed. No large archive, model weights, source supplement or binary research dataset was downloaded.",
     "default_request_cap": 100,
     "default_byte_cap": 31457280,

@@ -1,56 +1,53 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — new public bond-resolved candidate, 2026-10-09
+## Current research handoff — Choi benchmark route stopped, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T143229Z`, shared-control
-  epoch 7, from merged main `f1ff98b34aa06816a90321c209a088afa31f79d2`.
-  PRs #143–#145 and all frozen evidence were preserved. No model, scorer or paid
-  provider was run.
-- **Question:** does one public cleavage-site-resolved protease-design study
-  expose the four elements required by PR #145: a pre-outcome candidate cohort,
-  exact enzyme/substrate sequences, positive and quantitative negative outcomes
-  with intended-bond products, and same-case inputs for structure and sequence
-  baselines?
-- **Finding:** a 2026-09-21 update not covered by the earlier retained route is
-  materially stronger. Choi et al., *De novo design of cysteine proteases*
-  version 3, reports 13/69 active de novo designs, exact protein sequences in
-  Supplementary Table 1, complete plasmid sequences, intended-recognition-site
-  product masses for reported cleavages and six deposited structures within
-  1.2 angstrom C-alpha RMSD of design models. This is a plausible full-cohort
-  prospective benchmark, not another outcome-selected clone table.
-- **Qualification boundary:** it does not yet pass. Search-visible primary text
-  distinguishes active and inactive constructs by post-IMAC band state but does
-  not establish a continuous, calibrated value for every negative. The exact
-  69-row chronology, expression/purification attrition, per-case substrate/model
-  pairing, product-MS coverage and secondary products remain unaudited. The
-  preprint is not independent validation or peer review.
-- **Other candidates:** Huber's DNA recorder has large public exact-sequence
-  reporter data but evaluates design utility post hoc on measured cases and has
-  no product bond map. CleaveNet's 95-by-12 MMP panel is quantitative but
-  fluorescence-only and lacks exact assayed constructs. Chen's 7-by-6 panel has
-  cognate product evidence, but follows hit selection and does not map every
-  noncognate positive to a bond. None independently qualifies the endpoint.
-- **Decision:** do not declare the public benchmark unavailable yet, but do not
-  run a model from the top-level 13/69 claim. The exact evidence and boundaries
-  are in `tools/research_lanes/protease_retargeting/public_bond_resolved_panel_survey.json`.
-- **Next action:** audit Choi version-3 Supplementary Table 1 and source files
-  once. Reconstruct all 69 attempted cases, bind exact enzyme/substrate identity,
-  preserve expression and activity failures, map quantitative outcomes and
-  intended-bond products, and inventory per-case structure inputs. Stop and
-  record an external data dependency if attempted cases are omitted, negatives
-  are only qualitative, product identity cannot be bound to the intended bond,
-  or same-case structural inputs require invented identity.
-- **Acquisition/boundaries:** new batch
-  `public_bond_resolved_panel_survey_20261009` records seven direct HTTP attempts
-  and 102,482 retained bytes. bioRxiv returned HTTP 429 for the PDF/HTML attempts;
-  no supplement, large archive, model weights or research dataset was downloaded.
-  Search/connector transport is unexposed. Earlier source batches remain
-  unchanged. No paid launch, provider mutation, separately billed API, lab
-  order or outreach. Prime remains disabled; USD 8/job and USD 50/Chicago month
-  unchanged. Frozen evidence, protected registries and all prior outcomes are
-  preserved.
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T160301Z`, shared-control
+  epoch 8, from merged main `9e67a1cf620cef98d6b35531089983017468ef98`.
+  The previous public-panel survey, PRs #143–#147 and all frozen evidence were
+  preserved. Three complementary same-model evidence, reconstruction and
+  critical reviews were used; they are not independent expert review.
+- **Question:** can Choi et al. version 3 support one fixed 69-case prospective
+  comparison of sequence and structure baselines against calibrated
+  intended-bond cleavage outcomes?
+- **Finding:** no. The primary prose supports 13/69 activity and intended-site
+  LC-MS for all 13 reported positives, but the accessible public material does
+  not expose a lossless 69-row enzyme/substrate/outcome/model join, expression
+  and assay attrition, or a common quantitative measurement/detection bound for
+  every negative. The six structures (9YNL, 9YNM, 9YOX, 9YOY, 9YOZ, 9YP0) are a
+  positive-enriched validation subset, not same-case inputs for 69 attempts.
+  The 13/69 outcome was already public in version 1 on 2025-11-22, so a model
+  chosen later is not a prospective test on this cohort. The cognate screen also
+  lacks a matched noncognate cross-target matrix and therefore does not measure
+  programmable specificity.
+- **Decision and limit:** stop this all-in-one benchmark route and do not run a
+  sequence or structure model on the top-level summary. This is an evidence and
+  access stop, not a claim that the authors lack the data and not counterevidence
+  to the reported proteases. Reopen only with a public hashed source bundle that
+  resolves all 69 attempts, calibrated negatives and pre-assay same-case inputs;
+  a clean specificity claim additionally requires a previously unexposed cohort
+  and matched cross-target panel. Exact evidence and the fail-closed schema are
+  in `tools/research_lanes/protease_retargeting/choi_v3_benchmark_qualification.json`.
+- **Source audit:** official bioRxiv metadata confirms version 3, 2026-09-21 and
+  the canonical PDF. Direct PDF/JATS attempts returned HTTP 429; NCBI OA returned
+  404 and PMC EFetch withheld full-text XML. Supplementary bytes were not
+  recovered. Batch `public_bond_resolved_panel_survey_20261009` is cumulatively
+  17 known direct HTTP requests and 185,438 persisted bytes (this run: 10 and
+  82,956). Search/connector transport is unexposed; no requester-pays TDM route
+  was used.
+- **Strongest alternative / next action:** ask the narrower question the public
+  data can answer. Audit Huber et al.'s exact-sequence DNA-recording panel once
+  for train/test chronology, assayed construct identity and reporter calibration;
+  only then preregister a family- or substrate-held-out sequence-specificity
+  baseline. Keep it explicitly reporter-level, not bond-localized cleavage or
+  de novo design success. Stop if held-out choices used the same measured data,
+  exact constructs cannot be reconstructed or normalization is incomparable.
+- **Boundaries:** no model, scorer, training, paid compute, provider mutation,
+  separately billed API, lab order or outreach. Prime remains disabled; USD 8
+  per job and USD 50 per Chicago month are unchanged. Protected registries and
+  prior outcomes remain frozen.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue
