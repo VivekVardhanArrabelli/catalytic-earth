@@ -238,6 +238,26 @@ provenance cannot be retained or interaction information fails to beat the
 additive baseline on every frozen fold. Any success remains retrospective
 reporter generalization, not intended-bond cleavage or de novo design.
 
+That proposed follow-on is now stopped by the
+[DMS qualification audit](huber_dms_benchmark_qualification.json). The smaller
+checked-in exact-pair aggregate has 366,077 eligible parent/single-mutant pairs,
+10,980 more than the published processed 355,097-pair matrix, because it
+precedes barcode-level mutated-backbone, replicate and false-positive
+corrections. The released figure workbook retains processed activities but
+drops protease identity. The required 35,178,112-byte barcode-level archive
+exceeds the bounded source batch's 30-MiB cap even by itself, so the two cannot
+be joined losslessly under the present acquisition contract. No fold outcome
+was computed.
+
+The audit also corrects the split specification. A row-plus-column additive
+baseline is identifiable for checkerboard pair holdout only when each test row
+and column appears elsewhere in training; that measures new-combination
+interpolation. Holding both identities entirely cold makes those additive
+effects unestimable and is a different feature-based generalization task. Do
+not call either design the other. The next bounded source candidate must expose
+processed quantitative outcomes, exact enzyme/substrate identities and its
+filtering contract together; stop rather than weaken those requirements.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected

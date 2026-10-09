@@ -1,0 +1,111 @@
+{
+  "record_type": "protease_reporter_benchmark_qualification",
+  "status": "stopped_exact_processed_pair_matrix_not_reconstructable_within_bounded_source_batch",
+  "created_utc": "2026-10-09T18:18:00Z",
+  "question": "Can the TEVp-0 single-mutant by single-mutant-substrate screen support a frozen interaction-generalization benchmark against an additive protease-row plus substrate-column baseline?",
+  "decision_rule": {
+    "continue": "Continue only if the released data retain a lossless join from every scored activity to exact protease and substrate identities after the authors' filtering and control corrections, and if the split leaves the additive comparator identifiable.",
+    "stop": "Stop if exact processed pair identity cannot be reconstructed, if cross-screen pooling is required, or if a proposed two-axis split makes row or column effects unidentified."
+  },
+  "study": {
+    "citation": "Huber et al., Data-driven protease engineering by DNA-recording and epistasis-aware machine learning, Nature Communications 16, 5466 (2025)",
+    "doi": "10.1038/s41467-025-60622-7",
+    "primary_url": "https://www.nature.com/articles/s41467-025-60622-7",
+    "raw_repository": "https://github.com/JeschekLab/ProtRec",
+    "raw_repository_commit": "8b9a1865108fa44c3e0a24ac20a59754222847ca"
+  },
+  "source_audit": {
+    "paper_reported_surface": {
+      "theoretical_pairs": 595898,
+      "reported_pairs": 355097,
+      "protease_variants": 4437,
+      "substrate_variants": 134,
+      "read_threshold": "at least 20 reads per sampling time point and barcode pair"
+    },
+    "checked_in_aggregate": {
+      "path": "2 Data analysis (Lukas Huber)/uASPIre screen4 and 5_2022_08_11/uASPIre screen4_DMS/data/Data_DMS.txt.zip",
+      "git_blob_sha": "41affde20ae837129c2deb7bbfe4a1d999c39db6e",
+      "downloaded_zip_bytes": 14685314,
+      "downloaded_zip_sha256": "51e3ef7185ae53bc587aa6bae25395df246fded63ce2637bde904ce24c7c47b7",
+      "member_bytes": 45240644,
+      "member_sha256": "3146ece8ead125832e434c4778ce1602941715af640e9d06acf793cef8422356",
+      "all_rows": 413779,
+      "eligible_parent_or_single_mutant_pairs_before_barcode_level_corrections": 366077,
+      "eligible_protease_variants": 4437,
+      "eligible_substrate_variants": 134,
+      "eligible_sorted_pair_identity_sha256": "e82802109a724efb664de7fd508f75f31985e0946c48a6a869930a652611f95c",
+      "excess_pairs_over_published_matrix": 10980,
+      "interpretation": "The aggregate preserves exact TEVp and TEVs identities and AUC values, but predates the barcode-level mutated-backbone, replicate-divergence, false-positive and positive-control corrections used by the released analysis. Treating its extra 10,980 pairs as the paper cohort would silently change the endpoint."
+    },
+    "correction_dependency": {
+      "required_path": "2 Data analysis (Lukas Huber)/uASPIre screen4 and 5_2022_08_11/uASPIre screen4_DMS/data/Data_DMS_unmapped.txt.zip",
+      "required_compressed_bytes": 35178112,
+      "default_batch_cap_bytes": 31457280,
+      "excess_over_full_batch_cap_bytes": 3720832,
+      "why_required": "The released 01.1 and 04 scripts perform mutated-backbone removal and replicate-level correction from barcode-level rows. Those barcode identities are absent from Data_DMS.txt, so the published 355,097-pair cohort cannot be reconstructed from the smaller aggregate."
+    },
+    "source_data_workbook": {
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-60622-7/MediaObjects/41467_2025_60622_MOESM4_ESM.xlsx",
+      "total_bytes": 35182821,
+      "inspected_member": "xl/worksheets/sheet5.xml",
+      "sheet_name": "Fig. 2d",
+      "compressed_member_bytes": 6577222,
+      "uncompressed_member_bytes": 74852625,
+      "uncompressed_member_sha256": "8bdbd1fdca7772289fa3608fa8a56602f6e20eab4ff7fe0773ec1ed004223c8d",
+      "data_rows": 380046,
+      "columns": [
+        "TEVs pos.",
+        "amino acid",
+        "mean activity, a.u.",
+        "category"
+      ],
+      "identity_limit": "The figure sheet retains substrate position, substrate amino acid and activity, but no TEVp identity. It therefore cannot restore the exact processed protease-substrate join."
+    },
+    "control_endpoint": {
+      "within_campaign": true,
+      "method": "The source code fits a normal distribution to selected inactive controls, uses its 95th percentile as cutoff, sets sub-cutoff activity to the control mean and subtracts that mean.",
+      "known_limit": "The authors' own Shapiro-Wilk checks reject normality for the pooled and individual controls except most P1-prime-only subsets. This is a source-described thresholding choice, not a calibrated cleavage-rate scale.",
+      "bond_limit": "Recorder activation is not product mapping to the intended peptide bond."
+    }
+  },
+  "split_audit": {
+    "checkerboard_pair_holdout": {
+      "identifiability": "A row-plus-column additive baseline is identifiable only when every test protease and every test substrate is observed with other partners in training.",
+      "supported_claim_if_data_existed": "New-combination interpolation within one TEVp-0 reporter campaign.",
+      "not_supported": "Unseen protease-mutation or unseen substrate-mutation generalization."
+    },
+    "double_cold_row_and_column_holdout": {
+      "identifiability": "Holding entire protease and substrate identities out of training makes their row and column effects unestimable. Comparing an interaction model with that additive identity baseline is therefore ill-posed.",
+      "repair": "A cold-start task would require predefined mutation descriptors or structural features for both axes and a different baseline; it would answer a different question."
+    },
+    "conclusion": "The inherited phrase 'two-axis blocked folds' conflated checkerboard interaction interpolation with double-cold mutation generalization. No fold outcomes were computed."
+  },
+  "decision": {
+    "conclusion": "Do not preregister or score the proposed Huber DMS benchmark from the currently bounded source bundle.",
+    "scientific_consequence": "The public study demonstrates a large within-campaign single-mutant activity map, but the bounded released artifacts inspected here do not provide a lossless exact-identity table for the published processed cohort. Scoring the smaller raw aggregate would preserve identities while changing the authors' filtering; scoring the figure workbook would preserve processed values while discarding protease identity.",
+    "atlas_contribution": "The audit adds a reusable benchmark constraint: pair-level interaction evaluation requires processed endpoint values and both exact pair identities in the same recoverable artifact, and split geometry must keep the chosen additive comparator identifiable."
+  },
+  "next_action": {
+    "action": "Qualify a different public single-campaign cleavage matrix whose processed table retains exact enzyme identity, exact substrate identity, quantitative negatives and the complete filtering contract in one bounded artifact.",
+    "expected_information_gain": "Such a matrix could support a genuinely frozen checkerboard interaction test without changing the assay cohort or confusing interpolation with cold-start generalization.",
+    "stop": "Stop after one bounded candidate if either pair identities, quantitative negatives, or the processing contract is absent; do not weaken the endpoint to continue dataset search."
+  },
+  "source_acquisition": {
+    "batch": "huber_dms_qualification_20261009",
+    "requests_with_response_bodies": 16,
+    "known_response_body_bytes": 24044544,
+    "default_byte_cap": 31457280,
+    "remaining_known_bytes": 7412736,
+    "cap_status": "within_cap_stop",
+    "note": "Only selected ZIP members were range-fetched from the 35,182,821-byte source workbook. Decompressed local bytes are not network acquisition. The 35,178,112-byte barcode-level archive was not downloaded."
+  },
+  "boundaries": {
+    "fold_outcomes_read": false,
+    "model_execution": false,
+    "training": false,
+    "paid_compute": false,
+    "wet_lab_validation": false,
+    "outreach": false,
+    "atlas_advantage": false
+  }
+}
