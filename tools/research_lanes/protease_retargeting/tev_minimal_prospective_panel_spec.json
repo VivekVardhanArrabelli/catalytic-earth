@@ -1,0 +1,105 @@
+{
+  "record_type": "prospective_matched_protease_substrate_measurement_specification",
+  "status": "specified_not_executed_external_measurement_dependency",
+  "created_utc": "2026-10-09T19:38:22Z",
+  "question": "What is the smallest new TEV-family measurement matrix that can distinguish a prospectively frozen interaction-aware score from additive protease and substrate effects while retaining intended-bond identity, quantitative negatives and an activity control?",
+  "inherited_evidence": {
+    "source_record": "tev_l2f_discrimination.json",
+    "permitted_use": "The exposed S219V/L2F by ENLYFQS/HPLVGHM tetrad supplies assay feasibility, a positive target-efficiency reference and a conservative planning variance only. It is not a validation set and none of its four outcomes may select candidates, a score or an endpoint.",
+    "source_assay": "Product-standard reverse-phase HPLC, triplicate kinetics, intended-bond product standards and a 1 nanomolar product detection limit for the fixed-dose S219V/HPLVGHM nondetection check.",
+    "positive_efficiency_reference_s_minus_1_micromolar_minus_1": 0.0002,
+    "planning_log_sd": 0.2,
+    "planning_log_sd_derivation": {
+      "method": "Delta-method propagation sqrt((SD_kcat/kcat)^2 + (SD_Km/Km)^2) for each of the three fitted positive cells; use the largest value rounded upward.",
+      "cells": [
+        {"cell": "S219V_ENLYFQS", "derived_relative_sd": 0.138},
+        {"cell": "L2F_ENLYFQS", "derived_relative_sd": 0.2},
+        {"cell": "L2F_HPLVGHM", "derived_relative_sd": 0.131}
+      ],
+      "limit": "These are propagated reported fit uncertainties, not an independently estimated between-day variance. They justify a planning value, not a claim that a new assay will attain it. Variance must be checked without inspecting treatment means."
+    }
+  },
+  "minimality_decision": {
+    "mathematical_minimum": "A complete 2 protease by 2 substrate matrix has one row-column interaction contrast and is the smallest matrix that can reject an additive row-plus-column response.",
+    "why_2_by_2_is_not_adequate": "Two newly designed proteases crossed only with two targets cannot tell selective retargeting from global loss of catalytic competence and supplies no common parent or native-substrate process control.",
+    "selected_minimum": "A complete 3 by 3 matrix: the S219V parent and two prospectively chosen, exact TEV-family variants crossed with ENLYFQS and two prospectively chosen, exact target peptides. The new-variant by new-target 2 by 2 submatrix is the primary test; the parent row and native column are controls, not extra validation endpoints.",
+    "cell_count": 9
+  },
+  "matrix": {
+    "protease_rows": [
+      {"id": "P0", "identity": "Exact TEV S219V parent construct, including all tags, boundaries and processing state"},
+      {"id": "PA", "identity": "One exact, previously unassayed TEV-family design chosen prospectively for target A"},
+      {"id": "PB", "identity": "One exact, previously unassayed TEV-family design chosen prospectively for target B"}
+    ],
+    "substrate_columns": [
+      {"id": "N", "identity": "ENLYFQS in the common assay flank and label context; process and retained-activity control"},
+      {"id": "A", "identity": "One exact, previously unassayed target window with a prospectively declared intended bond in the common assay context"},
+      {"id": "B", "identity": "A distinct exact, previously unassayed target window with a prospectively declared intended bond in the same common assay context"}
+    ],
+    "candidate_selection_before_measurement": [
+      "Freeze exact sequences, constructs, target flanks, intended bonds and all score inputs before expression or cleavage data are inspected.",
+      "Freeze one interaction-aware score and one additive row-plus-column comparator before candidate selection.",
+      "Choose PA/A and PB/B so the interaction-aware score prospectively predicts a crossed preference: PA favors A over B and PB favors B over A. Do not replace failed constructs or targets using assay outcomes.",
+      "Record every candidate considered and the deterministic selection rule. The measurement panel tests the selected pair; it does not estimate population-wide success."
+    ]
+  },
+  "assay_contract": {
+    "primary_endpoint": "Log catalytic efficiency, log(kcat/Km), from product-specific initial-rate measurements under one frozen kinetic protocol. The nine cells must use the same buffer, temperature, substrate chemistry and product-quantification method; known enzyme concentration may vary only under a predeclared fitting rule.",
+    "bond_identity": "Use HPLC with authentic intended-product standards or LC-MS with an exact product-mass assignment for every detected cell. A fluorescence change without product localization is not an endpoint.",
+    "kinetic_design": "Use substrate concentrations that bracket the fitted Km where detectable and time points constrained to the initial-rate regime and less than 25 percent consumption. Preserve raw chromatograms or spectra, standard curves, time points, concentrations and fit diagnostics.",
+    "negative_contract": "For each nondetected cell, report the per-run product limit of detection and limit of quantification, enzyme and substrate concentrations, reaction time and the resulting interval or upper bound. Do not encode nondetection as zero and do not infer a kcat/Km bound from one saturated fixed-dose check without an explicit kinetic assumption.",
+    "replication_unit": "An independently prepared enzyme/assay block, with all nine cells randomized within each block. Technical injections or wells do not increase n.",
+    "blinding": "Mask protease and target identities during integration and product calling where operationally possible. The frozen analysis must be applied before revealing score labels.",
+    "protein_context_boundary": "The common peptide context isolates sequence-specific cleavage and is not a full-protein specificity claim. Any winning pair requires a separately preregistered full-length target and off-target confirmation before a Problem 8 functional claim."
+  },
+  "primary_analysis": {
+    "notation": "Y(i,j) is the block-level log(kcat/Km) for protease i and substrate j.",
+    "additive_null": "Y(i,j) = alpha_i + beta_j; every 2 by 2 difference-in-differences is zero.",
+    "interaction_contrast": "I = Y(PA,A) + Y(PB,B) - Y(PA,B) - Y(PB,A)",
+    "score_contrast": "Compute the identical contrast I_score from the prospectively frozen interaction-aware score before measurements. Its sign is frozen.",
+    "minimum_effect": "A two-fold crossed interaction, abs(I) >= log(2), is the smallest confirmatory effect of interest. This threshold is a prospective design choice, not a claim derived from the L2F effect size.",
+    "confirmatory_success": "The two-sided 95 percent confidence interval for I excludes zero, its point estimate has the frozen sign of I_score, and the confidence interval excludes effects smaller than log(2) in that direction. Both diagonal intended products must be bond-verified and quantitatively detected.",
+    "method_failure": "A resolved interaction in the opposite direction from I_score rejects the interaction-aware score on this panel even if both diagonal cells are active.",
+    "additive_not_beaten": "If the interval includes zero, the panel does not show improvement over additive enzyme and substrate effects. Do not rescue the result with a different crop, score, endpoint or subset.",
+    "censoring_rule": "Fit an interval-censored model when any primary cell is censored. A success is allowed only if the conservative lower bound on the signed interaction still exceeds log(2); otherwise the result is inconclusive, not positive.",
+    "separate_function_readouts": [
+      "Report both diagonal catalytic efficiencies against the exposed L2F/HPLVGHM value of 0.0002 s^-1 micromolar^-1 as a reference, not as a universal sufficiency threshold.",
+      "Report PA and PB activity on N relative to P0/N as retained-activity controls without making native ordering part of the primary interaction gate.",
+      "Report all six noncognate or parent-target cells, including quantitative bounds, regardless of the primary verdict."
+    ]
+  },
+  "power": {
+    "model": "Balanced complete blocks; independent cell-level log-endpoint SD 0.20; under the planning independence assumption the primary contrast SD within a block is 2*0.20 = 0.40; two-sided one-sample t test at alpha 0.05.",
+    "target_power": 0.8,
+    "replicate_table": [
+      {"interaction_fold": 1.5, "independent_complete_blocks": 10, "computed_power": 0.813},
+      {"interaction_fold": 2.0, "independent_complete_blocks": 5, "computed_power": 0.821},
+      {"interaction_fold": 3.0, "independent_complete_blocks": 4, "computed_power": 0.94},
+      {"interaction_fold": 4.0, "independent_complete_blocks": 3, "computed_power": 0.836}
+    ],
+    "selected_design": "Five independent complete assay blocks, 45 block-level cell estimates in total, target approximately 82 percent power for a two-fold interaction if the planning SD is attained.",
+    "variance_safeguard": "A blinded variance re-estimation may use centered replicate residuals without score labels or treatment means after the first three complete blocks. If the implied interaction SD exceeds 0.40, increase only by the frozen power formula or stop for assay imprecision; do not change the effect threshold.",
+    "limit": "The calculation does not cover heavy censoring, failed expression or model misspecification. Those are prespecified stop/inconclusive outcomes, not reasons to substitute technical replicates."
+  },
+  "decision_outcomes": {
+    "interaction_score_supported_on_panel": "The confirmatory interaction and bond gates pass. This supports prospective pair discrimination for two selected TEV designs only; it is not a family-wide or de novo success-rate claim.",
+    "interaction_present_score_wrong": "The measured interaction resolves opposite to the frozen score. Reject this score/candidate-selection rule for the panel and preserve the designs as informative failures.",
+    "additive_sufficient_or_underpowered": "The interval includes zero or the signed log(2) margin. Stop the comparison; do not add post hoc substrates or variants.",
+    "assay_or_identity_failure": "Any construct ambiguity, missing intended-product assignment, uncalibrated nondetection, unresolved primary censoring or failed independent replication makes the panel inconclusive and blocks a specificity claim."
+  },
+  "strongest_feasible_alternative": {
+    "alternative": "A larger public retrospective matrix",
+    "comparison": "Huber and CleaveNet already failed the exact-identity, processing, bond and negative-calibration contract. A new 3 by 3 prospective matrix measures the missing interaction directly with fewer cells and no endpoint dilution.",
+    "why_not_larger_now": "Adding variants or targets before the first orthogonal interaction is resolved spends measurement effort without changing the first decision. Expand only after a prespecified positive panel or a diagnosed failure mode that a larger design can distinguish."
+  },
+  "stopping_rule": "This work stops at the measurement specification. Do not score the exposed L2F tetrad, select actual PA/PB/A/B candidates, order reagents, contact a laboratory or claim execution without separate authorization and a measurement route. If no laboratory can supply the complete bond-resolved and censoring contract, retain the panel as an external dependency and pursue a different independent Problem 8 question.",
+  "boundaries": {
+    "candidate_selection_executed": false,
+    "model_or_score_executed": false,
+    "wet_lab_executed": false,
+    "lab_order_or_outreach": false,
+    "paid_compute": false,
+    "atlas_advantage": false,
+    "problem_8_solved": false
+  }
+}
