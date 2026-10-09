@@ -219,6 +219,25 @@ matched cross-target panel. The next route is a narrower, explicitly
 reporter-level sequence-generalization question on an already-public exact-pair
 dataset, not a weakened bond-resolved claim.
 
+That route has now been qualified and narrowed further in the
+[Huber reporter audit](huber_reporter_benchmark_qualification.json). The
+published ML panel contains one TEVp-I scaffold, six mutable protease positions
+and 20 ENLYFQX output heads; substrate sequence is not a model input. Its fixed
+1,000-variant test is drawn from 1,625 fully measured high-read AB variants and
+is already exposed. It therefore cannot support a new prospective, family- or
+substrate-held-out claim. Within one campaign the recorder supplies useful
+quantitative negatives, but AUC values are normalized against screen-specific
+inactive controls, retain a binding contribution and do not localize the cut.
+
+Do not repeat the spent random split. The stronger remaining question uses the
+separate TEVp-0 single-mutant by 134 single-mutant-substrate matrix, held within
+one reporter/control campaign. A future preregistration may compare a simple
+additive row-plus-column model with interaction-aware alternatives under
+two-axis blocked folds fixed before scoring. Stop if exact construct/control
+provenance cannot be retained or interaction information fails to beat the
+additive baseline on every frozen fold. Any success remains retrospective
+reporter generalization, not intended-bond cleavage or de novo design.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected

@@ -1,0 +1,86 @@
+{
+  "record_type": "public_protease_reporter_benchmark_qualification",
+  "status": "original_split_rejected_single_campaign_matrix_alternative_qualified_for_preregistration",
+  "created_utc": "2026-10-09T16:49:00Z",
+  "study": {
+    "citation": "Huber et al., Data-driven protease engineering by DNA-recording and epistasis-aware machine learning, Nature Communications 16, 5466 (2025)",
+    "doi": "10.1038/s41467-025-60622-7",
+    "pmcid": "PMC12217912",
+    "published": "2025-07-01",
+    "primary_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12217912/",
+    "ml_repository": "https://github.com/BorgwardtLab/MLDEEP",
+    "ml_repository_commit": "8cd6c319433be71644e79249a442b659d607c441",
+    "raw_repository": "https://github.com/JeschekLab/ProtRec",
+    "raw_repository_commit": "8b9a1865108fa44c3e0a24ac20a59754222847ca"
+  },
+  "question": "Can Huber et al.'s exact-sequence DNA-recording panel support a family- or substrate-held-out sequence-specificity benchmark with comparable quantitative negatives?",
+  "decision_rule": {
+    "qualify": "One assay campaign must bind every row to an exact full protease construct, exact substrate, raw timepoints and reads, and its inactive-control batch. The novelty axis and split must be fixed without consulting outcomes. Preprocessing, thresholds and model choices must be frozen before test labels, with additive, nearest-neighbour and author-model baselines.",
+    "stop": "Reject a family or substrate holdout if the data contain one family, the model does not consume substrate sequence, screen-specific AUC values must be pooled, exact constructs or control batches cannot be reconstructed, or the proposed evaluation repeats an already exposed random split."
+  },
+  "audit": {
+    "author_ml_panel": {
+      "construct_scope": "One TEVp-I parent in the pProtRec recorder, varied at T30/S31/L32 and F217/M218/V219, against the 20 ENLYFQX P1-prime substrates. The published model represents the six variable protease residues and emits 20 substrate-specific outputs; substrate sequence is not a model input.",
+      "full_sequence_reconstruction": "The released utility code contains the constant full parent sequence template and inserts the A/C/B mutation blocks. In the AB task the middle D148/G149/Q150 block is fixed to DGQ.",
+      "complete_cohort": "The released raw MLDEEP campaign contains 1,625 AB protease variants with all 20 P1-prime substrates at at least 100 reads per substrate, matching the primary Methods. The author test set randomly selects 1,000 of these variants with NumPy default_rng seed 42.",
+      "chronology": "The 1,000-row test is fixed across the paper's models, but the practical design analysis explicitly emulates model-guided search on those already measured test outcomes. The public release predates publication, so this cohort is exposed and cannot provide a new prospective test.",
+      "novelty_limit": "The split excludes exact protease variants, but train and test share one scaffold, six mutable positions and the same 20 substrate identities. There is no second protease family. A substrate holdout is not the author task because the output heads are substrate-specific.",
+      "qualification": "Reject the inherited family- or substrate-held-out proposal. The released split can support only retrospective within-scaffold reporter-activity reanalysis, and repeating it has low decision value."
+    },
+    "reporter_endpoint": {
+      "measurement": "The recorder measures fraction-flipped trajectories and uses AUC over four hours. Processing subtracts the mean of inactive controls and assigns zero within the controls' 95 percent confidence interval.",
+      "quantitative_negatives": "The release preserves continuous AUC, per-timepoint read counts and screen-specific inactive controls. Negatives are quantitative within a campaign, subject to the threshold and read coverage rule.",
+      "batch_limit": "Preprocessing estimates separate inactive-control means and standard deviations for each screen and derives screen-specific p-values before concatenation. Raw AUC magnitudes are not a common calibrated cleavage scale across screens.",
+      "threshold_discrepancy": "The primary Methods report hysteretic p-value thresholds p1=0.01 and p2=0.1, while the archived configs/data.yml and src/data.py use p1=0.01 and p2=0.05. Any future reproduction must version this discrepancy and run a prespecified sensitivity analysis rather than silently calling either label set exact paper reproduction.",
+      "binding_and_bond_limit": "Catalytically inactive C151A controls retain a small time-independent binding contribution. Recorder activation does not product-map the intended peptide bond.",
+      "fret_limit": "Selected variants were checked by a FRET assay with proteinase-K full-cleavage and mCherry concentration controls, but those variants were chosen after recorder outcomes. This subset cannot calibrate the full DNA-recording matrix."
+    },
+    "released_data_checks": {
+      "raw_archive_path": "ProtRec/2 Data analysis (Lukas Huber)/uASPIre screen4 and 5_2022_08_11/uASPIre screen5_MLDEEP/data/Data_MLD.txt.zip",
+      "raw_archive_bytes": 19723871,
+      "raw_archive_sha256": "5697b4cc49c8c8ae58bb96a406cc8195ce2ba83a96e0237855911cf5e55b593a",
+      "raw_member_bytes": 65852075,
+      "raw_member_sha256": "4bb2189d0b21bb1ec6d6637da649b124b4cecf996dcddc73e9f24778f3487c8c",
+      "raw_rows": 544530,
+      "unique_nine_residue_tokens": 47852,
+      "unique_p1_prime_substrates": 20,
+      "ab_complete_high_read_variants": 1625,
+      "ab_complete_sorted_sequence_sha256": "424477f05ed2b1d603817f13fa9fa39d93e05db39fcf542e32f3d3bebf33a833",
+      "author_seed42_test_size": 1000,
+      "author_seed42_test_ordered_sequence_sha256": "4935cf4949a2b19e4a2e778854f957e41385486fe58554d92aa1baedf8c06106",
+      "author_seed42_test_sorted_sequence_sha256": "9a4100d8b1d236d84e5a220332851972704adaa851a292085b855350c5557c11",
+      "ml_campaign_control_rows": 436
+    }
+  },
+  "decision": {
+    "conclusion": "Do not preregister a family- or substrate-held-out benchmark on the author 20-P1-prime ML panel and do not call a new score prospective. It contains one TEVp family, uses substrate-specific output heads and has an exposed, coverage-selected random variant test.",
+    "supported_scope": "A correctly bounded analysis may claim only retrospective prediction of DNA-recorder activity for local TEVp-I variants against ENLYFQX under the retained reporter and control conditions. It cannot establish de novo design, new-scaffold transfer, intended-bond cleavage, catalytic rate, cellular specificity or Problem 8 success.",
+    "atlas_contribution": "The audit adds a reusable distinction between exact construct identity, within-campaign quantitative reporter negatives and bond-localized cleavage. No Atlas design advantage is established."
+  },
+  "strongest_feasible_alternative": {
+    "question": "Does interaction information improve two-axis generalization within one reporter campaign beyond additive protease-mutation and substrate-mutation effects?",
+    "surface": "The separate TEVp-0 two-dimensional scan of single protease mutants by 134 single-mutant TEV substrates, kept within its own construct and control batch.",
+    "design": "Before reading fold outcomes, hash the exact released rows and create blocked folds that withhold both protease-mutation identities or positions and substrate-mutation identities or positions. Compare an additive row-plus-column model, Hamming or biochemical pair baselines, and only then an interaction or Atlas representation.",
+    "decision_value": "A gain over the additive baseline on every frozen blocked fold would support a limited interaction-generalization mechanism signal. Failure would show that the extra interaction representation adds no robust value on this matrix.",
+    "stop": "Stop if full row-to-construct and control-batch provenance cannot be reconstructed, if folds require cross-screen AUC pooling, or if an interaction-aware method does not beat the additive baseline on every predeclared blocked fold. Any result remains retrospective reporter reanalysis, not intended-bond or de novo-design validation."
+  },
+  "source_acquisition": {
+    "batch": "huber_reporter_audit_20261009",
+    "known_git_clone_sequences": 2,
+    "known_pack_bytes": 96056357,
+    "default_byte_cap": 31457280,
+    "cap_status": "exceeded_stop_further_acquisition",
+    "incident": "The sparse-filter clone commands materialized repository packs of 9,665,777 and 86,390,642 bytes before size inspection, exceeding the named batch's default 30 MiB cap. No additional source acquisition is permitted for this batch. The excess is preserved in this audit rather than treated as authorization for another batch.",
+    "additional_direct_http": "One 145,914-byte NCBI BioC JSON response and one 7,445-byte GitHub release-metadata response were inspected. Search and connector transport bytes are not exposed.",
+    "large_assets_not_downloaded": "The 864,072,111-byte processed release and 37,059,529-byte raw release asset were not downloaded. Existing checked-in ProtRec data were sufficient for the bounded checks."
+  },
+  "boundaries": {
+    "model_execution": false,
+    "training": false,
+    "paid_compute": false,
+    "wet_lab_validation": false,
+    "outreach": false,
+    "atlas_advantage": false,
+    "same_model_review_independent": false
+  }
+}
