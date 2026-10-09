@@ -281,6 +281,29 @@ hunting. The next useful action is to specify a minimal new TEV-family matched
 measurement panel, using the exposed L2F tetrad only for design and power
 assumptions, not model selection or validation.
 
+That [prospective measurement specification](tev_minimal_prospective_panel_spec.json)
+is now frozen without selecting candidates or running a score. A 2-by-2 matrix
+is the mathematical minimum for one row-column interaction, but it cannot
+separate selective retargeting from global catalytic failure. The smallest
+scientifically adequate panel is therefore 3 by 3: exact S219V parent plus two
+previously unassayed TEV designs crossed with ENLYFQS plus two previously
+unassayed target peptides. The new-design by new-target 2-by-2 submatrix gives
+the primary difference-in-differences; the parent row and native column are
+activity and process controls.
+
+The confirmatory endpoint is product-specific log catalytic efficiency under
+one frozen HPLC or LC-MS protocol. Nondetections remain interval-censored; they
+are never zero. The exposed L2F fitted positives give a conservative planning
+log standard deviation of 0.20 after propagation of the reported fit
+uncertainties, but this is not a measured between-day variance. Five independent
+complete assay blocks provide approximately 82% two-sided power when the true
+interaction is two-fold under that assumption. Success additionally requires
+the frozen score sign, a 95% interval excluding the additive null of zero, two
+bond-verified diagonal products and quantitative bounds for every negative.
+The two-fold value is the powered alternative, not a second confidence margin.
+The specification stops here: actual candidates, scoring, lab work, orders and
+outreach remain unexecuted and require a complete external measurement route.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected

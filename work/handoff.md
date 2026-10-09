@@ -1,51 +1,51 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — public matched-matrix route stopped, 2026-10-09
+## Current research handoff — minimal prospective TEV panel specified, 2026-10-09
 
 - **Run/continuity:** automation run
   `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T190203Z`, shared-control
   epoch 11, from merged main `19cfa391b656ea45fc73bb67de6c4b2550ff2981`.
-  PR #150, the Huber stop and all frozen evidence were preserved. No subagent
-  was needed for this one-candidate source/data qualification; same-model review
-  is not independent expert review.
-- **Question:** can Martin-Alonso et al.'s public CleaveNet 95-substrate by
-  12-MMP campaign supply exact pairs, quantitative negatives and a complete
-  endpoint-processing contract for the requested intended-bond benchmark?
-- **Finding:** the release is pair-complete but does not qualify. All 95 unique
-  peptide IDs join to unique 10-mers, all 12 named MMPs have two released
-  fold-change columns, and the 1,140-cell processed grid has no missing values.
-  However, exact commercial MMP constructs are not reconstructible from the
-  vendors and names reported; the methods list MMP11 where the matrix contains
-  MMP13 and do not assign a vendor to MMP7. Fluorescence dequenching does not
-  locate the scissile bond.
-- **Negative/processing stop:** 617 processed cells are zero without per-cell
-  detection limits or censoring bounds. The released “raw” workbook starts at
-  fold changes, not fluorescence time series or cleavage rates. Although the
-  methods describe efficiencies as 0 for non-cleaved cells and 1 at each MMP
-  maximum, five released cells are negative and MMP3's maximum is 0.911741613.
-  The publisher Fig. 7b sheet reproduces the processed grid but adds none of the
-  missing raw observations or identity evidence. Exact hashes, counts and the
-  five negative cells are in
-  `tools/research_lanes/protease_retargeting/cleavenet_matrix_qualification.json`.
-- **Acquisition:** the distinct `cleavenet_matrix_qualification_20261009` batch
-  stopped at 22,201,798 known response-body bytes of the 31,457,280-byte cap.
-  It includes the 2,394,348-byte repository data directory and 19,805,633-byte
-  publisher source workbook. Git/connector transport overhead is not exposed.
-- **Decision/direction change:** do not score CleaveNet as an intended-bond or
-  quantitative off-target benchmark. It remains useful for retrospective
-  substrate-side fluorescence analysis with named native MMPs. Huber and
-  CleaveNet are two consecutive failures of the same public-matrix route, so
-  stop serial dataset hunting and retain the missing construct-exact,
-  bond-resolved, quantitatively censored panel as an external measurement
-  dependency.
-- **Next consequential action:** use the existing exposed TEV L2F four-cell
-  kinetic panel only to specify and power the smallest new TEV-family
-  protease-by-substrate measurement matrix that can distinguish interaction-aware
-  scores from additive enzyme/substrate effects. Require HPLC or LC-MS bond
-  identity and explicit detection limits. Stop at a source-grounded panel
-  specification: do not score the exposed cells, order, contact a lab or begin
-  another public-dataset search without new evidence.
+  PR #150, the Huber stop and all frozen evidence were preserved. PR #151
+  preserves the completed CleaveNet qualification. No subagent was needed for
+  this bounded design calculation; same-model review is not independent review.
+- **Preserved negative:** CleaveNet's exact peptide pairs do not repair
+  ambiguous commercial constructs, 617 uncalibrated zeroes, fluorescence-only
+  bond identity or incomplete endpoint processing. Together with Huber, this
+  closes serial public-matrix hunting.
+- **Question:** what is the smallest new TEV-family measurement matrix that can
+  distinguish a prospectively frozen interaction-aware score from additive
+  protease and substrate effects without sacrificing bond identity, quantitative
+  negatives or an activity control?
+- **Minimality result:** a complete 2-by-2 is the mathematical minimum for one
+  row-column interaction, but it cannot distinguish selective retargeting from
+  global catalytic failure. The smallest adequate panel is 3 by 3: exact S219V
+  parent plus two previously unassayed TEV designs crossed with ENLYFQS plus two
+  previously unassayed target peptides. The new-design by new-target 2-by-2
+  submatrix is the confirmatory test; the parent row and native column are
+  controls. Exact formulas and boundaries are in
+  `tools/research_lanes/protease_retargeting/tev_minimal_prospective_panel_spec.json`.
+- **Endpoint/negative contract:** use product-standard HPLC or product-mass
+  LC-MS and log(kcat/Km) under one frozen protocol. Preserve raw observations
+  and exact constructs, flanks and intended bonds. Nondetections are intervals
+  with per-run LOD/LOQ and conditions, never zero. Any censored primary cell
+  must still give a conservative signed interaction bound excluding zero in the
+  frozen direction, or the result is inconclusive.
+- **Power/decision:** the three fitted L2F positives give propagated relative
+  uncertainties 0.131–0.200; 0.20 is a planning log SD, not a between-day
+  estimate. With independent cell errors, the interaction SD is 0.40. Five
+  independent complete assay blocks give about 0.821 two-sided power at alpha
+  0.05 when the true interaction is two-fold. Confirmatory success requires the
+  frozen score sign, a 95% interval excluding zero and two bond-verified
+  diagonal positives. The two-fold value is the powered alternative, not a
+  second margin. Opposite sign rejects the score; an interval crossing zero
+  stops without post hoc cells.
+- **Next consequential action/dependency:** candidate identity and scoring are
+  deliberately not executed. Actual PA/PB/A/B selection is justified only when
+  a measurement route can meet the complete nine-cell product, censoring and
+  five-block contract. Until lab access is separately authorized, retain this
+  as an external measurement dependency and choose a different independent
+  Problem 8 question; do not resume public-panel hunting.
 - **Boundaries:** no model, scorer, training, paid compute, provider mutation,
   separately billed API, lab order or outreach. Prime remains disabled; USD 8
   per job and USD 50 per Chicago month are unchanged. Protected registries and
