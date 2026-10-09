@@ -1,51 +1,43 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — minimal prospective TEV panel specified, 2026-10-09
+## Current research handoff — TEV censoring endpoint corrected, 2026-10-09
 
-- **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T190203Z`, shared-control
-  epoch 11, from merged main `19cfa391b656ea45fc73bb67de6c4b2550ff2981`.
-  PR #150, the Huber stop and all frozen evidence were preserved. PR #151
-  preserves the completed CleaveNet qualification. No subagent was needed for
-  this bounded design calculation; same-model review is not independent review.
-- **Preserved negative:** CleaveNet's exact peptide pairs do not repair
-  ambiguous commercial constructs, 617 uncalibrated zeroes, fluorescence-only
-  bond identity or incomplete endpoint processing. Together with Huber, this
-  closes serial public-matrix hunting.
-- **Question:** what is the smallest new TEV-family measurement matrix that can
-  distinguish a prospectively frozen interaction-aware score from additive
-  protease and substrate effects without sacrificing bond identity, quantitative
-  negatives or an activity control?
-- **Minimality result:** a complete 2-by-2 is the mathematical minimum for one
-  row-column interaction, but it cannot distinguish selective retargeting from
-  global catalytic failure. The smallest adequate panel is 3 by 3: exact S219V
-  parent plus two previously unassayed TEV designs crossed with ENLYFQS plus two
-  previously unassayed target peptides. The new-design by new-target 2-by-2
-  submatrix is the confirmatory test; the parent row and native column are
-  controls. Exact formulas and boundaries are in
-  `tools/research_lanes/protease_retargeting/tev_minimal_prospective_panel_spec.json`.
-- **Endpoint/negative contract:** use product-standard HPLC or product-mass
-  LC-MS and log(kcat/Km) under one frozen protocol. Preserve raw observations
-  and exact constructs, flanks and intended bonds. Nondetections are intervals
-  with per-run LOD/LOQ and conditions, never zero. Any censored primary cell
-  must still give a conservative signed interaction bound excluding zero in the
-  frozen direction, or the result is inconclusive.
-- **Power/decision:** the three fitted L2F positives give propagated relative
-  uncertainties 0.131–0.200; 0.20 is a planning log SD, not a between-day
-  estimate. With independent cell errors, the interaction SD is 0.40. Five
-  independent complete assay blocks give about 0.821 two-sided power at alpha
-  0.05 when the true interaction is two-fold. Confirmatory success requires the
-  frozen score sign, a 95% interval excluding zero and two bond-verified
-  diagonal positives. The two-fold value is the powered alternative, not a
-  second margin. Opposite sign rejects the score; an interval crossing zero
-  stops without post hoc cells.
-- **Next consequential action/dependency:** candidate identity and scoring are
-  deliberately not executed. Actual PA/PB/A/B selection is justified only when
-  a measurement route can meet the complete nine-cell product, censoring and
-  five-block contract. Until lab access is separately authorized, retain this
-  as an external measurement dependency and choose a different independent
-  Problem 8 question; do not resume public-panel hunting.
+- **Run/continuity:** cloud automation run
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T210325Z`, shared-control
+  epoch 13, from merged main `92b10a2ca22b682773df7a3a0d431a7e24db0764`.
+  The PR #152 3-by-3 minimality result, stopped public-panel route and all frozen
+  evidence were preserved. No subagent was needed for this bounded mathematical
+  audit; same-model review is not independent review.
+- **Question and defect:** can a finite set of calibrated nondetections supply a
+  finite `kcat/Km` upper bound for the proposed censored interaction? No. For any
+  efficiency `e`, choose sufficiently small `Km` and `kcat=e*Km`; then every
+  finite positive-substrate rate can remain below its detection limit while
+  `e` is arbitrarily large. A censored nonlinear fit cannot manufacture the
+  missing low-substrate-slope information.
+- **Supported correction:** do not execute the censored `log(kcat/Km)` success
+  rule in PR #152 as written. Either require identifiable efficiencies for all
+  four primary cells, making an unbounded nondetection inconclusive, or freeze a
+  common-condition fixed-interval intended-product amount per enzyme as the censorable primary
+  endpoint and retain efficiency secondarily. For rectangular cell intervals,
+  the exact contrast is `[LAA+LBB-UAB-UBA, UAA+UBB-LAB-LBA]`; detected diagonals
+  plus finite off-diagonal rate upper bounds can therefore resolve a positive
+  crossed preference without encoding zero.
+- **Preserved result/limits:** the complete 3-by-3 layout, parent/native controls,
+  exact constructs, product-verified bonds, complete blocks and frozen score
+  direction remain valid. A fixed-interval result would establish only product
+  discrimination under that assay condition, not a universal catalytic-
+  efficiency interaction or full-protein specificity; the prior five-block
+  power number does not transfer to the changed endpoint. Evidence:
+  `tev_censoring_identifiability.json`; executable witness:
+  `src/catalytic_earth/tev_censoring_identifiability.py`. No source requests or
+  bytes were consumed.
+- **Next consequential action/dependency:** candidate identity and scoring remain
+  deliberately unexecuted. If a laboratory route becomes separately authorized,
+  validate its dynamic range and choose endpoint option A or B before selecting
+  PA/PB/A/B. Without that route, keep the panel external and choose a different
+  independent Problem 8 question; do not assume a `Km` floor or resume public-
+  matrix hunting.
 - **Boundaries:** no model, scorer, training, paid compute, provider mutation,
   separately billed API, lab order or outreach. Prime remains disabled; USD 8
   per job and USD 50 per Chicago month are unchanged. Protected registries and

@@ -304,6 +304,22 @@ The two-fold value is the powered alternative, not a second confidence margin.
 The specification stops here: actual candidates, scoring, lab work, orders and
 outreach remain unexecuted and require a complete external measurement route.
 
+A pre-execution [censoring-identifiability correction](tev_censoring_identifiability.json)
+narrows that measurement route. A finite set of nondetections at positive
+substrate concentrations cannot, by itself, upper-bound `kcat/Km`: for any
+specificity constant, a sufficiently small `Km` and correspondingly small
+`kcat` remain below every finite rate-detection limit. Therefore the panel must
+either require identifiable kinetic estimates in all four primary cells, with
+an unbounded nondetection making the result inconclusive, or prospectively use
+a directly bounded fixed-interval intended-product amount per enzyme for the censored
+primary interaction and retain `kcat/Km` as a secondary endpoint where
+identifiable. The latter preserves quantitative off-target evidence but supports
+only condition-specific product discrimination, and its variance/power plan
+must be frozen separately. The exact interval contrast and
+an executable unboundedness witness are retained in
+`../../../src/catalytic_earth/tev_censoring_identifiability.py`. No candidate
+or score was selected.
+
 SAAc8 and AbetaF3 kinetic values are explicitly marked as figure
 transcriptions, not independently refitted raw-data results. Campaign sizes
 48, 113, 14 and 34 do not supply hit counts or hit thresholds. The selected
