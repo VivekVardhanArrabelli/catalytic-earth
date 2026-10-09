@@ -10,8 +10,8 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": "codex/huber-dms-benchmark-stop",
-    "repository_commit": "710e5220208d2e7b4cb025f4e40e602189f71cbb",
+    "repository_branch": "main",
+    "repository_commit": "19cfa391b656ea45fc73bb67de6c4b2550ff2981",
     "workers_terminal": true
   },
   "coordinator": {
