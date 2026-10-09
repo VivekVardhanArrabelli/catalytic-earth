@@ -1,0 +1,111 @@
+{
+  "record_type": "protease_cleavage_matrix_qualification",
+  "status": "stopped_exact_pairs_present_but_negative_bond_and_construct_contracts_absent",
+  "created_utc": "2026-10-09T19:18:00Z",
+  "question": "Can the public CleaveNet 95-substrate by 12-MMP campaign support a frozen single-campaign cleavage benchmark with exact pair identities, quantitative negatives and a complete processing contract?",
+  "decision_rule": {
+    "continue": "Continue only if one bounded public release preserves exact assayed protease and substrate identities, a quantitative value or calibrated censoring bound for every negative, product evidence for the scored bond, and enough raw observations and processing detail to reproduce the scored matrix.",
+    "stop": "Stop this candidate if commercial enzyme constructs are not exactly reconstructible, zero-valued cells lack calibrated bounds, fluorescence does not locate the cut, or the released observations cannot reproduce the stated processed endpoint. Do not weaken the endpoint or inspect another dataset in this run."
+  },
+  "study": {
+    "citation": "Martin-Alonso et al., Deep learning guided design of protease substrates, Nature Communications (2026)",
+    "doi": "10.1038/s41467-025-67226-1",
+    "primary_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12775482/",
+    "data_repository": "https://github.com/microsoft/cleavenet",
+    "repository_head_audited": "4dac67defc99ca35d967ddc76eca0fe8b74afdad",
+    "data_file_introduction_commit": "521d1591a15587b000eb18573a398dc2ab9f4c67"
+  },
+  "released_matrix": {
+    "raw_fold_change_file": {
+      "path": "data/Raw_in_vitro_cleavage_fold_changes.xlsx",
+      "bytes": 42774,
+      "sha256": "9355dc492c7226e5359abe9ccf50933b32b22b92124cc2368757ac655eba863b",
+      "shape_including_header": [96, 25],
+      "substrates": 95,
+      "proteases": 12,
+      "measurement_columns": 24,
+      "missing_cells": 0,
+      "range": [0.6564253431516662, 3.773710919730488],
+      "interpretation": "The two columns per named MMP are already fold changes, not the fluorescence time series or fluorescent-units-per-minute cleavage rates named by the methods. They therefore do not independently expose plate blanks, detection limits, technical duplicates or the full rate-fitting step."
+    },
+    "processed_efficiency_file": {
+      "path": "data/In_vitro_efficiencies_7B.xlsx",
+      "bytes": 21550,
+      "sha256": "719b82f9841475bf287713d1b1b8194dc1f321433c19967993d916461d4a71fe",
+      "shape_including_header": [96, 15],
+      "pair_values": 1140,
+      "zero_values": 617,
+      "negative_values": 5,
+      "minimum": -0.0322506667977342,
+      "maximum": 1.0,
+      "negative_cells": [
+        {"substrate": "DL58", "protease": "MMP10", "value": -0.0254158323441952},
+        {"substrate": "DL1", "protease": "MMP7", "value": -0.0322506667977342},
+        {"substrate": "DL36", "protease": "MMP12", "value": -0.000419197626540148},
+        {"substrate": "DL45", "protease": "MMP10", "value": -0.0156996655222663},
+        {"substrate": "DL47", "protease": "MMP10", "value": -0.0233138329044513}
+      ],
+      "normalization_limit": "The methods describe efficiencies as 0 for non-cleaved cells, 1 for each MMP's maximum and fractional values otherwise. The release nevertheless contains five negative efficiencies and MMP3 has a maximum of 0.911741613. This is consistent with an unreported per-run transformation or residual background treatment; the published equation and released fold changes alone do not specify the exact processing contract."
+    },
+    "substrate_identity_file": {
+      "path": "data/cleavenet_design_summary.xlsx",
+      "bytes": 17639,
+      "sha256": "c3c56642ff241afcb83d84d0d66c7c2e877072679cd33da7b36e3056cf5105df",
+      "unique_ids": 95,
+      "unique_sequences": 95,
+      "join": "All 95 substrate IDs join losslessly across the fold-change, efficiency and design-summary files. The design summary supplies exact 10-mer sequences and terminal labels."
+    },
+    "publisher_source_data": {
+      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-67226-1/MediaObjects/41467_2025_67226_MOESM6_ESM.xlsx",
+      "bytes": 19805633,
+      "sha256": "f8416954bd6890844b52b9bbf105e86e0ea2d6dbd03d672cdb45a0fe53e2530c",
+      "figure_7b_sheet": "A 95-by-12 processed efficiency table rounded from the same released values; it does not add fluorescence time series, per-cell limits of detection, exact enzyme constructs or product identities."
+    }
+  },
+  "assay_contract": {
+    "supported": [
+      "95 exact substrate sequences and 12 named human MMP family members",
+      "10 micromolar substrate, stated MMP-dependent enzyme concentrations, buffers and 37 C incubation",
+      "two independent screens using different peptide plates and protease preparations, with duplicate reactions on each plate",
+      "no data excluded according to the primary methods",
+      "complete processed 95-by-12 efficiency grid"
+    ],
+    "protease_identity_limit": "The methods give vendors and MMP names but no exact assayed amino-acid sequences, catalog numbers, lot identities or construct boundaries. The vendor list names MMP11 although the released matrix contains MMP13 and omits MMP11; it also does not assign a vendor to matrix member MMP7. Exact assayed protease identity is therefore not reconstructible from the bounded release.",
+    "negative_limit": "A processed zero denotes a non-cleaved classification after transformation, but no per-cell detection limit, censoring bound or uncertainty is released. The 617 zeros are not quantitative negative measurements and cannot be treated as exact zero rates.",
+    "bond_limit": "Fluorescence dequenching establishes cleavage somewhere within the labeled peptide but does not identify the scissile bond or product. No pair-level LC-MS or equivalent product map is supplied.",
+    "direction_limit": "The campaign designs substrates for fixed native MMPs. It informs substrate-side specificity constraints but is not a test of designing a new protease for a chosen target."
+  },
+  "decision": {
+    "conclusion": "Do not preregister or score the CleaveNet matrix as the requested intended-bond programmable-protease benchmark. Exact peptide-to-named-MMP pairs are complete, but exact assayed enzyme constructs, calibrated quantitative negatives, bond-localized products and the full normalization path are absent.",
+    "scientific_consequence": "The public release is useful for retrospective fluorogenic substrate-design analysis within this campaign. It cannot decide whether a protease design cuts the intended bond specifically, and zeros cannot support quantitative off-target comparisons.",
+    "atlas_contribution": "A reusable distinction is now explicit: a complete fluorescence grid is not a bond-resolved specificity matrix. Pair completeness, construct identity, negative calibration, product localization and reproducible endpoint processing are independent requirements."
+  },
+  "direction_reassessment": {
+    "trigger": "The Huber and CleaveNet qualifications are two consecutive bounded candidate failures for the same public-matrix dependency.",
+    "decision": "Stop serial public-matrix hunting. Treat a matched construct-exact, bond-resolved, quantitatively censored panel as an external measurement dependency rather than lowering the benchmark.",
+    "strongest_feasible_alternative": "Use the existing exposed TEV L2F four-cell product-verified kinetic panel only to design a minimal prospective measurement matrix and information-gain analysis; do not use its four exposed cells to select or validate a model.",
+    "next_action": "Specify the smallest new TEV-family protease-by-substrate panel that can distinguish an interaction-aware design score from additive enzyme and substrate effects while preserving HPLC or LC-MS bond identity and explicit detection limits.",
+    "expected_information_gain": "This changes the task from searching for an absent retrospective dataset to defining the exact measurements needed for one decisive prospective test.",
+    "stop": "Stop at a source- and power-grounded panel specification. Do not order, contact a lab, score the exposed four-cell panel, invent assay sensitivity, or expand into another public-dataset search without new evidence."
+  },
+  "source_acquisition": {
+    "batch": "cleavenet_matrix_qualification_20261009",
+    "known_downloaded_repository_data_bytes": 2394348,
+    "known_publisher_source_data_bytes": 19805633,
+    "known_failed_response_body_bytes": 1817,
+    "known_total_response_body_bytes": 22201798,
+    "default_byte_cap": 31457280,
+    "remaining_known_bytes": 9255482,
+    "cap_status": "within_cap_stop",
+    "note": "Git protocol overhead and connector/search transport are not exposed as byte-exact response bodies. No additional supplement or dataset was acquired after the qualification decision."
+  },
+  "boundaries": {
+    "model_execution": false,
+    "training": false,
+    "paid_compute": false,
+    "wet_lab_validation": false,
+    "outreach": false,
+    "atlas_advantage": false,
+    "same_model_review_independent": false
+  }
+}

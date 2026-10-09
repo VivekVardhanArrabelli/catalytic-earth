@@ -1,53 +1,55 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — Huber DMS route stopped, 2026-10-09
+## Current research handoff — public matched-matrix route stopped, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T180010Z`, shared-control
-  epoch 10, from merged main `ebc95193ac2cbe9e1cd52ee424d43f58dfb652eb`.
-  PRs #143–#149, the prior Huber audit
-  and all frozen evidence were preserved. No subagent was needed for this
-  bounded source/data qualification; same-model review is not independent
-  expert review.
-- **Question:** can the TEVp-0 single-mutant by 134 single-mutant-substrate
-  screen support the inherited interaction-generalization benchmark against a
-  row-plus-column additive baseline?
-- **Finding:** no from the bounded released artifacts. The checked-in exact-pair
-  aggregate contains 366,077 eligible parent/single-mutant pairs, 4,437
-  proteases and 134 substrates—10,980 pairs more than the paper's processed
-  355,097-pair matrix. It predates the authors' barcode-level mutated-backbone,
-  replicate-divergence, false-positive and positive-control corrections. The
-  published Fig. 2d workbook retains processed activity values but only
-  substrate position/amino-acid fields, not TEVp identity. The two artifacts
-  cannot be losslessly joined.
-- **Acquisition stop:** reconstructing the paper cohort requires the released
-  35,178,112-byte barcode-level archive, which exceeds the 31,457,280-byte batch
-  cap even alone. It was not downloaded. The new
-  `huber_dms_qualification_20261009` batch used 24,044,544 known response-body
-  bytes and stopped within cap. Exact paths, hashes, counts and selected XLSX
-  member boundaries are in
-  `tools/research_lanes/protease_retargeting/huber_dms_benchmark_qualification.json`.
-- **Split correction:** checkerboard pair holdout keeps every test protease and
-  substrate represented with other partners in training, so a row-plus-column
-  baseline is identifiable; it measures new-combination interpolation. A true
-  double-cold row-and-column holdout makes those identity effects unestimable
-  and needs descriptor-based baselines. The inherited phrase “two-axis blocked”
-  conflated these tasks. No fold outcomes were computed.
-- **Decision:** do not preregister or score the Huber DMS route from a
-  contaminated raw cohort or identity-stripped processed table. This closes the
-  proposed follow-on without weakening the endpoint. It does not challenge the
-  paper's experimental screen; it limits a new exact-pair benchmark.
-- **Next consequential action:** qualify one different public single-campaign
-  cleavage matrix whose processed table retains exact enzyme identity, exact
-  substrate identity, quantitative negatives and the complete filtering
-  contract in one bounded artifact. Stop after one candidate if any element is
-  absent; do not resume serial dataset hunting or substitute reporter-only
-  convenience for intended-bond evidence.
-- **Boundaries:** no model, scorer, fold evaluation, training, paid compute,
-  provider mutation, separately billed API, lab order or outreach. Prime
-  remains disabled; USD 8 per job and USD 50 per Chicago month are unchanged.
-  Protected registries and prior outcomes remain frozen.
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T190203Z`, shared-control
+  epoch 11, from merged main `19cfa391b656ea45fc73bb67de6c4b2550ff2981`.
+  PR #150, the Huber stop and all frozen evidence were preserved. No subagent
+  was needed for this one-candidate source/data qualification; same-model review
+  is not independent expert review.
+- **Question:** can Martin-Alonso et al.'s public CleaveNet 95-substrate by
+  12-MMP campaign supply exact pairs, quantitative negatives and a complete
+  endpoint-processing contract for the requested intended-bond benchmark?
+- **Finding:** the release is pair-complete but does not qualify. All 95 unique
+  peptide IDs join to unique 10-mers, all 12 named MMPs have two released
+  fold-change columns, and the 1,140-cell processed grid has no missing values.
+  However, exact commercial MMP constructs are not reconstructible from the
+  vendors and names reported; the methods list MMP11 where the matrix contains
+  MMP13 and do not assign a vendor to MMP7. Fluorescence dequenching does not
+  locate the scissile bond.
+- **Negative/processing stop:** 617 processed cells are zero without per-cell
+  detection limits or censoring bounds. The released “raw” workbook starts at
+  fold changes, not fluorescence time series or cleavage rates. Although the
+  methods describe efficiencies as 0 for non-cleaved cells and 1 at each MMP
+  maximum, five released cells are negative and MMP3's maximum is 0.911741613.
+  The publisher Fig. 7b sheet reproduces the processed grid but adds none of the
+  missing raw observations or identity evidence. Exact hashes, counts and the
+  five negative cells are in
+  `tools/research_lanes/protease_retargeting/cleavenet_matrix_qualification.json`.
+- **Acquisition:** the distinct `cleavenet_matrix_qualification_20261009` batch
+  stopped at 22,201,798 known response-body bytes of the 31,457,280-byte cap.
+  It includes the 2,394,348-byte repository data directory and 19,805,633-byte
+  publisher source workbook. Git/connector transport overhead is not exposed.
+- **Decision/direction change:** do not score CleaveNet as an intended-bond or
+  quantitative off-target benchmark. It remains useful for retrospective
+  substrate-side fluorescence analysis with named native MMPs. Huber and
+  CleaveNet are two consecutive failures of the same public-matrix route, so
+  stop serial dataset hunting and retain the missing construct-exact,
+  bond-resolved, quantitatively censored panel as an external measurement
+  dependency.
+- **Next consequential action:** use the existing exposed TEV L2F four-cell
+  kinetic panel only to specify and power the smallest new TEV-family
+  protease-by-substrate measurement matrix that can distinguish interaction-aware
+  scores from additive enzyme/substrate effects. Require HPLC or LC-MS bond
+  identity and explicit detection limits. Stop at a source-grounded panel
+  specification: do not score the exposed cells, order, contact a lab or begin
+  another public-dataset search without new evidence.
+- **Boundaries:** no model, scorer, training, paid compute, provider mutation,
+  separately billed API, lab order or outreach. Prime remains disabled; USD 8
+  per job and USD 50 per Chicago month are unchanged. Protected registries and
+  prior outcomes remain frozen.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue
