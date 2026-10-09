@@ -1,5 +1,5 @@
 {
-  "active_run_id": null,
+  "active_run_id": "activation-08e82710-389f-4f52-b2ab-f3dc4cb7ad87",
   "budget": {
     "calendar_month_cap_cents": 5000,
     "currency": "USD",
@@ -15,14 +15,14 @@
     "workers_terminal": false
   },
   "coordinator": {
-    "epoch": 0,
-    "heartbeat_at": null,
-    "lease_expires_at": null,
-    "owner": null
+    "epoch": 1,
+    "heartbeat_at": "2026-10-09T09:50:30Z",
+    "lease_expires_at": "2026-10-09T10:05:30Z",
+    "owner": "cloud-activation:08e82710-389f-4f52-b2ab-f3dc4cb7ad87"
   },
   "job": null,
   "job_history": [],
-  "phase": "idle",
+  "phase": "researching",
   "recovery": {
     "claimed_at": null,
     "previous_owner": null,
