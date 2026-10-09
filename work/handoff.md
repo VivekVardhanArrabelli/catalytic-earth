@@ -1,49 +1,56 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — Choi benchmark route stopped, 2026-10-09
+## Current research handoff — Huber benchmark narrowed, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T160301Z`, shared-control
-  epoch 8, from merged main `9e67a1cf620cef98d6b35531089983017468ef98`.
-  The previous public-panel survey, PRs #143–#147 and all frozen evidence were
-  preserved. Three complementary same-model evidence, reconstruction and
-  critical reviews were used; they are not independent expert review.
-- **Question:** can Choi et al. version 3 support one fixed 69-case prospective
-  comparison of sequence and structure baselines against calibrated
-  intended-bond cleavage outcomes?
-- **Finding:** no. The primary prose supports 13/69 activity and intended-site
-  LC-MS for all 13 reported positives, but the accessible public material does
-  not expose a lossless 69-row enzyme/substrate/outcome/model join, expression
-  and assay attrition, or a common quantitative measurement/detection bound for
-  every negative. The six structures (9YNL, 9YNM, 9YOX, 9YOY, 9YOZ, 9YP0) are a
-  positive-enriched validation subset, not same-case inputs for 69 attempts.
-  The 13/69 outcome was already public in version 1 on 2025-11-22, so a model
-  chosen later is not a prospective test on this cohort. The cognate screen also
-  lacks a matched noncognate cross-target matrix and therefore does not measure
-  programmable specificity.
-- **Decision and limit:** stop this all-in-one benchmark route and do not run a
-  sequence or structure model on the top-level summary. This is an evidence and
-  access stop, not a claim that the authors lack the data and not counterevidence
-  to the reported proteases. Reopen only with a public hashed source bundle that
-  resolves all 69 attempts, calibrated negatives and pre-assay same-case inputs;
-  a clean specificity claim additionally requires a previously unexposed cohort
-  and matched cross-target panel. Exact evidence and the fail-closed schema are
-  in `tools/research_lanes/protease_retargeting/choi_v3_benchmark_qualification.json`.
-- **Source audit:** official bioRxiv metadata confirms version 3, 2026-09-21 and
-  the canonical PDF. Direct PDF/JATS attempts returned HTTP 429; NCBI OA returned
-  404 and PMC EFetch withheld full-text XML. Supplementary bytes were not
-  recovered. Batch `public_bond_resolved_panel_survey_20261009` is cumulatively
-  17 known direct HTTP requests and 185,438 persisted bytes (this run: 10 and
-  82,956). Search/connector transport is unexposed; no requester-pays TDM route
-  was used.
-- **Strongest alternative / next action:** ask the narrower question the public
-  data can answer. Audit Huber et al.'s exact-sequence DNA-recording panel once
-  for train/test chronology, assayed construct identity and reporter calibration;
-  only then preregister a family- or substrate-held-out sequence-specificity
-  baseline. Keep it explicitly reporter-level, not bond-localized cleavage or
-  de novo design success. Stop if held-out choices used the same measured data,
-  exact constructs cannot be reconstructed or normalization is incomparable.
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T163745Z`, shared-control
+  epoch 9, from merged main `dc8947d9e2029a2dc5ab1d181d8ddb2487422218`.
+  PRs #143–#148, the Choi stop and all frozen evidence were preserved. Three
+  complementary same-model source/data/critical reviews were used; they are not
+  independent expert review.
+- **Question:** can Huber et al.'s public exact-sequence DNA-recording panel
+  support the inherited family- or substrate-held-out sequence-specificity
+  benchmark with comparable quantitative negatives?
+- **Finding:** no for that proposed split. The author ML task contains one
+  TEVp-I scaffold, six mutable protease positions and 20 ENLYFQX substrates.
+  The model receives only the six protease residues and emits 20
+  substrate-specific heads, so family holdout is impossible and substrate
+  holdout is not the released task. The fixed 1,000-variant test is randomly
+  selected from 1,625 fully measured AB variants with at least 100 reads per
+  substrate; the paper's design analysis explicitly emulates search on these
+  already measured outcomes. This is an exposed, coverage-selected retrospective
+  test, not a new prospective cohort.
+- **Endpoint and identity:** the released code supplies the constant full parent
+  sequence and mutation-block mapping, and the raw campaign reproduces the
+  1,625-row complete cohort and seed-42 test identity. The recorder provides
+  continuous fraction-flipped AUC4h, reads and within-screen quantitative
+  negatives. It subtracts screen-specific inactive controls, sets values inside
+  their 95% interval to zero and retains a small C151A binding contribution.
+  Raw AUC is not a common cleavage scale across screens, and reporter activation
+  does not localize the peptide bond. Selected post-screen FRET checks cannot
+  calibrate the full panel. The primary Methods report hysteretic thresholds
+  p1=0.01/p2=0.1, while archived code/config use 0.01/0.05; any later work must
+  freeze and disclose a sensitivity analysis rather than silently choose one.
+- **Decision:** do not repeat the spent random split or preregister it as family
+  or substrate generalization. The only supported scope is retrospective
+  within-scaffold reporter-activity prediction; it cannot show intended-bond
+  cleavage, rate, de novo design, new-scaffold transfer or Problem 8 success.
+  Exact hashes, reconstruction counts and boundaries are in
+  `tools/research_lanes/protease_retargeting/huber_reporter_benchmark_qualification.json`.
+- **Next consequential action:** qualify and preregister the separate, single-
+  campaign TEVp-0 single-mutant by 134 single-mutant-substrate matrix for
+  two-axis blocked folds. Compare a row-plus-column additive baseline with
+  Hamming/biochemical interaction and Atlas representations. Continue only if
+  exact construct/control provenance survives and interaction information beats
+  the additive baseline on every frozen fold; otherwise stop. Any result remains
+  retrospective reporter generalization.
+- **Acquisition incident:** the two source-repository clones materialized known
+  pack files totaling 96,056,357 bytes before size inspection, exceeding the
+  new batch's default 30 MiB cap. Further acquisition for
+  `huber_reporter_audit_20261009` is stopped. The 864 MB processed and 37 MB raw
+  release assets were not downloaded; the checked-in raw archive was sufficient.
+  This breach is recorded rather than used to reset the allowance.
 - **Boundaries:** no model, scorer, training, paid compute, provider mutation,
   separately billed API, lab order or outreach. Prime remains disabled; USD 8
   per job and USD 50 per Chicago month are unchanged. Protected registries and
