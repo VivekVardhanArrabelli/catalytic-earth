@@ -10,8 +10,8 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": "codex/protease-specificity-feasibility",
-    "repository_commit": "6b06853dfe1f8dbb4d65fba5225ab005802b748e",
+    "repository_branch": "main",
+    "repository_commit": "a60a6c8e9d6db6c96ecccf41d41ce9df535c4c1a",
     "workers_terminal": true
   },
   "coordinator": {
