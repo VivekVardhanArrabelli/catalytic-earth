@@ -1,60 +1,65 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — TEV tetrad method-selection stop, 2026-10-09
+## Current research handoff — PGCN prospective-benchmark stop, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T125706Z`, shared-control
-  epoch 5, from merged main `c178245e0be0817df5681baebd5f28cbbe54c674`.
-  PRs #143/#144 and their frozen source evidence were preserved. This run took
-  PR #144's exact next action and evaluated method-selection feasibility before
-  executing a score.
-- **Question/finding:** can the exposed S219V/L2F by ENLYFQS/HPLVGHM tetrad
-  fairly choose between a sequence-only positional method and a structure-aware
-  method? No. The fourth cell is a wild-type/HPLVGHM nondetection under a
-  stronger fixed-dose 30-minute check, not a fitted kinetic datum under the
-  positive-cell protocol. It cannot supply a continuous 2-by-2 catalytic-
-  efficiency interaction without imputation. One exposed tetrad also has no
-  independent interaction replicate with which to estimate method error.
-- **Frozen scoring contract:** for any future higher-is-better score `S`, use
-  `G_target = S(L2F,HPLVGHM)-S(S219V,HPLVGHM)` and
-  `J = G_target-[S(L2F,ENLYFQS)-S(S219V,ENLYFQS)]`; the primary ordinal pass is
-  `G_target > 0` and `J > 0`. Never replace the censored experimental cell with
-  zero or a fitted efficiency. Exact native-substrate ordering is secondary
-  only because the reported efficiency point estimates are close and no
-  efficiency SD is supplied. Both-pass or both-fail means
-  `panel_not_discriminating`; an exclusive pass is only descriptive compatibility
-  on this exposed case.
-- **Method audit/evidence:** a protease-independent positional score has zero
-  interaction by construction and is a straw baseline. A credible protease-
-  specific positional baseline is already trained on exposed WT/L2F specificity
-  profiles. The strongest public structure comparator, Lu et al.'s PGCN
-  (DOI `10.1073/pnas.2303590120`, code commit
-  `c769a0eb53f3b3ec99d53da738ad380376be9bcf`), includes both WT and L2F labels,
-  including both native-substrate cells. Its README also says the source
-  structures for pretrained TEV models require author contact; target graph
-  generation needs Rosetta-modeled complexes, and no deposited L2F/HPLVGHM
-  structure fixes crop, pose, seed or aggregation. Deposited 1LVB is a C151A
-  intact-native-substrate complex with residues 222-236 unresolved; 1LVM is an
-  S219D product complex, not S219V with intact substrate. K229E is therefore
-  absent from the only usable intact template, and mutating six of seven peptide
-  positions in place would inherit native geometry. Exact file hashes and the decision are in
-  `tools/research_lanes/protease_retargeting/tev_l2f_scoring_feasibility.json`.
-- **Decision/alternative:** no score was run. Running a contact heuristic now
-  would introduce post hoc pose/weight choices; running PGCN would reuse exposed
-  labels without a reproducible target graph; using a protease-independent
-  baseline would manufacture a victory. The inherited stop rule is met: this
-  tetrad remains an ordinal source-faithful unit test, not a method-selection
-  benchmark. Do not append heterogeneous cells post hoc.
-- **Next action:** audit the published PGCN TEV design validation as a distinct
-  prospective-design question: can exact released split membership demonstrate
-  that noncanonical substrate designs were selected before their paired measured
-  outcomes, and can its structure model be compared fairly with the released
-  sequence baseline? Stop if selection used measured labels, exact split/design
-  membership cannot be reconstructed, or the assay supports only broad cleavage
-  classification rather than the intended-bond claim.
-- **Acquisition/boundaries:** batch `pgcn_reproducibility_audit_20261009` used
-  one shallow public Git clone; its pack is 6,344,712/31,457,280 bytes. The TEV
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T135933Z`, shared-control
+  epoch 6, from merged main `ca640d08ce93cb9ce035a35352ecef1997104665`.
+  PRs #143–#145 and their frozen evidence were preserved. This run executed
+  PR #145's exact next action; no model, scorer or paid provider was run.
+- **Question:** can Lu et al.'s published PGCN TEV validation supply a frozen
+  prospective intended-bond benchmark and a fair released comparison with a
+  competent sequence-only baseline? No. The evidence supports a narrower,
+  useful result: prospective PGCN-guided library enrichment and qualitative
+  reporter cleavage on new exact protease identities.
+- **Split and identity audit:** the GitHub tree omits its named split indices,
+  but bounded range reads from the paper-linked Zenodo archive recover exact
+  membership and reproduce the reported 4,340/542/543 TEV train/validation/test
+  counts. The split has no exact protease–peptide pair duplicates, but 120/532
+  validation and 132/533 test unique peptides also occur in train under another
+  protease. The 5,425-row source table contains none of the 19 exact clonal
+  protease identities and neither exact full target (`TKNLYFQAGT`,
+  `TENLYYQAGT`); the component motifs do occur in other contexts.
+- **Chronology:** a pretrained PGCN scored 280 P2 and 4,320 P6 Rosetta designs
+  before YESS and guided combinatorial-library construction. However, the exact
+  19 displayed clones were chosen after FACS outcomes—nine from the cleaved pool
+  and ten from the uncleaved pool. The pair-level evaluation is outcome-
+  conditioned, not a pre-outcome frozen test set. Of the 19, 16 are P2/P6 target
+  clones and three are P3 negative controls; PGCN calls all nine positives and
+  seven of ten negatives correctly in the released table. The three P3 rows
+  also conflict with the paper's description of the 19 as P2/P6 pool clones.
+- **Endpoint/baseline:** YESS infers binary cleavage from HA/FLAG tag loss and
+  flow cytometry. No product mapping establishes the intended Q/A bond for the
+  clones, and no rate, efficiency, product distribution or off-target panel is
+  supplied. The exact 19-clone table has no sequence-baseline prediction. A
+  notebook points to unreleased scratch logits for post-hoc comparisons, so an
+  aligned released PGCN-versus-sequence comparison is not executable. Rosetta
+  energy, visual selection and mutation enrichment also confound attribution to
+  PGCN without matched design-stage control arms. Table S8 also gives two
+  measured positives confidence 0.605 and 0.692, conflicting with the paper's
+  statement that all nine exceed 0.75.
+- **Decision:** the inherited stop rule is met. Do not run or retrain PGCN for
+  a clean method-selection claim from these 19 clones, call the outcome-selected
+  clones a prospective test set, or relabel reporter tag loss as intended-bond
+  validation. Retain the study as qualitative prospective library-enrichment
+  evidence. Exact sources, counts, hashes and boundaries are in
+  `tools/research_lanes/protease_retargeting/pgcn_tev_prospective_audit.json`.
+- **Next action:** run one bounded public-source survey for a different
+  cleavage-site-resolved design study that releases (1) a pre-outcome candidate
+  list, (2) exact enzyme and substrate sequences, (3) paired positive and
+  quantitative negative outcomes with intended-bond product identification and
+  (4) inputs that support the same-case structure and sequence baselines. Stop
+  after that survey if no study exposes all four; record the missing prospective
+  bond-resolved panel as an external assay/data dependency instead of weakening
+  the endpoint.
+- **Acquisition/boundaries:** batch `pgcn_reproducibility_audit_20261009` now
+  records three Git clone/fetch sequences across scheduled work, all resolving
+  commit `c769a0e`. Known pack payload plus persisted direct-HTTP bodies is
+  21,244,634/31,457,280 bytes; six Zenodo ranges account for 106,602 bytes and
+  did not download the 897,469,246-byte archive. Git wire overhead, an unsaved
+  metadata response and connector/web transport bytes are not exposed, so this
+  is a lower bound rather than exact wire accounting. The TEV
   L2F source batch remains 6 requests and 25,648,340 bytes; Chen-v3 remains
   92/100 and 30,250,296 bytes. No paid launch, provider mutation, separately
   billed API, lab order or outreach. Prime remains disabled; USD 8/job and USD

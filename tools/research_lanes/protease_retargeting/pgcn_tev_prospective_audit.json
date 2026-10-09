@@ -1,0 +1,135 @@
+{
+  "record_type": "published_protease_design_validation_audit",
+  "status": "stop_clean_prospective_method_comparison",
+  "created_utc": "2026-10-09T14:10:00Z",
+  "question": "Can the published PGCN TEV design validation provide a frozen prospective intended-bond benchmark and a fair released comparison with a sequence-only baseline?",
+  "decision_changing_outcomes": {
+    "continue": "Exact released training/design/test membership, pre-outcome selection of the paired validation cases, intended-bond-resolved outcomes, and predictions from PGCN plus a competent sequence baseline on the same cases would support a method comparison.",
+    "stop": "Missing exact membership, outcome-conditioned case selection, a cleavage-only reporter, or no aligned released baseline closes this route without model execution."
+  },
+  "sources": {
+    "paper": {
+      "citation": "Lu et al., Prediction and design of protease enzyme specificity using a structure-aware graph convolutional network, PNAS 120 e2303590120 (2023)",
+      "doi": "10.1073/pnas.2303590120",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.2303590120",
+      "relevant_sections": [
+        "Results: Experimental Evaluation of PGCN Generalizability Using Protease Design",
+        "Materials and Methods: Combinatorial Library Preparation and Yeast-Surface Display",
+        "Materials and Methods: Library FACS and cytometric analysis of individual designs"
+      ]
+    },
+    "release": {
+      "repository": "https://github.com/Nucleus2014/protease-gcnn-pytorch",
+      "commit": "c769a0eb53f3b3ec99d53da738ad380376be9bcf",
+      "commit_date": "2023-11-13",
+      "relationship_to_paper": "The audited commit postdates the paper's 2023-09-20 online publication and cannot by itself establish a pre-assay freeze."
+    }
+  },
+  "released_split_audit": {
+    "paper_report": "The source cleavage data were randomly split 80/10/10; reported TEV totals are 4340 training, 542 validation and 543 test examples.",
+    "release_expectation": "README.md names ind.<dataset>.trisplit.test.index and ind.<dataset>.trisplit.val.index as the files carrying exact membership.",
+    "github_observation": "The GitHub tree does not contain the TEV graph tensors, sequence-order arrays, or the named split-index files. TestIndexSelection.ipynb regenerates membership with np.random.shuffle but records aggregate counts rather than the membership arrays.",
+    "zenodo_recovery": "The paper-linked Zenodo record 7653923 contains train_val_test_graph_datasets.zip. Six bounded HTTP range responses totaling 106602 bytes recovered the archived TEV test and validation indices plus labels and sequence identities without downloading the 897469246-byte archive.",
+    "recovered_file_hashes": {
+      "test_index": "54c7219b92d9ea5d32db28dd16f159da10dfc2ab3c007ee8492311dfb5f214f5",
+      "validation_index": "f7ac93841042bb114e823232064f99b1e155630d9d3257b4f9b423248350c3d9",
+      "labels": "5dac75b8c51d7247fc40e9d932b48a8793940e24edbc297ce4fd19f4bf7a1005",
+      "sequences": "1ea164d3cbb5e92f22b8468a816475713e9237bf5cda7706e48add72308d9370"
+    },
+    "reconstructed_counts": {
+      "train": {"total": 4340, "cleaved": 2111, "uncleaved": 2229},
+      "validation": {"total": 542, "cleaved": 259, "uncleaved": 283},
+      "test": {"total": 543, "cleaved": 238, "uncleaved": 305}
+    },
+    "canonical_membership_hashes": {
+      "train": "24a86fb22fe091df54370363b94ff65a62816615781d01961c61cc5222f6129c",
+      "validation": "a857fdd0be3964d0f7fb03d856af0e1f8848fb41c50244e04956e33b632561a1",
+      "test": "302eaa53ab74e43367fa1c77636863650da78a598f912550bdf5736c66e6bd7b"
+    },
+    "cross_variant_substrate_overlap": {
+      "validation_unique_peptides_also_in_train": "120/532 (22.56%)",
+      "test_unique_peptides_also_in_train": "132/533 (24.77%)",
+      "exact_protease_peptide_pair_duplicates": 0
+    },
+    "conclusion": "Exact membership is recoverable from the paper-linked archive and matches the published aggregate counts. The random split is pair-disjoint but permits substrate identity to cross protease variants; it is historical specificity evidence, not the final design-panel comparator."
+  },
+  "design_chronology": {
+    "prospective_component": "A pretrained PGCN scored 280 P2-targeted and 4320 P6-targeted Rosetta designs before the YESS experiment. The paper reports selecting 200 and 126 by predicted cleavage probability, then 18 and 96 energetically favorable designs for combinatorial-library construction.",
+    "outcome_conditioning": "The exact 19 reported clonal cases were selected after FACS outcomes: nine from the cleaved pool and ten from the uncleaved pool.",
+    "cohort_scope_conflict": "The paper describes the 19 clones as selected from P6- and P2-targeted pools, but released Table S8 contains three P3-targeted negative controls. The stated P6/P2 campaign subset is therefore 16 cases, not all 19.",
+    "released_case_counts": {
+      "total_clones": 19,
+      "measured_cleaved": 9,
+      "measured_uncleaved": 10,
+      "correct_cleaved_predictions": 9,
+      "correct_uncleaved_predictions": 7,
+      "p2_or_p6_target_clones": 16,
+      "p3_negative_controls": 3
+    },
+    "listed_source_externality": {
+      "source_rows": 5425,
+      "source_protease_identities": 10,
+      "exact_19_clone_protease_overlap": 0,
+      "exact_p6_target_TKNLYFQAGT_rows": 0,
+      "exact_p2_target_TENLYYQAGT_rows": 0,
+      "boundary": "This establishes exact-identity externality from the listed source table, not an exact checkpoint split or a pre-outcome frozen pair-level test. KNLYFQ and ENLYYQ motifs do occur with other P1-prime residues and protease backgrounds, so exact-target absence is not motif-level novelty."
+    },
+    "conclusion": "The work is a prospectively model-guided library-enrichment experiment, but the displayed 19-pair evaluation is outcome-conditioned rather than a frozen prospective pair-level benchmark."
+  },
+  "assay_endpoint": {
+    "method": "YESS tag-loss reporter with anti-HA and anti-FLAG fluorescence, FACS isolation of cleaved and uncleaved pools, and flow-cytometry clonal validation.",
+    "supported": "Binary reporter cleavage classification under the assay conditions.",
+    "not_supported": [
+      "Direct product mapping to the intended Q/A bond by mass spectrometry or N-terminomics",
+      "A calibrated rate, catalytic efficiency, product distribution, or off-target specificity measurement",
+      "Intended-bond-resolved validation of the 19 clones"
+    ],
+    "conclusion": "The endpoint is useful broad cleavage evidence but does not meet the intended-bond requirement for this Problem 8 benchmark."
+  },
+  "baseline_audit": {
+    "released_alignment": "Table S8 contains mutation, target position, YESS class, PGCN class and PGCN confidence for the 19 clones; it has no sequence-baseline prediction column.",
+    "notebook_observation": "BenchmarkMLTrainigAfterPGCN.ipynb contains post-hoc design-set ML comparison attempts, but referenced logits and generated reports point to unreleased scratch paths and do not provide an exact aligned 19-clone sequence-baseline result.",
+    "design_stage_confound": "PGCN probability, Rosetta energetic favorability, visual inspection and mutation enrichment all contribute to the tested combinatorial libraries. With no matched sequence-only, Rosetta-only or random/frequency-matched design arm, assay outcomes cannot isolate the PGCN contribution.",
+    "confidence_discrepancy": "Released Table S8 contains two measured-positive rows with PGCN confidence 0.6054516435 and 0.6923581958, whereas the paper text states that all nine cleaved designs were predicted with probability greater than 0.75.",
+    "conclusion": "A fair released PGCN-versus-sequence-baseline comparison on the exact clonal cases is not executable."
+  },
+  "verified_release_files": {
+    "README.md": "c96902786caba66d486ddd0eee67f0b5bd4e360815daab34baa948f3ab115ca9",
+    "analysis/TestIndexSelection.ipynb": "94e07fee5dd1509b21be410760fc0b378c39414125a3c04a4c430d009680b1b1",
+    "analysis/suppl/Table-S1B-TEV_sequence_protease_label.xlsx": "332c5b1b199fae796345b7b8e59555e16a5893be2873970a96d1ecd783a947f6",
+    "analysis/suppl/Table-S8-Yeast-assay_PGCN_predicted_results_TEV_designs .xlsx": "0a4c90f47c73c596d613e46b68df65e606c59e5ac8906ad0c5632b1b477c5a38",
+    "graph/classifications/TEV.txt": "76263caa2df0438800507e938ce95baf0448dc4c384466dd0ead56c55f9a681a",
+    "graph/classifications/tev_design_for_validation_dual_directions_cleavage.txt": "b55d204d379bc23b566d9153a64592b21d8eebf0603d36616f40e13744f81146"
+  },
+  "decision": {
+    "conclusion": "The published validation supports prospective PGCN-guided library enrichment and broad binary reporter cleavage on new exact protease identities. It does not supply a frozen exact-pair prospective benchmark, intended-bond-resolved outcomes, or an aligned released sequence baseline.",
+    "stopping_rule": "Met. Do not run or retrain PGCN for a clean method-selection claim from these 19 clones, do not treat outcome-selected clones as a prospective test set, and do not relabel tag loss as intended-bond validation.",
+    "strongest_feasible_alternative": "Retain this study as source-supported qualitative library-enrichment evidence. For method selection, require a different public panel whose cases were fixed before outcomes, whose products identify the intended cleavage bond, and whose exact inputs support both a structure-aware method and a competent sequence baseline.",
+    "next_question": "Does a public cleavage-site-resolved protease design study release a pre-outcome candidate list with exact sequences, paired positive and negative outcomes, and enough inputs to score the same cases with both structure-aware and sequence baselines?",
+    "next_stop": "Stop source acquisition after one bounded survey if no study exposes all four elements; convert the missing bond-resolved prospective panel into an explicit external assay/data dependency rather than weakening the endpoint."
+  },
+  "evidence_boundary": {
+    "new_model_execution": false,
+    "new_training": false,
+    "paid_compute": false,
+    "wet_lab_validation": false,
+    "outreach": false,
+    "atlas_advantage": false
+  },
+  "source_acquisition": {
+    "batch": "pgcn_reproducibility_audit_20261009",
+    "git_clone_sequences_cumulative": 3,
+    "operation": "Three public Git clone/fetch sequences across scheduled runs, each resolving the same release commit, plus bounded paper/Zenodo metadata and ZIP-member range reads. The 897469246-byte archive was not downloaded in full.",
+    "git_pack_bytes_cumulative_lower_bound": 20549604,
+    "known_minimum_direct_http_requests_this_audit": 14,
+    "persisted_direct_http_response_bytes_this_audit": 695030,
+    "zenodo_archive_range_response_bytes": 106602,
+    "zenodo_archive_unique_byte_positions": 97592,
+    "zenodo_reported_archive_bytes_not_downloaded": 897469246,
+    "known_shell_byte_lower_bound_cumulative": 21244634,
+    "accounting_boundary": "The known shell-transfer lower bound is below the 31457280-byte batch cap. Exact Git smart-HTTP framing, one unsaved Zenodo metadata response, preliminary probes, and connector/web transport bytes are not exposed, so this is not certified exact wire-byte accounting.",
+    "default_request_cap": 100,
+    "default_byte_cap": 31457280,
+    "relationship_to_other_batches": "Distinct method-reproducibility question; it does not reset or consume the retained Chen-v3 or TEV L2F source batches."
+  }
+}
