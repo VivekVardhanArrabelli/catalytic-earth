@@ -1,0 +1,56 @@
+{
+  "record_type": "prospective_endpoint_identifiability_correction",
+  "status": "supported_correction_before_execution",
+  "created_utc": "2026-10-09T21:10:00Z",
+  "question": "Can calibrated nondetections in the proposed TEV 3-by-3 panel supply finite bounds on log(kcat/Km), so that a censored interaction can be confirmatory?",
+  "decision_changing_outcomes": {
+    "finite_efficiency_bounds": "Retain log(kcat/Km) as the single confirmatory endpoint and use the sharp interval interaction bound.",
+    "unbounded_efficiency": "Do not treat nondetection at finitely many positive substrate concentrations as an efficiency upper bound; either require all four primary cells to have identifiable kinetics or move the censored primary contrast to a directly bounded fixed-condition product observable."
+  },
+  "mathematical_result": {
+    "model": "v0 = E*kcat*S/(Km+S) = E*(kcat/Km)*Km*S/(Km+S)",
+    "finding": "For any proposed efficiency e=kcat/Km, any finite set of positive substrate concentrations and positive rate detection limits can remain nondetected by choosing Km sufficiently small and kcat=e*Km. Because v0 < E*e*Km, choosing Km below min(rate_limit)/(E*e) satisfies every nondetection while e can be arbitrarily large.",
+    "consequence": "An all-nondetected kinetic series does not identify a finite upper bound on kcat/Km unless the analysis adds a justified lower bound on Km or another measurement that identifies the low-substrate slope. A censored nonlinear fit does not create that information.",
+    "executable_check": "tev_censoring_identifiability.py"
+  },
+  "sharp_interval_rule": {
+    "contrast": "I = Y(PA,A) + Y(PB,B) - Y(PA,B) - Y(PB,A)",
+    "cell_intervals": "For rectangular intervals Yij in [Lij,Uij], I is in [LAA+LBB-UAB-UBA, UAA+UBB-LAB-LBA].",
+    "positive_direction": "Detected diagonal cells with finite lower bounds and nondetected off-diagonal cells with finite upper bounds can establish a positive interaction. A censored diagonal with no finite lower bound cannot.",
+    "negative_direction": "Reverse the requirements for a prospectively frozen negative score direction: finite upper bounds on the diagonal terms and finite lower bounds on the off-diagonal terms are needed.",
+    "scope": "This rule is exact for cellwise rectangular bounds. A joint interval-censored model may be tighter only if its dependence and kinetic assumptions are prospectively justified."
+  },
+  "corrected_measurement_options": {
+    "option_a_efficiency_only": {
+      "contract": "Keep log(kcat/Km) as primary, but require identifiable kinetic estimates for all four primary cells. Any primary nondetection whose efficiency interval is unbounded makes the panel inconclusive.",
+      "benefit": "Preserves the original mechanistic endpoint.",
+      "cost": "The most informative off-target negatives are likely to become inconclusive rather than confirmatory."
+    },
+    "option_b_censorable_fixed_interval_primary": {
+      "contract": "Use log intended-product amount per enzyme over one prospectively fixed short interval, substrate concentration and common condition as the primary 2-by-2 interaction. A calibrated product LOD and enzyme amount directly give a finite upper bound for nondetections. Fit initial rates and kcat/Km secondarily wherever they are identifiable.",
+      "requirements": [
+        "freeze the common substrate concentration, enzyme-normalization rule and observation interval before measurements",
+        "verify intended-bond product identity for every detected primary cell and keep conversion low enough to preserve an interpretable short-interval comparison",
+        "carry LOD/LOQ and uncertainty into cell intervals rather than substituting zero",
+        "do not call the fixed-interval bound an initial-rate bound without separately validated time-course assumptions",
+        "state that the result is condition-specific product discrimination, not a universal catalytic-efficiency interaction"
+      ],
+      "benefit": "Allows quantitative off-target nondetections to strengthen the crossed-preference test without an unjustified Km assumption.",
+      "cost": "Changes the confirmatory estimand from catalytic efficiency to product formation under one specified assay condition. The existing five-block power calculation does not transfer; variance and power for this endpoint must be frozen from a blinded pilot or justified external data before execution."
+    }
+  },
+  "decision": {
+    "selected_correction": "Do not execute the current censored kcat/Km success rule as written. Before candidate selection, choose prospectively between option A and option B based on the laboratory's validated dynamic range; option B is the stronger feasible design when true off-target nondetections are expected, but it requires its own frozen variance and power plan.",
+    "effect_on_existing_panel": "The 3-by-3 minimality result, exact constructs, intended-bond requirement, complete blocks, frozen score direction and additive interaction logic remain valid. The endpoint/censoring portion of tev_minimal_prospective_panel_spec.json is superseded by this correction before any candidates or outcomes exist.",
+    "strongest_feasible_alternative": "Declare every nondetection inconclusive and require four detected primary efficiencies. This is simpler and preserves the endpoint, but systematically discards bounded off-target evidence and may make a selectivity experiment unable to succeed for the intended reason.",
+    "stopping_rule": "Stop at this analytical correction. Do not select candidates, score the exposed L2F tetrad, assume a Km floor, order assays or contact a laboratory. If no measurement route can validate either corrected contract, the prospective panel remains an external dependency."
+  },
+  "boundaries": {
+    "new_source_requests": 0,
+    "new_source_bytes": 0,
+    "model_or_score_executed": false,
+    "candidate_selection_executed": false,
+    "wet_lab_executed": false,
+    "paid_compute": false
+  }
+}

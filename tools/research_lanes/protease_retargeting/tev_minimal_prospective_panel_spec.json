@@ -1,6 +1,7 @@
 {
   "record_type": "prospective_matched_protease_substrate_measurement_specification",
-  "status": "specified_not_executed_external_measurement_dependency",
+  "status": "specified_not_executed_endpoint_censoring_superseded",
+  "prospective_correction": "tev_censoring_identifiability.json supersedes the endpoint/censoring success rule before candidate selection or measurement. The 3-by-3 minimality, complete-block layout, intended-bond requirement and interaction logic remain retained.",
   "created_utc": "2026-10-09T19:38:22Z",
   "question": "What is the smallest new TEV-family measurement matrix that can distinguish a prospectively frozen interaction-aware score from additive protease and substrate effects while retaining intended-bond identity, quantitative negatives and an activity control?",
   "inherited_evidence": {
