@@ -1,12 +1,16 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — context intervention closed, 2026-10-02
+## Current research handoff — Problem 8 priority clarified, 2026-10-09
 
-- **Direction:** pursue the full computable catalytic-mechanism Atlas toward
-  de novo function, using Problem 8 as a consequential test. No working protease
-  or Atlas design advantage is claimed. Both finite design comparisons and the
-  earlier substrate-window comparison remain closed without rescue sampling.
+- **Direction:** the owner clarified on 2026-10-09 that Problem 8 is the primary
+  target: design proteases on demand that cut a chosen protein sequence
+  specifically and efficiently. Develop the full computable Atlas through the
+  mechanisms, constraints and evidence needed for that research. Choose the
+  strongest available approach; proving Atlas's added value is not a prerequisite
+  for progress toward protease capability. No working protease or Atlas design
+  advantage is claimed. Both finite design comparisons and the earlier
+  substrate-window comparison remain closed without rescue sampling.
 - **Completed question:** does fixed enzyme/substrate sidechain geometry during
   LigandMPNN sequence design improve joint recovery on the retained
   water-fixed-seed-3 scaffold? All eight distinct sequences and 80 unconditioned
@@ -41,11 +45,13 @@
   removes scored Glu atoms, making a missing-group penalty tautological; such
   a control needs a separately justified common endpoint. The unnormalized
   113-design screen cannot automatically supply matched inactive labels.
-  No suitable negative is established, so prediction discrimination is not
-  currently executable. This dependency beats more generative repairs because
-  the current readout is not activity-validated. The positive-only reanalysis
-  is complete; do not repeat it or relabel it validation. No further compute
-  is authorized by the completed rental.
+  No suitable negative is established, so activity discrimination using this
+  readout is not currently executable. Bound this control search to the question
+  it can unlock. If unavailable, close that evaluation route and choose another
+  justified experiment toward the same Problem 8 capability; this is not a
+  prerequisite for all protease research or Atlas development. The positive-only
+  reanalysis is complete; do not repeat it or relabel it validation. No further
+  compute is authorized by the completed rental.
 - **Evidence boundaries:** one post hoc selected imposed hybrid scaffold, four
   new sequence seeds; combined enzyme/substrate context, not Tyr-only causality.
   Public LigandMPNN differs from author EnhancedMPNN. RF3 cached MACE features
@@ -64,13 +70,18 @@
   native identities/context/RNG and mechanistic interpretation. Same-model
   checks are not independent expert review. Seven unrelated demo paths and
   protected registries are preserved; hourly automation remains paused.
-- **Run/publication:** started 19:29:38 UTC; base
+- **Completed experiment/publication:** started 2026-10-02 at 19:29:38 UTC; base
   `837afd8faff28455bc94dfa1cc6ee606e6dbbb54`; branch
   `codex/protease-sidechain-context`; local receipt
   `.git/catalytic-earth-runs/20261002T192938Z-protease-sidechain-context/`.
   Scientific freeze `dddd4e8c`; hardware amendment `14119cfd`, both before sampling.
-  PR #138 was integrated before this run; current publication state is in the
-  local receipt and Git. No second queue or replacement samples were created.
+  PR #139 merged as `400aaccb`; all four CI checks passed and the run lock was
+  released. No second queue or replacement samples were created.
+- **Direction update:** owner-requested priority alignment only, starting from
+  `400aaccba948dfa684e4fb6b205c075a7b16cd47` on
+  `codex/problem8-primary-target`. No new scientific result, model execution,
+  source acquisition or paid compute. Current publication state is in Git and
+  `.git/catalytic-earth-runs/20261009T090124Z-problem8-direction/`.
 - **Acquisition:** no new author-source acquisition. Named source batch remains
   30,250,296 of 31,457,280 bytes and 92 of 100 requests. Official runtime/packages
   and 3,049,418,389 checkpoint bytes were separately authorized for this rental;

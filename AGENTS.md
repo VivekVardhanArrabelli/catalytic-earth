@@ -12,12 +12,18 @@ with consequential, reproducible results that other researchers can trust and
 use. A favorable conclusion about OpenAI, any other provider or Atlas itself is
 never a condition of success.
 
-The North Star is the full computable catalytic-mechanism atlas, connecting
-chemical knowledge and protein evidence to testable function and ultimately
-working de novo enzymes. A reusable dataset that enables others to design
-functioning catalysts is also a legitimate contribution. Applications such as
-programmable proteases are consequences and tests of this ambition. Preserve
-the hard objective while remaining willing to change the methods.
+The primary scientific target is **Problem 8: programmable proteases** —
+enzymes that can be designed on demand to cut a chosen protein sequence
+specifically and efficiently. Choose work by its contribution to that capability
+and ultimately measured function. Preserve this hard objective while remaining
+willing to change the methods.
+
+Develop the full computable catalytic-mechanism Atlas through this pursuit:
+connect chemical knowledge and protein evidence to testable function, and retain
+reusable mechanisms, constraints, datasets and informative failures. Atlas
+construction should answer needs exposed by the protease research. Demonstrating
+an Atlas advantage is not a prerequisite for progress toward Problem 8; use the
+strongest available approach and measure Atlas's contribution where it matters.
 
 ## How to pursue it
 

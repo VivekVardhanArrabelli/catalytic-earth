@@ -1,19 +1,25 @@
 # Scientific direction and review
 
-The full computable catalytic-mechanism atlas remains the mission, ultimately
-enabling de novo enzyme design directly or through a useful dataset. Claims,
-errata and the truth policy control evidence scope. Oversight changes task
-selection when the expected scientific return no longer justifies continuation.
+Problem 8, programmable proteases, is the primary scientific target. Develop
+the full computable catalytic-mechanism Atlas through the mechanistic knowledge,
+design constraints and measured evidence needed to solve it. Claims, errata and
+the truth policy control evidence scope. Oversight changes task selection when
+the expected scientific return no longer justifies continuation.
 
-## Current direction — 2026-09-28
+## Current direction — 2026-10-09
 
-The owner selected [Problem 8, programmable proteases](https://millenniumproblems.bio/),
-as a consequential question through which to build the full computable Atlas.
+The owner clarified that [Problem 8, programmable proteases](https://millenniumproblems.bio/)
+is the target: design enzymes on demand that cut a chosen protein sequence
+specifically and efficiently. Atlas progress should develop through that pursuit.
+Select experiments for their contribution to protease capability and measured
+function; a demonstrated Atlas advantage is not an entry requirement.
 Use complementary, bounded investigations that contribute to one scientific
 answer. Atlas-versus-direct comparisons belong at decision milestones, not at
 every step. Each research turn must pursue a concrete advance while preserving
 honest negative outcomes. The marked [handoff](../work/handoff.md) carries the
 current question, evidence and next action; the reviews below are historical.
+An unavailable control can close one proposed evaluation route without closing
+the programme; choose another justified route toward the same scientific target.
 This direction change does not itself resume any paused automation.
 
 ## Historical decision — 2026-09-12 owner-authorized reprioritization
