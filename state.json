@@ -1,5 +1,5 @@
 {
-  "active_run_id": "problem8-control-search-b86a0666-e3ba-4e90-9f40-616eb0a28123",
+  "active_run_id": null,
   "budget": {
     "calendar_month_cap_cents": 5000,
     "currency": "USD",
@@ -10,19 +10,19 @@
     "timezone": "America/Chicago"
   },
   "checkpoint": {
-    "repository_branch": "codex/cloud-zn45-budget-ranking",
-    "repository_commit": "819bc8886562acc92af911bc73c7f772d13cf7dc",
-    "workers_terminal": true
+    "repository_branch": null,
+    "repository_commit": null,
+    "workers_terminal": false
   },
   "coordinator": {
     "epoch": 2,
-    "heartbeat_at": "2026-10-09T10:26:15Z",
-    "lease_expires_at": "2026-10-09T10:41:15Z",
-    "owner": "cloud-work-20261009:4f22f451-34e8-4f81-93e2-ada96a09c815"
+    "heartbeat_at": null,
+    "lease_expires_at": null,
+    "owner": null
   },
   "job": null,
   "job_history": [],
-  "phase": "researching",
+  "phase": "idle",
   "recovery": {
     "claimed_at": null,
     "previous_owner": null,
