@@ -1,54 +1,65 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — public matched discrimination panel, 2026-10-09
+## Current research handoff — TEV tetrad method-selection stop, 2026-10-09
 
 - **Run/continuity:** automation run
-  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T120252Z`, shared-control
-  epoch 4, from merged main `a60a6c8e9d6db6c96ecccf41d41ce9df535c4c1a`.
-  Prior PR #143 and its zero-eligible-target result were preserved; this run
-  pursued its explicit alternative rather than reopening the retained source.
-- **Question/finding:** does one public engineered-protease study contain exact
-  construct identities and substrate sequences, product-verified intended bonds,
-  matched quantitative positives and a bounded quantitative negative? Yes, in a
-  deliberately small four-cell panel. Packer et al. (2017) report TEV S219V and
-  evolved TEV L2F against ENLYFQS and HPLVGHM in one product-calibrated HPLC
-  assay: three kinetic positives plus wild-type/HPLVGHM nondetection at a stated
-  1 nM product limit after 30 min with 1 uM enzyme and 2 mM substrate. L2F's
-  complete 20-mutation genotype is public; synthetic product standards specify
-  both scissile bonds, and full-length IL-23 LC-MS independently supports
-  HPLVGH/M.
-- **Evidence/limits:** the exact constructs, assay peptides, product standards,
-  2x2 kinetic matrix, censoring rule and provenance are frozen in
-  `tools/research_lanes/protease_retargeting/tev_l2f_discrimination.json` from
-  DOI `10.1038/s41467-017-01055-9`, PMCID `PMC5643515`, Supplementary Table 11,
-  Addgene MSP851/98798 and BioProject PRJNA397152. This is exposed development
-  evidence, not an untouched holdout. Four cells cannot establish broad
-  specificity, cross-family transfer, de novo success or Atlas advantage.
-  New batch `tev_l2f_matched_panel_20261009` used 6 successful shell requests
-  and 25,648,340/31,457,280 bytes, including two complete supplement downloads;
-  search-index lookups are not byte-counted. The retained Chen-v3 batch stays
-  92/100 requests and 30,250,296/31,457,280 bytes.
-- **Alternative/direction:** qPISA has matched quantitative substrate depletion
-  but no per-peptide product/bond verification; CleaveNet's MMP panel has a larger
-  replicated FRET matrix but no localized products; MSP-MS localizes cuts but its
-  unobserved sites are not calibrated negatives. The compact TEV panel is the
-  strongest qualifying source because it keeps product identity, rates and the
-  negative bound in one assay. Native/evolved TEV does not validate designed zinc
-  proteases; it is only a calibration case for substrate-discrimination logic.
-- **Next action:** before any score is run, specify one sequence/structure scoring
-  rule and a protease-by-substrate interaction endpoint on these four frozen
-  cells. Compare it with the simplest sequence-only positional model. Stop after
-  this calibration if both methods miss the evolved target gain, if the result
-  depends on replacing the censored negative with zero, or if the four exposed
-  cells cannot discriminate the methods; do not add post hoc source panels.
-- **Publication/boundaries:** branch `codex/tev-l2f-discrimination`.
-  No paid launch, provider mutation, separately billed API, lab order or outreach.
-  Prime remains disabled pending cloud credentials, reconciled billing, durable
-  retrieval and independent termination tests. USD 8/job and USD 50/Chicago
-  month unchanged; empty control ledger is not proof of zero billing. Named source
-  batch remains 92/100 requests and 30,250,296/31,457,280 bytes. Frozen evidence,
-  protected registries and all prior outcomes are preserved.
+  `automation-6ac8bd9adeb8819096b82a61101ea18a-20261009T125706Z`, shared-control
+  epoch 5, from merged main `c178245e0be0817df5681baebd5f28cbbe54c674`.
+  PRs #143/#144 and their frozen source evidence were preserved. This run took
+  PR #144's exact next action and evaluated method-selection feasibility before
+  executing a score.
+- **Question/finding:** can the exposed S219V/L2F by ENLYFQS/HPLVGHM tetrad
+  fairly choose between a sequence-only positional method and a structure-aware
+  method? No. The fourth cell is a wild-type/HPLVGHM nondetection under a
+  stronger fixed-dose 30-minute check, not a fitted kinetic datum under the
+  positive-cell protocol. It cannot supply a continuous 2-by-2 catalytic-
+  efficiency interaction without imputation. One exposed tetrad also has no
+  independent interaction replicate with which to estimate method error.
+- **Frozen scoring contract:** for any future higher-is-better score `S`, use
+  `G_target = S(L2F,HPLVGHM)-S(S219V,HPLVGHM)` and
+  `J = G_target-[S(L2F,ENLYFQS)-S(S219V,ENLYFQS)]`; the primary ordinal pass is
+  `G_target > 0` and `J > 0`. Never replace the censored experimental cell with
+  zero or a fitted efficiency. Exact native-substrate ordering is secondary
+  only because the reported efficiency point estimates are close and no
+  efficiency SD is supplied. Both-pass or both-fail means
+  `panel_not_discriminating`; an exclusive pass is only descriptive compatibility
+  on this exposed case.
+- **Method audit/evidence:** a protease-independent positional score has zero
+  interaction by construction and is a straw baseline. A credible protease-
+  specific positional baseline is already trained on exposed WT/L2F specificity
+  profiles. The strongest public structure comparator, Lu et al.'s PGCN
+  (DOI `10.1073/pnas.2303590120`, code commit
+  `c769a0eb53f3b3ec99d53da738ad380376be9bcf`), includes both WT and L2F labels,
+  including both native-substrate cells. Its README also says the source
+  structures for pretrained TEV models require author contact; target graph
+  generation needs Rosetta-modeled complexes, and no deposited L2F/HPLVGHM
+  structure fixes crop, pose, seed or aggregation. Deposited 1LVB is a C151A
+  intact-native-substrate complex with residues 222-236 unresolved; 1LVM is an
+  S219D product complex, not S219V with intact substrate. K229E is therefore
+  absent from the only usable intact template, and mutating six of seven peptide
+  positions in place would inherit native geometry. Exact file hashes and the decision are in
+  `tools/research_lanes/protease_retargeting/tev_l2f_scoring_feasibility.json`.
+- **Decision/alternative:** no score was run. Running a contact heuristic now
+  would introduce post hoc pose/weight choices; running PGCN would reuse exposed
+  labels without a reproducible target graph; using a protease-independent
+  baseline would manufacture a victory. The inherited stop rule is met: this
+  tetrad remains an ordinal source-faithful unit test, not a method-selection
+  benchmark. Do not append heterogeneous cells post hoc.
+- **Next action:** audit the published PGCN TEV design validation as a distinct
+  prospective-design question: can exact released split membership demonstrate
+  that noncanonical substrate designs were selected before their paired measured
+  outcomes, and can its structure model be compared fairly with the released
+  sequence baseline? Stop if selection used measured labels, exact split/design
+  membership cannot be reconstructed, or the assay supports only broad cleavage
+  classification rather than the intended-bond claim.
+- **Acquisition/boundaries:** batch `pgcn_reproducibility_audit_20261009` used
+  one shallow public Git clone; its pack is 6,344,712/31,457,280 bytes. The TEV
+  L2F source batch remains 6 requests and 25,648,340 bytes; Chen-v3 remains
+  92/100 and 30,250,296 bytes. No paid launch, provider mutation, separately
+  billed API, lab order or outreach. Prime remains disabled; USD 8/job and USD
+  50/Chicago month unchanged. Frozen evidence, protected registries and all
+  prior outcomes are preserved.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue
